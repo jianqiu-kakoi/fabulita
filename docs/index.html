@@ -1,62 +1,327 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>fabulita — vocab list in, storybook out</title>
+<title>fabulita</title>
 <style>
   :root {
     --bg: #F6F4EE; --card: #FFFFFF; --ink: #2A2620; --muted: #6F695E;
     --accent: #2F5DA8; --accent-deep: #24497F; --accent-soft: rgba(47,93,168,0.09);
-    --gold: #B8860B; --line: #E4DFD4;
-    --serif: "Palatino", "Palatino Linotype", Georgia, "Songti SC", serif;
-    --sans: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans", "Helvetica Neue", sans-serif;
+    --gold: #B8860B; --line: #E4DFD4; --danger: #A3352B;
+    --serif: "Palatino", "Palatino Linotype", Georgia, "Songti SC", "Hiragino Mincho ProN", serif;
+    --sans: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans", "Microsoft YaHei", "Helvetica Neue", sans-serif;
   }
   @media (prefers-color-scheme: dark) {
     :root { --bg: #1A1C21; --card: #22252C; --ink: #E7E3D9; --muted: #9A948A;
       --accent: #8AB0E8; --accent-deep: #A8C6F0; --accent-soft: rgba(138,176,232,0.12);
-      --gold: #D5A54E; --line: #33363E; }
+      --gold: #D5A54E; --line: #33363E; --danger: #E08A80; }
   }
   * { box-sizing: border-box; }
-  body { background: var(--bg); color: var(--ink); font-family: var(--sans); margin: 0; padding: 3rem 1.25rem 5rem; line-height: 1.7; }
-  .wrap { max-width: 42rem; margin: 0 auto; }
-  .eyebrow { font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); font-weight: 600; margin: 0 0 0.5rem; }
-  h1 { font-family: var(--serif); font-size: 2.4rem; font-weight: 600; margin: 0 0 0.6rem; text-wrap: balance; }
-  .sub { color: var(--muted); font-size: 1.05rem; margin: 0 0 2rem; max-width: 36rem; }
-  .flow { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.8rem; color: var(--muted); background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 1rem 1.2rem; overflow-x: auto; white-space: pre; margin: 0 0 2rem; }
-  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1rem; margin-bottom: 2rem; }
-  a.card { display: block; background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 1.2rem 1.4rem; text-decoration: none; color: var(--ink); transition: border-color 120ms ease; }
-  a.card:hover { border-color: var(--accent); }
-  a.card h2 { font-family: var(--serif); font-size: 1.15rem; margin: 0 0 0.2rem; color: var(--accent-deep); }
-  a.card p { margin: 0; font-size: 0.85rem; color: var(--muted); }
-  a.card .tag { display: inline-block; font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); border: 1px solid var(--gold); border-radius: 100px; padding: 0.05rem 0.5rem; margin-bottom: 0.5rem; }
-  .gh { text-align: center; margin-top: 1rem; }
-  .gh a { color: var(--accent-deep); }
-  footer { text-align: center; color: var(--muted); font-size: 0.8rem; margin-top: 3rem; }
+  body { background: var(--bg); color: var(--ink); font-family: var(--sans); margin: 0; padding: 2.5rem 1.25rem 4rem; line-height: 1.7; }
+  .wrap { max-width: 44rem; margin: 0 auto; }
+  .top { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; flex-wrap: wrap; }
+  .eyebrow { font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); font-weight: 600; margin: 0; }
+  .langsw { display: flex; gap: 0.35rem; }
+  .langsw button { font-family: var(--sans); font-size: 0.78rem; padding: 0.25rem 0.7rem; border: 1px solid var(--line); border-radius: 100px; background: var(--card); color: var(--muted); cursor: pointer; }
+  .langsw button:hover { border-color: var(--accent); color: var(--accent-deep); }
+  .langsw button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--card); }
+  h1 { font-family: var(--serif); font-size: 2.3rem; font-weight: 600; margin: 1.2rem 0 0.6rem; text-wrap: balance; }
+  .sub { color: var(--muted); font-size: 1rem; margin: 0 0 2.2rem; max-width: 38rem; }
+  h2 { font-family: var(--serif); font-size: 1.2rem; font-weight: 600; margin: 0 0 1rem; }
+  .books { display: grid; grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+  a.book { display: block; background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 1.5rem 1.5rem 1.2rem; text-decoration: none; color: var(--ink); transition: border-color 120ms ease, transform 120ms ease; }
+  a.book:hover { border-color: var(--accent); transform: translateY(-2px); }
+  a.book .bname { font-family: var(--serif); font-size: 1.6rem; font-weight: 600; color: var(--accent-deep); display: block; margin-bottom: 0.3rem; }
+  a.book .bmeta { font-size: 0.82rem; color: var(--muted); display: block; }
+  a.book .bopen { font-size: 0.82rem; color: var(--gold); display: block; margin-top: 0.7rem; }
+
+  .widget { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 1.4rem 1.5rem; margin-bottom: 2rem; }
+  .w-head { display: flex; align-items: center; gap: 0.9rem; cursor: pointer; }
+  .w-plus { font-family: var(--serif); background: var(--accent); color: var(--card); min-width: 2.1rem; height: 2.1rem; display: inline-flex; align-items: center; justify-content: center; border-radius: 8px; font-size: 1.3rem; flex-shrink: 0; }
+  .w-head h2 { margin: 0; }
+  .w-head .muted { margin: 0; }
+  .muted { color: var(--muted); font-size: 0.85rem; }
+  .w-body { display: none; margin-top: 1.1rem; border-top: 1px solid var(--line); padding-top: 1.1rem; }
+  .widget.open .w-body { display: block; }
+  label { display: block; font-size: 0.82rem; color: var(--muted); margin: 0.7rem 0 0.2rem; }
+  select, textarea { width: 100%; font-family: var(--sans); font-size: 0.95rem; padding: 0.5rem 0.7rem; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); color: var(--ink); }
+  textarea { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.85rem; min-height: 8rem; resize: vertical; }
+  select { width: auto; }
+  .row { display: flex; gap: 0.6rem; align-items: center; flex-wrap: wrap; margin-top: 0.9rem; }
+  .btn { font-family: var(--sans); font-size: 0.85rem; padding: 0.4rem 0.95rem; border: 1px solid var(--line); border-radius: 100px; background: var(--card); color: var(--ink); cursor: pointer; }
+  .btn:hover { border-color: var(--accent); }
+  .btn-primary { background: var(--accent); border-color: var(--accent); color: var(--card); }
+  .btn-primary:hover { background: var(--accent-deep); }
+  .vtable { width: 100%; border-collapse: collapse; margin-top: 0.9rem; font-size: 0.92rem; }
+  .vtable td { padding: 0.35rem 0.5rem; border-bottom: 1px solid var(--line); }
+  .vtable td.vw { font-family: var(--serif); font-size: 1.02rem; color: var(--accent-deep); white-space: nowrap; }
+  .vtable td.varrow { color: var(--muted); }
+  .vtable td.vdel { text-align: right; }
+  .vtable button { border: none; background: none; color: var(--danger); cursor: pointer; font-size: 0.95rem; padding: 0.1rem 0.35rem; border-radius: 4px; }
+  .vtable button:hover { background: var(--accent-soft); }
+  .vscroll { max-height: 20rem; overflow-y: auto; }
+  .note { font-size: 0.82rem; color: var(--muted); margin-top: 0.6rem; }
+  footer { color: var(--muted); font-size: 0.8rem; margin-top: 3rem; display: flex; gap: 1.2rem; flex-wrap: wrap; }
+  footer a { color: var(--muted); }
+  footer a:hover { color: var(--accent-deep); }
+  input[type=file] { display: none; }
 </style>
 </head>
 <body>
-<div class="wrap">
-  <p class="eyebrow">fabulita</p>
-  <h1>Vocabulary list in,<br>storybook out.</h1>
-  <p class="sub">Feed it your word list; any LLM writes A1 micro-stories from it; fabulita compiles them into a single offline HTML page — tap-word glosses, per-sentence neural audio, coverage tracking. No server, no account, no app. 把词表变成属于你的可朗读分级故事书。</p>
+<div class="wrap" id="app"></div>
 
-  <div class="flow">vocab.csv ──▶ LLM prompt (≤20 uncovered words) ──▶ story JSON
-   ▲                                              │
-   └── coverage 84% … 100% ◀── accept ◀── candidate pool
-                 │
-                 ▼
-        dist/index.html — one file, works offline, audio embedded</div>
+<script>
+(function () {
+"use strict";
 
-  <div class="grid">
-    <a class="card" href="studio.html"><span class="tag">Web app</span><h2>Studio →</h2><p>Upload a vocab list, generate stories, export your book — all in the browser. 上传词表直接开做。</p></a>
-    <a class="card" href="demo-es.html"><span class="tag">Demo · Español</span><h2>Lecturas A1 →</h2><p>6 stories, 64-word vocabulary, 36 embedded neural audio clips.</p></a>
-    <a class="card" href="demo-en.html"><span class="tag">Demo · English</span><h2>Readings A1 →</h2><p>English target language, Chinese glosses.</p></a>
-    <a class="card" href="demo-ja.html"><span class="tag">Demo · 日本語</span><h2>読み物 N5 →</h2><p>Unspaced-script segmentation via glossary longest-match.</p></a>
-  </div>
+var L = {
+  zh: {
+    tagline: "把词表变成属于你的分级故事书",
+    sub: "把生词表交给任何一个 LLM，它据此写出入门级小故事；fabulita 把故事编译成一个离线可用的网页——点词查义、逐句朗读、覆盖率追踪。没有服务器，没有账号，词表数据不离开你的浏览器。",
+    choose: "选择你在学的语言",
+    open: "打开故事书 →",
+    meta: { es: "A1 · 6 个故事 · 神经语音朗读", en: "A1 · 入门读物 · 神经语音朗读", ja: "N5 · 入门读物 · 神经语音朗读" },
+    addTitle: "添加我的词表",
+    addSub: "输入或上传词表，做一本你自己的故事书",
+    targetLang: "学习语言",
+    pasteLabel: "粘贴词表（每行一个词，支持 逗号 / Tab / → / ： 分隔；Word 文档请直接复制文本粘贴）",
+    pastePh: "apple, 苹果\nbanana → 香蕉\norange：橙子；橘子",
+    upload: "上传文件（csv / tsv / txt / md）",
+    parse: "解析并确认",
+    confirmTitle: "确认词汇表",
+    confirmSub: "解析出 {n} 个词。多个释义已用「；」合并；点 ✕ 删除不要的行。",
+    skipped: "有 {n} 行无法解析，已跳过",
+    nothing: "没有解析到词条——检查一下每行是否是「词 分隔符 释义」",
+    confirm: "✓ 确认添加并开始",
+    cancel: "取消",
+    projName: { es: "我的西语词表", en: "我的英语词表", ja: "我的日语词表" },
+    footStudio: "工作台（已有项目）", footGh: "源码 GitHub", footCli: "命令行版"
+  },
+  en: {
+    tagline: "Turn your word list into a graded storybook of your own",
+    sub: "Hand your vocabulary list to any LLM — it writes beginner micro-stories from it; fabulita compiles them into one offline web page with tap-word glosses, per-sentence audio and coverage tracking. No server, no account; your data never leaves the browser.",
+    choose: "Choose the language you're learning",
+    open: "Open the storybook →",
+    meta: { es: "A1 · 6 stories · neural audio", en: "A1 · starter readings · neural audio", ja: "N5 · starter readings · neural audio" },
+    addTitle: "Add my word list",
+    addSub: "Type or upload a vocabulary list and build your own book",
+    targetLang: "Learning language",
+    pasteLabel: "Paste your list (one word per line; comma / tab / → / : separators; for Word docs just copy the text)",
+    pastePh: "apple, 苹果\nbanana → 香蕉",
+    upload: "Upload a file (csv / tsv / txt / md)",
+    parse: "Parse & review",
+    confirmTitle: "Confirm the vocabulary",
+    confirmSub: "Parsed {n} words. Multiple meanings joined with “;”. Click ✕ to drop a row.",
+    skipped: "{n} lines could not be parsed and were skipped",
+    nothing: "No entries found — each line should look like “word separator meaning”",
+    confirm: "✓ Add and start",
+    cancel: "Cancel",
+    projName: { es: "My Spanish words", en: "My English words", ja: "My Japanese words" },
+    footStudio: "Workspace (existing projects)", footGh: "Source on GitHub", footCli: "Command line"
+  },
+  es: {
+    tagline: "Convierte tu lista de palabras en tu propio libro de cuentos graduados",
+    sub: "Entrega tu vocabulario a cualquier LLM: escribirá microhistorias de nivel inicial; fabulita las compila en una página web sin conexión — glosas al tocar, audio por frase, cobertura. Sin servidor, sin cuenta; tus datos no salen del navegador.",
+    choose: "Elige el idioma que aprendes",
+    open: "Abrir el libro →",
+    meta: { es: "A1 · 6 historias · audio neuronal", en: "A1 · lecturas iniciales · audio neuronal", ja: "N5 · lecturas iniciales · audio neuronal" },
+    addTitle: "Añadir mi lista de palabras",
+    addSub: "Escribe o sube una lista y crea tu propio libro",
+    targetLang: "Idioma que aprendes",
+    pasteLabel: "Pega tu lista (una palabra por línea; separadores coma / tab / → / :)",
+    pastePh: "apple, manzana\nbanana → plátano",
+    upload: "Subir archivo (csv / tsv / txt / md)",
+    parse: "Analizar y revisar",
+    confirmTitle: "Confirma el vocabulario",
+    confirmSub: "{n} palabras. Significados múltiples unidos con “;”. Pulsa ✕ para quitar una fila.",
+    skipped: "{n} líneas no se pudieron analizar",
+    nothing: "No se encontraron entradas — cada línea: “palabra separador significado”",
+    confirm: "✓ Añadir y empezar",
+    cancel: "Cancelar",
+    projName: { es: "Mis palabras de español", en: "Mis palabras de inglés", ja: "Mis palabras de japonés" },
+    footStudio: "Taller (proyectos)", footGh: "Código en GitHub", footCli: "Línea de comandos"
+  },
+  ja: {
+    tagline: "単語リストをあなた専用のグレーデッド・ストーリーブックに",
+    sub: "単語リストを任意の LLM に渡すと入門レベルの小さな物語を書いてくれます。fabulita はそれをオフラインで動く 1 枚のページに——タップで語義、文ごとの音声、カバー率。サーバーもアカウントも不要、データはブラウザから出ません。",
+    choose: "学習中の言語を選ぶ",
+    open: "ストーリーブックを開く →",
+    meta: { es: "A1 · 6 話 · ニューラル音声", en: "A1 · 入門読み物 · ニューラル音声", ja: "N5 · 入門読み物 · ニューラル音声" },
+    addTitle: "単語リストを追加",
+    addSub: "入力またはアップロードして自分の本を作る",
+    targetLang: "学習言語",
+    pasteLabel: "リストを貼り付け（1 行 1 語；カンマ / タブ / → / ： 区切り。Word 文書はテキストをコピーして貼り付け）",
+    pastePh: "apple, りんご\nbanana → バナナ",
+    upload: "ファイルをアップロード（csv / tsv / txt / md）",
+    parse: "解析して確認",
+    confirmTitle: "語彙リストの確認",
+    confirmSub: "{n} 語を解析しました。複数の意味は「；」で結合。✕ で行を削除。",
+    skipped: "{n} 行は解析できずスキップしました",
+    nothing: "エントリが見つかりません — 各行は「語 区切り 意味」の形式で",
+    confirm: "✓ 追加して始める",
+    cancel: "キャンセル",
+    projName: { es: "わたしのスペイン語", en: "わたしの英語", ja: "わたしの日本語" },
+    footStudio: "ワークスペース（既存プロジェクト）", footGh: "GitHub", footCli: "コマンドライン"
+  }
+};
+var UI_LANGS = ["zh", "en", "es", "ja"];
+var BOOKS = [
+  { lang: "es", name: "Español", href: "demo-es.html" },
+  { lang: "en", name: "English", href: "demo-en.html" },
+  { lang: "ja", name: "日本語", href: "demo-ja.html" }
+];
+var LSL = "fabulita.uiLang";
+var LSP = "fabulita.studio.projects";
 
-  <p class="gh">CLI &amp; source: <a href="https://github.com/jianqiu-kakoi/fabulita">github.com/jianqiu-kakoi/fabulita</a> · <code>pip install 'fabulita[tts]'</code></p>
-  <footer>MIT · zero-infra graded readers</footer>
-</div>
+var state = {
+  lang: (function () { try { var v = localStorage.getItem(LSL); if (v && L[v]) return v; } catch (e) {}
+    var nav = (navigator.language || "en").slice(0, 2);
+    return L[nav] ? nav : "en"; })(),
+  open: false, pending: null, targetLang: "es", skipped: 0
+};
+
+function t(k) { return (L[state.lang] || L.en)[k]; }
+function fmt(s, n) { return s.replace("{n}", n); }
+function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+
+// ── vocab parsing: many separators in, standard word→gloss out ──
+function parseVocab(text) {
+  var entries = [], skipped = 0;
+  var seen = {};
+  text.split(/\r?\n/).forEach(function (line) {
+    line = line.trim();
+    if (!line) return;
+    var cells = null;
+    if (line.indexOf("\t") !== -1) cells = line.split("\t");
+    else if (/-{0,1}→|->/.test(line)) cells = line.split(/→|->/);
+    else if (line.indexOf(",") !== -1 || line.indexOf("，") !== -1) cells = line.split(/[,，]/);
+    else if (line.indexOf("：") !== -1 || /:(?!\/)/.test(line)) cells = line.split(/[：:]/);
+    else if (/\s{2,}/.test(line)) cells = line.split(/\s{2,}/);
+    else if (/\s/.test(line)) cells = [line.slice(0, line.search(/\s/)), line.slice(line.search(/\s/))];
+    if (!cells) { skipped++; return; }
+    cells = cells.map(function (c) { return c.trim(); }).filter(Boolean);
+    if (cells.length < 2) { skipped++; return; }
+    var w = cells[0];
+    if (/^(word|palabra|词|単語)$/i.test(w)) return;
+    // meanings: remaining cells, each possibly ;-separated already → join with ；(CJK) or "; "
+    var meanings = [];
+    cells.slice(1).forEach(function (c) {
+      c.split(/[;；]/).forEach(function (m) { m = m.trim(); if (m) meanings.push(m); });
+    });
+    var joiner = meanings.some(function (m) { return /[　-鿿぀-ヿ]/.test(m); }) ? "；" : "; ";
+    var key = w.normalize("NFC").toLowerCase();
+    if (seen[key]) { skipped++; return; }
+    seen[key] = true;
+    entries.push({ w: w, gloss: meanings.join(joiner) });
+  });
+  return { entries: entries, skipped: skipped };
+}
+
+function createProject(lang, entries) {
+  var all;
+  try { all = JSON.parse(localStorage.getItem(LSP)) || {}; } catch (e) { all = {}; }
+  var id = "p" + Math.random().toString(36).slice(2, 9);
+  var glossLang = state.lang === "es" ? "en" : state.lang; // gloss in UI language (es UI → en glosses fallback)
+  all[id] = {
+    id: id,
+    config: { name: t("projName")[lang] || "fabulita", lang: lang, gloss_lang: glossLang, ui_default: state.lang },
+    vocab: entries, glossary: {}, stories: []
+  };
+  localStorage.setItem(LSP, JSON.stringify(all));
+  return id;
+}
+
+function render() {
+  var h = '<div class="top"><p class="eyebrow">fabulita</p><nav class="langsw">';
+  UI_LANGS.forEach(function (l) {
+    h += '<button data-lang="' + l + '" aria-pressed="' + (l === state.lang) + '">' +
+      { zh: "中文", en: "English", es: "Español", ja: "日本語" }[l] + "</button>";
+  });
+  h += "</nav></div>";
+  h += "<h1>" + esc(t("tagline")) + "</h1><p class=\"sub\">" + esc(t("sub")) + "</p>";
+
+  h += "<h2>" + esc(t("choose")) + '</h2><div class="books">';
+  BOOKS.forEach(function (b) {
+    h += '<a class="book" href="' + b.href + '"><span class="bname">' + b.name + '</span>' +
+      '<span class="bmeta">' + esc(t("meta")[b.lang]) + '</span>' +
+      '<span class="bopen">' + esc(t("open")) + "</span></a>";
+  });
+  h += "</div>";
+
+  // add-vocab widget
+  h += '<div class="widget' + (state.open ? " open" : "") + '"><div class="w-head" data-act="toggle">' +
+    '<span class="w-plus">＋</span><div><h2>' + esc(t("addTitle")) + '</h2><p class="muted">' + esc(t("addSub")) + "</p></div></div>";
+  h += '<div class="w-body">';
+  if (!state.pending) {
+    h += '<label>' + esc(t("targetLang")) + '</label><select id="wl">';
+    [["es", "Español"], ["en", "English"], ["ja", "日本語"], ["fr", "Français"], ["de", "Deutsch"], ["ko", "한국어"]].forEach(function (c) {
+      h += '<option value="' + c[0] + '"' + (c[0] === state.targetLang ? " selected" : "") + ">" + c[1] + "</option>";
+    });
+    h += "</select>";
+    h += "<label>" + esc(t("pasteLabel")) + '</label><textarea id="wt" placeholder="' + esc(t("pastePh")) + '"></textarea>';
+    h += '<div class="row"><label class="btn" style="margin:0">' + esc(t("upload")) + '<input type="file" id="wf" accept=".csv,.tsv,.txt,.md"></label>' +
+      '<button class="btn btn-primary" data-act="parse">' + esc(t("parse")) + "</button></div>";
+    if (state.skipped === -1) h += '<p class="note">' + esc(t("nothing")) + "</p>";
+  } else {
+    h += "<h2>" + esc(t("confirmTitle")) + '</h2><p class="muted">' + esc(fmt(t("confirmSub"), state.pending.length)) + "</p>";
+    if (state.skipped > 0) h += '<p class="note">⚠ ' + esc(fmt(t("skipped"), state.skipped)) + "</p>";
+    h += '<div class="vscroll"><table class="vtable">';
+    state.pending.forEach(function (e, i) {
+      h += '<tr><td class="vw">' + esc(e.w) + '</td><td class="varrow">→</td><td>' + esc(e.gloss) +
+        '</td><td class="vdel"><button data-act="drop" data-i="' + i + '" aria-label="✕">✕</button></td></tr>';
+    });
+    h += "</table></div>";
+    h += '<div class="row"><button class="btn btn-primary" data-act="confirm">' + esc(t("confirm")) + "</button>" +
+      '<button class="btn" data-act="cancel">' + esc(t("cancel")) + "</button></div>";
+  }
+  h += "</div></div>";
+
+  h += '<footer><a href="studio.html">' + esc(t("footStudio")) + '</a>' +
+    '<a href="https://github.com/jianqiu-kakoi/fabulita">' + esc(t("footGh")) + "</a>" +
+    '<a href="https://github.com/jianqiu-kakoi/fabulita#quickstart-cli"><code>pip install fabulita</code> · ' + esc(t("footCli")) + "</a></footer>";
+
+  document.getElementById("app").innerHTML = h;
+  document.documentElement.lang = state.lang;
+}
+
+function doParse(text) {
+  var r = parseVocab(text);
+  if (!r.entries.length) { state.skipped = -1; state.pending = null; }
+  else { state.pending = r.entries; state.skipped = r.skipped; }
+  render();
+}
+
+document.addEventListener("click", function (e) {
+  var lb = e.target.closest(".langsw button");
+  if (lb) { state.lang = lb.dataset.lang; try { localStorage.setItem(LSL, state.lang); } catch (err) {} render(); return; }
+  var el = e.target.closest("[data-act]");
+  if (!el) return;
+  var act = el.dataset.act;
+  if (act === "toggle") { state.open = !state.open; render(); }
+  else if (act === "parse") {
+    state.targetLang = document.getElementById("wl").value;
+    doParse(document.getElementById("wt").value);
+  }
+  else if (act === "drop") { state.pending.splice(+el.dataset.i, 1); render(); }
+  else if (act === "cancel") { state.pending = null; state.skipped = 0; render(); }
+  else if (act === "confirm") {
+    var id = createProject(state.targetLang, state.pending);
+    location.href = "studio.html#p=" + id;
+  }
+});
+
+document.addEventListener("change", function (e) {
+  if (e.target.id === "wf") {
+    var f = e.target.files[0];
+    if (!f) return;
+    state.targetLang = document.getElementById("wl").value;
+    f.text().then(doParse);
+  }
+});
+
+render();
+})();
+</script>
 </body>
 </html>

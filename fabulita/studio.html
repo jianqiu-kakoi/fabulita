@@ -653,6 +653,13 @@ document.addEventListener("click", function (e) {
 window.addEventListener("scroll", hidePop, { passive: true });
 document.addEventListener("keydown", function (e) { if (e.key === "Escape") hidePop(); });
 
+// deep link from the landing page: studio.html#p=<project-id>
+var hashMatch = location.hash.match(/^#p=([a-z0-9]+)$/i);
+if (hashMatch && loadAll()[hashMatch[1]]) {
+  state.view = "work";
+  state.pid = hashMatch[1];
+}
+
 render();
 })();
 </script>
