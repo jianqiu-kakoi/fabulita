@@ -1,0 +1,8 @@
+{
+  "name": "English · A1 · Readings",
+  "lang": "en",
+  "gloss_lang": "zh",
+  "ui_default": "zh",
+  "tts": { "backend": "edge", "voice": "en-US-JennyNeural" },
+  "max_words_per_story": 20
+}

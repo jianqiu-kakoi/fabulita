@@ -1,0 +1,8 @@
+{
+  "name": "日本語 · N5 · 読み物",
+  "lang": "ja",
+  "gloss_lang": "zh",
+  "ui_default": "zh",
+  "tts": { "backend": "edge", "voice": "ja-JP-NanamiNeural" },
+  "max_words_per_story": 20
+}

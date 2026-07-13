@@ -61,10 +61,29 @@ def main(argv=None):
     p.add_argument("-o", "--out", help="output path (default: dist/index.html)")
     p.add_argument("--accepted-only", action="store_true", help="exclude candidate stories")
 
+    p = sub.add_parser("studio", help="write the Studio web app (single HTML, no project needed)")
+    p.add_argument("-o", "--out", default="studio.html", help="output path (default: studio.html)")
+
+    p = sub.add_parser("unpack", help="unpack a Studio bundle.json into a project directory")
+    p.add_argument("file")
+
     args = ap.parse_args(argv)
     proj = Project(args.project)
 
     try:
+        if args.cmd == "studio":
+            out, size = build.build_studio(args.out)
+            print(f"wrote {out} ({size / 1024:.0f} KB) — open it in a browser")
+            return 0
+
+        if args.cmd == "unpack":
+            try:
+                dest, n_vocab, n_stories = build.unpack(args.file, args.project)
+            except ValueError as e:
+                raise ProjectError(str(e))
+            print(f"unpacked into {dest}: {n_vocab} vocab words, {n_stories} stories")
+            return 0
+
         if args.cmd == "init":
             cfg = proj.init(name=args.name, lang=args.lang,
                             gloss_lang=args.gloss_lang, ui_default=args.ui_default)

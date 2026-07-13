@@ -9,13 +9,14 @@ REQUIRED = ("id", "title", "sentences")
 ID_RE = re.compile(r"^[a-z0-9][a-z0-9-]*$")
 
 
-def _appears(word, tokens):
+def _appears(word, tokens, fulltext):
     """True if the vocab word plausibly appears in the text.
 
-    Exact token match, or prefix match with the last character dropped so
+    Exact token match; prefix match with the last character dropped so
     dictionary forms match simple inflections (manzana -> manzanas,
-    negro -> negros/negra). Deliberately loose: this guards against the LLM
-    listing words it never used, not against morphology.
+    negro -> negros/negra); or plain substring for languages without word
+    spacing (Japanese, Chinese). Deliberately loose: this guards against
+    the LLM listing words it never used, not against morphology.
     """
     w = norm(word)
     if w in tokens:
@@ -25,7 +26,7 @@ def _appears(word, tokens):
         for t in tokens:
             if t.startswith(stem):
                 return True
-    return False
+    return w in fulltext
 
 
 def validate(project, story):
@@ -47,10 +48,11 @@ def validate(project, story):
         return errors, warnings
 
     tokens = set()
+    fulltext = norm(" ".join(s["text"] for s in story["sentences"]))
     for s in story["sentences"]:
         tokens |= {norm(t) for t in WORD_RE.findall(s["text"])}
     for w in story.get("vocab_used", []):
-        if not _appears(w, tokens):
+        if not _appears(w, tokens, fulltext):
             warnings.append(f"vocab_used word {w!r} does not seem to appear in the text")
 
     vocab_set = {norm(w["w"]) for w in project.vocab}

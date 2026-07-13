@@ -13,7 +13,12 @@ fabulita compiles a vocabulary list into a self-contained reading page for langu
 
 No database, no framework. A "project" is a folder of JSON files you can keep in git.
 
-## Quickstart
+**Two ways to use it:**
+
+- **Studio (web, no install)** — upload/paste a vocab list, copy the story prompt into your LLM, paste its JSON back, preview, accept, export your book. Everything stays in your browser (localStorage) — no backend, no account. Try it: `docs/studio.html`, or `fabulita studio -o studio.html` to generate your own copy.
+- **CLI (below)** — same JSON format, plus git-friendly project folders and neural TTS. A Studio project exports as `bundle.json`; `fabulita unpack bundle.json` turns it into a CLI project.
+
+## Quickstart (CLI)
 
 ```sh
 pip install 'fabulita[tts]'      # [tts] pulls in edge-tts for audio
@@ -31,14 +36,19 @@ fabulita tts                     # synthesize per-sentence audio (cached)
 fabulita build                   # -> dist/index.html  (open it, done)
 ```
 
-Try the bundled demo:
+Try the bundled demos (Spanish, English, Japanese):
 
 ```sh
 fabulita -C examples/es-a1 import examples/es-a1/vocab.csv
 fabulita -C examples/es-a1 tts        # optional, needs network
 fabulita -C examples/es-a1 build
-open examples/es-a1/dist/index.html
+open examples/es-a1/dist/index.html   # also: examples/en-a1, examples/ja-n5
 ```
+
+Japanese (and Chinese) target text has no word spacing — the reader segments it
+by greedy longest-match against the glossary, which is plenty for N5/A1-length
+sentences. `examples/ja-n5` shows the pattern, including readings in the vocab
+`note` column (`学生,学生,がくせい`).
 
 ## The loop
 

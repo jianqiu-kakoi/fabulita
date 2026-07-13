@@ -111,6 +111,57 @@ def test_ui_strings_complete():
         assert set(UI_STRINGS[lang]) == keys, f"{lang} missing keys"
 
 
+def test_japanese_substring_validation(proj, tmp_path):
+    seed_vocab(proj, tmp_path, ["学生,学生", "映画,电影"])
+    s = make_story(id="ja", title="ワタシ",
+                   sentences=[{"text": "わたしは学生です。"}],
+                   vocab_used=["学生", "映画"], glossary={})
+    errors, warnings = stories.validate(proj, s)
+    assert errors == []
+    assert len(warnings) == 1 and "映画" in warnings[0]
+
+
+def test_unpack_roundtrip(tmp_path):
+    bundle = {
+        "fabulita_bundle": 1,
+        "config": {"name": "T", "lang": "es", "gloss_lang": "zh"},
+        "vocab": [{"w": "perro", "gloss": "狗"}],
+        "glossary": {"el": ["定冠词"]},
+        "stories": [make_story(status="candidate")],
+    }
+    bp = tmp_path / "bundle.json"
+    bp.write_text(json.dumps(bundle, ensure_ascii=False), encoding="utf-8")
+    dest = tmp_path / "proj"
+    build.unpack(bp, dest)
+    p = Project(dest)
+    assert p.config["lang"] == "es"
+    assert len(p.vocab) == 1 and len(p.stories()) == 1
+    assert p.glossary["el"] == ["定冠词"]
+    with pytest.raises(ValueError):
+        build.unpack(bp, dest)  # refuses to overwrite
+
+
+def test_studio_build(tmp_path):
+    out, size = build.build_studio(tmp_path / "studio.html")
+    html = out.read_text(encoding="utf-8")
+    assert '/*__READER_TPL_B64__*/""' not in html
+    assert "/*__READER_UI__*/null" not in html
+    assert UI_STRINGS["ja"]["vocabList"] in html  # reader UI strings embedded
+
+
+@pytest.mark.parametrize("demo,n", [("es-a1", 6), ("en-a1", 1), ("ja-n5", 1)])
+def test_example_projects_validate(demo, n):
+    proj = Project(REPO / "examples" / demo)
+    if not (proj.root / "vocab.json").exists():
+        vocab.import_file(proj, proj.root / "vocab.csv")
+    all_stories = proj.stories()
+    assert len(all_stories) == n
+    for s in all_stories:
+        errors, warnings = stories.validate(proj, s)
+        assert errors == [], f"{s['id']}: {errors}"
+        assert warnings == [], f"{s['id']}: {warnings}"
+
+
 def test_demo_stories_validate():
     proj = Project(DEMO)
     csv = DEMO / "vocab.csv"

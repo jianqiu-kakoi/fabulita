@@ -260,22 +260,53 @@
   var uncovered = P.vocab.filter(function (v) { return !coveredSet[norm(v.w)]; });
 
   var WORD_RE = /\p{L}+/gu;
+  // Unspaced scripts (ja/zh): greedy longest-match against glossary keys
+  var CJK_MODE = P.config.lang === "ja" || P.config.lang === "zh";
+  var maxKeyLen = 1;
+  if (CJK_MODE) {
+    P.stories.forEach(function (s, i) {
+      Object.keys(storyGloss[i]).forEach(function (k) { maxKeyLen = Math.max(maxKeyLen, k.length); });
+    });
+    Object.keys(baseGloss).forEach(function (k) { maxKeyLen = Math.max(maxKeyLen, k.length); });
+    maxKeyLen = Math.min(maxKeyLen, 12);
+  }
   var SPEAKER_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5z" fill="currentColor" stroke="none"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>';
 
+  function wordSpan(si, key, display) {
+    return '<span class="w" tabindex="0" role="button" data-si="' + si + '" data-key="' + esc(key) + '">' + esc(display) + "</span>";
+  }
+
   function sentenceHtml(si, text) {
+    if (CJK_MODE) return sentenceHtmlCJK(si, text);
     var out = "", last = 0, m;
     WORD_RE.lastIndex = 0;
     while ((m = WORD_RE.exec(text)) !== null) {
       out += esc(text.slice(last, m.index));
       var key = norm(m[0]);
-      if (glossFor(si, key)) {
-        out += '<span class="w" tabindex="0" role="button" data-si="' + si + '" data-key="' + esc(key) + '">' + esc(m[0]) + "</span>";
-      } else {
-        out += esc(m[0]);
-      }
+      out += glossFor(si, key) ? wordSpan(si, key, m[0]) : esc(m[0]);
       last = m.index + m[0].length;
     }
     return out + esc(text.slice(last));
+  }
+
+  function sentenceHtmlCJK(si, text) {
+    var out = "", i = 0;
+    while (i < text.length) {
+      var matched = null;
+      var limit = Math.min(maxKeyLen, text.length - i);
+      for (var len = limit; len >= 1; len--) {
+        var key = norm(text.substr(i, len));
+        if (glossFor(si, key)) { matched = { key: key, len: len }; break; }
+      }
+      if (matched) {
+        out += wordSpan(si, matched.key, text.substr(i, matched.len));
+        i += matched.len;
+      } else {
+        out += esc(text[i]);
+        i += 1;
+      }
+    }
+    return out;
   }
 
   function storyHtml(s, si, num) {

@@ -1,0 +1,657 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>fabulita studio</title>
+<style>
+  :root {
+    --bg: #F6F4EE; --card: #FFFFFF; --ink: #2A2620; --muted: #6F695E;
+    --accent: #2F5DA8; --accent-deep: #24497F; --accent-soft: rgba(47,93,168,0.09);
+    --gold: #B8860B; --line: #E4DFD4; --underline: rgba(47,93,168,0.45);
+    --ok: #3A7D44; --warn: #A65B1F; --danger: #A3352B;
+    --pop-bg: #262A33; --pop-ink: #F2F0E9; --pop-muted: #A8B0BE;
+    --serif: "Palatino", "Palatino Linotype", "Book Antiqua", Georgia, "Songti SC", "Hiragino Mincho ProN", serif;
+    --sans: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1A1C21; --card: #22252C; --ink: #E7E3D9; --muted: #9A948A;
+      --accent: #8AB0E8; --accent-deep: #A8C6F0; --accent-soft: rgba(138,176,232,0.12);
+      --gold: #D5A54E; --line: #33363E; --underline: rgba(138,176,232,0.5);
+      --ok: #7CBF87; --warn: #D99A5B; --danger: #E08A80;
+      --pop-bg: #F2F0E9; --pop-ink: #262A33; --pop-muted: #5C6470;
+    }
+  }
+  :root[data-theme="light"] {
+    --bg: #F6F4EE; --card: #FFFFFF; --ink: #2A2620; --muted: #6F695E;
+    --accent: #2F5DA8; --accent-deep: #24497F; --accent-soft: rgba(47,93,168,0.09);
+    --gold: #B8860B; --line: #E4DFD4; --underline: rgba(47,93,168,0.45);
+    --ok: #3A7D44; --warn: #A65B1F; --danger: #A3352B;
+    --pop-bg: #262A33; --pop-ink: #F2F0E9; --pop-muted: #A8B0BE;
+  }
+  :root[data-theme="dark"] {
+    --bg: #1A1C21; --card: #22252C; --ink: #E7E3D9; --muted: #9A948A;
+    --accent: #8AB0E8; --accent-deep: #A8C6F0; --accent-soft: rgba(138,176,232,0.12);
+    --gold: #D5A54E; --line: #33363E; --underline: rgba(138,176,232,0.5);
+    --ok: #7CBF87; --warn: #D99A5B; --danger: #E08A80;
+    --pop-bg: #F2F0E9; --pop-ink: #262A33; --pop-muted: #5C6470;
+  }
+  * { box-sizing: border-box; }
+  body { background: var(--bg); color: var(--ink); font-family: var(--sans); margin: 0; padding: 2rem 1.25rem 5rem; line-height: 1.65; }
+  .wrap { max-width: 46rem; margin: 0 auto; }
+  .eyebrow { font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); font-weight: 600; margin: 0 0 0.4rem; }
+  h1 { font-family: var(--serif); font-size: 1.8rem; font-weight: 600; margin: 0 0 0.3rem; }
+  h2 { font-family: var(--serif); font-size: 1.15rem; font-weight: 600; margin: 0 0 0.8rem; }
+  .muted { color: var(--muted); font-size: 0.88rem; }
+  .mast-top { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.6rem; }
+  .langsw { display: flex; gap: 0.35rem; }
+  .langsw button, .btn, .btn-ghost {
+    font-family: var(--sans); font-size: 0.82rem; padding: 0.35rem 0.8rem;
+    border: 1px solid var(--line); border-radius: 100px; background: var(--card);
+    color: var(--ink); cursor: pointer; transition: border-color 120ms ease, background-color 120ms ease;
+  }
+  .langsw button { font-size: 0.78rem; padding: 0.25rem 0.65rem; color: var(--muted); }
+  .langsw button:hover, .btn:hover { border-color: var(--accent); }
+  .langsw button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--card); }
+  .btn-primary { background: var(--accent); border-color: var(--accent); color: var(--card); }
+  .btn-primary:hover { background: var(--accent-deep); }
+  .btn-danger { color: var(--danger); }
+  .btn-danger:hover { border-color: var(--danger); }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 1.4rem 1.5rem; margin-bottom: 1.4rem; }
+  .step-label { font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); font-weight: 600; margin: 0 0 0.6rem; }
+  label { display: block; font-size: 0.82rem; color: var(--muted); margin: 0.7rem 0 0.2rem; }
+  input[type=text], select, textarea {
+    width: 100%; font-family: var(--sans); font-size: 0.95rem;
+    padding: 0.5rem 0.7rem; border: 1px solid var(--line); border-radius: 8px;
+    background: var(--bg); color: var(--ink);
+  }
+  textarea { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.82rem; min-height: 7rem; resize: vertical; }
+  input:focus-visible, select:focus-visible, textarea:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+  .row { display: flex; gap: 0.6rem; align-items: center; flex-wrap: wrap; margin-top: 0.9rem; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0 1rem; }
+  @media (max-width: 480px) { .grid2 { grid-template-columns: 1fr; } }
+
+  .plist { display: grid; gap: 0.9rem; }
+  .pcard { display: flex; justify-content: space-between; align-items: center; gap: 1rem; cursor: pointer; }
+  .pcard:hover { border-color: var(--accent); }
+  .pcard h2 { margin: 0; }
+  .pcard .muted { margin-top: 0.1rem; }
+
+  .cov-bar { height: 6px; background: var(--accent-soft); border-radius: 3px; margin: 0.6rem 0 0.8rem; overflow: hidden; }
+  .cov-fill { height: 100%; background: var(--accent); border-radius: 3px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 0.3rem; max-height: 11rem; overflow-y: auto; }
+  .chip {
+    font-family: var(--serif); font-size: 0.88rem; padding: 0.05rem 0.55rem;
+    border: 1px dashed var(--underline); border-radius: 100px;
+    background: transparent; color: var(--accent-deep); cursor: default;
+  }
+  .chip.cov { border-style: solid; border-color: var(--line); color: var(--muted); }
+
+  .msg { border-radius: 8px; padding: 0.6rem 0.9rem; font-size: 0.86rem; margin-top: 0.8rem; }
+  .msg.ok { background: var(--accent-soft); color: var(--ink); }
+  .msg.warn { border: 1px solid var(--warn); color: var(--warn); }
+  .msg.err { border: 1px solid var(--danger); color: var(--danger); }
+  .msg ul { margin: 0.3rem 0 0; padding-left: 1.2rem; }
+
+  .scard { border: 1px solid var(--line); border-radius: 8px; padding: 0.9rem 1rem; margin-top: 0.8rem; }
+  .scard-head { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
+  .scard-head .title { font-family: var(--serif); font-size: 1.05rem; font-weight: 600; }
+  .badge { font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; border-radius: 100px; padding: 0.05rem 0.5rem; }
+  .badge.cand { color: var(--gold); border: 1px solid var(--gold); }
+  .badge.acc { color: var(--ok); border: 1px solid var(--ok); }
+  .scard-head .spacer { margin-left: auto; }
+  .scard .btn, .scard .btn-ghost { font-size: 0.75rem; padding: 0.2rem 0.6rem; }
+
+  .prev { border-top: 1px solid var(--line); margin-top: 0.8rem; padding-top: 0.8rem; }
+  .prev .es { font-family: var(--serif); font-size: 1.15rem; line-height: 2; margin: 0 0 0.6rem; }
+  .prev .trans { font-size: 0.85rem; color: var(--muted); margin: 0; }
+  .w { cursor: pointer; border-bottom: 1px dashed var(--underline); padding-bottom: 1px; }
+  .w:hover { background: var(--accent-soft); }
+  .say {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 1.4rem; height: 1.4rem; margin: 0 0.3rem; padding: 0;
+    border: 1px solid var(--line); border-radius: 50%; background: transparent;
+    color: var(--accent); cursor: pointer; vertical-align: baseline; transform: translateY(0.15em);
+  }
+  .say:hover { background: var(--accent-soft); border-color: var(--accent); }
+  .say svg { width: 0.75rem; height: 0.75rem; display: block; }
+
+  .pop {
+    position: absolute; z-index: 10; background: var(--pop-bg); color: var(--pop-ink);
+    border-radius: 8px; padding: 0.55rem 0.8rem; max-width: 15rem;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.22); font-size: 0.88rem; line-height: 1.5; display: none;
+  }
+  .pop.show { display: block; }
+  .pop .pw { font-family: var(--serif); font-weight: 600; display: block; }
+  .pop .pn { display: block; color: var(--pop-muted); font-size: 0.78rem; margin-top: 0.15rem; }
+
+  footer.colophon { text-align: center; color: var(--muted); font-size: 0.8rem; margin-top: 2.5rem; }
+  footer.colophon a { color: var(--muted); }
+</style>
+
+<div class="wrap" id="app"></div>
+<div class="pop" id="pop"><span class="pw" id="pop-w"></span><span id="pop-g"></span><span class="pn" id="pop-n"></span></div>
+
+<script>
+var READER_TPL_B64 = /*__READER_TPL_B64__*/"";
+var READER_UI = /*__READER_UI__*/null;
+</script>
+<script>
+(function () {
+"use strict";
+
+// ───────────────────────── i18n ─────────────────────────
+var S = {
+  zh: {
+    langName: "中文", tagline: "把词表变成属于你的分级故事书",
+    newProject: "新建项目", projectName: "项目名称", targetLang: "目标语言（在学的）", glossLang: "释义语言（你的母语）",
+    create: "创建", empty: "还没有项目——先建一个", back: "← 项目列表", deleteProject: "删除项目",
+    confirmDelete: "确定删除这个项目？不可恢复。",
+    step1: "① 词表", step2: "② 故事", step3: "③ 导出",
+    importHint: "上传 CSV/TSV，或直接粘贴。每行一个词：word,释义[,备注]",
+    chooseFile: "上传文件", importBtn: "导入", pastePh: "casa,家\nperro,狗,宠物那个词",
+    importedMsg: "导入完成：新增 {a}，更新 {u}，共 {n} 词",
+    words: "词", coverage: "覆盖率", covered: "已覆盖", uncoveredWords: "未覆盖",
+    copyPrompt: "📋 复制下一篇的 Prompt", copied: "已复制。贴给任意 LLM（Claude / ChatGPT / 本地模型），把它返回的 JSON 粘到下面。",
+    allCovered: "🎉 词表已全部覆盖", storiesLabel: "篇故事",
+    pastePh2: "把 LLM 返回的故事 JSON 粘到这里…", addStory: "校验并加入备选",
+    candidate: "备选", accepted: "已接受", accept: "✓ 接受", reject: "退回", remove: "删除", preview: "预览", close: "收起",
+    invalidJson: "JSON 解析失败：", addedMsg: "已加入备选：", warnPrefix: "警告（仍已加入）：", errPrefix: "校验失败：",
+    dupId: "已有同 id 的故事",
+    exportPage: "⬇ 下载阅读页（单 HTML）", exportNote: "阅读页离线可用，可直接发给别人。网页版朗读用浏览器语音；要神经网络语音：下载项目包 → fabulita unpack → tts → build。",
+    exportBundle: "⬇ 下载项目包 bundle.json", bundleNote: "给 CLI 用（fabulita unpack），也可在别处恢复。",
+    restoreBundle: "恢复项目包…", restored: "项目包已恢复",
+    readSentence: "朗读（浏览器语音）", langAuto: "界面语言"
+  },
+  en: {
+    langName: "English", tagline: "Turn your word list into a graded storybook of your own",
+    newProject: "New project", projectName: "Project name", targetLang: "Target language (learning)", glossLang: "Gloss language (yours)",
+    create: "Create", empty: "No projects yet — create one", back: "← Projects", deleteProject: "Delete project",
+    confirmDelete: "Delete this project? This cannot be undone.",
+    step1: "① Vocabulary", step2: "② Stories", step3: "③ Export",
+    importHint: "Upload CSV/TSV or paste. One word per line: word,gloss[,note]",
+    chooseFile: "Upload file", importBtn: "Import", pastePh: "casa,house\nperro,dog,the pet word",
+    importedMsg: "Imported: {a} added, {u} updated, {n} total",
+    words: "words", coverage: "Coverage", covered: "covered", uncoveredWords: "Uncovered",
+    copyPrompt: "📋 Copy prompt for the next story", copied: "Copied. Paste it into any LLM (Claude / ChatGPT / local), then paste the JSON it returns below.",
+    allCovered: "🎉 Whole vocabulary covered", storiesLabel: "stories",
+    pastePh2: "Paste the story JSON your LLM returned…", addStory: "Validate & add as candidate",
+    candidate: "Candidate", accepted: "Accepted", accept: "✓ Accept", reject: "Demote", remove: "Delete", preview: "Preview", close: "Close",
+    invalidJson: "Could not parse JSON: ", addedMsg: "Added as candidate: ", warnPrefix: "Warnings (added anyway): ", errPrefix: "Validation failed: ",
+    dupId: "a story with this id already exists",
+    exportPage: "⬇ Download reading page (single HTML)", exportNote: "The page works offline — send the file to anyone. Web export uses browser speech; for neural voices: download the bundle → fabulita unpack → tts → build.",
+    exportBundle: "⬇ Download project bundle.json", bundleNote: "For the CLI (fabulita unpack), or to restore elsewhere.",
+    restoreBundle: "Restore a bundle…", restored: "Bundle restored",
+    readSentence: "Read aloud (browser voice)", langAuto: "UI language"
+  },
+  es: {
+    langName: "Español", tagline: "Convierte tu lista de palabras en tu propio libro de cuentos graduados",
+    newProject: "Nuevo proyecto", projectName: "Nombre del proyecto", targetLang: "Idioma objetivo (aprendes)", glossLang: "Idioma de las glosas (el tuyo)",
+    create: "Crear", empty: "Aún no hay proyectos — crea uno", back: "← Proyectos", deleteProject: "Eliminar proyecto",
+    confirmDelete: "¿Eliminar este proyecto? No se puede deshacer.",
+    step1: "① Vocabulario", step2: "② Historias", step3: "③ Exportar",
+    importHint: "Sube CSV/TSV o pega. Una palabra por línea: palabra,glosa[,nota]",
+    chooseFile: "Subir archivo", importBtn: "Importar", pastePh: "casa,house\nperro,dog",
+    importedMsg: "Importado: {a} nuevas, {u} actualizadas, {n} en total",
+    words: "palabras", coverage: "Cobertura", covered: "cubiertas", uncoveredWords: "Sin cubrir",
+    copyPrompt: "📋 Copiar prompt para la próxima historia", copied: "Copiado. Pégalo en cualquier LLM y pega abajo el JSON que devuelva.",
+    allCovered: "🎉 Vocabulario completo cubierto", storiesLabel: "historias",
+    pastePh2: "Pega aquí el JSON de la historia…", addStory: "Validar y añadir como candidata",
+    candidate: "Candidata", accepted: "Aceptada", accept: "✓ Aceptar", reject: "Devolver", remove: "Eliminar", preview: "Vista previa", close: "Cerrar",
+    invalidJson: "No se pudo analizar el JSON: ", addedMsg: "Añadida como candidata: ", warnPrefix: "Avisos (añadida igualmente): ", errPrefix: "Validación fallida: ",
+    dupId: "ya existe una historia con este id",
+    exportPage: "⬇ Descargar página de lectura (HTML único)", exportNote: "La página funciona sin conexión. La exportación web usa la voz del navegador; para voces neuronales: bundle → fabulita unpack → tts → build.",
+    exportBundle: "⬇ Descargar bundle.json del proyecto", bundleNote: "Para la CLI (fabulita unpack) o para restaurar en otro lugar.",
+    restoreBundle: "Restaurar un bundle…", restored: "Bundle restaurado",
+    readSentence: "Leer en voz alta (voz del navegador)", langAuto: "Idioma de la interfaz"
+  },
+  ja: {
+    langName: "日本語", tagline: "単語リストをあなた専用のグレーデッド・ストーリーブックに",
+    newProject: "新規プロジェクト", projectName: "プロジェクト名", targetLang: "学習言語", glossLang: "訳語の言語（母語）",
+    create: "作成", empty: "プロジェクトがありません — 作成してください", back: "← 一覧へ", deleteProject: "プロジェクトを削除",
+    confirmDelete: "このプロジェクトを削除しますか？元に戻せません。",
+    step1: "① 単語リスト", step2: "② ストーリー", step3: "③ エクスポート",
+    importHint: "CSV/TSV をアップロードするか貼り付け。1 行 1 語：word,訳[,メモ]",
+    chooseFile: "ファイルを選択", importBtn: "インポート", pastePh: "casa,家\nperro,犬",
+    importedMsg: "インポート完了：新規 {a}、更新 {u}、計 {n} 語",
+    words: "語", coverage: "カバー率", covered: "カバー済み", uncoveredWords: "未カバー",
+    copyPrompt: "📋 次のストーリー用プロンプトをコピー", copied: "コピーしました。任意の LLM に貼り、返ってきた JSON を下に貼ってください。",
+    allCovered: "🎉 語彙を全てカバーしました", storiesLabel: "話",
+    pastePh2: "LLM が返したストーリー JSON をここに…", addStory: "検証して候補に追加",
+    candidate: "候補", accepted: "採用済み", accept: "✓ 採用", reject: "候補に戻す", remove: "削除", preview: "プレビュー", close: "閉じる",
+    invalidJson: "JSON を解析できません：", addedMsg: "候補に追加：", warnPrefix: "警告（追加はされました）：", errPrefix: "検証エラー：",
+    dupId: "同じ id のストーリーが既にあります",
+    exportPage: "⬇ 読書ページをダウンロード（単一 HTML）", exportNote: "ページはオフラインで動作します。Web 版の音声はブラウザ音声。ニューラル音声は bundle → fabulita unpack → tts → build。",
+    exportBundle: "⬇ プロジェクト bundle.json をダウンロード", bundleNote: "CLI（fabulita unpack）用。別環境での復元にも。",
+    restoreBundle: "bundle を復元…", restored: "bundle を復元しました",
+    readSentence: "読み上げ（ブラウザ音声）", langAuto: "表示言語"
+  }
+};
+var UI_LANGS = ["zh", "en", "es", "ja"];
+var LANG_CHOICES = [["es", "Español"], ["en", "English"], ["ja", "日本語"], ["fr", "Français"], ["de", "Deutsch"], ["it", "Italiano"], ["pt", "Português"], ["ko", "한국어"], ["zh", "中文"]];
+var GLOSS_CHOICES = [["zh", "中文"], ["en", "English"], ["ja", "日本語"], ["es", "Español"]];
+
+var LSP = "fabulita.studio.projects";
+var LSL = "fabulita.uiLang";
+var state = {
+  lang: (function () { try { var v = localStorage.getItem(LSL); if (v && S[v]) return v; } catch (e) {} return "zh"; })(),
+  view: "home", pid: null, openPreview: null, msg: null
+};
+
+function t(k) { return (S[state.lang] || S.en)[k] || k; }
+function fmt(s, o) { return s.replace(/\{(\w+)\}/g, function (_, k) { return o[k]; }); }
+function norm(w) { return w.normalize("NFC").toLowerCase(); }
+function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+
+// ───────────────────────── store ─────────────────────────
+function loadAll() { try { return JSON.parse(localStorage.getItem(LSP)) || {}; } catch (e) { return {}; } }
+function saveAll(all) { localStorage.setItem(LSP, JSON.stringify(all)); }
+function proj() { return loadAll()[state.pid]; }
+function saveProj(p) { var all = loadAll(); all[p.id] = p; saveAll(all); }
+
+// ───────────────────────── csv ─────────────────────────
+function parseCsvLine(line, delim) {
+  var out = [], cur = "", inQ = false;
+  for (var i = 0; i < line.length; i++) {
+    var c = line[i];
+    if (inQ) {
+      if (c === '"') { if (line[i + 1] === '"') { cur += '"'; i++; } else inQ = false; }
+      else cur += c;
+    } else if (c === '"') inQ = true;
+    else if (c === delim) { out.push(cur); cur = ""; }
+    else cur += c;
+  }
+  out.push(cur);
+  return out;
+}
+
+function importVocab(p, text) {
+  var delim = text.indexOf("\t") !== -1 ? "\t" : ",";
+  var added = 0, updated = 0, bad = [];
+  var known = {};
+  p.vocab.forEach(function (v) { known[norm(v.w)] = v; });
+  text.split(/\r?\n/).forEach(function (line, i) {
+    line = line.trim();
+    if (!line) return;
+    var cells = parseCsvLine(line, delim).map(function (c) { return c.trim(); }).filter(Boolean);
+    if (!cells.length) return;
+    if (i === 0 && /^(word|palabra|词|単語)$/i.test(cells[0])) return;
+    if (cells.length < 2) { bad.push(i + 1); return; }
+    var e = { w: cells[0], gloss: cells[1] };
+    if (cells[2]) e.note = cells[2];
+    var k = norm(e.w);
+    if (known[k]) {
+      if (known[k].gloss !== e.gloss || known[k].note !== e.note) { known[k].gloss = e.gloss; if (e.note) known[k].note = e.note; updated++; }
+    } else { p.vocab.push(e); known[k] = e; added++; }
+  });
+  return { added: added, updated: updated, total: p.vocab.length, bad: bad };
+}
+
+// ───────────────────────── coverage / prompt ─────────────────────────
+function coverage(p) {
+  var cov = {};
+  p.stories.forEach(function (s) { (s.vocab_used || []).forEach(function (w) { cov[norm(w)] = true; }); });
+  var covered = p.vocab.filter(function (v) { return cov[norm(v.w)]; });
+  var uncovered = p.vocab.filter(function (v) { return !cov[norm(v.w)]; });
+  return { covered: covered, uncovered: uncovered, set: cov };
+}
+
+var LANG_NAMES = { es: "Spanish", en: "English", ja: "Japanese", zh: "Chinese", fr: "French", de: "German", it: "Italian", pt: "Portuguese", ko: "Korean" };
+var GLOSS_NAMES = { zh: "Chinese (中文)", en: "English", ja: "Japanese", es: "Spanish" };
+var SCHEMA = { id: "kebab-case-slug", title: "Story title in the target language", title_note: "title translated", sentences: [{ text: "First sentence.", trans: "translation of the sentence" }], vocab_used: ["word1", "word2"], glossary: { "word-form-in-text": ["gloss", "optional note e.g. ← infinitive"] }, grammar: [["pattern", "short explanation"]] };
+
+function buildPrompt(p) {
+  var un = coverage(p).uncovered.slice(0, 20);
+  if (!un.length) return null;
+  var list = un.map(function (v) { return "- " + v.w + " — " + v.gloss + (v.note ? " (" + v.note + ")" : ""); }).join("\n");
+  return "You are writing a graded-reader micro-story for a beginner (CEFR A1) learner of " + (LANG_NAMES[p.config.lang] || p.config.lang) + ".\n\n" +
+    "Write ONE short story (5-8 short sentences, simple present tense, one scene,\nconcrete everyday situation). You MUST use at least " + Math.min(10, un.length) + " and at most 20\nof these vocabulary words (their glosses are in " + (GLOSS_NAMES[p.config.gloss_lang] || p.config.gloss_lang) + "):\n\n" +
+    list + "\n\nRules:\n- Only A1-level grammar and high-frequency function words besides the list above.\n- Natural, coherent story — not a word-salad that name-drops vocabulary.\n- Glosses and translations must be written in " + (GLOSS_NAMES[p.config.gloss_lang] || p.config.gloss_lang) + ".\n- \"glossary\" must cover EVERY word form that appears in the text and is not a proper\n  name — including inflected verb forms.\n- \"vocab_used\" lists exactly the words from the vocabulary list above that appear\n  in the story (dictionary form as given in the list).\n\nReturn ONLY a JSON object in this exact shape (no markdown fence, no commentary):\n\n" + JSON.stringify(SCHEMA, null, 2);
+}
+
+// ───────────────────────── validation (port of stories.py) ─────────────────────────
+function validateStory(p, s) {
+  var errors = [], warnings = [];
+  ["id", "title", "sentences"].forEach(function (k) { if (!s[k] || (k === "sentences" && !s[k].length)) errors.push("missing field: " + k); });
+  if (errors.length) return { errors: errors, warnings: warnings };
+  if (!/^[a-z0-9][a-z0-9-]*$/.test(s.id)) errors.push("id '" + s.id + "': use lowercase letters, digits, hyphens");
+  s.sentences.forEach(function (x, i) { if (typeof x !== "object" || !x.text) errors.push("sentence " + i + ": need an object with at least 'text'"); });
+  if (errors.length) return { errors: errors, warnings: warnings };
+  if (p.stories.some(function (x) { return x.id === s.id; })) errors.push(t("dupId") + ": " + s.id);
+
+  var fulltext = norm(s.sentences.map(function (x) { return x.text; }).join(" "));
+  var tokens = {};
+  (fulltext.match(/\p{L}+/gu) || []).forEach(function (w) { tokens[w] = true; });
+  var vocabSet = {};
+  p.vocab.forEach(function (v) { vocabSet[norm(v.w)] = true; });
+  (s.vocab_used || []).forEach(function (w) {
+    var k = norm(w), hit = tokens[k];
+    if (!hit && k.length >= 4) {
+      var stem = k.slice(0, -1);
+      hit = Object.keys(tokens).some(function (tk) { return tk.indexOf(stem) === 0; });
+    }
+    if (!hit) hit = fulltext.indexOf(k) !== -1;
+    if (!hit) warnings.push("vocab_used '" + w + "' does not seem to appear in the text");
+    if (p.vocab.length && !vocabSet[k]) warnings.push("vocab_used '" + w + "' is not in the vocabulary");
+  });
+  return { errors: errors, warnings: warnings };
+}
+
+// ───────────────────────── export ─────────────────────────
+function download(name, content, type) {
+  var a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([content], { type: type || "application/octet-stream" }));
+  a.download = name;
+  a.click();
+  setTimeout(function () { URL.revokeObjectURL(a.href); }, 5000);
+}
+
+function readerTemplate() {
+  var bytes = Uint8Array.from(atob(READER_TPL_B64), function (c) { return c.charCodeAt(0); });
+  return new TextDecoder("utf-8").decode(bytes);
+}
+
+function exportPage(p) {
+  var payload = {
+    config: { name: p.config.name, lang: p.config.lang, gloss_lang: p.config.gloss_lang, ui_default: state.lang },
+    ui: READER_UI.ui, uiLangs: READER_UI.uiLangs,
+    vocab: p.vocab, glossary: p.glossary || {}, stories: p.stories, audio: {}
+  };
+  var html = readerTemplate()
+    .replace("__TITLE__", p.config.name)
+    .replace("/*__PAYLOAD__*/null", JSON.stringify(payload).replace(/<\//g, "<\\/"));
+  download((p.config.name || "fabulita").replace(/\s+/g, "-") + ".html", html, "text/html;charset=utf-8");
+}
+
+function exportBundle(p) {
+  var bundle = { fabulita_bundle: 1, config: p.config, vocab: p.vocab, glossary: p.glossary || {}, stories: p.stories };
+  download("bundle.json", JSON.stringify(bundle, null, 2), "application/json;charset=utf-8");
+}
+
+function restoreBundle(text) {
+  var b = JSON.parse(text);
+  if (!b.fabulita_bundle || !b.config) throw new Error("not a fabulita bundle");
+  var id = "p" + Math.random().toString(36).slice(2, 9);
+  var p = { id: id, config: b.config, vocab: b.vocab || [], glossary: b.glossary || {}, stories: b.stories || [] };
+  saveProj(p);
+  return p;
+}
+
+// ───────────────────────── speech (preview) ─────────────────────────
+var synth = window.speechSynthesis;
+function speak(text, lang) {
+  if (!synth) return;
+  synth.cancel();
+  var u = new SpeechSynthesisUtterance(text.replace(/[«»]/g, ""));
+  var voices = synth.getVoices().filter(function (v) { return v.lang && v.lang.toLowerCase().indexOf(lang) === 0; });
+  if (voices.length) u.voice = voices[0];
+  u.lang = voices.length ? voices[0].lang : lang;
+  u.rate = 0.92;
+  synth.speak(u);
+}
+
+// ───────────────────────── word popup ─────────────────────────
+var pop = document.getElementById("pop");
+function hidePop() { pop.classList.remove("show"); }
+function showPop(el, entry) {
+  document.getElementById("pop-w").textContent = el.textContent;
+  document.getElementById("pop-g").textContent = entry[0];
+  var n = document.getElementById("pop-n");
+  n.textContent = entry[1] || "";
+  n.style.display = entry[1] ? "block" : "none";
+  pop.classList.add("show");
+  var r = el.getBoundingClientRect(), pw = pop.offsetWidth, ph = pop.offsetHeight;
+  var left = Math.max(8, Math.min(r.left + r.width / 2 - pw / 2, window.innerWidth - pw - 8));
+  var below = r.bottom + 8 + ph < window.innerHeight;
+  pop.style.top = (window.scrollY + (below ? r.bottom + 8 : r.top - ph - 8)) + "px";
+  pop.style.left = (window.scrollX + left) + "px";
+}
+
+// ───────────────────────── render helpers ─────────────────────────
+var SPK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5z" fill="currentColor" stroke="none"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/></svg>';
+
+function glossMap(p, story) {
+  var m = {};
+  p.vocab.forEach(function (v) { m[norm(v.w)] = [v.gloss, v.note || ""]; });
+  Object.keys(p.glossary || {}).forEach(function (k) { m[norm(k)] = p.glossary[k]; });
+  Object.keys(story.glossary || {}).forEach(function (k) { m[norm(k)] = story.glossary[k]; });
+  return m;
+}
+
+function sentenceHtml(p, story, text, sIdx, i) {
+  var gm = glossMap(p, story);
+  var cjk = p.config.lang === "ja" || p.config.lang === "zh";
+  var out = "";
+  if (cjk) {
+    var maxLen = 1;
+    Object.keys(gm).forEach(function (k) { maxLen = Math.max(maxLen, Math.min(k.length, 12)); });
+    var j = 0;
+    while (j < text.length) {
+      var hit = null;
+      for (var len = Math.min(maxLen, text.length - j); len >= 1; len--) {
+        var key = norm(text.substr(j, len));
+        if (gm[key]) { hit = { key: key, len: len }; break; }
+      }
+      if (hit) { out += '<span class="w" data-s="' + sIdx + '" data-key="' + esc(hit.key) + '">' + esc(text.substr(j, hit.len)) + "</span>"; j += hit.len; }
+      else { out += esc(text[j]); j += 1; }
+    }
+  } else {
+    var last = 0, m, re = /\p{L}+/gu;
+    while ((m = re.exec(text)) !== null) {
+      out += esc(text.slice(last, m.index));
+      var k = norm(m[0]);
+      out += gm[k] ? '<span class="w" data-s="' + sIdx + '" data-key="' + esc(k) + '">' + esc(m[0]) + "</span>" : esc(m[0]);
+      last = m.index + m[0].length;
+    }
+    out += esc(text.slice(last));
+  }
+  return out + '<button class="say" data-s="' + sIdx + '" data-i="' + i + '" title="' + esc(t("readSentence")) + '" aria-label="' + esc(t("readSentence")) + '">' + SPK + "</button>";
+}
+
+// ───────────────────────── views ─────────────────────────
+function langSwitcher() {
+  var h = '<nav class="langsw" aria-label="' + esc(t("langAuto")) + '">';
+  UI_LANGS.forEach(function (l) { h += '<button data-act="lang" data-lang="' + l + '" aria-pressed="' + (l === state.lang) + '">' + S[l].langName + "</button>"; });
+  return h + "</nav>";
+}
+
+function homeView() {
+  var all = loadAll(), ids = Object.keys(all);
+  var h = '<div class="mast-top"><div><p class="eyebrow">fabulita studio</p><h1>' + esc(t("tagline")) + "</h1></div>" + langSwitcher() + "</div>";
+  h += '<div class="plist">';
+  if (!ids.length) h += '<p class="muted">' + esc(t("empty")) + "</p>";
+  ids.forEach(function (id) {
+    var p = all[id], cov = coverage(p);
+    h += '<div class="card pcard" data-act="open" data-id="' + id + '"><div><h2>' + esc(p.config.name) + '</h2><p class="muted">' +
+      esc(p.config.lang) + " → " + esc(p.config.gloss_lang) + " · " + p.vocab.length + " " + esc(t("words")) + " · " +
+      p.stories.length + " " + esc(t("storiesLabel")) + " · " + esc(t("coverage")) + " " +
+      (p.vocab.length ? Math.round(100 * cov.covered.length / p.vocab.length) : 0) + "%</p></div><span>→</span></div>";
+  });
+  h += "</div>";
+  h += '<div class="card"><h2>' + esc(t("newProject")) + '</h2><div class="grid2"><div><label>' + esc(t("projectName")) +
+    '</label><input type="text" id="np-name" placeholder="Español A1"></div><div><label>' + esc(t("targetLang")) + '</label><select id="np-lang">';
+  LANG_CHOICES.forEach(function (c) { h += '<option value="' + c[0] + '">' + c[1] + "</option>"; });
+  h += '</select></div><div><label>' + esc(t("glossLang")) + '</label><select id="np-gloss">';
+  GLOSS_CHOICES.forEach(function (c) { h += '<option value="' + c[0] + '">' + c[1] + "</option>"; });
+  h += '</select></div></div><div class="row"><button class="btn btn-primary" data-act="create">' + esc(t("create")) + "</button>" +
+    '<label class="btn" style="margin:0">' + esc(t("restoreBundle")) + '<input type="file" id="bundle-file" accept=".json" style="display:none"></label></div></div>';
+  h += '<footer class="colophon"><a href="https://github.com/jianqiu-kakoi/fabulita">fabulita</a> — zero-infra graded readers</footer>';
+  return h;
+}
+
+function workView() {
+  var p = proj();
+  if (!p) { state.view = "home"; return homeView(); }
+  var cov = coverage(p), total = p.vocab.length;
+  var pct = total ? Math.round(100 * cov.covered.length / total) : 0;
+
+  var h = '<div class="mast-top"><div><p class="eyebrow"><a href="#" data-act="back" style="color:var(--gold);text-decoration:none">' + esc(t("back")) + "</a></p><h1>" +
+    esc(p.config.name) + '</h1><p class="muted">' + esc(p.config.lang) + " → " + esc(p.config.gloss_lang) + "</p></div>" + langSwitcher() + "</div>";
+
+  // ── step 1: vocab ──
+  h += '<div class="card"><p class="step-label">' + esc(t("step1")) + " · " + total + " " + esc(t("words")) + "</p>";
+  h += '<p class="muted">' + esc(t("importHint")) + "</p>";
+  h += '<textarea id="vocab-paste" placeholder="' + esc(t("pastePh")) + '"></textarea>';
+  h += '<div class="row"><label class="btn" style="margin:0">' + esc(t("chooseFile")) + '<input type="file" id="vocab-file" accept=".csv,.tsv,.txt" style="display:none"></label>' +
+    '<button class="btn btn-primary" data-act="import">' + esc(t("importBtn")) + "</button></div>";
+  if (state.msg && state.msg.where === "vocab") h += '<div class="msg ' + state.msg.cls + '">' + state.msg.html + "</div>";
+  if (total) {
+    h += '<div class="cov-bar"><div class="cov-fill" style="width:' + pct + '%"></div></div>' +
+      '<p class="muted">' + esc(t("coverage")) + ": " + cov.covered.length + " / " + total + " " + esc(t("covered")) + " · " + pct + "%</p>";
+    h += '<div class="chips">';
+    cov.uncovered.forEach(function (v) { h += '<span class="chip" title="' + esc(v.gloss) + '">' + esc(v.w) + "</span>"; });
+    cov.covered.forEach(function (v) { h += '<span class="chip cov" title="' + esc(v.gloss) + '">' + esc(v.w) + "</span>"; });
+    h += "</div>";
+  }
+  h += "</div>";
+
+  // ── step 2: stories ──
+  h += '<div class="card"><p class="step-label">' + esc(t("step2")) + " · " + p.stories.length + " " + esc(t("storiesLabel")) + "</p>";
+  if (cov.uncovered.length) {
+    h += '<div class="row" style="margin-top:0"><button class="btn btn-primary" data-act="copy-prompt">' + esc(t("copyPrompt")) + "</button></div>";
+  } else if (total) {
+    h += '<p style="color:var(--ok)">' + esc(t("allCovered")) + "</p>";
+  }
+  if (state.msg && state.msg.where === "prompt") h += '<div class="msg ok">' + state.msg.html + "</div>";
+  h += '<textarea id="story-paste" placeholder="' + esc(t("pastePh2")) + '"></textarea>';
+  h += '<div class="row"><button class="btn btn-primary" data-act="add-story">' + esc(t("addStory")) + "</button></div>";
+  if (state.msg && state.msg.where === "story") h += '<div class="msg ' + state.msg.cls + '">' + state.msg.html + "</div>";
+
+  p.stories.forEach(function (s, i) {
+    var acc = s.status === "accepted";
+    h += '<div class="scard"><div class="scard-head"><span class="title">' + esc(s.title) + "</span>" +
+      (s.title_note ? '<span class="muted">' + esc(s.title_note) + "</span>" : "") +
+      '<span class="badge ' + (acc ? "acc" : "cand") + '">' + esc(acc ? t("accepted") : t("candidate")) + "</span>" +
+      '<span class="spacer"></span>' +
+      '<button class="btn" data-act="toggle-prev" data-i="' + i + '">' + esc(state.openPreview === i ? t("close") : t("preview")) + "</button>" +
+      (acc ? '<button class="btn" data-act="demote" data-i="' + i + '">' + esc(t("reject")) + "</button>"
+           : '<button class="btn" data-act="accept" data-i="' + i + '">' + esc(t("accept")) + "</button>") +
+      '<button class="btn btn-danger" data-act="remove" data-i="' + i + '">' + esc(t("remove")) + "</button></div>";
+    if (state.openPreview === i) {
+      h += '<div class="prev">';
+      s.sentences.forEach(function (sent, j) {
+        h += '<p class="es">' + sentenceHtml(p, s, sent.text, i, j) + "</p>";
+        if (sent.trans) h += '<p class="trans">' + esc(sent.trans) + "</p>";
+      });
+      h += "</div>";
+    }
+    h += "</div>";
+  });
+  h += "</div>";
+
+  // ── step 3: export ──
+  h += '<div class="card"><p class="step-label">' + esc(t("step3")) + "</p>" +
+    '<div class="row" style="margin-top:0"><button class="btn btn-primary" data-act="export-page">' + esc(t("exportPage")) + "</button></div>" +
+    '<p class="muted">' + esc(t("exportNote")) + "</p>" +
+    '<div class="row"><button class="btn" data-act="export-bundle">' + esc(t("exportBundle")) + "</button></div>" +
+    '<p class="muted">' + esc(t("bundleNote")) + "</p>" +
+    '<div class="row"><button class="btn btn-danger" data-act="del-project">' + esc(t("deleteProject")) + "</button></div></div>";
+
+  return h;
+}
+
+function render() {
+  hidePop();
+  document.getElementById("app").innerHTML = state.view === "home" ? homeView() : workView();
+}
+
+// ───────────────────────── events ─────────────────────────
+document.addEventListener("change", function (e) {
+  if (e.target.id === "vocab-file") {
+    var f = e.target.files[0];
+    if (!f) return;
+    f.text().then(function (txt) { doImport(txt); });
+  }
+  if (e.target.id === "bundle-file") {
+    var b = e.target.files[0];
+    if (!b) return;
+    b.text().then(function (txt) {
+      try {
+        var p = restoreBundle(txt);
+        state.view = "work"; state.pid = p.id; state.msg = { where: "vocab", cls: "ok", html: esc(t("restored")) };
+        render();
+      } catch (err) { alert(t("invalidJson") + err.message); }
+    });
+  }
+});
+
+function doImport(text) {
+  var p = proj();
+  var r = importVocab(p, text);
+  saveProj(p);
+  var html = esc(fmt(t("importedMsg"), { a: r.added, u: r.updated, n: r.total }));
+  if (r.bad.length) html += "<br>⚠ lines skipped (need ≥2 columns): " + r.bad.join(", ");
+  state.msg = { where: "vocab", cls: r.bad.length ? "warn" : "ok", html: html };
+  render();
+}
+
+document.addEventListener("click", function (e) {
+  var el = e.target.closest("[data-act]");
+  if (!el) {
+    var w = e.target.closest(".w");
+    if (w) {
+      var p0 = proj();
+      if (p0) {
+        var story = p0.stories[+w.dataset.s];
+        var entry = glossMap(p0, story)[w.dataset.key];
+        if (entry) { showPop(w, entry); e.stopPropagation(); return; }
+      }
+    }
+    var say = e.target.closest(".say");
+    if (say) {
+      var p1 = proj(), st = p1.stories[+say.dataset.s];
+      speak(st.sentences[+say.dataset.i].text, p1.config.lang);
+      return;
+    }
+    if (!e.target.closest(".pop")) hidePop();
+    return;
+  }
+  var act = el.dataset.act, p = proj();
+  if (act === "lang") { state.lang = el.dataset.lang; try { localStorage.setItem(LSL, state.lang); } catch (err) {} render(); }
+  else if (act === "open") { state.view = "work"; state.pid = el.dataset.id; state.msg = null; state.openPreview = null; render(); }
+  else if (act === "back") { e.preventDefault(); state.view = "home"; state.msg = null; render(); }
+  else if (act === "create") {
+    var name = document.getElementById("np-name").value.trim() || "fabulita";
+    var id = "p" + Math.random().toString(36).slice(2, 9);
+    saveProj({ id: id, config: { name: name, lang: document.getElementById("np-lang").value, gloss_lang: document.getElementById("np-gloss").value, ui_default: state.lang }, vocab: [], glossary: {}, stories: [] });
+    state.view = "work"; state.pid = id; state.msg = null; render();
+  }
+  else if (act === "import") { doImport(document.getElementById("vocab-paste").value); }
+  else if (act === "copy-prompt") {
+    var prompt = buildPrompt(p);
+    if (!prompt) return;
+    (navigator.clipboard ? navigator.clipboard.writeText(prompt) : Promise.reject()).then(function () {
+      state.msg = { where: "prompt", cls: "ok", html: esc(t("copied")) }; render();
+    }, function () {
+      state.msg = { where: "prompt", cls: "ok", html: "<textarea readonly style='min-height:10rem'>" + esc(prompt) + "</textarea>" }; render();
+    });
+  }
+  else if (act === "add-story") {
+    var raw = document.getElementById("story-paste").value.trim().replace(/^```(json)?|```$/g, "");
+    var s;
+    try { s = JSON.parse(raw); } catch (err) { state.msg = { where: "story", cls: "err", html: esc(t("invalidJson") + err.message) }; render(); return; }
+    s.status = "candidate"; s.vocab_used = s.vocab_used || []; s.glossary = s.glossary || {}; s.grammar = s.grammar || [];
+    var v = validateStory(p, s);
+    if (v.errors.length) { state.msg = { where: "story", cls: "err", html: esc(t("errPrefix")) + "<ul><li>" + v.errors.map(esc).join("</li><li>") + "</li></ul>" }; render(); return; }
+    p.stories.push(s); saveProj(p);
+    state.msg = { where: "story", cls: v.warnings.length ? "warn" : "ok", html: v.warnings.length ? esc(t("warnPrefix")) + "<ul><li>" + v.warnings.map(esc).join("</li><li>") + "</li></ul>" : esc(t("addedMsg") + s.title) };
+    render();
+  }
+  else if (act === "accept") { p.stories[+el.dataset.i].status = "accepted"; saveProj(p); render(); }
+  else if (act === "demote") { p.stories[+el.dataset.i].status = "candidate"; saveProj(p); render(); }
+  else if (act === "remove") { p.stories.splice(+el.dataset.i, 1); saveProj(p); state.openPreview = null; render(); }
+  else if (act === "toggle-prev") { state.openPreview = state.openPreview === +el.dataset.i ? null : +el.dataset.i; render(); }
+  else if (act === "export-page") { exportPage(p); }
+  else if (act === "export-bundle") { exportBundle(p); }
+  else if (act === "del-project") {
+    if (confirm(t("confirmDelete"))) {
+      var all = loadAll(); delete all[state.pid]; saveAll(all);
+      state.view = "home"; render();
+    }
+  }
+});
+
+window.addEventListener("scroll", hidePop, { passive: true });
+document.addEventListener("keydown", function (e) { if (e.key === "Escape") hidePop(); });
+
+render();
+})();
+</script>
