@@ -149,7 +149,7 @@ var S = {
     importHint: "上传 CSV/TSV，或直接粘贴。每行一个词：word,释义[,备注]",
     chooseFile: "上传文件", importBtn: "导入", pastePh: "casa,家\nperro,狗,宠物那个词",
     importedMsg: "导入完成：新增 {a}，更新 {u}，共 {n} 词",
-    words: "词", coverage: "覆盖率", covered: "已覆盖", uncoveredWords: "未覆盖",
+    words: "词", wordOne: "词", storyOne: "篇故事", covInclCand: "（含备选）", coverage: "覆盖率", covered: "已覆盖", uncoveredWords: "未覆盖",
     copyPrompt: "📋 复制下一篇的 Prompt", copied: "已复制。贴给任意 LLM（Claude / ChatGPT / 本地模型），把它返回的 JSON 粘到下面。",
     allCovered: "🎉 词表已全部覆盖", storiesLabel: "篇故事",
     pastePh2: "把 LLM 返回的故事 JSON 粘到这里…", addStory: "校验并加入备选",
@@ -170,7 +170,7 @@ var S = {
     importHint: "Upload CSV/TSV or paste. One word per line: word,gloss[,note]",
     chooseFile: "Upload file", importBtn: "Import", pastePh: "casa,house\nperro,dog,the pet word",
     importedMsg: "Imported: {a} added, {u} updated, {n} total",
-    words: "words", coverage: "Coverage", covered: "covered", uncoveredWords: "Uncovered",
+    words: "words", wordOne: "word", storyOne: "story", covInclCand: " (incl. candidates)", coverage: "Coverage", covered: "covered", uncoveredWords: "Uncovered",
     copyPrompt: "📋 Copy prompt for the next story", copied: "Copied. Paste it into any LLM (Claude / ChatGPT / local), then paste the JSON it returns below.",
     allCovered: "🎉 Whole vocabulary covered", storiesLabel: "stories",
     pastePh2: "Paste the story JSON your LLM returned…", addStory: "Validate & add as candidate",
@@ -191,7 +191,7 @@ var S = {
     importHint: "Sube CSV/TSV o pega. Una palabra por línea: palabra,glosa[,nota]",
     chooseFile: "Subir archivo", importBtn: "Importar", pastePh: "casa,house\nperro,dog",
     importedMsg: "Importado: {a} nuevas, {u} actualizadas, {n} en total",
-    words: "palabras", coverage: "Cobertura", covered: "cubiertas", uncoveredWords: "Sin cubrir",
+    words: "palabras", wordOne: "palabra", storyOne: "historia", covInclCand: " (incl. candidatas)", coverage: "Cobertura", covered: "cubiertas", uncoveredWords: "Sin cubrir",
     copyPrompt: "📋 Copiar prompt para la próxima historia", copied: "Copiado. Pégalo en cualquier LLM y pega abajo el JSON que devuelva.",
     allCovered: "🎉 Vocabulario completo cubierto", storiesLabel: "historias",
     pastePh2: "Pega aquí el JSON de la historia…", addStory: "Validar y añadir como candidata",
@@ -212,7 +212,7 @@ var S = {
     importHint: "CSV/TSV をアップロードするか貼り付け。1 行 1 語：word,訳[,メモ]",
     chooseFile: "ファイルを選択", importBtn: "インポート", pastePh: "casa,家\nperro,犬",
     importedMsg: "インポート完了：新規 {a}、更新 {u}、計 {n} 語",
-    words: "語", coverage: "カバー率", covered: "カバー済み", uncoveredWords: "未カバー",
+    words: "語", wordOne: "語", storyOne: "話", covInclCand: "（候補含む）", coverage: "カバー率", covered: "カバー済み", uncoveredWords: "未カバー",
     copyPrompt: "📋 次のストーリー用プロンプトをコピー", copied: "コピーしました。任意の LLM に貼り、返ってきた JSON を下に貼ってください。",
     allCovered: "🎉 語彙を全てカバーしました", storiesLabel: "話",
     pastePh2: "LLM が返したストーリー JSON をここに…", addStory: "検証して候補に追加",
@@ -238,6 +238,8 @@ var state = {
 
 function t(k) { return (S[state.lang] || S.en)[k] || k; }
 function fmt(s, o) { return s.replace(/\{(\w+)\}/g, function (_, k) { return o[k]; }); }
+function nWords(n) { return n + " " + (n === 1 ? t("wordOne") : t("words")); }
+function nStories(n) { return n + " " + (n === 1 ? t("storyOne") : t("storiesLabel")); }
 function norm(w) { return w.normalize("NFC").toLowerCase(); }
 function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
 
@@ -303,7 +305,7 @@ function buildPrompt(p) {
   if (!un.length) return null;
   var list = un.map(function (v) { return "- " + v.w + " — " + v.gloss + (v.note ? " (" + v.note + ")" : ""); }).join("\n");
   return "You are writing a graded-reader micro-story for a beginner (CEFR A1) learner of " + (LANG_NAMES[p.config.lang] || p.config.lang) + ".\n\n" +
-    "Write ONE short story (5-8 short sentences, simple present tense, one scene,\nconcrete everyday situation). You MUST use at least " + Math.min(10, un.length) + " and at most 20\nof these vocabulary words (their glosses are in " + (GLOSS_NAMES[p.config.gloss_lang] || p.config.gloss_lang) + "):\n\n" +
+    "Write ONE short story (5-8 short sentences, simple present tense, one scene,\nconcrete everyday situation). You MUST use at least " + Math.min(10, un.length) + " and at most " + Math.min(20, un.length) + "\nof these vocabulary words (their glosses are in " + (GLOSS_NAMES[p.config.gloss_lang] || p.config.gloss_lang) + "):\n\n" +
     list + "\n\nRules:\n- Only A1-level grammar and high-frequency function words besides the list above.\n- Natural, coherent story — not a word-salad that name-drops vocabulary.\n- Glosses and translations must be written in " + (GLOSS_NAMES[p.config.gloss_lang] || p.config.gloss_lang) + ".\n- \"glossary\" must cover EVERY word form that appears in the text and is not a proper\n  name — including inflected verb forms.\n- \"vocab_used\" lists exactly the words from the vocabulary list above that appear\n  in the story (dictionary form as given in the list).\n\nReturn ONLY a JSON object in this exact shape (no markdown fence, no commentary):\n\n" + JSON.stringify(SCHEMA, null, 2);
 }
 
@@ -461,8 +463,7 @@ function homeView() {
   ids.forEach(function (id) {
     var p = all[id], cov = coverage(p);
     h += '<div class="card pcard" data-act="open" data-id="' + id + '"><div><h2>' + esc(p.config.name) + '</h2><p class="muted">' +
-      esc(p.config.lang) + " → " + esc(p.config.gloss_lang) + " · " + p.vocab.length + " " + esc(t("words")) + " · " +
-      p.stories.length + " " + esc(t("storiesLabel")) + " · " + esc(t("coverage")) + " " +
+      esc(p.config.lang) + " → " + esc(p.config.gloss_lang) + " · " + esc(nWords(p.vocab.length)) + " · " + esc(nStories(p.stories.length)) + " · " + esc(t("coverage")) + " " +
       (p.vocab.length ? Math.round(100 * cov.covered.length / p.vocab.length) : 0) + "%</p></div><span>→</span></div>";
   });
   h += "</div>";
@@ -487,7 +488,7 @@ function workView() {
     esc(p.config.name) + '</h1><p class="muted">' + esc(p.config.lang) + " → " + esc(p.config.gloss_lang) + "</p></div>" + langSwitcher() + "</div>";
 
   // ── step 1: vocab ──
-  h += '<div class="card"><p class="step-label">' + esc(t("step1")) + " · " + total + " " + esc(t("words")) + "</p>";
+  h += '<div class="card"><p class="step-label">' + esc(t("step1")) + " · " + esc(nWords(total)) + "</p>";
   h += '<p class="muted">' + esc(t("importHint")) + "</p>";
   h += '<textarea id="vocab-paste" placeholder="' + esc(t("pastePh")) + '"></textarea>';
   h += '<div class="row"><label class="btn" style="margin:0">' + esc(t("chooseFile")) + '<input type="file" id="vocab-file" accept=".csv,.tsv,.txt" style="display:none"></label>' +
@@ -504,7 +505,7 @@ function workView() {
   h += "</div>";
 
   // ── step 2: stories ──
-  h += '<div class="card"><p class="step-label">' + esc(t("step2")) + " · " + p.stories.length + " " + esc(t("storiesLabel")) + "</p>";
+  h += '<div class="card"><p class="step-label">' + esc(t("step2")) + " · " + esc(nStories(p.stories.length)) + "</p>";
   if (cov.uncovered.length) {
     h += '<div class="row" style="margin-top:0"><button class="btn btn-primary" data-act="copy-prompt">' + esc(t("copyPrompt")) + "</button></div>";
   } else if (total) {

@@ -65,7 +65,7 @@ def next_prompt(project, max_words=None, include_candidates=True):
         lang_name=LANG_NAMES.get(cfg["lang"], cfg["lang"]),
         gloss_lang=GLOSS_LANG_NAMES.get(cfg["gloss_lang"], cfg["gloss_lang"]),
         min_use=min(10, len(batch)),
-        max_words=max_words,
+        max_words=min(max_words, len(batch)),
         word_list=word_list,
         schema=json.dumps(SCHEMA, ensure_ascii=False, indent=2),
     )

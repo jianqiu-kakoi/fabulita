@@ -82,7 +82,15 @@ def unpack(bundle_path, dest="."):
     cfg = dict(bundle["config"])
     cfg.setdefault("ui_default", "en")
     proj._write(CONFIG_FILE, {"name": "Fabulita", **cfg})
-    proj.save_vocab(bundle.get("vocab", []))
+    vocab_list = []
+    for v in bundle.get("vocab", []):
+        if not isinstance(v, dict) or not (v.get("w") or v.get("word")):
+            raise ValueError(f"bad vocab entry (need 'w' and 'gloss' keys): {v!r}")
+        entry = {"w": v.get("w") or v["word"], "gloss": v.get("gloss", "")}
+        if v.get("note"):
+            entry["note"] = v["note"]
+        vocab_list.append(entry)
+    proj.save_vocab(vocab_list)
     proj._write("glossary.json", bundle.get("glossary", {}))
     for story in bundle.get("stories", []):
         proj.save_story(story)
