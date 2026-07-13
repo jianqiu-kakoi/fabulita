@@ -16,7 +16,7 @@ TEMPLATE = """\
 You are writing a graded-reader micro-story for a beginner (CEFR A1) learner of {lang_name}.
 
 Write ONE short story (5-8 short sentences, simple present tense, one scene,
-concrete everyday situation). You MUST use at least {min_use} and at most {max_words}
+concrete everyday situation). You MUST use {use_clause}
 of these vocabulary words (their glosses are in {gloss_lang}):
 
 {word_list}
@@ -61,11 +61,12 @@ def next_prompt(project, max_words=None, include_candidates=True):
         f"- {w['w']} — {w['gloss']}" + (f" ({w['note']})" if w.get("note") else "")
         for w in batch
     )
+    lo, hi = min(10, len(batch)), min(max_words, len(batch))
+    use_clause = f"all {hi}" if lo >= hi else f"at least {lo} and at most {hi}"
     prompt = TEMPLATE.format(
         lang_name=LANG_NAMES.get(cfg["lang"], cfg["lang"]),
         gloss_lang=GLOSS_LANG_NAMES.get(cfg["gloss_lang"], cfg["gloss_lang"]),
-        min_use=min(10, len(batch)),
-        max_words=min(max_words, len(batch)),
+        use_clause=use_clause,
         word_list=word_list,
         schema=json.dumps(SCHEMA, ensure_ascii=False, indent=2),
     )
