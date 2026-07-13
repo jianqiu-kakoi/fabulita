@@ -117,7 +117,7 @@ def test_demo_stories_validate():
     if not (DEMO / "vocab.json").exists():
         vocab.import_file(proj, csv)
     all_stories = proj.stories()
-    assert len(all_stories) == 5
+    assert len(all_stories) == 6
     for s in all_stories:
         errors, warnings = stories.validate(proj, s)
         assert errors == [], f"{s['id']}: {errors}"

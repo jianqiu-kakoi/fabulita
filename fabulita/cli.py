@@ -100,10 +100,14 @@ def main(argv=None):
             print(f"{args.id!r} is a candidate again")
 
         elif args.cmd == "status":
+            cov_acc, _ = proj.coverage(include_candidates=False)
             covered, uncovered = proj.coverage(include_candidates=True)
             total = len(proj.vocab)
             pct = round(100 * len(covered) / total) if total else 0
-            print(f"vocabulary: {len(covered)}/{total} covered ({pct}%)")
+            line = f"vocabulary: {len(covered)}/{total} covered ({pct}%)"
+            if len(covered) != len(cov_acc):
+                line += f" — accepted stories only: {len(cov_acc)}/{total}"
+            print(line)
             if uncovered:
                 print("uncovered: " + ", ".join(w["w"] for w in uncovered))
             print("stories:")

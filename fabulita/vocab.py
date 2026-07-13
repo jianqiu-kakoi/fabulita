@@ -9,13 +9,14 @@ def import_file(project, path):
     delim = "\t" if str(path).endswith((".tsv", ".txt")) else ","
     rows = []
     with open(path, encoding="utf-8-sig") as f:
-        for row in csv.reader(f, delimiter=delim):
+        for lineno, row in enumerate(csv.reader(f, delimiter=delim), start=1):
             row = [c.strip() for c in row if c.strip()]
             if not row:
                 continue
             if len(row) == 1:
                 raise ProjectError(
-                    f"row {row!r}: need at least word,gloss (gloss in your language)"
+                    f"{path}, line {lineno}: needs at least 2 columns "
+                    f"(word,gloss — gloss in your language), got: {row[0]!r}"
                 )
             rows.append(row)
     # skip a header row like "word,gloss"
