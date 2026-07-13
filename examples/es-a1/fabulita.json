@@ -1,0 +1,8 @@
+{
+  "name": "Español · A1 · Lecturas",
+  "lang": "es",
+  "gloss_lang": "zh",
+  "ui_default": "zh",
+  "tts": { "backend": "edge", "voice": "es-ES-ElviraNeural" },
+  "max_words_per_story": 20
+}

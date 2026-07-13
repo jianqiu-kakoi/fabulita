@@ -1,0 +1,28 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "fabulita"
+version = "0.1.0"
+description = "Compile a vocabulary list into LLM-generated graded-reader stories, then into a single-file interactive reading page with embedded neural TTS."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "jianqiu-kakoi" }]
+keywords = ["language-learning", "graded-reader", "tts", "llm", "spanish"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Topic :: Education",
+]
+
+[project.optional-dependencies]
+tts = ["edge-tts>=6.1"]
+dev = ["pytest"]
+
+[project.scripts]
+fabulita = "fabulita.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["fabulita"]

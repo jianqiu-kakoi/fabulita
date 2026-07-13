@@ -1,0 +1,21 @@
+{
+  "id": "la-fiesta",
+  "title": "La fiesta",
+  "title_note": "聚会 · 挑衣服",
+  "status": "accepted",
+  "sentences": [
+    { "text": "Esta noche hay una fiesta.", "trans": "今晚有一个聚会。" },
+    { "text": "Laura abre el armario y mira su ropa.", "trans": "劳拉打开衣柜，看着自己的衣服。" },
+    { "text": "Tiene un vestido rojo, una camisa blanca y una chaqueta azul.", "trans": "她有一条红色连衣裙、一件白色衬衫和一件蓝色夹克。" },
+    { "text": "También tiene unos zapatos negros.", "trans": "她还有一双黑色鞋子。" },
+    { "text": "Laura elige el vestido rojo y los zapatos negros.", "trans": "劳拉选择了红色连衣裙和黑色鞋子。" },
+    { "text": "Su amiga dice: «¡Qué bonito color!»", "trans": "她的朋友说：“这个颜色真漂亮！”" }
+  ],
+  "vocab_used": ["fiesta", "armario", "ropa", "vestido", "camisa", "chaqueta", "zapato", "rojo", "blanco", "azul", "negro", "color", "amiga"],
+  "glossary": {},
+  "grammar": [
+    ["elige", "← elegir（选择）。"],
+    ["形容词性数一致", "camisa blanca（阴性）、zapatos negros（阳性复数）。"],
+    ["¡Qué bonito color!", "感叹句：qué + 形容词 + 名词，多漂亮的颜色！"]
+  ]
+}

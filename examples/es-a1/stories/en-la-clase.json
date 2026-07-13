@@ -1,0 +1,22 @@
+{
+  "id": "en-la-clase",
+  "title": "En la clase",
+  "title_note": "西语课",
+  "status": "accepted",
+  "sentences": [
+    { "text": "Luis es estudiante de una universidad.", "trans": "路易斯是一名大学生。" },
+    { "text": "Hoy tiene una clase de español.", "trans": "今天他有一节西语课。" },
+    { "text": "El profesor está delante de los estudiantes.", "trans": "老师站在学生们前面。" },
+    { "text": "Luis tiene un libro, un cuaderno y un bolígrafo.", "trans": "路易斯有一本书、一本笔记本和一支圆珠笔。" },
+    { "text": "Su amiga escribe con un lápiz en un papel.", "trans": "他的朋友用铅笔在纸上写字。" },
+    { "text": "Después de la clase, Luis trabaja con su ordenador.", "trans": "下课后，路易斯用电脑工作。" }
+  ],
+  "vocab_used": ["estudiante", "universidad", "clase", "español", "profesor", "libro", "cuaderno", "bolígrafo", "lápiz", "papel", "ordenador"],
+  "glossary": {},
+  "grammar": [
+    ["escribo / escribe", "我写 / 他（她）写，← escribir。"],
+    ["trabajo / trabaja", "我工作 / 他（她）工作，← trabajar。"],
+    ["delante de", "在……前面。"],
+    ["después de la clase", "下课之后。"]
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "id": "un-dia-de-sol",
+  "title": "Un día de sol",
+  "title_note": "晴天的一日",
+  "sentences": [
+    {
+      "text": "Hoy hay sol y Ana va a la playa en coche.",
+      "trans": "今天有太阳，安娜开车去海滩。"
+    },
+    {
+      "text": "Su perro y su gato están en el jardín.",
+      "trans": "她的狗和猫在花园里。"
+    },
+    {
+      "text": "Ana mira una flor bonita cerca del agua.",
+      "trans": "安娜在水边看到一朵漂亮的花。"
+    },
+    {
+      "text": "Por la tarde, va al cine con Carlos.",
+      "trans": "下午，她和卡洛斯去电影院。"
+    },
+    {
+      "text": "Después, escuchan música en casa.",
+      "trans": "之后，他们在家听音乐。"
+    },
+    {
+      "text": "Por la noche, Ana mira la luna.",
+      "trans": "晚上，安娜看着月亮。"
+    }
+  ],
+  "vocab_used": [
+    "sol",
+    "playa",
+    "coche",
+    "perro",
+    "gato",
+    "jardín",
+    "flor",
+    "cine",
+    "música",
+    "luna"
+  ],
+  "glossary": {
+    "del": [
+      "……的（de + el 的缩合）"
+    ],
+    "están": [
+      "他们在",
+      "← estar（在、处于）；está 是单数"
+    ],
+    "escuchan": [
+      "他们听",
+      "← escuchar（听）"
+    ]
+  },
+  "grammar": [
+    [
+      "hay sol",
+      "有太阳、天晴。"
+    ],
+    [
+      "del",
+      "= de + el 的缩合形式。"
+    ],
+    [
+      "escuchan",
+      "他们听，← escuchar；第三人称复数词尾 -an。"
+    ]
+  ],
+  "status": "candidate"
+}

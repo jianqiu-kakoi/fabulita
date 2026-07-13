@@ -1,0 +1,550 @@
+<title>__TITLE__</title>
+<style>
+  :root {
+    --bg: #F6F4EE;
+    --card: #FFFFFF;
+    --ink: #2A2620;
+    --muted: #6F695E;
+    --accent: #2F5DA8;
+    --accent-deep: #24497F;
+    --accent-soft: rgba(47, 93, 168, 0.09);
+    --gold: #B8860B;
+    --line: #E4DFD4;
+    --underline: rgba(47, 93, 168, 0.45);
+    --pop-bg: #262A33;
+    --pop-ink: #F2F0E9;
+    --pop-muted: #A8B0BE;
+    --serif: "Palatino", "Palatino Linotype", "Book Antiqua", Georgia, "Songti SC", "Hiragino Mincho ProN", serif;
+    --sans: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1A1C21; --card: #22252C; --ink: #E7E3D9; --muted: #9A948A;
+      --accent: #8AB0E8; --accent-deep: #A8C6F0; --accent-soft: rgba(138, 176, 232, 0.12);
+      --gold: #D5A54E; --line: #33363E; --underline: rgba(138, 176, 232, 0.5);
+      --pop-bg: #F2F0E9; --pop-ink: #262A33; --pop-muted: #5C6470;
+    }
+  }
+  :root[data-theme="light"] {
+    --bg: #F6F4EE; --card: #FFFFFF; --ink: #2A2620; --muted: #6F695E;
+    --accent: #2F5DA8; --accent-deep: #24497F; --accent-soft: rgba(47, 93, 168, 0.09);
+    --gold: #B8860B; --line: #E4DFD4; --underline: rgba(47, 93, 168, 0.45);
+    --pop-bg: #262A33; --pop-ink: #F2F0E9; --pop-muted: #A8B0BE;
+  }
+  :root[data-theme="dark"] {
+    --bg: #1A1C21; --card: #22252C; --ink: #E7E3D9; --muted: #9A948A;
+    --accent: #8AB0E8; --accent-deep: #A8C6F0; --accent-soft: rgba(138, 176, 232, 0.12);
+    --gold: #D5A54E; --line: #33363E; --underline: rgba(138, 176, 232, 0.5);
+    --pop-bg: #F2F0E9; --pop-ink: #262A33; --pop-muted: #5C6470;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: var(--sans); margin: 0;
+    padding: 2.5rem 1.25rem 5rem; line-height: 1.7;
+  }
+  .wrap { max-width: 42rem; margin: 0 auto; }
+
+  .masthead { margin-bottom: 2rem; }
+  .mast-top { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+  .eyebrow {
+    font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--gold); font-weight: 600; margin: 0 0 0.5rem;
+  }
+  h1 { font-family: var(--serif); font-size: 2rem; font-weight: 600; margin: 0 0 0.5rem; text-wrap: balance; }
+  .hint { color: var(--muted); font-size: 0.9rem; margin: 0; }
+  .hint .demo { border-bottom: 1px dashed var(--underline); color: var(--accent-deep); padding-bottom: 1px; }
+
+  .langsw { display: flex; gap: 0.35rem; }
+  .langsw button {
+    font-family: var(--sans); font-size: 0.78rem; padding: 0.25rem 0.65rem;
+    border: 1px solid var(--line); border-radius: 100px;
+    background: var(--card); color: var(--muted); cursor: pointer;
+  }
+  .langsw button:hover { border-color: var(--accent); color: var(--accent-deep); }
+  .langsw button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--card); }
+
+  .controls { display: flex; align-items: center; gap: 0.6rem; margin-top: 1rem; flex-wrap: wrap; }
+  .ctl {
+    font-family: var(--sans); font-size: 0.82rem; padding: 0.35rem 0.8rem;
+    border: 1px solid var(--line); border-radius: 100px;
+    background: var(--card); color: var(--ink); cursor: pointer;
+    transition: border-color 120ms ease, background-color 120ms ease;
+  }
+  .ctl:hover { border-color: var(--accent); }
+  .ctl[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--card); }
+  .ctl-note { font-size: 0.78rem; color: var(--muted); }
+
+  .cov {
+    background: var(--card); border: 1px solid var(--line); border-radius: 10px;
+    padding: 1.1rem 1.4rem; margin-bottom: 1.75rem;
+  }
+  .cov-head { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; }
+  .cov-title { font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); font-weight: 600; }
+  .cov-nums { font-size: 0.85rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .cov-bar { height: 6px; background: var(--accent-soft); border-radius: 3px; margin: 0.6rem 0 0.8rem; overflow: hidden; }
+  .cov-fill { height: 100%; background: var(--accent); border-radius: 3px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+  .chips-label { width: 100%; font-size: 0.78rem; color: var(--muted); margin-bottom: 0.1rem; }
+  .chip {
+    font-family: var(--serif); font-size: 0.9rem; padding: 0.1rem 0.6rem;
+    border: 1px dashed var(--underline); border-radius: 100px;
+    background: transparent; color: var(--accent-deep); cursor: pointer;
+  }
+  .chip:hover { background: var(--accent-soft); }
+  .cov-done { font-size: 0.9rem; color: var(--accent-deep); }
+
+  .lesson {
+    background: var(--card); border: 1px solid var(--line); border-radius: 10px;
+    padding: 1.75rem 1.75rem 1.25rem; margin-bottom: 1.75rem;
+  }
+  .lesson > header { display: flex; align-items: baseline; gap: 0.9rem; margin-bottom: 1.1rem; }
+  .num {
+    font-family: var(--serif); background: var(--accent); color: var(--card);
+    min-width: 2.1rem; height: 2.1rem; display: inline-flex; align-items: center; justify-content: center;
+    border-radius: 5px; font-size: 1.15rem; font-weight: 600; align-self: center; flex-shrink: 0;
+  }
+  .lesson h2 { font-family: var(--serif); font-size: 1.3rem; font-weight: 600; margin: 0; }
+  .lesson .sub { margin: 0; color: var(--muted); font-size: 0.85rem; }
+  .titlebox { display: flex; flex-direction: column; gap: 0.1rem; }
+  .badge {
+    font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--gold); border: 1px solid var(--gold); border-radius: 100px;
+    padding: 0.05rem 0.5rem; align-self: center; flex-shrink: 0;
+  }
+  .playall { margin-left: auto; align-self: center; }
+
+  .es { font-family: var(--serif); font-size: 1.28rem; line-height: 2.05; margin: 0 0 1.25rem; }
+  .w {
+    cursor: pointer; border-bottom: 1px dashed var(--underline);
+    padding-bottom: 1px; border-radius: 2px 2px 0 0;
+    transition: background-color 120ms ease;
+  }
+  .w:hover { background: var(--accent-soft); }
+  .w.active { background: var(--accent); color: var(--card); border-bottom-color: transparent; }
+  .w:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  .sent { border-radius: 3px; }
+  .sent.playing { background: var(--accent-soft); }
+  .say {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 1.5rem; height: 1.5rem; margin: 0 0.35rem 0 0.15rem; padding: 0;
+    border: 1px solid var(--line); border-radius: 50%;
+    background: transparent; color: var(--accent); cursor: pointer;
+    vertical-align: baseline; transform: translateY(0.18em);
+    transition: background-color 120ms ease, border-color 120ms ease;
+  }
+  .say:hover { background: var(--accent-soft); border-color: var(--accent); }
+  .say.playing { background: var(--accent); color: var(--card); border-color: var(--accent); }
+  .say svg { width: 0.85rem; height: 0.85rem; display: block; }
+  .say:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  details { border-top: 1px solid var(--line); }
+  details summary {
+    cursor: pointer; list-style: none; display: flex; align-items: center; gap: 0.55rem;
+    padding: 0.8rem 0.25rem; font-size: 0.86rem; font-weight: 600;
+    letter-spacing: 0.06em; color: var(--muted); user-select: none;
+  }
+  details summary::-webkit-details-marker { display: none; }
+  details summary:hover { color: var(--accent-deep); }
+  .chev {
+    display: inline-block; width: 0.5em; height: 0.5em;
+    border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor;
+    transform: rotate(-45deg); transition: transform 150ms ease; flex-shrink: 0;
+  }
+  details[open] .chev { transform: rotate(45deg); }
+  .count { font-weight: 400; color: var(--muted); letter-spacing: 0; }
+  details .inner { padding: 0.25rem 0.25rem 1.1rem; }
+
+  .vtable { display: grid; grid-template-columns: max-content 1fr; gap: 0.35rem 1.4rem; font-size: 0.95rem; }
+  .vtable .vw { font-family: var(--serif); font-size: 1.05rem; color: var(--accent-deep); }
+  .vtable .vm { color: var(--ink); }
+
+  .gnotes { margin: 1.1rem 0 0; padding: 0.9rem 1rem; background: var(--accent-soft); border-radius: 6px; font-size: 0.9rem; }
+  .gnotes .gtitle {
+    font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--gold); font-weight: 600; margin: 0 0 0.4rem;
+  }
+  .gnotes ul { margin: 0; padding-left: 1.1rem; }
+  .gnotes li { margin-bottom: 0.3rem; }
+  .gnotes li:last-child { margin-bottom: 0; }
+  .gnotes .sp { font-family: var(--serif); color: var(--accent-deep); }
+
+  .trans-p { margin: 0; font-size: 0.98rem; line-height: 1.9; }
+
+  .pop {
+    position: absolute; z-index: 10;
+    background: var(--pop-bg); color: var(--pop-ink);
+    border-radius: 8px; padding: 0.6rem 0.85rem; max-width: 16rem;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.22);
+    font-size: 0.9rem; line-height: 1.55; display: none;
+  }
+  .pop.show { display: block; }
+  .pop .pw { font-family: var(--serif); font-size: 1.08rem; font-weight: 600; display: block; }
+  .pop .pg { display: block; }
+  .pop .pn { display: block; color: var(--pop-muted); font-size: 0.8rem; margin-top: 0.2rem; }
+  .pop::after {
+    content: ""; position: absolute; left: var(--arrow-x, 50%);
+    transform: translateX(-50%); border: 6px solid transparent;
+  }
+  .pop.below::after { bottom: 100%; border-bottom-color: var(--pop-bg); }
+  .pop.above::after { top: 100%; border-top-color: var(--pop-bg); }
+
+  footer.colophon { text-align: center; color: var(--muted); font-size: 0.8rem; margin-top: 3rem; }
+  footer.colophon a { color: var(--muted); }
+
+  @media (prefers-reduced-motion: reduce) { .w, .chev { transition: none; } }
+  @media (max-width: 480px) {
+    .lesson { padding: 1.25rem 1.1rem 0.9rem; }
+    .es { font-size: 1.18rem; }
+  }
+</style>
+
+<div class="wrap" id="app"></div>
+
+<div class="pop below" id="pop" role="tooltip">
+  <span class="pw" id="pop-word"></span>
+  <span class="pg" id="pop-gloss"></span>
+  <span class="pn" id="pop-note"></span>
+</div>
+
+<script>var P = /*__PAYLOAD__*/null;</script>
+<script>
+(function () {
+  "use strict";
+  var UI = P.ui;
+  var UI_LANGS = P.uiLangs;
+  var LS_KEY = "fabulita.uiLang";
+  var state = {
+    lang: (function () {
+      try {
+        var v = localStorage.getItem(LS_KEY);
+        if (v && UI[v]) return v;
+      } catch (e) {}
+      return UI[P.config.ui_default] ? P.config.ui_default : "en";
+    })(),
+    slow: false
+  };
+
+  function t(key) { return (UI[state.lang] || UI.en)[key] || key; }
+  function norm(w) { return w.normalize("NFC").toLowerCase(); }
+  function esc(s) {
+    return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
+    });
+  }
+
+  // ── glossary lookup: vocab < project glossary < story glossary ──
+  var baseGloss = {};
+  P.vocab.forEach(function (v) { baseGloss[norm(v.w)] = [v.gloss, v.note || ""]; });
+  Object.keys(P.glossary).forEach(function (k) { baseGloss[norm(k)] = P.glossary[k]; });
+  var storyGloss = P.stories.map(function (s) {
+    var m = Object.create(null);
+    Object.keys(s.glossary || {}).forEach(function (k) { m[norm(k)] = s.glossary[k]; });
+    return m;
+  });
+  function glossFor(si, key) {
+    return (si >= 0 && storyGloss[si][key]) || baseGloss[key] || null;
+  }
+
+  // ── coverage (all stories shown on the page count) ──
+  var vocabNorm = P.vocab.map(function (v) { return norm(v.w); });
+  var coveredSet = {};
+  P.stories.forEach(function (s) {
+    (s.vocab_used || []).forEach(function (w) { coveredSet[norm(w)] = true; });
+  });
+  var covered = vocabNorm.filter(function (w) { return coveredSet[w]; }).length;
+  var uncovered = P.vocab.filter(function (v) { return !coveredSet[norm(v.w)]; });
+
+  var WORD_RE = /\p{L}+/gu;
+  var SPEAKER_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5z" fill="currentColor" stroke="none"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>';
+
+  function sentenceHtml(si, text) {
+    var out = "", last = 0, m;
+    WORD_RE.lastIndex = 0;
+    while ((m = WORD_RE.exec(text)) !== null) {
+      out += esc(text.slice(last, m.index));
+      var key = norm(m[0]);
+      if (glossFor(si, key)) {
+        out += '<span class="w" tabindex="0" role="button" data-si="' + si + '" data-key="' + esc(key) + '">' + esc(m[0]) + "</span>";
+      } else {
+        out += esc(m[0]);
+      }
+      last = m.index + m[0].length;
+    }
+    return out + esc(text.slice(last));
+  }
+
+  function storyHtml(s, si, num) {
+    var h = '<section class="lesson" data-si="' + si + '"><header>';
+    h += '<span class="num">' + num + "</span>";
+    h += '<div class="titlebox"><h2>' + esc(s.title) + "</h2>";
+    if (s.title_note) h += '<p class="sub">' + esc(s.title_note) + "</p>";
+    h += "</div>";
+    if (s.status === "candidate") h += '<span class="badge">' + esc(t("candidate")) + "</span>";
+    h += '<button class="ctl playall" data-si="' + si + '">' + esc(t("playAll")) + "</button>";
+    h += "</header>";
+
+    h += '<p class="es">';
+    s.sentences.forEach(function (sent, i) {
+      h += '<span class="sent" data-si="' + si + '" data-i="' + i + '">' + sentenceHtml(si, sent.text);
+      h += '<button class="say" aria-label="' + esc(t("readSentence")) + '" title="' + esc(t("readSentence")) + '">' + SPEAKER_SVG + "</button></span> ";
+    });
+    h += "</p>";
+
+    var vu = s.vocab_used || [];
+    if (vu.length) {
+      h += '<details><summary><span class="chev"></span>' + esc(t("vocabList")) +
+        ' <span class="count">· ' + vu.length + " " + esc(t("words")) + "</span></summary><div class=\"inner\"><div class=\"vtable\">";
+      vu.forEach(function (w) {
+        var g = glossFor(si, norm(w)) || ["?"];
+        h += '<span class="vw">' + esc(w) + '</span><span class="vm">' + esc(g[0]) + "</span>";
+      });
+      h += "</div>";
+      if ((s.grammar || []).length) {
+        h += '<div class="gnotes"><p class="gtitle">' + esc(t("grammar")) + "</p><ul>";
+        s.grammar.forEach(function (g) {
+          h += '<li><span class="sp">' + esc(g[0]) + "</span> — " + esc(g[1]) + "</li>";
+        });
+        h += "</ul></div>";
+      }
+      h += "</div></details>";
+    }
+
+    var trans = s.sentences.map(function (x) { return x.trans || ""; }).join(" ").trim();
+    if (trans) {
+      h += '<details><summary><span class="chev"></span>' + esc(t("translation")) +
+        '</summary><div class="inner"><p class="trans-p">' + esc(trans) + "</p></div></details>";
+    }
+    return h + "</section>";
+  }
+
+  function coverageHtml() {
+    if (!P.vocab.length) return "";
+    var pct = Math.round((covered / P.vocab.length) * 100);
+    var h = '<section class="cov"><div class="cov-head"><span class="cov-title">' + esc(t("coverage")) +
+      '</span><span class="cov-nums">' + covered + " / " + P.vocab.length + " " + esc(t("covered")) + " · " + pct + "%</span></div>";
+    h += '<div class="cov-bar"><div class="cov-fill" style="width:' + pct + '%"></div></div>';
+    if (uncovered.length) {
+      h += '<div class="chips"><span class="chips-label">' + esc(t("uncoveredWords")) + " · " + uncovered.length + "</span>";
+      uncovered.forEach(function (v) {
+        h += '<button class="chip" data-key="' + esc(norm(v.w)) + '">' + esc(v.w) + "</button>";
+      });
+      h += "</div>";
+    } else {
+      h += '<p class="cov-done">' + esc(t("allCovered")) + "</p>";
+    }
+    return h + "</section>";
+  }
+
+  function render() {
+    hidePop();
+    stopAll();
+    var app = document.getElementById("app");
+    var h = '<header class="masthead"><div class="mast-top"><div>' +
+      '<p class="eyebrow">Fabulita · ' + esc((P.config.lang || "").toUpperCase()) + "</p>" +
+      "<h1>" + esc(P.config.name) + "</h1></div>" +
+      '<nav class="langsw" aria-label="UI language">';
+    UI_LANGS.forEach(function (l) {
+      h += '<button data-lang="' + l + '" aria-pressed="' + (l === state.lang) + '">' + esc(UI[l].langName) + "</button>";
+    });
+    h += "</nav></div>";
+    h += '<p class="hint">' + esc(t("hint")) + "</p>";
+    h += '<div class="controls"><button class="ctl" id="speed-toggle" aria-pressed="' + state.slow + '">' + esc(t("slow")) + "</button>" +
+      '<span class="ctl-note" id="voice-note"></span></div></header>';
+
+    h += coverageHtml();
+
+    var accepted = P.stories.filter(function (s) { return s.status !== "candidate"; });
+    var candidates = P.stories.filter(function (s) { return s.status === "candidate"; });
+    var num = 0;
+    accepted.concat(candidates).forEach(function (s) {
+      num += 1;
+      h += storyHtml(s, P.stories.indexOf(s), num);
+    });
+
+    h += '<footer class="colophon">' + P.stories.length + " " + esc(t("storiesLabel")) +
+      ' · <a href="https://github.com/jianqiu-kakoi/fabulita">fabulita</a></footer>';
+    app.innerHTML = h;
+    updateVoiceNote();
+  }
+
+  // ── popup ──
+  var pop = document.getElementById("pop");
+  var activeEl = null;
+
+  function hidePop() {
+    pop.classList.remove("show");
+    if (activeEl) activeEl.classList.remove("active");
+    activeEl = null;
+  }
+
+  function showPop(el, si, key) {
+    var entry = glossFor(si, key);
+    if (!entry) return;
+    if (activeEl === el) { hidePop(); return; }
+    if (activeEl) activeEl.classList.remove("active");
+    activeEl = el;
+    el.classList.add("active");
+
+    document.getElementById("pop-word").textContent = el.textContent;
+    document.getElementById("pop-gloss").textContent = entry[0];
+    var note = document.getElementById("pop-note");
+    note.textContent = entry[1] || "";
+    note.style.display = entry[1] ? "block" : "none";
+
+    pop.classList.add("show");
+    var r = el.getBoundingClientRect();
+    var pw = pop.offsetWidth, ph = pop.offsetHeight;
+    var cx = r.left + r.width / 2;
+    var left = Math.max(8, Math.min(cx - pw / 2, window.innerWidth - pw - 8));
+    var below = r.bottom + 10 + ph < window.innerHeight || r.top - 10 - ph < 0;
+    pop.classList.toggle("below", below);
+    pop.classList.toggle("above", !below);
+    pop.style.top = (window.scrollY + (below ? r.bottom + 10 : r.top - ph - 10)) + "px";
+    pop.style.left = (window.scrollX + left) + "px";
+    pop.style.setProperty("--arrow-x", (cx - left) + "px");
+  }
+
+  // ── audio: embedded clips first, speechSynthesis fallback ──
+  var synth = window.speechSynthesis;
+  var esVoice = null;
+  var player = new Audio();
+  var speaking = false, queue = [], utterSeq = 0;
+  var currentBtn = null, currentSent = null, currentAllBtn = null;
+  var hasAudio = P.audio && Object.keys(P.audio).length > 0;
+
+  function pickVoice() {
+    var voices = synth ? synth.getVoices() : [];
+    var lang = (P.config.lang || "es").toLowerCase();
+    var match = voices.filter(function (v) { return v.lang && v.lang.toLowerCase().indexOf(lang) === 0; });
+    if (match.length) esVoice = match[0];
+  }
+  if (synth) {
+    pickVoice();
+    if (typeof synth.onvoiceschanged !== "undefined") synth.onvoiceschanged = pickVoice;
+  }
+
+  function updateVoiceNote() {
+    var el = document.getElementById("voice-note");
+    if (!el) return;
+    el.textContent = hasAudio ? t("voiceEmbedded") : (synth ? t("voiceSystem") : t("voiceNone"));
+  }
+
+  function clearPlayState() {
+    speaking = false;
+    if (currentBtn) currentBtn.classList.remove("playing");
+    if (currentSent) currentSent.classList.remove("playing");
+    currentBtn = currentSent = null;
+  }
+
+  function stopAll() {
+    queue = [];
+    utterSeq++; // invalidate onend callbacks of cancelled speech
+    if (synth) synth.cancel();
+    player.pause();
+    clearPlayState();
+    if (currentAllBtn) { currentAllBtn.textContent = t("playAll"); currentAllBtn = null; }
+  }
+
+  function speakSent(sentEl, onDone) {
+    var id = ++utterSeq;
+    var done = function () {
+      if (id !== utterSeq) return;
+      clearPlayState();
+      if (onDone) onDone();
+    };
+    speaking = true;
+    currentSent = sentEl;
+    currentBtn = sentEl.querySelector(".say");
+    sentEl.classList.add("playing");
+    if (currentBtn) currentBtn.classList.add("playing");
+
+    var story = P.stories[+sentEl.dataset.si];
+    var clip = P.audio && P.audio[story.id] && P.audio[story.id][sentEl.dataset.i];
+    if (clip) {
+      player.src = clip;
+      player.playbackRate = state.slow ? 0.65 : 1.0;
+      player.onended = player.onerror = done;
+      player.play().catch(done);
+    } else if (synth) {
+      var text = story.sentences[+sentEl.dataset.i].text.replace(/[«»]/g, "");
+      var u = new SpeechSynthesisUtterance(text);
+      u.lang = esVoice ? esVoice.lang : (P.config.lang || "es");
+      if (esVoice) u.voice = esVoice;
+      u.rate = state.slow ? 0.6 : 0.92;
+      u.onend = u.onerror = done;
+      synth.speak(u);
+    } else {
+      done();
+    }
+  }
+
+  function playQueue(sents, allBtn) {
+    stopAll();
+    queue = sents;
+    currentAllBtn = allBtn;
+    if (allBtn) allBtn.textContent = t("stop");
+    (function next() {
+      if (!queue.length) {
+        if (currentAllBtn) { currentAllBtn.textContent = t("playAll"); currentAllBtn = null; }
+        return;
+      }
+      speakSent(queue.shift(), next);
+    })();
+  }
+
+  // ── events (delegated; DOM is re-rendered on language switch) ──
+  document.addEventListener("click", function (e) {
+    var el;
+    if ((el = e.target.closest(".langsw button"))) {
+      state.lang = el.dataset.lang;
+      try { localStorage.setItem(LS_KEY, state.lang); } catch (err) {}
+      render();
+      return;
+    }
+    if ((el = e.target.closest("#speed-toggle"))) {
+      state.slow = !state.slow;
+      el.setAttribute("aria-pressed", String(state.slow));
+      player.playbackRate = state.slow ? 0.65 : 1.0;
+      return;
+    }
+    if ((el = e.target.closest(".say"))) {
+      var sent = el.closest(".sent");
+      if (speaking && currentSent === sent && !queue.length) { stopAll(); return; }
+      stopAll();
+      speakSent(sent, null);
+      return;
+    }
+    if ((el = e.target.closest(".playall"))) {
+      if (queue.length || speaking) { stopAll(); return; }
+      var section = el.closest(".lesson");
+      playQueue(Array.prototype.slice.call(section.querySelectorAll(".sent")), el);
+      return;
+    }
+    if ((el = e.target.closest(".w"))) {
+      showPop(el, +el.dataset.si, el.dataset.key);
+      return;
+    }
+    if ((el = e.target.closest(".chip"))) {
+      showPop(el, -1, el.dataset.key);
+      return;
+    }
+    if (!e.target.closest(".pop")) hidePop();
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") hidePop();
+    var a = document.activeElement;
+    if ((e.key === "Enter" || e.key === " ") && a && a.classList && a.classList.contains("w")) {
+      e.preventDefault();
+      showPop(a, +a.dataset.si, a.dataset.key);
+    }
+  });
+  window.addEventListener("scroll", hidePop, { passive: true });
+  window.addEventListener("resize", hidePop);
+
+  render();
+})();
+</script>

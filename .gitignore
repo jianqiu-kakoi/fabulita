@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+dist/
+build/
+*.egg-info/
+.venv/
+.pytest_cache/
+
+# generated per-project artifacts
+examples/*/vocab.json
+examples/*/audio/
+examples/*/dist/

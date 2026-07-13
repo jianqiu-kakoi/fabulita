@@ -1,0 +1,23 @@
+{
+  "id": "primer-dia",
+  "title": "El primer día en la ciudad",
+  "title_note": "初到城市",
+  "status": "accepted",
+  "sentences": [
+    { "text": "Marta llega a la estación en tren.", "trans": "玛尔塔乘火车到达车站。" },
+    { "text": "Es su primer día en la ciudad, y tiene un mapa.", "trans": "这是她在这座城市的第一天，她带着一张地图。" },
+    { "text": "Primero, va al hotel y deja su ropa.", "trans": "她先去酒店放下衣服。" },
+    { "text": "Por la tarde, visita un museo cerca de la plaza.", "trans": "下午，她参观了广场附近的一家博物馆。" },
+    { "text": "Después, camina por un puente y ve una torre.", "trans": "之后，她走过一座桥，并看到一座塔。" },
+    { "text": "Por la noche, vuelve al hotel en taxi.", "trans": "晚上，她乘出租车返回酒店。" }
+  ],
+  "vocab_used": ["estación", "tren", "ciudad", "mapa", "hotel", "ropa", "museo", "plaza", "puente", "torre", "taxi"],
+  "glossary": {},
+  "grammar": [
+    ["tengo / tiene", "都来自 tener（有）：tengo 我有，tiene 他/她/您有。"],
+    ["primer día / primero", "第一天；primero 单独用是：首先。"],
+    ["por la tarde / por la noche", "在下午 / 在晚上。"],
+    ["cerca de", "在……附近。"],
+    ["llega / deja / visita / camina / ve / vuelve", "来自 llegar（到达）、dejar（放下）、visitar（参观）、caminar（走路）、ver（看见）、volver（返回）。"]
+  ]
+}

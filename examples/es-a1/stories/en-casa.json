@@ -1,0 +1,23 @@
+{
+  "id": "en-casa",
+  "title": "En casa",
+  "title_note": "在家 · 早晨",
+  "status": "accepted",
+  "sentences": [
+    { "text": "Hoy por la mañana, Ana está en casa con su familia.", "trans": "今天早晨，安娜和家人在家里。" },
+    { "text": "Su madre está en la cocina.", "trans": "她的妈妈在厨房。" },
+    { "text": "Hay una taza de café y un poco de pan en la mesa.", "trans": "桌子上有一杯咖啡和一些面包。" },
+    { "text": "Su hermano está en su habitación.", "trans": "她的哥哥在自己的房间里。" },
+    { "text": "Ana abre la ventana y mira la calle.", "trans": "安娜打开窗户，看着街道。" },
+    { "text": "Después, dice «Adiós» y va a la universidad.", "trans": "之后，她说“再见”，然后去大学。" }
+  ],
+  "vocab_used": ["casa", "familia", "madre", "cocina", "taza", "café", "pan", "mesa", "hermano", "habitación", "ventana", "calle", "universidad"],
+  "glossary": {},
+  "grammar": [
+    ["la / el", "定冠词（阴性 / 阳性），相当于英语的 the。"],
+    ["hay", "有……、存在……（there is / there are）。"],
+    ["un poco de", "一点……、少量……。"],
+    ["en", "介词：在……里 / 在……上。"],
+    ["abre / mira / va / dice", "分别来自 abrir（打开）、mirar（看）、ir（去）、decir（说）。"]
+  ]
+}

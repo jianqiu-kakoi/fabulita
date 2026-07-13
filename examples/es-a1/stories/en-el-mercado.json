@@ -1,0 +1,23 @@
+{
+  "id": "en-el-mercado",
+  "title": "En el mercado",
+  "title_note": "在市场",
+  "status": "accepted",
+  "sentences": [
+    { "text": "Carlos va al mercado con su amiga Elena.", "trans": "卡洛斯和他的朋友埃琳娜去市场。" },
+    { "text": "Carlos compra arroz, pescado y una naranja.", "trans": "卡洛斯买了米、鱼和一个橙子。" },
+    { "text": "Elena compra pan, leche y dos manzanas.", "trans": "埃琳娜买了面包、牛奶和两个苹果。" },
+    { "text": "Carlos tiene poco dinero, pero todo está bien.", "trans": "卡洛斯的钱不多，但没有问题。" },
+    { "text": "Después, los dos van a un café.", "trans": "之后，两个人去了一家咖啡馆。" },
+    { "text": "Carlos bebe agua y Elena bebe café.", "trans": "卡洛斯喝水，埃琳娜喝咖啡。" }
+  ],
+  "vocab_used": ["mercado", "amiga", "arroz", "pescado", "naranja", "pan", "leche", "manzana", "dinero", "café", "agua"],
+  "glossary": {},
+  "grammar": [
+    ["al", "= a + el 的缩合形式。"],
+    ["tiene poco", "tiene（他/她有，← tener）+ poco（少）。"],
+    ["van / va", "他们去 / 他（她）去，都来自 ir。"],
+    ["los dos", "他们两个、两个人都。"],
+    ["compra / bebe", "来自 comprar（买）、beber（喝）。"]
+  ]
+}
