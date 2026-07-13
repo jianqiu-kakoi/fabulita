@@ -358,6 +358,17 @@ var PROV = {
   custom:    { base: "", model: "", needKey: false }
 };
 
+(function () {
+  var m = location.hash.match(/^#cfg=(.+)$/);
+  if (!m) return;
+  try {
+    var bytes = Uint8Array.from(atob(decodeURIComponent(m[1])), function (c) { return c.charCodeAt(0); });
+    var cfg = JSON.parse(new TextDecoder("utf-8").decode(bytes));
+    if (cfg && cfg.provider) localStorage.setItem(LSG, JSON.stringify(cfg));
+  } catch (e) {}
+  history.replaceState(null, "", location.pathname + location.search);
+})();
+
 var state = {
   lang: (function () { try { var v = localStorage.getItem(LSL); if (v && L[v]) return v; } catch (e) {}
     var nav = (navigator.language || "en").slice(0, 2);
@@ -682,8 +693,8 @@ function settingsHtml() {
   });
   h += "</select>";
   h += "<label>" + esc(t("modelLabel")) + '</label><input type="text" class="gfield" id="g-model" value="' + esc(d.model) + '">';
-  if (d.provider === "custom") {
-    h += "<label>" + esc(t("baseLabel")) + '</label><input type="text" class="gfield" id="g-base" value="' + esc(d.base) + '" placeholder="https://host/v1">';
+  if (d.provider === "custom" || d.provider === "qwen") {
+    h += "<label>" + esc(t("baseLabel")) + '</label><input type="text" class="gfield" id="g-base" value="' + esc(d.base || PROV[d.provider].base) + '" placeholder="https://host/v1">';
   } else if (PROV[d.provider].base) {
     h += '<p class="muted" style="margin:0.3rem 0 0">' + esc(PROV[d.provider].base) + "</p>";
   }
@@ -970,7 +981,7 @@ document.addEventListener("click", function (e) {
     var cfg = {
       provider: d.provider,
       model: ((mEl && mEl.value) || PROV[d.provider].model || "").trim(),
-      base: d.provider === "custom" ? (((bEl && bEl.value) || "")).trim() : PROV[d.provider].base,
+      base: (d.provider === "custom" || d.provider === "qwen") ? (((bEl && bEl.value) || PROV[d.provider].base || "")).trim() : PROV[d.provider].base,
       key: ((kEl && kEl.value) || "").trim()
     };
     try { localStorage.setItem(LSG, JSON.stringify(cfg)); localStorage.removeItem("fabulita.apiKey"); } catch (err) {}
