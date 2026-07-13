@@ -23,6 +23,7 @@ UI_STRINGS = {
         "allCovered": "🎉 词表已全部覆盖",
         "candidate": "备选",
         "storiesLabel": "故事",
+        "home": "首页",
     },
     "en": {
         "langName": "English",
@@ -44,6 +45,7 @@ UI_STRINGS = {
         "allCovered": "🎉 Whole vocabulary covered",
         "candidate": "Candidate",
         "storiesLabel": "stories",
+        "home": "Home",
     },
     "es": {
         "langName": "Español",
@@ -65,6 +67,7 @@ UI_STRINGS = {
         "allCovered": "🎉 Vocabulario completo cubierto",
         "candidate": "Candidato",
         "storiesLabel": "historias",
+        "home": "Inicio",
     },
     "ja": {
         "langName": "日本語",
@@ -86,5 +89,6 @@ UI_STRINGS = {
         "allCovered": "🎉 語彙を全てカバーしました",
         "candidate": "候補",
         "storiesLabel": "話",
+        "home": "ホーム",
     },
 }

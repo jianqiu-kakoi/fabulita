@@ -54,6 +54,9 @@
     font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase;
     color: var(--gold); font-weight: 600; margin: 0 0 0.5rem;
   }
+  .homelink { margin: 0 0 0.6rem; font-size: 0.82rem; }
+  .homelink a { color: var(--muted); text-decoration: none; border: 1px solid var(--line); border-radius: 100px; padding: 0.2rem 0.75rem; }
+  .homelink a:hover { color: var(--accent-deep); border-color: var(--accent); }
   h1 { font-family: var(--serif); font-size: 2rem; font-weight: 600; margin: 0 0 0.5rem; text-wrap: balance; }
   .hint { color: var(--muted); font-size: 0.9rem; margin: 0; }
   .hint .demo { border-bottom: 1px dashed var(--underline); color: var(--accent-deep); padding-bottom: 1px; }
@@ -376,6 +379,7 @@
     stopAll();
     var app = document.getElementById("app");
     var h = '<header class="masthead"><div class="mast-top"><div>' +
+      (P.config.home ? '<p class="homelink"><a href="' + esc(P.config.home) + '">⌂ ' + esc(t("home")) + "</a></p>" : "") +
       '<p class="eyebrow">Fabulita · ' + esc((P.config.lang || "").toUpperCase()) + "</p>" +
       "<h1>" + esc(P.config.name) + "</h1></div>" +
       '<nav class="langsw" aria-label="UI language">';

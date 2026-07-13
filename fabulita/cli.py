@@ -60,6 +60,7 @@ def main(argv=None):
     p = sub.add_parser("build", help="build the single-file page")
     p.add_argument("-o", "--out", help="output path (default: dist/index.html)")
     p.add_argument("--accepted-only", action="store_true", help="exclude candidate stories")
+    p.add_argument("--home", help="URL for a Home link in the page header (e.g. ./index.html)")
 
     p = sub.add_parser("studio", help="write the Studio web app (single HTML, no project needed)")
     p.add_argument("-o", "--out", default="studio.html", help="output path (default: studio.html)")
@@ -140,7 +141,7 @@ def main(argv=None):
 
         elif args.cmd == "build":
             out, size, n_stories, n_clips = build.build(
-                proj, out=args.out, include_candidates=not args.accepted_only)
+                proj, out=args.out, include_candidates=not args.accepted_only, home=args.home)
             print(f"built {out} ({size / 1024:.0f} KB, {n_stories} stories, {n_clips} audio clips)")
 
     except ProjectError as e:

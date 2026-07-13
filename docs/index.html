@@ -49,10 +49,10 @@
   .w-body { display: none; margin-top: 1.1rem; border-top: 1px solid var(--line); padding-top: 1.1rem; }
   .widget.open .w-body { display: block; }
   label { display: block; font-size: 0.82rem; color: var(--muted); margin: 0.7rem 0 0.2rem; }
-  select, textarea, input[type=password] { width: 100%; font-family: var(--sans); font-size: 0.95rem; padding: 0.5rem 0.7rem; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); color: var(--ink); }
+  select, textarea, input[type=password], input[type=text] { width: 100%; font-family: var(--sans); font-size: 0.95rem; padding: 0.5rem 0.7rem; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); color: var(--ink); }
   textarea { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.85rem; min-height: 8rem; resize: vertical; }
   select { width: auto; }
-  input[type=password] { width: 100%; max-width: 24rem; font-family: ui-monospace, monospace; font-size: 0.8rem; }
+  input[type=password], input[type=text].gfield { width: 100%; max-width: 24rem; font-family: ui-monospace, monospace; font-size: 0.8rem; }
   .row { display: flex; gap: 0.6rem; align-items: center; flex-wrap: wrap; margin-top: 0.9rem; }
   .btn { font-family: var(--sans); font-size: 0.85rem; padding: 0.4rem 0.95rem; border: 1px solid var(--line); border-radius: 100px; background: var(--card); color: var(--ink); cursor: pointer; }
   .btn:hover { border-color: var(--accent); }
@@ -153,7 +153,7 @@ var L = {
     cancel: "取消",
     batchInfo: "本批词汇 · {n} 个",
     generate: "✨ 生成故事",
-    generating: "正在写故事…（约 10-30 秒）",
+    generating: "正在写故事…（云端约 10-30 秒，本地小模型可能要 1-2 分钟）",
     copyPrompt: "📋 复制 Prompt（手动模式）",
     copied: "已复制。贴给任意 LLM，把返回的 JSON 粘到下面。",
     pasteBack: "把 LLM 返回的故事 JSON 粘回这里…",
@@ -166,9 +166,14 @@ var L = {
     stoppedAt: "已收下 {n} 篇故事，覆盖 {c} / {t}。随时回来继续。",
     openStudio: "在工作台打开（导出 / 管理）",
     addMore: "＋ 加更多词",
-    keySummary: "⚙ 自动生成设置（可选 API Key）",
-    keyHint: "填入 Anthropic API Key 即可一键生成（浏览器直连 Anthropic，Key 只存在本机）。不填则用「复制 Prompt」手动模式。",
-    keySave: "保存", keyClear: "清除", keyOn: "✓ 自动生成已启用",
+    keySummary: "⚙ 模型服务",
+    keyHint: "Key 只存在本机浏览器，请求直连所选服务，不经过任何中间服务器。",
+    keySave: "保存并生成", keyClear: "清除", keyOn: "✓ 已接入",
+    providerLabel: "模型服务", modelLabel: "模型", baseLabel: "服务地址（OpenAI 兼容 /v1）",
+    provOllama: "本地 Ollama（免费 · 无需 Key）", provQwen: "Qwen · 阿里云百炼 DashScope", provClaude: "Claude · Anthropic", provCustom: "自定义 OpenAI 兼容",
+    needSetup: "接入一个模型服务，生成的故事会直接显示在这里。本机跑着 Ollama 就选第一项，不用填 Key。",
+    manualMode: "高级：手动模式（复制 Prompt 给任意 LLM，把 JSON 粘回来）",
+    errConn: "连不上服务：",
     errApi: "生成失败：",
     errParse: "JSON 解析失败：",
     errKey: "API Key 无效（401）。检查 Key 或改用手动模式。",
@@ -200,7 +205,7 @@ var L = {
     cancel: "Cancel",
     batchInfo: "This batch · {n} words",
     generate: "✨ Generate a story",
-    generating: "Writing the story… (~10-30 s)",
+    generating: "Writing the story… (cloud ~10-30 s; small local models may take 1-2 min)",
     copyPrompt: "📋 Copy prompt (manual mode)",
     copied: "Copied. Paste it into any LLM, then paste the JSON it returns below.",
     pasteBack: "Paste the story JSON back here…",
@@ -213,9 +218,14 @@ var L = {
     stoppedAt: "Kept {n} stories, {c} / {t} covered. Come back anytime.",
     openStudio: "Open in the workspace (export / manage)",
     addMore: "＋ Add more words",
-    keySummary: "⚙ Auto-generate settings (optional API key)",
-    keyHint: "Paste an Anthropic API key for one-click generation (browser calls Anthropic directly; the key stays on this device). Without a key, use the copy-prompt manual mode.",
-    keySave: "Save", keyClear: "Clear", keyOn: "✓ Auto-generate enabled",
+    keySummary: "⚙ Model provider",
+    keyHint: "Keys stay in this browser; requests go straight to the chosen provider — no middleman server.",
+    keySave: "Save & generate", keyClear: "Clear", keyOn: "✓ Connected",
+    providerLabel: "Provider", modelLabel: "Model", baseLabel: "Base URL (OpenAI-compatible /v1)",
+    provOllama: "Local Ollama (free · no key)", provQwen: "Qwen · Alibaba DashScope", provClaude: "Claude · Anthropic", provCustom: "Custom OpenAI-compatible",
+    needSetup: "Connect a model provider and stories will be generated right here. Running Ollama locally? Pick the first option — no key needed.",
+    manualMode: "Advanced: manual mode (copy the prompt to any LLM, paste the JSON back)",
+    errConn: "Cannot reach the service: ",
     errApi: "Generation failed: ",
     errParse: "Could not parse JSON: ",
     errKey: "Invalid API key (401). Check the key or use manual mode.",
@@ -247,7 +257,7 @@ var L = {
     cancel: "Cancelar",
     batchInfo: "Este lote · {n} palabras",
     generate: "✨ Generar una historia",
-    generating: "Escribiendo la historia… (~10-30 s)",
+    generating: "Escribiendo la historia… (nube ~10-30 s; modelos locales pequeños 1-2 min)",
     copyPrompt: "📋 Copiar prompt (modo manual)",
     copied: "Copiado. Pégalo en cualquier LLM y pega abajo el JSON que devuelva.",
     pasteBack: "Pega aquí el JSON de la historia…",
@@ -260,9 +270,14 @@ var L = {
     stoppedAt: "{n} historias guardadas, {c} / {t} cubiertas. Vuelve cuando quieras.",
     openStudio: "Abrir en el taller (exportar / gestionar)",
     addMore: "＋ Añadir más palabras",
-    keySummary: "⚙ Ajustes de generación automática (API key opcional)",
-    keyHint: "Pega una API key de Anthropic para generar con un clic (el navegador llama a Anthropic directamente; la key se queda en este dispositivo). Sin key, usa el modo manual.",
-    keySave: "Guardar", keyClear: "Borrar", keyOn: "✓ Generación automática activada",
+    keySummary: "⚙ Proveedor del modelo",
+    keyHint: "Las keys se quedan en este navegador; las peticiones van directas al proveedor elegido.",
+    keySave: "Guardar y generar", keyClear: "Borrar", keyOn: "✓ Conectado",
+    providerLabel: "Proveedor", modelLabel: "Modelo", baseLabel: "URL base (compatible OpenAI /v1)",
+    provOllama: "Ollama local (gratis · sin key)", provQwen: "Qwen · Alibaba DashScope", provClaude: "Claude · Anthropic", provCustom: "OpenAI-compatible personalizado",
+    needSetup: "Conecta un proveedor y las historias se generarán aquí mismo. ¿Ollama local? Elige la primera opción — sin key.",
+    manualMode: "Avanzado: modo manual (copia el prompt a cualquier LLM y pega el JSON)",
+    errConn: "No se puede conectar: ",
     errApi: "Error al generar: ",
     errParse: "No se pudo analizar el JSON: ",
     errKey: "API key inválida (401). Revísala o usa el modo manual.",
@@ -294,7 +309,7 @@ var L = {
     cancel: "キャンセル",
     batchInfo: "このバッチ · {n} 語",
     generate: "✨ 物語を生成",
-    generating: "執筆中…（約 10〜30 秒）",
+    generating: "執筆中…（クラウド約 10〜30 秒、ローカル小型モデルは 1〜2 分）",
     copyPrompt: "📋 プロンプトをコピー（手動モード）",
     copied: "コピーしました。任意の LLM に貼り、返ってきた JSON を下に貼ってください。",
     pasteBack: "LLM が返した JSON をここに…",
@@ -307,9 +322,14 @@ var L = {
     stoppedAt: "{n} 話を採用、{c} / {t} をカバー。いつでも再開できます。",
     openStudio: "ワークスペースで開く（エクスポート / 管理）",
     addMore: "＋ 単語を追加",
-    keySummary: "⚙ 自動生成の設定（API キーは任意）",
-    keyHint: "Anthropic API キーを入れるとワンクリック生成（ブラウザが直接 Anthropic に接続。キーはこの端末にのみ保存）。無い場合はプロンプトコピーの手動モード。",
-    keySave: "保存", keyClear: "削除", keyOn: "✓ 自動生成が有効",
+    keySummary: "⚙ モデルプロバイダ",
+    keyHint: "キーはこのブラウザにのみ保存され、リクエストは選択したプロバイダに直接送られます。",
+    keySave: "保存して生成", keyClear: "削除", keyOn: "✓ 接続済み",
+    providerLabel: "プロバイダ", modelLabel: "モデル", baseLabel: "ベース URL（OpenAI 互換 /v1）",
+    provOllama: "ローカル Ollama（無料 · キー不要）", provQwen: "Qwen · Alibaba DashScope", provClaude: "Claude · Anthropic", provCustom: "カスタム OpenAI 互換",
+    needSetup: "モデルプロバイダを接続すると、物語がここに直接生成されます。ローカルで Ollama が動いていれば最初の選択肢を（キー不要）。",
+    manualMode: "上級：手動モード（プロンプトを LLM にコピーし、JSON を貼り戻す）",
+    errConn: "サービスに接続できません：",
     errApi: "生成に失敗：",
     errParse: "JSON を解析できません：",
     errKey: "API キーが無効です（401）。確認するか手動モードを。",
@@ -330,20 +350,26 @@ var LANG_NAMES = { es: "Spanish", en: "English", ja: "Japanese", zh: "Chinese", 
 var GLOSS_NAMES = { zh: "Chinese (中文)", en: "English", ja: "Japanese", es: "Spanish" };
 var LSP = "fabulita.studio.projects";
 var LSL = "fabulita.uiLang";
-var LSK = "fabulita.apiKey";
-var API_MODEL = "claude-opus-4-8";
+var LSG = "fabulita.gen";
+var PROV = {
+  ollama:    { base: "http://localhost:11434/v1", model: "qwen3:8b", needKey: false },
+  qwen:      { base: "https://dashscope.aliyuncs.com/compatible-mode/v1", model: "qwen-plus", needKey: true },
+  anthropic: { base: "", model: "claude-opus-4-8", needKey: true },
+  custom:    { base: "", model: "", needKey: false }
+};
 
 var state = {
   lang: (function () { try { var v = localStorage.getItem(LSL); if (v && L[v]) return v; } catch (e) {}
     var nav = (navigator.language || "en").slice(0, 2);
     return L[nav] ? nav : "en"; })(),
-  open: false,
+  open: false, booksOpen: false,
   step: "input",            // input | confirm | loop
   pending: null, skipped: 0,
   inputBuf: "", pasteBuf: "", appendMode: false,
   targetLang: "es",
   pid: null,
-  loop: { phase: "idle", story: null, warnings: [], error: null, attempt: 0, stopped: false },
+  loop: { phase: "idle", story: null, warnings: [], missing: [], error: null, attempt: 0, stopped: false },
+  genDraft: null, manualOpen: false, keyOpen: false,
   msg: null
 };
 
@@ -357,7 +383,22 @@ function loadAll() { try { return JSON.parse(localStorage.getItem(LSP)) || {}; }
 function saveAll(a) { localStorage.setItem(LSP, JSON.stringify(a)); }
 function proj() { return state.pid ? loadAll()[state.pid] : null; }
 function saveProj(p) { var a = loadAll(); a[p.id] = p; saveAll(a); }
-function apiKey() { try { return localStorage.getItem(LSK) || ""; } catch (e) { return ""; } }
+function genCfg() {
+  try { var g = JSON.parse(localStorage.getItem(LSG)); if (g && g.provider) return g; } catch (e) {}
+  try { var old = localStorage.getItem("fabulita.apiKey"); if (old) return { provider: "anthropic", key: old, model: "claude-opus-4-8", base: "" }; } catch (e) {}
+  return null;
+}
+function genReady() {
+  var g = genCfg();
+  if (!g) return false;
+  if (g.provider === "ollama") return true;
+  if (g.provider === "custom") return !!g.base;
+  return !!g.key;
+}
+function provLabel(g) {
+  var names = { ollama: t("provOllama"), qwen: t("provQwen"), anthropic: t("provClaude"), custom: t("provCustom") };
+  return (names[g.provider] || g.provider) + " · " + (g.model || "");
+}
 
 // ───────────────────────── vocab parsing ─────────────────────────
 function parseVocab(text) {
@@ -477,28 +518,39 @@ function validateStory(p, s) {
   return { warnings: warnings, missing: missing };
 }
 
-// ───────────────────────── Claude API (optional, browser-direct) ─────────────────────────
-function generateViaApi(p, batch, attempt) {
+// ───────────────────────── generation: browser-direct to the chosen provider ─────────────────────────
+function httpError(res) {
+  if (res.status === 401 || res.status === 403) throw new Error(t("errKey"));
+  if (res.status === 429) throw new Error(t("errRate"));
+  return res.json().then(function (e) {
+    throw new Error((e.error && (e.error.message || e.error)) || ("HTTP " + res.status));
+  }, function () { throw new Error("HTTP " + res.status); });
+}
+
+function parseStoryText(text) {
+  text = text.replace(/<think>[\s\S]*?<\/think>/gi, "").trim();
+  var a = text.indexOf("{"), b = text.lastIndexOf("}");
+  if (a === -1 || b < a) throw new Error("no JSON in model output");
+  return JSON.parse(text.slice(a, b + 1));
+}
+
+function generateAnthropic(g, prompt) {
   return fetch("https://api.anthropic.com/v1/messages", {
     method: "POST",
     headers: {
       "content-type": "application/json",
-      "x-api-key": apiKey(),
+      "x-api-key": g.key,
       "anthropic-version": "2023-06-01",
       "anthropic-dangerous-direct-browser-access": "true"
     },
     body: JSON.stringify({
-      model: API_MODEL,
+      model: g.model || "claude-opus-4-8",
       max_tokens: 8192,
       output_config: { format: { type: "json_schema", schema: API_SCHEMA } },
-      messages: [{ role: "user", content: promptFor(p, batch, attempt) }]
+      messages: [{ role: "user", content: prompt }]
     })
   }).then(function (res) {
-    if (res.status === 401) throw new Error(t("errKey"));
-    if (res.status === 429) throw new Error(t("errRate"));
-    if (!res.ok) return res.json().then(function (e) {
-      throw new Error((e.error && e.error.message) || ("HTTP " + res.status));
-    }, function () { throw new Error("HTTP " + res.status); });
+    if (!res.ok) return httpError(res);
     return res.json();
   }).then(function (data) {
     if (data.stop_reason === "refusal") throw new Error("refused — try again");
@@ -506,6 +558,40 @@ function generateViaApi(p, batch, attempt) {
     (data.content || []).forEach(function (b) { if (b.type === "text") text += b.text; });
     return JSON.parse(text);
   });
+}
+
+function generateOpenAI(g, prompt) {
+  var base = (g.base || (PROV[g.provider] && PROV[g.provider].base) || "").replace(/\/+$/, "");
+  var headers = { "content-type": "application/json" };
+  if (g.key) headers["Authorization"] = "Bearer " + g.key;
+  var ctrl = new AbortController();
+  var timer = setTimeout(function () { ctrl.abort(); }, 180000);
+  return fetch(base + "/chat/completions", {
+    method: "POST", headers: headers, signal: ctrl.signal,
+    body: JSON.stringify({
+      model: g.model, stream: false,
+      response_format: { type: "json_object" },
+      messages: [{ role: "user", content: prompt }]
+    })
+  }).catch(function (err) {
+    if (err && err.name === "AbortError") throw new Error("timeout (180 s)");
+    throw new Error(t("errConn") + base);
+  }).then(function (res) {
+    clearTimeout(timer);
+    if (!res.ok) return httpError(res);
+    return res.json();
+  }).then(function (data) {
+    var msg = data.choices && data.choices[0] && data.choices[0].message;
+    return parseStoryText((msg && msg.content) || "");
+  });
+}
+
+function generateStory(p, batch, attempt) {
+  var g = genCfg();
+  var prompt = promptFor(p, batch, attempt);
+  if (g.provider === "anthropic") return generateAnthropic(g, prompt);
+  if (/^qwen3\b/i.test(g.model || "")) prompt += "\n\n/no_think";
+  return generateOpenAI(g, prompt);
 }
 
 // ───────────────────────── speech / popup (preview) ─────────────────────────
@@ -583,6 +669,42 @@ function langSwitcher() {
   return h + "</nav>";
 }
 
+function settingsHtml() {
+  if (!state.genDraft) {
+    var cur = genCfg();
+    state.genDraft = cur ? { provider: cur.provider, key: cur.key || "", model: cur.model || "", base: cur.base || "" }
+                         : { provider: "ollama", key: "", model: PROV.ollama.model, base: "" };
+  }
+  var d = state.genDraft;
+  var h = "<label>" + esc(t("providerLabel")) + '</label><select id="g-prov">';
+  [["ollama", t("provOllama")], ["qwen", t("provQwen")], ["anthropic", t("provClaude")], ["custom", t("provCustom")]].forEach(function (c) {
+    h += '<option value="' + c[0] + '"' + (c[0] === d.provider ? " selected" : "") + ">" + esc(c[1]) + "</option>";
+  });
+  h += "</select>";
+  h += "<label>" + esc(t("modelLabel")) + '</label><input type="text" class="gfield" id="g-model" value="' + esc(d.model) + '">';
+  if (d.provider === "custom") {
+    h += "<label>" + esc(t("baseLabel")) + '</label><input type="text" class="gfield" id="g-base" value="' + esc(d.base) + '" placeholder="https://host/v1">';
+  } else if (PROV[d.provider].base) {
+    h += '<p class="muted" style="margin:0.3rem 0 0">' + esc(PROV[d.provider].base) + "</p>";
+  }
+  if (d.provider !== "ollama") {
+    h += "<label>API Key" + (d.provider === "custom" ? " (optional)" : "") + '</label><input type="password" id="g-key" value="' + esc(d.key) + '" placeholder="sk-...">';
+  }
+  h += '<p class="muted" style="margin-top:0.5rem">' + esc(t("keyHint")) + "</p>";
+  h += '<div class="row"><button class="btn btn-primary" data-act="gen-save">' + esc(t("keySave")) + "</button>" +
+    (genCfg() ? '<button class="btn btn-danger" data-act="gen-clear">' + esc(t("keyClear")) + "</button>" : "") + "</div>";
+  return h;
+}
+
+function manualHtml() {
+  var h = '<details class="keyrow"' + (state.manualOpen ? " open" : "") + '><summary>' + esc(t("manualMode")) + "</summary>" +
+    '<div class="row"><button class="btn" data-act="copy">' + esc(t("copyPrompt")) + "</button></div>";
+  if (state.msg) h += '<div class="msg ' + state.msg.cls + '">' + state.msg.html + "</div>";
+  h += '<textarea id="paste-json" placeholder="' + esc(t("pasteBack")) + '" style="margin-top:0.8rem">' + esc(state.pasteBuf) + "</textarea>" +
+    '<div class="row"><button class="btn" data-act="preview-paste">' + esc(t("previewBtn")) + "</button></div></details>";
+  return h;
+}
+
 function widgetBody() {
   var h = "";
   if (state.step === "input") {
@@ -649,25 +771,23 @@ function widgetBody() {
           '<button class="btn" data-act="reroll">' + esc(t("regen")) + "</button>" +
           '<button class="btn" data-act="stop">' + esc(t("stopHere")) + "</button></div>";
       } else {
-        // idle: offer generate (auto) and manual paste
-        h += '<div class="row">';
-        if (apiKey()) h += '<button class="btn btn-primary" data-act="gen">' + esc(t("generate")) + "</button>";
-        h += '<button class="btn' + (apiKey() ? "" : " btn-primary") + '" data-act="copy">' + esc(t("copyPrompt")) + "</button>" +
-          '<button class="btn" data-act="stop">' + esc(t("stopHere")) + "</button></div>";
-        if (state.msg) h += '<div class="msg ' + state.msg.cls + '">' + state.msg.html + "</div>";
-        h += '<textarea id="paste-json" placeholder="' + esc(t("pasteBack")) + '" style="margin-top:0.8rem">' + esc(state.pasteBuf) + '</textarea>';
-        h += '<div class="row"><button class="btn" data-act="preview-paste">' + esc(t("previewBtn")) + "</button></div>";
-        if (lp.error) h += '<div class="msg err">' + esc(lp.error) + "</div>";
+        if (genReady()) {
+          h += '<div class="row"><button class="btn btn-primary" data-act="gen">' + esc(t("generate")) + "</button>" +
+            '<button class="btn" data-act="stop">' + esc(t("stopHere")) + "</button></div>";
+          if (lp.error) h += '<div class="msg err">' + esc(lp.error) + "</div>";
+        } else {
+          h += '<div class="msg ok">' + esc(t("needSetup")) + "</div>" + settingsHtml();
+          if (lp.error) h += '<div class="msg err">' + esc(lp.error) + "</div>";
+        }
+        h += manualHtml();
       }
     }
 
-    // API key settings
-    h += '<details class="keyrow"' + (state.keyOpen ? " open" : "") + '><summary>' + esc(t("keySummary")) + (apiKey() ? ' <span style="color:var(--ok)">' + esc(t("keyOn")) + "</span>" : "") + "</summary>" +
-      '<p class="muted" style="margin-top:0.5rem">' + esc(t("keyHint")) + "</p>" +
-      '<div class="row"><input type="password" id="key-input" placeholder="sk-ant-..." value="">' +
-      '<button class="btn" data-act="key-save">' + esc(t("keySave")) + "</button>" +
-      (apiKey() ? '<button class="btn btn-danger" data-act="key-clear">' + esc(t("keyClear")) + "</button>" : "") +
-      "</div></details>";
+    // provider settings (when configured; otherwise shown inline above)
+    if (genReady()) {
+      h += '<details class="keyrow"' + (state.keyOpen ? " open" : "") + '><summary>' + esc(t("keySummary")) +
+        ' <span style="color:var(--ok)">' + esc(t("keyOn")) + " · " + esc(provLabel(genCfg())) + "</span></summary>" + settingsHtml() + "</details>";
+    }
   }
   return h;
 }
@@ -677,13 +797,16 @@ function render() {
   var h = '<div class="top"><p class="eyebrow">fabulita</p>' + langSwitcher() + "</div>";
   h += "<h1>" + esc(t("tagline")) + '</h1><p class="sub">' + esc(t("sub")) + "</p>";
 
-  h += "<h2>" + esc(t("choose")) + '</h2><div class="books">';
+  h += '<div class="widget' + (state.booksOpen ? " open" : "") + '"><div class="w-head" data-act="toggle-books">' +
+    '<span class="w-plus">📖</span><div><h2>' + esc(t("choose")) + '</h2><p class="muted">' +
+    BOOKS.map(function (b) { return b.name; }).join(" · ") + "</p></div></div>" +
+    '<div class="w-body"><div class="books" style="margin-bottom:0.2rem">';
   BOOKS.forEach(function (b) {
     h += '<a class="book" href="' + b.href + '"><span class="bname">' + b.name + '</span>' +
       '<span class="bmeta">' + esc(t("meta")[b.lang]) + '</span>' +
       '<span class="bopen">' + esc(t("open")) + "</span></a>";
   });
-  h += "</div>";
+  h += "</div></div></div>";
 
   // add-vocab widget with generation loop
   h += '<div class="widget' + (state.open ? " open" : "") + '"><div class="w-head" data-act="toggle">' +
@@ -724,7 +847,7 @@ function startGenerate() {
   var lp = state.loop;
   lp.phase = "generating"; lp.error = null; state.msg = null;
   render();
-  generateViaApi(p, batch, lp.attempt).then(function (raw) {
+  generateStory(p, batch, lp.attempt).then(function (raw) {
     var s = normalizeStory(raw, p);
     lp.story = s;
     var v = validateStory(p, s);
@@ -762,6 +885,7 @@ document.addEventListener("click", function (e) {
   var act = el.dataset.act, p = proj(), lp = state.loop;
 
   if (act === "toggle") { state.open = !state.open; render(); }
+  else if (act === "toggle-books") { state.booksOpen = !state.booksOpen; render(); }
   else if (act === "parse") {
     state.targetLang = document.getElementById("wl").value;
     doParse(document.getElementById("wt").value);
@@ -779,7 +903,7 @@ document.addEventListener("click", function (e) {
       saveProj(pp);
       state.step = "loop"; state.pending = null; state.appendMode = false; state.inputBuf = "";
       state.loop = { phase: "idle", story: null, warnings: [], missing: [], error: null, attempt: 0, stopped: false };
-      if (apiKey()) startGenerate(); else render();
+      if (genReady()) startGenerate(); else render();
       return;
     }
     var id = "p" + Math.random().toString(36).slice(2, 9);
@@ -792,7 +916,7 @@ document.addEventListener("click", function (e) {
     saveProj({ id: id, config: { name: name, lang: state.targetLang, gloss_lang: glossLang, ui_default: state.lang }, vocab: state.pending, glossary: {}, stories: [] });
     state.pid = id; state.step = "loop"; state.pending = null; state.inputBuf = "";
     state.loop = { phase: "idle", story: null, warnings: [], missing: [], error: null, attempt: 0, stopped: false };
-    if (apiKey()) startGenerate(); else render();
+    if (genReady()) startGenerate(); else render();
   }
   else if (act === "open-proj") {
     state.pid = el.dataset.id; state.step = "loop"; state.open = true;
@@ -801,8 +925,9 @@ document.addEventListener("click", function (e) {
     document.querySelector(".widget").scrollIntoView({ behavior: "smooth" });
   }
   else if (act === "gen") { lp.attempt = 0; startGenerate(); }
-  else if (act === "reroll") { lp.attempt += 1; lp.story = null; if (apiKey()) startGenerate(); else { lp.phase = "idle"; state.msg = null; render(); } }
+  else if (act === "reroll") { lp.attempt += 1; lp.story = null; if (genReady()) startGenerate(); else { lp.phase = "idle"; state.msg = null; render(); } }
   else if (act === "copy") {
+    state.manualOpen = true;
     var prompt = promptFor(p, nextBatch(p), lp.attempt);
     (navigator.clipboard ? navigator.clipboard.writeText(prompt) : Promise.reject()).then(function () {
       state.msg = { cls: "ok", html: esc(t("copied")) }; render();
@@ -819,10 +944,11 @@ document.addEventListener("click", function (e) {
       var v = validateStory(p, lp.story);
       lp.warnings = v.warnings; lp.missing = v.missing;
       lp.phase = "preview"; lp.error = null;
-      state.pasteBuf = "";
+      state.pasteBuf = ""; state.manualOpen = false;
       render();
     } catch (err) {
       lp.error = t("errParse") + err.message;
+      state.manualOpen = true;
       render();
     }
   }
@@ -833,25 +959,47 @@ document.addEventListener("click", function (e) {
     p.stories.push(lp.story);
     saveProj(p);
     lp.story = null; lp.warnings = []; lp.attempt = 0; lp.phase = "idle"; state.msg = null;
-    if (nextBatch(p).length && apiKey()) startGenerate(); else render();
+    if (nextBatch(p).length && genReady()) startGenerate(); else render();
   }
   else if (act === "stop") { lp.stopped = true; lp.phase = "idle"; lp.story = null; render(); }
   else if (act === "add-more") { state.appendMode = true; state.step = "input"; render(); }
-  else if (act === "resume") { lp.stopped = false; if (apiKey()) startGenerate(); else render(); }
-  else if (act === "key-save") {
-    var v = document.getElementById("key-input").value.trim();
-    if (v) { try { localStorage.setItem(LSK, v); } catch (err) {} }
-    state.keyOpen = false; render();
+  else if (act === "resume") { lp.stopped = false; if (genReady()) startGenerate(); else render(); }
+  else if (act === "gen-save") {
+    var d = state.genDraft || { provider: "ollama" };
+    var mEl = document.getElementById("g-model"), bEl = document.getElementById("g-base"), kEl = document.getElementById("g-key");
+    var cfg = {
+      provider: d.provider,
+      model: ((mEl && mEl.value) || PROV[d.provider].model || "").trim(),
+      base: d.provider === "custom" ? (((bEl && bEl.value) || "")).trim() : PROV[d.provider].base,
+      key: ((kEl && kEl.value) || "").trim()
+    };
+    try { localStorage.setItem(LSG, JSON.stringify(cfg)); localStorage.removeItem("fabulita.apiKey"); } catch (err) {}
+    state.genDraft = null; state.keyOpen = false; state.msg = null; if (lp) lp.error = null;
+    if (state.step === "loop" && genReady() && p && !lp.stopped && lp.phase === "idle" && nextBatch(p).length) startGenerate();
+    else render();
   }
-  else if (act === "key-clear") { try { localStorage.removeItem(LSK); } catch (err) {} state.keyOpen = true; render(); }
+  else if (act === "gen-clear") {
+    try { localStorage.removeItem(LSG); localStorage.removeItem("fabulita.apiKey"); } catch (err) {}
+    state.genDraft = null; state.keyOpen = false; render();
+  }
 });
 
 document.addEventListener("input", function (e) {
   if (e.target.id === "wt") state.inputBuf = e.target.value;
   else if (e.target.id === "paste-json") state.pasteBuf = e.target.value;
+  else if (state.genDraft && e.target.id === "g-model") state.genDraft.model = e.target.value;
+  else if (state.genDraft && e.target.id === "g-base") state.genDraft.base = e.target.value;
+  else if (state.genDraft && e.target.id === "g-key") state.genDraft.key = e.target.value;
 });
 
 document.addEventListener("change", function (e) {
+  if (e.target.id === "g-prov") {
+    var v = e.target.value;
+    state.genDraft = { provider: v, key: "", model: PROV[v].model, base: PROV[v].base };
+    state.keyOpen = true;
+    render();
+    return;
+  }
   if (e.target.id === "wf") {
     var f = e.target.files[0];
     if (!f) return;

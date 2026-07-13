@@ -11,7 +11,7 @@ TEMPLATE = Path(__file__).parent / "template.html"
 STUDIO = Path(__file__).parent / "studio.html"
 
 
-def payload(project, include_candidates=True):
+def payload(project, include_candidates=True, home=None):
     cfg = project.config
     stories = [
         s for s in project.stories()
@@ -32,6 +32,7 @@ def payload(project, include_candidates=True):
             "lang": cfg["lang"],
             "gloss_lang": cfg["gloss_lang"],
             "ui_default": cfg["ui_default"],
+            "home": home or cfg.get("home") or "",
         },
         "ui": UI_STRINGS,
         "uiLangs": UI_LANGS,
@@ -42,8 +43,8 @@ def payload(project, include_candidates=True):
     }
 
 
-def build(project, out=None, include_candidates=True):
-    data = payload(project, include_candidates=include_candidates)
+def build(project, out=None, include_candidates=True, home=None):
+    data = payload(project, include_candidates=include_candidates, home=home)
     blob = json.dumps(data, ensure_ascii=False).replace("</", "<\\/")
     html = TEMPLATE.read_text(encoding="utf-8")
     html = html.replace("__TITLE__", data["config"]["name"])
