@@ -66,7 +66,7 @@ def main(argv=None):
     p.add_argument("-o", "--out", default="studio.html", help="output path (default: studio.html)")
 
     p = sub.add_parser("reader", help="write the self-serve reader page (my storybook, reads localStorage)")
-    p.add_argument("--out", default="reader.html")
+    p.add_argument("-o", "--out", default="reader.html")
 
     p = sub.add_parser("unpack", help="unpack a Studio bundle.json into a project directory")
     p.add_argument("file")

@@ -220,32 +220,35 @@
   "use strict";
   if (P && P.self) {
     (function () {
-      var m = (location.hash || "").match(/lang=([a-z]{2})/i);
-      var langSel = m ? m[1].toLowerCase() : "";
-      var all = {};
-      try { all = JSON.parse(localStorage.getItem("fabulita.studio.projects")) || {}; } catch (e) {}
-      var stories = [], vocab = [], glossary = {}, seenW = {}, glossLang = "", names = [];
-      Object.keys(all).forEach(function (id) {
-        var pr = all[id];
-        if (!pr || !pr.config || pr.config.lang !== langSel) return;
-        (pr.stories || []).forEach(function (s) { if (s && s.status !== "candidate") stories.push(s); });
-        (pr.vocab || []).forEach(function (v) {
-          var k = (v.w || "").normalize("NFC").toLowerCase();
-          if (k && !seenW[k]) { seenW[k] = true; vocab.push(v); }
+      try {
+        var m = (location.hash || "").match(/lang=([a-z]{2})/i);
+        var langSel = m ? m[1].toLowerCase() : "";
+        var all = {};
+        try { all = JSON.parse(localStorage.getItem("fabulita.studio.projects")) || {}; } catch (e) {}
+        var stories = [], vocab = [], glossary = {}, seenW = {}, glossLang = "", names = [];
+        Object.keys(all).forEach(function (id) {
+          var pr = all[id];
+          if (!pr || !pr.config || pr.config.lang !== langSel) return;
+          (pr.stories || []).forEach(function (s) { if (s && s.status !== "candidate") stories.push(s); });
+          (pr.vocab || []).forEach(function (v) {
+            if (!v || typeof v.w !== "string") return;
+            var k = v.w.normalize("NFC").toLowerCase();
+            if (k && !seenW[k]) { seenW[k] = true; vocab.push(v); }
+          });
+          var g = pr.glossary || {};
+          Object.keys(g).forEach(function (k) { glossary[k] = g[k]; });
+          if (!glossLang) glossLang = pr.config.gloss_lang || "";
+          names.push(pr.config.name || "");
         });
-        var g = pr.glossary || {};
-        Object.keys(g).forEach(function (k) { glossary[k] = g[k]; });
-        if (!glossLang) glossLang = pr.config.gloss_lang || "";
-        names.push(pr.config.name || "");
-      });
-      P.config.lang = langSel;
-      if (glossLang) P.config.gloss_lang = glossLang;
-      if (names.length) P.config.name = names.length === 1 ? names[0] : names[0] + " +" + (names.length - 1);
-      P.stories = stories;
-      P.vocab = vocab;
-      P.glossary = glossary;
-      P.audio = {};
-      document.title = P.config.name;
+        P.config.lang = langSel;
+        if (glossLang) P.config.gloss_lang = glossLang;
+        if (names.length) P.config.name = names.length === 1 ? names[0] : names[0] + " +" + (names.length - 1);
+        P.stories = stories;
+        P.vocab = vocab;
+        P.glossary = glossary;
+        P.audio = {};
+        document.title = P.config.name;
+      } catch (e) {}
     })();
   }
   var UI = P.ui;

@@ -1036,7 +1036,7 @@ function render() {
     var all0 = loadAll();
     Object.keys(all0).forEach(function (id) {
       var pr = all0[id];
-      if (!pr || !pr.config) return;
+      if (!pr || !pr.config || !pr.config.lang) return;
       var n = (pr.stories || []).filter(function (s) { return s && s.status !== "candidate"; }).length;
       if (n) byLang[pr.config.lang] = (byLang[pr.config.lang] || 0) + n;
     });
@@ -1158,8 +1158,8 @@ document.addEventListener("click", function (e) {
   }
   else if (act === "ai-parse") {
     if (state.aiBusy) return;
-    state.lastFileName = "";
     var wtEl = document.getElementById("wt");
+    if (wtEl && wtEl.value.trim()) state.lastFileName = "";
     var live = wtEl && wtEl.value.trim() ? wtEl.value : state.lastRaw;
     runAiParse(function () { return live; });
   }
@@ -1184,7 +1184,7 @@ document.addEventListener("click", function (e) {
     var upRec = {
       id: "u" + Math.random().toString(36).slice(2, 9),
       name: ((upEl && upEl.value) || "").trim() || fmt(t("uploadNameDefault"), { d: new Date().toLocaleDateString() }),
-      date: new Date().toISOString().slice(0, 10),
+      date: (function (d) { return d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2); })(new Date()),
       words: state.pending.map(function (e) { return norm(e.w); })
     };
     if (state.appendMode && proj()) {

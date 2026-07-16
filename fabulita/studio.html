@@ -364,7 +364,7 @@ function exportPage(p) {
 }
 
 function exportBundle(p) {
-  var bundle = { fabulita_bundle: 1, config: p.config, vocab: p.vocab, glossary: p.glossary || {}, stories: p.stories };
+  var bundle = { fabulita_bundle: 1, config: p.config, vocab: p.vocab, glossary: p.glossary || {}, stories: p.stories, uploads: p.uploads || [] };
   download("bundle.json", JSON.stringify(bundle, null, 2), "application/json;charset=utf-8");
 }
 
@@ -372,7 +372,7 @@ function restoreBundle(text) {
   var b = JSON.parse(text);
   if (!b.fabulita_bundle || !b.config) throw new Error("not a fabulita bundle");
   var id = "p" + Math.random().toString(36).slice(2, 9);
-  var p = { id: id, config: b.config, vocab: b.vocab || [], glossary: b.glossary || {}, stories: b.stories || [] };
+  var p = { id: id, config: b.config, vocab: b.vocab || [], glossary: b.glossary || {}, stories: b.stories || [], uploads: b.uploads || [] };
   saveProj(p);
   return p;
 }
