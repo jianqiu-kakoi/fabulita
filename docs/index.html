@@ -1008,7 +1008,7 @@ function widgetBody() {
       h += "</details>";
     })();
 
-    if (!cov.uncovered.length) {
+    if (!cov.uncovered.length && src.type !== "manual") {
       h += '<div class="msg ok">' + esc(fmt(t("doneAll"), { n: p.stories.length })) + "</div>";
       h += '<div class="row"><a class="btn btn-primary" href="studio.html#p=' + p.id + '">' + esc(t("openStudio")) + '</a>' +
         '<button class="btn" data-act="add-more">' + esc(t("addMore")) + "</button></div>";
@@ -1017,7 +1017,7 @@ function widgetBody() {
       h += '<div class="row"><button class="btn btn-primary" data-act="resume">' + esc(t("continueLoop")) + "</button>" +
         '<a class="btn" href="studio.html#p=' + p.id + '">' + esc(t("openStudio")) + '</a>' +
         '<button class="btn" data-act="add-more">' + esc(t("addMore")) + "</button></div>";
-    } else if (!batch.length && src.type === "batch") {
+    } else if (!batch.length && src.type === "batch" && lp.phase === "idle") {
       h += '<div class="msg ok">' + esc(t("srcDone")) + "</div>";
     } else {
       if (src.type === "manual") {
@@ -1165,6 +1165,7 @@ function runAiParse(getText) {
 function startGenerate() {
   var p = proj(), batch = nextBatch(p);
   var lp = state.loop;
+  if (!batch.length) { lp.phase = "idle"; render(); return; }
   lp.phase = "generating"; lp.error = null; state.msg = null;
   render();
   generateStory(p, batch, lp.attempt).then(function (raw) {
@@ -1289,6 +1290,7 @@ document.addEventListener("click", function (e) {
     var kw = el.dataset.w, ki = gs.words.indexOf(kw);
     if (ki !== -1) gs.words.splice(ki, 1);
     else if (gs.words.length < 20) gs.words.push(kw);
+    state.loop.error = null;
     render();
   }
   else if (act === "reroll") { lp.attempt += 1; lp.story = null; if (genReady()) startGenerate(); else { lp.phase = "idle"; state.msg = null; render(); } }
@@ -1369,6 +1371,7 @@ document.addEventListener("change", function (e) {
     if (sv === "all") state.genSrc = { type: "all", batchId: null, words: [] };
     else if (sv === "manual") state.genSrc = { type: "manual", batchId: null, words: state.genSrc && state.genSrc.type === "manual" ? state.genSrc.words : [] };
     else state.genSrc = { type: "batch", batchId: sv, words: [] };
+    state.loop.error = null;
     render();
     return;
   }
