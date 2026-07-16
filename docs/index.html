@@ -470,15 +470,47 @@ function extractPdfText(file) {
   history.replaceState(null, "", location.pathname + location.search);
 })();
 
+(function () {
+  try {
+    if (localStorage.getItem("fabulita.lists.v2")) return;
+    var raw = localStorage.getItem(LSP);
+    if (raw) {
+      if (!localStorage.getItem(LSP + ".backupV1")) localStorage.setItem(LSP + ".backupV1", raw);
+      var all = JSON.parse(raw) || {};
+      var out = {};
+      Object.keys(all).forEach(function (id) {
+        var p = all[id];
+        if (!p || !p.config) return;
+        var ups = p.uploads || [];
+        if (!ups.length) { out[id] = p; return; }
+        var used = {};
+        ups.forEach(function (u) {
+          var wset = {};
+          (u.words || []).forEach(function (w) { wset[w] = true; });
+          var words = (p.vocab || []).filter(function (v) { return v && wset[(v.w || "").normalize("NFC").toLowerCase()]; });
+          words.forEach(function (v) { used[(v.w || "").normalize("NFC").toLowerCase()] = true; });
+          var nid = "p" + Math.random().toString(36).slice(2, 9);
+          out[nid] = { id: nid, config: { name: u.name || "list", lang: p.config.lang, gloss_lang: p.config.gloss_lang, ui_default: p.config.ui_default }, vocab: words, glossary: {}, stories: [] };
+        });
+        var rest = (p.vocab || []).filter(function (v) { return v && !used[(v.w || "").normalize("NFC").toLowerCase()]; });
+        out[id] = { id: id, config: p.config, vocab: rest, glossary: p.glossary || {}, stories: p.stories || [] };
+      });
+      localStorage.setItem(LSP, JSON.stringify(out));
+    }
+    localStorage.setItem("fabulita.lists.v2", "1");
+  } catch (e) {}
+})();
+
 var state = {
   lang: (function () { try { var v = localStorage.getItem(LSL); if (v && L[v]) return v; } catch (e) {}
     var nav = (navigator.language || "en").slice(0, 2);
     return L[nav] ? nav : "en"; })(),
   open: false, booksOpen: false,
   step: "input",            // input | confirm | loop
-  pending: null, skipped: 0, aiBusy: false, aiErr: null, lastRaw: "", lastFileName: "", upNameBuf: null, expMsg: null, expText: null, genSrc: { type: "all", batchId: null, words: [] },
+  pending: null, skipped: 0, aiBusy: false, aiErr: null, lastRaw: "", lastFileName: "", upNameBuf: null, expMsg: null, expText: null, genSrc: { type: "all", words: [] },
   inputBuf: "", pasteBuf: "", appendMode: false,
   targetLang: "es",
+  tab: "lists", listView: null, uploadTarget: "__new", genSel: [],
   pid: null,
   loop: { phase: "idle", story: null, warnings: [], missing: [], error: null, attempt: 0, stopped: false },
   genDraft: null, manualOpen: false, keyOpen: false,
@@ -641,17 +673,71 @@ function nextBatch(p) {
   }
   return un.slice(0, 20);
 }
+function langCovered(lang) {
+  var covd = {}, all = loadAll();
+  Object.keys(all).forEach(function (id) {
+    var p = all[id];
+    if (!p || !p.config || p.config.lang !== lang) return;
+    (p.stories || []).forEach(function (s) {
+      (s && s.vocab_used || []).forEach(function (w) { covd[norm(w)] = true; });
+    });
+  });
+  return covd;
+}
+function listsOf(lang) {
+  var all = loadAll(), out = [];
+  Object.keys(all).forEach(function (id) {
+    var p = all[id];
+    if (!p || !p.config) return;
+    if (!lang || p.config.lang === lang) out.push(p);
+  });
+  out.sort(function (a, b) { return a.config.name < b.config.name ? -1 : 1; });
+  return out;
+}
+function genLists() {
+  var all = loadAll(), out = [];
+  (state.genSel || []).forEach(function (id) { if (all[id]) out.push(all[id]); });
+  return out;
+}
+function genUnion(lists) {
+  var seen = {}, out = [];
+  lists.forEach(function (p) {
+    (p.vocab || []).forEach(function (v) {
+      var k = norm(v.w);
+      if (!seen[k]) { seen[k] = true; out.push(v); }
+    });
+  });
+  return out;
+}
+function genBatch() {
+  var lists = genLists();
+  if (!lists.length) return [];
+  var union = genUnion(lists);
+  var src = state.genSrc || { type: "all" };
+  if (src.type === "manual") {
+    var sel = {};
+    (src.words || []).forEach(function (w) { sel[w] = true; });
+    return union.filter(function (v) { return sel[norm(v.w)]; }).slice(0, 20);
+  }
+  var covd = langCovered(lists[0].config.lang);
+  var un = union.filter(function (v) { return !covd[norm(v.w)]; });
+  return un.slice(0, src.type === "llm" ? 120 : 20);
+}
 
 function useClause(n) {
   var lo = Math.min(10, n), hi = Math.min(20, n);
   return lo >= hi ? "all " + hi : "at least " + lo + " and at most " + hi;
 }
 
-function promptFor(p, batch, attempt) {
+function promptFor(p, batch, attempt, pickMode) {
   var list = batch.map(function (v) { return "- " + v.w + " — " + v.gloss; }).join("\n");
   var vary = attempt > 0 ? "\n- Write a COMPLETELY DIFFERENT story from any previous attempt: new scene, new characters, new situation." : "";
+  var useLine = pickMode
+    ? "From the vocabulary list below, CHOOSE 10 to 20 words that naturally belong\ntogether in ONE coherent everyday scene - prefer words that combine well and\nare easy to weave into the same short story. Then write the story using your\nchosen words (you may ignore the rest of the list):"
+    : "Write ONE short story (5-8 short sentences, simple present tense, one scene,\nconcrete everyday situation). You MUST use " + useClause(batch.length) + "\nof these vocabulary words (their glosses are in " + (GLOSS_NAMES[p.config.gloss_lang] || p.config.gloss_lang) + "):";
+  if (pickMode) useLine = "Write ONE short story (5-8 short sentences, simple present tense, one scene,\nconcrete everyday situation). " + useLine;
   return "You are writing a graded-reader micro-story for a beginner (CEFR A1) learner of " + (LANG_NAMES[p.config.lang] || p.config.lang) + ".\n\n" +
-    "Write ONE short story (5-8 short sentences, simple present tense, one scene,\nconcrete everyday situation). You MUST use " + useClause(batch.length) + "\nof these vocabulary words (their glosses are in " + (GLOSS_NAMES[p.config.gloss_lang] || p.config.gloss_lang) + "):\n\n" + list +
+    useLine + "\n\n" + list +
     "\n\nRules:\n- Only A1-level grammar and high-frequency function words besides the list above.\n- Natural, coherent story — not a word-salad that name-drops vocabulary." + vary +
     "\n- Glosses and translations must be written in " + (GLOSS_NAMES[p.config.gloss_lang] || p.config.gloss_lang) + ".\n- \"glossary\" must cover EVERY word form that appears in the text and is not a proper name — including inflected verb forms (gloss them back to the dictionary form).\n- \"vocab_used\" lists exactly the words from the vocabulary list above that appear in the story (dictionary form as given in the list).\n\nReturn ONLY a JSON object in this exact shape (no markdown fence, no commentary):\n\n" +
     JSON.stringify({ id: "kebab-case-slug", title: "Story title in the target language", title_note: "title translated",
@@ -829,9 +915,10 @@ function showPop(el, entry) {
 
 var SPK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5z" fill="currentColor" stroke="none"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/></svg>';
 
-function glossMap(p, story) {
+function glossMap(vocabArr, glossaryObj, story) {
   var m = {};
-  p.vocab.forEach(function (v) { m[norm(v.w)] = [v.gloss, v.note || ""]; });
+  vocabArr.forEach(function (v) { m[norm(v.w)] = [v.gloss, v.note || ""]; });
+  Object.keys(glossaryObj || {}).forEach(function (k) { m[norm(k)] = glossaryObj[k]; });
   Object.keys(story.glossary || {}).forEach(function (k) { m[norm(k)] = story.glossary[k]; });
   return m;
 }
@@ -1037,7 +1124,7 @@ function widgetBody() {
       if (lp.phase === "generating") {
         h += '<div class="msg ok"><span class="spinner"></span>' + esc(t("generating")) + "</div>";
       } else if (lp.phase === "preview" && lp.story) {
-        var s = lp.story, gm = glossMap(p, s);
+        var s = lp.story, gm = glossMap(p.vocab, p.glossary, s);
         var cjk = p.config.lang === "ja" || p.config.lang === "zh";
         h += '<div class="prev"><h3>' + esc(s.title) + "</h3>";
         if (s.title_note) h += '<p class="sub2">' + esc(s.title_note) + "</p>";
@@ -1196,7 +1283,7 @@ document.addEventListener("click", function (e) {
   if (w) {
     var p1 = proj(), s1 = state.loop.story;
     if (p1 && s1) {
-      var entry = glossMap(p1, s1)[w.dataset.key];
+      var entry = glossMap(p1.vocab, p1.glossary, s1)[w.dataset.key];
       if (entry) { showPop(w, entry); e.stopPropagation(); return; }
     }
   }
