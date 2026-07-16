@@ -667,14 +667,6 @@ function llmParseVocab(text) {
 }
 
 // ───────────────────────── coverage / prompt ─────────────────────────
-function coverage(p) {
-  var cov = {};
-  p.stories.forEach(function (s) { (s.vocab_used || []).forEach(function (w) { cov[norm(w)] = true; }); });
-  return {
-    covered: p.vocab.filter(function (v) { return cov[norm(v.w)]; }),
-    uncovered: p.vocab.filter(function (v) { return !cov[norm(v.w)]; })
-  };
-}
 function langCovered(lang) {
   var covd = {}, all = loadAll();
   Object.keys(all).forEach(function (id) {
@@ -1034,30 +1026,37 @@ function genBody() {
   h += '<div class="cov-bar"><div class="cov-fill" style="width:' + pct + '%"></div></div>';
 
   var src = state.genSrc || { type: "all", words: [] };
-  h += "<label>" + esc(t("srcLabel")) + '</label><select id="gen-src">' +
-    '<option value="all"' + (src.type === "all" ? " selected" : "") + ">" + esc(t("srcAll")) + "</option>" +
-    '<option value="manual"' + (src.type === "manual" ? " selected" : "") + ">" + esc(t("srcManual")) + "</option>" +
-    '<option value="llm"' + (src.type === "llm" ? " selected" : "") + ">" + esc(t("srcLLM")) + "</option></select>";
-
-  var batch = genBatch();
-
-  if (src.type === "manual") {
-    h += '<p class="muted" style="margin-top:0.7rem">' + esc(fmt(t("pickHint"), { n: (src.words || []).length })) + '</p><div class="chips">';
-    union.forEach(function (v) {
-      var k = norm(v.w);
-      h += '<span class="chip' + ((src.words || []).indexOf(k) !== -1 ? " chip-sel" : "") + (covd0[k] ? " chip-cov" : "") +
-        '" data-act="pick-word" data-w="' + esc(k) + '" title="' + esc(v.gloss) + '">' + esc(v.w) + "</span>";
-    });
-    h += "</div>";
-  } else if (!batch.length) {
-    h += '<div class="msg ok">' + esc(t("selDone")) + "</div>";
-  } else if (src.type === "llm") {
-    var poolN = union.filter(function (v) { return !covd0[norm(v.w)]; }).length;
-    h += '<p class="muted" style="margin-top:0.7rem">' + esc(fmt(t("llmHint"), { n: poolN })) + "</p>";
+  var batch;
+  if (!lists.length) {
+    // Exclusive message chain, case 1: no lists selected — hint ONLY, no source picker.
+    h += '<p class="muted" style="margin-top:0.7rem">' + esc(t("selListFirst")) + "</p>";
   } else {
-    h += '<p class="muted" style="margin-top:0.7rem">' + esc(fmt(t("batchInfo"), { n: batch.length })) + "</p><div class=\"chips\">";
-    batch.forEach(function (v) { h += '<span class="chip" title="' + esc(v.gloss) + '">' + esc(v.w) + "</span>"; });
-    h += "</div>";
+    h += "<label>" + esc(t("srcLabel")) + '</label><select id="gen-src">' +
+      '<option value="all"' + (src.type === "all" ? " selected" : "") + ">" + esc(t("srcAll")) + "</option>" +
+      '<option value="manual"' + (src.type === "manual" ? " selected" : "") + ">" + esc(t("srcManual")) + "</option>" +
+      '<option value="llm"' + (src.type === "llm" ? " selected" : "") + ">" + esc(t("srcLLM")) + "</option></select>";
+
+    batch = genBatch();
+
+    if (src.type === "manual") {
+      h += '<p class="muted" style="margin-top:0.7rem">' + esc(fmt(t("pickHint"), { n: (src.words || []).length })) + '</p><div class="chips">';
+      union.forEach(function (v) {
+        var k = norm(v.w);
+        h += '<span class="chip' + ((src.words || []).indexOf(k) !== -1 ? " chip-sel" : "") + (covd0[k] ? " chip-cov" : "") +
+          '" data-act="pick-word" data-w="' + esc(k) + '" title="' + esc(v.gloss) + '">' + esc(v.w) + "</span>";
+      });
+      h += "</div>";
+    } else if (!batch.length) {
+      // Exclusive message chain, case 2: batch naturally empty for all/llm source — selDone ONLY.
+      h += '<div class="msg ok">' + esc(t("selDone")) + "</div>";
+    } else if (src.type === "llm") {
+      var poolN = union.filter(function (v) { return !covd0[norm(v.w)]; }).length;
+      h += '<p class="muted" style="margin-top:0.7rem">' + esc(fmt(t("llmHint"), { n: poolN })) + "</p>";
+    } else {
+      h += '<p class="muted" style="margin-top:0.7rem">' + esc(fmt(t("batchInfo"), { n: batch.length })) + "</p><div class=\"chips\">";
+      batch.forEach(function (v) { h += '<span class="chip" title="' + esc(v.gloss) + '">' + esc(v.w) + "</span>"; });
+      h += "</div>";
+    }
   }
 
   if (lp.phase === "generating") {
@@ -1080,10 +1079,10 @@ function genBody() {
     if (genReady()) {
       h += '<div class="row"><button class="btn btn-primary" data-act="gen">' + esc(t("generate")) + "</button>" +
         '<button class="btn" data-act="stop">' + esc(t("stopHere")) + "</button></div>";
-      if (lp.error) h += '<div class="msg err">' + esc(lp.error) + "</div>";
+      if (lp.error && lists.length) h += '<div class="msg err">' + esc(lp.error) + "</div>";
     } else {
       h += '<div class="msg ok">' + esc(t("needSetup")) + "</div>" + settingsHtml();
-      if (lp.error) h += '<div class="msg err">' + esc(lp.error) + "</div>";
+      if (lp.error && lists.length) h += '<div class="msg err">' + esc(lp.error) + "</div>";
     }
     h += manualHtml();
   }
@@ -1173,11 +1172,16 @@ function listTableHtml() {
     return h;
   }
   h += '<div class="plist">';
+  var covByLang = {};
   ids.forEach(function (id) {
-    var p = all[id], cov = coverage(p);
-    var pct = p.vocab.length ? Math.round(100 * cov.covered.length / p.vocab.length) : 0;
+    var p = all[id], lg = p.config.lang;
+    if (!covByLang[lg]) covByLang[lg] = langCovered(lg);
+    var covd = covByLang[lg], c = 0;
+    (p.vocab || []).forEach(function (v) { if (covd[norm(v.w)]) c++; });
+    var disp = null;
+    LANG_CHOICES.forEach(function (ch) { if (ch[0] === lg) disp = ch[1]; });
     h += '<div class="lrow" data-act="open-list" data-id="' + esc(id) + '"><div><span class="pname">' + esc(p.config.name) + '</span> <span class="muted">· ' +
-      p.vocab.length + " " + esc(t("words")) + " · " + p.stories.length + " " + esc(t("storiesN")) + " · " + pct + "%</span></div><span>→</span></div>";
+      esc(disp || lg.toUpperCase()) + " · " + p.vocab.length + " " + esc(t("words")) + " · " + c + "/" + p.vocab.length + "</span></div><span>→</span></div>";
   });
   h += "</div>";
   return h;
@@ -1469,7 +1473,12 @@ document.addEventListener("click", function (e) {
   }
   else if (act === "gen") {
     if (!requireGenLists()) return;
-    if (!genBatch().length) { lp.error = t("pickNone"); render(); return; }
+    if (!genBatch().length) {
+      // Only the manual picker can be "empty by user inaction" — all/llm sources being
+      // empty means the selection is already fully covered (selDone is shown passively).
+      if (state.genSrc && state.genSrc.type === "manual") { lp.error = t("pickNone"); render(); }
+      return;
+    }
     lp.attempt = 0; lp.stopped = false; startGenerate();
   }
   else if (act === "pick-word") {
