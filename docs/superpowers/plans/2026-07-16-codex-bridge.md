@@ -395,7 +395,11 @@ git commit -m "Landing page: Codex CLI provider preset (local fabulita bridge)"
 
 - [ ] **Step 1: Start the bridge** (controller: `uv run fabulita bridge` in background; confirm banner line).
 - [ ] **Step 2: Smoke the bridge from shell** — `curl -s http://127.0.0.1:8130/v1/chat/completions -H 'content-type: application/json' -d '{"messages":[{"role":"user","content":"Reply with exactly the word: pong"}]}'` → JSON with a `choices[0].message.content` containing "pong" (this runs one real codex exec).
-- [ ] **Step 3: Dispatch a browser-QA subagent** (user directive: browser testing runs via agent) to, in one session: hard-reload http://localhost:8901/index.html; open ⚙ 模型服务; switch provider to "Codex CLI（本地桥）"; save; open project 我的西语故事书; generate ONE story; verify preview renders with sentences + 中文 glosses; click ✓ 收下这篇; verify coverage advances; ALSO verify PDF-upload entry discoverability (widget input step shows upload button mentioning pdf; loop view reachable via ＋加更多词); finally restore UI language to 中文 if changed and report everything found.
+- [ ] **Step 3: Dispatch a browser-QA subagent** (user directive: browser testing runs via agent) with these ACCEPTANCE CRITERIA (set by the user 2026-07-16):
+  1. **Middle-schooler usability**: walk the whole flow as a naive first-time user — word list in, story out, browser only, no console tricks. Every step must be discoverable from what is on screen (buttons/labels/hints). Log every point of friction or confusion (e.g. where is PDF upload, what to click after parsing, what ⚙ means) — friction points are findings even if the flow technically works.
+  2. **Fresh-word batches**: after accepting a story, the next batch (chips shown before generating) must contain only words NOT used by any existing story (`vocab_used`); verify by comparing the visible chips against the accepted story's words, and cross-check `coverage` in localStorage. Report any overlap.
+  3. Codex provider e2e: switch ⚙ provider to "Codex CLI（本地桥）", save, generate ONE story on 我的西语故事书, verify preview (sentences + glosses per project gloss_lang), accept it, coverage advances.
+  4. Restore UI language to 中文 if changed; report everything found.
 - [ ] **Step 4: Fix anything found, commit**
 
 ```bash
