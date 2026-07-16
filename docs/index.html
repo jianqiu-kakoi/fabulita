@@ -168,7 +168,7 @@ var L = {
     skipped: "有 {n} 行无法解析，已跳过",
     nothing: "没有解析到词条——检查每行是否是「词 分隔符 释义」",
     confirm: "✓ 确认，存入词表",
-    srcLabel: "用哪些词生成", srcAll: "全部未覆盖的词", srcManual: "手动选词", srcDone: "这批词已全部覆盖 🎉 换个词源继续。", pickHint: "点选要用的单词（最多 20 个）· 已选 {n}", pickNone: "先选至少 1 个词",
+    srcLabel: "用哪些词生成", srcAll: "全部未覆盖的词", srcManual: "手动选词", srcLLM: "AI 挑词", llmHint: "AI 会从 {n} 个未覆盖的词里挑 10-20 个适合同一个故事的词", selListFirst: "先选至少一张词表", selDone: "所选词表已全部覆盖 🎉 换一张或手动选词", pickHint: "点选要用的单词（最多 20 个）· 已选 {n}", pickNone: "先选至少 1 个词",
     cancel: "取消",
     batchInfo: "本批词汇 · {n} 个",
     generate: "✨ 生成故事",
@@ -235,7 +235,7 @@ var L = {
     skipped: "{n} lines could not be parsed and were skipped",
     nothing: "No entries found — each line should look like “word separator meaning”",
     confirm: "✓ Confirm — save to my word list",
-    srcLabel: "Generate from", srcAll: "All uncovered words", srcManual: "Pick words myself", srcDone: "Every word in this batch is covered 🎉 — pick another source.", pickHint: "Tap the words to use (max 20) · {n} selected", pickNone: "Pick at least one word first",
+    srcLabel: "Generate from", srcAll: "All uncovered words", srcManual: "Pick words myself", srcLLM: "AI picks the words", llmHint: "AI will pick 10-20 words that fit one story from {n} uncovered words", selListFirst: "Pick at least one word list first", selDone: "Every word in the selected lists is covered 🎉 — pick another list or choose words manually", pickHint: "Tap the words to use (max 20) · {n} selected", pickNone: "Pick at least one word first",
     cancel: "Cancel",
     batchInfo: "This batch · {n} words",
     generate: "✨ Generate a story",
@@ -302,7 +302,7 @@ var L = {
     skipped: "{n} líneas no se pudieron analizar",
     nothing: "No se encontraron entradas — cada línea: “palabra separador significado”",
     confirm: "✓ Confirmar y guardar en mi lista",
-    srcLabel: "Generar con", srcAll: "Todas las palabras sin cubrir", srcManual: "Elegir palabras yo mismo", srcDone: "Todas las palabras de este lote están cubiertas 🎉 — elige otra fuente.", pickHint: "Toca las palabras a usar (máx. 20) · {n} seleccionadas", pickNone: "Elige al menos una palabra",
+    srcLabel: "Generar con", srcAll: "Todas las palabras sin cubrir", srcManual: "Elegir palabras yo mismo", srcLLM: "La IA elige las palabras", llmHint: "La IA elegirá 10-20 palabras que encajen en una historia, de entre {n} palabras sin cubrir", selListFirst: "Elige al menos una lista de palabras primero", selDone: "Todas las palabras de las listas seleccionadas están cubiertas 🎉 — elige otra lista o selecciona palabras manualmente", pickHint: "Toca las palabras a usar (máx. 20) · {n} seleccionadas", pickNone: "Elige al menos una palabra",
     cancel: "Cancelar",
     batchInfo: "Este lote · {n} palabras",
     generate: "✨ Generar una historia",
@@ -369,7 +369,7 @@ var L = {
     skipped: "{n} 行は解析できずスキップ",
     nothing: "エントリが見つかりません — 各行は「語 区切り 意味」の形式で",
     confirm: "✓ 確認してリストに保存",
-    srcLabel: "どの単語から生成", srcAll: "未カバーの全単語", srcManual: "自分で単語を選ぶ", srcDone: "このリストの単語はすべてカバー済み 🎉 別のソースを選んでください。", pickHint: "使う単語をタップ（最大 20）· {n} 選択中", pickNone: "先に 1 語以上選んでください",
+    srcLabel: "どの単語から生成", srcAll: "未カバーの全単語", srcManual: "自分で単語を選ぶ", srcLLM: "AI が単語を選ぶ", llmHint: "AI は未カバーの {n} 語の中から、1つの物語に合う 10〜20 語を選びます", selListFirst: "まず単語リストを1つ以上選んでください", selDone: "選択したリストの単語はすべてカバー済みです 🎉 別のリストを選ぶか、手動で単語を選んでください", pickHint: "使う単語をタップ（最大 20）· {n} 選択中", pickNone: "先に 1 語以上選んでください",
     cancel: "キャンセル",
     batchInfo: "このバッチ · {n} 語",
     generate: "✨ 物語を生成",
@@ -527,7 +527,7 @@ var state = {
     var nav = (navigator.language || "en").slice(0, 2);
     return L[nav] ? nav : "en"; })(),
   open: false, booksOpen: false,
-  step: null,               // null (table) | input | confirm | loop (dead)
+  step: null,               // null (table) | input | confirm
   pending: null, skipped: 0, aiBusy: false, aiErr: null, lastRaw: "", lastFileName: "", upNameBuf: null, expMsg: null, expText: null, genSrc: { type: "all", words: [] },
   inputBuf: "", pasteBuf: "",
   targetLang: "es",
@@ -674,25 +674,6 @@ function coverage(p) {
     covered: p.vocab.filter(function (v) { return cov[norm(v.w)]; }),
     uncovered: p.vocab.filter(function (v) { return !cov[norm(v.w)]; })
   };
-}
-function nextBatch(p) {
-  var src = state.genSrc || { type: "all" };
-  if (src.type === "manual") {
-    var sel = {};
-    (src.words || []).forEach(function (w) { sel[w] = true; });
-    return p.vocab.filter(function (v) { return sel[norm(v.w)]; }).slice(0, 20);
-  }
-  var un = coverage(p).uncovered;
-  if (src.type === "batch") {
-    var up = null;
-    (p.uploads || []).forEach(function (u) { if (u.id === src.batchId) up = u; });
-    if (up) {
-      var inSet = {};
-      (up.words || []).forEach(function (w) { inSet[w] = true; });
-      un = un.filter(function (v) { return inSet[norm(v.w)]; });
-    }
-  }
-  return un.slice(0, 20);
 }
 function langCovered(lang) {
   var covd = {}, all = loadAll();
@@ -900,7 +881,7 @@ function generateOpenAI(g, prompt) {
 
 function generateStory(p, batch, attempt) {
   var g = genCfg();
-  var prompt = promptFor(p, batch, attempt);
+  var prompt = promptFor(p, batch, attempt, state.genSrc.type === "llm");
   if (g.provider === "anthropic") return generateAnthropic(g, prompt);
   if (/^qwen3\b/i.test(g.model || "")) prompt += "\n\n/no_think";
   return generateOpenAI(g, prompt);
@@ -1025,7 +1006,94 @@ function tabsHtml() {
 }
 
 function genBody() {
-  return '<p class="muted">' + esc(t("tabGen")) + "…</p>";
+  var h = "";
+  var allLists = listsOf();
+  if (!allLists.length) {
+    h += '<p class="muted" style="margin-top:0.8rem">' + esc(t("noLists")) + "</p>";
+    return h;
+  }
+
+  h += '<div class="plist">';
+  allLists.forEach(function (lst) {
+    var covd = langCovered(lst.config.lang);
+    var c = 0;
+    lst.vocab.forEach(function (v) { if (covd[norm(v.w)]) c++; });
+    var checked = state.genSel.indexOf(lst.id) !== -1;
+    h += '<div class="lrow" data-act="gsel" data-id="' + esc(lst.id) + '"><div><input type="checkbox"' + (checked ? " checked" : "") +
+      ' style="pointer-events:none;margin-right:0.5rem" aria-hidden="true"><span class="pname">' + esc(lst.config.name) + '</span> <span class="muted">· ' +
+      esc(lst.config.lang) + " · " + c + "/" + lst.vocab.length + "</span></div></div>";
+  });
+  h += "</div>";
+
+  var lists = genLists(), lp = state.loop;
+  var union = genUnion(lists);
+  var covd0 = lists.length ? langCovered(lists[0].config.lang) : {};
+  var coveredN = union.filter(function (v) { return covd0[norm(v.w)]; }).length;
+  var pct = union.length ? Math.round(100 * coveredN / union.length) : 0;
+  h += '<p class="muted" style="margin-top:0.6rem">' + coveredN + " / " + union.length + " " + esc(t("coverage")) + " · " + pct + "%</p>";
+  h += '<div class="cov-bar"><div class="cov-fill" style="width:' + pct + '%"></div></div>';
+
+  var src = state.genSrc || { type: "all", words: [] };
+  h += "<label>" + esc(t("srcLabel")) + '</label><select id="gen-src">' +
+    '<option value="all"' + (src.type === "all" ? " selected" : "") + ">" + esc(t("srcAll")) + "</option>" +
+    '<option value="manual"' + (src.type === "manual" ? " selected" : "") + ">" + esc(t("srcManual")) + "</option>" +
+    '<option value="llm"' + (src.type === "llm" ? " selected" : "") + ">" + esc(t("srcLLM")) + "</option></select>";
+
+  var batch = genBatch();
+
+  if (src.type === "manual") {
+    h += '<p class="muted" style="margin-top:0.7rem">' + esc(fmt(t("pickHint"), { n: (src.words || []).length })) + '</p><div class="chips">';
+    union.forEach(function (v) {
+      var k = norm(v.w);
+      h += '<span class="chip' + ((src.words || []).indexOf(k) !== -1 ? " chip-sel" : "") + (covd0[k] ? " chip-cov" : "") +
+        '" data-act="pick-word" data-w="' + esc(k) + '" title="' + esc(v.gloss) + '">' + esc(v.w) + "</span>";
+    });
+    h += "</div>";
+  } else if (!batch.length) {
+    h += '<div class="msg ok">' + esc(t("selDone")) + "</div>";
+  } else if (src.type === "llm") {
+    var poolN = union.filter(function (v) { return !covd0[norm(v.w)]; }).length;
+    h += '<p class="muted" style="margin-top:0.7rem">' + esc(fmt(t("llmHint"), { n: poolN })) + "</p>";
+  } else {
+    h += '<p class="muted" style="margin-top:0.7rem">' + esc(fmt(t("batchInfo"), { n: batch.length })) + "</p><div class=\"chips\">";
+    batch.forEach(function (v) { h += '<span class="chip" title="' + esc(v.gloss) + '">' + esc(v.w) + "</span>"; });
+    h += "</div>";
+  }
+
+  if (lp.phase === "generating") {
+    h += '<div class="msg ok"><span class="spinner"></span>' + esc(t("generating")) + "</div>";
+  } else if (lp.phase === "preview" && lp.story && lists.length) {
+    var s = lp.story, gm = glossMap(union, lists[0].glossary, s);
+    var cjk = lists[0].config.lang === "ja" || lists[0].config.lang === "zh";
+    h += '<div class="prev"><h3>' + esc(s.title) + "</h3>";
+    if (s.title_note) h += '<p class="sub2">' + esc(s.title_note) + "</p>";
+    s.sentences.forEach(function (sent, i) {
+      h += '<p class="es">' + sentenceHtml(gm, cjk, sent.text, i) + "</p>";
+      if (sent.trans) h += '<p class="trans">' + esc(sent.trans) + "</p>";
+    });
+    h += "</div>";
+    if (lp.warnings.length) h += '<div class="msg warn">' + esc(t("warnValidate")) + esc(lp.warnings.join("; ")) + "</div>";
+    h += '<div class="row"><button class="btn btn-primary" data-act="keep">' + esc(t("acceptStory")) + "</button>" +
+      '<button class="btn" data-act="reroll">' + esc(t("regen")) + "</button>" +
+      '<button class="btn" data-act="stop">' + esc(t("stopHere")) + "</button></div>";
+  } else {
+    if (genReady()) {
+      h += '<div class="row"><button class="btn btn-primary" data-act="gen">' + esc(t("generate")) + "</button>" +
+        '<button class="btn" data-act="stop">' + esc(t("stopHere")) + "</button></div>";
+      if (lp.error) h += '<div class="msg err">' + esc(lp.error) + "</div>";
+    } else {
+      h += '<div class="msg ok">' + esc(t("needSetup")) + "</div>" + settingsHtml();
+      if (lp.error) h += '<div class="msg err">' + esc(lp.error) + "</div>";
+    }
+    h += manualHtml();
+  }
+
+  if (genReady()) {
+    h += '<details class="keyrow"' + (state.keyOpen ? " open" : "") + '><summary>' + esc(t("keySummary")) +
+      ' <span style="color:var(--ok)">' + esc(t("keyOn")) + " · " + esc(provLabel(genCfg())) + "</span></summary>" + settingsHtml() + "</details>";
+  }
+
+  return h;
 }
 
 function uploadInputHtml() {
@@ -1144,121 +1212,6 @@ function listsBody() {
   else if (state.step === "confirm") {
     h += uploadConfirmHtml();
   }
-  else if (state.step === "loop") {
-    // DEAD: nothing sets state.step = "loop" anymore (Task 3 will consume/delete this branch).
-    var p = proj();
-    if (!p) { state.step = "input"; return listsBody(); }
-    var cov = coverage(p), total = p.vocab.length;
-    var pct = total ? Math.round(100 * cov.covered.length / total) : 0;
-    var batch = nextBatch(p);
-    var lp = state.loop;
-
-    h += '<p class="muted" style="margin:0">' + esc(p.config.name) + " · " + p.stories.length + " " + esc(t("storiesN")) +
-      " · " + cov.covered.length + " / " + total + " " + esc(t("coverage")) + " · " + pct + "%</p>";
-    h += '<div class="cov-bar"><div class="cov-fill" style="width:' + pct + '%"></div></div>';
-    h += '<div class="row" style="margin-top:0.5rem"><button class="btn" data-act="export-copy">' + esc(t("exportCopy")) + "</button>" +
-      '<button class="btn" data-act="export-tsv">' + esc(t("exportTsv")) + "</button></div>";
-    if (state.expMsg) h += '<div class="msg ok">' + esc(state.expMsg) + "</div>";
-    if (state.expText) h += '<textarea readonly style="min-height:10rem">' + esc(state.expText) + "</textarea>";
-
-    var covSetL = {};
-    cov.covered.forEach(function (v) { covSetL[norm(v.w)] = true; });
-    var src = state.genSrc || { type: "all", batchId: null, words: [] };
-    h += "<label>" + esc(t("srcLabel")) + '</label><select id="gen-src">' +
-      '<option value="all"' + (src.type === "all" ? " selected" : "") + ">" + esc(t("srcAll")) + "</option>";
-    (p.uploads || []).slice().reverse().forEach(function (u) {
-      var c = 0;
-      (u.words || []).forEach(function (w) { if (covSetL[w]) c++; });
-      h += '<option value="' + esc(u.id) + '"' + (src.type === "batch" && src.batchId === u.id ? " selected" : "") + ">" +
-        esc(u.name) + " · " + c + "/" + (u.words || []).length + "</option>";
-    });
-    h += '<option value="manual"' + (src.type === "manual" ? " selected" : "") + ">" + esc(t("srcManual")) + "</option></select>";
-
-    (function () {
-      var covSet = {};
-      cov.covered.forEach(function (v) { covSet[norm(v.w)] = true; });
-      var ups = (p.uploads || []).slice().reverse();
-      var inBatch = {};
-      (p.uploads || []).forEach(function (u) { (u.words || []).forEach(function (w) { inBatch[w] = true; }); });
-      var legacy = p.vocab.filter(function (v) { return !inBatch[norm(v.w)]; });
-      if (!ups.length && !legacy.length) return;
-      var glossByW = {}, dispByW = {};
-      p.vocab.forEach(function (v) { glossByW[norm(v.w)] = v.gloss; dispByW[norm(v.w)] = v.w; });
-      h += '<details class="keyrow"><summary>' + esc(t("vocabSection")) + " · " + p.vocab.length + " " + esc(t("words")) + "</summary>";
-      function batchHtml(name, date, words) {
-        var c = 0;
-        words.forEach(function (w) { if (covSet[w]) c++; });
-        var hh = '<details class="upbatch"><summary>' + esc(name) + (date ? ' <span class="muted">· ' + esc(date) + "</span>" : "") +
-          ' <span class="muted">· ' + words.length + " " + esc(t("words")) + " · " + c + "/" + words.length + " " + esc(t("coverage")) + '</span></summary><div class="chips">';
-        words.forEach(function (w) {
-          hh += '<span class="chip' + (covSet[w] ? " chip-cov" : "") + '" title="' + esc(glossByW[w] || "") + '">' + esc(dispByW[w] || w) + "</span>";
-        });
-        return hh + "</div></details>";
-      }
-      ups.forEach(function (u) { h += batchHtml(u.name, u.date, u.words || []); });
-      if (legacy.length) h += batchHtml(t("legacyBatch"), "", legacy.map(function (v) { return norm(v.w); }));
-      h += "</details>";
-    })();
-
-    if (!cov.uncovered.length && src.type !== "manual") {
-      h += '<div class="msg ok">' + esc(fmt(t("doneAll"), { n: p.stories.length })) + "</div>";
-      h += '<div class="row"><a class="btn btn-primary" href="studio.html#p=' + p.id + '">' + esc(t("openStudio")) + "</a></div>";
-    } else if (lp.stopped) {
-      h += '<div class="msg ok">' + esc(fmt(t("stoppedAt"), { n: p.stories.length, c: cov.covered.length, t: total })) + "</div>";
-      h += '<div class="row"><button class="btn btn-primary" data-act="resume">' + esc(t("continueLoop")) + "</button>" +
-        '<a class="btn" href="studio.html#p=' + p.id + '">' + esc(t("openStudio")) + "</a></div>";
-    } else if (!batch.length && src.type === "batch" && lp.phase === "idle") {
-      h += '<div class="msg ok">' + esc(t("srcDone")) + "</div>";
-    } else {
-      if (src.type === "manual") {
-        h += '<p class="muted" style="margin-top:0.7rem">' + esc(fmt(t("pickHint"), { n: batch.length })) + '</p><div class="chips">';
-        p.vocab.forEach(function (v) {
-          var k = norm(v.w);
-          h += '<span class="chip' + (src.words.indexOf(k) !== -1 ? " chip-sel" : "") + (covSetL[k] ? " chip-cov" : "") +
-            '" data-act="pick-word" data-w="' + esc(k) + '" title="' + esc(v.gloss) + '">' + esc(v.w) + "</span>";
-        });
-        h += "</div>";
-      } else {
-        h += '<p class="muted" style="margin-top:0.7rem">' + esc(fmt(t("batchInfo"), { n: batch.length })) + "</p><div class=\"chips\">";
-        batch.forEach(function (v) { h += '<span class="chip" title="' + esc(v.gloss) + '">' + esc(v.w) + "</span>"; });
-        h += "</div>";
-      }
-
-      if (lp.phase === "generating") {
-        h += '<div class="msg ok"><span class="spinner"></span>' + esc(t("generating")) + "</div>";
-      } else if (lp.phase === "preview" && lp.story) {
-        var s = lp.story, gm = glossMap(p.vocab, p.glossary, s);
-        var cjk = p.config.lang === "ja" || p.config.lang === "zh";
-        h += '<div class="prev"><h3>' + esc(s.title) + "</h3>";
-        if (s.title_note) h += '<p class="sub2">' + esc(s.title_note) + "</p>";
-        s.sentences.forEach(function (sent, i) {
-          h += '<p class="es">' + sentenceHtml(gm, cjk, sent.text, i) + "</p>";
-          if (sent.trans) h += '<p class="trans">' + esc(sent.trans) + "</p>";
-        });
-        h += "</div>";
-        if (lp.warnings.length) h += '<div class="msg warn">' + esc(t("warnValidate")) + esc(lp.warnings.join("; ")) + "</div>";
-        h += '<div class="row"><button class="btn btn-primary" data-act="keep">' + esc(t("acceptStory")) + "</button>" +
-          '<button class="btn" data-act="reroll">' + esc(t("regen")) + "</button>" +
-          '<button class="btn" data-act="stop">' + esc(t("stopHere")) + "</button></div>";
-      } else {
-        if (genReady()) {
-          h += '<div class="row"><button class="btn btn-primary" data-act="gen">' + esc(t("generate")) + "</button>" +
-            '<button class="btn" data-act="stop">' + esc(t("stopHere")) + "</button></div>";
-          if (lp.error) h += '<div class="msg err">' + esc(lp.error) + "</div>";
-        } else {
-          h += '<div class="msg ok">' + esc(t("needSetup")) + "</div>" + settingsHtml();
-          if (lp.error) h += '<div class="msg err">' + esc(lp.error) + "</div>";
-        }
-        h += manualHtml();
-      }
-    }
-
-    // provider settings (when configured; otherwise shown inline above)
-    if (genReady()) {
-      h += '<details class="keyrow"' + (state.keyOpen ? " open" : "") + '><summary>' + esc(t("keySummary")) +
-        ' <span style="color:var(--ok)">' + esc(t("keyOn")) + " · " + esc(provLabel(genCfg())) + "</span></summary>" + settingsHtml() + "</details>";
-    }
-  }
   else if (state.listView) {
     h += listDetailHtml();
   }
@@ -1349,9 +1302,18 @@ function runAiParse(getText) {
   });
 }
 
+function requireGenLists() {
+  if (genLists().length) return true;
+  state.loop.error = t("selListFirst");
+  render();
+  return false;
+}
+
 function startGenerate() {
-  var p = proj(), batch = nextBatch(p);
+  var lists = genLists();
   var lp = state.loop;
+  if (!lists.length) { lp.phase = "idle"; render(); return; }
+  var p = lists[0], batch = genBatch();
   if (!batch.length) { lp.phase = "idle"; render(); return; }
   lp.phase = "generating"; lp.error = null; state.msg = null;
   render();
@@ -1375,22 +1337,22 @@ document.addEventListener("click", function (e) {
 
   var say = e.target.closest(".say");
   if (say) {
-    var p0 = proj(), s0 = state.loop.story;
-    if (p0 && s0) speak(s0.sentences[+say.dataset.i].text, p0.config.lang);
+    var gLists0 = genLists(), s0 = state.loop.story;
+    if (gLists0.length && s0) speak(s0.sentences[+say.dataset.i].text, gLists0[0].config.lang);
     return;
   }
   var w = e.target.closest(".w");
   if (w) {
-    var p1 = proj(), s1 = state.loop.story;
-    if (p1 && s1) {
-      var entry = glossMap(p1.vocab, p1.glossary, s1)[w.dataset.key];
+    var gLists1 = genLists(), s1 = state.loop.story;
+    if (gLists1.length && s1) {
+      var entry = glossMap(genUnion(gLists1), gLists1[0].glossary, s1)[w.dataset.key];
       if (entry) { showPop(w, entry); e.stopPropagation(); return; }
     }
   }
 
   var el = e.target.closest("[data-act]");
   if (!el) { if (!e.target.closest(".pop")) hidePop(); return; }
-  var act = el.dataset.act, p = proj(), lp = state.loop;
+  var act = el.dataset.act, lp = state.loop;
 
   if (act === "toggle") { state.open = !state.open; render(); }
   else if (act === "toggle-books") { state.booksOpen = !state.booksOpen; render(); }
@@ -1482,8 +1444,25 @@ document.addEventListener("click", function (e) {
     state.step = "input";
     render();
   }
+  else if (act === "gsel") {
+    var lid = el.dataset.id, allSel = loadAll(), clicked = allSel[lid];
+    if (!clicked) return;
+    var curLists = genLists();
+    var curLang = curLists.length ? curLists[0].config.lang : null;
+    if (curLang && clicked.config.lang !== curLang) {
+      state.genSel = [lid];
+    } else {
+      var selIdx = state.genSel.indexOf(lid);
+      if (selIdx !== -1) state.genSel.splice(selIdx, 1);
+      else state.genSel.push(lid);
+    }
+    state.genSrc.words = [];
+    lp.error = null;
+    render();
+  }
   else if (act === "gen") {
-    if (!nextBatch(p).length) { lp.error = t("pickNone"); render(); return; }
+    if (!requireGenLists()) return;
+    if (!genBatch().length) { lp.error = t("pickNone"); render(); return; }
     lp.attempt = 0; startGenerate();
   }
   else if (act === "pick-word") {
@@ -1497,8 +1476,10 @@ document.addEventListener("click", function (e) {
   }
   else if (act === "reroll") { lp.attempt += 1; lp.story = null; if (genReady()) startGenerate(); else { lp.phase = "idle"; state.msg = null; render(); } }
   else if (act === "copy") {
+    if (!requireGenLists()) return;
     state.manualOpen = true;
-    var prompt = promptFor(p, nextBatch(p), lp.attempt);
+    var cLists = genLists();
+    var prompt = promptFor(cLists[0], genBatch(), lp.attempt, state.genSrc.type === "llm");
     (navigator.clipboard ? navigator.clipboard.writeText(prompt) : Promise.reject()).then(function () {
       state.msg = { cls: "ok", html: esc(t("copied")) }; render();
     }, function () {
@@ -1508,10 +1489,12 @@ document.addEventListener("click", function (e) {
   else if (act === "preview-paste") {
     var raw = document.getElementById("paste-json").value.trim().replace(/^```(json)?|```$/g, "");
     if (!raw) return;
+    var pLists = genLists();
+    if (!pLists.length) return;
     try {
       var parsed = JSON.parse(raw);
-      lp.story = normalizeStory(parsed, p);
-      var v = validateStory(p, lp.story);
+      lp.story = normalizeStory(parsed, pLists[0]);
+      var v = validateStory(pLists[0], lp.story);
       lp.warnings = v.warnings; lp.missing = v.missing;
       lp.phase = "preview"; lp.error = null;
       state.pasteBuf = ""; state.manualOpen = false;
@@ -1523,16 +1506,19 @@ document.addEventListener("click", function (e) {
     }
   }
   else if (act === "keep") {
+    var kLists = genLists();
+    if (!kLists.length) return;
+    var kp = kLists[0];
     if (lp.missing && lp.missing.length) {
       lp.story.vocab_used = lp.story.vocab_used.filter(function (w) { return lp.missing.indexOf(w) === -1; });
     }
-    p.stories.push(lp.story);
-    saveProj(p);
+    kp.stories.push(lp.story);
+    saveProj(kp);
     lp.story = null; lp.warnings = []; lp.attempt = 0; lp.phase = "idle"; state.msg = null;
     if (state.genSrc && state.genSrc.type === "manual") {
-      state.genSrc = { type: "all", batchId: null, words: [] };
+      state.genSrc = { type: "all", words: [] };
       render();
-    } else if (nextBatch(p).length && genReady()) startGenerate();
+    } else if (genBatch().length && genReady()) startGenerate();
     else render();
   }
   else if (act === "stop") { lp.stopped = true; lp.phase = "idle"; lp.story = null; render(); }
@@ -1548,7 +1534,7 @@ document.addEventListener("click", function (e) {
     };
     try { localStorage.setItem(LSG, JSON.stringify(cfg)); localStorage.removeItem("fabulita.apiKey"); } catch (err) {}
     state.genDraft = null; state.keyOpen = false; state.msg = null; if (lp) lp.error = null; state.aiErr = null;
-    if (state.step === "loop" && genReady() && p && !lp.stopped && lp.phase === "idle" && nextBatch(p).length) startGenerate();
+    if (state.tab === "gen" && genReady() && !lp.stopped && lp.phase === "idle" && genBatch().length) startGenerate();
     else render();
   }
   else if (act === "gen-clear") {
@@ -1574,9 +1560,8 @@ document.addEventListener("change", function (e) {
   }
   if (e.target.id === "gen-src") {
     var sv = e.target.value;
-    if (sv === "all") state.genSrc = { type: "all", batchId: null, words: [] };
-    else if (sv === "manual") state.genSrc = { type: "manual", batchId: null, words: state.genSrc && state.genSrc.type === "manual" ? state.genSrc.words : [] };
-    else state.genSrc = { type: "batch", batchId: sv, words: [] };
+    if (sv === "manual") state.genSrc = { type: "manual", words: state.genSrc && state.genSrc.type === "manual" ? state.genSrc.words : [] };
+    else state.genSrc = { type: sv, words: [] };
     state.loop.error = null;
     render();
     return;
