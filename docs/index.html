@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="google" content="notranslate">
 <title>fabulita</title>
 <style>
   :root {
@@ -160,7 +161,7 @@ var L = {
     cancel: "取消",
     batchInfo: "本批词汇 · {n} 个",
     generate: "✨ 生成故事",
-    generating: "正在写故事…（云端约 10-30 秒，本地小模型可能要 1-2 分钟）",
+    generating: "正在写故事…（云端约 10-30 秒，本地小模型可能要几分钟）",
     copyPrompt: "📋 复制 Prompt（手动模式）",
     copied: "已复制。贴给任意 LLM，把返回的 JSON 粘到下面。",
     pasteBack: "把 LLM 返回的故事 JSON 粘回这里…",
@@ -219,7 +220,7 @@ var L = {
     cancel: "Cancel",
     batchInfo: "This batch · {n} words",
     generate: "✨ Generate a story",
-    generating: "Writing the story… (cloud ~10-30 s; small local models may take 1-2 min)",
+    generating: "Writing the story… (cloud ~10-30 s; small local models can take several minutes)",
     copyPrompt: "📋 Copy prompt (manual mode)",
     copied: "Copied. Paste it into any LLM, then paste the JSON it returns below.",
     pasteBack: "Paste the story JSON back here…",
@@ -278,7 +279,7 @@ var L = {
     cancel: "Cancelar",
     batchInfo: "Este lote · {n} palabras",
     generate: "✨ Generar una historia",
-    generating: "Escribiendo la historia… (nube ~10-30 s; modelos locales pequeños 1-2 min)",
+    generating: "Escribiendo la historia… (nube ~10-30 s; los modelos locales pequeños pueden tardar varios minutos)",
     copyPrompt: "📋 Copiar prompt (modo manual)",
     copied: "Copiado. Pégalo en cualquier LLM y pega abajo el JSON que devuelva.",
     pasteBack: "Pega aquí el JSON de la historia…",
@@ -337,7 +338,7 @@ var L = {
     cancel: "キャンセル",
     batchInfo: "このバッチ · {n} 語",
     generate: "✨ 物語を生成",
-    generating: "執筆中…（クラウド約 10〜30 秒、ローカル小型モデルは 1〜2 分）",
+    generating: "物語を書いています…（クラウドは約 10〜30 秒、ローカル小型モデルは数分かかることがあります）",
     copyPrompt: "📋 プロンプトをコピー（手動モード）",
     copied: "コピーしました。任意の LLM に貼り、返ってきた JSON を下に貼ってください。",
     pasteBack: "LLM が返した JSON をここに…",
@@ -561,8 +562,9 @@ function normalizeVocabList(raw) {
   return entries;
 }
 
-function vocabLines(list) { return list.map(function (v) { return v.w + " → " + v.gloss; }).join("\n"); }
-function vocabTsv(list) { return list.map(function (v) { return v.w + "\t" + v.gloss; }).join("\n"); }
+function expCell(s) { return String(s).replace(/[\t\n]+/g, " "); }
+function vocabLines(list) { return list.map(function (v) { return expCell(v.w) + " → " + expCell(v.gloss); }).join("\n"); }
+function vocabTsv(list) { return list.map(function (v) { return expCell(v.w) + "\t" + expCell(v.gloss); }).join("\n"); }
 function downloadTsv(name, list) {
   var blob = new Blob([vocabTsv(list)], { type: "text/tab-separated-values" });
   var a = document.createElement("a");
@@ -1102,7 +1104,8 @@ document.addEventListener("click", function (e) {
     var list = state.step === "confirm" ? state.pending : (p ? p.vocab : null);
     if (!list || !list.length) return;
     if (act === "export-tsv") {
-      downloadTsv(((p && p.config.name) || "fabulita") + "-vocab.tsv", list);
+      var expName = state.step === "confirm" && !state.appendMode ? "fabulita" : ((p && p.config.name) || "fabulita");
+      downloadTsv(expName + "-vocab.tsv", list);
       return;
     }
     (navigator.clipboard ? navigator.clipboard.writeText(vocabLines(list)) : Promise.reject()).then(function () {
@@ -1140,6 +1143,7 @@ document.addEventListener("click", function (e) {
     if (genReady()) startGenerate(); else render();
   }
   else if (act === "open-proj") {
+    if (state.aiBusy) return;
     state.pid = el.dataset.id; state.step = "loop"; state.open = true; state.expMsg = null; state.expText = null;
     state.loop = { phase: "idle", story: null, warnings: [], missing: [], error: null, attempt: 0, stopped: false };
     render();
@@ -1183,7 +1187,7 @@ document.addEventListener("click", function (e) {
     if (nextBatch(p).length && genReady()) startGenerate(); else render();
   }
   else if (act === "stop") { lp.stopped = true; lp.phase = "idle"; lp.story = null; render(); }
-  else if (act === "add-more") { state.appendMode = true; state.step = "input"; render(); }
+  else if (act === "add-more") { if (state.aiBusy) return; state.appendMode = true; state.step = "input"; render(); }
   else if (act === "resume") { lp.stopped = false; if (genReady()) startGenerate(); else render(); }
   else if (act === "gen-save") {
     var d = state.genDraft || { provider: "ollama" };
