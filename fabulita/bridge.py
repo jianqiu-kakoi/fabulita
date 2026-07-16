@@ -13,8 +13,20 @@ import subprocess
 import tempfile
 import time
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+from urllib.parse import urlsplit
 
 CODEX_TIMEOUT = 600
+
+
+def origin_allowed(origin):
+    """No Origin (curl, same-origin) is fine; browsers must be on localhost."""
+    if not origin:
+        return True
+    try:
+        u = urlsplit(origin)
+    except ValueError:
+        return False
+    return u.scheme in ("http", "https") and u.hostname in ("localhost", "127.0.0.1")
 
 
 def build_cmd(model, out_path, workdir):
@@ -59,7 +71,9 @@ class _Handler(BaseHTTPRequestHandler):
         self.wfile.write(body)
 
     def _cors(self):
-        self.send_header("Access-Control-Allow-Origin", "*")
+        origin = self.headers.get("Origin")
+        self.send_header("Access-Control-Allow-Origin", origin if origin else "*")
+        self.send_header("Vary", "Origin")
         self.send_header("Access-Control-Allow-Headers", "content-type, authorization")
         self.send_header("Access-Control-Allow-Methods", "POST, OPTIONS")
 
@@ -73,8 +87,13 @@ class _Handler(BaseHTTPRequestHandler):
 
     def do_POST(self):
         t0 = time.time()
+        if not origin_allowed(self.headers.get("Origin")):
+            self._send(403, {"error": {"message": "origin not allowed"}})
+            self._log(403, t0)
+            return
         if self.path.rstrip("/") != "/v1/chat/completions":
             self._send(404, {"error": {"message": "unknown path %s" % self.path}})
+            self._log(404, t0)
             return
         try:
             length = int(self.headers.get("Content-Length") or 0)
@@ -85,8 +104,11 @@ class _Handler(BaseHTTPRequestHandler):
                 raise ValueError("no message content")
             prompt = "\n\n".join(parts)
             model = body.get("model") or self.server.default_model
-        except (ValueError, KeyError, TypeError) as e:
+            if model is not None and (not isinstance(model, str) or "\x00" in model):
+                raise ValueError("bad model value")
+        except (ValueError, KeyError, TypeError, AttributeError) as e:
             self._send(400, {"error": {"message": "bad request: %s" % e}})
+            self._log(400, t0)
             return
         try:
             text = run_codex(prompt, model)
@@ -116,7 +138,11 @@ def make_server(port, default_model):
 
 
 def main(args):
-    srv = make_server(args.port, args.model)
+    try:
+        srv = make_server(args.port, args.model)
+    except OSError as e:
+        print("fabulita bridge: cannot bind port %d (%s) — is another bridge running? try --port" % (args.port, e), flush=True)
+        return 1
     print("fabulita bridge: http://127.0.0.1:%d/v1  ->  codex exec%s"
           % (srv.server_address[1], " -m " + args.model if args.model else ""), flush=True)
     try:

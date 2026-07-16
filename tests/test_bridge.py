@@ -115,3 +115,38 @@ def test_unknown_path_404(server):
     with pytest.raises(urllib.error.HTTPError) as ei:
         urllib.request.urlopen("http://127.0.0.1:%d/nope" % server.server_address[1])
     assert ei.value.code == 404
+
+
+def test_messages_as_string_returns_400(server):
+    with pytest.raises(urllib.error.HTTPError) as ei:
+        _post(server, {"messages": "not a list"})
+    assert ei.value.code == 400
+
+
+def test_model_with_nul_returns_400(server):
+    with pytest.raises(urllib.error.HTTPError) as ei:
+        _post(server, {"model": "x\x00y", "messages": [{"role": "user", "content": "hi"}]})
+    assert ei.value.code == 400
+
+
+def test_evil_origin_rejected(server):
+    req = urllib.request.Request(
+        "http://127.0.0.1:%d/v1/chat/completions" % server.server_address[1],
+        data=json.dumps({"messages": [{"role": "user", "content": "x"}]}).encode(),
+        headers={"Content-Type": "application/json", "Origin": "https://evil.example"},
+    )
+    with pytest.raises(urllib.error.HTTPError) as ei:
+        urllib.request.urlopen(req)
+    assert ei.value.code == 403
+
+
+def test_localhost_origin_allowed_and_echoed(tmp_path, monkeypatch, server):
+    _fake_codex(tmp_path, FAKE_OK, monkeypatch)
+    req = urllib.request.Request(
+        "http://127.0.0.1:%d/v1/chat/completions" % server.server_address[1],
+        data=json.dumps({"messages": [{"role": "user", "content": "hi"}]}).encode(),
+        headers={"Content-Type": "application/json", "Origin": "http://localhost:8901"},
+    )
+    res = urllib.request.urlopen(req)
+    assert res.status == 200
+    assert res.headers["Access-Control-Allow-Origin"] == "http://localhost:8901"
