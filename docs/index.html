@@ -846,7 +846,7 @@ function widgetBody() {
       h += '<div class="row"><label class="btn" style="margin:0">' + esc(t("upload")) + '<input type="file" id="wf" accept=".csv,.tsv,.txt,.md,.pdf"></label>' +
         '<button class="btn btn-primary" data-act="parse">' + esc(t("parse")) + "</button></div>";
     }
-    if (state.skipped === -1) {
+    if (state.skipped === -1 && !state.aiBusy) {
       h += '<p class="muted">' + esc(t("nothing")) + "</p>";
       if (genReady() && state.lastRaw) h += '<div class="row"><button class="btn" data-act="ai-parse">' + esc(t("aiParseBtn")) + "</button></div>";
     }
@@ -1051,7 +1051,12 @@ document.addEventListener("click", function (e) {
     state.targetLang = document.getElementById("wl").value;
     doParse(document.getElementById("wt").value);
   }
-  else if (act === "ai-parse") { runAiParse(function () { return state.lastRaw; }); }
+  else if (act === "ai-parse") {
+    if (state.aiBusy) return;
+    var wtEl = document.getElementById("wt");
+    var live = wtEl && wtEl.value.trim() ? wtEl.value : state.lastRaw;
+    runAiParse(function () { return live; });
+  }
   else if (act === "drop") { state.pending.splice(+el.dataset.i, 1); render(); }
   else if (act === "cancel") { state.step = "input"; state.pending = null; state.skipped = 0; render(); }
   else if (act === "confirm") {
