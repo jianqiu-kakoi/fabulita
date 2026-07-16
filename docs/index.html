@@ -1124,7 +1124,7 @@ document.addEventListener("click", function (e) {
     if (genReady()) startGenerate(); else render();
   }
   else if (act === "open-proj") {
-    state.pid = el.dataset.id; state.step = "loop"; state.open = true;
+    state.pid = el.dataset.id; state.step = "loop"; state.open = true; state.expMsg = null; state.expText = null;
     state.loop = { phase: "idle", story: null, warnings: [], missing: [], error: null, attempt: 0, stopped: false };
     render();
     document.querySelector(".widget").scrollIntoView({ behavior: "smooth" });
