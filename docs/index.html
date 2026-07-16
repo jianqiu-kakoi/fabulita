@@ -143,7 +143,11 @@ var L = {
     targetLang: "学习语言",
     pasteLabel: "粘贴词表（每行一个词，支持 逗号 / Tab / → / ： 分隔；Word 文档请复制文本粘贴）",
     pastePh: "apple, 苹果\nbanana → 香蕉\norange：橙子；橘子",
-    upload: "上传文件（csv / tsv / txt / md）",
+    upload: "上传文件（csv / tsv / txt / md / pdf）",
+    aiParsing: "AI 正在解析词表…（本地小模型可能要 1-2 分钟）",
+    aiNeedProvider: "PDF / AI 解析需要先接入模型服务（本机 Ollama 免 Key）。",
+    errPdfLoad: "PDF 解析库加载失败——首次使用需要联网。",
+    errPdfScan: "没有找到可提取的文本（扫描版 PDF 暂不支持）。",
     parse: "解析并确认",
     confirmTitle: "确认词汇表",
     confirmSub: "解析出 {n} 个词。多个释义已用「；」合并；点 ✕ 删除不要的行。",
@@ -195,7 +199,11 @@ var L = {
     targetLang: "Learning language",
     pasteLabel: "Paste your list (one word per line; comma / tab / → / : separators)",
     pastePh: "apple, 苹果\nbanana → 香蕉",
-    upload: "Upload a file (csv / tsv / txt / md)",
+    upload: "Upload a file (csv / tsv / txt / md / pdf)",
+    aiParsing: "AI is parsing the list… (small local models may take 1-2 min)",
+    aiNeedProvider: "PDF / AI parsing needs a model provider first (local Ollama works — no key).",
+    errPdfLoad: "Could not load the PDF library — first use needs a network connection.",
+    errPdfScan: "No extractable text found (scanned PDFs not supported yet).",
     parse: "Parse & review",
     confirmTitle: "Confirm the vocabulary",
     confirmSub: "Parsed {n} words. Multiple meanings joined with “;”. Click ✕ to drop a row.",
@@ -247,7 +255,11 @@ var L = {
     targetLang: "Idioma que aprendes",
     pasteLabel: "Pega tu lista (una palabra por línea; coma / tab / → / :)",
     pastePh: "apple, manzana\nbanana → plátano",
-    upload: "Subir archivo (csv / tsv / txt / md)",
+    upload: "Subir archivo (csv / tsv / txt / md / pdf)",
+    aiParsing: "La IA está analizando la lista… (los modelos locales pequeños pueden tardar 1-2 min)",
+    aiNeedProvider: "El análisis con IA / PDF necesita primero un proveedor de modelo (Ollama local funciona, sin clave).",
+    errPdfLoad: "No se pudo cargar la librería PDF — el primer uso necesita conexión.",
+    errPdfScan: "No se encontró texto extraíble (los PDF escaneados aún no se admiten).",
     parse: "Analizar y revisar",
     confirmTitle: "Confirma el vocabulario",
     confirmSub: "{n} palabras. Significados múltiples unidos con “;”. Pulsa ✕ para quitar una fila.",
@@ -299,7 +311,11 @@ var L = {
     targetLang: "学習言語",
     pasteLabel: "リストを貼り付け（1 行 1 語；カンマ / タブ / → / ： 区切り）",
     pastePh: "apple, りんご\nbanana → バナナ",
-    upload: "ファイルをアップロード（csv / tsv / txt / md）",
+    upload: "ファイルをアップロード（csv / tsv / txt / md / pdf）",
+    aiParsing: "AI が語彙リストを解析中…（ローカル小型モデルは 1〜2 分かかることがあります）",
+    aiNeedProvider: "PDF / AI 解析にはモデルサービスの接続が必要です（ローカル Ollama は Key 不要）。",
+    errPdfLoad: "PDF ライブラリを読み込めません——初回はネット接続が必要です。",
+    errPdfScan: "抽出できるテキストがありません（スキャン PDF は未対応）。",
     parse: "解析して確認",
     confirmTitle: "語彙リストの確認",
     confirmSub: "{n} 語を解析。複数の意味は「；」で結合。✕ で行を削除。",
@@ -358,6 +374,41 @@ var PROV = {
   custom:    { base: "", model: "", needKey: false }
 };
 
+var PDFJS_URL = "https://cdn.jsdelivr.net/npm/pdfjs-dist@6.1.200/build/pdf.min.mjs";
+var PDFJS_WORKER = "https://cdn.jsdelivr.net/npm/pdfjs-dist@6.1.200/build/pdf.worker.min.mjs";
+var pdfjsPromise = null;
+function loadPdfjs() {
+  if (!pdfjsPromise) {
+    pdfjsPromise = import(PDFJS_URL).then(function (m) {
+      m.GlobalWorkerOptions.workerSrc = PDFJS_WORKER;
+      return m;
+    });
+    pdfjsPromise.catch(function () { pdfjsPromise = null; });
+  }
+  return pdfjsPromise;
+}
+function extractPdfText(file) {
+  return loadPdfjs().catch(function () { throw new Error(t("errPdfLoad")); })
+    .then(function (lib) {
+      return file.arrayBuffer().then(function (buf) {
+        return lib.getDocument({ data: buf }).promise;
+      });
+    }).then(function (doc) {
+      var chain = Promise.resolve([]);
+      for (var i = 1; i <= doc.numPages; i++) {
+        (function (n) {
+          chain = chain.then(function (acc) {
+            return doc.getPage(n).then(function (pg) { return pg.getTextContent(); }).then(function (tc) {
+              acc.push(tc.items.map(function (it) { return it.str; }).join(" "));
+              return acc;
+            });
+          });
+        })(i);
+      }
+      return chain.then(function (acc) { return acc.join("\n"); });
+    });
+}
+
 (function () {
   var m = location.hash.match(/^#cfg=(.+)$/);
   if (!m) return;
@@ -375,7 +426,7 @@ var state = {
     return L[nav] ? nav : "en"; })(),
   open: false, booksOpen: false,
   step: "input",            // input | confirm | loop
-  pending: null, skipped: 0,
+  pending: null, skipped: 0, aiBusy: false, aiErr: null, lastRaw: "",
   inputBuf: "", pasteBuf: "", appendMode: false,
   targetLang: "es",
   pid: null,
@@ -783,9 +834,12 @@ function widgetBody() {
     LANG_CHOICES.forEach(function (c) { h += '<option value="' + c[0] + '"' + (c[0] === state.targetLang ? " selected" : "") + ">" + c[1] + "</option>"; });
     h += "</select>";
     h += "<label>" + esc(t("pasteLabel")) + '</label><textarea id="wt" placeholder="' + esc(t("pastePh")) + '">' + esc(state.inputBuf) + '</textarea>';
-    h += '<div class="row"><label class="btn" style="margin:0">' + esc(t("upload")) + '<input type="file" id="wf" accept=".csv,.tsv,.txt,.md"></label>' +
+    h += '<div class="row"><label class="btn" style="margin:0">' + esc(t("upload")) + '<input type="file" id="wf" accept=".csv,.tsv,.txt,.md,.pdf"></label>' +
       '<button class="btn btn-primary" data-act="parse">' + esc(t("parse")) + "</button></div>";
     if (state.skipped === -1) h += '<p class="muted">' + esc(t("nothing")) + "</p>";
+    if (state.aiBusy) h += '<div class="msg ok"><span class="spinner"></span>' + esc(t("aiParsing")) + "</div>";
+    if (state.aiErr) h += '<div class="msg err">' + esc(state.aiErr) + "</div>";
+    if (state.aiErr && !genReady()) h += settingsHtml();
   }
   else if (state.step === "confirm") {
     h += "<h2>" + esc(t("confirmTitle")) + '</h2><p class="muted">' + esc(fmt(t("confirmSub"), { n: state.pending.length })) + "</p>";
@@ -911,6 +965,24 @@ function doParse(text) {
   if (!r.entries.length) { state.skipped = -1; state.pending = null; }
   else { state.step = "confirm"; state.pending = r.entries; state.skipped = r.skipped; }
   render();
+}
+
+function runAiParse(getText) {
+  if (!genReady()) { state.aiErr = t("aiNeedProvider"); state.keyOpen = true; render(); return; }
+  state.aiBusy = true; state.aiErr = null; state.step = "input"; render();
+  Promise.resolve().then(getText).then(function (text) {
+    text = String(text || "");
+    if (!text.replace(/\s/g, "")) throw new Error(t("errPdfScan"));
+    state.lastRaw = text;
+    return llmParseVocab(text);
+  }).then(function (entries) {
+    state.aiBusy = false;
+    if (!entries.length) { state.skipped = -1; state.pending = null; }
+    else { state.step = "confirm"; state.pending = entries; state.skipped = 0; }
+    render();
+  }, function (err) {
+    state.aiBusy = false; state.aiErr = err.message; render();
+  });
 }
 
 function startGenerate() {
@@ -1045,7 +1117,7 @@ document.addEventListener("click", function (e) {
       key: ((kEl && kEl.value) || "").trim()
     };
     try { localStorage.setItem(LSG, JSON.stringify(cfg)); localStorage.removeItem("fabulita.apiKey"); } catch (err) {}
-    state.genDraft = null; state.keyOpen = false; state.msg = null; if (lp) lp.error = null;
+    state.genDraft = null; state.keyOpen = false; state.msg = null; if (lp) lp.error = null; state.aiErr = null;
     if (state.step === "loop" && genReady() && p && !lp.stopped && lp.phase === "idle" && nextBatch(p).length) startGenerate();
     else render();
   }
@@ -1075,6 +1147,7 @@ document.addEventListener("change", function (e) {
     var f = e.target.files[0];
     if (!f) return;
     state.targetLang = document.getElementById("wl").value;
+    if (/\.pdf$/i.test(f.name) || f.type === "application/pdf") { runAiParse(function () { return extractPdfText(f); }); return; }
     f.text().then(doParse);
   }
 });
