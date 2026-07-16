@@ -438,7 +438,7 @@ var state = {
     return L[nav] ? nav : "en"; })(),
   open: false, booksOpen: false,
   step: "input",            // input | confirm | loop
-  pending: null, skipped: 0, aiBusy: false, aiErr: null, lastRaw: "", expMsg: null,
+  pending: null, skipped: 0, aiBusy: false, aiErr: null, lastRaw: "", expMsg: null, expText: null,
   inputBuf: "", pasteBuf: "", appendMode: false,
   targetLang: "es",
   pid: null,
@@ -888,6 +888,7 @@ function widgetBody() {
       '<button class="btn" data-act="export-copy">' + esc(t("exportCopy")) + "</button>" +
       '<button class="btn" data-act="export-tsv">' + esc(t("exportTsv")) + "</button></div>";
     if (state.expMsg) h += '<div class="msg ok">' + esc(state.expMsg) + "</div>";
+    if (state.expText) h += '<textarea readonly style="min-height:10rem">' + esc(state.expText) + "</textarea>";
   }
   else if (state.step === "loop") {
     var p = proj();
@@ -903,6 +904,7 @@ function widgetBody() {
     h += '<div class="row" style="margin-top:0.5rem"><button class="btn" data-act="export-copy">' + esc(t("exportCopy")) + "</button>" +
       '<button class="btn" data-act="export-tsv">' + esc(t("exportTsv")) + "</button></div>";
     if (state.expMsg) h += '<div class="msg ok">' + esc(state.expMsg) + "</div>";
+    if (state.expText) h += '<textarea readonly style="min-height:10rem">' + esc(state.expText) + "</textarea>";
 
     if (!batch.length) {
       h += '<div class="msg ok">' + esc(fmt(t("doneAll"), { n: p.stories.length })) + "</div>";
@@ -1088,15 +1090,13 @@ document.addEventListener("click", function (e) {
       return;
     }
     (navigator.clipboard ? navigator.clipboard.writeText(vocabLines(list)) : Promise.reject()).then(function () {
-      state.expMsg = t("exportCopied"); render();
+      state.expMsg = t("exportCopied"); state.expText = null; render();
     }, function () {
-      state.expMsg = null;
-      state.msg = { cls: "ok", html: "<textarea readonly style='min-height:10rem'>" + esc(vocabLines(list)) + "</textarea>" };
-      render();
+      state.expMsg = null; state.expText = vocabLines(list); render();
     });
   }
   else if (act === "drop") { state.pending.splice(+el.dataset.i, 1); render(); }
-  else if (act === "cancel") { state.step = "input"; state.pending = null; state.skipped = 0; state.expMsg = null; render(); }
+  else if (act === "cancel") { state.step = "input"; state.pending = null; state.skipped = 0; state.expMsg = null; state.expText = null; render(); }
   else if (act === "confirm") {
     if (state.appendMode && proj()) {
       var pp = proj(), known = {};
@@ -1106,7 +1106,7 @@ document.addEventListener("click", function (e) {
         if (known[k]) known[k].gloss = e.gloss; else { pp.vocab.push(e); known[k] = e; }
       });
       saveProj(pp);
-      state.step = "loop"; state.pending = null; state.appendMode = false; state.inputBuf = ""; state.expMsg = null;
+      state.step = "loop"; state.pending = null; state.appendMode = false; state.inputBuf = ""; state.expMsg = null; state.expText = null;
       state.loop = { phase: "idle", story: null, warnings: [], missing: [], error: null, attempt: 0, stopped: false };
       if (genReady()) startGenerate(); else render();
       return;
@@ -1119,7 +1119,7 @@ document.addEventListener("click", function (e) {
     var name = base, seq = 2;
     while (names[name]) { name = base + " " + seq; seq++; }
     saveProj({ id: id, config: { name: name, lang: state.targetLang, gloss_lang: glossLang, ui_default: state.lang }, vocab: state.pending, glossary: {}, stories: [] });
-    state.pid = id; state.step = "loop"; state.pending = null; state.inputBuf = ""; state.expMsg = null;
+    state.pid = id; state.step = "loop"; state.pending = null; state.inputBuf = ""; state.expMsg = null; state.expText = null;
     state.loop = { phase: "idle", story: null, warnings: [], missing: [], error: null, attempt: 0, stopped: false };
     if (genReady()) startGenerate(); else render();
   }
