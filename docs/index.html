@@ -997,7 +997,8 @@ function widgetBody() {
       } else {
         if (genReady()) {
           h += '<div class="row"><button class="btn btn-primary" data-act="gen">' + esc(t("generate")) + "</button>" +
-            '<button class="btn" data-act="stop">' + esc(t("stopHere")) + "</button></div>";
+            '<button class="btn" data-act="stop">' + esc(t("stopHere")) + "</button>" +
+            '<button class="btn" data-act="add-more">' + esc(t("addMore")) + "</button></div>";
           if (lp.error) h += '<div class="msg err">' + esc(lp.error) + "</div>";
         } else {
           h += '<div class="msg ok">' + esc(t("needSetup")) + "</div>" + settingsHtml();
