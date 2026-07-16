@@ -1315,9 +1315,13 @@ function startGenerate() {
   if (!lists.length) { lp.phase = "idle"; render(); return; }
   var p = lists[0], batch = genBatch();
   if (!batch.length) { lp.phase = "idle"; render(); return; }
+  lp.runId = (lp.runId || 0) + 1;
+  lp.targetId = p.id;
+  var run = lp.runId;
   lp.phase = "generating"; lp.error = null; state.msg = null;
   render();
   generateStory(p, batch, lp.attempt).then(function (raw) {
+    if (run !== lp.runId) return;
     var s = normalizeStory(raw, p);
     lp.story = s;
     var v = validateStory(p, s);
@@ -1325,6 +1329,7 @@ function startGenerate() {
     lp.phase = "preview";
     render();
   }, function (err) {
+    if (run !== lp.runId) return;
     lp.phase = "idle";
     lp.error = t("errApi") + err.message;
     render();
@@ -1458,12 +1463,14 @@ document.addEventListener("click", function (e) {
     }
     state.genSrc.words = [];
     lp.error = null;
+    lp.runId = (lp.runId || 0) + 1;
+    lp.phase = "idle"; lp.story = null; lp.warnings = []; lp.missing = []; lp.error = null; lp.targetId = null;
     render();
   }
   else if (act === "gen") {
     if (!requireGenLists()) return;
     if (!genBatch().length) { lp.error = t("pickNone"); render(); return; }
-    lp.attempt = 0; startGenerate();
+    lp.attempt = 0; lp.stopped = false; startGenerate();
   }
   else if (act === "pick-word") {
     var gs = state.genSrc;
@@ -1506,15 +1513,15 @@ document.addEventListener("click", function (e) {
     }
   }
   else if (act === "keep") {
-    var kLists = genLists();
-    if (!kLists.length) return;
-    var kp = kLists[0];
+    var kAll = loadAll();
+    var kp = (lp.targetId && kAll[lp.targetId]) || genLists()[0];
+    if (!kp) return;
     if (lp.missing && lp.missing.length) {
       lp.story.vocab_used = lp.story.vocab_used.filter(function (w) { return lp.missing.indexOf(w) === -1; });
     }
     kp.stories.push(lp.story);
     saveProj(kp);
-    lp.story = null; lp.warnings = []; lp.attempt = 0; lp.phase = "idle"; state.msg = null;
+    lp.story = null; lp.warnings = []; lp.attempt = 0; lp.phase = "idle"; state.msg = null; lp.targetId = null;
     if (state.genSrc && state.genSrc.type === "manual") {
       state.genSrc = { type: "all", words: [] };
       render();
