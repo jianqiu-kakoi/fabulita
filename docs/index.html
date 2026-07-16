@@ -63,6 +63,11 @@
   .btn-ok { border-color: var(--ok); color: var(--ok); }
   .btn-danger { color: var(--danger); }
 
+  .tabs { display: flex; gap: 0.4rem; margin-bottom: 0.8rem; }
+  .tab { font-family: var(--sans); font-size: 0.85rem; padding: 0.4rem 0.95rem; border: 1px solid var(--line); border-radius: 100px; background: var(--card); color: var(--ink); cursor: pointer; }
+  .tab:hover { border-color: var(--accent); }
+  .tab.on { background: var(--accent); border-color: var(--accent); color: var(--card); }
+
   .vtable { width: 100%; border-collapse: collapse; margin-top: 0.9rem; font-size: 0.92rem; }
   .vtable td { padding: 0.35rem 0.5rem; border-bottom: 1px solid var(--line); }
   .vtable td.vw { font-family: var(--serif); font-size: 1.02rem; color: var(--accent-deep); white-space: nowrap; }
@@ -115,10 +120,10 @@
   details.keyrow summary::-webkit-details-marker { display: none; }
   details.keyrow summary:hover { color: var(--accent-deep); }
 
-  .plist { display: grid; gap: 0.7rem; margin-bottom: 2rem; }
-  .pcard { display: flex; justify-content: space-between; align-items: center; gap: 1rem; background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 0.8rem 1.2rem; cursor: pointer; }
-  .pcard:hover { border-color: var(--accent); }
-  .pcard .pname { font-family: var(--serif); font-weight: 600; }
+  .plist { display: grid; gap: 0.7rem; margin: 0.8rem 0 1rem; }
+  .lrow { display: flex; justify-content: space-between; align-items: center; gap: 1rem; background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 0.8rem 1.2rem; cursor: pointer; }
+  .lrow:hover { border-color: var(--accent); }
+  .lrow .pname { font-family: var(--serif); font-weight: 600; }
 
   footer { color: var(--muted); font-size: 0.8rem; margin-top: 3rem; display: flex; gap: 1.2rem; flex-wrap: wrap; }
   footer a { color: var(--muted); }
@@ -197,6 +202,10 @@ var L = {
     projName: { es: "我的西语故事书", en: "我的英语故事书", ja: "我的日语故事书" },
     myBookGeneric: "我的故事书", myBookMeta: "你收下的 {n} 篇故事",
     uploadNameLabel: "这批词的名字（会记录在词表里）", uploadNameDefault: "粘贴 · {d}", vocabSection: "📚 词表（按上传批次）", legacyBatch: "早期词表",
+    tabLists: "词表", tabGen: "生成故事",
+    newList: "＋ 新建词表", newListName: "词表名字", newListSave: "创建",
+    uploadWords: "上传 / 粘贴生词", upTarget: "加到哪张词表", upTargetNew: "新建词表",
+    addToList: "＋ 加词到这张表", backToLists: "← 返回词表", noLists: "还没有词表——先建一张或直接上传",
     footStudio: "工作台", footGh: "源码 GitHub", footCli: "命令行版"
   },
   en: {
@@ -260,6 +269,10 @@ var L = {
     projName: { es: "My Spanish storybook", en: "My English storybook", ja: "My Japanese storybook" },
     myBookGeneric: "My storybook", myBookMeta: "{n} stories you kept",
     uploadNameLabel: "Name this batch (kept in your word list)", uploadNameDefault: "Pasted · {d}", vocabSection: "📚 Word list (by upload)", legacyBatch: "Earlier words",
+    tabLists: "Word lists", tabGen: "Generate stories",
+    newList: "＋ New list", newListName: "List name", newListSave: "Create",
+    uploadWords: "Upload / paste words", upTarget: "Add to which list", upTargetNew: "New list",
+    addToList: "＋ Add words to this list", backToLists: "← Back to lists", noLists: "No word lists yet — create one or upload words",
     footStudio: "Workspace", footGh: "Source on GitHub", footCli: "Command line"
   },
   es: {
@@ -323,6 +336,10 @@ var L = {
     projName: { es: "Mi libro de español", en: "Mi libro de inglés", ja: "Mi libro de japonés" },
     myBookGeneric: "Mi libro de cuentos", myBookMeta: "{n} historias que guardaste",
     uploadNameLabel: "Nombre de este lote (se guarda en tu lista)", uploadNameDefault: "Pegado · {d}", vocabSection: "📚 Lista de palabras (por subida)", legacyBatch: "Palabras anteriores",
+    tabLists: "Listas de palabras", tabGen: "Generar historias",
+    newList: "＋ Nueva lista", newListName: "Nombre de la lista", newListSave: "Crear",
+    uploadWords: "Subir / pegar palabras", upTarget: "Añadir a qué lista", upTargetNew: "Nueva lista",
+    addToList: "＋ Añadir palabras a esta lista", backToLists: "← Volver a las listas", noLists: "Aún no hay listas — crea una o sube palabras",
     footStudio: "Taller", footGh: "Código en GitHub", footCli: "Línea de comandos"
   },
   ja: {
@@ -386,6 +403,10 @@ var L = {
     projName: { es: "わたしのスペイン語の本", en: "わたしの英語の本", ja: "わたしの日本語の本" },
     myBookGeneric: "わたしのストーリーブック", myBookMeta: "採用した {n} 話",
     uploadNameLabel: "このリストの名前（語彙リストに記録）", uploadNameDefault: "貼り付け · {d}", vocabSection: "📚 語彙リスト（アップロード別）", legacyBatch: "以前の単語",
+    tabLists: "語彙リスト", tabGen: "物語を生成",
+    newList: "＋ 新しいリスト", newListName: "リスト名", newListSave: "作成",
+    uploadWords: "単語をアップロード / 貼り付け", upTarget: "どのリストに追加", upTargetNew: "新しいリスト",
+    addToList: "＋ このリストに単語を追加", backToLists: "← リストに戻る", noLists: "まだリストがありません——作成するかアップロードしてください",
     footStudio: "ワークスペース", footGh: "GitHub", footCli: "コマンドライン"
   }
 };
@@ -506,11 +527,11 @@ var state = {
     var nav = (navigator.language || "en").slice(0, 2);
     return L[nav] ? nav : "en"; })(),
   open: false, booksOpen: false,
-  step: "input",            // input | confirm | loop
+  step: null,               // null (table) | input | confirm | loop (dead)
   pending: null, skipped: 0, aiBusy: false, aiErr: null, lastRaw: "", lastFileName: "", upNameBuf: null, expMsg: null, expText: null, genSrc: { type: "all", words: [] },
-  inputBuf: "", pasteBuf: "", appendMode: false,
+  inputBuf: "", pasteBuf: "",
   targetLang: "es",
-  tab: "lists", listView: null, uploadTarget: "__new", genSel: [],
+  tab: "lists", listView: null, uploadTarget: "__new", genSel: [], newListOpen: false,
   pid: null,
   loop: { phase: "idle", story: null, warnings: [], missing: [], error: null, attempt: 0, stopped: false },
   genDraft: null, manualOpen: false, keyOpen: false,
@@ -997,52 +1018,136 @@ function manualHtml() {
   return h;
 }
 
-function widgetBody() {
+function tabsHtml() {
+  return '<div class="tabs">' +
+    '<button class="tab' + (state.tab === "lists" ? " on" : "") + '" data-act="tab-lists">' + esc(t("tabLists")) + "</button>" +
+    '<button class="tab' + (state.tab === "gen" ? " on" : "") + '" data-act="tab-gen">' + esc(t("tabGen")) + "</button></div>";
+}
+
+function genBody() {
+  return '<p class="muted">' + esc(t("tabGen")) + "…</p>";
+}
+
+function uploadInputHtml() {
   var h = "";
-  if (state.step === "input") {
-    if (state.appendMode && proj()) {
-      h += '<p class="muted" style="margin:0 0 0.4rem">' + esc(fmt(t("appendingTo"), { name: proj().config.name })) + "</p>";
-    }
+  if (state.uploadTarget !== "__new") {
+    var tgt0 = loadAll()[state.uploadTarget];
+    if (tgt0) h += '<p class="muted" style="margin:0 0 0.4rem">' + esc(fmt(t("appendingTo"), { name: tgt0.config.name })) + "</p>";
+  }
+  h += "<label>" + esc(t("targetLang")) + '</label><select id="wl">';
+  LANG_CHOICES.forEach(function (c) { h += '<option value="' + c[0] + '"' + (c[0] === state.targetLang ? " selected" : "") + ">" + c[1] + "</option>"; });
+  h += "</select>";
+  h += "<label>" + esc(t("pasteLabel")) + '</label><textarea id="wt" placeholder="' + esc(t("pastePh")) + '">' + esc(state.inputBuf) + '</textarea>';
+  if (!state.aiBusy) {
+    h += '<div class="row"><label class="btn" style="margin:0">' + esc(t("upload")) + '<input type="file" id="wf" accept=".csv,.tsv,.txt,.md,.pdf"></label>' +
+      '<button class="btn btn-primary" data-act="parse">' + esc(t("parse")) + "</button>" +
+      '<button class="btn" data-act="cancel">' + esc(t("cancel")) + "</button></div>";
+  }
+  if (state.skipped === -1 && !state.aiBusy) {
+    h += '<p class="muted">' + esc(t("nothing")) + "</p>";
+    if (genReady() && state.lastRaw) h += '<div class="row"><button class="btn" data-act="ai-parse">' + esc(t("aiParseBtn")) + "</button></div>";
+  }
+  if (state.aiBusy) h += '<div class="msg ok"><span class="spinner"></span>' + esc(t("aiParsing")) + "</div>";
+  if (state.aiErr) h += '<div class="msg err">' + esc(state.aiErr) + "</div>";
+  if (state.aiErr && !genReady()) h += settingsHtml();
+  return h;
+}
+
+function uploadConfirmHtml() {
+  var h = "";
+  h += "<h2>" + esc(t("confirmTitle")) + '</h2><p class="muted">' + esc(fmt(t("confirmSub"), { n: state.pending.length })) + "</p>";
+  if (state.skipped > 0) {
+    h += '<p class="muted">⚠ ' + esc(fmt(t("skipped"), { n: state.skipped })) + "</p>";
+    if (genReady() && state.lastRaw) h += '<div class="row" style="margin-bottom:0.6rem"><button class="btn" data-act="ai-parse">' + esc(t("aiParseBtn")) + "</button></div>";
+  }
+  h += '<div class="vscroll"><table class="vtable">';
+  state.pending.forEach(function (e, i) {
+    h += '<tr><td class="vw">' + esc(e.w) + '</td><td class="varrow">→</td><td>' + esc(e.gloss) +
+      '</td><td class="vdel"><button data-act="drop" data-i="' + i + '" aria-label="✕">✕</button></td></tr>';
+  });
+  h += "</table></div>";
+  var okTargets = listsOf(state.targetLang);
+  var validTarget = state.uploadTarget === "__new" || okTargets.some(function (lst) { return lst.id === state.uploadTarget; });
+  var selTarget = validTarget ? state.uploadTarget : "__new";
+  h += "<label>" + esc(t("upTarget")) + '</label><select id="up-target">';
+  h += '<option value="__new"' + (selTarget === "__new" ? " selected" : "") + ">" + esc(t("upTargetNew")) + "</option>";
+  okTargets.forEach(function (lst) {
+    h += '<option value="' + esc(lst.id) + '"' + (selTarget === lst.id ? " selected" : "") + ">" + esc(lst.config.name) + "</option>";
+  });
+  h += "</select>";
+  if (selTarget === "__new") {
+    h += "<label>" + esc(t("uploadNameLabel")) + '</label><input type="text" id="upname" value="' +
+      esc(state.upNameBuf !== null ? state.upNameBuf : (state.lastFileName || fmt(t("uploadNameDefault"), { d: new Date().toLocaleDateString() }))) + '">';
+  }
+  h += '<div class="row"><button class="btn btn-primary" data-act="confirm">' + esc(t("confirm")) + "</button>" +
+    '<button class="btn" data-act="cancel">' + esc(t("cancel")) + "</button>" +
+    '<button class="btn" data-act="export-copy">' + esc(t("exportCopy")) + "</button>" +
+    '<button class="btn" data-act="export-tsv">' + esc(t("exportTsv")) + "</button></div>";
+  if (state.expMsg) h += '<div class="msg ok">' + esc(state.expMsg) + "</div>";
+  if (state.expText) h += '<textarea readonly style="min-height:10rem">' + esc(state.expText) + "</textarea>";
+  return h;
+}
+
+function listTableHtml() {
+  var h = '<div class="row" style="margin-top:0"><button class="btn btn-primary" data-act="upload-words">' + esc(t("uploadWords")) + "</button>" +
+    '<button class="btn" data-act="new-list">' + esc(t("newList")) + "</button></div>";
+  if (state.newListOpen) {
+    h += "<label>" + esc(t("newListName")) + '</label><input type="text" id="nl-name" value="">';
     h += "<label>" + esc(t("targetLang")) + '</label><select id="wl">';
     LANG_CHOICES.forEach(function (c) { h += '<option value="' + c[0] + '"' + (c[0] === state.targetLang ? " selected" : "") + ">" + c[1] + "</option>"; });
     h += "</select>";
-    h += "<label>" + esc(t("pasteLabel")) + '</label><textarea id="wt" placeholder="' + esc(t("pastePh")) + '">' + esc(state.inputBuf) + '</textarea>';
-    if (!state.aiBusy) {
-      h += '<div class="row"><label class="btn" style="margin:0">' + esc(t("upload")) + '<input type="file" id="wf" accept=".csv,.tsv,.txt,.md,.pdf"></label>' +
-        '<button class="btn btn-primary" data-act="parse">' + esc(t("parse")) + "</button></div>";
-    }
-    if (state.skipped === -1 && !state.aiBusy) {
-      h += '<p class="muted">' + esc(t("nothing")) + "</p>";
-      if (genReady() && state.lastRaw) h += '<div class="row"><button class="btn" data-act="ai-parse">' + esc(t("aiParseBtn")) + "</button></div>";
-    }
-    if (state.aiBusy) h += '<div class="msg ok"><span class="spinner"></span>' + esc(t("aiParsing")) + "</div>";
-    if (state.aiErr) h += '<div class="msg err">' + esc(state.aiErr) + "</div>";
-    if (state.aiErr && !genReady()) h += settingsHtml();
+    h += '<div class="row"><button class="btn btn-primary" data-act="new-list-save">' + esc(t("newListSave")) + "</button>" +
+      '<button class="btn" data-act="new-list">' + esc(t("cancel")) + "</button></div>";
+  }
+  var all = loadAll(), ids = Object.keys(all);
+  if (!ids.length) {
+    h += '<p class="muted" style="margin-top:0.8rem">' + esc(t("noLists")) + "</p>";
+    return h;
+  }
+  h += '<div class="plist">';
+  ids.forEach(function (id) {
+    var p = all[id], cov = coverage(p);
+    var pct = p.vocab.length ? Math.round(100 * cov.covered.length / p.vocab.length) : 0;
+    h += '<div class="lrow" data-act="open-list" data-id="' + id + '"><div><span class="pname">' + esc(p.config.name) + '</span> <span class="muted">· ' +
+      p.vocab.length + " " + esc(t("words")) + " · " + p.stories.length + " " + esc(t("storiesN")) + " · " + pct + "%</span></div><span>→</span></div>";
+  });
+  h += "</div>";
+  return h;
+}
+
+function listDetailHtml() {
+  var all = loadAll(), p = all[state.listView];
+  if (!p) { state.listView = null; return listTableHtml(); }
+  var covSet = langCovered(p.config.lang);
+  var h = '<div class="row" style="margin-top:0"><button class="btn" data-act="back-to-lists">' + esc(t("backToLists")) + "</button></div>";
+  h += '<h2 style="margin-top:0.8rem">' + esc(p.config.name) + "</h2>";
+  h += '<p class="muted" style="margin:0">' + p.vocab.length + " " + esc(t("words")) + " · " + p.stories.length + " " + esc(t("storiesN")) + "</p>";
+  h += '<div class="row"><button class="btn btn-primary" data-act="add-to-list" data-id="' + esc(p.id) + '">' + esc(t("addToList")) + "</button>" +
+    '<button class="btn" data-act="export-copy">' + esc(t("exportCopy")) + "</button>" +
+    '<button class="btn" data-act="export-tsv">' + esc(t("exportTsv")) + "</button></div>";
+  if (state.expMsg) h += '<div class="msg ok">' + esc(state.expMsg) + "</div>";
+  if (state.expText) h += '<textarea readonly style="min-height:10rem">' + esc(state.expText) + "</textarea>";
+  h += '<div class="chips" style="margin-top:0.8rem">';
+  p.vocab.forEach(function (v) {
+    var k = norm(v.w);
+    h += '<span class="chip' + (covSet[k] ? " chip-cov" : "") + '" title="' + esc(v.gloss) + '">' + esc(v.w) + "</span>";
+  });
+  h += "</div>";
+  return h;
+}
+
+function listsBody() {
+  var h = "";
+  if (state.step === "input") {
+    h += uploadInputHtml();
   }
   else if (state.step === "confirm") {
-    h += "<h2>" + esc(t("confirmTitle")) + '</h2><p class="muted">' + esc(fmt(t("confirmSub"), { n: state.pending.length })) + "</p>";
-    if (state.skipped > 0) {
-      h += '<p class="muted">⚠ ' + esc(fmt(t("skipped"), { n: state.skipped })) + "</p>";
-      if (genReady() && state.lastRaw) h += '<div class="row" style="margin-bottom:0.6rem"><button class="btn" data-act="ai-parse">' + esc(t("aiParseBtn")) + "</button></div>";
-    }
-    h += '<div class="vscroll"><table class="vtable">';
-    state.pending.forEach(function (e, i) {
-      h += '<tr><td class="vw">' + esc(e.w) + '</td><td class="varrow">→</td><td>' + esc(e.gloss) +
-        '</td><td class="vdel"><button data-act="drop" data-i="' + i + '" aria-label="✕">✕</button></td></tr>';
-    });
-    h += "</table></div>";
-    h += "<label>" + esc(t("uploadNameLabel")) + '</label><input type="text" id="upname" value="' +
-      esc(state.upNameBuf !== null ? state.upNameBuf : (state.lastFileName || fmt(t("uploadNameDefault"), { d: new Date().toLocaleDateString() }))) + '">';
-    h += '<div class="row"><button class="btn btn-primary" data-act="confirm">' + esc(t("confirm")) + "</button>" +
-      '<button class="btn" data-act="cancel">' + esc(t("cancel")) + "</button>" +
-      '<button class="btn" data-act="export-copy">' + esc(t("exportCopy")) + "</button>" +
-      '<button class="btn" data-act="export-tsv">' + esc(t("exportTsv")) + "</button></div>";
-    if (state.expMsg) h += '<div class="msg ok">' + esc(state.expMsg) + "</div>";
-    if (state.expText) h += '<textarea readonly style="min-height:10rem">' + esc(state.expText) + "</textarea>";
+    h += uploadConfirmHtml();
   }
   else if (state.step === "loop") {
+    // DEAD: nothing sets state.step = "loop" anymore (Task 3 will consume/delete this branch).
     var p = proj();
-    if (!p) { state.step = "input"; return widgetBody(); }
+    if (!p) { state.step = "input"; return listsBody(); }
     var cov = coverage(p), total = p.vocab.length;
     var pct = total ? Math.round(100 * cov.covered.length / total) : 0;
     var batch = nextBatch(p);
@@ -1097,13 +1202,11 @@ function widgetBody() {
 
     if (!cov.uncovered.length && src.type !== "manual") {
       h += '<div class="msg ok">' + esc(fmt(t("doneAll"), { n: p.stories.length })) + "</div>";
-      h += '<div class="row"><a class="btn btn-primary" href="studio.html#p=' + p.id + '">' + esc(t("openStudio")) + '</a>' +
-        '<button class="btn" data-act="add-more">' + esc(t("addMore")) + "</button></div>";
+      h += '<div class="row"><a class="btn btn-primary" href="studio.html#p=' + p.id + '">' + esc(t("openStudio")) + "</a></div>";
     } else if (lp.stopped) {
       h += '<div class="msg ok">' + esc(fmt(t("stoppedAt"), { n: p.stories.length, c: cov.covered.length, t: total })) + "</div>";
       h += '<div class="row"><button class="btn btn-primary" data-act="resume">' + esc(t("continueLoop")) + "</button>" +
-        '<a class="btn" href="studio.html#p=' + p.id + '">' + esc(t("openStudio")) + '</a>' +
-        '<button class="btn" data-act="add-more">' + esc(t("addMore")) + "</button></div>";
+        '<a class="btn" href="studio.html#p=' + p.id + '">' + esc(t("openStudio")) + "</a></div>";
     } else if (!batch.length && src.type === "batch" && lp.phase === "idle") {
       h += '<div class="msg ok">' + esc(t("srcDone")) + "</div>";
     } else {
@@ -1140,8 +1243,7 @@ function widgetBody() {
       } else {
         if (genReady()) {
           h += '<div class="row"><button class="btn btn-primary" data-act="gen">' + esc(t("generate")) + "</button>" +
-            '<button class="btn" data-act="stop">' + esc(t("stopHere")) + "</button>" +
-            '<button class="btn" data-act="add-more">' + esc(t("addMore")) + "</button></div>";
+            '<button class="btn" data-act="stop">' + esc(t("stopHere")) + "</button></div>";
           if (lp.error) h += '<div class="msg err">' + esc(lp.error) + "</div>";
         } else {
           h += '<div class="msg ok">' + esc(t("needSetup")) + "</div>" + settingsHtml();
@@ -1157,7 +1259,17 @@ function widgetBody() {
         ' <span style="color:var(--ok)">' + esc(t("keyOn")) + " · " + esc(provLabel(genCfg())) + "</span></summary>" + settingsHtml() + "</details>";
     }
   }
+  else if (state.listView) {
+    h += listDetailHtml();
+  }
+  else {
+    h += listTableHtml();
+  }
   return h;
+}
+
+function widgetBody() {
+  return tabsHtml() + (state.tab === "gen" ? genBody() : listsBody());
 }
 
 function render() {
@@ -1199,18 +1311,6 @@ function render() {
     '<span class="w-plus">＋</span><div><h2>' + esc(t("addTitle")) + '</h2><p class="muted">' + esc(t("addSub")) + "</p></div></div>" +
     '<div class="w-body">' + widgetBody() + "</div></div>";
 
-  // existing projects
-  var all = loadAll(), ids = Object.keys(all);
-  if (ids.length) {
-    h += "<h2>" + esc(t("myProjects")) + '</h2><div class="plist">';
-    ids.forEach(function (id) {
-      var p = all[id], cov = coverage(p);
-      var pct = p.vocab.length ? Math.round(100 * cov.covered.length / p.vocab.length) : 0;
-      h += '<div class="pcard" data-act="open-proj" data-id="' + id + '"><div><span class="pname">' + esc(p.config.name) + '</span> <span class="muted">· ' +
-        p.vocab.length + " " + esc(t("words")) + " · " + p.stories.length + " " + esc(t("storiesN")) + " · " + pct + "%</span></div><span>→</span></div>";
-    });
-    h += "</div>";
-  }
 
   h += '<footer><a href="studio.html">' + esc(t("footStudio")) + '</a>' +
     '<a href="https://github.com/jianqiu-kakoi/fabulita">' + esc(t("footGh")) + "</a>" +
@@ -1308,10 +1408,11 @@ document.addEventListener("click", function (e) {
     runAiParse(function () { return live; });
   }
   else if (act === "export-copy" || act === "export-tsv") {
-    var list = state.step === "confirm" ? state.pending : (p ? p.vocab : null);
+    var viewP = state.listView ? loadAll()[state.listView] : null;
+    var list = state.step === "confirm" ? state.pending : (viewP ? viewP.vocab : null);
     if (!list || !list.length) return;
     if (act === "export-tsv") {
-      var expName = state.step === "confirm" && !state.appendMode ? "fabulita" : ((p && p.config.name) || "fabulita");
+      var expName = (viewP && viewP.config.name) || "fabulita";
       downloadTsv(expName + "-vocab.tsv", list);
       return;
     }
@@ -1322,50 +1423,66 @@ document.addEventListener("click", function (e) {
     });
   }
   else if (act === "drop") { state.pending.splice(+el.dataset.i, 1); render(); }
-  else if (act === "cancel") { state.step = "input"; state.pending = null; state.skipped = 0; state.expMsg = null; state.expText = null; state.lastFileName = ""; state.upNameBuf = null; render(); }
+  else if (act === "cancel") { state.step = null; state.pending = null; state.skipped = 0; state.expMsg = null; state.expText = null; state.lastFileName = ""; state.upNameBuf = null; state.uploadTarget = "__new"; render(); }
   else if (act === "confirm") {
-    var upEl = document.getElementById("upname");
-    var upRec = {
-      id: "u" + Math.random().toString(36).slice(2, 9),
-      name: ((upEl && upEl.value) || "").trim() || fmt(t("uploadNameDefault"), { d: new Date().toLocaleDateString() }),
-      date: (function (d) { return d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2); })(new Date()),
-      words: state.pending.map(function (e) { return norm(e.w); })
-    };
-    if (state.appendMode && proj()) {
-      var pp = proj(), known = {};
-      pp.vocab.forEach(function (v) { known[norm(v.w)] = v; });
-      state.pending.forEach(function (e) {
-        var k = norm(e.w);
-        if (known[k]) known[k].gloss = e.gloss; else { pp.vocab.push(e); known[k] = e; }
-      });
-      pp.uploads = (pp.uploads || []).concat([upRec]);
-      saveProj(pp);
-      state.step = "loop"; state.pending = null; state.appendMode = false; state.inputBuf = ""; state.expMsg = null; state.expText = null; state.lastFileName = ""; state.upNameBuf = null;
-      state.loop = { phase: "idle", story: null, warnings: [], missing: [], error: null, attempt: 0, stopped: false };
-      state.genSrc = { type: "all", batchId: null, words: [] };
-      render();
-      return;
+    var utEl = document.getElementById("up-target");
+    var target = (utEl && utEl.value) || state.uploadTarget || "__new";
+    if (target === "__new") {
+      var upEl = document.getElementById("upname");
+      var glossLang = state.lang === "es" ? "en" : state.lang;
+      var newName = ((upEl && upEl.value) || "").trim() || fmt(t("uploadNameDefault"), { d: new Date().toLocaleDateString() });
+      var names = {};
+      Object.keys(loadAll()).forEach(function (k) { names[loadAll()[k].config.name] = true; });
+      var finalName = newName, seq = 2;
+      while (names[finalName]) { finalName = newName + " " + seq; seq++; }
+      var id = "p" + Math.random().toString(36).slice(2, 9);
+      saveProj({ id: id, config: { name: finalName, lang: state.targetLang, gloss_lang: glossLang, ui_default: state.lang }, vocab: state.pending, glossary: {}, stories: [] });
+      state.listView = id;
+    } else {
+      var allL = loadAll(), tp = allL[target];
+      if (tp) {
+        var known = {};
+        tp.vocab.forEach(function (v) { known[norm(v.w)] = v; });
+        state.pending.forEach(function (e) {
+          var k = norm(e.w);
+          if (known[k]) known[k].gloss = e.gloss; else { tp.vocab.push(e); known[k] = e; }
+        });
+        saveProj(tp);
+        state.listView = tp.id;
+      }
     }
-    var id = "p" + Math.random().toString(36).slice(2, 9);
-    var glossLang = state.lang === "es" ? "en" : state.lang;
-    var base = t("projName")[state.targetLang] || "fabulita";
-    var names = {};
-    Object.keys(loadAll()).forEach(function (k) { names[loadAll()[k].config.name] = true; });
-    var name = base, seq = 2;
-    while (names[name]) { name = base + " " + seq; seq++; }
-    saveProj({ id: id, config: { name: name, lang: state.targetLang, gloss_lang: glossLang, ui_default: state.lang }, vocab: state.pending, uploads: [upRec], glossary: {}, stories: [] });
-    state.pid = id; state.step = "loop"; state.pending = null; state.inputBuf = ""; state.expMsg = null; state.expText = null; state.lastFileName = ""; state.upNameBuf = null;
-    state.loop = { phase: "idle", story: null, warnings: [], missing: [], error: null, attempt: 0, stopped: false };
-    state.genSrc = { type: "all", batchId: null, words: [] };
+    state.step = null; state.pending = null; state.inputBuf = ""; state.expMsg = null; state.expText = null; state.lastFileName = ""; state.upNameBuf = null; state.uploadTarget = "__new";
     render();
   }
-  else if (act === "open-proj") {
-    if (state.aiBusy) return;
-    state.pid = el.dataset.id; state.step = "loop"; state.open = true; state.expMsg = null; state.expText = null;
-    state.loop = { phase: "idle", story: null, warnings: [], missing: [], error: null, attempt: 0, stopped: false };
-    state.genSrc = { type: "all", batchId: null, words: [] };
+  else if (act === "tab-lists") { state.tab = "lists"; render(); }
+  else if (act === "tab-gen") { state.tab = "gen"; render(); }
+  else if (act === "upload-words") { if (state.aiBusy) return; state.uploadTarget = "__new"; state.step = "input"; render(); }
+  else if (act === "new-list") { state.newListOpen = !state.newListOpen; render(); }
+  else if (act === "new-list-save") {
+    var nlNameEl = document.getElementById("nl-name");
+    var nlName = ((nlNameEl && nlNameEl.value) || "").trim();
+    if (!nlName) return;
+    var nlLangEl = document.getElementById("wl");
+    var nlLang = (nlLangEl && nlLangEl.value) || state.targetLang;
+    var glossLang2 = state.lang === "es" ? "en" : state.lang;
+    var names2 = {};
+    Object.keys(loadAll()).forEach(function (k) { names2[loadAll()[k].config.name] = true; });
+    var finalName2 = nlName, seq2 = 2;
+    while (names2[finalName2]) { finalName2 = nlName + " " + seq2; seq2++; }
+    var nid = "p" + Math.random().toString(36).slice(2, 9);
+    saveProj({ id: nid, config: { name: finalName2, lang: nlLang, gloss_lang: glossLang2, ui_default: state.lang }, vocab: [], glossary: {}, stories: [] });
+    state.newListOpen = false; state.targetLang = nlLang; state.listView = nid;
     render();
-    document.querySelector(".widget").scrollIntoView({ behavior: "smooth" });
+  }
+  else if (act === "open-list") { state.listView = el.dataset.id; render(); }
+  else if (act === "back-to-lists") { state.listView = null; render(); }
+  else if (act === "add-to-list") {
+    if (state.aiBusy) return;
+    var tgtId = el.dataset.id, tgtList = loadAll()[tgtId];
+    state.uploadTarget = tgtId;
+    if (tgtList) state.targetLang = tgtList.config.lang;
+    state.step = "input";
+    render();
   }
   else if (act === "gen") {
     if (!nextBatch(p).length) { lp.error = t("pickNone"); render(); return; }
@@ -1421,7 +1538,6 @@ document.addEventListener("click", function (e) {
     else render();
   }
   else if (act === "stop") { lp.stopped = true; lp.phase = "idle"; lp.story = null; render(); }
-  else if (act === "add-more") { if (state.aiBusy) return; state.appendMode = true; state.step = "input"; render(); }
   else if (act === "resume") { lp.stopped = false; if (genReady()) startGenerate(); else render(); }
   else if (act === "gen-save") {
     var d = state.genDraft || { provider: "ollama" };
@@ -1453,6 +1569,11 @@ document.addEventListener("input", function (e) {
 });
 
 document.addEventListener("change", function (e) {
+  if (e.target.id === "up-target") {
+    state.uploadTarget = e.target.value;
+    render();
+    return;
+  }
   if (e.target.id === "gen-src") {
     var sv = e.target.value;
     if (sv === "all") state.genSrc = { type: "all", batchId: null, words: [] };
