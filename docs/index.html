@@ -188,6 +188,7 @@ var L = {
     errRate: "请求太频繁（429），稍等几秒再试。",
     warnValidate: "提醒（仍可收下）：",
     projName: { es: "我的西语故事书", en: "我的英语故事书", ja: "我的日语故事书" },
+    myBookGeneric: "我的故事书", myBookMeta: "你收下的 {n} 篇故事",
     footStudio: "工作台", footGh: "源码 GitHub", footCli: "命令行版"
   },
   en: {
@@ -247,6 +248,7 @@ var L = {
     errRate: "Rate limited (429) — wait a few seconds and retry.",
     warnValidate: "Heads-up (you can still keep it): ",
     projName: { es: "My Spanish storybook", en: "My English storybook", ja: "My Japanese storybook" },
+    myBookGeneric: "My storybook", myBookMeta: "{n} stories you kept",
     footStudio: "Workspace", footGh: "Source on GitHub", footCli: "Command line"
   },
   es: {
@@ -306,6 +308,7 @@ var L = {
     errRate: "Demasiadas peticiones (429) — espera unos segundos.",
     warnValidate: "Aviso (puedes quedártela igualmente): ",
     projName: { es: "Mi libro de español", en: "Mi libro de inglés", ja: "Mi libro de japonés" },
+    myBookGeneric: "Mi libro de cuentos", myBookMeta: "{n} historias que guardaste",
     footStudio: "Taller", footGh: "Código en GitHub", footCli: "Línea de comandos"
   },
   ja: {
@@ -365,6 +368,7 @@ var L = {
     errRate: "リクエスト過多（429）— 数秒待って再試行。",
     warnValidate: "注意（採用は可能）：",
     projName: { es: "わたしのスペイン語の本", en: "わたしの英語の本", ja: "わたしの日本語の本" },
+    myBookGeneric: "わたしのストーリーブック", myBookMeta: "採用した {n} 話",
     footStudio: "ワークスペース", footGh: "GitHub", footCli: "コマンドライン"
   }
 };
@@ -989,6 +993,24 @@ function render() {
   BOOKS.forEach(function (b) {
     h += '<a class="book" href="' + b.href + '"><span class="bname">' + b.name + '</span>' +
       '<span class="bmeta">' + esc(t("meta")[b.lang]) + '</span>' +
+      '<span class="bopen">' + esc(t("open")) + "</span></a>";
+  });
+  var byLang = {};
+  (function () {
+    var all0 = loadAll();
+    Object.keys(all0).forEach(function (id) {
+      var pr = all0[id];
+      if (!pr || !pr.config) return;
+      var n = (pr.stories || []).filter(function (s) { return s && s.status !== "candidate"; }).length;
+      if (n) byLang[pr.config.lang] = (byLang[pr.config.lang] || 0) + n;
+    });
+  })();
+  Object.keys(byLang).forEach(function (lg) {
+    var disp = null;
+    LANG_CHOICES.forEach(function (c) { if (c[0] === lg) disp = c[1]; });
+    var bname = (t("projName")[lg]) || (t("myBookGeneric") + " · " + (disp || lg.toUpperCase()));
+    h += '<a class="book" href="reader.html#lang=' + esc(lg) + '"><span class="bname">' + esc(bname) + "</span>" +
+      '<span class="bmeta">' + esc(fmt(t("myBookMeta"), { n: byLang[lg] })) + "</span>" +
       '<span class="bopen">' + esc(t("open")) + "</span></a>";
   });
   h += "</div></div></div>";
