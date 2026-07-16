@@ -411,7 +411,22 @@ function extractPdfText(file) {
         (function (n) {
           chain = chain.then(function (acc) {
             return doc.getPage(n).then(function (pg) { return pg.getTextContent(); }).then(function (tc) {
-              acc.push(tc.items.map(function (it) { return it.str; }).join(" "));
+              var lines = [], line = [], lastY = null;
+              tc.items.forEach(function (it) {
+                var y = it.transform ? it.transform[5] : null;
+                if (line.length && lastY !== null && y !== null && Math.abs(y - lastY) > 2) {
+                  lines.push(line.join(" "));
+                  line = [];
+                }
+                if (it.str && it.str.trim()) line.push(it.str.trim());
+                if (it.hasEOL && line.length) {
+                  lines.push(line.join(" "));
+                  line = [];
+                }
+                if (y !== null) lastY = y;
+              });
+              if (line.length) lines.push(line.join(" "));
+              acc.push(lines.join("\n"));
               return acc;
             });
           });
