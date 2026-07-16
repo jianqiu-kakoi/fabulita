@@ -149,6 +149,7 @@ var L = {
     errPdfLoad: "PDF 解析库加载失败——首次使用需要联网。",
     errPdfScan: "没有找到可提取的文本（扫描版 PDF 暂不支持）。",
     errAiParse: "AI 解析失败：",
+    exportCopy: "📋 复制词表", exportTsv: "⬇ 下载 TSV", exportCopied: "已复制。",
     parse: "解析并确认",
     aiParseBtn: "✨ 用 AI 解析",
     confirmTitle: "确认词汇表",
@@ -207,6 +208,7 @@ var L = {
     errPdfLoad: "Could not load the PDF library — first use needs a network connection.",
     errPdfScan: "No extractable text found (scanned PDFs not supported yet).",
     errAiParse: "AI parsing failed: ",
+    exportCopy: "📋 Copy list", exportTsv: "⬇ Download TSV", exportCopied: "Copied.",
     parse: "Parse & review",
     aiParseBtn: "✨ Parse with AI",
     confirmTitle: "Confirm the vocabulary",
@@ -265,6 +267,7 @@ var L = {
     errPdfLoad: "No se pudo cargar la librería PDF — el primer uso necesita conexión.",
     errPdfScan: "No se encontró texto extraíble (los PDF escaneados aún no se admiten).",
     errAiParse: "El análisis con IA falló: ",
+    exportCopy: "📋 Copiar lista", exportTsv: "⬇ Descargar TSV", exportCopied: "Copiado.",
     parse: "Analizar y revisar",
     aiParseBtn: "✨ Analizar con IA",
     confirmTitle: "Confirma el vocabulario",
@@ -323,6 +326,7 @@ var L = {
     errPdfLoad: "PDF ライブラリを読み込めません——初回はネット接続が必要です。",
     errPdfScan: "抽出できるテキストがありません（スキャン PDF は未対応）。",
     errAiParse: "AI 解析に失敗しました：",
+    exportCopy: "📋 リストをコピー", exportTsv: "⬇ TSV をダウンロード", exportCopied: "コピーしました。",
     parse: "解析して確認",
     aiParseBtn: "✨ AI で解析",
     confirmTitle: "語彙リストの確認",
@@ -434,7 +438,7 @@ var state = {
     return L[nav] ? nav : "en"; })(),
   open: false, booksOpen: false,
   step: "input",            // input | confirm | loop
-  pending: null, skipped: 0, aiBusy: false, aiErr: null, lastRaw: "",
+  pending: null, skipped: 0, aiBusy: false, aiErr: null, lastRaw: "", expMsg: null,
   inputBuf: "", pasteBuf: "", appendMode: false,
   targetLang: "es",
   pid: null,
@@ -540,6 +544,19 @@ function normalizeVocabList(raw) {
     entries.push({ w: w, gloss: gloss });
   });
   return entries;
+}
+
+function vocabLines(list) { return list.map(function (v) { return v.w + " → " + v.gloss; }).join("\n"); }
+function vocabTsv(list) { return list.map(function (v) { return v.w + "\t" + v.gloss; }).join("\n"); }
+function downloadTsv(name, list) {
+  var blob = new Blob([vocabTsv(list)], { type: "text/tab-separated-values" });
+  var a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = name;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
 }
 
 function parseVocabJSON(text) {
@@ -867,7 +884,10 @@ function widgetBody() {
     });
     h += "</table></div>";
     h += '<div class="row"><button class="btn btn-primary" data-act="confirm">' + esc(t("confirm")) + "</button>" +
-      '<button class="btn" data-act="cancel">' + esc(t("cancel")) + "</button></div>";
+      '<button class="btn" data-act="cancel">' + esc(t("cancel")) + "</button>" +
+      '<button class="btn" data-act="export-copy">' + esc(t("exportCopy")) + "</button>" +
+      '<button class="btn" data-act="export-tsv">' + esc(t("exportTsv")) + "</button></div>";
+    if (state.expMsg) h += '<div class="msg ok">' + esc(state.expMsg) + "</div>";
   }
   else if (state.step === "loop") {
     var p = proj();
@@ -880,6 +900,9 @@ function widgetBody() {
     h += '<p class="muted" style="margin:0">' + esc(p.config.name) + " · " + p.stories.length + " " + esc(t("storiesN")) +
       " · " + cov.covered.length + " / " + total + " " + esc(t("coverage")) + " · " + pct + "%</p>";
     h += '<div class="cov-bar"><div class="cov-fill" style="width:' + pct + '%"></div></div>';
+    h += '<div class="row" style="margin-top:0.5rem"><button class="btn" data-act="export-copy">' + esc(t("exportCopy")) + "</button>" +
+      '<button class="btn" data-act="export-tsv">' + esc(t("exportTsv")) + "</button></div>";
+    if (state.expMsg) h += '<div class="msg ok">' + esc(state.expMsg) + "</div>";
 
     if (!batch.length) {
       h += '<div class="msg ok">' + esc(fmt(t("doneAll"), { n: p.stories.length })) + "</div>";
@@ -1057,8 +1080,23 @@ document.addEventListener("click", function (e) {
     var live = wtEl && wtEl.value.trim() ? wtEl.value : state.lastRaw;
     runAiParse(function () { return live; });
   }
+  else if (act === "export-copy" || act === "export-tsv") {
+    var list = state.step === "confirm" ? state.pending : (p ? p.vocab : null);
+    if (!list || !list.length) return;
+    if (act === "export-tsv") {
+      downloadTsv(((p && p.config.name) || "fabulita") + "-vocab.tsv", list);
+      return;
+    }
+    (navigator.clipboard ? navigator.clipboard.writeText(vocabLines(list)) : Promise.reject()).then(function () {
+      state.expMsg = t("exportCopied"); render();
+    }, function () {
+      state.expMsg = null;
+      state.msg = { cls: "ok", html: "<textarea readonly style='min-height:10rem'>" + esc(vocabLines(list)) + "</textarea>" };
+      render();
+    });
+  }
   else if (act === "drop") { state.pending.splice(+el.dataset.i, 1); render(); }
-  else if (act === "cancel") { state.step = "input"; state.pending = null; state.skipped = 0; render(); }
+  else if (act === "cancel") { state.step = "input"; state.pending = null; state.skipped = 0; state.expMsg = null; render(); }
   else if (act === "confirm") {
     if (state.appendMode && proj()) {
       var pp = proj(), known = {};
@@ -1068,7 +1106,7 @@ document.addEventListener("click", function (e) {
         if (known[k]) known[k].gloss = e.gloss; else { pp.vocab.push(e); known[k] = e; }
       });
       saveProj(pp);
-      state.step = "loop"; state.pending = null; state.appendMode = false; state.inputBuf = "";
+      state.step = "loop"; state.pending = null; state.appendMode = false; state.inputBuf = ""; state.expMsg = null;
       state.loop = { phase: "idle", story: null, warnings: [], missing: [], error: null, attempt: 0, stopped: false };
       if (genReady()) startGenerate(); else render();
       return;
@@ -1081,7 +1119,7 @@ document.addEventListener("click", function (e) {
     var name = base, seq = 2;
     while (names[name]) { name = base + " " + seq; seq++; }
     saveProj({ id: id, config: { name: name, lang: state.targetLang, gloss_lang: glossLang, ui_default: state.lang }, vocab: state.pending, glossary: {}, stories: [] });
-    state.pid = id; state.step = "loop"; state.pending = null; state.inputBuf = "";
+    state.pid = id; state.step = "loop"; state.pending = null; state.inputBuf = ""; state.expMsg = null;
     state.loop = { phase: "idle", story: null, warnings: [], missing: [], error: null, attempt: 0, stopped: false };
     if (genReady()) startGenerate(); else render();
   }
