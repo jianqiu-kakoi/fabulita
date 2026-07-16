@@ -68,10 +68,18 @@ def main(argv=None):
     p = sub.add_parser("unpack", help="unpack a Studio bundle.json into a project directory")
     p.add_argument("file")
 
+    p = sub.add_parser("bridge", help="local OpenAI-compatible server backed by the Codex CLI (codex exec)")
+    p.add_argument("--port", type=int, default=8130)
+    p.add_argument("--model", default=None, help="codex model (-m); default: codex config default")
+
     args = ap.parse_args(argv)
     proj = Project(args.project)
 
     try:
+        if args.cmd == "bridge":
+            from . import bridge
+            return bridge.main(args)
+
         if args.cmd == "studio":
             out, size = build.build_studio(args.out)
             print(f"wrote {out} ({size / 1024:.0f} KB) — open it in a browser")
