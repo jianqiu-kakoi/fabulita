@@ -1108,7 +1108,7 @@ function listTableHtml() {
   ids.forEach(function (id) {
     var p = all[id], cov = coverage(p);
     var pct = p.vocab.length ? Math.round(100 * cov.covered.length / p.vocab.length) : 0;
-    h += '<div class="lrow" data-act="open-list" data-id="' + id + '"><div><span class="pname">' + esc(p.config.name) + '</span> <span class="muted">· ' +
+    h += '<div class="lrow" data-act="open-list" data-id="' + esc(id) + '"><div><span class="pname">' + esc(p.config.name) + '</span> <span class="muted">· ' +
       p.vocab.length + " " + esc(t("words")) + " · " + p.stories.length + " " + esc(t("storiesN")) + " · " + pct + "%</span></div><span>→</span></div>";
   });
   h += "</div>";
@@ -1427,7 +1427,8 @@ document.addEventListener("click", function (e) {
   else if (act === "confirm") {
     var utEl = document.getElementById("up-target");
     var target = (utEl && utEl.value) || state.uploadTarget || "__new";
-    if (target === "__new") {
+    var allL = loadAll(), tp = allL[target];
+    if (target === "__new" || !tp) {
       var upEl = document.getElementById("upname");
       var glossLang = state.lang === "es" ? "en" : state.lang;
       var newName = ((upEl && upEl.value) || "").trim() || fmt(t("uploadNameDefault"), { d: new Date().toLocaleDateString() });
@@ -1439,17 +1440,14 @@ document.addEventListener("click", function (e) {
       saveProj({ id: id, config: { name: finalName, lang: state.targetLang, gloss_lang: glossLang, ui_default: state.lang }, vocab: state.pending, glossary: {}, stories: [] });
       state.listView = id;
     } else {
-      var allL = loadAll(), tp = allL[target];
-      if (tp) {
-        var known = {};
-        tp.vocab.forEach(function (v) { known[norm(v.w)] = v; });
-        state.pending.forEach(function (e) {
-          var k = norm(e.w);
-          if (known[k]) known[k].gloss = e.gloss; else { tp.vocab.push(e); known[k] = e; }
-        });
-        saveProj(tp);
-        state.listView = tp.id;
-      }
+      var known = {};
+      tp.vocab.forEach(function (v) { known[norm(v.w)] = v; });
+      state.pending.forEach(function (e) {
+        var k = norm(e.w);
+        if (known[k]) known[k].gloss = e.gloss; else { tp.vocab.push(e); known[k] = e; }
+      });
+      saveProj(tp);
+      state.listView = tp.id;
     }
     state.step = null; state.pending = null; state.inputBuf = ""; state.expMsg = null; state.expText = null; state.lastFileName = ""; state.upNameBuf = null; state.uploadTarget = "__new";
     render();
