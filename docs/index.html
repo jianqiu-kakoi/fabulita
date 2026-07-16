@@ -466,7 +466,7 @@ var state = {
     return L[nav] ? nav : "en"; })(),
   open: false, booksOpen: false,
   step: "input",            // input | confirm | loop
-  pending: null, skipped: 0, aiBusy: false, aiErr: null, lastRaw: "", lastFileName: "", expMsg: null, expText: null,
+  pending: null, skipped: 0, aiBusy: false, aiErr: null, lastRaw: "", lastFileName: "", upNameBuf: null, expMsg: null, expText: null,
   inputBuf: "", pasteBuf: "", appendMode: false,
   targetLang: "es",
   pid: null,
@@ -914,7 +914,7 @@ function widgetBody() {
     });
     h += "</table></div>";
     h += "<label>" + esc(t("uploadNameLabel")) + '</label><input type="text" id="upname" value="' +
-      esc(state.lastFileName || fmt(t("uploadNameDefault"), { d: new Date().toLocaleDateString() })) + '">';
+      esc(state.upNameBuf !== null ? state.upNameBuf : (state.lastFileName || fmt(t("uploadNameDefault"), { d: new Date().toLocaleDateString() }))) + '">';
     h += '<div class="row"><button class="btn btn-primary" data-act="confirm">' + esc(t("confirm")) + "</button>" +
       '<button class="btn" data-act="cancel">' + esc(t("cancel")) + "</button>" +
       '<button class="btn" data-act="export-copy">' + esc(t("exportCopy")) + "</button>" +
@@ -1079,6 +1079,7 @@ function render() {
 // ───────────────────────── actions ─────────────────────────
 function doParse(text) {
   state.lastRaw = text;
+  state.upNameBuf = null;
   var r = parseVocab(text);
   if (!r.entries.length) { state.skipped = -1; state.pending = null; }
   else { state.step = "confirm"; state.pending = r.entries; state.skipped = r.skipped; }
@@ -1095,6 +1096,7 @@ function runAiParse(getText) {
     return llmParseVocab(text);
   }).then(function (entries) {
     state.aiBusy = false;
+    state.upNameBuf = null;
     if (!entries.length) { state.skipped = -1; state.pending = null; }
     else { state.step = "confirm"; state.pending = entries; state.skipped = 0; }
     render();
@@ -1175,7 +1177,7 @@ document.addEventListener("click", function (e) {
     });
   }
   else if (act === "drop") { state.pending.splice(+el.dataset.i, 1); render(); }
-  else if (act === "cancel") { state.step = "input"; state.pending = null; state.skipped = 0; state.expMsg = null; state.expText = null; state.lastFileName = ""; render(); }
+  else if (act === "cancel") { state.step = "input"; state.pending = null; state.skipped = 0; state.expMsg = null; state.expText = null; state.lastFileName = ""; state.upNameBuf = null; render(); }
   else if (act === "confirm") {
     var upEl = document.getElementById("upname");
     var upRec = {
@@ -1193,7 +1195,7 @@ document.addEventListener("click", function (e) {
       });
       pp.uploads = (pp.uploads || []).concat([upRec]);
       saveProj(pp);
-      state.step = "loop"; state.pending = null; state.appendMode = false; state.inputBuf = ""; state.expMsg = null; state.expText = null; state.lastFileName = "";
+      state.step = "loop"; state.pending = null; state.appendMode = false; state.inputBuf = ""; state.expMsg = null; state.expText = null; state.lastFileName = ""; state.upNameBuf = null;
       state.loop = { phase: "idle", story: null, warnings: [], missing: [], error: null, attempt: 0, stopped: false };
       if (genReady()) startGenerate(); else render();
       return;
@@ -1206,7 +1208,7 @@ document.addEventListener("click", function (e) {
     var name = base, seq = 2;
     while (names[name]) { name = base + " " + seq; seq++; }
     saveProj({ id: id, config: { name: name, lang: state.targetLang, gloss_lang: glossLang, ui_default: state.lang }, vocab: state.pending, uploads: [upRec], glossary: {}, stories: [] });
-    state.pid = id; state.step = "loop"; state.pending = null; state.inputBuf = ""; state.expMsg = null; state.expText = null; state.lastFileName = "";
+    state.pid = id; state.step = "loop"; state.pending = null; state.inputBuf = ""; state.expMsg = null; state.expText = null; state.lastFileName = ""; state.upNameBuf = null;
     state.loop = { phase: "idle", story: null, warnings: [], missing: [], error: null, attempt: 0, stopped: false };
     if (genReady()) startGenerate(); else render();
   }
@@ -1280,6 +1282,7 @@ document.addEventListener("click", function (e) {
 document.addEventListener("input", function (e) {
   if (e.target.id === "wt") state.inputBuf = e.target.value;
   else if (e.target.id === "paste-json") state.pasteBuf = e.target.value;
+  else if (e.target.id === "upname") state.upNameBuf = e.target.value;
   else if (state.genDraft && e.target.id === "g-model") state.genDraft.model = e.target.value;
   else if (state.genDraft && e.target.id === "g-base") state.genDraft.base = e.target.value;
   else if (state.genDraft && e.target.id === "g-key") state.genDraft.key = e.target.value;
