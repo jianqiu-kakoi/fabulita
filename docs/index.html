@@ -79,6 +79,9 @@
   .cov-fill { height: 100%; background: var(--accent); border-radius: 3px; transition: width 300ms ease; }
   .chips { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-top: 0.5rem; }
   .chip { font-family: var(--serif); font-size: 0.85rem; padding: 0.03rem 0.5rem; border: 1px dashed var(--underline); border-radius: 100px; color: var(--accent-deep); }
+  .chip-cov { opacity: 0.45; text-decoration: line-through; }
+  .upbatch { margin: 0.4rem 0 0; }
+  .upbatch summary { cursor: pointer; font-size: 0.85rem; }
 
   .msg { border-radius: 8px; padding: 0.6rem 0.9rem; font-size: 0.86rem; margin-top: 0.8rem; }
   .msg.ok { background: var(--accent-soft); }
@@ -189,6 +192,7 @@ var L = {
     warnValidate: "提醒（仍可收下）：",
     projName: { es: "我的西语故事书", en: "我的英语故事书", ja: "我的日语故事书" },
     myBookGeneric: "我的故事书", myBookMeta: "你收下的 {n} 篇故事",
+    uploadNameLabel: "这批词的名字（会记录在词表里）", uploadNameDefault: "粘贴 · {d}", vocabSection: "📚 词表（按上传批次）", legacyBatch: "早期词表",
     footStudio: "工作台", footGh: "源码 GitHub", footCli: "命令行版"
   },
   en: {
@@ -249,6 +253,7 @@ var L = {
     warnValidate: "Heads-up (you can still keep it): ",
     projName: { es: "My Spanish storybook", en: "My English storybook", ja: "My Japanese storybook" },
     myBookGeneric: "My storybook", myBookMeta: "{n} stories you kept",
+    uploadNameLabel: "Name this batch (kept in your word list)", uploadNameDefault: "Pasted · {d}", vocabSection: "📚 Word list (by upload)", legacyBatch: "Earlier words",
     footStudio: "Workspace", footGh: "Source on GitHub", footCli: "Command line"
   },
   es: {
@@ -309,6 +314,7 @@ var L = {
     warnValidate: "Aviso (puedes quedártela igualmente): ",
     projName: { es: "Mi libro de español", en: "Mi libro de inglés", ja: "Mi libro de japonés" },
     myBookGeneric: "Mi libro de cuentos", myBookMeta: "{n} historias que guardaste",
+    uploadNameLabel: "Nombre de este lote (se guarda en tu lista)", uploadNameDefault: "Pegado · {d}", vocabSection: "📚 Lista de palabras (por subida)", legacyBatch: "Palabras anteriores",
     footStudio: "Taller", footGh: "Código en GitHub", footCli: "Línea de comandos"
   },
   ja: {
@@ -369,6 +375,7 @@ var L = {
     warnValidate: "注意（採用は可能）：",
     projName: { es: "わたしのスペイン語の本", en: "わたしの英語の本", ja: "わたしの日本語の本" },
     myBookGeneric: "わたしのストーリーブック", myBookMeta: "採用した {n} 話",
+    uploadNameLabel: "このリストの名前（語彙リストに記録）", uploadNameDefault: "貼り付け · {d}", vocabSection: "📚 語彙リスト（アップロード別）", legacyBatch: "以前の単語",
     footStudio: "ワークスペース", footGh: "GitHub", footCli: "コマンドライン"
   }
 };
@@ -459,7 +466,7 @@ var state = {
     return L[nav] ? nav : "en"; })(),
   open: false, booksOpen: false,
   step: "input",            // input | confirm | loop
-  pending: null, skipped: 0, aiBusy: false, aiErr: null, lastRaw: "", expMsg: null, expText: null,
+  pending: null, skipped: 0, aiBusy: false, aiErr: null, lastRaw: "", lastFileName: "", expMsg: null, expText: null,
   inputBuf: "", pasteBuf: "", appendMode: false,
   targetLang: "es",
   pid: null,
@@ -906,6 +913,8 @@ function widgetBody() {
         '</td><td class="vdel"><button data-act="drop" data-i="' + i + '" aria-label="✕">✕</button></td></tr>';
     });
     h += "</table></div>";
+    h += "<label>" + esc(t("uploadNameLabel")) + '</label><input type="text" id="upname" value="' +
+      esc(state.lastFileName || fmt(t("uploadNameDefault"), { d: new Date().toLocaleDateString() })) + '">';
     h += '<div class="row"><button class="btn btn-primary" data-act="confirm">' + esc(t("confirm")) + "</button>" +
       '<button class="btn" data-act="cancel">' + esc(t("cancel")) + "</button>" +
       '<button class="btn" data-act="export-copy">' + esc(t("exportCopy")) + "</button>" +
@@ -928,6 +937,32 @@ function widgetBody() {
       '<button class="btn" data-act="export-tsv">' + esc(t("exportTsv")) + "</button></div>";
     if (state.expMsg) h += '<div class="msg ok">' + esc(state.expMsg) + "</div>";
     if (state.expText) h += '<textarea readonly style="min-height:10rem">' + esc(state.expText) + "</textarea>";
+
+    (function () {
+      var covSet = {};
+      cov.covered.forEach(function (v) { covSet[norm(v.w)] = true; });
+      var ups = (p.uploads || []).slice().reverse();
+      var inBatch = {};
+      (p.uploads || []).forEach(function (u) { (u.words || []).forEach(function (w) { inBatch[w] = true; }); });
+      var legacy = p.vocab.filter(function (v) { return !inBatch[norm(v.w)]; });
+      if (!ups.length && !legacy.length) return;
+      var glossByW = {}, dispByW = {};
+      p.vocab.forEach(function (v) { glossByW[norm(v.w)] = v.gloss; dispByW[norm(v.w)] = v.w; });
+      h += '<details class="keyrow"><summary>' + esc(t("vocabSection")) + " · " + p.vocab.length + " " + esc(t("words")) + "</summary>";
+      function batchHtml(name, date, words) {
+        var c = 0;
+        words.forEach(function (w) { if (covSet[w]) c++; });
+        var hh = '<details class="upbatch"><summary>' + esc(name) + (date ? ' <span class="muted">· ' + esc(date) + "</span>" : "") +
+          ' <span class="muted">· ' + words.length + " " + esc(t("words")) + " · " + c + "/" + words.length + " " + esc(t("coverage")) + '</span></summary><div class="chips">';
+        words.forEach(function (w) {
+          hh += '<span class="chip' + (covSet[w] ? " chip-cov" : "") + '" title="' + esc(glossByW[w] || "") + '">' + esc(dispByW[w] || w) + "</span>";
+        });
+        return hh + "</div></details>";
+      }
+      ups.forEach(function (u) { h += batchHtml(u.name, u.date, u.words || []); });
+      if (legacy.length) h += batchHtml(t("legacyBatch"), "", legacy.map(function (v) { return norm(v.w); }));
+      h += "</details>";
+    })();
 
     if (!batch.length) {
       h += '<div class="msg ok">' + esc(fmt(t("doneAll"), { n: p.stories.length })) + "</div>";
@@ -1114,11 +1149,13 @@ document.addEventListener("click", function (e) {
   else if (act === "toggle-books") { state.booksOpen = !state.booksOpen; render(); }
   else if (act === "parse") {
     if (state.aiBusy) return;
+    state.lastFileName = "";
     state.targetLang = document.getElementById("wl").value;
     doParse(document.getElementById("wt").value);
   }
   else if (act === "ai-parse") {
     if (state.aiBusy) return;
+    state.lastFileName = "";
     var wtEl = document.getElementById("wt");
     var live = wtEl && wtEl.value.trim() ? wtEl.value : state.lastRaw;
     runAiParse(function () { return live; });
@@ -1138,8 +1175,15 @@ document.addEventListener("click", function (e) {
     });
   }
   else if (act === "drop") { state.pending.splice(+el.dataset.i, 1); render(); }
-  else if (act === "cancel") { state.step = "input"; state.pending = null; state.skipped = 0; state.expMsg = null; state.expText = null; render(); }
+  else if (act === "cancel") { state.step = "input"; state.pending = null; state.skipped = 0; state.expMsg = null; state.expText = null; state.lastFileName = ""; render(); }
   else if (act === "confirm") {
+    var upEl = document.getElementById("upname");
+    var upRec = {
+      id: "u" + Math.random().toString(36).slice(2, 9),
+      name: ((upEl && upEl.value) || "").trim() || fmt(t("uploadNameDefault"), { d: new Date().toLocaleDateString() }),
+      date: new Date().toISOString().slice(0, 10),
+      words: state.pending.map(function (e) { return norm(e.w); })
+    };
     if (state.appendMode && proj()) {
       var pp = proj(), known = {};
       pp.vocab.forEach(function (v) { known[norm(v.w)] = v; });
@@ -1147,8 +1191,9 @@ document.addEventListener("click", function (e) {
         var k = norm(e.w);
         if (known[k]) known[k].gloss = e.gloss; else { pp.vocab.push(e); known[k] = e; }
       });
+      pp.uploads = (pp.uploads || []).concat([upRec]);
       saveProj(pp);
-      state.step = "loop"; state.pending = null; state.appendMode = false; state.inputBuf = ""; state.expMsg = null; state.expText = null;
+      state.step = "loop"; state.pending = null; state.appendMode = false; state.inputBuf = ""; state.expMsg = null; state.expText = null; state.lastFileName = "";
       state.loop = { phase: "idle", story: null, warnings: [], missing: [], error: null, attempt: 0, stopped: false };
       if (genReady()) startGenerate(); else render();
       return;
@@ -1160,8 +1205,8 @@ document.addEventListener("click", function (e) {
     Object.keys(loadAll()).forEach(function (k) { names[loadAll()[k].config.name] = true; });
     var name = base, seq = 2;
     while (names[name]) { name = base + " " + seq; seq++; }
-    saveProj({ id: id, config: { name: name, lang: state.targetLang, gloss_lang: glossLang, ui_default: state.lang }, vocab: state.pending, glossary: {}, stories: [] });
-    state.pid = id; state.step = "loop"; state.pending = null; state.inputBuf = ""; state.expMsg = null; state.expText = null;
+    saveProj({ id: id, config: { name: name, lang: state.targetLang, gloss_lang: glossLang, ui_default: state.lang }, vocab: state.pending, uploads: [upRec], glossary: {}, stories: [] });
+    state.pid = id; state.step = "loop"; state.pending = null; state.inputBuf = ""; state.expMsg = null; state.expText = null; state.lastFileName = "";
     state.loop = { phase: "idle", story: null, warnings: [], missing: [], error: null, attempt: 0, stopped: false };
     if (genReady()) startGenerate(); else render();
   }
@@ -1253,6 +1298,7 @@ document.addEventListener("change", function (e) {
     var f = e.target.files[0];
     if (!f) return;
     state.targetLang = document.getElementById("wl").value;
+    state.lastFileName = f.name.replace(/\.[a-z0-9]+$/i, "");
     if (/\.pdf$/i.test(f.name) || f.type === "application/pdf") { runAiParse(function () { return extractPdfText(f); }); return; }
     f.text().then(doParse);
   }
