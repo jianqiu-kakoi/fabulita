@@ -144,7 +144,7 @@ var L = {
     pasteLabel: "粘贴词表（每行一个词，支持 逗号 / Tab / → / ： 分隔；Word 文档请复制文本粘贴）",
     pastePh: "apple, 苹果\nbanana → 香蕉\norange：橙子；橘子",
     upload: "上传文件（csv / tsv / txt / md / pdf）",
-    aiParsing: "AI 正在解析词表…（本地小模型可能要 1-2 分钟）",
+    aiParsing: "AI 正在解析词表…（本地小模型解析整份 PDF 可能需要 5-10 分钟，请勿关闭页面）",
     aiNeedProvider: "PDF / AI 解析需要先接入模型服务（本机 Ollama 免 Key）。",
     errPdfLoad: "PDF 解析库加载失败——首次使用需要联网。",
     errPdfScan: "没有找到可提取的文本（扫描版 PDF 暂不支持）。",
@@ -203,7 +203,7 @@ var L = {
     pasteLabel: "Paste your list (one word per line; comma / tab / → / : separators)",
     pastePh: "apple, 苹果\nbanana → 香蕉",
     upload: "Upload a file (csv / tsv / txt / md / pdf)",
-    aiParsing: "AI is parsing the list… (small local models may take 1-2 min)",
+    aiParsing: "AI is parsing the list… (a small local model can take 5-10 min for a whole PDF — keep the page open)",
     aiNeedProvider: "PDF / AI parsing needs a model provider first (local Ollama works — no key).",
     errPdfLoad: "Could not load the PDF library — first use needs a network connection.",
     errPdfScan: "No extractable text found (scanned PDFs not supported yet).",
@@ -262,7 +262,7 @@ var L = {
     pasteLabel: "Pega tu lista (una palabra por línea; coma / tab / → / :)",
     pastePh: "apple, manzana\nbanana → plátano",
     upload: "Subir archivo (csv / tsv / txt / md / pdf)",
-    aiParsing: "La IA está analizando la lista… (los modelos locales pequeños pueden tardar 1-2 min)",
+    aiParsing: "La IA está analizando la lista… (un modelo local pequeño puede tardar 5-10 min con un PDF completo — no cierres la página)",
     aiNeedProvider: "El análisis con IA / PDF necesita primero un proveedor de modelo (Ollama local funciona, sin clave).",
     errPdfLoad: "No se pudo cargar la librería PDF — el primer uso necesita conexión.",
     errPdfScan: "No se encontró texto extraíble (los PDF escaneados aún no se admiten).",
@@ -321,7 +321,7 @@ var L = {
     pasteLabel: "リストを貼り付け（1 行 1 語；カンマ / タブ / → / ： 区切り）",
     pastePh: "apple, りんご\nbanana → バナナ",
     upload: "ファイルをアップロード（csv / tsv / txt / md / pdf）",
-    aiParsing: "AI が語彙リストを解析中…（ローカル小型モデルは 1〜2 分かかることがあります）",
+    aiParsing: "AI が語彙リストを解析中…（ローカル小型モデルは PDF 全体で 5〜10 分かかることがあります。ページを閉じないでください）",
     aiNeedProvider: "PDF / AI 解析にはモデルサービスの接続が必要です（ローカル Ollama は Key 不要）。",
     errPdfLoad: "PDF ライブラリを読み込めません——初回はネット接続が必要です。",
     errPdfScan: "抽出できるテキストがありません（スキャン PDF は未対応）。",
@@ -571,7 +571,7 @@ function llmParseVocab(text) {
   var prompt = vocabParsePrompt(text);
   if (g.provider === "anthropic") return generateAnthropic(g, prompt, VOCAB_SCHEMA).then(normalizeVocabList);
   if (/^qwen3\b/i.test(g.model || "")) prompt += "\n\n/no_think";
-  return openaiChat(g, prompt).then(parseVocabJSON);
+  return openaiChat(g, prompt, 600000).then(parseVocabJSON);
 }
 
 // ───────────────────────── coverage / prompt ─────────────────────────
@@ -703,12 +703,13 @@ function generateAnthropic(g, prompt, schema) {
   });
 }
 
-function openaiChat(g, prompt) {
+function openaiChat(g, prompt, timeoutMs) {
+  var tmo = timeoutMs || 180000;
   var base = (g.base || (PROV[g.provider] && PROV[g.provider].base) || "").replace(/\/+$/, "");
   var headers = { "content-type": "application/json" };
   if (g.key) headers["Authorization"] = "Bearer " + g.key;
   var ctrl = new AbortController();
-  var timer = setTimeout(function () { ctrl.abort(); }, 180000);
+  var timer = setTimeout(function () { ctrl.abort(); }, tmo);
   return fetch(base + "/chat/completions", {
     method: "POST", headers: headers, signal: ctrl.signal,
     body: JSON.stringify({
@@ -717,7 +718,7 @@ function openaiChat(g, prompt) {
       messages: [{ role: "user", content: prompt }]
     })
   }).catch(function (err) {
-    if (err && err.name === "AbortError") throw new Error("timeout (180 s)");
+    if (err && err.name === "AbortError") throw new Error("timeout (" + Math.round(tmo / 1000) + " s)");
     throw new Error(t("errConn") + base);
   }).then(function (res) {
     clearTimeout(timer);
