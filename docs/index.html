@@ -180,6 +180,7 @@ var L = {
     stoppedAt: "已收下 {n} 篇故事，覆盖 {c} / {t}。随时回来继续。",
     openStudio: "在工作台打开（导出 / 管理）",
     addMore: "＋ 加更多词",
+    appendingTo: "加词到：{name}",
     keySummary: "⚙ 模型服务",
     keyHint: "Key 只存在本机浏览器，请求直连所选服务，不经过任何中间服务器。",
     keySave: "保存并生成", keyClear: "清除", keyOn: "✓ 已接入",
@@ -242,6 +243,7 @@ var L = {
     stoppedAt: "Kept {n} stories, {c} / {t} covered. Come back anytime.",
     openStudio: "Open in the workspace (export / manage)",
     addMore: "＋ Add more words",
+    appendingTo: "Adding words to: {name}",
     keySummary: "⚙ Model provider",
     keyHint: "Keys stay in this browser; requests go straight to the chosen provider — no middleman server.",
     keySave: "Save & generate", keyClear: "Clear", keyOn: "✓ Connected",
@@ -304,6 +306,7 @@ var L = {
     stoppedAt: "{n} historias guardadas, {c} / {t} cubiertas. Vuelve cuando quieras.",
     openStudio: "Abrir en el taller (exportar / gestionar)",
     addMore: "＋ Añadir más palabras",
+    appendingTo: "Añadiendo palabras a: {name}",
     keySummary: "⚙ Proveedor del modelo",
     keyHint: "Las keys se quedan en este navegador; las peticiones van directas al proveedor elegido.",
     keySave: "Guardar y generar", keyClear: "Borrar", keyOn: "✓ Conectado",
@@ -366,6 +369,7 @@ var L = {
     stoppedAt: "{n} 話を採用、{c} / {t} をカバー。いつでも再開できます。",
     openStudio: "ワークスペースで開く（エクスポート / 管理）",
     addMore: "＋ 単語を追加",
+    appendingTo: "単語の追加先：{name}",
     keySummary: "⚙ モデルプロバイダ",
     keyHint: "キーはこのブラウザにのみ保存され、リクエストは選択したプロバイダに直接送られます。",
     keySave: "保存して生成", keyClear: "削除", keyOn: "✓ 接続済み",
@@ -909,6 +913,9 @@ function manualHtml() {
 function widgetBody() {
   var h = "";
   if (state.step === "input") {
+    if (state.appendMode && proj()) {
+      h += '<p class="muted" style="margin:0 0 0.4rem">' + esc(fmt(t("appendingTo"), { name: proj().config.name })) + "</p>";
+    }
     h += "<label>" + esc(t("targetLang")) + '</label><select id="wl">';
     LANG_CHOICES.forEach(function (c) { h += '<option value="' + c[0] + '"' + (c[0] === state.targetLang ? " selected" : "") + ">" + c[1] + "</option>"; });
     h += "</select>";
