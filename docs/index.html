@@ -746,7 +746,7 @@ function openaiChat(g, prompt, timeoutMs) {
 }
 
 function generateOpenAI(g, prompt) {
-  return openaiChat(g, prompt).then(parseStoryText);
+  return openaiChat(g, prompt, 360000).then(parseStoryText);
 }
 
 function generateStory(p, batch, attempt) {
