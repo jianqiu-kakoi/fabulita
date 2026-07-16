@@ -68,6 +68,26 @@ def build_studio(out="studio.html"):
     return out, len(html)
 
 
+def build_reader(out="reader.html"):
+    """Emit the self-serve reader: aggregates 'my storybook' from localStorage at runtime."""
+    data = {
+        "self": True,
+        "ui": UI_STRINGS,
+        "uiLangs": UI_LANGS,
+        "config": {"name": "fabulita", "lang": "", "gloss_lang": "en",
+                   "ui_default": "en", "home": "index.html"},
+        "vocab": [], "glossary": {}, "stories": [], "audio": {},
+    }
+    blob = json.dumps(data, ensure_ascii=False).replace("</", "<\\/")
+    html = TEMPLATE.read_text(encoding="utf-8")
+    html = html.replace("__TITLE__", "fabulita")
+    html = html.replace("/*__PAYLOAD__*/null", blob, 1)
+    out = Path(out)
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(html, encoding="utf-8")
+    return out, len(html)
+
+
 def unpack(bundle_path, dest="."):
     """Explode a Studio bundle.json into a CLI project directory."""
     from .project import CONFIG_FILE, Project

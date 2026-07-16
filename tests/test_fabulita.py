@@ -173,3 +173,19 @@ def test_demo_stories_validate():
         errors, warnings = stories.validate(proj, s)
         assert errors == [], f"{s['id']}: {errors}"
         assert warnings == [], f"{s['id']}: {warnings}"
+
+
+def test_build_reader(tmp_path):
+    from fabulita import build
+    out, size = build.build_reader(tmp_path / "reader.html")
+    html = out.read_text(encoding="utf-8")
+    assert size == len(html)
+    assert "/*__PAYLOAD__*/null" not in html
+    import json as _json, re
+    m = re.search(r"<script>var P = (\{.*?\});</script>", html, re.S)
+    assert m, "payload script tag not found"
+    data = _json.loads(m.group(1))
+    assert data["self"] is True
+    assert data["stories"] == [] and data["vocab"] == []
+    assert data["config"]["home"] == "index.html"
+    assert "ui" in data and "uiLangs" in data

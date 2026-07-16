@@ -65,6 +65,9 @@ def main(argv=None):
     p = sub.add_parser("studio", help="write the Studio web app (single HTML, no project needed)")
     p.add_argument("-o", "--out", default="studio.html", help="output path (default: studio.html)")
 
+    p = sub.add_parser("reader", help="write the self-serve reader page (my storybook, reads localStorage)")
+    p.add_argument("--out", default="reader.html")
+
     p = sub.add_parser("unpack", help="unpack a Studio bundle.json into a project directory")
     p.add_argument("file")
 
@@ -83,6 +86,11 @@ def main(argv=None):
         if args.cmd == "studio":
             out, size = build.build_studio(args.out)
             print(f"wrote {out} ({size / 1024:.0f} KB) — open it in a browser")
+            return 0
+
+        if args.cmd == "reader":
+            out, size = build.build_reader(args.out)
+            print(f"wrote {out} ({size / 1024:.0f} KB) — serve it next to index.html")
             return 0
 
         if args.cmd == "unpack":
