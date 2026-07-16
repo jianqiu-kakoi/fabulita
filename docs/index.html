@@ -532,7 +532,6 @@ var state = {
   inputBuf: "", pasteBuf: "",
   targetLang: "es",
   tab: "lists", listView: null, uploadTarget: "__new", genSel: [], newListOpen: false,
-  pid: null,
   loop: { phase: "idle", story: null, warnings: [], missing: [], error: null, attempt: 0, stopped: false },
   genDraft: null, manualOpen: false, keyOpen: false,
   msg: null
@@ -546,7 +545,6 @@ function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function 
 // ───────────────────────── storage ─────────────────────────
 function loadAll() { try { return JSON.parse(localStorage.getItem(LSP)) || {}; } catch (e) { return {}; } }
 function saveAll(a) { localStorage.setItem(LSP, JSON.stringify(a)); }
-function proj() { return state.pid ? loadAll()[state.pid] : null; }
 function saveProj(p) { var a = loadAll(); a[p.id] = p; saveAll(a); }
 function genCfg() {
   try { var g = JSON.parse(localStorage.getItem(LSG)); if (g && g.provider) return g; } catch (e) {}
@@ -1022,8 +1020,10 @@ function genBody() {
   var covd0 = lists.length ? langCovered(lists[0].config.lang) : {};
   var coveredN = union.filter(function (v) { return covd0[norm(v.w)]; }).length;
   var pct = union.length ? Math.round(100 * coveredN / union.length) : 0;
-  h += '<p class="muted" style="margin-top:0.6rem">' + coveredN + " / " + union.length + " " + esc(t("coverage")) + " · " + pct + "%</p>";
-  h += '<div class="cov-bar"><div class="cov-fill" style="width:' + pct + '%"></div></div>';
+  if (lists.length) {
+    h += '<p class="muted" style="margin-top:0.6rem">' + coveredN + " / " + union.length + " " + esc(t("coverage")) + " · " + pct + "%</p>";
+    h += '<div class="cov-bar"><div class="cov-fill" style="width:' + pct + '%"></div></div>';
+  }
 
   var src = state.genSrc || { type: "all", words: [] };
   var batch;
@@ -1166,22 +1166,22 @@ function listTableHtml() {
     h += '<div class="row"><button class="btn btn-primary" data-act="new-list-save">' + esc(t("newListSave")) + "</button>" +
       '<button class="btn" data-act="new-list">' + esc(t("cancel")) + "</button></div>";
   }
-  var all = loadAll(), ids = Object.keys(all);
-  if (!ids.length) {
+  var lists = listsOf();
+  if (!lists.length) {
     h += '<p class="muted" style="margin-top:0.8rem">' + esc(t("noLists")) + "</p>";
     return h;
   }
   h += '<div class="plist">';
   var covByLang = {};
-  ids.forEach(function (id) {
-    var p = all[id], lg = p.config.lang;
+  lists.forEach(function (p) {
+    var lg = p.config.lang;
     if (!covByLang[lg]) covByLang[lg] = langCovered(lg);
-    var covd = covByLang[lg], c = 0;
-    (p.vocab || []).forEach(function (v) { if (covd[norm(v.w)]) c++; });
+    var covd = covByLang[lg], c = 0, vocab = p.vocab || [];
+    vocab.forEach(function (v) { if (covd[norm(v.w)]) c++; });
     var disp = null;
     LANG_CHOICES.forEach(function (ch) { if (ch[0] === lg) disp = ch[1]; });
-    h += '<div class="lrow" data-act="open-list" data-id="' + esc(id) + '"><div><span class="pname">' + esc(p.config.name) + '</span> <span class="muted">· ' +
-      esc(disp || lg.toUpperCase()) + " · " + p.vocab.length + " " + esc(t("words")) + " · " + c + "/" + p.vocab.length + "</span></div><span>→</span></div>";
+    h += '<div class="lrow" data-act="open-list" data-id="' + esc(p.id) + '"><div><span class="pname">' + esc(p.config.name) + '</span> <span class="muted">· ' +
+      esc(disp || lg.toUpperCase()) + " · " + vocab.length + " " + esc(t("words")) + " · " + c + "/" + vocab.length + "</span></div><span>→</span></div>";
   });
   h += "</div>";
   return h;
@@ -1191,16 +1191,17 @@ function listDetailHtml() {
   var all = loadAll(), p = all[state.listView];
   if (!p) { state.listView = null; return listTableHtml(); }
   var covSet = langCovered(p.config.lang);
+  var vocab = p.vocab || [];
   var h = '<div class="row" style="margin-top:0"><button class="btn" data-act="back-to-lists">' + esc(t("backToLists")) + "</button></div>";
   h += '<h2 style="margin-top:0.8rem">' + esc(p.config.name) + "</h2>";
-  h += '<p class="muted" style="margin:0">' + p.vocab.length + " " + esc(t("words")) + " · " + p.stories.length + " " + esc(t("storiesN")) + "</p>";
+  h += '<p class="muted" style="margin:0">' + vocab.length + " " + esc(t("words")) + " · " + (p.stories || []).length + " " + esc(t("storiesN")) + "</p>";
   h += '<div class="row"><button class="btn btn-primary" data-act="add-to-list" data-id="' + esc(p.id) + '">' + esc(t("addToList")) + "</button>" +
     '<button class="btn" data-act="export-copy">' + esc(t("exportCopy")) + "</button>" +
     '<button class="btn" data-act="export-tsv">' + esc(t("exportTsv")) + "</button></div>";
   if (state.expMsg) h += '<div class="msg ok">' + esc(state.expMsg) + "</div>";
   if (state.expText) h += '<textarea readonly style="min-height:10rem">' + esc(state.expText) + "</textarea>";
   h += '<div class="chips" style="margin-top:0.8rem">';
-  p.vocab.forEach(function (v) {
+  vocab.forEach(function (v) {
     var k = norm(v.w);
     h += '<span class="chip' + (covSet[k] ? " chip-cov" : "") + '" title="' + esc(v.gloss) + '">' + esc(v.w) + "</span>";
   });
@@ -1423,8 +1424,8 @@ document.addEventListener("click", function (e) {
     state.step = null; state.pending = null; state.inputBuf = ""; state.expMsg = null; state.expText = null; state.lastFileName = ""; state.upNameBuf = null; state.uploadTarget = "__new";
     render();
   }
-  else if (act === "tab-lists") { state.tab = "lists"; render(); }
-  else if (act === "tab-gen") { state.tab = "gen"; render(); }
+  else if (act === "tab-lists") { state.tab = "lists"; state.expMsg = null; state.expText = null; render(); }
+  else if (act === "tab-gen") { state.tab = "gen"; state.expMsg = null; state.expText = null; render(); }
   else if (act === "upload-words") { if (state.aiBusy) return; state.uploadTarget = "__new"; state.step = "input"; render(); }
   else if (act === "new-list") { state.newListOpen = !state.newListOpen; render(); }
   else if (act === "new-list-save") {
@@ -1443,14 +1444,15 @@ document.addEventListener("click", function (e) {
     state.newListOpen = false; state.targetLang = nlLang; state.listView = nid;
     render();
   }
-  else if (act === "open-list") { state.listView = el.dataset.id; render(); }
-  else if (act === "back-to-lists") { state.listView = null; render(); }
+  else if (act === "open-list") { state.listView = el.dataset.id; state.expMsg = null; state.expText = null; render(); }
+  else if (act === "back-to-lists") { state.listView = null; state.expMsg = null; state.expText = null; render(); }
   else if (act === "add-to-list") {
     if (state.aiBusy) return;
     var tgtId = el.dataset.id, tgtList = loadAll()[tgtId];
     state.uploadTarget = tgtId;
     if (tgtList) state.targetLang = tgtList.config.lang;
     state.step = "input";
+    state.expMsg = null; state.expText = null;
     render();
   }
   else if (act === "gsel") {
@@ -1538,7 +1540,6 @@ document.addEventListener("click", function (e) {
     else render();
   }
   else if (act === "stop") { lp.stopped = true; lp.phase = "idle"; lp.story = null; render(); }
-  else if (act === "resume") { lp.stopped = false; if (genReady()) startGenerate(); else render(); }
   else if (act === "gen-save") {
     var d = state.genDraft || { provider: "ollama" };
     var mEl = document.getElementById("g-model"), bEl = document.getElementById("g-base"), kEl = document.getElementById("g-key");
