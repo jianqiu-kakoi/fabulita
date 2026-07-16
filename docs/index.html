@@ -442,6 +442,62 @@ function parseVocab(text) {
   return { entries: entries, skipped: skipped };
 }
 
+// ───────────────────────── vocab parsing via LLM ─────────────────────────
+var VOCAB_SCHEMA = {
+  type: "object", additionalProperties: false, required: ["words"],
+  properties: {
+    words: {
+      type: "array",
+      items: {
+        type: "object", additionalProperties: false, required: ["w", "gloss"],
+        properties: { w: { type: "string" }, gloss: { type: "string" } }
+      }
+    }
+  }
+};
+
+function vocabParsePrompt(text) {
+  return "Below is raw text extracted from a vocabulary document (often a PDF table — it may contain titles, table headers, page numbers, empty practice columns and other noise).\n\n" +
+    "Extract the vocabulary as word/gloss pairs.\n\nRules:\n" +
+    "- Drop titles, table headers, column labels (e.g. \"Escribe aquí\"), page numbers and anything that is not a vocabulary entry.\n" +
+    "- One entry per word; if a word has several meanings, join them with \"; \".\n" +
+    "- Keep glosses EXACTLY in their source language — do NOT translate them.\n" +
+    "- Deduplicate words.\n\n" +
+    "Return ONLY a JSON object in this exact shape (no markdown fence, no commentary):\n\n" +
+    "{\"words\":[{\"w\":\"hola\",\"gloss\":\"hello\"}]}\n\nText:\n\n" + text;
+}
+
+function normalizeVocabList(raw) {
+  var list = raw && (Array.isArray(raw) ? raw : raw.words);
+  if (!Array.isArray(list)) throw new Error("no words[] in model output");
+  var entries = [], seen = {};
+  list.forEach(function (e) {
+    if (!e || typeof e.w !== "string" || typeof e.gloss !== "string") return;
+    var w = e.w.trim(), gloss = e.gloss.trim();
+    if (!w || !gloss) return;
+    var k = norm(w);
+    if (seen[k]) return;
+    seen[k] = true;
+    entries.push({ w: w, gloss: gloss });
+  });
+  return entries;
+}
+
+function parseVocabJSON(text) {
+  text = text.replace(/<think>[\s\S]*?<\/think>/gi, "").trim();
+  var a = text.indexOf("{"), b = text.lastIndexOf("}");
+  if (a === -1 || b < a) throw new Error("no JSON in model output");
+  return normalizeVocabList(JSON.parse(text.slice(a, b + 1)));
+}
+
+function llmParseVocab(text) {
+  var g = genCfg();
+  var prompt = vocabParsePrompt(text);
+  if (g.provider === "anthropic") return generateAnthropic(g, prompt, VOCAB_SCHEMA).then(normalizeVocabList);
+  if (/^qwen3\b/i.test(g.model || "")) prompt += "\n\n/no_think";
+  return openaiChat(g, prompt).then(parseVocabJSON);
+}
+
 // ───────────────────────── coverage / prompt ─────────────────────────
 function coverage(p) {
   var cov = {};
@@ -545,7 +601,7 @@ function parseStoryText(text) {
   return JSON.parse(text.slice(a, b + 1));
 }
 
-function generateAnthropic(g, prompt) {
+function generateAnthropic(g, prompt, schema) {
   return fetch("https://api.anthropic.com/v1/messages", {
     method: "POST",
     headers: {
@@ -557,7 +613,7 @@ function generateAnthropic(g, prompt) {
     body: JSON.stringify({
       model: g.model || "claude-opus-4-8",
       max_tokens: 8192,
-      output_config: { format: { type: "json_schema", schema: API_SCHEMA } },
+      output_config: { format: { type: "json_schema", schema: schema || API_SCHEMA } },
       messages: [{ role: "user", content: prompt }]
     })
   }).then(function (res) {
@@ -571,7 +627,7 @@ function generateAnthropic(g, prompt) {
   });
 }
 
-function generateOpenAI(g, prompt) {
+function openaiChat(g, prompt) {
   var base = (g.base || (PROV[g.provider] && PROV[g.provider].base) || "").replace(/\/+$/, "");
   var headers = { "content-type": "application/json" };
   if (g.key) headers["Authorization"] = "Bearer " + g.key;
@@ -593,8 +649,12 @@ function generateOpenAI(g, prompt) {
     return res.json();
   }).then(function (data) {
     var msg = data.choices && data.choices[0] && data.choices[0].message;
-    return parseStoryText((msg && msg.content) || "");
+    return (msg && msg.content) || "";
   });
+}
+
+function generateOpenAI(g, prompt) {
+  return openaiChat(g, prompt).then(parseStoryText);
 }
 
 function generateStory(p, batch, attempt) {
