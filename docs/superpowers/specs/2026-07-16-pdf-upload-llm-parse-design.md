@@ -41,6 +41,9 @@ exportable, not locked inside localStorage.
   (e.g. "Escribe aquí", page numbers, titles); one entry per word; join
   multiple meanings with "; "; keep glosses in their source language
   (no translation); deduplicate.
+  (Wire shape is an object wrapping the array — `{"words":[...]}` — because
+  OpenAI-compatible `json_object` response format and Anthropic structured
+  output both require a top-level object.)
 - Trigger policy:
   - PDF upload → always goes through the LLM (heuristics never see it).
   - Plain text/csv/etc. → existing regex `parseVocab` runs first; if it
@@ -75,7 +78,7 @@ exportable, not locked inside localStorage.
 | --- | --- |
 | pdf.js CDN load fails (offline) | Message: PDF parsing needs network once to load the library |
 | PDF has no text layer | Message: scanned PDFs not supported |
-| LLM returns unparseable output | Tolerant JSON slice; if still bad, show existing `errParse` with raw-output hint |
+| LLM returns unparseable output | Tolerant JSON slice; if still bad, error message shown inline in the widget |
 | LLM returns empty list | Same skipped/empty messaging as regex path |
 | No provider configured | Existing setup nudge |
 
