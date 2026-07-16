@@ -148,6 +148,7 @@ var L = {
     aiNeedProvider: "PDF / AI 解析需要先接入模型服务（本机 Ollama 免 Key）。",
     errPdfLoad: "PDF 解析库加载失败——首次使用需要联网。",
     errPdfScan: "没有找到可提取的文本（扫描版 PDF 暂不支持）。",
+    errAiParse: "AI 解析失败：",
     parse: "解析并确认",
     confirmTitle: "确认词汇表",
     confirmSub: "解析出 {n} 个词。多个释义已用「；」合并；点 ✕ 删除不要的行。",
@@ -204,6 +205,7 @@ var L = {
     aiNeedProvider: "PDF / AI parsing needs a model provider first (local Ollama works — no key).",
     errPdfLoad: "Could not load the PDF library — first use needs a network connection.",
     errPdfScan: "No extractable text found (scanned PDFs not supported yet).",
+    errAiParse: "AI parsing failed: ",
     parse: "Parse & review",
     confirmTitle: "Confirm the vocabulary",
     confirmSub: "Parsed {n} words. Multiple meanings joined with “;”. Click ✕ to drop a row.",
@@ -260,6 +262,7 @@ var L = {
     aiNeedProvider: "El análisis con IA / PDF necesita primero un proveedor de modelo (Ollama local funciona, sin clave).",
     errPdfLoad: "No se pudo cargar la librería PDF — el primer uso necesita conexión.",
     errPdfScan: "No se encontró texto extraíble (los PDF escaneados aún no se admiten).",
+    errAiParse: "El análisis con IA falló: ",
     parse: "Analizar y revisar",
     confirmTitle: "Confirma el vocabulario",
     confirmSub: "{n} palabras. Significados múltiples unidos con “;”. Pulsa ✕ para quitar una fila.",
@@ -316,6 +319,7 @@ var L = {
     aiNeedProvider: "PDF / AI 解析にはモデルサービスの接続が必要です（ローカル Ollama は Key 不要）。",
     errPdfLoad: "PDF ライブラリを読み込めません——初回はネット接続が必要です。",
     errPdfScan: "抽出できるテキストがありません（スキャン PDF は未対応）。",
+    errAiParse: "AI 解析に失敗しました：",
     parse: "解析して確認",
     confirmTitle: "語彙リストの確認",
     confirmSub: "{n} 語を解析。複数の意味は「；」で結合。✕ で行を削除。",
@@ -834,8 +838,10 @@ function widgetBody() {
     LANG_CHOICES.forEach(function (c) { h += '<option value="' + c[0] + '"' + (c[0] === state.targetLang ? " selected" : "") + ">" + c[1] + "</option>"; });
     h += "</select>";
     h += "<label>" + esc(t("pasteLabel")) + '</label><textarea id="wt" placeholder="' + esc(t("pastePh")) + '">' + esc(state.inputBuf) + '</textarea>';
-    h += '<div class="row"><label class="btn" style="margin:0">' + esc(t("upload")) + '<input type="file" id="wf" accept=".csv,.tsv,.txt,.md,.pdf"></label>' +
-      '<button class="btn btn-primary" data-act="parse">' + esc(t("parse")) + "</button></div>";
+    if (!state.aiBusy) {
+      h += '<div class="row"><label class="btn" style="margin:0">' + esc(t("upload")) + '<input type="file" id="wf" accept=".csv,.tsv,.txt,.md,.pdf"></label>' +
+        '<button class="btn btn-primary" data-act="parse">' + esc(t("parse")) + "</button></div>";
+    }
     if (state.skipped === -1) h += '<p class="muted">' + esc(t("nothing")) + "</p>";
     if (state.aiBusy) h += '<div class="msg ok"><span class="spinner"></span>' + esc(t("aiParsing")) + "</div>";
     if (state.aiErr) h += '<div class="msg err">' + esc(state.aiErr) + "</div>";
@@ -981,7 +987,7 @@ function runAiParse(getText) {
     else { state.step = "confirm"; state.pending = entries; state.skipped = 0; }
     render();
   }, function (err) {
-    state.aiBusy = false; state.aiErr = err.message; render();
+    state.aiBusy = false; state.aiErr = t("errAiParse") + err.message; render();
   });
 }
 
@@ -1030,6 +1036,7 @@ document.addEventListener("click", function (e) {
   if (act === "toggle") { state.open = !state.open; render(); }
   else if (act === "toggle-books") { state.booksOpen = !state.booksOpen; render(); }
   else if (act === "parse") {
+    if (state.aiBusy) return;
     state.targetLang = document.getElementById("wl").value;
     doParse(document.getElementById("wt").value);
   }
@@ -1144,6 +1151,7 @@ document.addEventListener("change", function (e) {
     return;
   }
   if (e.target.id === "wf") {
+    if (state.aiBusy) return;
     var f = e.target.files[0];
     if (!f) return;
     state.targetLang = document.getElementById("wl").value;
