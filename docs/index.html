@@ -178,7 +178,7 @@ var L = {
     keyHint: "Key 只存在本机浏览器，请求直连所选服务，不经过任何中间服务器。",
     keySave: "保存并生成", keyClear: "清除", keyOn: "✓ 已接入",
     providerLabel: "模型服务", modelLabel: "模型", baseLabel: "服务地址（OpenAI 兼容 /v1）",
-    provOllama: "本地 Ollama（免费 · 无需 Key）", provQwen: "Qwen · 阿里云百炼 DashScope", provClaude: "Claude · Anthropic", provCustom: "自定义 OpenAI 兼容",
+    provOllama: "本地 Ollama（免费 · 无需 Key）", provCodex: "Codex CLI（本地桥 · fabulita bridge）", provQwen: "Qwen · 阿里云百炼 DashScope", provClaude: "Claude · Anthropic", provCustom: "自定义 OpenAI 兼容",
     needSetup: "接入一个模型服务，生成的故事会直接显示在这里。本机跑着 Ollama 就选第一项，不用填 Key。",
     manualMode: "高级：手动模式（复制 Prompt 给任意 LLM，把 JSON 粘回来）",
     errConn: "连不上服务：",
@@ -237,7 +237,7 @@ var L = {
     keyHint: "Keys stay in this browser; requests go straight to the chosen provider — no middleman server.",
     keySave: "Save & generate", keyClear: "Clear", keyOn: "✓ Connected",
     providerLabel: "Provider", modelLabel: "Model", baseLabel: "Base URL (OpenAI-compatible /v1)",
-    provOllama: "Local Ollama (free · no key)", provQwen: "Qwen · Alibaba DashScope", provClaude: "Claude · Anthropic", provCustom: "Custom OpenAI-compatible",
+    provOllama: "Local Ollama (free · no key)", provCodex: "Codex CLI (local bridge · fabulita bridge)", provQwen: "Qwen · Alibaba DashScope", provClaude: "Claude · Anthropic", provCustom: "Custom OpenAI-compatible",
     needSetup: "Connect a model provider and stories will be generated right here. Running Ollama locally? Pick the first option — no key needed.",
     manualMode: "Advanced: manual mode (copy the prompt to any LLM, paste the JSON back)",
     errConn: "Cannot reach the service: ",
@@ -296,7 +296,7 @@ var L = {
     keyHint: "Las keys se quedan en este navegador; las peticiones van directas al proveedor elegido.",
     keySave: "Guardar y generar", keyClear: "Borrar", keyOn: "✓ Conectado",
     providerLabel: "Proveedor", modelLabel: "Modelo", baseLabel: "URL base (compatible OpenAI /v1)",
-    provOllama: "Ollama local (gratis · sin key)", provQwen: "Qwen · Alibaba DashScope", provClaude: "Claude · Anthropic", provCustom: "OpenAI-compatible personalizado",
+    provOllama: "Ollama local (gratis · sin key)", provCodex: "Codex CLI (puente local · fabulita bridge)", provQwen: "Qwen · Alibaba DashScope", provClaude: "Claude · Anthropic", provCustom: "OpenAI-compatible personalizado",
     needSetup: "Conecta un proveedor y las historias se generarán aquí mismo. ¿Ollama local? Elige la primera opción — sin key.",
     manualMode: "Avanzado: modo manual (copia el prompt a cualquier LLM y pega el JSON)",
     errConn: "No se puede conectar: ",
@@ -355,7 +355,7 @@ var L = {
     keyHint: "キーはこのブラウザにのみ保存され、リクエストは選択したプロバイダに直接送られます。",
     keySave: "保存して生成", keyClear: "削除", keyOn: "✓ 接続済み",
     providerLabel: "プロバイダ", modelLabel: "モデル", baseLabel: "ベース URL（OpenAI 互換 /v1）",
-    provOllama: "ローカル Ollama（無料 · キー不要）", provQwen: "Qwen · Alibaba DashScope", provClaude: "Claude · Anthropic", provCustom: "カスタム OpenAI 互換",
+    provOllama: "ローカル Ollama（無料 · キー不要）", provCodex: "Codex CLI（ローカルブリッジ · fabulita bridge）", provQwen: "Qwen · Alibaba DashScope", provClaude: "Claude · Anthropic", provCustom: "カスタム OpenAI 互換",
     needSetup: "モデルプロバイダを接続すると、物語がここに直接生成されます。ローカルで Ollama が動いていれば最初の選択肢を（キー不要）。",
     manualMode: "上級：手動モード（プロンプトを LLM にコピーし、JSON を貼り戻す）",
     errConn: "サービスに接続できません：",
@@ -382,6 +382,7 @@ var LSL = "fabulita.uiLang";
 var LSG = "fabulita.gen";
 var PROV = {
   ollama:    { base: "http://localhost:11434/v1", model: "qwen3:8b", needKey: false },
+  codex:     { base: "http://localhost:8130/v1", model: "", needKey: false },
   qwen:      { base: "https://dashscope.aliyuncs.com/compatible-mode/v1", model: "qwen-plus", needKey: true },
   anthropic: { base: "", model: "claude-opus-4-8", needKey: true },
   custom:    { base: "", model: "", needKey: false }
@@ -481,12 +482,12 @@ function genCfg() {
 function genReady() {
   var g = genCfg();
   if (!g) return false;
-  if (g.provider === "ollama") return true;
+  if (g.provider === "ollama" || g.provider === "codex") return true;
   if (g.provider === "custom") return !!g.base;
   return !!g.key;
 }
 function provLabel(g) {
-  var names = { ollama: t("provOllama"), qwen: t("provQwen"), anthropic: t("provClaude"), custom: t("provCustom") };
+  var names = { ollama: t("provOllama"), codex: t("provCodex"), qwen: t("provQwen"), anthropic: t("provClaude"), custom: t("provCustom") };
   return (names[g.provider] || g.provider) + " · " + (g.model || "");
 }
 
@@ -842,7 +843,7 @@ function settingsHtml() {
   }
   var d = state.genDraft;
   var h = "<label>" + esc(t("providerLabel")) + '</label><select id="g-prov">';
-  [["ollama", t("provOllama")], ["qwen", t("provQwen")], ["anthropic", t("provClaude")], ["custom", t("provCustom")]].forEach(function (c) {
+  [["ollama", t("provOllama")], ["codex", t("provCodex")], ["qwen", t("provQwen")], ["anthropic", t("provClaude")], ["custom", t("provCustom")]].forEach(function (c) {
     h += '<option value="' + c[0] + '"' + (c[0] === d.provider ? " selected" : "") + ">" + esc(c[1]) + "</option>";
   });
   h += "</select>";
@@ -852,7 +853,7 @@ function settingsHtml() {
   } else if (PROV[d.provider].base) {
     h += '<p class="muted" style="margin:0.3rem 0 0">' + esc(PROV[d.provider].base) + "</p>";
   }
-  if (d.provider !== "ollama") {
+  if (d.provider !== "ollama" && d.provider !== "codex") {
     h += "<label>API Key" + (d.provider === "custom" ? " (optional)" : "") + '</label><input type="password" id="g-key" value="' + esc(d.key) + '" placeholder="sk-...">';
   }
   h += '<p class="muted" style="margin-top:0.5rem">' + esc(t("keyHint")) + "</p>";
