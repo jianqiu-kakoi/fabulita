@@ -109,6 +109,9 @@ def test_ui_strings_complete():
     keys = set(UI_STRINGS["en"])
     for lang in UI_LANGS:
         assert set(UI_STRINGS[lang]) == keys, f"{lang} missing keys"
+    for key in ("myBook", "delStory", "delConfirm"):
+        for lang in UI_LANGS:
+            assert UI_STRINGS[lang][key], f"{lang} missing {key}"
 
 
 def test_japanese_substring_validation(proj, tmp_path):

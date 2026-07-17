@@ -24,6 +24,9 @@ UI_STRINGS = {
         "candidate": "备选",
         "storiesLabel": "故事",
         "home": "首页",
+        "myBook": "我的故事书",
+        "delStory": "删除这篇",
+        "delConfirm": "再点一次确认删除",
     },
     "en": {
         "langName": "English",
@@ -46,6 +49,9 @@ UI_STRINGS = {
         "candidate": "Candidate",
         "storiesLabel": "stories",
         "home": "Home",
+        "myBook": "My storybook",
+        "delStory": "Delete this story",
+        "delConfirm": "Click again to confirm",
     },
     "es": {
         "langName": "Español",
@@ -68,6 +74,9 @@ UI_STRINGS = {
         "candidate": "Candidato",
         "storiesLabel": "historias",
         "home": "Inicio",
+        "myBook": "Mi libro de cuentos",
+        "delStory": "Eliminar esta historia",
+        "delConfirm": "Pulsa otra vez para confirmar",
     },
     "ja": {
         "langName": "日本語",
@@ -90,5 +99,8 @@ UI_STRINGS = {
         "candidate": "候補",
         "storiesLabel": "話",
         "home": "ホーム",
+        "myBook": "わたしのストーリーブック",
+        "delStory": "この話を削除",
+        "delConfirm": "もう一度押して確認",
     },
 }

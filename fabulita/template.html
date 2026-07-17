@@ -118,7 +118,9 @@
     color: var(--gold); border: 1px solid var(--gold); border-radius: 100px;
     padding: 0.05rem 0.5rem; align-self: center; flex-shrink: 0;
   }
-  .playall { margin-left: auto; align-self: center; }
+  .header-actions { margin-left: auto; align-self: center; display: flex; align-items: center; gap: 0.5rem; }
+  .del-story { font-size: 0.72rem; padding: 0.2rem 0.55rem; color: var(--muted); }
+  .del-story:hover { color: var(--accent-deep); border-color: var(--accent); }
 
   .es { font-family: var(--serif); font-size: 1.28rem; line-height: 2.05; margin: 0 0 1.25rem; }
   .w {
@@ -225,11 +227,15 @@
         var langSel = m ? m[1].toLowerCase() : "";
         var all = {};
         try { all = JSON.parse(localStorage.getItem("fabulita.studio.projects")) || {}; } catch (e) {}
-        var stories = [], vocab = [], glossary = {}, seenW = {}, glossLang = "", names = [];
+        var stories = [], vocab = [], glossary = {}, seenW = {}, glossLang = "";
         Object.keys(all).forEach(function (id) {
           var pr = all[id];
           if (!pr || !pr.config || pr.config.lang !== langSel) return;
-          (pr.stories || []).forEach(function (s) { if (s && s.status !== "candidate") stories.push(s); });
+          (pr.stories || []).forEach(function (s) {
+            if (!s || s.status === "candidate") return;
+            s._pid = pr.id;
+            stories.push(s);
+          });
           (pr.vocab || []).forEach(function (v) {
             if (!v || typeof v.w !== "string") return;
             var k = v.w.normalize("NFC").toLowerCase();
@@ -238,11 +244,13 @@
           var g = pr.glossary || {};
           Object.keys(g).forEach(function (k) { glossary[k] = g[k]; });
           if (!glossLang) glossLang = pr.config.gloss_lang || "";
-          names.push(pr.config.name || "");
         });
+        var ul = null;
+        try { ul = localStorage.getItem("fabulita.uiLang"); } catch (e) {}
+        ul = (ul && P.ui[ul]) ? ul : (P.ui[P.config.ui_default] ? P.config.ui_default : "en");
         P.config.lang = langSel;
         if (glossLang) P.config.gloss_lang = glossLang;
-        if (names.length) P.config.name = names.length === 1 ? names[0] : names[0] + " +" + (names.length - 1);
+        P.config.name = (P.ui[ul] && P.ui[ul].myBook) || "My storybook";
         P.stories = stories;
         P.vocab = vocab;
         P.glossary = glossary;
@@ -254,6 +262,7 @@
   var UI = P.ui;
   var UI_LANGS = P.uiLangs;
   var LS_KEY = "fabulita.uiLang";
+  var delArmed = null; // story id armed for delete confirmation (self-serve reader only)
   var state = {
     lang: (function () {
       try {
@@ -352,8 +361,13 @@
     if (s.title_note) h += '<p class="sub">' + esc(s.title_note) + "</p>";
     h += "</div>";
     if (s.status === "candidate") h += '<span class="badge">' + esc(t("candidate")) + "</span>";
+    h += '<div class="header-actions">';
+    if (P.self) {
+      var delLabel = (delArmed === s.id) ? t("delConfirm") : t("delStory");
+      h += '<button class="ctl del-story" data-del="' + esc(s.id) + '" data-pid="' + esc(s._pid) + '">' + esc(delLabel) + "</button>";
+    }
     h += '<button class="ctl playall" data-si="' + si + '">' + esc(t("playAll")) + "</button>";
-    h += "</header>";
+    h += "</div></header>";
 
     h += '<p class="es">';
     s.sentences.forEach(function (sent, i) {
@@ -565,9 +579,39 @@
     })();
   }
 
+  function disarmDelete() {
+    if (delArmed === null) return;
+    delArmed = null;
+    var btns = document.querySelectorAll(".del-story");
+    for (var i = 0; i < btns.length; i++) btns[i].textContent = t("delStory");
+  }
+
   // ── events (delegated; DOM is re-rendered on language switch) ──
   document.addEventListener("click", function (e) {
     var el;
+    if (P.self && (el = e.target.closest(".del-story"))) {
+      var sid = el.dataset.del, pid = el.dataset.pid;
+      if (delArmed !== sid) {
+        delArmed = sid;
+        var btns = document.querySelectorAll(".del-story");
+        for (var i = 0; i < btns.length; i++) {
+          btns[i].textContent = (btns[i].dataset.del === sid) ? t("delConfirm") : t("delStory");
+        }
+        return;
+      }
+      delArmed = null;
+      try {
+        var all = JSON.parse(localStorage.getItem("fabulita.studio.projects")) || {};
+        var pr = all[pid];
+        if (pr && pr.stories) {
+          pr.stories = pr.stories.filter(function (x) { return x.id !== sid; });
+          localStorage.setItem("fabulita.studio.projects", JSON.stringify(all));
+        }
+      } catch (err) {}
+      location.reload();
+      return;
+    }
+    disarmDelete();
     if ((el = e.target.closest(".langsw button"))) {
       state.lang = el.dataset.lang;
       try { localStorage.setItem(LS_KEY, state.lang); } catch (err) {}
