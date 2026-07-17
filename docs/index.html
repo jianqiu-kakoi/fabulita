@@ -168,7 +168,7 @@ var L = {
     skipped: "有 {n} 行无法解析，已跳过",
     nothing: "没有解析到词条——检查每行是否是「词 分隔符 释义」",
     confirm: "✓ 确认，存入词表",
-    srcLabel: "用哪些词生成", srcAll: "全部未覆盖的词", srcManual: "手动选词", srcLLM: "AI 挑词", llmHint: "AI 会从 {n} 个未覆盖的词里挑 10-20 个适合同一个故事的词", selListFirst: "先选至少一张词表", selDone: "所选词表已全部覆盖 🎉 换一张或手动选词", pickHint: "点选要用的单词（最多 20 个）· 已选 {n}", pickNone: "先选至少 1 个词",
+    srcLabel: "用哪些词生成", srcAll: "全部未覆盖的词", srcManual: "手动选词", srcLLM: "AI 挑词", llmHint: "AI 会从 {n} 个未覆盖的词里挑 10-20 个适合同一个故事的词", selListFirst: "先选至少一张词表", targetGone: "目标词表已被删除，这篇故事没有保存。", selDone: "所选词表已全部覆盖 🎉 换一张或手动选词", pickHint: "点选要用的单词（最多 20 个）· 已选 {n}", pickNone: "先选至少 1 个词",
     cancel: "取消",
     batchInfo: "本批词汇 · {n} 个",
     generate: "✨ 生成故事",
@@ -236,7 +236,7 @@ var L = {
     skipped: "{n} lines could not be parsed and were skipped",
     nothing: "No entries found — each line should look like “word separator meaning”",
     confirm: "✓ Confirm — save to my word list",
-    srcLabel: "Generate from", srcAll: "All uncovered words", srcManual: "Pick words myself", srcLLM: "AI picks the words", llmHint: "AI will pick 10-20 words that fit one story from {n} uncovered words", selListFirst: "Pick at least one word list first", selDone: "Every word in the selected lists is covered 🎉 — pick another list or choose words manually", pickHint: "Tap the words to use (max 20) · {n} selected", pickNone: "Pick at least one word first",
+    srcLabel: "Generate from", srcAll: "All uncovered words", srcManual: "Pick words myself", srcLLM: "AI picks the words", llmHint: "AI will pick 10-20 words that fit one story from {n} uncovered words", selListFirst: "Pick at least one word list first", targetGone: "That word list was deleted — the story was not saved.", selDone: "Every word in the selected lists is covered 🎉 — pick another list or choose words manually", pickHint: "Tap the words to use (max 20) · {n} selected", pickNone: "Pick at least one word first",
     cancel: "Cancel",
     batchInfo: "This batch · {n} words",
     generate: "✨ Generate a story",
@@ -304,7 +304,7 @@ var L = {
     skipped: "{n} líneas no se pudieron analizar",
     nothing: "No se encontraron entradas — cada línea: “palabra separador significado”",
     confirm: "✓ Confirmar y guardar en mi lista",
-    srcLabel: "Generar con", srcAll: "Todas las palabras sin cubrir", srcManual: "Elegir palabras yo mismo", srcLLM: "La IA elige las palabras", llmHint: "La IA elegirá 10-20 palabras que encajen en una historia, de entre {n} palabras sin cubrir", selListFirst: "Elige al menos una lista de palabras primero", selDone: "Todas las palabras de las listas seleccionadas están cubiertas 🎉 — elige otra lista o selecciona palabras manualmente", pickHint: "Toca las palabras a usar (máx. 20) · {n} seleccionadas", pickNone: "Elige al menos una palabra",
+    srcLabel: "Generar con", srcAll: "Todas las palabras sin cubrir", srcManual: "Elegir palabras yo mismo", srcLLM: "La IA elige las palabras", llmHint: "La IA elegirá 10-20 palabras que encajen en una historia, de entre {n} palabras sin cubrir", selListFirst: "Elige al menos una lista de palabras primero", targetGone: "Esa lista fue eliminada — la historia no se guardó.", selDone: "Todas las palabras de las listas seleccionadas están cubiertas 🎉 — elige otra lista o selecciona palabras manualmente", pickHint: "Toca las palabras a usar (máx. 20) · {n} seleccionadas", pickNone: "Elige al menos una palabra",
     cancel: "Cancelar",
     batchInfo: "Este lote · {n} palabras",
     generate: "✨ Generar una historia",
@@ -372,7 +372,7 @@ var L = {
     skipped: "{n} 行は解析できずスキップ",
     nothing: "エントリが見つかりません — 各行は「語 区切り 意味」の形式で",
     confirm: "✓ 確認してリストに保存",
-    srcLabel: "どの単語から生成", srcAll: "未カバーの全単語", srcManual: "自分で単語を選ぶ", srcLLM: "AI が単語を選ぶ", llmHint: "AI は未カバーの {n} 語の中から、1つの物語に合う 10〜20 語を選びます", selListFirst: "まず単語リストを1つ以上選んでください", selDone: "選択したリストの単語はすべてカバー済みです 🎉 別のリストを選ぶか、手動で単語を選んでください", pickHint: "使う単語をタップ（最大 20）· {n} 選択中", pickNone: "先に 1 語以上選んでください",
+    srcLabel: "どの単語から生成", srcAll: "未カバーの全単語", srcManual: "自分で単語を選ぶ", srcLLM: "AI が単語を選ぶ", llmHint: "AI は未カバーの {n} 語の中から、1つの物語に合う 10〜20 語を選びます", selListFirst: "まず単語リストを1つ以上選んでください", targetGone: "対象のリストが削除されたため、この話は保存されませんでした。", selDone: "選択したリストの単語はすべてカバー済みです 🎉 別のリストを選ぶか、手動で単語を選んでください", pickHint: "使う単語をタップ（最大 20）· {n} 選択中", pickNone: "先に 1 語以上選んでください",
     cancel: "キャンセル",
     batchInfo: "このバッチ · {n} 語",
     generate: "✨ 物語を生成",
@@ -1551,6 +1551,7 @@ document.addEventListener("click", function (e) {
       lp.warnings = v.warnings; lp.missing = v.missing;
       lp.phase = "preview"; lp.error = null;
       state.pasteBuf = ""; state.manualOpen = false;
+      if (pLists.length) lp.targetId = pLists[0].id;
       saveDraft();
       render();
     } catch (err) {
@@ -1561,8 +1562,14 @@ document.addEventListener("click", function (e) {
   }
   else if (act === "keep") {
     var kAll = loadAll();
-    var kp = (lp.targetId && kAll[lp.targetId]) || genLists()[0];
-    if (!kp) return;
+    var kp = lp.targetId ? kAll[lp.targetId] : genLists()[0];
+    if (!kp) {
+      lp.phase = "idle"; lp.story = null; lp.warnings = []; lp.missing = []; lp.targetId = null;
+      lp.error = t("targetGone");
+      clearDraft();
+      render();
+      return;
+    }
     if (lp.missing && lp.missing.length) {
       lp.story.vocab_used = lp.story.vocab_used.filter(function (w) { return lp.missing.indexOf(w) === -1; });
     }
@@ -1640,7 +1647,8 @@ document.addEventListener("keydown", function (e) { if (e.key === "Escape") hide
 (function () {
   try {
     var d = JSON.parse(localStorage.getItem(LSD));
-    if (!d || !d.story || !d.targetId) return;
+    if (!d) return;
+    if (!d.story || !d.targetId || !d.story.sentences || !d.story.sentences.length) { localStorage.removeItem(LSD); return; }
     if (!loadAll()[d.targetId]) { localStorage.removeItem(LSD); return; }
     state.open = true;
     state.tab = "gen";
