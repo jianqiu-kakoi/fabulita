@@ -206,6 +206,7 @@ var L = {
     newList: "＋ 新建词表", newListName: "词表名字", newListSave: "创建",
     uploadWords: "上传 / 粘贴生词", upTarget: "加到哪张词表", upTargetNew: "新建词表",
     addToList: "＋ 加词到这张表", backToLists: "← 返回词表", noLists: "还没有词表——先建一张或直接上传",
+    delList: "删除这张词表", delListConfirm: "再点一次确认删除", delListConfirmN: "再点一次确认删除（含 {n} 篇故事）",
     footStudio: "工作台", footGh: "源码 GitHub", footCli: "命令行版"
   },
   en: {
@@ -273,6 +274,7 @@ var L = {
     newList: "＋ New list", newListName: "List name", newListSave: "Create",
     uploadWords: "Upload / paste words", upTarget: "Add to which list", upTargetNew: "New list",
     addToList: "＋ Add words to this list", backToLists: "← Back to lists", noLists: "No word lists yet — create one or upload words",
+    delList: "Delete this list", delListConfirm: "Click again to confirm delete", delListConfirmN: "Click again to confirm delete ({n} stories)",
     footStudio: "Workspace", footGh: "Source on GitHub", footCli: "Command line"
   },
   es: {
@@ -340,6 +342,7 @@ var L = {
     newList: "＋ Nueva lista", newListName: "Nombre de la lista", newListSave: "Crear",
     uploadWords: "Subir / pegar palabras", upTarget: "Añadir a qué lista", upTargetNew: "Nueva lista",
     addToList: "＋ Añadir palabras a esta lista", backToLists: "← Volver a las listas", noLists: "Aún no hay listas — crea una o sube palabras",
+    delList: "Eliminar esta lista", delListConfirm: "Pulsa de nuevo para confirmar", delListConfirmN: "Pulsa de nuevo para confirmar (con {n} historias)",
     footStudio: "Taller", footGh: "Código en GitHub", footCli: "Línea de comandos"
   },
   ja: {
@@ -407,6 +410,7 @@ var L = {
     newList: "＋ 新しいリスト", newListName: "リスト名", newListSave: "作成",
     uploadWords: "単語をアップロード / 貼り付け", upTarget: "どのリストに追加", upTargetNew: "新しいリスト",
     addToList: "＋ このリストに単語を追加", backToLists: "← リストに戻る", noLists: "まだリストがありません——作成するかアップロードしてください",
+    delList: "このリストを削除", delListConfirm: "もう一度押して削除を確定", delListConfirmN: "もう一度押して削除を確定（{n} 話）",
     footStudio: "ワークスペース", footGh: "GitHub", footCli: "コマンドライン"
   }
 };
@@ -532,7 +536,7 @@ var state = {
   pending: null, skipped: 0, aiBusy: false, aiErr: null, lastRaw: "", lastFileName: "", upNameBuf: null, expMsg: null, expText: null, genSrc: { type: "all", words: [] },
   inputBuf: "", pasteBuf: "",
   targetLang: "es",
-  tab: "lists", listView: null, uploadTarget: "__new", genSel: [], newListOpen: false,
+  tab: "lists", listView: null, uploadTarget: "__new", genSel: [], newListOpen: false, delArm: null,
   loop: { phase: "idle", story: null, warnings: [], missing: [], error: null, attempt: 0 },
   genDraft: null, manualOpen: false, keyOpen: false,
   msg: null
@@ -1205,9 +1209,11 @@ function listDetailHtml() {
   var h = '<div class="row" style="margin-top:0"><button class="btn" data-act="back-to-lists">' + esc(t("backToLists")) + "</button></div>";
   h += '<h2 style="margin-top:0.8rem">' + esc(p.config.name) + "</h2>";
   h += '<p class="muted" style="margin:0">' + vocab.length + " " + esc(t("words")) + " · " + (p.stories || []).length + " " + esc(t("storiesN")) + "</p>";
+  var delLabel = state.delArm === p.id ? ((p.stories || []).length > 0 ? fmt(t("delListConfirmN"), { n: (p.stories || []).length }) : t("delListConfirm")) : t("delList");
   h += '<div class="row"><button class="btn btn-primary" data-act="add-to-list" data-id="' + esc(p.id) + '">' + esc(t("addToList")) + "</button>" +
     '<button class="btn" data-act="export-copy">' + esc(t("exportCopy")) + "</button>" +
-    '<button class="btn" data-act="export-tsv">' + esc(t("exportTsv")) + "</button></div>";
+    '<button class="btn" data-act="export-tsv">' + esc(t("exportTsv")) + "</button>" +
+    '<button class="btn btn-danger" data-act="del-list" data-id="' + esc(p.id) + '">' + esc(delLabel) + "</button></div>";
   if (state.expMsg) h += '<div class="msg ok">' + esc(state.expMsg) + "</div>";
   if (state.expText) h += '<textarea readonly style="min-height:10rem">' + esc(state.expText) + "</textarea>";
   h += '<div class="chips" style="margin-top:0.8rem">';
@@ -1374,6 +1380,8 @@ document.addEventListener("click", function (e) {
   var el = e.target.closest("[data-act]");
   if (!el) { if (!e.target.closest(".pop")) hidePop(); return; }
   var act = el.dataset.act, lp = state.loop;
+  var isDelListAct = act === "del-list";
+  if (!isDelListAct && state.delArm) state.delArm = null;
 
   if (act === "toggle") { state.open = !state.open; render(); }
   else if (act === "toggle-books") { state.booksOpen = !state.booksOpen; render(); }
@@ -1464,6 +1472,20 @@ document.addEventListener("click", function (e) {
     if (tgtList) state.targetLang = tgtList.config.lang;
     state.step = "input";
     state.expMsg = null; state.expText = null;
+    render();
+  }
+  else if (isDelListAct) {
+    var delId = el.dataset.id;
+    if (state.delArm !== delId) { state.delArm = delId; render(); return; }
+    var a = loadAll();
+    delete a[delId];
+    saveAll(a);
+    state.genSel = state.genSel.filter(function (id) { return id !== delId; });
+    if (lp.targetId === delId) {
+      clearDraft();
+      lp.story = null; lp.phase = "idle"; lp.warnings = []; lp.missing = []; lp.targetId = null;
+    }
+    state.listView = null; state.delArm = null;
     render();
   }
   else if (act === "gsel") {
