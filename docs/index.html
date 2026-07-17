@@ -1483,6 +1483,7 @@ document.addEventListener("click", function (e) {
     state.genSel = state.genSel.filter(function (id) { return id !== delId; });
     if (lp.targetId === delId) {
       clearDraft();
+      lp.runId = (lp.runId || 0) + 1;
       lp.story = null; lp.phase = "idle"; lp.warnings = []; lp.missing = []; lp.targetId = null;
     }
     state.listView = null; state.delArm = null;
