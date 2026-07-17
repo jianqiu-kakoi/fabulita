@@ -83,3 +83,28 @@ function clearDraft() { try { localStorage.removeItem(LSD); } catch (e) {} }
 - [ ] 换一篇 regenerates (old draft replaced on next preview); ■ discards + clears draft (reload → no preview).
 - [ ] Selection change with a restored preview → preview invalidated + draft cleared.
 - [ ] Console clean; UI 中文; friction notes → `.superpowers/sdd/task-2-qa-draft.md`; fix anything found.
+
+---
+
+### Task 3: Self-serve reader — proper title + per-story delete
+
+**Files:** Modify `fabulita/ui.py` (4 new keys ×4 langs), `fabulita/template.html`; regenerate `docs/reader.html` + `docs/studio.html`; extend `tests/test_fabulita.py` if trivial.
+
+**Requirements:**
+1. `ui.py` UI_STRINGS gains per-lang keys: `myBook` (zh 我的故事书 / en My storybook / es Mi libro de cuentos / ja わたしのストーリーブック), `delStory` (zh 删除这篇 / en Delete this story / es Eliminar esta historia / ja この話を削除), `delConfirm` (zh 再点一次确认删除 / en Click again to confirm / es Pulsa otra vez para confirmar / ja もう一度押して確認).
+2. Template hydration (`P.self` block): stop using the "first name +N" title. Resolve UI language early (localStorage `fabulita.uiLang`, fallback `P.config.ui_default`, fallback "en") and set `P.config.name = (P.ui[ul] && P.ui[ul].myBook) || "My storybook"`; keep `document.title` assignment. ALSO attach `_pid: <project id>` to every aggregated story object during hydration.
+3. Story delete (self-serve ONLY — gate every bit on `P.self`): each story header (in `storyHtml` or the render loop) gains a small muted delete button carrying `data-del="<story id>" data-pid="<_pid>"`. Two-step inline confirm WITHOUT native confirm(): first click sets an in-memory armed flag and re-labels that button to `delConfirm`; second click removes the story (match by id) from that project in `localStorage["fabulita.studio.projects"]`, saves, and `location.reload()`. Clicking anywhere else disarms. All strings via the template's `t()`; esc() everything.
+4. Regenerate artifacts (`fabulita reader --out docs/reader.html`, `fabulita studio --out docs/studio.html`); node --check both script blocks of reader.html; `uv run --extra dev pytest -q` green.
+5. Commit: `Reader: localized my-storybook title + per-story delete (self-serve only)`
+
+### Task 4: 词表 delete (index.html)
+
+**Requirements:**
+1. In `listDetailHtml()`: a `data-act="del-list" data-id` button (muted/danger style). Two-step inline confirm via `state.delArm` (holds the armed list id, cleared on any other click/render action): first click arms and re-labels to the confirm string — if the list has stories, use `delListConfirmN` with `{n}` = story count (its stories disappear from the storybook), else `delListConfirm`. Second click: delete the project from storage, clear from `state.genSel`, clear `state.listView`, clear the draft if `fabulita.draft`'s targetId is the deleted id, render back to the table.
+2. i18n ×4: `delList` (删除这张词表), `delListConfirm` (再点一次确认删除), `delListConfirmN` (再点一次确认删除（含 {n} 篇故事）).
+3. node --check; greps: `del-list` ×2, `delArm` ≥4, `delListConfirmN` ×5.
+4. Commit: `Lists tab: delete a word list (two-step inline confirm, draft/selection cleanup)`
+
+### Task 5: Agent browser QA (draft cache + title + deletes)
+
+Covers plan Task 2's checklist PLUS: reader title shows 我的故事书 (not 测试单元一 +3); story delete two-step works and survives reload (story gone, coverage updated); list delete two-step works incl. genSel/draft cleanup; deleting the stories-holding list removes those stories from the reader; standing criteria; console clean; findings → `.superpowers/sdd/task-5-qa-draft.md`; fix anything found.
