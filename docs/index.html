@@ -422,6 +422,7 @@ var GLOSS_NAMES = { zh: "Chinese (中文)", en: "English", ja: "Japanese", es: "
 var LSP = "fabulita.studio.projects";
 var LSL = "fabulita.uiLang";
 var LSG = "fabulita.gen";
+var LSD = "fabulita.draft";
 var PROV = {
   ollama:    { base: "http://localhost:11434/v1", model: "qwen3:8b", needKey: false },
   codex:     { base: "http://localhost:8130/v1", model: "", needKey: false },
@@ -532,7 +533,7 @@ var state = {
   inputBuf: "", pasteBuf: "",
   targetLang: "es",
   tab: "lists", listView: null, uploadTarget: "__new", genSel: [], newListOpen: false,
-  loop: { phase: "idle", story: null, warnings: [], missing: [], error: null, attempt: 0, stopped: false },
+  loop: { phase: "idle", story: null, warnings: [], missing: [], error: null, attempt: 0 },
   genDraft: null, manualOpen: false, keyOpen: false,
   msg: null
 };
@@ -546,6 +547,16 @@ function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function 
 function loadAll() { try { return JSON.parse(localStorage.getItem(LSP)) || {}; } catch (e) { return {}; } }
 function saveAll(a) { localStorage.setItem(LSP, JSON.stringify(a)); }
 function saveProj(p) { var a = loadAll(); a[p.id] = p; saveAll(a); }
+function saveDraft() {
+  var lp = state.loop;
+  try {
+    localStorage.setItem(LSD, JSON.stringify({
+      story: lp.story, warnings: lp.warnings, missing: lp.missing,
+      targetId: lp.targetId, genSel: state.genSel, genSrc: state.genSrc, ts: Date.now()
+    }));
+  } catch (e) {}
+}
+function clearDraft() { try { localStorage.removeItem(LSD); } catch (e) {} }
 function genCfg() {
   try { var g = JSON.parse(localStorage.getItem(LSG)); if (g && g.provider) return g; } catch (e) {}
   try { var old = localStorage.getItem("fabulita.apiKey"); if (old) return { provider: "anthropic", key: old, model: "claude-opus-4-8", base: "" }; } catch (e) {}
@@ -1077,8 +1088,7 @@ function genBody() {
       '<button class="btn" data-act="stop">' + esc(t("stopHere")) + "</button></div>";
   } else {
     if (genReady()) {
-      h += '<div class="row"><button class="btn btn-primary" data-act="gen">' + esc(t("generate")) + "</button>" +
-        '<button class="btn" data-act="stop">' + esc(t("stopHere")) + "</button></div>";
+      h += '<div class="row"><button class="btn btn-primary" data-act="gen">' + esc(t("generate")) + "</button></div>";
       if (lp.error && lists.length) h += '<div class="msg err">' + esc(lp.error) + "</div>";
     } else {
       h += '<div class="msg ok">' + esc(t("needSetup")) + "</div>" + settingsHtml();
@@ -1332,6 +1342,7 @@ function startGenerate() {
     var v = validateStory(p, s);
     lp.warnings = v.warnings; lp.missing = v.missing;
     lp.phase = "preview";
+    saveDraft();
     render();
   }, function (err) {
     if (run !== lp.runId) return;
@@ -1471,6 +1482,7 @@ document.addEventListener("click", function (e) {
     lp.error = null;
     lp.runId = (lp.runId || 0) + 1;
     lp.phase = "idle"; lp.story = null; lp.warnings = []; lp.missing = []; lp.error = null; lp.targetId = null;
+    clearDraft();
     render();
   }
   else if (act === "gen") {
@@ -1481,7 +1493,7 @@ document.addEventListener("click", function (e) {
       if (state.genSrc && state.genSrc.type === "manual") { lp.error = t("pickNone"); render(); }
       return;
     }
-    lp.attempt = 0; lp.stopped = false; startGenerate();
+    lp.attempt = 0; startGenerate();
   }
   else if (act === "pick-word") {
     var gs = state.genSrc;
@@ -1492,7 +1504,7 @@ document.addEventListener("click", function (e) {
     state.loop.error = null;
     render();
   }
-  else if (act === "reroll") { lp.attempt += 1; lp.story = null; if (genReady()) startGenerate(); else { lp.phase = "idle"; state.msg = null; render(); } }
+  else if (act === "reroll") { clearDraft(); lp.attempt += 1; lp.story = null; if (genReady()) startGenerate(); else { lp.phase = "idle"; state.msg = null; render(); } }
   else if (act === "copy") {
     if (!requireGenLists()) return;
     state.manualOpen = true;
@@ -1516,6 +1528,7 @@ document.addEventListener("click", function (e) {
       lp.warnings = v.warnings; lp.missing = v.missing;
       lp.phase = "preview"; lp.error = null;
       state.pasteBuf = ""; state.manualOpen = false;
+      saveDraft();
       render();
     } catch (err) {
       lp.error = t("errParse") + err.message;
@@ -1532,14 +1545,13 @@ document.addEventListener("click", function (e) {
     }
     kp.stories.push(lp.story);
     saveProj(kp);
-    lp.story = null; lp.warnings = []; lp.attempt = 0; lp.phase = "idle"; state.msg = null; lp.targetId = null;
-    if (state.genSrc && state.genSrc.type === "manual") {
-      state.genSrc = { type: "all", words: [] };
-      render();
-    } else if (genBatch().length && genReady()) startGenerate();
-    else render();
+    clearDraft();
+    lp.story = null; lp.warnings = []; lp.attempt = 0; lp.phase = "idle"; state.msg = null;
+    lp.targetId = null;
+    if (state.genSrc && state.genSrc.type === "manual") state.genSrc = { type: "all", words: [] };
+    render();
   }
-  else if (act === "stop") { lp.stopped = true; lp.phase = "idle"; lp.story = null; render(); }
+  else if (act === "stop") { lp.phase = "idle"; lp.story = null; clearDraft(); render(); }
   else if (act === "gen-save") {
     var d = state.genDraft || { provider: "ollama" };
     var mEl = document.getElementById("g-model"), bEl = document.getElementById("g-base"), kEl = document.getElementById("g-key");
@@ -1551,8 +1563,7 @@ document.addEventListener("click", function (e) {
     };
     try { localStorage.setItem(LSG, JSON.stringify(cfg)); localStorage.removeItem("fabulita.apiKey"); } catch (err) {}
     state.genDraft = null; state.keyOpen = false; state.msg = null; if (lp) lp.error = null; state.aiErr = null;
-    if (state.tab === "gen" && genReady() && !lp.stopped && lp.phase === "idle" && genBatch().length) startGenerate();
-    else render();
+    render();
   }
   else if (act === "gen-clear") {
     try { localStorage.removeItem(LSG); localStorage.removeItem("fabulita.apiKey"); } catch (err) {}
@@ -1602,6 +1613,23 @@ document.addEventListener("change", function (e) {
 });
 window.addEventListener("scroll", hidePop, { passive: true });
 document.addEventListener("keydown", function (e) { if (e.key === "Escape") hidePop(); });
+
+(function () {
+  try {
+    var d = JSON.parse(localStorage.getItem(LSD));
+    if (!d || !d.story || !d.targetId) return;
+    if (!loadAll()[d.targetId]) { localStorage.removeItem(LSD); return; }
+    state.open = true;
+    state.tab = "gen";
+    state.genSel = d.genSel || [d.targetId];
+    state.genSrc = d.genSrc || { type: "all", words: [] };
+    state.loop.story = d.story;
+    state.loop.warnings = d.warnings || [];
+    state.loop.missing = d.missing || [];
+    state.loop.targetId = d.targetId;
+    state.loop.phase = "preview";
+  } catch (e) {}
+})();
 
 render();
 })();
