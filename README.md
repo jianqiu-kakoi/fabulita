@@ -99,6 +99,12 @@ Glosses live in three layers, later wins: `vocab.json` → project `glossary.jso
 
 Backends are pluggable (`fabulita/tts.py`); a [Piper](https://github.com/rhasspy/piper) backend (fully local/offline) is on the roadmap.
 
+## Development
+
+Regenerate everything under `docs/` (demo pages, demo data, reader, studio):
+
+    uv run python scripts/build_docs.py
+
 ## Non-goals
 
 - Not an SRS / flashcard app (export to Anki instead; FSRS integration is on the roadmap)

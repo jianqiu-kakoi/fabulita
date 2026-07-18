@@ -1,0 +1,1 @@
+window.FABULITA_DEMO_COUNTS={"es": {"n": 5, "ids": ["en-casa", "en-el-mercado", "en-la-clase", "la-fiesta", "primer-dia"]}, "en": {"n": 1, "ids": ["toms-morning"]}, "ja": {"n": 1, "ids": ["watashi-no-ichinichi"]}};
