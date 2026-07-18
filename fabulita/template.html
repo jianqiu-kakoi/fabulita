@@ -219,6 +219,14 @@
 <script>var P = /*__PAYLOAD__*/null;</script>
 <script>
 (function () {
+  if (!(P && P.self)) return;
+  var m = (location.hash || "").match(/lang=([a-z]{2})/i);
+  if (!m) return;
+  document.write('<script src="demo-data-' + m[1].toLowerCase() + '.js"><\/script>');
+})();
+</script>
+<script>
+(function () {
   "use strict";
   if (P && P.self) {
     (function () {
@@ -245,16 +253,36 @@
           Object.keys(g).forEach(function (k) { glossary[k] = g[k]; });
           if (!glossLang) glossLang = pr.config.gloss_lang || "";
         });
+        var hd = {};
+        try { hd = JSON.parse(localStorage.getItem("fabulita.hiddenDemo")) || {}; } catch (e) {}
+        var hiddenIds = hd[langSel] || [];
+        var demo = (window.FABULITA_DEMO || {})[langSel];
+        var demoStories = [];
+        if (demo) {
+          (demo.stories || []).forEach(function (s) {
+            if (hiddenIds.indexOf(s.id) !== -1) return;
+            s._builtin = true;
+            demoStories.push(s);
+          });
+          (demo.vocab || []).forEach(function (v) {
+            if (!v || typeof v.w !== "string") return;
+            var k = v.w.normalize("NFC").toLowerCase();
+            if (k && !seenW[k]) { seenW[k] = true; vocab.push(v); }
+          });
+          var dg = demo.glossary || {};
+          Object.keys(dg).forEach(function (k) { if (!(k in glossary)) glossary[k] = dg[k]; });
+          if (!glossLang) glossLang = demo.gloss_lang || "";
+        }
         var ul = null;
         try { ul = localStorage.getItem("fabulita.uiLang"); } catch (e) {}
         ul = (ul && P.ui[ul]) ? ul : (P.ui[P.config.ui_default] ? P.config.ui_default : "en");
         P.config.lang = langSel;
         if (glossLang) P.config.gloss_lang = glossLang;
         P.config.name = (P.ui[ul] && P.ui[ul].myBook) || "My storybook";
-        P.stories = stories;
+        P.stories = demoStories.concat(stories);
         P.vocab = vocab;
         P.glossary = glossary;
-        P.audio = {};
+        P.audio = (demo && demo.audio) || {};
         document.title = P.config.name;
       } catch (e) {}
     })();
@@ -364,7 +392,8 @@
     h += '<div class="header-actions">';
     if (P.self) {
       var delLabel = (delArmed === s.id) ? t("delConfirm") : t("delStory");
-      h += '<button class="ctl del-story" data-del="' + esc(s.id) + '" data-pid="' + esc(s._pid) + '">' + esc(delLabel) + "</button>";
+      h += '<button class="ctl del-story" data-del="' + esc(s.id) + '" data-pid="' + esc(s._pid || "") + '"' +
+        (s._builtin ? ' data-builtin="1"' : "") + '>' + esc(delLabel) + "</button>";
     }
     h += '<button class="ctl playall" data-si="' + si + '">' + esc(t("playAll")) + "</button>";
     h += "</div></header>";
@@ -436,7 +465,15 @@
     h += "</nav></div>";
     h += '<p class="hint">' + esc(t("hint")) + "</p>";
     h += '<div class="controls"><button class="ctl" id="speed-toggle" aria-pressed="' + state.slow + '">' + esc(t("slow")) + "</button>" +
-      '<span class="ctl-note" id="voice-note"></span></div></header>';
+      '<span class="ctl-note" id="voice-note"></span></div>';
+    if (P.self && P.config.lang) {
+      var hd0 = {};
+      try { hd0 = JSON.parse(localStorage.getItem("fabulita.hiddenDemo")) || {}; } catch (e) {}
+      if ((hd0[P.config.lang] || []).length) {
+        h += '<div class="controls"><button class="ctl" id="restore-demo">' + esc(t("restoreDemo")) + "</button></div>";
+      }
+    }
+    h += "</header>";
 
     h += coverageHtml();
 
@@ -600,6 +637,16 @@
         return;
       }
       delArmed = null;
+      if (el.dataset.builtin) {
+        try {
+          var hdd = JSON.parse(localStorage.getItem("fabulita.hiddenDemo")) || {};
+          var lg = P.config.lang;
+          if ((hdd[lg] || []).indexOf(sid) === -1) hdd[lg] = (hdd[lg] || []).concat([sid]);
+          localStorage.setItem("fabulita.hiddenDemo", JSON.stringify(hdd));
+        } catch (err) {}
+        location.reload();
+        return;
+      }
       try {
         var all = JSON.parse(localStorage.getItem("fabulita.studio.projects")) || {};
         var pr = all[pid];
@@ -607,6 +654,15 @@
           pr.stories = pr.stories.filter(function (x) { return x.id !== sid; });
           localStorage.setItem("fabulita.studio.projects", JSON.stringify(all));
         }
+      } catch (err) {}
+      location.reload();
+      return;
+    }
+    if (P.self && (el = e.target.closest("#restore-demo"))) {
+      try {
+        var hdr = JSON.parse(localStorage.getItem("fabulita.hiddenDemo")) || {};
+        delete hdr[P.config.lang];
+        localStorage.setItem("fabulita.hiddenDemo", JSON.stringify(hdr));
       } catch (err) {}
       location.reload();
       return;

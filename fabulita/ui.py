@@ -27,6 +27,7 @@ UI_STRINGS = {
         "myBook": "我的故事书",
         "delStory": "删除这篇",
         "delConfirm": "再点一次确认删除",
+        "restoreDemo": "恢复内置故事",
     },
     "en": {
         "langName": "English",
@@ -52,6 +53,7 @@ UI_STRINGS = {
         "myBook": "My storybook",
         "delStory": "Delete this story",
         "delConfirm": "Click again to confirm",
+        "restoreDemo": "Restore built-in stories",
     },
     "es": {
         "langName": "Español",
@@ -77,6 +79,7 @@ UI_STRINGS = {
         "myBook": "Mi libro de cuentos",
         "delStory": "Eliminar esta historia",
         "delConfirm": "Pulsa otra vez para confirmar",
+        "restoreDemo": "Restaurar historias integradas",
     },
     "ja": {
         "langName": "日本語",
@@ -102,5 +105,6 @@ UI_STRINGS = {
         "myBook": "わたしのストーリーブック",
         "delStory": "この話を削除",
         "delConfirm": "もう一度押して確認",
+        "restoreDemo": "内蔵ストーリーを復元",
     },
 }
