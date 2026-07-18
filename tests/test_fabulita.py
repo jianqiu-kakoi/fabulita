@@ -192,3 +192,30 @@ def test_build_reader(tmp_path):
     assert data["stories"] == [] and data["vocab"] == []
     assert data["config"]["home"] == "index.html"
     assert "ui" in data and "uiLangs" in data
+
+
+def test_demo_data_js(proj, tmp_path):
+    # Setup: seed vocab and create an accepted story
+    seed_vocab(proj, tmp_path, ["perro,狗", "jardín,花园", "flor,花"])
+    stories.add(proj, write_story(tmp_path, make_story()), accept=True)
+
+    js = build.demo_data_js(proj)
+    assert js.startswith("window.FABULITA_DEMO=window.FABULITA_DEMO||{};")
+    payload = js.split("=")[-1].rstrip(";\n")
+    data = json.loads(payload.replace("<\\/", "</"))
+    assert data["lang"] == proj.config["lang"]
+    assert all(s["status"] == "accepted" for s in data["stories"])
+    out, size = build.build_demo_data(proj, tmp_path / "demo-data-es.js")
+    assert out.exists() and size == len(js)
+
+
+def test_demo_manifest_js(proj, tmp_path):
+    # Setup: seed vocab and create an accepted story
+    seed_vocab(proj, tmp_path, ["perro,狗", "jardín,花园", "flor,花"])
+    stories.add(proj, write_story(tmp_path, make_story()), accept=True)
+
+    js = build.demo_manifest_js([proj])
+    assert js.startswith("window.FABULITA_DEMO_COUNTS=")
+    data = json.loads(js.split("=", 1)[1].rstrip(";\n").replace("<\\/", "</"))
+    lang = proj.config["lang"]
+    assert data[lang]["n"] == len(data[lang]["ids"]) == 1

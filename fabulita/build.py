@@ -43,6 +43,41 @@ def payload(project, include_candidates=True, home=None):
     }
 
 
+def demo_data_js(project):
+    """JS snippet defining window.FABULITA_DEMO[<lang>] for the self-serve reader."""
+    data = payload(project, include_candidates=False)
+    demo = {
+        "lang": data["config"]["lang"],
+        "gloss_lang": data["config"]["gloss_lang"],
+        "vocab": data["vocab"],
+        "glossary": data["glossary"],
+        "stories": data["stories"],
+        "audio": data["audio"],
+    }
+    blob = json.dumps(demo, ensure_ascii=False).replace("</", "<\\/")
+    return ("window.FABULITA_DEMO=window.FABULITA_DEMO||{};"
+            "window.FABULITA_DEMO[" + json.dumps(demo["lang"]) + "]=" + blob + ";\n")
+
+
+def build_demo_data(project, out):
+    """Write demo data JS to a file and return (path, size)."""
+    js = demo_data_js(project)
+    out = Path(out)
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(js, encoding="utf-8")
+    return out, len(js)
+
+
+def demo_manifest_js(projects):
+    """Tiny per-language {n, ids} manifest so index.html can show counts cheaply."""
+    counts = {}
+    for p in projects:
+        stories_list = [s for s in p.stories() if s.get("status") == "accepted"]
+        counts[p.config["lang"]] = {"n": len(stories_list), "ids": [s["id"] for s in stories_list]}
+    blob = json.dumps(counts, ensure_ascii=False).replace("</", "<\\/")
+    return "window.FABULITA_DEMO_COUNTS=" + blob + ";\n"
+
+
 def build(project, out=None, include_candidates=True, home=None):
     data = payload(project, include_candidates=include_candidates, home=home)
     blob = json.dumps(data, ensure_ascii=False).replace("</", "<\\/")
