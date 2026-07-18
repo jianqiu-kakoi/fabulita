@@ -195,27 +195,35 @@ def test_build_reader(tmp_path):
 
 
 def test_demo_data_js(proj, tmp_path):
-    # Setup: seed vocab and create an accepted story
+    # Setup: seed vocab and create stories (one accepted, one candidate)
     seed_vocab(proj, tmp_path, ["perro,狗", "jardín,花园", "flor,花"])
     stories.add(proj, write_story(tmp_path, make_story()), accept=True)
+    stories.add(proj, write_story(tmp_path, make_story(id="otro-perro", title="Otro perro")), accept=False)
 
     js = build.demo_data_js(proj)
     assert js.startswith("window.FABULITA_DEMO=window.FABULITA_DEMO||{};")
-    payload = js.split("=")[-1].rstrip(";\n")
-    data = json.loads(payload.replace("<\\/", "</"))
+    data_json = js.split("=", 2)[2].rstrip(";\n")
+    data = json.loads(data_json.replace("<\\/", "</"))
     assert data["lang"] == proj.config["lang"]
+    # Verify only accepted stories are included, no candidates
+    assert len(data["stories"]) == 1
+    assert data["stories"][0]["id"] == "el-perro"
     assert all(s["status"] == "accepted" for s in data["stories"])
     out, size = build.build_demo_data(proj, tmp_path / "demo-data-es.js")
     assert out.exists() and size == len(js)
 
 
 def test_demo_manifest_js(proj, tmp_path):
-    # Setup: seed vocab and create an accepted story
+    # Setup: seed vocab and create stories (one accepted, one candidate)
     seed_vocab(proj, tmp_path, ["perro,狗", "jardín,花园", "flor,花"])
     stories.add(proj, write_story(tmp_path, make_story()), accept=True)
+    stories.add(proj, write_story(tmp_path, make_story(id="otro-perro", title="Otro perro")), accept=False)
 
     js = build.demo_manifest_js([proj])
     assert js.startswith("window.FABULITA_DEMO_COUNTS=")
     data = json.loads(js.split("=", 1)[1].rstrip(";\n").replace("<\\/", "</"))
     lang = proj.config["lang"]
-    assert data[lang]["n"] == len(data[lang]["ids"]) == 1
+    # Verify only accepted stories are counted, no candidates
+    assert data[lang]["n"] == 1
+    assert len(data[lang]["ids"]) == 1
+    assert data[lang]["ids"][0] == "el-perro"
