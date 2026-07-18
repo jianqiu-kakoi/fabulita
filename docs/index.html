@@ -135,6 +135,7 @@
 <div class="wrap" id="app"></div>
 <div class="pop" id="pop"><span class="pw" id="pop-w"></span><span id="pop-g"></span><span class="pn" id="pop-n"></span></div>
 
+<script src="demo-manifest.js"></script>
 <script>
 (function () {
 "use strict";
@@ -144,9 +145,8 @@ var L = {
   zh: {
     tagline: "把词表变成属于你的分级故事书",
     sub: "上传生词表，让 AI 用这些词写小故事：一篇一篇确认收下，直到整张词表都被故事覆盖。点词查义、逐句朗读、离线可用。没有服务器，没有账号，数据不离开你的浏览器。",
-    choose: "选择你在学的语言",
+    choose: "我的故事书",
     open: "打开故事书 →",
-    meta: { es: "A1 · 6 个故事 · 神经语音朗读", en: "A1 · 入门读物 · 神经语音朗读", ja: "N5 · 入门读物 · 神经语音朗读" },
     addTitle: "添加我的词表",
     addSub: "上传词表 → 生成故事 → 收下或换一篇，直到全部覆盖",
     myProjects: "继续我的项目",
@@ -199,7 +199,6 @@ var L = {
     errKey: "API Key 无效（401）。检查 Key 或改用手动模式。",
     errRate: "请求太频繁（429），稍等几秒再试。",
     warnValidate: "提醒（仍可收下）：",
-    projName: { es: "我的西语故事书", en: "我的英语故事书", ja: "我的日语故事书" },
     myBookGeneric: "我的故事书", myBookMeta: "你收下的 {n} 篇故事",
     uploadNameLabel: "这批词的名字（会记录在词表里）", uploadNameDefault: "粘贴 · {d}", vocabSection: "📚 词表（按上传批次）", legacyBatch: "早期词表",
     tabLists: "词表", tabGen: "生成故事",
@@ -212,9 +211,8 @@ var L = {
   en: {
     tagline: "Turn your word list into a graded storybook of your own",
     sub: "Upload a vocabulary list and let AI write micro-stories from it — accept them one by one until the whole list is covered. Tap-word glosses, per-sentence audio, works offline. No server, no account; your data never leaves the browser.",
-    choose: "Choose the language you're learning",
+    choose: "My storybooks",
     open: "Open the storybook →",
-    meta: { es: "A1 · 6 stories · neural audio", en: "A1 · starter readings · neural audio", ja: "N5 · starter readings · neural audio" },
     addTitle: "Add my word list",
     addSub: "Upload words → generate a story → keep it or reroll, until everything is covered",
     myProjects: "Continue my projects",
@@ -267,7 +265,6 @@ var L = {
     errKey: "Invalid API key (401). Check the key or use manual mode.",
     errRate: "Rate limited (429) — wait a few seconds and retry.",
     warnValidate: "Heads-up (you can still keep it): ",
-    projName: { es: "My Spanish storybook", en: "My English storybook", ja: "My Japanese storybook" },
     myBookGeneric: "My storybook", myBookMeta: "{n} stories you kept",
     uploadNameLabel: "Name this batch (kept in your word list)", uploadNameDefault: "Pasted · {d}", vocabSection: "📚 Word list (by upload)", legacyBatch: "Earlier words",
     tabLists: "Word lists", tabGen: "Generate stories",
@@ -280,9 +277,8 @@ var L = {
   es: {
     tagline: "Convierte tu lista de palabras en tu propio libro de cuentos graduados",
     sub: "Sube tu vocabulario y deja que la IA escriba microhistorias con él — acéptalas una a una hasta cubrir toda la lista. Glosas al tocar, audio por frase, sin conexión. Sin servidor ni cuenta; tus datos no salen del navegador.",
-    choose: "Elige el idioma que aprendes",
+    choose: "Mis libros de cuentos",
     open: "Abrir el libro →",
-    meta: { es: "A1 · 6 historias · audio neuronal", en: "A1 · lecturas iniciales · audio neuronal", ja: "N5 · lecturas iniciales · audio neuronal" },
     addTitle: "Añadir mi lista de palabras",
     addSub: "Sube palabras → genera una historia → acéptala o pide otra, hasta cubrir todo",
     myProjects: "Continuar mis proyectos",
@@ -335,7 +331,6 @@ var L = {
     errKey: "API key inválida (401). Revísala o usa el modo manual.",
     errRate: "Demasiadas peticiones (429) — espera unos segundos.",
     warnValidate: "Aviso (puedes quedártela igualmente): ",
-    projName: { es: "Mi libro de español", en: "Mi libro de inglés", ja: "Mi libro de japonés" },
     myBookGeneric: "Mi libro de cuentos", myBookMeta: "{n} historias que guardaste",
     uploadNameLabel: "Nombre de este lote (se guarda en tu lista)", uploadNameDefault: "Pegado · {d}", vocabSection: "📚 Lista de palabras (por subida)", legacyBatch: "Palabras anteriores",
     tabLists: "Listas de palabras", tabGen: "Generar historias",
@@ -348,9 +343,8 @@ var L = {
   ja: {
     tagline: "単語リストをあなた専用のグレーデッド・ストーリーブックに",
     sub: "単語リストをアップロードすると、AI がその単語で小さな物語を書きます。1 話ずつ確認して採用し、リスト全体をカバーするまで続けます。タップで語義、文ごとの音声、オフライン対応。サーバーもアカウントも不要。",
-    choose: "学習中の言語を選ぶ",
+    choose: "わたしのストーリーブック",
     open: "ストーリーブックを開く →",
-    meta: { es: "A1 · 6 話 · ニューラル音声", en: "A1 · 入門読み物 · ニューラル音声", ja: "N5 · 入門読み物 · ニューラル音声" },
     addTitle: "単語リストを追加",
     addSub: "単語を入れる → 物語を生成 → 採用 or 生成し直し、全カバーまで",
     myProjects: "プロジェクトを続ける",
@@ -403,7 +397,6 @@ var L = {
     errKey: "API キーが無効です（401）。確認するか手動モードを。",
     errRate: "リクエスト過多（429）— 数秒待って再試行。",
     warnValidate: "注意（採用は可能）：",
-    projName: { es: "わたしのスペイン語の本", en: "わたしの英語の本", ja: "わたしの日本語の本" },
     myBookGeneric: "わたしのストーリーブック", myBookMeta: "採用した {n} 話",
     uploadNameLabel: "このリストの名前（語彙リストに記録）", uploadNameDefault: "貼り付け · {d}", vocabSection: "📚 語彙リスト（アップロード別）", legacyBatch: "以前の単語",
     tabLists: "語彙リスト", tabGen: "物語を生成",
@@ -415,11 +408,6 @@ var L = {
   }
 };
 var UI_LANGS = ["zh", "en", "es", "ja"];
-var BOOKS = [
-  { lang: "es", name: "Español", href: "demo-es.html" },
-  { lang: "en", name: "English", href: "demo-en.html" },
-  { lang: "ja", name: "日本語", href: "demo-ja.html" }
-];
 var LANG_CHOICES = [["es", "Español"], ["en", "English"], ["ja", "日本語"], ["fr", "Français"], ["de", "Deutsch"], ["ko", "한국어"]];
 var LANG_NAMES = { es: "Spanish", en: "English", ja: "Japanese", zh: "Chinese", fr: "French", de: "German", ko: "Korean" };
 var GLOSS_NAMES = { zh: "Chinese (中文)", en: "English", ja: "Japanese", es: "Spanish" };
@@ -1251,15 +1239,6 @@ function render() {
   var h = '<div class="top"><p class="eyebrow">fabulita</p>' + langSwitcher() + "</div>";
   h += "<h1>" + esc(t("tagline")) + '</h1><p class="sub">' + esc(t("sub")) + "</p>";
 
-  h += '<div class="widget' + (state.booksOpen ? " open" : "") + '"><div class="w-head" data-act="toggle-books">' +
-    '<span class="w-plus">📖</span><div><h2>' + esc(t("choose")) + '</h2><p class="muted">' +
-    BOOKS.map(function (b) { return b.name; }).join(" · ") + "</p></div></div>" +
-    '<div class="w-body"><div class="books" style="margin-bottom:0.2rem">';
-  BOOKS.forEach(function (b) {
-    h += '<a class="book" href="' + b.href + '"><span class="bname">' + b.name + '</span>' +
-      '<span class="bmeta">' + esc(t("meta")[b.lang]) + '</span>' +
-      '<span class="bopen">' + esc(t("open")) + "</span></a>";
-  });
   var byLang = {};
   (function () {
     var all0 = loadAll();
@@ -1270,12 +1249,28 @@ function render() {
       if (n) byLang[pr.config.lang] = (byLang[pr.config.lang] || 0) + n;
     });
   })();
-  Object.keys(byLang).forEach(function (lg) {
+  var manifest = window.FABULITA_DEMO_COUNTS || {};
+  h += '<div class="widget' + (state.booksOpen ? " open" : "") + '"><div class="w-head" data-act="toggle-books">' +
+    '<span class="w-plus">📖</span><div><h2>' + esc(t("choose")) + '</h2><p class="muted">' +
+    esc(LANG_CHOICES.filter(function (c) { return manifest[c[0]]; }).map(function (c) { return c[1]; }).join(" · ")) + "</p></div></div>" +
+    '<div class="w-body"><div class="books" style="margin-bottom:0.2rem">';
+  var hd = {};
+  try { hd = JSON.parse(localStorage.getItem("fabulita.hiddenDemo")) || {}; } catch (e) {}
+  var shown = {};
+  var rowLangs = [];
+  LANG_CHOICES.forEach(function (c) {
+    if (manifest[c[0]] || byLang[c[0]]) { rowLangs.push(c[0]); shown[c[0]] = true; }
+  });
+  Object.keys(byLang).forEach(function (lg) { if (!shown[lg]) rowLangs.push(lg); });
+  rowLangs.forEach(function (lg) {
     var disp = null;
     LANG_CHOICES.forEach(function (c) { if (c[0] === lg) disp = c[1]; });
-    var bname = (t("projName")[lg]) || (t("myBookGeneric") + " · " + (disp || lg.toUpperCase()));
+    var mf = manifest[lg], hiddenN = 0;
+    if (mf) (hd[lg] || []).forEach(function (id) { if (mf.ids.indexOf(id) !== -1) hiddenN++; });
+    var n = (mf ? Math.max(0, mf.n - hiddenN) : 0) + (byLang[lg] || 0);
+    var bname = (disp || lg.toUpperCase());
     h += '<a class="book" href="reader.html#lang=' + esc(lg) + '"><span class="bname">' + esc(bname) + "</span>" +
-      '<span class="bmeta">' + esc(fmt(t("myBookMeta"), { n: byLang[lg] })) + "</span>" +
+      '<span class="bmeta">' + esc(fmt(t("myBookMeta"), { n: n })) + "</span>" +
       '<span class="bopen">' + esc(t("open")) + "</span></a>";
   });
   h += "</div></div></div>";
