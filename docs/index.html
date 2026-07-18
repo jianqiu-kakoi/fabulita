@@ -415,6 +415,7 @@ var LSP = "fabulita.studio.projects";
 var LSL = "fabulita.uiLang";
 var LSG = "fabulita.gen";
 var LSD = "fabulita.draft";
+var LSLL = "fabulita.listLang";
 var PROV = {
   ollama:    { base: "http://localhost:11434/v1", model: "qwen3:8b", needKey: false },
   codex:     { base: "http://localhost:8130/v1", model: "", needKey: false },
@@ -524,7 +525,9 @@ var state = {
   pending: null, skipped: 0, aiBusy: false, aiErr: null, lastRaw: "", lastFileName: "", upNameBuf: null, expMsg: null, expText: null, genSrc: { type: "all", words: [] },
   inputBuf: "", pasteBuf: "",
   targetLang: "es",
-  tab: "lists", listView: null, uploadTarget: "__new", genSel: [], newListOpen: false, delArm: null,
+  listLang: (function () { try { var v = localStorage.getItem(LSLL); if (v) return v; } catch (e) {} return "es"; })(),
+  genOpen: false,
+  listView: null, uploadTarget: "__new", genSel: [], newListOpen: false, delArm: null,
   loop: { phase: "idle", story: null, warnings: [], missing: [], error: null, attempt: 0 },
   genDraft: null, manualOpen: false, keyOpen: false,
   msg: null
@@ -992,12 +995,6 @@ function manualHtml() {
   return h;
 }
 
-function tabsHtml() {
-  return '<div class="tabs">' +
-    '<button class="tab' + (state.tab === "lists" ? " on" : "") + '" data-act="tab-lists">' + esc(t("tabLists")) + "</button>" +
-    '<button class="tab' + (state.tab === "gen" ? " on" : "") + '" data-act="tab-gen">' + esc(t("tabGen")) + "</button></div>";
-}
-
 function genBody() {
   var h = "";
   var allLists = listsOf();
@@ -1158,34 +1155,37 @@ function uploadConfirmHtml() {
 }
 
 function listTableHtml() {
-  var h = '<div class="row" style="margin-top:0"><button class="btn btn-primary" data-act="upload-words">' + esc(t("uploadWords")) + "</button>" +
-    '<button class="btn" data-act="new-list">' + esc(t("newList")) + "</button></div>";
+  var h = "<label>" + esc(t("targetLang")) + '</label><select id="ll">';
+  LANG_CHOICES.forEach(function (c) {
+    h += '<option value="' + c[0] + '"' + (c[0] === state.listLang ? " selected" : "") + ">" + c[1] + "</option>";
+  });
+  h += "</select>";
+  var lists = listsOf(state.listLang);
+  if (!lists.length) {
+    h += '<p class="muted" style="margin-top:0.8rem">' + esc(t("noLists")) + "</p>";
+  } else {
+    h += '<div class="plist">';
+    var covd = langCovered(state.listLang);
+    lists.forEach(function (p) {
+      var c = 0, vocab = p.vocab || [];
+      vocab.forEach(function (v) { if (covd[norm(v.w)]) c++; });
+      var checked = state.genSel.indexOf(p.id) !== -1;
+      h += '<div class="lrow"><input type="checkbox" data-act="gsel" data-id="' + esc(p.id) + '"' + (checked ? " checked" : "") +
+        ' style="margin-right:0.5rem">' +
+        '<div data-act="open-list" data-id="' + esc(p.id) + '" style="flex:1;cursor:pointer"><span class="pname">' + esc(p.config.name) +
+        '</span> <span class="muted">· ' + vocab.length + " " + esc(t("words")) + " · " + c + "/" + vocab.length + "</span></div><span>→</span></div>";
+    });
+    h += "</div>";
+  }
+  var nSel = state.genSel.length;
+  h += '<div class="row"><button class="btn" data-act="new-list">' + esc(t("newList")) + "</button>" +
+    '<button class="btn" data-act="upload-words"' + (nSel > 1 ? " disabled" : "") + ">" + esc(t("uploadWords")) + "</button>" +
+    '<button class="btn btn-primary" data-act="gen-open"' + (nSel < 1 ? " disabled" : "") + ">" + esc(t("generate")) + "</button></div>";
   if (state.newListOpen) {
     h += "<label>" + esc(t("newListName")) + '</label><input type="text" id="nl-name" value="">';
-    h += "<label>" + esc(t("targetLang")) + '</label><select id="wl">';
-    LANG_CHOICES.forEach(function (c) { h += '<option value="' + c[0] + '"' + (c[0] === state.targetLang ? " selected" : "") + ">" + c[1] + "</option>"; });
-    h += "</select>";
     h += '<div class="row"><button class="btn btn-primary" data-act="new-list-save">' + esc(t("newListSave")) + "</button>" +
       '<button class="btn" data-act="new-list">' + esc(t("cancel")) + "</button></div>";
   }
-  var lists = listsOf();
-  if (!lists.length) {
-    h += '<p class="muted" style="margin-top:0.8rem">' + esc(t("noLists")) + "</p>";
-    return h;
-  }
-  h += '<div class="plist">';
-  var covByLang = {};
-  lists.forEach(function (p) {
-    var lg = p.config.lang;
-    if (!covByLang[lg]) covByLang[lg] = langCovered(lg);
-    var covd = covByLang[lg], c = 0, vocab = p.vocab || [];
-    vocab.forEach(function (v) { if (covd[norm(v.w)]) c++; });
-    var disp = null;
-    LANG_CHOICES.forEach(function (ch) { if (ch[0] === lg) disp = ch[1]; });
-    h += '<div class="lrow" data-act="open-list" data-id="' + esc(p.id) + '"><div><span class="pname">' + esc(p.config.name) + '</span> <span class="muted">· ' +
-      esc(disp || lg.toUpperCase()) + " · " + vocab.length + " " + esc(t("words")) + " · " + c + "/" + vocab.length + "</span></div><span>→</span></div>";
-  });
-  h += "</div>";
   return h;
 }
 
@@ -1230,9 +1230,7 @@ function listsBody() {
   return h;
 }
 
-function widgetBody() {
-  return tabsHtml() + (state.tab === "gen" ? genBody() : listsBody());
-}
+function widgetBody() { return listsBody(); }
 
 function render() {
   hidePop();
@@ -1438,16 +1436,26 @@ document.addEventListener("click", function (e) {
     state.step = null; state.pending = null; state.inputBuf = ""; state.expMsg = null; state.expText = null; state.lastFileName = ""; state.upNameBuf = null; state.uploadTarget = "__new";
     render();
   }
-  else if (act === "tab-lists") { state.tab = "lists"; state.expMsg = null; state.expText = null; render(); }
-  else if (act === "tab-gen") { state.tab = "gen"; state.expMsg = null; state.expText = null; render(); }
-  else if (act === "upload-words") { if (state.aiBusy) return; state.uploadTarget = "__new"; state.step = "input"; render(); }
+  else if (act === "gen-open") { return; }
+  else if (act === "upload-words") {
+    if (state.aiBusy || state.genSel.length > 1) return;
+    if (state.genSel.length === 1) {
+      var upList = loadAll()[state.genSel[0]];
+      state.uploadTarget = upList ? upList.id : "__new";
+      if (upList) state.targetLang = upList.config.lang;
+    } else {
+      state.uploadTarget = "__new";
+      state.targetLang = state.listLang;
+    }
+    state.step = "input";
+    render();
+  }
   else if (act === "new-list") { state.newListOpen = !state.newListOpen; render(); }
   else if (act === "new-list-save") {
     var nlNameEl = document.getElementById("nl-name");
     var nlName = ((nlNameEl && nlNameEl.value) || "").trim();
     if (!nlName) return;
-    var nlLangEl = document.getElementById("wl");
-    var nlLang = (nlLangEl && nlLangEl.value) || state.targetLang;
+    var nlLang = state.listLang;
     var glossLang2 = state.lang === "es" ? "en" : state.lang;
     var names2 = {};
     Object.keys(loadAll()).forEach(function (k) { names2[loadAll()[k].config.name] = true; });
@@ -1606,6 +1614,19 @@ document.addEventListener("input", function (e) {
 });
 
 document.addEventListener("change", function (e) {
+  if (e.target.id === "ll") {
+    state.listLang = e.target.value;
+    try { localStorage.setItem(LSLL, state.listLang); } catch (err) {}
+    state.targetLang = state.listLang;
+    state.genSel = [];
+    state.genSrc.words = [];
+    var lp2 = state.loop;
+    lp2.runId = (lp2.runId || 0) + 1;
+    lp2.phase = "idle"; lp2.story = null; lp2.warnings = []; lp2.missing = []; lp2.error = null; lp2.targetId = null;
+    clearDraft();
+    render();
+    return;
+  }
   if (e.target.id === "up-target") {
     state.uploadTarget = e.target.value;
     render();
@@ -1646,7 +1667,7 @@ document.addEventListener("keydown", function (e) { if (e.key === "Escape") hide
     if (!d.story || !d.targetId || !d.story.sentences || !d.story.sentences.length) { localStorage.removeItem(LSD); return; }
     if (!loadAll()[d.targetId]) { localStorage.removeItem(LSD); return; }
     state.open = true;
-    state.tab = "gen";
+    state.genOpen = true;
     state.genSel = d.genSel || [d.targetId];
     state.genSrc = d.genSrc || { type: "all", words: [] };
     state.loop.story = d.story;
