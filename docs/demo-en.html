@@ -286,19 +286,14 @@
         document.title = P.config.name;
       } catch (e) {}
     })();
+    window.addEventListener("hashchange", function () { location.reload(); });
   }
   var UI = P.ui;
   var UI_LANGS = P.uiLangs;
   var LS_KEY = "fabulita.uiLang";
   var delArmed = null; // story id armed for delete confirmation (self-serve reader only)
   var state = {
-    lang: (function () {
-      try {
-        var v = localStorage.getItem(LS_KEY);
-        if (v && UI[v]) return v;
-      } catch (e) {}
-      return UI[P.config.ui_default] ? P.config.ui_default : "en";
-    })(),
+    lang: UI.zh ? "zh" : (UI[P.config.ui_default] ? P.config.ui_default : "en"), // UI locked to Chinese for now
     slow: false
   };
 
@@ -458,11 +453,7 @@
       (P.config.home ? '<p class="homelink"><a href="' + esc(P.config.home) + '">⌂ ' + esc(t("home")) + "</a></p>" : "") +
       '<p class="eyebrow">Fabulita · ' + esc((P.config.lang || "").toUpperCase()) + "</p>" +
       "<h1>" + esc(P.config.name) + "</h1></div>" +
-      '<nav class="langsw" aria-label="UI language">';
-    UI_LANGS.forEach(function (l) {
-      h += '<button data-lang="' + l + '" aria-pressed="' + (l === state.lang) + '">' + esc(UI[l].langName) + "</button>";
-    });
-    h += "</nav></div>";
+      "</div>";
     h += '<p class="hint">' + esc(t("hint")) + "</p>";
     h += '<div class="controls"><button class="ctl" id="speed-toggle" aria-pressed="' + state.slow + '">' + esc(t("slow")) + "</button>" +
       '<span class="ctl-note" id="voice-note"></span></div>';

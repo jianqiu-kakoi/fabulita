@@ -516,9 +516,7 @@ function extractPdfText(file) {
 })();
 
 var state = {
-  lang: (function () { try { var v = localStorage.getItem(LSL); if (v && L[v]) return v; } catch (e) {}
-    var nav = (navigator.language || "en").slice(0, 2);
-    return L[nav] ? nav : "en"; })(),
+  lang: "zh",               // UI locked to Chinese for now; L dicts kept for future re-enable
   open: false, booksOpen: false,
   step: null,               // null (table) | input | confirm
   pending: null, skipped: 0, aiBusy: false, aiErr: null, lastRaw: "", lastFileName: "", upNameBuf: null, expMsg: null, expText: null, genSrc: { type: "all", words: [] },
@@ -1157,10 +1155,17 @@ function listTableHtml() {
       var c = 0, vocab = p.vocab || [];
       vocab.forEach(function (v) { if (covd[norm(v.w)]) c++; });
       var checked = state.genSel.indexOf(p.id) !== -1;
+      var delBtn;
+      if (state.delArm === p.id) {
+        delBtn = '<button class="btn btn-danger" data-act="del-list" data-id="' + esc(p.id) + '" style="font-size:0.72rem;padding:0.15rem 0.5rem;margin-left:0.5rem;flex-shrink:0">' +
+          esc((p.stories || []).length > 0 ? fmt(t("delListConfirmN"), { n: (p.stories || []).length }) : t("delListConfirm")) + "</button>";
+      } else {
+        delBtn = '<button class="btn" data-act="del-list" data-id="' + esc(p.id) + '" aria-label="delete" title="' + esc(t("delList")) + '" style="font-size:0.8rem;padding:0.1rem 0.45rem;margin-left:0.5rem;flex-shrink:0">✕</button>';
+      }
       h += '<div class="lrow"><input type="checkbox" data-act="gsel" data-id="' + esc(p.id) + '"' + (checked ? " checked" : "") +
         ' style="margin-right:0.5rem">' +
-        '<div data-act="open-list" data-id="' + esc(p.id) + '" style="flex:1;cursor:pointer"><span class="pname">' + esc(p.config.name) +
-        '</span> <span class="muted">· ' + vocab.length + " " + esc(t("words")) + " · " + c + "/" + vocab.length + "</span></div><span>→</span></div>";
+        '<div data-act="open-list" data-id="' + esc(p.id) + '" style="flex:1;cursor:pointer;display:flex;justify-content:space-between;align-items:center"><div><span class="pname">' + esc(p.config.name) +
+        '</span> <span class="muted">· ' + vocab.length + " " + esc(t("words")) + " · " + c + "/" + vocab.length + "</span></div><span>→</span></div>" + delBtn + "</div>";
     });
     h += "</div>";
   }
@@ -1191,12 +1196,16 @@ function listDetailHtml() {
     '<button class="btn btn-danger" data-act="del-list" data-id="' + esc(p.id) + '">' + esc(delLabel) + "</button></div>";
   if (state.expMsg) h += '<div class="msg ok">' + esc(state.expMsg) + "</div>";
   if (state.expText) h += '<textarea readonly style="min-height:10rem">' + esc(state.expText) + "</textarea>";
-  h += '<div class="chips" style="margin-top:0.8rem">';
+  var langDisp = p.config.lang.toUpperCase();
+  LANG_CHOICES.forEach(function (c) { if (c[0] === p.config.lang) langDisp = c[1]; });
+  h += '<div class="vscroll" style="margin-top:0.8rem"><table class="vtable">';
+  h += '<tr><th style="text-align:left;color:var(--muted);font-weight:600;padding:0.2rem 0.5rem">' + esc(langDisp) + '</th><th></th><th style="text-align:left;color:var(--muted);font-weight:600;padding:0.2rem 0.5rem">中文</th></tr>';
   vocab.forEach(function (v) {
     var k = norm(v.w);
-    h += '<span class="chip' + (covSet[k] ? " chip-cov" : "") + '" title="' + esc(v.gloss) + '">' + esc(v.w) + "</span>";
+    h += '<tr><td class="vw">' + esc(v.w) + (covSet[k] ? ' <span style="color:var(--ok)" title="' + esc(t("coverage")) + '">✓</span>' : "") +
+      '</td><td class="varrow">→</td><td>' + esc(v.gloss) + "</td></tr>";
   });
-  h += "</div>";
+  h += "</table></div>";
   return h;
 }
 
@@ -1221,7 +1230,7 @@ function widgetBody() { return listsBody(); }
 
 function render() {
   hidePop();
-  var h = '<div class="top"><p class="eyebrow">fabulita</p>' + langSwitcher() + "</div>";
+  var h = '<div class="top"><p class="eyebrow">fabulita</p></div>';
   h += "<h1>" + esc(t("tagline")) + '</h1><p class="sub">' + esc(t("sub")) + "</p>";
 
   var byLang = {};
