@@ -28,6 +28,12 @@ def main():
             proj, out=DOCS / ("demo-" + lang + ".html"),
             include_candidates=True, home="index.html")
         print("wrote " + str(page) + " (" + str(n) + " stories, " + str(clips) + " clips)")
+    # Policy split, intentional: demo-manifest.js (and demo-data-*.js, via
+    # build_demo_data) are accepted-only — they drive the curated "storybook"
+    # surface — while the demo-*.html pages above keep include_candidates=True
+    # to match the originally shipped demo pages. So the manifest's per-language
+    # `n` may be lower than that language's demo-*.html story count (e.g. es:
+    # manifest n=5 vs demo-es.html's 6, which includes 1 candidate story).
     (DOCS / "demo-manifest.js").write_text(build.demo_manifest_js(projects), encoding="utf-8")
     print("wrote " + str(DOCS / "demo-manifest.js"))
     build.build_reader(DOCS / "reader.html")
