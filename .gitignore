@@ -10,3 +10,6 @@ build/
 examples/*/vocab.json
 examples/*/audio/
 examples/*/dist/
+
+# local dev-process scratch (superpowers SDD ledger/briefs)
+.superpowers/
