@@ -63,10 +63,9 @@
   .btn-ok { border-color: var(--ok); color: var(--ok); }
   .btn-danger { color: var(--danger); }
 
-  .tabs { display: flex; gap: 0.4rem; margin-bottom: 0.8rem; }
-  .tab { font-family: var(--sans); font-size: 0.85rem; padding: 0.4rem 0.95rem; border: 1px solid var(--line); border-radius: 100px; background: var(--card); color: var(--ink); cursor: pointer; }
-  .tab:hover { border-color: var(--accent); }
-  .tab.on { background: var(--accent); border-color: var(--accent); color: var(--card); }
+  .modal-backdrop { position: fixed; inset: 0; background: rgba(20,18,14,0.45); z-index: 40; display: flex; align-items: flex-start; justify-content: center; padding: 4vh 1rem; overflow-y: auto; }
+  .modal { background: var(--bg); border-radius: 10px; max-width: 42rem; width: 100%; padding: 1.2rem 1.4rem; position: relative; }
+  .modal-x { position: absolute; top: 0.6rem; right: 0.8rem; font-size: 1.1rem; background: none; border: none; cursor: pointer; color: var(--muted); }
 
   .vtable { width: 100%; border-collapse: collapse; margin-top: 0.9rem; font-size: 0.92rem; }
   .vtable td { padding: 0.35rem 0.5rem; border-bottom: 1px solid var(--line); }
@@ -110,7 +109,7 @@
   .say:hover { background: var(--accent-soft); border-color: var(--accent); }
   .say svg { width: 0.72rem; height: 0.72rem; display: block; }
 
-  .pop { position: absolute; z-index: 10; background: var(--pop-bg); color: var(--pop-ink); border-radius: 8px; padding: 0.55rem 0.8rem; max-width: 15rem; box-shadow: 0 6px 24px rgba(0,0,0,0.22); font-size: 0.88rem; line-height: 1.5; display: none; }
+  .pop { position: absolute; z-index: 50; background: var(--pop-bg); color: var(--pop-ink); border-radius: 8px; padding: 0.55rem 0.8rem; max-width: 15rem; box-shadow: 0 6px 24px rgba(0,0,0,0.22); font-size: 0.88rem; line-height: 1.5; display: none; }
   .pop.show { display: block; }
   .pop .pw { font-family: var(--serif); font-weight: 600; display: block; }
   .pop .pn { display: block; color: var(--pop-muted); font-size: 0.78rem; margin-top: 0.15rem; }
@@ -201,7 +200,7 @@ var L = {
     warnValidate: "提醒（仍可收下）：",
     myBookGeneric: "我的故事书", myBookMeta: "你收下的 {n} 篇故事",
     uploadNameLabel: "这批词的名字（会记录在词表里）", uploadNameDefault: "粘贴 · {d}", vocabSection: "📚 词表（按上传批次）", legacyBatch: "早期词表",
-    tabLists: "词表", tabGen: "生成故事",
+    tabGen: "生成故事",
     newList: "＋ 新建词表", newListName: "词表名字", newListSave: "创建",
     uploadWords: "上传 / 粘贴生词", upTarget: "加到哪张词表", upTargetNew: "新建词表",
     addToList: "＋ 加词到这张表", backToLists: "← 返回词表", noLists: "还没有词表——先建一张或直接上传",
@@ -267,7 +266,7 @@ var L = {
     warnValidate: "Heads-up (you can still keep it): ",
     myBookGeneric: "My storybook", myBookMeta: "{n} stories you kept",
     uploadNameLabel: "Name this batch (kept in your word list)", uploadNameDefault: "Pasted · {d}", vocabSection: "📚 Word list (by upload)", legacyBatch: "Earlier words",
-    tabLists: "Word lists", tabGen: "Generate stories",
+    tabGen: "Generate stories",
     newList: "＋ New list", newListName: "List name", newListSave: "Create",
     uploadWords: "Upload / paste words", upTarget: "Add to which list", upTargetNew: "New list",
     addToList: "＋ Add words to this list", backToLists: "← Back to lists", noLists: "No word lists yet — create one or upload words",
@@ -333,7 +332,7 @@ var L = {
     warnValidate: "Aviso (puedes quedártela igualmente): ",
     myBookGeneric: "Mi libro de cuentos", myBookMeta: "{n} historias que guardaste",
     uploadNameLabel: "Nombre de este lote (se guarda en tu lista)", uploadNameDefault: "Pegado · {d}", vocabSection: "📚 Lista de palabras (por subida)", legacyBatch: "Palabras anteriores",
-    tabLists: "Listas de palabras", tabGen: "Generar historias",
+    tabGen: "Generar historias",
     newList: "＋ Nueva lista", newListName: "Nombre de la lista", newListSave: "Crear",
     uploadWords: "Subir / pegar palabras", upTarget: "Añadir a qué lista", upTargetNew: "Nueva lista",
     addToList: "＋ Añadir palabras a esta lista", backToLists: "← Volver a las listas", noLists: "Aún no hay listas — crea una o sube palabras",
@@ -399,7 +398,7 @@ var L = {
     warnValidate: "注意（採用は可能）：",
     myBookGeneric: "わたしのストーリーブック", myBookMeta: "採用した {n} 話",
     uploadNameLabel: "このリストの名前（語彙リストに記録）", uploadNameDefault: "貼り付け · {d}", vocabSection: "📚 語彙リスト（アップロード別）", legacyBatch: "以前の単語",
-    tabLists: "語彙リスト", tabGen: "物語を生成",
+    tabGen: "物語を生成",
     newList: "＋ 新しいリスト", newListName: "リスト名", newListSave: "作成",
     uploadWords: "単語をアップロード / 貼り付け", upTarget: "どのリストに追加", upTargetNew: "新しいリスト",
     addToList: "＋ このリストに単語を追加", backToLists: "← リストに戻る", noLists: "まだリストがありません——作成するかアップロードしてください",
@@ -995,26 +994,8 @@ function manualHtml() {
   return h;
 }
 
-function genBody() {
+function genLoopHtml() {
   var h = "";
-  var allLists = listsOf();
-  if (!allLists.length) {
-    h += '<p class="muted" style="margin-top:0.8rem">' + esc(t("noLists")) + "</p>";
-    return h;
-  }
-
-  h += '<div class="plist">';
-  allLists.forEach(function (lst) {
-    var covd = langCovered(lst.config.lang);
-    var c = 0;
-    lst.vocab.forEach(function (v) { if (covd[norm(v.w)]) c++; });
-    var checked = state.genSel.indexOf(lst.id) !== -1;
-    h += '<div class="lrow" data-act="gsel" data-id="' + esc(lst.id) + '"><div><input type="checkbox"' + (checked ? " checked" : "") +
-      ' style="pointer-events:none;margin-right:0.5rem" aria-hidden="true"><span class="pname">' + esc(lst.config.name) + '</span> <span class="muted">· ' +
-      esc(lst.config.lang) + " · " + c + "/" + lst.vocab.length + "</span></div></div>";
-  });
-  h += "</div>";
-
   var lists = genLists(), lp = state.loop;
   var union = genUnion(lists);
   var covd0 = lists.length ? langCovered(lists[0].config.lang) : {};
@@ -1092,6 +1073,12 @@ function genBody() {
   }
 
   return h;
+}
+
+function modalHtml() {
+  return '<div class="modal-backdrop" data-act="gen-close"><div class="modal" data-modal-body>' +
+    '<button class="modal-x" data-act="gen-close" aria-label="close">✕</button>' +
+    "<h2 style='margin-top:0'>" + esc(t("tabGen")) + "</h2>" + genLoopHtml() + "</div></div>";
 }
 
 function uploadInputHtml() {
@@ -1283,6 +1270,8 @@ function render() {
     '<a href="https://github.com/jianqiu-kakoi/fabulita">' + esc(t("footGh")) + "</a>" +
     '<a href="https://github.com/jianqiu-kakoi/fabulita#quickstart-cli"><code>pip install fabulita</code> · ' + esc(t("footCli")) + "</a></footer>";
 
+  if (state.genOpen) h += modalHtml();
+
   document.getElementById("app").innerHTML = h;
   document.documentElement.lang = state.lang;
 }
@@ -1436,7 +1425,14 @@ document.addEventListener("click", function (e) {
     state.step = null; state.pending = null; state.inputBuf = ""; state.expMsg = null; state.expText = null; state.lastFileName = ""; state.upNameBuf = null; state.uploadTarget = "__new";
     render();
   }
-  else if (act === "gen-open") { return; }
+  else if (act === "gen-close") {
+    if (e.target.closest("[data-modal-body]") && !e.target.closest(".modal-x")) return;
+    state.genOpen = false; render();
+  }
+  else if (act === "gen-open") {
+    if (!state.genSel.length) return;
+    state.genOpen = true; state.loop.error = null; render();
+  }
   else if (act === "upload-words") {
     if (state.aiBusy || state.genSel.length > 1) return;
     if (state.genSel.length === 1) {
@@ -1658,7 +1654,10 @@ document.addEventListener("change", function (e) {
   }
 });
 window.addEventListener("scroll", hidePop, { passive: true });
-document.addEventListener("keydown", function (e) { if (e.key === "Escape") hidePop(); });
+document.addEventListener("keydown", function (e) {
+  if (e.key === "Escape" && state.genOpen) { state.genOpen = false; render(); return; }
+  if (e.key === "Escape") hidePop();
+});
 
 (function () {
   try {
@@ -1668,6 +1667,11 @@ document.addEventListener("keydown", function (e) { if (e.key === "Escape") hide
     if (!loadAll()[d.targetId]) { localStorage.removeItem(LSD); return; }
     state.open = true;
     state.genOpen = true;
+    var bootList = loadAll()[d.targetId];
+    if (bootList) {
+      state.listLang = bootList.config.lang;
+      try { localStorage.setItem(LSLL, state.listLang); } catch (e2) {}
+    }
     state.genSel = d.genSel || [d.targetId];
     state.genSrc = d.genSrc || { type: "all", words: [] };
     state.loop.story = d.story;
