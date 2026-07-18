@@ -1655,8 +1655,11 @@ document.addEventListener("change", function (e) {
 });
 window.addEventListener("scroll", hidePop, { passive: true });
 document.addEventListener("keydown", function (e) {
-  if (e.key === "Escape" && state.genOpen) { state.genOpen = false; render(); return; }
-  if (e.key === "Escape") hidePop();
+  if (e.key === "Escape") {
+    if (pop.classList.contains("show")) { hidePop(); return; }
+    if (state.genOpen) { state.genOpen = false; render(); return; }
+    hidePop();
+  }
 });
 
 (function () {
@@ -1664,14 +1667,12 @@ document.addEventListener("keydown", function (e) {
     var d = JSON.parse(localStorage.getItem(LSD));
     if (!d) return;
     if (!d.story || !d.targetId || !d.story.sentences || !d.story.sentences.length) { localStorage.removeItem(LSD); return; }
-    if (!loadAll()[d.targetId]) { localStorage.removeItem(LSD); return; }
+    var bootList = loadAll()[d.targetId];
+    if (!bootList) { localStorage.removeItem(LSD); return; }
     state.open = true;
     state.genOpen = true;
-    var bootList = loadAll()[d.targetId];
-    if (bootList) {
-      state.listLang = bootList.config.lang;
-      try { localStorage.setItem(LSLL, state.listLang); } catch (e2) {}
-    }
+    state.listLang = bootList.config.lang;
+    try { localStorage.setItem(LSLL, state.listLang); } catch (e2) {}
     state.genSel = d.genSel || [d.targetId];
     state.genSrc = d.genSrc || { type: "all", words: [] };
     state.loop.story = d.story;
