@@ -159,10 +159,9 @@ var L = {
     connectBtn: "接入模型服务",
     guideBtn: "使用指引", guideTitle: "四步用起来",
     gd1: "接入模型服务：点左上角「接入模型服务」。本机 Ollama 与 Codex 桥免 Key；也可用 DashScope / Claude 的 API Key。", gd1b: "去接入",
-    gd2: "准备词表：上传 csv / tsv / txt / md / pdf，或直接粘贴（每行一个词）。想先试试？一键载入示例：", gd2b: "载入 30 词示例西语表", gd2c: "去上传",
+    gd2: "准备词表：上传 csv / tsv / txt / md / pdf，或直接粘贴，每行一个词，例如：", gd2ex: "casa, 家\nfamilia, 家庭\nagua, 水", gd2c: "去上传",
     gd3: "生成故事：勾选词表 → 点「✨ 生成故事」→ 预览里点词查义、朗读；满意收下，不满意换一篇，直到词表全部覆盖。",
     gd4: "阅读：收下的故事在「我的故事书」里按语言分册——点词查义、逐句朗读，不想要的故事随时删。",
-    sampleName: "示例词表",
     errPdfLoad: "PDF 解析库加载失败——首次使用需要联网。",
     errPdfScan: "没有找到可提取的文本（扫描版 PDF 暂不支持）。",
     errAiParse: "AI 解析失败：",
@@ -232,10 +231,9 @@ var L = {
     connectBtn: "Connect a model",
     guideBtn: "How it works", guideTitle: "Four steps",
     gd1: "Connect a model: use the top-left button. Local Ollama and the Codex bridge need no key; DashScope / Claude API keys work too.", gd1b: "Connect",
-    gd2: "Add a word list: upload csv / tsv / txt / md / pdf, or paste one word per line. Want a test drive? Load the sample:", gd2b: "Load the 30-word Spanish sample", gd2c: "Upload",
+    gd2: "Add a word list: upload csv / tsv / txt / md / pdf, or paste one word per line, e.g.:", gd2ex: "casa, house\nfamilia, family\nagua, water", gd2c: "Upload",
     gd3: "Generate: check a list → ✨ Generate a story → tap words and listen in the preview; keep it or reroll until every word is covered.",
     gd4: "Read: kept stories live in My storybooks, one per language — tap words for meanings, listen sentence by sentence, delete any story you don't want.",
-    sampleName: "Sample list",
     errPdfLoad: "Could not load the PDF library — first use needs a network connection.",
     errPdfScan: "No extractable text found (scanned PDFs not supported yet).",
     errAiParse: "AI parsing failed: ",
@@ -305,10 +303,9 @@ var L = {
     connectBtn: "Conectar modelo",
     guideBtn: "Cómo funciona", guideTitle: "Cuatro pasos",
     gd1: "Conecta un modelo: botón arriba a la izquierda. Ollama local y el puente Codex no necesitan clave; también valen claves de DashScope / Claude.", gd1b: "Conectar",
-    gd2: "Prepara tu lista: sube csv / tsv / txt / md / pdf o pega una palabra por línea. ¿Quieres probar? Carga el ejemplo:", gd2b: "Cargar lista de ejemplo (30 palabras)", gd2c: "Subir",
+    gd2: "Prepara tu lista: sube csv / tsv / txt / md / pdf o pega una palabra por línea, p. ej.:", gd2ex: "casa, 家\nfamilia, 家庭\nagua, 水", gd2c: "Subir",
     gd3: "Genera: marca una lista → ✨ Generar historia → en la vista previa toca palabras y escucha; guárdala o pide otra hasta cubrir toda la lista.",
     gd4: "Lee: las historias guardadas viven en Mis libros de cuentos, por idioma — toca palabras, escucha frase a frase y borra las que no quieras.",
-    sampleName: "Lista de ejemplo",
     errPdfLoad: "No se pudo cargar la librería PDF — el primer uso necesita conexión.",
     errPdfScan: "No se encontró texto extraíble (los PDF escaneados aún no se admiten).",
     errAiParse: "El análisis con IA falló: ",
@@ -378,10 +375,9 @@ var L = {
     connectBtn: "モデルを接続",
     guideBtn: "使いかた", guideTitle: "4 ステップ",
     gd1: "モデルを接続：左上のボタンから。ローカル Ollama と Codex ブリッジは Key 不要、DashScope / Claude の API Key も使えます。", gd1b: "接続する",
-    gd2: "語彙リストを用意：csv / tsv / txt / md / pdf をアップロード、または 1 行 1 語で貼り付け。まず試すならサンプルをどうぞ：", gd2b: "サンプル（西語 30 語）を読み込む", gd2c: "アップロード",
+    gd2: "語彙リストを用意：csv / tsv / txt / md / pdf をアップロード、または 1 行 1 語で貼り付け。例：", gd2ex: "casa, 家\nfamilia, 家族\nagua, 水", gd2c: "アップロード",
     gd3: "物語を生成：リストにチェック → ✨ 物語を生成 → プレビューで単語タップ・朗読；気に入れば採用、そうでなければ別の一篇を。",
     gd4: "読む：採用した物語は「わたしのストーリーブック」に言語ごとに入ります——単語タップで意味、文ごとに朗読、不要な話は削除できます。",
-    sampleName: "サンプルリスト",
     errPdfLoad: "PDF ライブラリを読み込めません——初回はネット接続が必要です。",
     errPdfScan: "抽出できるテキストがありません（スキャン PDF は未対応）。",
     errAiParse: "AI 解析に失敗しました：",
@@ -436,7 +432,6 @@ var L = {
 };
 var UI_LANGS = ["zh", "en", "es", "ja"];
 var LANG_CHOICES = [["es", "Español"], ["en", "English"], ["ja", "日本語"], ["fr", "Français"], ["de", "Deutsch"], ["ko", "한국어"]];
-var SAMPLE_ES = [["casa", "家；房子"], ["familia", "家庭"], ["madre", "母亲"], ["padre", "父亲"], ["hermano", "兄弟"], ["agua", "水"], ["pan", "面包"], ["leche", "牛奶"], ["manzana", "苹果"], ["huevo", "鸡蛋"], ["mesa", "桌子"], ["silla", "椅子"], ["puerta", "门"], ["ventana", "窗户"], ["libro", "书"], ["escuela", "学校"], ["amigo", "朋友"], ["día", "白天；日子"], ["noche", "夜晚"], ["mañana", "早晨；明天"], ["tiempo", "时间；天气"], ["ciudad", "城市"], ["calle", "街道"], ["tienda", "商店"], ["dinero", "钱"], ["trabajo", "工作"], ["comida", "食物；饭"], ["feliz", "高兴的"], ["grande", "大的"], ["pequeño", "小的"]];
 var LANG_NAMES = { es: "Spanish", en: "English", ja: "Japanese", zh: "Chinese", fr: "French", de: "German", ko: "Korean" };
 var GLOSS_NAMES = { zh: "Chinese (中文)", en: "English", ja: "Japanese", es: "Spanish" };
 var LSP = "fabulita.studio.projects";
@@ -1015,7 +1010,9 @@ function settingsHtml() {
 function guideHtml() {
   var h = "<h2 style='margin-top:0'>" + esc(t("guideTitle")) + "</h2><ol style='margin:0;padding-left:1.2rem;display:grid;gap:0.7rem'>";
   h += "<li>" + esc(t("gd1")) + '<div class="row" style="margin-top:0.3rem"><button class="btn" data-act="guide-conn">' + esc(t("gd1b")) + "</button></div></li>";
-  h += "<li>" + esc(t("gd2")) + '<div class="row" style="margin-top:0.3rem"><button class="btn btn-primary" data-act="guide-sample">' + esc(t("gd2b")) + '</button><button class="btn" data-act="guide-upload">' + esc(t("gd2c")) + "</button></div></li>";
+  h += "<li>" + esc(t("gd2")) +
+    '<pre style="margin:0.4rem 0 0;padding:0.5rem 0.7rem;background:rgba(0,0,0,0.04);border-radius:6px;font-size:0.85rem;line-height:1.5">' + esc(t("gd2ex")) + "</pre>" +
+    '<div class="row" style="margin-top:0.4rem"><button class="btn btn-primary" data-act="guide-upload">' + esc(t("gd2c")) + "</button></div></li>";
   h += "<li>" + esc(t("gd3")) + "</li>";
   h += "<li>" + esc(t("gd4")) + "</li></ol>";
   return h;
@@ -1425,24 +1422,6 @@ document.addEventListener("click", function (e) {
     if (state.aiBusy) return;
     state.guideOpen = false; state.open = true; state.listView = null;
     state.uploadTarget = "__new"; state.targetLang = state.listLang; state.step = "input";
-    render();
-  }
-  else if (act === "guide-sample") {
-    var sAll = loadAll(), sid = null;
-    Object.keys(sAll).forEach(function (k) { if (sAll[k].config.lang === "es" && sAll[k].config.name === t("sampleName")) sid = k; });
-    if (!sid) {
-      sid = "p" + Math.random().toString(36).slice(2, 9);
-      saveProj({ id: sid, config: { name: t("sampleName"), lang: "es", gloss_lang: "zh", ui_default: state.lang },
-        vocab: SAMPLE_ES.map(function (e) { return { w: e[0], gloss: e[1] }; }), glossary: {}, stories: [] });
-    }
-    state.guideOpen = false; state.open = true; state.step = null; state.listView = null;
-    state.listLang = "es";
-    try { localStorage.setItem(LSLL, "es"); } catch (e2) {}
-    state.genSel = [sid];
-    state.genSrc.words = [];
-    lp.runId = (lp.runId || 0) + 1;
-    lp.phase = "idle"; lp.story = null; lp.warnings = []; lp.missing = []; lp.error = null; lp.targetId = null;
-    clearDraft();
     render();
   }
   else if (act === "toggle") { state.open = !state.open; render(); }
