@@ -155,7 +155,8 @@ var L = {
     pastePh: "apple, 苹果\nbanana → 香蕉\norange：橙子；橘子",
     upload: "上传文件（csv / tsv / txt / md / pdf）",
     aiParsing: "AI 正在解析词表…（本地小模型解析整份 PDF 可能需要 5-10 分钟，请勿关闭页面）",
-    aiNeedProvider: "PDF / AI 解析需要先接入模型服务（本机 Ollama 免 Key）。",
+    aiNeedProvider: "PDF / AI 解析需要先接入模型服务（本机 Ollama 免 Key）。在左上角接入并保存后，会自动继续解析。",
+    connectBtn: "接入模型服务",
     errPdfLoad: "PDF 解析库加载失败——首次使用需要联网。",
     errPdfScan: "没有找到可提取的文本（扫描版 PDF 暂不支持）。",
     errAiParse: "AI 解析失败：",
@@ -221,7 +222,8 @@ var L = {
     pastePh: "apple, 苹果\nbanana → 香蕉",
     upload: "Upload a file (csv / tsv / txt / md / pdf)",
     aiParsing: "AI is parsing the list… (a small local model can take 5-10 min for a whole PDF — keep the page open)",
-    aiNeedProvider: "PDF / AI parsing needs a model provider first (local Ollama works — no key).",
+    aiNeedProvider: "PDF / AI parsing needs a model provider first (local Ollama works — no key). Connect it top-left and save — parsing resumes automatically.",
+    connectBtn: "Connect a model",
     errPdfLoad: "Could not load the PDF library — first use needs a network connection.",
     errPdfScan: "No extractable text found (scanned PDFs not supported yet).",
     errAiParse: "AI parsing failed: ",
@@ -287,7 +289,8 @@ var L = {
     pastePh: "apple, manzana\nbanana → plátano",
     upload: "Subir archivo (csv / tsv / txt / md / pdf)",
     aiParsing: "La IA está analizando la lista… (un modelo local pequeño puede tardar 5-10 min con un PDF completo — no cierres la página)",
-    aiNeedProvider: "El análisis con IA / PDF necesita primero un proveedor de modelo (Ollama local funciona, sin clave).",
+    aiNeedProvider: "El análisis con IA / PDF necesita primero un proveedor de modelo (Ollama local funciona, sin clave). Conéctalo arriba a la izquierda y guarda: el análisis continúa solo.",
+    connectBtn: "Conectar modelo",
     errPdfLoad: "No se pudo cargar la librería PDF — el primer uso necesita conexión.",
     errPdfScan: "No se encontró texto extraíble (los PDF escaneados aún no se admiten).",
     errAiParse: "El análisis con IA falló: ",
@@ -353,7 +356,8 @@ var L = {
     pastePh: "apple, りんご\nbanana → バナナ",
     upload: "ファイルをアップロード（csv / tsv / txt / md / pdf）",
     aiParsing: "AI が語彙リストを解析中…（ローカル小型モデルは PDF 全体で 5〜10 分かかることがあります。ページを閉じないでください）",
-    aiNeedProvider: "PDF / AI 解析にはモデルサービスの接続が必要です（ローカル Ollama は Key 不要）。",
+    aiNeedProvider: "PDF / AI 解析にはモデルサービスの接続が必要です（ローカル Ollama は Key 不要）。左上で接続して保存すると自動で解析を続けます。",
+    connectBtn: "モデルを接続",
     errPdfLoad: "PDF ライブラリを読み込めません——初回はネット接続が必要です。",
     errPdfScan: "抽出できるテキストがありません（スキャン PDF は未対応）。",
     errAiParse: "AI 解析に失敗しました：",
@@ -517,7 +521,7 @@ function extractPdfText(file) {
 
 var state = {
   lang: "zh",               // UI locked to Chinese for now; L dicts kept for future re-enable
-  open: false, booksOpen: false,
+  open: false, booksOpen: false, connOpen: false, pendingFile: null,
   step: null,               // null (table) | input | confirm
   pending: null, skipped: 0, aiBusy: false, aiErr: null, lastRaw: "", lastFileName: "", upNameBuf: null, expMsg: null, expText: null, genSrc: { type: "all", words: [] },
   inputBuf: "", pasteBuf: "",
@@ -1100,7 +1104,7 @@ function uploadInputHtml() {
   }
   if (state.aiBusy) h += '<div class="msg ok"><span class="spinner"></span>' + esc(t("aiParsing")) + "</div>";
   if (state.aiErr) h += '<div class="msg err">' + esc(state.aiErr) + "</div>";
-  if (state.aiErr && !genReady()) h += settingsHtml();
+  if (state.aiErr && !genReady() && !state.connOpen) h += settingsHtml();
   return h;
 }
 
@@ -1230,7 +1234,11 @@ function widgetBody() { return listsBody(); }
 
 function render() {
   hidePop();
-  var h = '<div class="top"><p class="eyebrow">fabulita</p></div>';
+  var connChip = genReady()
+    ? '<button class="btn" data-act="conn-toggle" style="font-size:0.78rem;padding:0.2rem 0.6rem"><span style="color:var(--ok)">●</span> ' + esc(provLabel(genCfg()).replace(/\s*·\s*$/, "")) + "</button>"
+    : '<button class="btn" data-act="conn-toggle" style="font-size:0.78rem;padding:0.2rem 0.6rem">⚙ ' + esc(t("connectBtn")) + "</button>";
+  var h = '<div class="top"><div style="display:flex;align-items:center;gap:0.8rem;flex-wrap:wrap"><p class="eyebrow" style="margin:0">fabulita</p>' + connChip + "</div></div>";
+  if (state.connOpen) h += '<div class="widget open" style="margin-bottom:1rem"><div class="w-body" style="padding-top:0.8rem">' + settingsHtml() + "</div></div>";
   h += "<h1>" + esc(t("tagline")) + '</h1><p class="sub">' + esc(t("sub")) + "</p>";
 
   var byLang = {};
@@ -1374,7 +1382,8 @@ document.addEventListener("click", function (e) {
   var isDelListAct = act === "del-list";
   if (!isDelListAct && state.delArm) state.delArm = null;
 
-  if (act === "toggle") { state.open = !state.open; render(); }
+  if (act === "conn-toggle") { state.connOpen = !state.connOpen; render(); }
+  else if (act === "toggle") { state.open = !state.open; render(); }
   else if (act === "toggle-books") { state.booksOpen = !state.booksOpen; render(); }
   else if (act === "parse") {
     if (state.aiBusy) return;
@@ -1405,7 +1414,7 @@ document.addEventListener("click", function (e) {
     });
   }
   else if (act === "drop") { state.pending.splice(+el.dataset.i, 1); render(); }
-  else if (act === "cancel") { state.step = null; state.pending = null; state.skipped = 0; state.expMsg = null; state.expText = null; state.lastFileName = ""; state.upNameBuf = null; state.uploadTarget = "__new"; render(); }
+  else if (act === "cancel") { state.step = null; state.pending = null; state.skipped = 0; state.expMsg = null; state.expText = null; state.lastFileName = ""; state.upNameBuf = null; state.uploadTarget = "__new"; state.pendingFile = null; render(); }
   else if (act === "confirm") {
     var utEl = document.getElementById("up-target");
     var target = (utEl && utEl.value) || state.uploadTarget || "__new";
@@ -1431,7 +1440,7 @@ document.addEventListener("click", function (e) {
       saveProj(tp);
       state.listView = tp.id;
     }
-    state.step = null; state.pending = null; state.inputBuf = ""; state.expMsg = null; state.expText = null; state.lastFileName = ""; state.upNameBuf = null; state.uploadTarget = "__new";
+    state.step = null; state.pending = null; state.inputBuf = ""; state.expMsg = null; state.expText = null; state.lastFileName = ""; state.upNameBuf = null; state.uploadTarget = "__new"; state.pendingFile = null;
     render();
   }
   else if (act === "gen-close") {
@@ -1440,7 +1449,7 @@ document.addEventListener("click", function (e) {
   }
   else if (act === "gen-open") {
     if (!state.genSel.length) return;
-    state.genOpen = true; state.loop.error = null; render();
+    state.genOpen = true; state.connOpen = false; state.loop.error = null; render();
   }
   else if (act === "upload-words") {
     if (state.aiBusy || state.genSel.length > 1) return;
@@ -1601,6 +1610,12 @@ document.addEventListener("click", function (e) {
     };
     try { localStorage.setItem(LSG, JSON.stringify(cfg)); localStorage.removeItem("fabulita.apiKey"); } catch (err) {}
     state.genDraft = null; state.keyOpen = false; state.msg = null; if (lp) lp.error = null; state.aiErr = null;
+    state.connOpen = false;
+    if (state.pendingFile && state.step === "input" && genReady()) {
+      var pf = state.pendingFile;
+      runAiParse(function () { return extractPdfText(pf); });
+      return;
+    }
     render();
   }
   else if (act === "gen-clear") {
@@ -1658,7 +1673,8 @@ document.addEventListener("change", function (e) {
     if (!f) return;
     state.targetLang = document.getElementById("wl").value;
     state.lastFileName = f.name.replace(/\.[a-z0-9]+$/i, "");
-    if (/\.pdf$/i.test(f.name) || f.type === "application/pdf") { runAiParse(function () { return extractPdfText(f); }); return; }
+    if (/\.pdf$/i.test(f.name) || f.type === "application/pdf") { state.pendingFile = f; runAiParse(function () { return extractPdfText(f); }); return; }
+    state.pendingFile = null;
     f.text().then(doParse);
   }
 });
