@@ -8,12 +8,12 @@ version = "0.1.0"
 description = "Compile a vocabulary list into LLM-generated graded-reader stories, then into a single-file interactive reading page with embedded neural TTS."
 readme = "README.md"
 requires-python = ">=3.9"
-license = { text = "MIT" }
-authors = [{ name = "jianqiu-kakoi" }]
+license = { text = "Apache-2.0" }
+authors = [{ name = "Jianqiu Ye" }]
 keywords = ["language-learning", "graded-reader", "tts", "llm", "spanish"]
 classifiers = [
   "Programming Language :: Python :: 3",
-  "License :: OSI Approved :: MIT License",
+  "License :: OSI Approved :: Apache Software License",
   "Topic :: Education",
 ]
 

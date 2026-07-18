@@ -117,4 +117,4 @@ fabulita 把「生词表」编译成「分级阅读故事书」：导入词表 �
 
 ## License
 
-MIT
+Apache-2.0 · © 2026 Jianqiu Ye
