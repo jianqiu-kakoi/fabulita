@@ -45,7 +45,8 @@ commands.
 
 Before opening public registration:
 
-1. Replace the operator and contact placeholders in `frontend/privacy.html`.
+1. Replace the closed-preview notice in `frontend/privacy.html` with the
+   operator name and a working contact address.
 2. If LLM scoring is enabled, name the provider, processing region, and privacy
    policy in that page.
 3. Add an A record for `english.chyuopen.com`, enable the Cloudflare proxy, and

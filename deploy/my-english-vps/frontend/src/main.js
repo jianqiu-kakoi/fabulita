@@ -38,6 +38,7 @@ const elements = {
 
 let currentUser = null;
 let authMode = "login";
+let registrationEnabled = false;
 let activeLearningProfile = "guest";
 let bridge = null;
 
@@ -137,7 +138,8 @@ function setBusy(button, busy, label) {
 }
 
 function setAuthMode(mode) {
-  authMode = mode === "register" ? "register" : "login";
+  authMode =
+    mode === "register" && registrationEnabled ? "register" : "login";
   const registering = authMode === "register";
   elements.loginModeButton.classList.toggle("is-active", !registering);
   elements.registerModeButton.classList.toggle("is-active", registering);
@@ -155,6 +157,16 @@ function setAuthMode(mode) {
     : "登录并同步进度";
   elements.privacyConsent.required = registering;
   showMessage("");
+}
+
+function setRegistrationAvailability(health) {
+  registrationEnabled =
+    health?.registrationEnabled === true &&
+    health?.privacyConsentVersion === PRIVACY_ACCEPTED_VERSION;
+  elements.registerModeButton.hidden = !registrationEnabled;
+  if (!registrationEnabled && authMode === "register") {
+    setAuthMode("login");
+  }
 }
 
 function showLoginPanel() {
@@ -290,6 +302,11 @@ function initialize() {
     invoke,
     onStatus: setSyncStatus,
   });
+
+  api
+    .getHealth()
+    .then(setRegistrationAvailability)
+    .catch(() => setRegistrationAvailability(null));
 
   refreshSession().catch((error) => {
     currentUser = null;

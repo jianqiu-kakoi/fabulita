@@ -22,6 +22,28 @@ function jsonResponse(payload, status = 200) {
   });
 }
 
+test("health reports whether registration matches the active privacy notice", async () => {
+  const calls = [];
+  const api = createApiClient({
+    async fetcher(url, options) {
+      calls.push({ url, options });
+      return jsonResponse({
+        ok: true,
+        registrationEnabled: false,
+        privacyConsentVersion: "2026-07-25",
+      });
+    },
+  });
+
+  assert.deepEqual(await api.getHealth(), {
+    registrationEnabled: false,
+    privacyConsentVersion: "2026-07-25",
+  });
+  assert.equal(calls[0].url, "/api/health");
+  assert.equal(calls[0].options.method, "GET");
+  assert.equal(api.csrfToken, "");
+});
+
 test("me uses the same-origin session cookie and remembers CSRF state", async () => {
   const calls = [];
   const api = createApiClient({
@@ -122,6 +144,19 @@ test("login markup does not require registration consent", () => {
   );
 });
 
+test("registration stays hidden until the server explicitly enables it", () => {
+  const html = readFileSync(
+    new URL("../index.html", import.meta.url),
+    "utf8",
+  );
+  const registerTab = html.match(
+    /<button\b[^>]*\bid="auth-mode-register"[^>]*>/,
+  )?.[0];
+
+  assert.ok(registerTab, "registration tab should remain in the account UI");
+  assert.match(registerTab, /\bhidden\b/);
+});
+
 test("privacy notice states that third-party model scoring is disabled", () => {
   const html = readFileSync(
     new URL("../privacy.html", import.meta.url),
@@ -140,6 +175,17 @@ test("privacy notice states that third-party model scoring is disabled", () => {
     /class="todo"/,
     "the disabled provider section must not show a provider TODO",
   );
+});
+
+test("closed preview privacy notice has no fake operator placeholders", () => {
+  const privacy = readFileSync(
+    new URL("../privacy.html", import.meta.url),
+    "utf8",
+  );
+
+  assert.doesNotMatch(privacy, /正式上线前填写/);
+  assert.match(privacy, /新账号注册尚未开放/);
+  assert.match(privacy, /补充运营者名称与有效联系邮箱/);
 });
 
 test("action and logout attach the latest CSRF token", async () => {

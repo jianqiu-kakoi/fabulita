@@ -9,7 +9,7 @@ Usage:
     [--email ops@example.com]
 
 Installs Node.js 22, Caddy, SQLite tools, the myenglish system user,
-systemd units, the Caddy site, and the backup timer on Ubuntu 26.04.
+systemd units, the Caddy site, and the backup timer on Ubuntu 24.04 or 26.04.
 It does not deploy or start an application release.
 USAGE
 }
@@ -53,8 +53,14 @@ if [[ -n "${acme_email}" ]]; then
 fi
 
 source /etc/os-release
-[[ "${ID:-}" == "ubuntu" && "${VERSION_ID:-}" == "26.04" ]] ||
-  die "this installer targets Ubuntu 26.04; found ${PRETTY_NAME:-unknown OS}"
+[[ "${ID:-}" == "ubuntu" ]] ||
+  die "this installer requires Ubuntu; found ${PRETTY_NAME:-unknown OS}"
+case "${VERSION_ID:-}" in
+  24.04|26.04) ;;
+  *)
+    die "this installer targets Ubuntu 24.04 or 26.04; found ${PRETTY_NAME:-unknown OS}"
+    ;;
+esac
 
 readonly ops_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
 readonly node_keyring="/etc/apt/keyrings/nodesource.gpg"

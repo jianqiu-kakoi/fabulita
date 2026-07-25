@@ -1,6 +1,6 @@
 # My English single-VPS operations
 
-Target: Ubuntu 26.04, Node.js 22.13+, Caddy, systemd, and SQLite.
+Target: Ubuntu 24.04 or 26.04, Node.js 22.13+, Caddy, systemd, and SQLite.
 
 ```text
 Cloudflare -> Caddy :443

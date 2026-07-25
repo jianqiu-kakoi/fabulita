@@ -86,6 +86,16 @@ export function createApiClient({
   }
 
   return {
+    async getHealth() {
+      const payload = await request("/health");
+      return {
+        registrationEnabled: payload?.registrationEnabled === true,
+        privacyConsentVersion: String(
+          payload?.privacyConsentVersion || "",
+        ).trim(),
+      };
+    },
+
     async getCurrentUser() {
       const payload = await request("/auth/me");
       return rememberSession(payload);
