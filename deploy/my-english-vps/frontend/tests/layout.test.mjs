@@ -21,3 +21,10 @@ test("the authenticated learner iframe fills a definite viewport-height grid row
     /\.learner-frame\s*\{[^}]*position:\s*absolute;[^}]*inset:\s*0;[^}]*height:\s*100%;/s,
   );
 });
+
+test("the learner shell is pinned to the 1fr grid row even when the setup banner is display:none", () => {
+  // A display:none banner stops being a grid item, so without explicit
+  // placement the shell auto-flows into the collapsed `auto` row and the
+  // absolutely-positioned iframe renders at 0px height.
+  assert.match(styles, /\.learner-shell\s*\{[^}]*grid-row:\s*3;/s);
+});

@@ -24,3 +24,6 @@ examples/*/dist/
 
 # connected OpenAI Sites worktree; published and versioned separately
 /deploy/my-english-site/
+
+# Third-party classroom material: keep out of the public repo
+examples/mi-espanol/materials/ejercicios-vocabulario-a1-1.pdf

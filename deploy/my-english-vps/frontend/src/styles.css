@@ -414,6 +414,10 @@ button {
 
 .learner-shell {
   position: relative;
+  /* Pin to the 1fr row: when the setup banner is display:none it stops being
+     a grid item and auto-placement would drop the shell into the collapsed
+     `auto` row, rendering the absolutely-positioned iframe at 0px height. */
+  grid-row: 3;
   width: 100%;
   min-width: 0;
   min-height: 0;

@@ -1,0 +1,16 @@
+{
+  "name": "Mi Español",
+  "lang": "es",
+  "gloss_lang": "zh",
+  "ui_default": "zh",
+  "review_id": "mi-espanol-core-v1",
+  "qa_id": "mi-espanol",
+  "history_id": "mi-espanol",
+  "homework_id": "mi-espanol",
+  "layout": "vocab",
+  "tts": {
+    "backend": "none",
+    "voice": "es-ES-ElviraNeural"
+  },
+  "max_words_per_story": 20
+}

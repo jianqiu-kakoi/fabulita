@@ -54,6 +54,27 @@ def test_vocab_import_and_dedupe(proj, tmp_path):
     assert proj.vocab[0]["gloss"] == "狗狗"
 
 
+def test_vocab_import_keeps_optional_learning_metadata(proj, tmp_path):
+    seed_vocab(proj, tmp_path, [
+        "word,gloss,note,category,kind,example,example_trans,answers,review_mode",
+        "la llave,钥匙,key,家居,word,La llave está en la mesa.,钥匙在桌子上。,钥匙|key,meaning",
+        "estar,表示位置和当前状态,to be,语法,grammar",
+    ])
+    assert proj.vocab[0] == {
+        "w": "la llave",
+        "gloss": "钥匙",
+        "note": "key",
+        "category": "家居",
+        "kind": "word",
+        "example": "La llave está en la mesa.",
+        "example_trans": "钥匙在桌子上。",
+        "answers": "钥匙|key",
+        "review_mode": "meaning",
+    }
+    assert proj.vocab[1]["category"] == "语法"
+    assert "example" not in proj.vocab[1]
+
+
 def test_add_accept_coverage(proj, tmp_path):
     seed_vocab(proj, tmp_path, ["perro,狗", "jardín,花园", "flor,花", "gato,猫"])
     stories.add(proj, write_story(tmp_path, make_story()))
@@ -101,6 +122,17 @@ def test_build_single_file(proj, tmp_path):
     assert "El perro" in html
     assert "/*__PAYLOAD__*/" not in html
     assert "</script>" in html  # payload escaping didn't break the page
+    assert 'var REVIEW_LS = "fabulita.review.v1"' in html
+    assert 'data-view="review"' in html
+    assert "REVIEW_INTERVALS = [1, 3, 7, 14, 30]" in html
+    assert "REVIEW_NEW_LIMIT = 10" in html and "REVIEW_SESSION_LIMIT = 20" in html
+    assert "var vocabWords = P.vocab.filter" in html
+    assert "if (vocabSeenWords[key]) return false" in html
+    assert "var reviewWords = vocabWords.filter(reviewIsEligible)" in html
+    assert 'data-review-action="hard"' not in html
+    assert 'data-review-action="issue"' in html
+    assert '["again", "known"].indexOf(result) === -1' in html
+    assert '["again", "hard", "known"].indexOf(event.rating)' in html
     for lang in UI_LANGS:
         assert UI_STRINGS[lang]["vocabList"] in html
 
@@ -109,7 +141,10 @@ def test_ui_strings_complete():
     keys = set(UI_STRINGS["en"])
     for lang in UI_LANGS:
         assert set(UI_STRINGS[lang]) == keys, f"{lang} missing keys"
-    for key in ("myBook", "delStory", "delConfirm"):
+    for key in ("myBook", "delStory", "delConfirm", "readTab", "reviewTab",
+                "reviewReveal", "reviewAnswerLabel", "reviewCheck", "reviewCorrect",
+                "reviewIncorrect", "reviewAgain", "reviewHard", "reviewOther", "reviewOtherHint",
+                "reviewIssueSaved", "reviewIssueFailed", "reviewKnow", "reviewNoWords"):
         for lang in UI_LANGS:
             assert UI_STRINGS[lang][key], f"{lang} missing {key}"
 
@@ -128,7 +163,9 @@ def test_unpack_roundtrip(tmp_path):
     bundle = {
         "fabulita_bundle": 1,
         "config": {"name": "T", "lang": "es", "gloss_lang": "zh"},
-        "vocab": [{"w": "perro", "gloss": "狗"}],
+        "vocab": [{"w": "perro", "gloss": "狗", "note": "dog",
+                   "category": "动物", "kind": "word", "example": "El perro corre.",
+                   "example_trans": "狗在跑。", "answers": "狗|犬|dog"}],
         "glossary": {"el": ["定冠词"]},
         "stories": [make_story(status="candidate")],
     }
@@ -139,6 +176,9 @@ def test_unpack_roundtrip(tmp_path):
     p = Project(dest)
     assert p.config["lang"] == "es"
     assert len(p.vocab) == 1 and len(p.stories()) == 1
+    assert p.vocab[0]["category"] == "动物"
+    assert p.vocab[0]["example_trans"] == "狗在跑。"
+    assert p.vocab[0]["answers"] == "狗|犬|dog"
     assert p.glossary["el"] == ["定冠词"]
     with pytest.raises(ValueError):
         build.unpack(bp, dest)  # refuses to overwrite
@@ -152,7 +192,8 @@ def test_studio_build(tmp_path):
     assert UI_STRINGS["ja"]["vocabList"] in html  # reader UI strings embedded
 
 
-@pytest.mark.parametrize("demo,n", [("es-a1", 6), ("en-a1", 1), ("ja-n5", 1)])
+@pytest.mark.parametrize("demo,n", [("es-a1", 6), ("en-a1", 1), ("ja-n5", 1),
+                                     ("mi-espanol", 0), ("my-english", 1)])
 def test_example_projects_validate(demo, n):
     proj = Project(REPO / "examples" / demo)
     if not (proj.root / "vocab.json").exists():
@@ -178,6 +219,126 @@ def test_demo_stories_validate():
         assert warnings == [], f"{s['id']}: {warnings}"
 
 
+def test_mi_espanol_vocab_dashboard_build():
+    project_root = REPO / "examples" / "mi-espanol"
+    project = Project(project_root)
+    vocab.import_file(project, project_root / "vocab.csv")
+    words = project.vocab
+    assert len(words) == 80
+    assert len({w["w"].casefold() for w in words}) == 80
+    headwords = {w["w"] for w in words}
+    assert {"la llave", "el queso", "¿cómo estás?", "ser", "estar"} <= headwords
+    assert "Yencho" not in headwords and "Budist" not in headwords
+    by_word = {w["w"]: w for w in words}
+    assert by_word["el profesor"]["answers"] == "男老师|老师|male teacher|teacher"
+    assert by_word["en"]["answers"] == "在|在里面|in|at|on"
+    assert by_word["inteligente"]["answers"] == "聪明|聪明的|intelligent|smart|clever"
+    assert by_word["bien"]["answers"] == "好|好地|状态良好|well|good"
+    assert "and" not in by_word["con"].get("answers", "").split("|")
+    assert sum(word.get("kind") == "grammar" for word in words) == 5
+    assert sum(word.get("review_mode") == "grammar" for word in words) == 3
+    out, _, n_stories, _ = build.build(project)
+    html = out.read_text(encoding="utf-8")
+    assert n_stories == 0
+    assert '"layout": "vocab"' in html
+    assert "vocab-dashboard" in html and "vocab-search" in html
+    assert 'data-vocab-category=""' in html
+    assert 'data-review-action="hard"' not in html
+    assert 'rateReview("hard", "button")' not in html
+    assert 'data-review-action="issue"' in html
+    assert "function reportReviewIssue" in html
+    assert 'source: "review_answer_issue"' in html
+    assert 'status: "open"' in html and 'issueType: "accepted_answer_or_gloss"' in html
+    assert 'state.reviewIssueReported = saved' in html
+    assert '["again", "known"].indexOf(result) === -1' in html
+    assert '["again", "hard", "known"].indexOf(event.rating)' in html
+    assert 'event.rating === "hard" ? "旧版中间项"' in html
+    assert "2 其他" in html and "2 有点难" not in html
+    assert 'id="review-answer-form"' in html
+    assert "function reviewAnswerMatches" in html
+    assert 'var sources = word.answers ? [word.answers] : [word.gloss || "", word.note || ""]' in html
+    assert '["word", "noun"].indexOf(word.kind) !== -1' in html
+    assert 'String(word.kind || "").toLowerCase().indexOf("verb") !== -1' in html
+    assert 'var REVIEW_MATCHER_VERSION = "curated-aliases-v2"' in html
+    assert "function reviewSpeechText" in html
+    assert "SpeechSynthesisUtterance(reviewSpeechText(state.reviewQueue[0].w))" in html
+    assert 'class="sent review-example-sentence"' in html
+    assert 'class="review-example-source" lang="' in html
+    assert 'class="say" type="button" aria-label="' in html
+    assert 'sentEl.querySelector(".review-example-source")' in html
+    assert 'inlineSource ? inlineSource.textContent' in html
+    assert 'function reviewMode(word) { return String(word && word.review_mode || "meaning").toLowerCase(); }' in html
+    assert 'function reviewIsEligible(word) { return !!word && reviewMode(word) === "meaning"; }' in html
+    assert "if (!reviewIsEligible(word)) return false" in html
+    assert "VOCAB_DASHBOARD && reviewIsEligible(word)" in html
+    assert 'return { key: "excluded", label: "暂不复习" }' in html
+    assert "var favoriteCount = vocabWords.filter(reviewIsFavorite).length" in html
+    assert "reviewEligible: reviewIsEligible(word)" in html
+    assert "reviewMode: reviewMode(word)" in html
+    assert "var snapshotReviews = vocabWords.reduce" in html
+    assert 'role="status"' in html
+    assert '"qa_id": "mi-espanol"' in html
+    assert '"history_id": "mi-espanol"' in html
+    assert 'var QA_LS = "fabulita.qa.v1"' in html
+    assert "var QA_MAX_LENGTH = 500" in html
+    assert 'dashboardNavButton("qa", "?", "Q&amp;A"' in html
+    assert 'id="qa-note-form"' in html and 'id="qa-question-input"' in html
+    assert "function loadQaRoot" in html
+    assert "function addQaQuestion" in html and "function deleteQaQuestion" in html
+    assert 'data-qa-delete="' in html and 'data-qa-confirm-delete="' in html
+    assert 'e.target.id === "qa-note-form"' in html
+    assert 'id="qa-notice"' in html and 'aria-live="polite"' in html
+    assert "esc(item.question)" in html
+    assert "var reviewSurfaceVisible" in html
+    assert 'var REVIEW_EVENTS_LS = "fabulita.review.events.v1"' in html
+    assert "function buildReviewEvent" in html and "function appendReviewEvent" in html
+    assert "event.historyScope !== historyScopeKey" in html
+    assert "!Array.isArray(root.scopes)" in html
+    assert "Array.isArray(latest.scopes)" in html
+    assert "function dashboardProgressHtml" in html
+    assert 'data-history-export="json"' in html and 'data-history-export="csv"' in html
+    assert 'e.target.closest("[data-history-export]")' in html
+    assert "exportReviewHistory(el.dataset.historyExport)" in html
+    assert 'data-learning-export="json"' in html and 'data-learning-export="csv"' in html
+    assert 'var LEARNING_EVENTS_LS = "fabulita.learning.events.v1"' in html
+    assert "function recordLearningEvent" in html
+    assert "function learningExportEnvelope" in html
+    assert 'schema: "fabulita.learning-export.v1"' in html
+    assert "function reviewHistoryCsv" in html and "function csvSafeValue" in html
+    assert "typedAnswer" in html and "answerCorrect" in html and "ratingInput" in html
+    assignments = project.homeworks
+    assert len(assignments) == 3
+    assignment = next(
+        item for item in assignments
+        if item["id"] == "ejercicios-vocabulario-a1-1"
+    )
+    conjugation = next(
+        item for item in assignments
+        if item["id"] == "ser-estar-conjugation-a1"
+    )
+    assert len(assignment["sections"]) == 2
+    items = [item for section in assignment["sections"] for item in section["items"]]
+    assert len(items) == 50 and len({item["id"] for item in items}) == 50
+    conjugation_items = [
+        item for section in conjugation["sections"] for item in section["items"]
+    ]
+    assert len(conjugation_items) == 12
+    assert {section["type"] for section in conjugation["sections"]} == {"text_input"}
+    assert assignment["answerKeyBasis"] == "inferred_from_context"
+    assert assignment["sections"][0]["items"][11]["answers"] == ["zapato", "sombrero"]
+    assert assignment["sections"][1]["items"][14]["answers"] == ["café"]
+    payload = build.payload(project)
+    source = next(
+        item for item in payload["homeworks"]
+        if item["id"] == "ejercicios-vocabulario-a1-1"
+    )["source"]
+    # The adapted classroom worksheet is not distributed: no file, no dataUrl.
+    assert source == {}
+    assert "Ejercicio de vocabulario español A1 - 1" in html
+    assert "fabulita.homework.v1" in html
+    assert 'dashboardNavButton("homework"' in html
+
+
 def test_build_reader(tmp_path):
     from fabulita import build
     out, size = build.build_reader(tmp_path / "reader.html")
@@ -190,8 +351,14 @@ def test_build_reader(tmp_path):
     data = _json.loads(m.group(1))
     assert data["self"] is True
     assert data["stories"] == [] and data["vocab"] == []
+    assert data["homeworks"] == []
     assert data["config"]["home"] == "index.html"
+    assert data["config"]["review_id"] == "self"
+    assert data["config"]["qa_id"] == "self"
+    assert data["config"]["history_id"] == "self"
     assert "ui" in data and "uiLangs" in data
+    assert "fabulita.review.v1" in html
+    assert "reviewCardKey" in html and "rateReview" in html
 
 
 def test_demo_data_js(proj, tmp_path):

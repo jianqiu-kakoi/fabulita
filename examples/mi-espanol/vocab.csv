@@ -1,0 +1,81 @@
+word,gloss,note,category,kind,example,example_trans,answers,review_mode
+la casa,房子、家,house; home,家居,word,Estamos en casa.,我们在家。
+la llave,钥匙,key,家居,word,La llave está en la mesa.,钥匙在桌子上。
+la mesa,桌子,table,家居,word,La llave está en la mesa.,钥匙在桌子上。
+la silla,椅子,chair,家居,word
+la guitarra,吉他,guitar,家居,word
+la cama,床,bed,家居,word
+la lámpara,灯,lamp,家居,word
+el pan,面包,bread,食物,word
+el queso,奶酪,cheese,食物,word,El queso está en la mesa.,奶酪在桌子上。
+el hermano,兄弟、哥哥、弟弟,brother,人物,word
+el padre,父亲,father,人物,word,Mi padre es profesor y está feliz.,我的父亲是老师，而且他现在很开心。
+la madre,母亲,mother,人物,word,Mi madre es profesora y está triste.,我的母亲是老师，而且她现在很伤心。
+los padres,父母,parents,人物,word,"Mis padres están tristes, pero ahora están en España.",我的父母很伤心，但是他们现在在西班牙。
+el profesor,男老师,male teacher,人物,word,Mi padre es profesor.,我的父亲是老师。,男老师|老师|male teacher|teacher
+la profesora,女老师,female teacher,人物,word,Mi madre es profesora.,我的母亲是老师。,女老师|老师|female teacher|teacher
+el amigo,男性朋友,male friend,人物,word,,,男性朋友|朋友|male friend|friend
+la amiga,女性朋友,female friend,人物,word,,,女性朋友|朋友|female friend|friend
+bueno / buena,好的,good,形容词,adjective
+inteligente,聪明的,intelligent,形容词,adjective,,,聪明|聪明的|intelligent|smart|clever
+rápido / rápida,快的,fast,形容词,adjective,Vosotros sois muy rápidos.,你们非常快。
+feliz,开心的、幸福的,happy,形容词,adjective,Está feliz.,他／她现在很开心。
+contento / contenta,高兴的、满意的,happy; content,形容词,adjective
+triste,伤心的,sad,形容词,adjective,Está triste.,他／她现在很伤心。
+claro / clara,清楚的、明确的,clear,形容词,adjective
+sencillo / sencilla,简单的,simple,形容词,adjective
+real,真实的,real,形容词,adjective
+emocionado / emocionada,兴奋的、期待的,excited,形容词,adjective,Estoy emocionado de guiarte paso a paso.,我很期待一步一步地指导你。
+trabajador / trabajadora,勤奋的,hardworking,形容词,adjective
+motivado / motivada,有动力的,motivated,形容词,adjective
+rápido → rápidos / rápida → rápidas,rápido 和 rápida 的复数变化,plural forms of rápido and rápida,语法,grammar,,,,grammar
+triste → tristes,triste 的复数变化,plural form of triste,语法,grammar,,,,grammar
+budista → budistas,budista 的复数变化,plural form of budista,语法,grammar,Nosotros somos budistas.,我们是佛教徒。,,grammar
+bien,好地；状态良好,well,常用表达,adverb,Estoy bien.,我很好。,好|好地|状态良好|well|good
+muy,非常,very,常用表达,adverb,Vosotros sois muy rápidos.,你们非常快。
+aquí,这里,here,常用表达,adverb
+ahora,现在,now,常用表达,adverb,"Mis padres están tristes, pero ahora están en España.",我的父母很伤心，但是他们现在在西班牙。
+pero,但是,but,常用表达,connector,"Mis padres están tristes, pero ahora están en España.",我的父母很伤心，但是他们现在在西班牙。
+pronto,很快、不久,soon,常用表达,adverb,Espero verte pronto.,我希望很快见到你。
+juntos,一起,together,常用表达,adverb
+paso a paso,一步一步地,step by step,常用表达,phrase,Estoy emocionado de guiarte paso a paso.,我很期待一步一步地指导你。
+en un par de horas,几个小时后,in a couple of hours,常用表达,phrase,"Sí, en un par de horas.",是的，几个小时后。
+con,和、与、带着,with,小词,preposition
+en,在……里面／地点／时间,"in, at, on",小词,preposition,Estamos en China.,我们在中国。,在|在里面|in|at|on
+de,……的；来自,"of, from",小词,preposition
+sobre,关于；在……上面,"about, on",小词,preposition
+como,像、如同；作为,"like, as",小词,connector
+y,和、并且,and,小词,connector,Nosotros somos amigos y estamos en China.,我们是朋友，而且我们在中国。
+o,或者,or,小词,connector
+no,不、不是,no; not,小词,particle,"No, yo soy Mateo. Él es Juan.",不，我是 Mateo。他是 Juan。
+sí,是的,yes,小词,particle,"Sí, en un par de horas.",是的，几个小时后。
+mi,我的,my,小词,determiner,Mi padre es profesor.,我的父亲是老师。
+tus,你的（复数名词前）,your,小词,determiner
+nuestras,我们的（阴性复数）,our,小词,determiner
+¿qué?,什么？,what?,疑问词,question
+¿cómo?,怎样？如何？,how?,疑问词,question
+¿cómo estás?,你好吗？,How are you?,疑问词,phrase,¿Cómo estás?,你好吗？
+yo,我,I,人称代词,pronoun,Yo soy Mateo.,我是 Mateo。
+tú,你,you,人称代词,pronoun,¿Tú eres Juan?,你是 Juan 吗？
+él,他,he,人称代词,pronoun,Él es Juan.,他是 Juan。
+nosotros / nosotras,我们,we,人称代词,pronoun,Nosotros somos amigos.,我们是朋友。
+vosotros / vosotras,你们（主要用于西班牙）,you all,人称代词,pronoun,Vosotros sois muy rápidos.,你们非常快。
+ser,"是；表示身份、职业和较稳定特征：soy / eres / es / somos / sois / son",to be for identity and stable traits,语法,grammar,Nosotros somos amigos.,我们是朋友。,to be|be|表示身份、职业和较稳定特征
+estar,"是；在；表示位置和当前状态：estoy / estás / está / estamos / estáis / están",to be for location and current state,语法,grammar,Estamos en China.,我们在中国。,to be|be|位置和当前状态
+el comienzo,开始,beginning; start,课程词汇,word,Gran comienzo hoy.,今天是一个很棒的开始。
+hoy,今天,today,课程词汇,adverb,Gran comienzo hoy.,今天是一个很棒的开始。
+mostrar,展现,to show,课程词汇,verb,Mostraste valentía y curiosidad.,你展现了勇气和好奇心。
+la valentía,勇气,courage,课程词汇,word,Mostraste valentía y curiosidad.,你展现了勇气和好奇心。
+la curiosidad,好奇心,curiosity,课程词汇,word,Mostraste valentía y curiosidad.,你展现了勇气和好奇心。
+próximo / próxima,接下来的、下一个,next; upcoming,课程词汇,adjective,En nuestras próximas lecciones…,在接下来的课程中……
+la lección,课程,lesson,课程词汇,word,En nuestras próximas lecciones…,在接下来的课程中……
+construir,构建,to build,课程词汇,verb,Construiremos oraciones claras y sencillas.,我们将构建清晰、简单的句子。
+la oración,句子,sentence,课程词汇,word,Construiremos oraciones claras y sencillas.,我们将构建清晰、简单的句子。
+el pasatiempo,兴趣爱好,hobby; pastime,课程词汇,word,Hablaremos sobre tus pasatiempos.,我们会谈论你的兴趣爱好。
+practicar,练习,to practice,课程词汇,verb,Practicaremos la comprensión auditiva real.,我们将练习真实的听力理解。
+la comprensión auditiva,听力理解,listening comprehension,课程词汇,phrase,Practicaremos la comprensión auditiva real.,我们将练习真实的听力理解。
+guiar,指导,to guide,课程词汇,verb,Estoy emocionado de guiarte paso a paso.,我很期待一步一步地指导你。
+aumentar,增加、提高,to increase,课程词汇,verb,Juntos aumentaremos tu confianza.,我们会一起增强你的信心。
+la confianza,信心,confidence,课程词汇,word,Juntos aumentaremos tu confianza.,我们会一起增强你的信心。
+disfrutar,享受,to enjoy,课程词汇,verb,Disfrutaremos del español.,我们会享受学习西班牙语的过程。
+el español,西班牙语,Spanish,课程词汇,word,Disfrutaremos del español.,我们会享受学习西班牙语的过程。

@@ -1,0 +1,4362 @@
+{
+  "version": 1,
+  "assignments": [
+    {
+      "id": "ejercicios-vocabulario-a1-1",
+      "title": "西语词汇练习 A1 - 1",
+      "badge": "下一份作业",
+      "sourceTitle": "Ejercicio de vocabulario español A1 - 1",
+      "teacher": "Profesor de ejemplo",
+      "level": "A1",
+      "answerKeyBasis": "inferred_from_context",
+      "source": {},
+      "studyWords": [
+        {
+          "id": "hw-a-lunes",
+          "word": "lunes",
+          "gloss": "星期一、周一",
+          "english": "Monday",
+          "answers": [
+            "星期一",
+            "周一",
+            "Monday"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "hw-a-sol",
+          "word": "sol",
+          "gloss": "太阳；阳光",
+          "english": "sun; sunshine",
+          "answers": [
+            "太阳",
+            "阳光",
+            "sun",
+            "sunshine"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "hw-a-frio",
+          "word": "frío",
+          "gloss": "寒冷；冷的",
+          "english": "cold",
+          "answers": [
+            "寒冷",
+            "冷",
+            "冷的",
+            "cold"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "hw-a-verano",
+          "word": "verano",
+          "gloss": "夏天、夏季",
+          "english": "summer",
+          "answers": [
+            "夏天",
+            "夏季",
+            "summer"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "hw-a-invierno",
+          "word": "invierno",
+          "gloss": "冬天、冬季",
+          "english": "winter",
+          "answers": [
+            "冬天",
+            "冬季",
+            "winter"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "hw-a-otono",
+          "word": "otoño",
+          "gloss": "秋天、秋季",
+          "english": "autumn; fall",
+          "answers": [
+            "秋天",
+            "秋季",
+            "autumn",
+            "fall"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "hw-a-reloj",
+          "word": "reloj",
+          "gloss": "钟；手表",
+          "english": "clock; watch",
+          "answers": [
+            "钟",
+            "时钟",
+            "手表",
+            "clock",
+            "watch"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "hw-a-cuaderno",
+          "word": "cuaderno",
+          "gloss": "笔记本、练习本",
+          "english": "notebook",
+          "answers": [
+            "笔记本",
+            "练习本",
+            "notebook"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "hw-a-libro",
+          "word": "libro",
+          "gloss": "书",
+          "english": "book",
+          "answers": [
+            "书",
+            "书本",
+            "book"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "hw-a-hermana",
+          "word": "hermana",
+          "gloss": "姐妹、姐姐、妹妹",
+          "english": "sister",
+          "answers": [
+            "姐妹",
+            "姐姐",
+            "妹妹",
+            "sister"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "hw-a-mesa",
+          "word": "mesa",
+          "gloss": "桌子",
+          "english": "table",
+          "answers": [
+            "桌子",
+            "桌",
+            "table"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "hw-a-perro",
+          "word": "perro",
+          "gloss": "狗",
+          "english": "dog",
+          "answers": [
+            "狗",
+            "犬",
+            "dog"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "hw-a-oficina",
+          "word": "oficina",
+          "gloss": "办公室",
+          "english": "office",
+          "answers": [
+            "办公室",
+            "office"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "hw-a-playa",
+          "word": "playa",
+          "gloss": "海滩、沙滩",
+          "english": "beach",
+          "answers": [
+            "海滩",
+            "沙滩",
+            "beach"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "hw-a-montana",
+          "word": "montaña",
+          "gloss": "山、山岳",
+          "english": "mountain",
+          "answers": [
+            "山",
+            "山岳",
+            "mountain"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "hw-a-tren",
+          "word": "tren",
+          "gloss": "火车",
+          "english": "train",
+          "answers": [
+            "火车",
+            "列车",
+            "train"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "hw-a-bosque",
+          "word": "bosque",
+          "gloss": "森林、树林",
+          "english": "forest; woods",
+          "answers": [
+            "森林",
+            "树林",
+            "forest",
+            "woods"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "hw-a-cielo",
+          "word": "cielo",
+          "gloss": "天空",
+          "english": "sky",
+          "answers": [
+            "天空",
+            "天",
+            "sky"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "hw-a-agua",
+          "word": "agua",
+          "gloss": "水",
+          "english": "water",
+          "answers": [
+            "水",
+            "water"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "hw-a-leche",
+          "word": "leche",
+          "gloss": "牛奶",
+          "english": "milk",
+          "answers": [
+            "牛奶",
+            "奶",
+            "milk"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "hw-a-azucar",
+          "word": "azúcar",
+          "gloss": "糖",
+          "english": "sugar",
+          "answers": [
+            "糖",
+            "食糖",
+            "sugar"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "hw-a-profesor",
+          "word": "profesor",
+          "gloss": "男老师；老师",
+          "english": "male teacher; teacher",
+          "answers": [
+            "男老师",
+            "老师",
+            "male teacher",
+            "teacher"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "hw-a-banco",
+          "word": "banco",
+          "gloss": "银行；长椅",
+          "english": "bank; bench",
+          "answers": [
+            "银行",
+            "长椅",
+            "长凳",
+            "bank",
+            "bench"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "hw-a-cafe",
+          "word": "café",
+          "gloss": "咖啡；咖啡馆",
+          "english": "coffee; café",
+          "answers": [
+            "咖啡",
+            "咖啡馆",
+            "coffee",
+            "café",
+            "cafe"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "hw-a-naranja",
+          "word": "naranja",
+          "gloss": "橙子；橙色",
+          "english": "orange",
+          "answers": [
+            "橙子",
+            "橘子",
+            "橙色",
+            "orange"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "hw-a-silla",
+          "word": "silla",
+          "gloss": "椅子",
+          "english": "chair",
+          "answers": [
+            "椅子",
+            "chair"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "hw-a-flor",
+          "word": "flor",
+          "gloss": "花",
+          "english": "flower",
+          "answers": [
+            "花",
+            "花朵",
+            "flower"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "hw-a-gato",
+          "word": "gato",
+          "gloss": "猫",
+          "english": "cat",
+          "answers": [
+            "猫",
+            "cat"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "hw-a-aeropuerto",
+          "word": "aeropuerto",
+          "gloss": "机场",
+          "english": "airport",
+          "answers": [
+            "机场",
+            "飞机场",
+            "airport"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "hw-a-zapato",
+          "word": "zapato",
+          "gloss": "鞋",
+          "english": "shoe",
+          "answers": [
+            "鞋",
+            "鞋子",
+            "shoe"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "hw-a-sombrero",
+          "word": "sombrero",
+          "gloss": "帽子",
+          "english": "hat",
+          "answers": [
+            "帽子",
+            "hat"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "hw-a-vaso",
+          "word": "vaso",
+          "gloss": "水杯、玻璃杯",
+          "english": "drinking glass",
+          "answers": [
+            "水杯",
+            "杯子",
+            "玻璃杯",
+            "drinking glass",
+            "glass"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "hw-a-ventana",
+          "word": "ventana",
+          "gloss": "窗户",
+          "english": "window",
+          "answers": [
+            "窗户",
+            "窗",
+            "window"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "hw-a-bicicleta",
+          "word": "bicicleta",
+          "gloss": "自行车",
+          "english": "bicycle; bike",
+          "answers": [
+            "自行车",
+            "单车",
+            "bicycle",
+            "bike"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "hw-a-colegio",
+          "word": "colegio",
+          "gloss": "学校",
+          "english": "school",
+          "answers": [
+            "学校",
+            "school"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "hw-a-coche",
+          "word": "coche",
+          "gloss": "汽车",
+          "english": "car",
+          "answers": [
+            "汽车",
+            "车",
+            "car"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "hw-a-parque",
+          "word": "parque",
+          "gloss": "公园",
+          "english": "park",
+          "answers": [
+            "公园",
+            "park"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "hw-a-casa",
+          "word": "casa",
+          "gloss": "房子、家",
+          "english": "house; home",
+          "answers": [
+            "房子",
+            "家",
+            "house",
+            "home"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "hw-a-ciudad",
+          "word": "ciudad",
+          "gloss": "城市",
+          "english": "city",
+          "answers": [
+            "城市",
+            "城",
+            "city"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "hw-a-luna",
+          "word": "luna",
+          "gloss": "月亮",
+          "english": "moon",
+          "answers": [
+            "月亮",
+            "月球",
+            "moon"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "hw-a-martes",
+          "word": "martes",
+          "gloss": "星期二、周二",
+          "english": "Tuesday",
+          "answers": [
+            "星期二",
+            "周二",
+            "Tuesday"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "hw-a-escuela",
+          "word": "escuela",
+          "gloss": "学校",
+          "english": "school",
+          "answers": [
+            "学校",
+            "school"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "hw-a-fruta",
+          "word": "fruta",
+          "gloss": "水果",
+          "english": "fruit",
+          "answers": [
+            "水果",
+            "果实",
+            "fruit"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "hw-a-hermano",
+          "word": "hermano",
+          "gloss": "兄弟、哥哥、弟弟",
+          "english": "brother",
+          "answers": [
+            "兄弟",
+            "哥哥",
+            "弟弟",
+            "brother"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "hw-a-primavera",
+          "word": "primavera",
+          "gloss": "春天、春季",
+          "english": "spring",
+          "answers": [
+            "春天",
+            "春季",
+            "spring"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "hw-a-lago",
+          "word": "lago",
+          "gloss": "湖、湖泊",
+          "english": "lake",
+          "answers": [
+            "湖",
+            "湖泊",
+            "lake"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "hw-a-hacer-sol",
+          "word": "hacer sol",
+          "gloss": "天气晴朗、阳光明媚",
+          "english": "to be sunny",
+          "answers": [
+            "天气晴朗",
+            "晴天",
+            "阳光明媚",
+            "to be sunny",
+            "be sunny",
+            "sunny"
+          ],
+          "role": "answer",
+          "example": "Hoy hace sol."
+        },
+        {
+          "id": "hw-a-castillo",
+          "word": "castillo",
+          "gloss": "城堡",
+          "english": "castle",
+          "answers": [
+            "城堡",
+            "堡垒",
+            "castle"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "hw-a-siempre",
+          "word": "siempre",
+          "gloss": "总是、一直",
+          "english": "always",
+          "answers": [
+            "总是",
+            "一直",
+            "永远",
+            "always"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "hw-a-rojo",
+          "word": "rojo",
+          "gloss": "红色的；红色",
+          "english": "red",
+          "answers": [
+            "红色",
+            "红色的",
+            "红的",
+            "red"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "hw-a-noche",
+          "word": "noche",
+          "gloss": "夜晚、晚上",
+          "english": "night",
+          "answers": [
+            "夜晚",
+            "晚上",
+            "夜里",
+            "night"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "hw-c-primer-dia",
+          "word": "primer día",
+          "gloss": "第一天",
+          "english": "first day",
+          "answers": [
+            "第一天",
+            "first day"
+          ],
+          "role": "context",
+          "example": "El lunes es el primer día de la semana."
+        },
+        {
+          "id": "hw-c-semana",
+          "word": "semana",
+          "gloss": "星期、周",
+          "english": "week",
+          "answers": [
+            "星期",
+            "周",
+            "一周",
+            "week"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "hw-c-hacer-calor",
+          "word": "hacer calor",
+          "gloss": "天气热",
+          "english": "to be hot (weather)",
+          "answers": [
+            "天气热",
+            "很热",
+            "炎热",
+            "to be hot",
+            "be hot"
+          ],
+          "role": "context",
+          "example": "En verano hace calor."
+        },
+        {
+          "id": "hw-c-servir-para",
+          "word": "servir para",
+          "gloss": "用于、用来",
+          "english": "to be used for",
+          "answers": [
+            "用于",
+            "用来",
+            "可以用来",
+            "to be used for",
+            "be used for"
+          ],
+          "role": "context",
+          "example": "El cuaderno sirve para escribir."
+        },
+        {
+          "id": "hw-c-escribir",
+          "word": "escribir",
+          "gloss": "写、书写",
+          "english": "to write",
+          "answers": [
+            "写",
+            "书写",
+            "写字",
+            "to write",
+            "write"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "hw-c-llamarse",
+          "word": "llamarse",
+          "gloss": "叫作、名叫",
+          "english": "to be called",
+          "answers": [
+            "叫作",
+            "叫",
+            "名叫",
+            "to be called",
+            "be called"
+          ],
+          "role": "context",
+          "example": "Mi hermana se llama Laura."
+        },
+        {
+          "id": "hw-c-trabajar",
+          "word": "trabajar",
+          "gloss": "工作",
+          "english": "to work",
+          "answers": [
+            "工作",
+            "上班",
+            "to work",
+            "work"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "hw-c-cada",
+          "word": "cada",
+          "gloss": "每、每个",
+          "english": "each; every",
+          "answers": [
+            "每",
+            "每个",
+            "each",
+            "every"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "hw-c-estrella",
+          "word": "estrella",
+          "gloss": "星星",
+          "english": "star",
+          "answers": [
+            "星星",
+            "星",
+            "star"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "hw-c-gustar",
+          "word": "gustar",
+          "gloss": "使人喜欢；喜欢",
+          "english": "to like",
+          "answers": [
+            "喜欢",
+            "使人喜欢",
+            "to like",
+            "like"
+          ],
+          "role": "context",
+          "example": "Me gusta beber agua."
+        },
+        {
+          "id": "hw-c-beber",
+          "word": "beber",
+          "gloss": "喝",
+          "english": "to drink",
+          "answers": [
+            "喝",
+            "饮用",
+            "to drink",
+            "drink"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "hw-c-tener-sed",
+          "word": "tener sed",
+          "gloss": "口渴",
+          "english": "to be thirsty",
+          "answers": [
+            "口渴",
+            "渴",
+            "to be thirsty",
+            "be thirsty",
+            "thirsty"
+          ],
+          "role": "context",
+          "example": "Tengo sed."
+        },
+        {
+          "id": "hw-c-explicar",
+          "word": "explicar",
+          "gloss": "解释、讲解",
+          "english": "to explain",
+          "answers": [
+            "解释",
+            "讲解",
+            "说明",
+            "to explain",
+            "explain"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "hw-c-leccion",
+          "word": "lección",
+          "gloss": "课程、课",
+          "english": "lesson",
+          "answers": [
+            "课程",
+            "课",
+            "一课",
+            "lesson"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "hw-c-habitacion",
+          "word": "habitación",
+          "gloss": "房间；卧室",
+          "english": "room; bedroom",
+          "answers": [
+            "房间",
+            "卧室",
+            "room",
+            "bedroom"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "hw-c-hay",
+          "word": "hay",
+          "gloss": "有、存在",
+          "english": "there is; there are",
+          "answers": [
+            "有",
+            "存在",
+            "there is",
+            "there are"
+          ],
+          "role": "context",
+          "example": "En mi habitación hay una cama."
+        },
+        {
+          "id": "hw-c-cama",
+          "word": "cama",
+          "gloss": "床",
+          "english": "bed",
+          "answers": [
+            "床",
+            "床铺",
+            "bed"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "hw-c-armario",
+          "word": "armario",
+          "gloss": "衣柜、柜子",
+          "english": "wardrobe; closet",
+          "answers": [
+            "衣柜",
+            "柜子",
+            "wardrobe",
+            "closet"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "hw-c-dormir",
+          "word": "dormir",
+          "gloss": "睡觉",
+          "english": "to sleep",
+          "answers": [
+            "睡觉",
+            "睡眠",
+            "to sleep",
+            "sleep"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "hw-c-sofa",
+          "word": "sofá",
+          "gloss": "沙发",
+          "english": "sofa; couch",
+          "answers": [
+            "沙发",
+            "sofa",
+            "couch"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "hw-c-ponerse",
+          "word": "ponerse",
+          "gloss": "穿上、戴上",
+          "english": "to put on",
+          "answers": [
+            "穿上",
+            "戴上",
+            "to put on",
+            "put on"
+          ],
+          "role": "context",
+          "example": "Me pongo los zapatos."
+        },
+        {
+          "id": "hw-c-antes-de",
+          "word": "antes de",
+          "gloss": "在……之前",
+          "english": "before",
+          "answers": [
+            "在之前",
+            "之前",
+            "before"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "hw-c-salir",
+          "word": "salir",
+          "gloss": "出去；离开",
+          "english": "to go out; to leave",
+          "answers": [
+            "出去",
+            "离开",
+            "出门",
+            "to go out",
+            "to leave",
+            "leave"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "hw-c-abierto",
+          "word": "abierto / abierta",
+          "gloss": "开着的、开放的",
+          "english": "open",
+          "answers": [
+            "开着的",
+            "打开的",
+            "开放的",
+            "open"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "hw-c-interesante",
+          "word": "interesante",
+          "gloss": "有趣的",
+          "english": "interesting",
+          "answers": [
+            "有趣的",
+            "有意思的",
+            "interesting"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "hw-c-padre",
+          "word": "padre",
+          "gloss": "父亲、爸爸",
+          "english": "father",
+          "answers": [
+            "父亲",
+            "爸爸",
+            "father",
+            "dad"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "hw-c-arbol",
+          "word": "árbol",
+          "gloss": "树",
+          "english": "tree",
+          "answers": [
+            "树",
+            "树木",
+            "tree"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "hw-c-manana",
+          "word": "mañana",
+          "gloss": "早晨、上午；明天",
+          "english": "morning; tomorrow",
+          "answers": [
+            "早晨",
+            "早上",
+            "上午",
+            "明天",
+            "morning",
+            "tomorrow"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "hw-c-verse-desde",
+          "word": "verse desde",
+          "gloss": "从……可以看到",
+          "english": "to be visible from; to be seen from",
+          "answers": [
+            "从……可以看到",
+            "从…可以看到",
+            "可以从……看到",
+            "to be visible from",
+            "to be seen from",
+            "be seen from"
+          ],
+          "role": "context",
+          "example": "La montaña se ve desde mi ventana."
+        },
+        {
+          "id": "hw-c-simpatico",
+          "word": "simpático / simpática",
+          "gloss": "友好的、讨人喜欢的",
+          "english": "nice; friendly",
+          "answers": [
+            "友好的",
+            "讨人喜欢的",
+            "可爱的",
+            "nice",
+            "friendly",
+            "likeable"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "hw-c-nadar",
+          "word": "nadar",
+          "gloss": "游泳",
+          "english": "to swim",
+          "answers": [
+            "游泳",
+            "to swim",
+            "swim"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "hw-c-empezar",
+          "word": "empezar",
+          "gloss": "开始",
+          "english": "to begin; to start",
+          "answers": [
+            "开始",
+            "着手",
+            "to begin",
+            "to start",
+            "begin",
+            "start"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "hw-c-llegar",
+          "word": "llegar",
+          "gloss": "到达",
+          "english": "to arrive",
+          "answers": [
+            "到达",
+            "抵达",
+            "to arrive",
+            "arrive"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "hw-c-puntual",
+          "word": "puntual",
+          "gloss": "准时的",
+          "english": "punctual; on time",
+          "answers": [
+            "准时的",
+            "准时",
+            "punctual",
+            "on time"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "hw-c-estacion",
+          "word": "estación",
+          "gloss": "车站；季节",
+          "english": "station; season",
+          "answers": [
+            "车站",
+            "站",
+            "季节",
+            "station",
+            "season"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "hw-c-comer",
+          "word": "comer",
+          "gloss": "吃",
+          "english": "to eat",
+          "answers": [
+            "吃",
+            "食用",
+            "to eat",
+            "eat"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "hw-c-mirar",
+          "word": "mirar",
+          "gloss": "看、观看",
+          "english": "to look at; to watch",
+          "answers": [
+            "看",
+            "观看",
+            "注视",
+            "to look at",
+            "to watch",
+            "look",
+            "watch"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "hw-c-deberes",
+          "word": "deberes",
+          "gloss": "家庭作业",
+          "english": "homework",
+          "answers": [
+            "家庭作业",
+            "作业",
+            "homework"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "hw-c-ayudar",
+          "word": "ayudar",
+          "gloss": "帮助",
+          "english": "to help",
+          "answers": [
+            "帮助",
+            "帮忙",
+            "to help",
+            "help"
+          ],
+          "role": "context",
+          "example": "Mi hermano me ayuda con mis deberes."
+        },
+        {
+          "id": "hw-c-usar",
+          "word": "usar",
+          "gloss": "使用",
+          "english": "to use",
+          "answers": [
+            "使用",
+            "用",
+            "to use",
+            "use"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "hw-c-junto-a",
+          "word": "junto a",
+          "gloss": "在……旁边",
+          "english": "next to; beside",
+          "answers": [
+            "在旁边",
+            "旁边",
+            "紧挨着",
+            "next to",
+            "beside"
+          ],
+          "role": "context",
+          "example": "La silla está junto a la cama."
+        },
+        {
+          "id": "hw-c-nuevo",
+          "word": "nuevo / nueva",
+          "gloss": "新的",
+          "english": "new",
+          "answers": [
+            "新的",
+            "新",
+            "new"
+          ],
+          "role": "context"
+        }
+      ],
+      "sentenceLexicon": [
+        {
+          "id": "hw-s-al",
+          "word": "al",
+          "forms": [
+            "al"
+          ],
+          "gloss": "到……；向……（a + el）",
+          "english": "to the"
+        },
+        {
+          "id": "hw-s-arbol",
+          "word": "árbol",
+          "forms": [
+            "árboles"
+          ],
+          "gloss": "树",
+          "english": "tree"
+        },
+        {
+          "id": "hw-s-ayudar",
+          "word": "ayudar",
+          "forms": [
+            "ayuda"
+          ],
+          "gloss": "帮助",
+          "english": "to help; helps"
+        },
+        {
+          "id": "hw-s-beber",
+          "word": "beber",
+          "forms": [
+            "bebo"
+          ],
+          "gloss": "喝",
+          "english": "to drink; I drink"
+        },
+        {
+          "id": "hw-s-color",
+          "word": "color",
+          "forms": [
+            "color"
+          ],
+          "gloss": "颜色",
+          "english": "color"
+        },
+        {
+          "id": "hw-s-con",
+          "word": "con",
+          "forms": [
+            "con"
+          ],
+          "gloss": "和；与；带着",
+          "english": "with"
+        },
+        {
+          "id": "hw-s-cuando",
+          "word": "cuando",
+          "forms": [
+            "cuando"
+          ],
+          "gloss": "当……时",
+          "english": "when"
+        },
+        {
+          "id": "hw-s-dia",
+          "word": "día",
+          "forms": [
+            "días"
+          ],
+          "gloss": "日；天",
+          "english": "day"
+        },
+        {
+          "id": "hw-s-dormir",
+          "word": "dormir",
+          "forms": [
+            "duerme"
+          ],
+          "gloss": "睡觉",
+          "english": "to sleep; sleeps"
+        },
+        {
+          "id": "hw-s-articulo-definido",
+          "word": "el / la / los / las",
+          "forms": [
+            "el",
+            "la",
+            "los",
+            "las"
+          ],
+          "gloss": "这个；这些（定冠词）",
+          "english": "the"
+        },
+        {
+          "id": "hw-s-empezar",
+          "word": "empezar",
+          "forms": [
+            "empieza",
+            "empiezo"
+          ],
+          "gloss": "开始",
+          "english": "to begin; begins; I begin"
+        },
+        {
+          "id": "hw-s-en",
+          "word": "en",
+          "forms": [
+            "en"
+          ],
+          "gloss": "在……；于……",
+          "english": "in; at; on"
+        },
+        {
+          "id": "hw-s-ser",
+          "word": "ser",
+          "forms": [
+            "es"
+          ],
+          "gloss": "是",
+          "english": "to be; is"
+        },
+        {
+          "id": "hw-s-estar",
+          "word": "estar",
+          "forms": [
+            "está"
+          ],
+          "gloss": "处于；在",
+          "english": "to be; is"
+        },
+        {
+          "id": "hw-s-estrella",
+          "word": "estrella",
+          "forms": [
+            "estrellas"
+          ],
+          "gloss": "星星",
+          "english": "star"
+        },
+        {
+          "id": "hw-s-explicar",
+          "word": "explicar",
+          "forms": [
+            "explica"
+          ],
+          "gloss": "讲解；解释",
+          "english": "to explain; explains"
+        },
+        {
+          "id": "hw-s-gustar",
+          "word": "gustar",
+          "forms": [
+            "gusta"
+          ],
+          "gloss": "使人喜欢",
+          "english": "to please; like"
+        },
+        {
+          "id": "hw-s-hacer",
+          "word": "hacer",
+          "forms": [
+            "hace"
+          ],
+          "gloss": "做；构成天气表达",
+          "english": "to do; makes"
+        },
+        {
+          "id": "hw-s-hoy",
+          "word": "hoy",
+          "forms": [
+            "hoy"
+          ],
+          "gloss": "今天",
+          "english": "today"
+        },
+        {
+          "id": "hw-s-laura",
+          "word": "Laura",
+          "forms": [
+            "Laura"
+          ],
+          "gloss": "劳拉（人名）",
+          "english": "Laura"
+        },
+        {
+          "id": "hw-s-llamarse",
+          "word": "llamarse",
+          "forms": [
+            "llama"
+          ],
+          "gloss": "叫作；名叫",
+          "english": "to be called; is called"
+        },
+        {
+          "id": "hw-s-llegar",
+          "word": "llegar",
+          "forms": [
+            "llega"
+          ],
+          "gloss": "到达",
+          "english": "to arrive; arrives"
+        },
+        {
+          "id": "hw-s-manana",
+          "word": "mañana",
+          "forms": [
+            "mañanas"
+          ],
+          "gloss": "早晨；上午",
+          "english": "morning"
+        },
+        {
+          "id": "hw-s-me",
+          "word": "me",
+          "forms": [
+            "me"
+          ],
+          "gloss": "我；给我；自己（第一人称宾语或反身代词）",
+          "english": "me; myself"
+        },
+        {
+          "id": "hw-s-mi",
+          "word": "mi / mis",
+          "forms": [
+            "mi",
+            "mis"
+          ],
+          "gloss": "我的",
+          "english": "my"
+        },
+        {
+          "id": "hw-s-mirar",
+          "word": "mirar",
+          "forms": [
+            "miro"
+          ],
+          "gloss": "看；观看",
+          "english": "to look at; I look at"
+        },
+        {
+          "id": "hw-s-mucho",
+          "word": "mucho",
+          "forms": [
+            "muchos"
+          ],
+          "gloss": "许多的",
+          "english": "many"
+        },
+        {
+          "id": "hw-s-muy",
+          "word": "muy",
+          "forms": [
+            "muy"
+          ],
+          "gloss": "非常",
+          "english": "very"
+        },
+        {
+          "id": "hw-s-ocho",
+          "word": "ocho",
+          "forms": [
+            "ocho"
+          ],
+          "gloss": "八",
+          "english": "eight"
+        },
+        {
+          "id": "hw-s-ponerse",
+          "word": "ponerse",
+          "forms": [
+            "pongo"
+          ],
+          "gloss": "穿上；戴上",
+          "english": "to put on; I put on"
+        },
+        {
+          "id": "hw-s-por",
+          "word": "por",
+          "forms": [
+            "por"
+          ],
+          "gloss": "在……时；经过；由于",
+          "english": "in; through; because of"
+        },
+        {
+          "id": "hw-s-se",
+          "word": "se",
+          "forms": [
+            "se"
+          ],
+          "gloss": "自己；被（反身或被动代词）",
+          "english": "himself; herself; passive marker"
+        },
+        {
+          "id": "hw-s-servir",
+          "word": "servir",
+          "forms": [
+            "sirve"
+          ],
+          "gloss": "用于；有用",
+          "english": "to serve; is used"
+        },
+        {
+          "id": "hw-s-tener",
+          "word": "tener",
+          "forms": [
+            "tengo",
+            "tiene"
+          ],
+          "gloss": "有",
+          "english": "to have; I have; has"
+        },
+        {
+          "id": "hw-s-todo",
+          "word": "todo",
+          "forms": [
+            "todos"
+          ],
+          "gloss": "全部的；每个",
+          "english": "all; every"
+        },
+        {
+          "id": "hw-s-trabajar",
+          "word": "trabajar",
+          "forms": [
+            "trabajamos",
+            "trabajo"
+          ],
+          "gloss": "工作",
+          "english": "to work; we work; I work"
+        },
+        {
+          "id": "hw-s-articulo-indefinido",
+          "word": "un / una",
+          "forms": [
+            "un",
+            "una"
+          ],
+          "gloss": "一个；一件（不定冠词）",
+          "english": "a; an"
+        },
+        {
+          "id": "hw-s-usar",
+          "word": "usar",
+          "forms": [
+            "uso"
+          ],
+          "gloss": "使用",
+          "english": "to use; I use"
+        },
+        {
+          "id": "hw-s-ir",
+          "word": "ir",
+          "forms": [
+            "vamos"
+          ],
+          "gloss": "去",
+          "english": "to go; we go"
+        },
+        {
+          "id": "hw-s-verse",
+          "word": "verse",
+          "forms": [
+            "ve"
+          ],
+          "gloss": "被看见；看得见",
+          "english": "to be seen; is visible"
+        },
+        {
+          "id": "hw-s-y",
+          "word": "y",
+          "forms": [
+            "y"
+          ],
+          "gloss": "和；并且",
+          "english": "and"
+        }
+      ],
+      "sections": [
+        {
+          "id": "parte-1",
+          "title": "Parte 1 - Completa con la palabra adecuada",
+          "instructions": "Elige del vocabulario aprendido (puedes mirar tus listas si lo necesitas).",
+          "type": "single_choice",
+          "items": [
+            {
+              "id": "p1-01",
+              "number": 1,
+              "prompt": "El _______ es el primer día de la semana.",
+              "options": [
+                "lunes",
+                "sol",
+                "frío"
+              ],
+              "answers": [
+                "lunes"
+              ],
+              "sentenceTranslations": {
+                "lunes": "星期一是一周的第一天。"
+              },
+              "sourcePage": 1
+            },
+            {
+              "id": "p1-02",
+              "number": 2,
+              "prompt": "En _______ hace calor y vamos a la playa.",
+              "options": [
+                "verano",
+                "invierno",
+                "otoño"
+              ],
+              "answers": [
+                "verano"
+              ],
+              "sentenceTranslations": {
+                "verano": "夏天天气很热，我们会去海滩。"
+              },
+              "sourcePage": 1
+            },
+            {
+              "id": "p1-03",
+              "number": 3,
+              "prompt": "El _______ sirve para escribir.",
+              "options": [
+                "reloj",
+                "cuaderno",
+                "libro"
+              ],
+              "answers": [
+                "cuaderno"
+              ],
+              "sentenceTranslations": {
+                "cuaderno": "笔记本是用来写字的。"
+              },
+              "sourcePage": 1
+            },
+            {
+              "id": "p1-04",
+              "number": 4,
+              "prompt": "Mi _______ se llama Laura.",
+              "options": [
+                "hermana",
+                "mesa",
+                "perro"
+              ],
+              "answers": [
+                "hermana"
+              ],
+              "sentenceTranslations": {
+                "hermana": "我姐姐（或妹妹）叫劳拉。"
+              },
+              "sourcePage": 1
+            },
+            {
+              "id": "p1-05",
+              "number": 5,
+              "prompt": "En la _______ trabajamos cada día.",
+              "options": [
+                "oficina",
+                "playa",
+                "montaña"
+              ],
+              "answers": [
+                "oficina"
+              ],
+              "sentenceTranslations": {
+                "oficina": "我们每天在办公室工作。"
+              },
+              "sourcePage": 1
+            },
+            {
+              "id": "p1-06",
+              "number": 6,
+              "prompt": "El _______ tiene estrellas por la noche.",
+              "options": [
+                "tren",
+                "bosque",
+                "cielo"
+              ],
+              "answers": [
+                "cielo"
+              ],
+              "sentenceTranslations": {
+                "cielo": "夜晚的天空中有星星。"
+              },
+              "sourcePage": 1
+            },
+            {
+              "id": "p1-07",
+              "number": 7,
+              "prompt": "Me gusta beber _______ cuando tengo sed.",
+              "options": [
+                "agua",
+                "leche",
+                "azúcar"
+              ],
+              "answers": [
+                "agua",
+                "leche"
+              ],
+              "sentenceTranslations": {
+                "agua": "我口渴时喜欢喝水。",
+                "leche": "我口渴时喜欢喝牛奶。"
+              },
+              "canonicalAnswer": "agua",
+              "ambiguityNote": "原题语境下 agua 和 leche 都说得通；互动版都接受。",
+              "sourcePage": 1
+            },
+            {
+              "id": "p1-08",
+              "number": 8,
+              "prompt": "El _______ explica la lección.",
+              "options": [
+                "profesor",
+                "banco",
+                "café"
+              ],
+              "answers": [
+                "profesor"
+              ],
+              "sentenceTranslations": {
+                "profesor": "老师讲解这节课。"
+              },
+              "sourcePage": 1
+            },
+            {
+              "id": "p1-09",
+              "number": 9,
+              "prompt": "Hoy hace _______.",
+              "options": [
+                "sol",
+                "mesa",
+                "naranja"
+              ],
+              "answers": [
+                "sol"
+              ],
+              "sentenceTranslations": {
+                "sol": "今天天气晴朗。"
+              },
+              "sourcePage": 1
+            },
+            {
+              "id": "p1-10",
+              "number": 10,
+              "prompt": "En mi habitación hay una cama, una _______ y un armario.",
+              "options": [
+                "silla",
+                "flor",
+                "gato"
+              ],
+              "answers": [
+                "silla"
+              ],
+              "sentenceTranslations": {
+                "silla": "我的房间里有一张床、一把椅子和一个衣柜。"
+              },
+              "sourcePage": 1
+            },
+            {
+              "id": "p1-11",
+              "number": 11,
+              "prompt": "El _______ duerme en el sofá.",
+              "options": [
+                "gato",
+                "cuaderno",
+                "aeropuerto"
+              ],
+              "answers": [
+                "gato"
+              ],
+              "sentenceTranslations": {
+                "gato": "猫在沙发上睡觉。"
+              },
+              "sourcePage": 1
+            },
+            {
+              "id": "p1-12",
+              "number": 12,
+              "prompt": "Me pongo el _______ antes de salir.",
+              "options": [
+                "zapato",
+                "sombrero",
+                "vaso"
+              ],
+              "answers": [
+                "zapato",
+                "sombrero"
+              ],
+              "sentenceTranslations": {
+                "zapato": "我出门前穿上鞋。",
+                "sombrero": "我出门前戴上帽子。"
+              },
+              "canonicalAnswer": "zapato",
+              "ambiguityNote": "zapato 和 sombrero 都能自然完成原句；互动版都接受。",
+              "sourcePage": 1
+            },
+            {
+              "id": "p1-13",
+              "number": 13,
+              "prompt": "La _______ está abierta.",
+              "options": [
+                "ventana",
+                "playa",
+                "bicicleta"
+              ],
+              "answers": [
+                "ventana"
+              ],
+              "sentenceTranslations": {
+                "ventana": "窗户开着。"
+              },
+              "sourcePage": 1
+            },
+            {
+              "id": "p1-14",
+              "number": 14,
+              "prompt": "El _______ es muy interesante.",
+              "options": [
+                "libro",
+                "colegio",
+                "profesor"
+              ],
+              "answers": [
+                "libro"
+              ],
+              "sentenceTranslations": {
+                "libro": "这本书非常有趣。"
+              },
+              "sourcePage": 1
+            },
+            {
+              "id": "p1-15",
+              "number": 15,
+              "prompt": "Mi padre tiene un _______ rojo.",
+              "options": [
+                "coche",
+                "sol",
+                "lunes"
+              ],
+              "answers": [
+                "coche"
+              ],
+              "sentenceTranslations": {
+                "coche": "我父亲有一辆红色的汽车。"
+              },
+              "sourcePage": 1
+            },
+            {
+              "id": "p1-16",
+              "number": 16,
+              "prompt": "En el _______ hay muchos árboles.",
+              "options": [
+                "parque",
+                "reloj",
+                "invierno"
+              ],
+              "answers": [
+                "parque"
+              ],
+              "sentenceTranslations": {
+                "parque": "公园里有很多树。"
+              },
+              "sourcePage": 1
+            },
+            {
+              "id": "p1-17",
+              "number": 17,
+              "prompt": "Cada mañana bebo _______ antes de trabajar.",
+              "options": [
+                "café",
+                "mesa",
+                "casa"
+              ],
+              "answers": [
+                "café"
+              ],
+              "sentenceTranslations": {
+                "café": "我每天早上工作前喝咖啡。"
+              },
+              "sourcePage": 1
+            },
+            {
+              "id": "p1-18",
+              "number": 18,
+              "prompt": "La _______ se ve desde mi ventana.",
+              "options": [
+                "ciudad",
+                "montaña",
+                "luna"
+              ],
+              "answers": [
+                "ciudad",
+                "montaña",
+                "luna"
+              ],
+              "sentenceTranslations": {
+                "ciudad": "从我的窗户望出去，可以看到这座城市。",
+                "montaña": "从我的窗户望出去，可以看到那座山。",
+                "luna": "从我的窗户望出去，可以看到月亮。"
+              },
+              "canonicalAnswer": "montaña",
+              "ambiguityNote": "原题缺少限定语，三个选项在不同场景下都合理；互动版都接受。",
+              "sourcePage": 1
+            },
+            {
+              "id": "p1-19",
+              "number": 19,
+              "prompt": "Mi hermana tiene un _______ muy simpático.",
+              "options": [
+                "perro",
+                "cuaderno",
+                "reloj"
+              ],
+              "answers": [
+                "perro"
+              ],
+              "sentenceTranslations": {
+                "perro": "我姐姐（或妹妹）有一只很讨人喜欢的狗。"
+              },
+              "sourcePage": 1
+            },
+            {
+              "id": "p1-20",
+              "number": 20,
+              "prompt": "En _______ vamos a nadar al lago.",
+              "options": [
+                "martes",
+                "sol",
+                "verano"
+              ],
+              "answers": [
+                "verano"
+              ],
+              "sentenceTranslations": {
+                "verano": "夏天我们去湖里游泳。"
+              },
+              "sourcePage": 1
+            },
+            {
+              "id": "p1-21",
+              "number": 21,
+              "prompt": "La _______ empieza a las ocho.",
+              "options": [
+                "escuela",
+                "playa",
+                "sol"
+              ],
+              "answers": [
+                "escuela"
+              ],
+              "sentenceTranslations": {
+                "escuela": "学校八点开始上课。"
+              },
+              "sourcePage": 1
+            },
+            {
+              "id": "p1-22",
+              "number": 22,
+              "prompt": "El _______ llega puntual a la estación.",
+              "options": [
+                "tren",
+                "libro",
+                "profesor"
+              ],
+              "answers": [
+                "tren"
+              ],
+              "sentenceTranslations": {
+                "tren": "火车准时到站。"
+              },
+              "sourcePage": 1
+            },
+            {
+              "id": "p1-23",
+              "number": 23,
+              "prompt": "Me gusta comer _______ por las mañanas.",
+              "options": [
+                "fruta",
+                "silla",
+                "agua"
+              ],
+              "answers": [
+                "fruta"
+              ],
+              "sentenceTranslations": {
+                "fruta": "我喜欢早上吃水果。"
+              },
+              "sourcePage": 1
+            },
+            {
+              "id": "p1-24",
+              "number": 24,
+              "prompt": "La _______ es de color rojo.",
+              "options": [
+                "flor",
+                "cielo",
+                "mesa"
+              ],
+              "answers": [
+                "flor",
+                "mesa"
+              ],
+              "sentenceTranslations": {
+                "flor": "这朵花是红色的。",
+                "mesa": "这张桌子是红色的。"
+              },
+              "canonicalAnswer": "flor",
+              "ambiguityNote": "flor 和 mesa 都可以是红色；互动版都接受。",
+              "sourcePage": 1
+            },
+            {
+              "id": "p1-25",
+              "number": 25,
+              "prompt": "Cada noche miro el _______ antes de dormir.",
+              "options": [
+                "cielo",
+                "cuaderno",
+                "zapato"
+              ],
+              "answers": [
+                "cielo"
+              ],
+              "sentenceTranslations": {
+                "cielo": "我每天晚上睡觉前都会看看天空。"
+              },
+              "sourcePage": 1
+            },
+            {
+              "id": "p1-26",
+              "number": 26,
+              "prompt": "En la _______ trabajo todos los días.",
+              "options": [
+                "oficina",
+                "playa",
+                "montaña"
+              ],
+              "answers": [
+                "oficina"
+              ],
+              "sentenceTranslations": {
+                "oficina": "我每天都在办公室工作。"
+              },
+              "sourcePage": 2
+            },
+            {
+              "id": "p1-27",
+              "number": 27,
+              "prompt": "El _______ me ayuda con mis deberes.",
+              "options": [
+                "hermano",
+                "gato",
+                "sol"
+              ],
+              "answers": [
+                "hermano"
+              ],
+              "sentenceTranslations": {
+                "hermano": "哥哥（或弟弟）会帮我做作业。"
+              },
+              "sourcePage": 1
+            },
+            {
+              "id": "p1-28",
+              "number": 28,
+              "prompt": "Siempre uso _______ para beber en casa.",
+              "options": [
+                "agua",
+                "leche",
+                "reloj"
+              ],
+              "answers": [
+                "agua",
+                "leche"
+              ],
+              "sentenceTranslations": {
+                "agua": "在家喝东西时，我总是选择水。",
+                "leche": "在家喝东西时，我总是选择牛奶。"
+              },
+              "canonicalAnswer": "agua",
+              "ambiguityNote": "原题语境下 agua 和 leche 都可能成立；互动版都接受。",
+              "sourcePage": 2
+            },
+            {
+              "id": "p1-29",
+              "number": 29,
+              "prompt": "La _______ está junto a la cama.",
+              "options": [
+                "silla",
+                "ventana",
+                "perro"
+              ],
+              "answers": [
+                "silla",
+                "ventana"
+              ],
+              "sentenceTranslations": {
+                "silla": "椅子在床边。",
+                "ventana": "窗户在床边。"
+              },
+              "canonicalAnswer": "silla",
+              "ambiguityNote": "silla 和 ventana 都可能在床旁边；互动版都接受。",
+              "sourcePage": 2
+            },
+            {
+              "id": "p1-30",
+              "number": 30,
+              "prompt": "Cada _______ empiezo una nueva lección.",
+              "options": [
+                "lunes",
+                "sol",
+                "libro"
+              ],
+              "answers": [
+                "lunes"
+              ],
+              "sentenceTranslations": {
+                "lunes": "每逢星期一，我都会开始学习一节新课。"
+              },
+              "sourcePage": 2
+            }
+          ]
+        },
+        {
+          "id": "parte-2",
+          "title": "Parte 2 - Traduce al español",
+          "instructions": "Escribe la traducción en español.",
+          "type": "text_input",
+          "items": [
+            {
+              "id": "p2-01",
+              "number": 1,
+              "prompt": "Tuesday",
+              "answers": [
+                "martes"
+              ],
+              "sourcePage": 2
+            },
+            {
+              "id": "p2-02",
+              "number": 2,
+              "prompt": "Spring",
+              "answers": [
+                "primavera"
+              ],
+              "sourcePage": 2
+            },
+            {
+              "id": "p2-03",
+              "number": 3,
+              "prompt": "Lake",
+              "answers": [
+                "lago"
+              ],
+              "sourcePage": 2
+            },
+            {
+              "id": "p2-04",
+              "number": 4,
+              "prompt": "Brother",
+              "answers": [
+                "hermano"
+              ],
+              "sourcePage": 2
+            },
+            {
+              "id": "p2-05",
+              "number": 5,
+              "prompt": "Shoe",
+              "answers": [
+                "zapato"
+              ],
+              "sourcePage": 2
+            },
+            {
+              "id": "p2-06",
+              "number": 6,
+              "prompt": "To be sunny",
+              "answers": [
+                "hacer sol",
+                "estar soleado",
+                "estar soleada",
+                "hay sol"
+              ],
+              "canonicalAnswer": "hacer sol",
+              "sourcePage": 2
+            },
+            {
+              "id": "p2-07",
+              "number": 7,
+              "prompt": "Castle",
+              "answers": [
+                "castillo"
+              ],
+              "sourcePage": 2
+            },
+            {
+              "id": "p2-08",
+              "number": 8,
+              "prompt": "Mountain",
+              "answers": [
+                "montaña"
+              ],
+              "sourcePage": 2
+            },
+            {
+              "id": "p2-09",
+              "number": 9,
+              "prompt": "Dog",
+              "answers": [
+                "perro"
+              ],
+              "sourcePage": 2
+            },
+            {
+              "id": "p2-10",
+              "number": 10,
+              "prompt": "Always",
+              "answers": [
+                "siempre"
+              ],
+              "sourcePage": 2
+            },
+            {
+              "id": "p2-11",
+              "number": 11,
+              "prompt": "Sister",
+              "answers": [
+                "hermana"
+              ],
+              "sourcePage": 2
+            },
+            {
+              "id": "p2-12",
+              "number": 12,
+              "prompt": "Window",
+              "answers": [
+                "ventana"
+              ],
+              "sourcePage": 2
+            },
+            {
+              "id": "p2-13",
+              "number": 13,
+              "prompt": "Book",
+              "answers": [
+                "libro"
+              ],
+              "sourcePage": 2
+            },
+            {
+              "id": "p2-14",
+              "number": 14,
+              "prompt": "Chair",
+              "answers": [
+                "silla"
+              ],
+              "sourcePage": 2
+            },
+            {
+              "id": "p2-15",
+              "number": 15,
+              "prompt": "Coffee",
+              "answers": [
+                "café"
+              ],
+              "nearMisses": [
+                "cafe"
+              ],
+              "sourcePage": 2
+            },
+            {
+              "id": "p2-16",
+              "number": 16,
+              "prompt": "City",
+              "answers": [
+                "ciudad"
+              ],
+              "sourcePage": 2
+            },
+            {
+              "id": "p2-17",
+              "number": 17,
+              "prompt": "Flower",
+              "answers": [
+                "flor"
+              ],
+              "sourcePage": 2
+            },
+            {
+              "id": "p2-18",
+              "number": 18,
+              "prompt": "Train",
+              "answers": [
+                "tren"
+              ],
+              "sourcePage": 2
+            },
+            {
+              "id": "p2-19",
+              "number": 19,
+              "prompt": "Red",
+              "answers": [
+                "rojo",
+                "roja"
+              ],
+              "canonicalAnswer": "rojo",
+              "sourcePage": 2
+            },
+            {
+              "id": "p2-20",
+              "number": 20,
+              "prompt": "Night",
+              "answers": [
+                "noche"
+              ],
+              "sourcePage": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "practica-ser-estar-vocabulario-a0",
+      "title": "Ser / Estar 与词汇练习 A0",
+      "badge": "新练习",
+      "sourceTitle": "Práctica de Español - Nivel A0",
+      "teacher": "Profesor de ejemplo",
+      "level": "A0",
+      "answerKeyBasis": "inferred_from_context",
+      "source": {
+        "file": "materials/practica-ser-estar-vocabulario.pdf",
+        "filename": "Practica_Ser_Estar___vocabulario.pdf",
+        "sha256": "0c206fdd4b3b89e1cdfd1bad6281c9f09062525d9ad700cae4a025a678e37c8e",
+        "size": 5805,
+        "pageCount": 3
+      },
+      "referenceTables": [
+        {
+          "id": "pse-a0-ser-reference",
+          "verb": "ser",
+          "title": "Ser：身份、职业、来源和较稳定特征",
+          "rows": [
+            {
+              "person": "yo",
+              "form": "soy"
+            },
+            {
+              "person": "tú",
+              "form": "eres"
+            },
+            {
+              "person": "él / ella",
+              "form": "es"
+            },
+            {
+              "person": "nosotros / nosotras",
+              "form": "somos"
+            },
+            {
+              "person": "vosotros / vosotras",
+              "form": "sois"
+            },
+            {
+              "person": "ellos / ellas",
+              "form": "son"
+            }
+          ]
+        },
+        {
+          "id": "pse-a0-estar-reference",
+          "verb": "estar",
+          "title": "Estar：位置和当前状态",
+          "rows": [
+            {
+              "person": "yo",
+              "form": "estoy"
+            },
+            {
+              "person": "tú",
+              "form": "estás"
+            },
+            {
+              "person": "él / ella",
+              "form": "está"
+            },
+            {
+              "person": "nosotros / nosotras",
+              "form": "estamos"
+            },
+            {
+              "person": "vosotros / vosotras",
+              "form": "estáis"
+            },
+            {
+              "person": "ellos / ellas",
+              "form": "están"
+            }
+          ]
+        }
+      ],
+      "studyWords": [
+        {
+          "id": "pse-a0-word-soy",
+          "word": "soy",
+          "gloss": "我是（ser）",
+          "english": "I am (ser)",
+          "answers": [
+            "我是",
+            "I am",
+            "I am (ser)"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "pse-a0-word-eres",
+          "word": "eres",
+          "gloss": "你是（ser）",
+          "english": "you are (ser)",
+          "answers": [
+            "你是",
+            "you are",
+            "you are (ser)"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "pse-a0-word-es",
+          "word": "es",
+          "gloss": "他／她／它是（ser）",
+          "english": "is (ser)",
+          "answers": [
+            "是",
+            "他是",
+            "她是",
+            "is",
+            "is (ser)"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "pse-a0-word-somos",
+          "word": "somos",
+          "gloss": "我们是（ser）",
+          "english": "we are (ser)",
+          "answers": [
+            "我们是",
+            "we are",
+            "we are (ser)"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "pse-a0-word-sois",
+          "word": "sois",
+          "gloss": "你们是（ser）",
+          "english": "you all are (ser)",
+          "answers": [
+            "你们是",
+            "you all are",
+            "you all are (ser)"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "pse-a0-word-son",
+          "word": "son",
+          "gloss": "他们／她们是（ser）",
+          "english": "are (ser)",
+          "answers": [
+            "他们是",
+            "她们是",
+            "are",
+            "are (ser)"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "pse-a0-word-estoy",
+          "word": "estoy",
+          "gloss": "我在；我处于（estar）",
+          "english": "I am (estar)",
+          "answers": [
+            "我在",
+            "我处于",
+            "I am",
+            "I am (estar)"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "pse-a0-word-estas",
+          "word": "estás",
+          "gloss": "你在；你处于（estar）",
+          "english": "you are (estar)",
+          "answers": [
+            "你在",
+            "你处于",
+            "you are",
+            "you are (estar)"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "pse-a0-word-esta",
+          "word": "está",
+          "gloss": "他／她／它在或处于某状态（estar）",
+          "english": "is (estar)",
+          "answers": [
+            "在",
+            "他在",
+            "她在",
+            "它在",
+            "您在",
+            "处于",
+            "他处于",
+            "她处于",
+            "它处于",
+            "您处于",
+            "is",
+            "is at",
+            "is located",
+            "is (estar)"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "pse-a0-word-estamos",
+          "word": "estamos",
+          "gloss": "我们在；我们处于（estar）",
+          "english": "we are (estar)",
+          "answers": [
+            "我们在",
+            "我们处于",
+            "we are",
+            "we are (estar)"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "pse-a0-word-estais",
+          "word": "estáis",
+          "gloss": "你们在；你们处于（estar）",
+          "english": "you all are (estar)",
+          "answers": [
+            "你们在",
+            "你们处于",
+            "you all are",
+            "you all are (estar)"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "pse-a0-word-estan",
+          "word": "están",
+          "gloss": "他们／她们在或处于某状态（estar）",
+          "english": "are (estar)",
+          "answers": [
+            "他们在",
+            "她们在",
+            "处于",
+            "are",
+            "are (estar)"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "pse-a0-word-casa",
+          "word": "casa",
+          "gloss": "房子；家",
+          "english": "house; home",
+          "answers": [
+            "房子",
+            "家",
+            "house",
+            "home"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "pse-a0-word-escuela",
+          "word": "escuela",
+          "gloss": "学校",
+          "english": "school",
+          "answers": [
+            "学校",
+            "school"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "pse-a0-word-libro",
+          "word": "libro",
+          "gloss": "书",
+          "english": "book",
+          "answers": [
+            "书",
+            "书本",
+            "book"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "pse-a0-word-puerta",
+          "word": "puerta",
+          "gloss": "门",
+          "english": "door",
+          "answers": [
+            "门",
+            "door"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "pse-a0-word-ciudad",
+          "word": "ciudad",
+          "gloss": "城市",
+          "english": "city",
+          "answers": [
+            "城市",
+            "城里",
+            "city"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "pse-a0-word-amigo",
+          "word": "amigo",
+          "gloss": "男性朋友；朋友",
+          "english": "male friend; friend",
+          "answers": [
+            "男性朋友",
+            "朋友",
+            "male friend",
+            "friend"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "pse-a0-word-amiga",
+          "word": "amiga",
+          "gloss": "女性朋友；朋友",
+          "english": "female friend; friend",
+          "answers": [
+            "女性朋友",
+            "朋友",
+            "female friend",
+            "friend"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "pse-a0-word-madre",
+          "word": "madre",
+          "gloss": "母亲",
+          "english": "mother",
+          "answers": [
+            "母亲",
+            "妈妈",
+            "mother"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "pse-a0-word-restaurante",
+          "word": "restaurante",
+          "gloss": "餐厅；餐馆",
+          "english": "restaurant",
+          "answers": [
+            "餐厅",
+            "餐馆",
+            "restaurant"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "pse-a0-word-mesa",
+          "word": "mesa",
+          "gloss": "桌子",
+          "english": "table",
+          "answers": [
+            "桌子",
+            "桌",
+            "table"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "pse-a0-word-estudiante",
+          "word": "estudiante",
+          "gloss": "学生",
+          "english": "student",
+          "answers": [
+            "学生",
+            "student"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "pse-a0-word-estudiantes",
+          "word": "estudiantes",
+          "gloss": "学生们",
+          "english": "students",
+          "answers": [
+            "学生们",
+            "学生",
+            "students"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "pse-a0-word-hospital",
+          "word": "hospital",
+          "gloss": "医院",
+          "english": "hospital",
+          "answers": [
+            "医院",
+            "hospital"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "pse-a0-word-parque",
+          "word": "parque",
+          "gloss": "公园",
+          "english": "park",
+          "answers": [
+            "公园",
+            "park"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "pse-a0-word-comida",
+          "word": "comida",
+          "gloss": "食物；饭",
+          "english": "food; meal",
+          "answers": [
+            "食物",
+            "饭",
+            "餐食",
+            "food",
+            "meal"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "pse-a0-word-tienda",
+          "word": "tienda",
+          "gloss": "商店",
+          "english": "store; shop",
+          "answers": [
+            "商店",
+            "店",
+            "store",
+            "shop"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "pse-a0-word-profesor",
+          "word": "profesor",
+          "gloss": "男老师；老师",
+          "english": "male teacher; teacher",
+          "answers": [
+            "男老师",
+            "老师",
+            "male teacher",
+            "teacher"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "pse-a0-word-profesora",
+          "word": "profesora",
+          "gloss": "女老师；老师",
+          "english": "female teacher; teacher",
+          "answers": [
+            "女老师",
+            "老师",
+            "female teacher",
+            "teacher"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "pse-a0-word-padres",
+          "word": "padres",
+          "gloss": "父母",
+          "english": "parents",
+          "answers": [
+            "父母",
+            "双亲",
+            "parents"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "pse-a0-word-jardin",
+          "word": "jardín",
+          "gloss": "花园",
+          "english": "garden",
+          "answers": [
+            "花园",
+            "园子",
+            "garden"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "pse-a0-word-clase",
+          "word": "clase",
+          "gloss": "课；班级",
+          "english": "class",
+          "answers": [
+            "课",
+            "课堂",
+            "班级",
+            "class"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "pse-a0-word-perro",
+          "word": "perro",
+          "gloss": "狗；公狗",
+          "english": "dog; male dog",
+          "answers": [
+            "狗",
+            "公狗",
+            "dog",
+            "male dog"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "pse-a0-word-perra",
+          "word": "perra",
+          "gloss": "母狗；狗",
+          "english": "female dog; dog",
+          "answers": [
+            "母狗",
+            "狗",
+            "female dog",
+            "dog"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "pse-a0-word-abierto",
+          "word": "abierto",
+          "gloss": "开着的；开放的（阳性单数）",
+          "english": "open (masculine singular)",
+          "answers": [
+            "开着的",
+            "开放的",
+            "open"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "pse-a0-word-abierta",
+          "word": "abierta",
+          "gloss": "开着的；开放的（阴性单数）",
+          "english": "open (feminine singular)",
+          "answers": [
+            "开着的",
+            "开放的",
+            "open"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "pse-a0-word-cerrado",
+          "word": "cerrado",
+          "gloss": "关着的；关闭的（阳性单数）",
+          "english": "closed (masculine singular)",
+          "answers": [
+            "关着的",
+            "关闭的",
+            "closed"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "pse-a0-word-cerrada",
+          "word": "cerrada",
+          "gloss": "关着的；关闭的（阴性单数）",
+          "english": "closed (feminine singular)",
+          "answers": [
+            "关着的",
+            "关闭的",
+            "closed"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "pse-a0-word-grande",
+          "word": "grande",
+          "gloss": "大的",
+          "english": "big; large",
+          "answers": [
+            "大的",
+            "大",
+            "big",
+            "large"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "pse-a0-word-pequeno",
+          "word": "pequeño",
+          "gloss": "小的（阳性单数）",
+          "english": "small (masculine singular)",
+          "answers": [
+            "小的",
+            "小",
+            "small"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "pse-a0-word-pequena",
+          "word": "pequeña",
+          "gloss": "小的（阴性单数）",
+          "english": "small (feminine singular)",
+          "answers": [
+            "小的",
+            "小",
+            "small"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "pse-a0-word-cansado",
+          "word": "cansado",
+          "gloss": "累的（阳性单数）",
+          "english": "tired (masculine singular)",
+          "answers": [
+            "累的",
+            "疲倦的",
+            "tired"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "pse-a0-word-cansada",
+          "word": "cansada",
+          "gloss": "累的（阴性单数）",
+          "english": "tired (feminine singular)",
+          "answers": [
+            "累的",
+            "疲倦的",
+            "tired"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "pse-a0-word-limpio",
+          "word": "limpio",
+          "gloss": "干净的（阳性单数）",
+          "english": "clean (masculine singular)",
+          "answers": [
+            "干净的",
+            "干净",
+            "clean"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "pse-a0-word-limpia",
+          "word": "limpia",
+          "gloss": "干净的（阴性单数）",
+          "english": "clean (feminine singular)",
+          "answers": [
+            "干净的",
+            "干净",
+            "clean"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "pse-a0-word-caliente",
+          "word": "caliente",
+          "gloss": "热的",
+          "english": "hot",
+          "answers": [
+            "热的",
+            "热",
+            "hot"
+          ],
+          "role": "answer"
+        }
+      ],
+      "sections": [
+        {
+          "id": "pse-a0-ser-estar",
+          "title": "Ejercicio 1 - Ser o estar",
+          "instructions": "Completa cada oración con la forma correcta de ser o estar.",
+          "type": "text_input",
+          "items": [
+            {
+              "id": "pse-a0-ser-estar-01",
+              "number": 1,
+              "prompt": "Yo _______ estudiante. (I am a student.)",
+              "answers": [
+                "soy"
+              ],
+              "canonicalAnswer": "soy",
+              "sentenceTranslations": {
+                "soy": "我是学生。"
+              },
+              "sourcePage": 1
+            },
+            {
+              "id": "pse-a0-ser-estar-02",
+              "number": 2,
+              "prompt": "María _______ en casa. (Maria is at home.)",
+              "answers": [
+                "está"
+              ],
+              "canonicalAnswer": "está",
+              "sentenceTranslations": {
+                "está": "玛丽亚在家。"
+              },
+              "sourcePage": 1
+            },
+            {
+              "id": "pse-a0-ser-estar-03",
+              "number": 3,
+              "prompt": "Nosotros _______ amigos. (We are friends.)",
+              "answers": [
+                "somos"
+              ],
+              "canonicalAnswer": "somos",
+              "sentenceTranslations": {
+                "somos": "我们是朋友。"
+              },
+              "sourcePage": 1
+            },
+            {
+              "id": "pse-a0-ser-estar-04",
+              "number": 4,
+              "prompt": "El libro _______ en la mesa. (The book is on the table.)",
+              "answers": [
+                "está"
+              ],
+              "canonicalAnswer": "está",
+              "sentenceTranslations": {
+                "está": "书在桌子上。"
+              },
+              "sourcePage": 1
+            },
+            {
+              "id": "pse-a0-ser-estar-05",
+              "number": 5,
+              "prompt": "Ellos _______ de México. (They are from Mexico.)",
+              "answers": [
+                "son"
+              ],
+              "canonicalAnswer": "son",
+              "sentenceTranslations": {
+                "son": "他们来自墨西哥。"
+              },
+              "sourcePage": 1
+            },
+            {
+              "id": "pse-a0-ser-estar-06",
+              "number": 6,
+              "prompt": "La puerta _______ abierta. (The door is open.)",
+              "answers": [
+                "está"
+              ],
+              "canonicalAnswer": "está",
+              "sentenceTranslations": {
+                "está": "门开着。"
+              },
+              "sourcePage": 1
+            },
+            {
+              "id": "pse-a0-ser-estar-07",
+              "number": 7,
+              "prompt": "Tú _______ muy simpático. (You are very nice.)",
+              "answers": [
+                "eres"
+              ],
+              "canonicalAnswer": "eres",
+              "sentenceTranslations": {
+                "eres": "你很友好。"
+              },
+              "sourcePage": 1
+            },
+            {
+              "id": "pse-a0-ser-estar-08",
+              "number": 8,
+              "prompt": "Mi casa _______ pequeña. (My house is small.)",
+              "answers": [
+                "es"
+              ],
+              "canonicalAnswer": "es",
+              "sentenceTranslations": {
+                "es": "我的房子很小。"
+              },
+              "sourcePage": 1
+            },
+            {
+              "id": "pse-a0-ser-estar-09",
+              "number": 9,
+              "prompt": "Nosotros _______ en la escuela. (We are at school.)",
+              "answers": [
+                "estamos"
+              ],
+              "canonicalAnswer": "estamos",
+              "sentenceTranslations": {
+                "estamos": "我们在学校。"
+              },
+              "sourcePage": 1
+            },
+            {
+              "id": "pse-a0-ser-estar-10",
+              "number": 10,
+              "prompt": "El restaurante _______ en la ciudad. (The restaurant is in the city.)",
+              "answers": [
+                "está"
+              ],
+              "canonicalAnswer": "está",
+              "sentenceTranslations": {
+                "está": "餐厅在城里。"
+              },
+              "sourcePage": 1
+            },
+            {
+              "id": "pse-a0-ser-estar-11",
+              "number": 11,
+              "prompt": "Mi madre _______ doctora. (My mother is a doctor.)",
+              "answers": [
+                "es"
+              ],
+              "canonicalAnswer": "es",
+              "sentenceTranslations": {
+                "es": "我的母亲是医生。"
+              },
+              "sourcePage": 1
+            },
+            {
+              "id": "pse-a0-ser-estar-12",
+              "number": 12,
+              "prompt": "Los estudiantes _______ en clase. (The students are in class.)",
+              "answers": [
+                "están"
+              ],
+              "canonicalAnswer": "están",
+              "sentenceTranslations": {
+                "están": "学生们在上课。"
+              },
+              "sourcePage": 1
+            },
+            {
+              "id": "pse-a0-ser-estar-13",
+              "number": 13,
+              "prompt": "Yo _______ de España. (I am from Spain.)",
+              "answers": [
+                "soy"
+              ],
+              "canonicalAnswer": "soy",
+              "sentenceTranslations": {
+                "soy": "我来自西班牙。"
+              },
+              "sourcePage": 1
+            },
+            {
+              "id": "pse-a0-ser-estar-14",
+              "number": 14,
+              "prompt": "El hospital _______ grande. (The hospital is big.)",
+              "answers": [
+                "es"
+              ],
+              "canonicalAnswer": "es",
+              "sentenceTranslations": {
+                "es": "医院很大。"
+              },
+              "sourcePage": 1
+            },
+            {
+              "id": "pse-a0-ser-estar-15",
+              "number": 15,
+              "prompt": "Mis padres _______ en el parque. (My parents are in the park.)",
+              "answers": [
+                "están"
+              ],
+              "canonicalAnswer": "están",
+              "sentenceTranslations": {
+                "están": "我的父母在公园。"
+              },
+              "sourcePage": 1
+            },
+            {
+              "id": "pse-a0-ser-estar-16",
+              "number": 16,
+              "prompt": "La comida _______ caliente. (The food is hot.)",
+              "answers": [
+                "está"
+              ],
+              "canonicalAnswer": "está",
+              "sentenceTranslations": {
+                "está": "食物现在是热的。"
+              },
+              "ambiguityNote": "本练习把 caliente 视为食物的当前状态，因此采用 estar；若描述一般性质，语境可能改变选择。",
+              "sourcePage": 1
+            },
+            {
+              "id": "pse-a0-ser-estar-17",
+              "number": 17,
+              "prompt": "Tú _______ mi mejor amigo. (You are my best friend.)",
+              "answers": [
+                "eres"
+              ],
+              "canonicalAnswer": "eres",
+              "sentenceTranslations": {
+                "eres": "你是我最好的朋友。"
+              },
+              "sourcePage": 1
+            },
+            {
+              "id": "pse-a0-ser-estar-18",
+              "number": 18,
+              "prompt": "La tienda _______ cerrada. (The store is closed.)",
+              "answers": [
+                "está"
+              ],
+              "canonicalAnswer": "está",
+              "sentenceTranslations": {
+                "está": "商店关着。"
+              },
+              "sourcePage": 1
+            },
+            {
+              "id": "pse-a0-ser-estar-19",
+              "number": 19,
+              "prompt": "Nosotros _______ en el restaurante. (We are in the restaurant.)",
+              "answers": [
+                "estamos"
+              ],
+              "canonicalAnswer": "estamos",
+              "sentenceTranslations": {
+                "estamos": "我们在餐厅。"
+              },
+              "sourcePage": 1
+            },
+            {
+              "id": "pse-a0-ser-estar-20",
+              "number": 20,
+              "prompt": "El profesor _______ en la escuela. (The teacher is at school.)",
+              "answers": [
+                "está"
+              ],
+              "canonicalAnswer": "está",
+              "sentenceTranslations": {
+                "está": "老师在学校。"
+              },
+              "sourcePage": 1
+            },
+            {
+              "id": "pse-a0-ser-estar-21",
+              "number": 21,
+              "prompt": "Yo _______ cansado hoy. (I am tired today.)",
+              "answers": [
+                "estoy"
+              ],
+              "canonicalAnswer": "estoy",
+              "sentenceTranslations": {
+                "estoy": "我今天很累。"
+              },
+              "sourcePage": 1
+            },
+            {
+              "id": "pse-a0-ser-estar-22",
+              "number": 22,
+              "prompt": "Madrid _______ en España. (Madrid is in Spain.)",
+              "answers": [
+                "está"
+              ],
+              "canonicalAnswer": "está",
+              "sentenceTranslations": {
+                "está": "马德里在西班牙。"
+              },
+              "sourcePage": 1
+            },
+            {
+              "id": "pse-a0-ser-estar-23",
+              "number": 23,
+              "prompt": "La mesa _______ limpia. (The table is clean.)",
+              "answers": [
+                "está"
+              ],
+              "canonicalAnswer": "está",
+              "sentenceTranslations": {
+                "está": "桌子现在很干净。"
+              },
+              "ambiguityNote": "本练习把 limpia 视为桌子当前的清洁状态，因此采用 estar；若描述一般特征，语境可能改变选择。",
+              "sourcePage": 1
+            },
+            {
+              "id": "pse-a0-ser-estar-24",
+              "number": 24,
+              "prompt": "Ellos _______ estudiantes. (They are students.)",
+              "answers": [
+                "son"
+              ],
+              "canonicalAnswer": "son",
+              "sentenceTranslations": {
+                "son": "他们是学生。"
+              },
+              "sourcePage": 1
+            },
+            {
+              "id": "pse-a0-ser-estar-25",
+              "number": 25,
+              "prompt": "El perro _______ en el jardín. (The dog is in the garden.)",
+              "answers": [
+                "está"
+              ],
+              "canonicalAnswer": "está",
+              "sentenceTranslations": {
+                "está": "狗在花园里。"
+              },
+              "sourcePage": 1
+            }
+          ]
+        },
+        {
+          "id": "pse-a0-vocab-translate",
+          "title": "Ejercicio 2, Parte A - Traduce al español",
+          "instructions": "Traduce cada palabra al español.",
+          "type": "text_input",
+          "items": [
+            {
+              "id": "pse-a0-vocab-translate-01",
+              "number": 1,
+              "prompt": "house → _______",
+              "answers": [
+                "casa",
+                "la casa",
+                "una casa"
+              ],
+              "canonicalAnswer": "casa",
+              "sourcePage": 2
+            },
+            {
+              "id": "pse-a0-vocab-translate-02",
+              "number": 2,
+              "prompt": "school → _______",
+              "answers": [
+                "escuela",
+                "la escuela",
+                "una escuela"
+              ],
+              "canonicalAnswer": "escuela",
+              "sourcePage": 2
+            },
+            {
+              "id": "pse-a0-vocab-translate-03",
+              "number": 3,
+              "prompt": "book → _______",
+              "answers": [
+                "libro",
+                "el libro",
+                "un libro"
+              ],
+              "canonicalAnswer": "libro",
+              "sourcePage": 2
+            },
+            {
+              "id": "pse-a0-vocab-translate-04",
+              "number": 4,
+              "prompt": "door → _______",
+              "answers": [
+                "puerta",
+                "la puerta",
+                "una puerta"
+              ],
+              "canonicalAnswer": "puerta",
+              "sourcePage": 2
+            },
+            {
+              "id": "pse-a0-vocab-translate-05",
+              "number": 5,
+              "prompt": "city → _______",
+              "answers": [
+                "ciudad",
+                "la ciudad",
+                "una ciudad"
+              ],
+              "canonicalAnswer": "ciudad",
+              "sourcePage": 2
+            },
+            {
+              "id": "pse-a0-vocab-translate-06",
+              "number": 6,
+              "prompt": "friend → _______",
+              "answers": [
+                "amigo",
+                "amiga",
+                "el amigo",
+                "la amiga",
+                "un amigo",
+                "una amiga"
+              ],
+              "canonicalAnswer": "amigo",
+              "sourcePage": 2
+            },
+            {
+              "id": "pse-a0-vocab-translate-07",
+              "number": 7,
+              "prompt": "mother → _______",
+              "answers": [
+                "madre",
+                "la madre",
+                "una madre"
+              ],
+              "canonicalAnswer": "madre",
+              "sourcePage": 2
+            },
+            {
+              "id": "pse-a0-vocab-translate-08",
+              "number": 8,
+              "prompt": "restaurant → _______",
+              "answers": [
+                "restaurante",
+                "el restaurante",
+                "un restaurante"
+              ],
+              "canonicalAnswer": "restaurante",
+              "sourcePage": 2
+            },
+            {
+              "id": "pse-a0-vocab-translate-09",
+              "number": 9,
+              "prompt": "table → _______",
+              "answers": [
+                "mesa",
+                "la mesa",
+                "una mesa"
+              ],
+              "canonicalAnswer": "mesa",
+              "sourcePage": 2
+            },
+            {
+              "id": "pse-a0-vocab-translate-10",
+              "number": 10,
+              "prompt": "student → _______",
+              "answers": [
+                "estudiante",
+                "el estudiante",
+                "la estudiante",
+                "un estudiante",
+                "una estudiante"
+              ],
+              "canonicalAnswer": "estudiante",
+              "sourcePage": 2
+            },
+            {
+              "id": "pse-a0-vocab-translate-11",
+              "number": 11,
+              "prompt": "hospital → _______",
+              "answers": [
+                "hospital",
+                "el hospital",
+                "un hospital"
+              ],
+              "canonicalAnswer": "hospital",
+              "sourcePage": 2
+            },
+            {
+              "id": "pse-a0-vocab-translate-12",
+              "number": 12,
+              "prompt": "park → _______",
+              "answers": [
+                "parque",
+                "el parque",
+                "un parque"
+              ],
+              "canonicalAnswer": "parque",
+              "sourcePage": 2
+            },
+            {
+              "id": "pse-a0-vocab-translate-13",
+              "number": 13,
+              "prompt": "food → _______",
+              "answers": [
+                "comida",
+                "la comida"
+              ],
+              "canonicalAnswer": "comida",
+              "sourcePage": 2
+            },
+            {
+              "id": "pse-a0-vocab-translate-14",
+              "number": 14,
+              "prompt": "store → _______",
+              "answers": [
+                "tienda",
+                "la tienda",
+                "una tienda"
+              ],
+              "canonicalAnswer": "tienda",
+              "sourcePage": 2
+            },
+            {
+              "id": "pse-a0-vocab-translate-15",
+              "number": 15,
+              "prompt": "teacher → _______",
+              "answers": [
+                "profesor",
+                "profesora",
+                "el profesor",
+                "la profesora",
+                "un profesor",
+                "una profesora"
+              ],
+              "canonicalAnswer": "profesor",
+              "sourcePage": 2
+            },
+            {
+              "id": "pse-a0-vocab-translate-16",
+              "number": 16,
+              "prompt": "parents → _______",
+              "answers": [
+                "padres",
+                "los padres"
+              ],
+              "canonicalAnswer": "padres",
+              "sourcePage": 2
+            },
+            {
+              "id": "pse-a0-vocab-translate-17",
+              "number": 17,
+              "prompt": "garden → _______",
+              "answers": [
+                "jardín",
+                "el jardín",
+                "un jardín"
+              ],
+              "canonicalAnswer": "jardín",
+              "sourcePage": 2
+            },
+            {
+              "id": "pse-a0-vocab-translate-18",
+              "number": 18,
+              "prompt": "class → _______",
+              "answers": [
+                "clase",
+                "la clase",
+                "una clase"
+              ],
+              "canonicalAnswer": "clase",
+              "sourcePage": 2
+            },
+            {
+              "id": "pse-a0-vocab-translate-19",
+              "number": 19,
+              "prompt": "dog → _______",
+              "answers": [
+                "perro",
+                "perra",
+                "el perro",
+                "la perra",
+                "un perro",
+                "una perra"
+              ],
+              "canonicalAnswer": "perro",
+              "sourcePage": 2
+            },
+            {
+              "id": "pse-a0-vocab-translate-20",
+              "number": 20,
+              "prompt": "open → _______",
+              "answers": [
+                "abierto",
+                "abierta",
+                "abiertos",
+                "abiertas"
+              ],
+              "canonicalAnswer": "abierto",
+              "sourcePage": 2
+            },
+            {
+              "id": "pse-a0-vocab-translate-21",
+              "number": 21,
+              "prompt": "closed → _______",
+              "answers": [
+                "cerrado",
+                "cerrada",
+                "cerrados",
+                "cerradas"
+              ],
+              "canonicalAnswer": "cerrado",
+              "sourcePage": 2
+            },
+            {
+              "id": "pse-a0-vocab-translate-22",
+              "number": 22,
+              "prompt": "big → _______",
+              "answers": [
+                "grande",
+                "grandes"
+              ],
+              "canonicalAnswer": "grande",
+              "sourcePage": 2
+            },
+            {
+              "id": "pse-a0-vocab-translate-23",
+              "number": 23,
+              "prompt": "small → _______",
+              "answers": [
+                "pequeño",
+                "pequeña",
+                "pequeños",
+                "pequeñas"
+              ],
+              "canonicalAnswer": "pequeño",
+              "sourcePage": 2
+            },
+            {
+              "id": "pse-a0-vocab-translate-24",
+              "number": 24,
+              "prompt": "tired → _______",
+              "answers": [
+                "cansado",
+                "cansada",
+                "cansados",
+                "cansadas"
+              ],
+              "canonicalAnswer": "cansado",
+              "sourcePage": 2
+            },
+            {
+              "id": "pse-a0-vocab-translate-25",
+              "number": 25,
+              "prompt": "clean → _______",
+              "answers": [
+                "limpio",
+                "limpia",
+                "limpios",
+                "limpias"
+              ],
+              "canonicalAnswer": "limpio",
+              "sourcePage": 2
+            }
+          ]
+        },
+        {
+          "id": "pse-a0-vocab-choice",
+          "title": "Ejercicio 2, Parte B - Elige la palabra correcta",
+          "instructions": "Elige la palabra que completa mejor cada oración.",
+          "type": "single_choice",
+          "items": [
+            {
+              "id": "pse-a0-vocab-choice-01",
+              "number": 1,
+              "prompt": "El _______ está en la mochila.",
+              "options": [
+                "parque",
+                "libro",
+                "madre"
+              ],
+              "answers": [
+                "libro"
+              ],
+              "canonicalAnswer": "libro",
+              "sentenceTranslations": {
+                "libro": "书在背包里。"
+              },
+              "sourcePage": 3
+            },
+            {
+              "id": "pse-a0-vocab-choice-02",
+              "number": 2,
+              "prompt": "Mi _______ es muy simpático.",
+              "options": [
+                "amigo",
+                "mesa",
+                "ciudad"
+              ],
+              "answers": [
+                "amigo"
+              ],
+              "canonicalAnswer": "amigo",
+              "sentenceTranslations": {
+                "amigo": "我的朋友很友好。"
+              },
+              "sourcePage": 3
+            },
+            {
+              "id": "pse-a0-vocab-choice-03",
+              "number": 3,
+              "prompt": "La comida está en la _______.",
+              "options": [
+                "mesa",
+                "escuela",
+                "hospital"
+              ],
+              "answers": [
+                "mesa"
+              ],
+              "canonicalAnswer": "mesa",
+              "sentenceTranslations": {
+                "mesa": "食物在桌子上。"
+              },
+              "ambiguityNote": "学校或医院里也可能有食物；原题按最直接的物品位置关系选择 mesa。",
+              "sourcePage": 3
+            },
+            {
+              "id": "pse-a0-vocab-choice-04",
+              "number": 4,
+              "prompt": "El médico trabaja en el _______.",
+              "options": [
+                "restaurante",
+                "jardín",
+                "hospital"
+              ],
+              "answers": [
+                "hospital"
+              ],
+              "canonicalAnswer": "hospital",
+              "sentenceTranslations": {
+                "hospital": "医生在医院工作。"
+              },
+              "ambiguityNote": "具体职业语境可能改变工作地点；原题按 médico 最常见的工作场所选择 hospital。",
+              "sourcePage": 3
+            },
+            {
+              "id": "pse-a0-vocab-choice-05",
+              "number": 5,
+              "prompt": "Nosotros estamos en la _______ para estudiar.",
+              "options": [
+                "escuela",
+                "parque",
+                "tienda"
+              ],
+              "answers": [
+                "escuela"
+              ],
+              "canonicalAnswer": "escuela",
+              "sentenceTranslations": {
+                "escuela": "我们在学校学习。"
+              },
+              "ambiguityNote": "公园或商店也可成为学习地点；原题按最典型场所选择 escuela。",
+              "sourcePage": 3
+            },
+            {
+              "id": "pse-a0-vocab-choice-06",
+              "number": 6,
+              "prompt": "Madrid es una _______.",
+              "options": [
+                "casa",
+                "ciudad",
+                "puerta"
+              ],
+              "answers": [
+                "ciudad"
+              ],
+              "canonicalAnswer": "ciudad",
+              "sentenceTranslations": {
+                "ciudad": "马德里是一座城市。"
+              },
+              "sourcePage": 3
+            },
+            {
+              "id": "pse-a0-vocab-choice-07",
+              "number": 7,
+              "prompt": "El perro está en el _______.",
+              "options": [
+                "jardín",
+                "libro",
+                "clase"
+              ],
+              "answers": [
+                "jardín"
+              ],
+              "canonicalAnswer": "jardín",
+              "sentenceTranslations": {
+                "jardín": "狗在花园里。"
+              },
+              "ambiguityNote": "故事或课堂语境下其他选项也可能成立；原题按最直接场景选择 jardín。",
+              "sourcePage": 3
+            },
+            {
+              "id": "pse-a0-vocab-choice-08",
+              "number": 8,
+              "prompt": "El profesor trabaja en la _______.",
+              "options": [
+                "escuela",
+                "mesa",
+                "tienda"
+              ],
+              "answers": [
+                "escuela"
+              ],
+              "canonicalAnswer": "escuela",
+              "sentenceTranslations": {
+                "escuela": "老师在学校工作。"
+              },
+              "ambiguityNote": "老师也可能在其他地点工作；原题按最典型工作场所选择 escuela。",
+              "sourcePage": 3
+            },
+            {
+              "id": "pse-a0-vocab-choice-09",
+              "number": 9,
+              "prompt": "La _______ está abierta.",
+              "options": [
+                "puerta",
+                "amigo",
+                "libro"
+              ],
+              "answers": [
+                "puerta"
+              ],
+              "canonicalAnswer": "puerta",
+              "sentenceTranslations": {
+                "puerta": "门开着。"
+              },
+              "sourcePage": 3
+            },
+            {
+              "id": "pse-a0-vocab-choice-10",
+              "number": 10,
+              "prompt": "Mis _______ están en casa.",
+              "options": [
+                "estudiantes",
+                "padres",
+                "restaurante"
+              ],
+              "answers": [
+                "estudiantes",
+                "padres"
+              ],
+              "canonicalAnswer": "padres",
+              "sentenceTranslations": {
+                "estudiantes": "我的学生们在家。",
+                "padres": "我的父母在家。"
+              },
+              "ambiguityNote": "estudiantes 和 padres 在语法及一般语义上都成立；原题没有更多上下文，因此两者均接受。",
+              "sourcePage": 3
+            },
+            {
+              "id": "pse-a0-vocab-choice-11",
+              "number": 11,
+              "prompt": "Yo soy _______.",
+              "options": [
+                "estudiante",
+                "jardín",
+                "ciudad"
+              ],
+              "answers": [
+                "estudiante"
+              ],
+              "canonicalAnswer": "estudiante",
+              "sentenceTranslations": {
+                "estudiante": "我是学生。"
+              },
+              "sourcePage": 3
+            },
+            {
+              "id": "pse-a0-vocab-choice-12",
+              "number": 12,
+              "prompt": "El libro está en la _______.",
+              "options": [
+                "madre",
+                "mesa",
+                "tienda"
+              ],
+              "answers": [
+                "mesa",
+                "tienda"
+              ],
+              "canonicalAnswer": "mesa",
+              "sentenceTranslations": {
+                "mesa": "书在桌子上。",
+                "tienda": "书在商店里。"
+              },
+              "ambiguityNote": "mesa 和 tienda 都能形成自然句子；原题没有限定场景，因此两者均接受。",
+              "sourcePage": 3
+            },
+            {
+              "id": "pse-a0-vocab-choice-13",
+              "number": 13,
+              "prompt": "La _______ es grande.",
+              "options": [
+                "ciudad",
+                "amigo",
+                "perro"
+              ],
+              "answers": [
+                "ciudad"
+              ],
+              "canonicalAnswer": "ciudad",
+              "sentenceTranslations": {
+                "ciudad": "这座城市很大。"
+              },
+              "sourcePage": 3
+            },
+            {
+              "id": "pse-a0-vocab-choice-14",
+              "number": 14,
+              "prompt": "Nosotros comemos en el _______.",
+              "options": [
+                "hospital",
+                "restaurante",
+                "clase"
+              ],
+              "answers": [
+                "hospital",
+                "restaurante"
+              ],
+              "canonicalAnswer": "restaurante",
+              "sentenceTranslations": {
+                "hospital": "我们在医院吃饭。",
+                "restaurante": "我们在餐厅吃饭。"
+              },
+              "ambiguityNote": "hospital 和 restaurante 都可作为吃饭地点；原题没有更多上下文，因此两者均接受。",
+              "sourcePage": 3
+            },
+            {
+              "id": "pse-a0-vocab-choice-15",
+              "number": 15,
+              "prompt": "La tienda está _______.",
+              "options": [
+                "libro",
+                "cerrada",
+                "parque"
+              ],
+              "answers": [
+                "cerrada"
+              ],
+              "canonicalAnswer": "cerrada",
+              "sentenceTranslations": {
+                "cerrada": "商店关着。"
+              },
+              "sourcePage": 3
+            },
+            {
+              "id": "pse-a0-vocab-choice-16",
+              "number": 16,
+              "prompt": "El hospital es muy _______.",
+              "options": [
+                "grande",
+                "puerta",
+                "amigo"
+              ],
+              "answers": [
+                "grande"
+              ],
+              "canonicalAnswer": "grande",
+              "sentenceTranslations": {
+                "grande": "医院很大。"
+              },
+              "sourcePage": 3
+            },
+            {
+              "id": "pse-a0-vocab-choice-17",
+              "number": 17,
+              "prompt": "El estudiante está en _______.",
+              "options": [
+                "clase",
+                "mesa",
+                "jardín"
+              ],
+              "answers": [
+                "clase"
+              ],
+              "canonicalAnswer": "clase",
+              "sentenceTranslations": {
+                "clase": "学生在上课。"
+              },
+              "sourcePage": 3
+            },
+            {
+              "id": "pse-a0-vocab-choice-18",
+              "number": 18,
+              "prompt": "El _______ es pequeño.",
+              "options": [
+                "perro",
+                "padres",
+                "restaurante"
+              ],
+              "answers": [
+                "perro",
+                "restaurante"
+              ],
+              "canonicalAnswer": "perro",
+              "sentenceTranslations": {
+                "perro": "狗很小。",
+                "restaurante": "餐厅很小。"
+              },
+              "ambiguityNote": "perro 和 restaurante 都与阳性单数 pequeño 搭配且语义自然，因此两者均接受。",
+              "sourcePage": 3
+            },
+            {
+              "id": "pse-a0-vocab-choice-19",
+              "number": 19,
+              "prompt": "La casa es _______.",
+              "options": [
+                "pequeña",
+                "ciudad",
+                "hospital"
+              ],
+              "answers": [
+                "pequeña"
+              ],
+              "canonicalAnswer": "pequeña",
+              "sentenceTranslations": {
+                "pequeña": "房子很小。"
+              },
+              "sourcePage": 3
+            },
+            {
+              "id": "pse-a0-vocab-choice-20",
+              "number": 20,
+              "prompt": "Yo estoy _______ hoy.",
+              "options": [
+                "cansado",
+                "estudiante",
+                "puerta"
+              ],
+              "answers": [
+                "cansado"
+              ],
+              "canonicalAnswer": "cansado",
+              "sentenceTranslations": {
+                "cansado": "我今天很累。"
+              },
+              "sourcePage": 3
+            },
+            {
+              "id": "pse-a0-vocab-choice-21",
+              "number": 21,
+              "prompt": "El restaurante está en la _______.",
+              "options": [
+                "ciudad",
+                "libro",
+                "madre"
+              ],
+              "answers": [
+                "ciudad"
+              ],
+              "canonicalAnswer": "ciudad",
+              "sentenceTranslations": {
+                "ciudad": "餐厅在城里。"
+              },
+              "sourcePage": 3
+            },
+            {
+              "id": "pse-a0-vocab-choice-22",
+              "number": 22,
+              "prompt": "La comida está _______.",
+              "options": [
+                "caliente",
+                "parque",
+                "clase"
+              ],
+              "answers": [
+                "caliente"
+              ],
+              "canonicalAnswer": "caliente",
+              "sentenceTranslations": {
+                "caliente": "食物是热的。"
+              },
+              "sourcePage": 3
+            },
+            {
+              "id": "pse-a0-vocab-choice-23",
+              "number": 23,
+              "prompt": "El _______ es mi amigo.",
+              "options": [
+                "perro",
+                "libro",
+                "mesa"
+              ],
+              "answers": [
+                "perro"
+              ],
+              "canonicalAnswer": "perro",
+              "sentenceTranslations": {
+                "perro": "这只狗是我的朋友。"
+              },
+              "ambiguityNote": "拟人或文学语境下 libro、mesa 也可被称作朋友；原题按字面日常语境选择 perro。",
+              "sourcePage": 3
+            },
+            {
+              "id": "pse-a0-vocab-choice-24",
+              "number": 24,
+              "prompt": "La escuela tiene una _______.",
+              "options": [
+                "clase",
+                "madre",
+                "tienda"
+              ],
+              "answers": [
+                "clase",
+                "tienda"
+              ],
+              "canonicalAnswer": "clase",
+              "sentenceTranslations": {
+                "clase": "学校有一个班级。",
+                "tienda": "学校里有一家商店。"
+              },
+              "ambiguityNote": "clase 和 tienda 都可由学校拥有；原题没有更多上下文，因此两者均接受。",
+              "sourcePage": 3
+            },
+            {
+              "id": "pse-a0-vocab-choice-25",
+              "number": 25,
+              "prompt": "El jardín está en la _______.",
+              "options": [
+                "casa",
+                "restaurante",
+                "hospital"
+              ],
+              "answers": [
+                "casa",
+                "restaurante",
+                "hospital"
+              ],
+              "canonicalAnswer": "casa",
+              "sentenceTranslations": {
+                "casa": "花园在房子里。",
+                "restaurante": "花园在餐厅里。",
+                "hospital": "花园在医院里。"
+              },
+              "ambiguityNote": "casa、restaurante 和 hospital 都可能设有花园；原题没有更多上下文，因此三个选项均接受。",
+              "sourcePage": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ser-estar-conjugation-a1",
+      "title": "Ser 和 Estar 变位练习 A1",
+      "badge": "变位练习",
+      "sourceTitle": "Práctica de conjugación: ser y estar",
+      "level": "A1",
+      "answerKeyBasis": "standard_conjugation",
+      "referenceTables": [
+        {
+          "id": "ser-reference",
+          "verb": "ser",
+          "title": "Ser：身份、职业、较稳定特征",
+          "rows": [
+            {
+              "person": "yo",
+              "form": "soy"
+            },
+            {
+              "person": "tú",
+              "form": "eres"
+            },
+            {
+              "person": "él / ella",
+              "form": "es"
+            },
+            {
+              "person": "nosotros / nosotras",
+              "form": "somos"
+            },
+            {
+              "person": "vosotros / vosotras",
+              "form": "sois"
+            },
+            {
+              "person": "ellos / ellas",
+              "form": "son"
+            }
+          ]
+        },
+        {
+          "id": "estar-reference",
+          "verb": "estar",
+          "title": "Estar：位置、当前状态",
+          "rows": [
+            {
+              "person": "yo",
+              "form": "estoy"
+            },
+            {
+              "person": "tú",
+              "form": "estás"
+            },
+            {
+              "person": "él / ella",
+              "form": "está"
+            },
+            {
+              "person": "nosotros / nosotras",
+              "form": "estamos"
+            },
+            {
+              "person": "vosotros / vosotras",
+              "form": "estáis"
+            },
+            {
+              "person": "ellos / ellas",
+              "form": "están"
+            }
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "ser-conjugation",
+          "title": "Parte 1 - Conjuga ser",
+          "instructions": "Escribe la forma correcta de ser para cada persona.",
+          "type": "text_input",
+          "verb": "ser",
+          "items": [
+            {
+              "id": "ser-01",
+              "number": 1,
+              "person": "yo",
+              "verb": "ser",
+              "prompt": "yo → ser",
+              "answers": [
+                "soy"
+              ]
+            },
+            {
+              "id": "ser-02",
+              "number": 2,
+              "person": "tú",
+              "verb": "ser",
+              "prompt": "tú → ser",
+              "answers": [
+                "eres"
+              ]
+            },
+            {
+              "id": "ser-03",
+              "number": 3,
+              "person": "él / ella",
+              "verb": "ser",
+              "prompt": "él / ella → ser",
+              "answers": [
+                "es"
+              ]
+            },
+            {
+              "id": "ser-04",
+              "number": 4,
+              "person": "nosotros / nosotras",
+              "verb": "ser",
+              "prompt": "nosotros / nosotras → ser",
+              "answers": [
+                "somos"
+              ]
+            },
+            {
+              "id": "ser-05",
+              "number": 5,
+              "person": "vosotros / vosotras",
+              "verb": "ser",
+              "prompt": "vosotros / vosotras → ser",
+              "answers": [
+                "sois"
+              ]
+            },
+            {
+              "id": "ser-06",
+              "number": 6,
+              "person": "ellos / ellas",
+              "verb": "ser",
+              "prompt": "ellos / ellas → ser",
+              "answers": [
+                "son"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "estar-conjugation",
+          "title": "Parte 2 - Conjuga estar",
+          "instructions": "Escribe la forma correcta de estar para cada persona.",
+          "type": "text_input",
+          "verb": "estar",
+          "items": [
+            {
+              "id": "estar-01",
+              "number": 1,
+              "person": "yo",
+              "verb": "estar",
+              "prompt": "yo → estar",
+              "answers": [
+                "estoy"
+              ]
+            },
+            {
+              "id": "estar-02",
+              "number": 2,
+              "person": "tú",
+              "verb": "estar",
+              "prompt": "tú → estar",
+              "answers": [
+                "estás"
+              ]
+            },
+            {
+              "id": "estar-03",
+              "number": 3,
+              "person": "él / ella",
+              "verb": "estar",
+              "prompt": "él / ella → estar",
+              "answers": [
+                "está"
+              ]
+            },
+            {
+              "id": "estar-04",
+              "number": 4,
+              "person": "nosotros / nosotras",
+              "verb": "estar",
+              "prompt": "nosotros / nosotras → estar",
+              "answers": [
+                "estamos"
+              ]
+            },
+            {
+              "id": "estar-05",
+              "number": 5,
+              "person": "vosotros / vosotras",
+              "verb": "estar",
+              "prompt": "vosotros / vosotras → estar",
+              "answers": [
+                "estáis"
+              ]
+            },
+            {
+              "id": "estar-06",
+              "number": 6,
+              "person": "ellos / ellas",
+              "verb": "estar",
+              "prompt": "ellos / ellas → estar",
+              "answers": [
+                "están"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
