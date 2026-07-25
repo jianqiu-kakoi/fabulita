@@ -1,4 +1,13 @@
-"""Vocabulary import: CSV/TSV with columns  word,gloss[,note]  (no header needed)."""
+"""Vocabulary import.
+
+CSV/TSV columns are::
+
+    word,gloss[,note,category,kind,example,example_trans,answers,review_mode]
+
+Only ``word`` and ``gloss`` are required.  The optional learning metadata is
+kept on each vocabulary entry so richer readers can group cards and show an
+example without changing the compact two-column workflow.
+"""
 
 import csv
 
@@ -10,13 +19,15 @@ def import_file(project, path):
     rows = []
     with open(path, encoding="utf-8-sig") as f:
         for lineno, row in enumerate(csv.reader(f, delimiter=delim), start=1):
-            row = [c.strip() for c in row if c.strip()]
-            if not row:
+            row = [c.strip() for c in row]
+            while row and not row[-1]:
+                row.pop()
+            if not row or not any(row):
                 continue
-            if len(row) == 1:
+            if len(row) < 2 or not row[0] or not row[1]:
                 raise ProjectError(
                     f"{path}, line {lineno}: needs at least 2 columns "
-                    f"(word,gloss — gloss in your language), got: {row[0]!r}"
+                    f"(word,gloss — gloss in your language), got: {row!r}"
                 )
             rows.append(row)
     # skip a header row like "word,gloss"
@@ -28,8 +39,11 @@ def import_file(project, path):
     added = updated = 0
     for row in rows:
         entry = {"w": row[0], "gloss": row[1]}
-        if len(row) > 2:
-            entry["note"] = row[2]
+        optional_fields = ("note", "category", "kind", "example", "example_trans", "answers",
+                           "review_mode")
+        for index, field in enumerate(optional_fields, start=2):
+            if len(row) > index and row[index]:
+                entry[field] = row[index]
         key = norm(row[0])
         if key in known:
             if known[key] != entry:

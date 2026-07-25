@@ -1,0 +1,15 @@
+{
+  "functionRoot": ".",
+  "functions": [
+    {
+      "name": "my-english-api",
+      "dir": "./backend",
+      "type": "Event",
+      "runtime": "Nodejs20.19",
+      "handler": "dist/index.main",
+      "timeout": 20,
+      "memorySize": 256,
+      "installDependency": true
+    }
+  ]
+}

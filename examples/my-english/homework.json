@@ -1,0 +1,868 @@
+{
+  "version": 1,
+  "assignments": [
+    {
+      "id": "everyday-english-a1",
+      "title": "日常英语词汇练习 A1",
+      "badge": "入门练习",
+      "sourceTitle": "Everyday English A1 · Daily routine",
+      "level": "A1",
+      "answerKeyBasis": "standard_usage",
+      "studyWords": [
+        {
+          "id": "ee-a1-morning",
+          "word": "morning",
+          "gloss": "早晨、上午",
+          "english": "the first part of the day",
+          "answers": ["早晨", "早上", "上午", "the first part of the day"],
+          "role": "answer",
+          "example": "I study in the morning."
+        },
+        {
+          "id": "ee-a1-breakfast",
+          "word": "breakfast",
+          "gloss": "早餐、早饭",
+          "english": "the first meal of the day",
+          "answers": ["早餐", "早饭", "the first meal of the day"],
+          "role": "answer",
+          "example": "I have breakfast at seven."
+        },
+        {
+          "id": "ee-a1-coffee",
+          "word": "coffee",
+          "gloss": "咖啡",
+          "english": "a dark drink made from roasted beans",
+          "answers": ["咖啡", "a dark drink made from roasted beans"],
+          "role": "context",
+          "example": "She drinks coffee in the morning."
+        },
+        {
+          "id": "ee-a1-bread",
+          "word": "bread",
+          "gloss": "面包",
+          "english": "food made from flour",
+          "answers": ["面包", "food made from flour"],
+          "role": "context",
+          "example": "We eat bread for breakfast."
+        },
+        {
+          "id": "ee-a1-school",
+          "word": "school",
+          "gloss": "学校",
+          "english": "a place where students learn",
+          "answers": ["学校", "a place where students learn"],
+          "role": "answer",
+          "example": "We go to school at eight."
+        },
+        {
+          "id": "ee-a1-bus",
+          "word": "bus",
+          "gloss": "公交车、公共汽车",
+          "english": "a large road vehicle for many people",
+          "answers": ["公交车", "公共汽车", "巴士", "a large road vehicle"],
+          "role": "answer",
+          "example": "They take the bus to school."
+        },
+        {
+          "id": "ee-a1-friend",
+          "word": "friend",
+          "gloss": "朋友",
+          "english": "a person you know and like",
+          "answers": ["朋友", "好友", "a person you know and like"],
+          "role": "answer",
+          "example": "Anna is my friend."
+        },
+        {
+          "id": "ee-a1-teacher",
+          "word": "teacher",
+          "gloss": "老师、教师",
+          "english": "a person who helps students learn",
+          "answers": ["老师", "教师", "a person who helps students learn"],
+          "role": "answer",
+          "example": "Our teacher gives us homework."
+        },
+        {
+          "id": "ee-a1-book",
+          "word": "book",
+          "gloss": "书、书本",
+          "english": "a set of written pages",
+          "answers": ["书", "书本", "a set of written pages"],
+          "role": "answer",
+          "example": "I read a book in the evening."
+        },
+        {
+          "id": "ee-a1-park",
+          "word": "park",
+          "gloss": "公园",
+          "english": "a public green place",
+          "answers": ["公园", "a public green place"],
+          "role": "answer",
+          "example": "The dog runs in the park."
+        },
+        {
+          "id": "ee-a1-evening",
+          "word": "evening",
+          "gloss": "傍晚、晚上",
+          "english": "the later part of the day",
+          "answers": ["傍晚", "晚上", "the later part of the day"],
+          "role": "context",
+          "example": "I read in the evening."
+        },
+        {
+          "id": "ee-a1-dinner",
+          "word": "dinner",
+          "gloss": "晚餐、晚饭",
+          "english": "the main evening meal",
+          "answers": ["晚餐", "晚饭", "正餐", "the main evening meal"],
+          "role": "answer",
+          "example": "My family has dinner together."
+        },
+        {
+          "id": "ee-a1-family",
+          "word": "family",
+          "gloss": "家庭、家人",
+          "english": "the people you are related to",
+          "answers": ["家庭", "家人", "the people you are related to"],
+          "role": "answer",
+          "example": "My family eats together."
+        },
+        {
+          "id": "ee-a1-house",
+          "word": "house",
+          "gloss": "房子、住宅",
+          "english": "a building where people live",
+          "answers": ["房子", "住宅", "a building where people live"],
+          "role": "context",
+          "example": "The family is in the house."
+        },
+        {
+          "id": "ee-a1-water",
+          "word": "water",
+          "gloss": "水",
+          "english": "a clear drink that people need",
+          "answers": ["水", "a clear drink that people need"],
+          "role": "context",
+          "example": "I drink water every day."
+        },
+        {
+          "id": "ee-a1-library",
+          "word": "library",
+          "gloss": "图书馆",
+          "english": "a place with books to read or borrow",
+          "answers": ["图书馆", "a place with books"],
+          "role": "answer",
+          "example": "We study in the library."
+        },
+        {
+          "id": "ee-a1-wake-up",
+          "word": "wake up",
+          "gloss": "醒来、起床",
+          "english": "to stop sleeping",
+          "answers": ["醒来", "起床", "to stop sleeping"],
+          "role": "answer",
+          "example": "I wake up at seven."
+        },
+        {
+          "id": "ee-a1-eat",
+          "word": "eat",
+          "gloss": "吃",
+          "english": "to put food in your mouth",
+          "answers": ["吃", "食用", "to put food in your mouth"],
+          "role": "answer",
+          "example": "We eat bread for breakfast."
+        },
+        {
+          "id": "ee-a1-drink",
+          "word": "drink",
+          "gloss": "喝",
+          "english": "to take liquid into your mouth",
+          "answers": ["喝", "饮用", "to take liquid into your mouth"],
+          "role": "answer",
+          "example": "I drink water every day."
+        },
+        {
+          "id": "ee-a1-take",
+          "word": "take",
+          "gloss": "拿；乘坐",
+          "english": "to carry something or travel by transport",
+          "answers": ["拿", "取", "乘坐", "to carry something", "to travel by transport"],
+          "role": "answer",
+          "example": "We take the bus to school."
+        },
+        {
+          "id": "ee-a1-meet",
+          "word": "meet",
+          "gloss": "遇见、见面",
+          "english": "to see and speak to someone",
+          "answers": ["遇见", "见面", "会面", "to see and speak to someone"],
+          "role": "answer",
+          "example": "I meet my friend at school."
+        },
+        {
+          "id": "ee-a1-study",
+          "word": "study",
+          "gloss": "学习",
+          "english": "to spend time learning",
+          "answers": ["学习", "读书", "to spend time learning"],
+          "role": "answer",
+          "example": "We study English in the library."
+        },
+        {
+          "id": "ee-a1-read",
+          "word": "read",
+          "gloss": "读、阅读",
+          "english": "to understand written words",
+          "answers": ["读", "阅读", "看书", "to understand written words"],
+          "role": "answer",
+          "example": "I read a book in the evening."
+        },
+        {
+          "id": "ee-a1-go-home",
+          "word": "go home",
+          "gloss": "回家",
+          "english": "to travel to your home",
+          "answers": ["回家", "to travel to your home"],
+          "role": "answer",
+          "example": "I go home after school."
+        },
+        {
+          "id": "ee-a1-have-dinner",
+          "word": "have dinner",
+          "gloss": "吃晚餐、吃晚饭",
+          "english": "to eat the evening meal",
+          "answers": ["吃晚餐", "吃晚饭", "to eat the evening meal"],
+          "role": "answer",
+          "example": "We have dinner at seven."
+        },
+        {
+          "id": "ee-a1-go-to-bed",
+          "word": "go to bed",
+          "gloss": "上床睡觉",
+          "english": "to get into bed to sleep",
+          "answers": ["上床睡觉", "睡觉", "to get into bed to sleep"],
+          "role": "answer",
+          "example": "I go to bed at ten."
+        },
+        {
+          "id": "ee-a1-tired",
+          "word": "tired",
+          "gloss": "累的、疲惫的",
+          "english": "needing rest",
+          "answers": ["累", "累的", "疲惫", "疲惫的", "needing rest"],
+          "role": "answer",
+          "example": "He is tired after school."
+        },
+        {
+          "id": "ee-a1-ready",
+          "word": "ready",
+          "gloss": "准备好的",
+          "english": "prepared to do something",
+          "answers": ["准备好的", "准备就绪", "prepared"],
+          "role": "context",
+          "example": "I am ready for school."
+        }
+      ],
+      "sections": [
+        {
+          "id": "daily-routine-choice",
+          "title": "Part 1 - 选择最合适的词",
+          "type": "single_choice",
+          "instructions": "选择最适合补全英文句子的词或短语。",
+          "items": [
+            {
+              "id": "ee-choice-01",
+              "number": 1,
+              "prompt": "I _______ at seven every morning.",
+              "options": ["wake up", "go home", "go to bed"],
+              "answers": ["wake up"],
+              "canonicalAnswer": "wake up",
+              "sentenceTranslations": {"wake up": "我每天早上七点起床。"}
+            },
+            {
+              "id": "ee-choice-02",
+              "number": 2,
+              "prompt": "We _______ bread for breakfast.",
+              "options": ["eat", "drink", "read"],
+              "answers": ["eat"],
+              "canonicalAnswer": "eat",
+              "sentenceTranslations": {"eat": "我们早餐吃面包。"}
+            },
+            {
+              "id": "ee-choice-03",
+              "number": 3,
+              "prompt": "She wants to _______ some water.",
+              "options": ["drink", "eat", "read"],
+              "answers": ["drink"],
+              "canonicalAnswer": "drink",
+              "sentenceTranslations": {"drink": "她想喝一些水。"}
+            },
+            {
+              "id": "ee-choice-04",
+              "number": 4,
+              "prompt": "They _______ the bus to school.",
+              "options": ["take", "meet", "study"],
+              "answers": ["take"],
+              "canonicalAnswer": "take",
+              "sentenceTranslations": {"take": "他们坐公交车去学校。"}
+            },
+            {
+              "id": "ee-choice-05",
+              "number": 5,
+              "prompt": "I _______ my friend at the bus stop.",
+              "options": ["meet", "read", "eat"],
+              "answers": ["meet"],
+              "canonicalAnswer": "meet",
+              "sentenceTranslations": {"meet": "我在公交车站见朋友。"}
+            },
+            {
+              "id": "ee-choice-06",
+              "number": 6,
+              "prompt": "We _______ English in the library.",
+              "options": ["study", "drink", "take"],
+              "answers": ["study"],
+              "canonicalAnswer": "study",
+              "sentenceTranslations": {"study": "我们在图书馆学英语。"}
+            },
+            {
+              "id": "ee-choice-07",
+              "number": 7,
+              "prompt": "I _______ a book in the evening.",
+              "options": ["read", "meet", "drink"],
+              "answers": ["read"],
+              "canonicalAnswer": "read",
+              "sentenceTranslations": {"read": "我晚上读一本书。"}
+            },
+            {
+              "id": "ee-choice-08",
+              "number": 8,
+              "prompt": "After school I _______.",
+              "options": ["go home", "wake up", "have dinner"],
+              "answers": ["go home"],
+              "canonicalAnswer": "go home",
+              "sentenceTranslations": {"go home": "放学后我回家。"}
+            },
+            {
+              "id": "ee-choice-09",
+              "number": 9,
+              "prompt": "We _______ at the table every evening.",
+              "options": ["have dinner", "go to bed", "go home"],
+              "answers": ["have dinner"],
+              "canonicalAnswer": "have dinner",
+              "sentenceTranslations": {"have dinner": "我们每天晚上在桌边吃晚餐。"}
+            },
+            {
+              "id": "ee-choice-10",
+              "number": 10,
+              "prompt": "At ten at night I _______.",
+              "options": ["go to bed", "wake up", "study"],
+              "answers": ["go to bed"],
+              "canonicalAnswer": "go to bed",
+              "sentenceTranslations": {"go to bed": "我晚上十点上床睡觉。"}
+            },
+            {
+              "id": "ee-choice-11",
+              "number": 11,
+              "prompt": "Our _______ gives us homework.",
+              "options": ["teacher", "friend", "family"],
+              "answers": ["teacher"],
+              "canonicalAnswer": "teacher",
+              "sentenceTranslations": {"teacher": "我们的老师给我们布置作业。"}
+            },
+            {
+              "id": "ee-choice-12",
+              "number": 12,
+              "prompt": "The dog runs in the _______.",
+              "options": ["park", "school", "library"],
+              "answers": ["park"],
+              "canonicalAnswer": "park",
+              "sentenceTranslations": {"park": "狗在公园里跑。"}
+            }
+          ]
+        },
+        {
+          "id": "daily-routine-translate",
+          "title": "Part 2 - 写出英文",
+          "type": "text_input",
+          "instructions": "根据中文提示写出英文单词。",
+          "items": [
+            {"id": "ee-translate-01", "number": 1, "prompt": "早晨、上午 → _______", "answers": ["morning"], "canonicalAnswer": "morning"},
+            {"id": "ee-translate-02", "number": 2, "prompt": "早餐、早饭 → _______", "answers": ["breakfast"], "canonicalAnswer": "breakfast"},
+            {"id": "ee-translate-03", "number": 3, "prompt": "朋友 → _______", "answers": ["friend"], "canonicalAnswer": "friend"},
+            {"id": "ee-translate-04", "number": 4, "prompt": "老师、教师 → _______", "answers": ["teacher"], "canonicalAnswer": "teacher"},
+            {"id": "ee-translate-05", "number": 5, "prompt": "学校 → _______", "answers": ["school"], "canonicalAnswer": "school"},
+            {"id": "ee-translate-06", "number": 6, "prompt": "公交车、公共汽车 → _______", "answers": ["bus"], "canonicalAnswer": "bus"},
+            {"id": "ee-translate-07", "number": 7, "prompt": "书、书本 → _______", "answers": ["book"], "canonicalAnswer": "book"},
+            {"id": "ee-translate-08", "number": 8, "prompt": "公园 → _______", "answers": ["park"], "canonicalAnswer": "park"},
+            {"id": "ee-translate-09", "number": 9, "prompt": "晚餐、晚饭 → _______", "answers": ["dinner"], "canonicalAnswer": "dinner"},
+            {"id": "ee-translate-10", "number": 10, "prompt": "家庭、家人 → _______", "answers": ["family"], "canonicalAnswer": "family"},
+            {"id": "ee-translate-11", "number": 11, "prompt": "图书馆 → _______", "answers": ["library"], "canonicalAnswer": "library"},
+            {"id": "ee-translate-12", "number": 12, "prompt": "累的、疲惫的 → _______", "answers": ["tired"], "canonicalAnswer": "tired"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "be-and-present-simple-a1",
+      "title": "Be 动词与一般现在时 A1",
+      "badge": "语法练习",
+      "sourceTitle": "Be and the present simple · A1",
+      "level": "A1",
+      "answerKeyBasis": "standard_grammar",
+      "referenceTables": [
+        {
+          "id": "be-reference",
+          "verb": "be",
+          "title": "Be：am / is / are",
+          "meaning": "主语决定 be 的形式",
+          "rows": [
+            {"person": "I", "form": "am"},
+            {"person": "you / we / they", "form": "are"},
+            {"person": "he / she / it", "form": "is"}
+          ]
+        },
+        {
+          "id": "present-simple-reference",
+          "verb": "present simple",
+          "title": "一般现在时",
+          "meaning": "he / she / it 后的动词通常加 -s 或 -es",
+          "rows": [
+            {"person": "I / you / we / they", "form": "read / drink / take / go"},
+            {"person": "he / she / it", "form": "reads / drinks / takes / goes"}
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "be-forms",
+          "title": "Part 1 - 填写 am / is / are",
+          "type": "text_input",
+          "instructions": "根据主语填写正确的 be 动词。",
+          "items": [
+            {"id": "be-01", "number": 1, "prompt": "I _______ ready.", "answers": ["am"], "sentenceTranslations": {"am": "我准备好了。"}},
+            {"id": "be-02", "number": 2, "prompt": "She _______ a teacher.", "answers": ["is"], "sentenceTranslations": {"is": "她是一名老师。"}},
+            {"id": "be-03", "number": 3, "prompt": "They _______ at school.", "answers": ["are"], "sentenceTranslations": {"are": "他们在学校。"}},
+            {"id": "be-04", "number": 4, "prompt": "We _______ happy today.", "answers": ["are"], "sentenceTranslations": {"are": "我们今天很开心。"}},
+            {"id": "be-05", "number": 5, "prompt": "He _______ tired after school.", "answers": ["is"], "sentenceTranslations": {"is": "他放学后很累。"}},
+            {"id": "be-06", "number": 6, "prompt": "You _______ my friend.", "answers": ["are"], "sentenceTranslations": {"are": "你是我的朋友。"}},
+            {"id": "be-07", "number": 7, "prompt": "It _______ late.", "answers": ["is"], "sentenceTranslations": {"is": "时间晚了。"}},
+            {"id": "be-08", "number": 8, "prompt": "I _______ busy today.", "answers": ["am"], "sentenceTranslations": {"am": "我今天很忙。"}}
+          ]
+        },
+        {
+          "id": "present-simple-forms",
+          "title": "Part 2 - 一般现在时动词形式",
+          "type": "text_input",
+          "instructions": "根据主语写出括号中动词的正确形式。",
+          "items": [
+            {"id": "ps-01", "number": 1, "prompt": "I _______ coffee every morning. (drink)", "answers": ["drink"], "sentenceTranslations": {"drink": "我每天早上喝咖啡。"}},
+            {"id": "ps-02", "number": 2, "prompt": "She _______ coffee every morning. (drink)", "answers": ["drinks"], "sentenceTranslations": {"drinks": "她每天早上喝咖啡。"}},
+            {"id": "ps-03", "number": 3, "prompt": "We _______ books after school. (read)", "answers": ["read"], "sentenceTranslations": {"read": "我们放学后读书。"}},
+            {"id": "ps-04", "number": 4, "prompt": "Tom _______ books after school. (read)", "answers": ["reads"], "sentenceTranslations": {"reads": "汤姆放学后读书。"}},
+            {"id": "ps-05", "number": 5, "prompt": "They _______ the bus to school. (take)", "answers": ["take"], "sentenceTranslations": {"take": "他们坐公交车去学校。"}},
+            {"id": "ps-06", "number": 6, "prompt": "Anna _______ the bus to school. (take)", "answers": ["takes"], "sentenceTranslations": {"takes": "安娜坐公交车去学校。"}},
+            {"id": "ps-07", "number": 7, "prompt": "I _______ to school at eight. (go)", "answers": ["go"], "sentenceTranslations": {"go": "我八点去上学。"}},
+            {"id": "ps-08", "number": 8, "prompt": "He _______ to school at eight. (go)", "answers": ["goes"], "sentenceTranslations": {"goes": "他八点去上学。"}}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hotel-check-in-a1",
+      "layout": "dialogue",
+      "navigation": "sequential",
+      "reviewBridge": true,
+      "title": "Hotel Check-in｜酒店入住",
+      "badge": "场景作业",
+      "sourceTitle": "English for Tourism Professionals · Module 1 · adapted",
+      "level": "A1–A2",
+      "durationMinutes": 12,
+      "answerKeyBasis": "authored_adaptation",
+      "contentLicense": {
+        "spdx": "CC-BY-4.0",
+        "name": "Creative Commons Attribution 4.0 International",
+        "url": "https://creativecommons.org/licenses/by/4.0/",
+        "codeLicenseNote": "应用代码继续使用项目的软件许可证；本场景学习内容按 CC BY 4.0 标注。"
+      },
+      "source": {
+        "title": "English for Tourism Professionals Module 1 Downloadable Packet",
+        "url": "https://s3.us-east-1.amazonaws.com/resources.aeeteacher.org/COP/English%20for%20Tourism%20Professionals%20MOOC%20Module%20Packets/Tourism%20M1%20MOOC%20Module%20Packet.pdf",
+        "attribution": "English for Tourism Professionals, Module 1, © 2020 Ohio University, developed for OPEN.",
+        "license": "CC BY 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "licenseScope": "教材主体采用 CC BY 4.0；原教材中另行标注的第三方素材仍适用各自许可。",
+        "changes": "Selected and translated hotel vocabulary; added pronunciation guidance, a new six-step hotel check-in dialogue, exercises, and review scheduling.",
+        "thirdPartyImagesReused": false,
+        "endorsementNotice": "本改编内容不代表 Ohio University、OPEN、美国国务院或 FHI 360 的认可或背书。"
+      },
+      "scenario": {
+        "eyebrow": "TRAVEL ENGLISH · LESSON 01",
+        "subtitle": "在酒店办理入住",
+        "setting": "Maple Hotel front desk",
+        "learnerRole": "Guest",
+        "partnerRole": "Front desk",
+        "goals": ["说出预订姓名", "确认房间信息", "询问退房时间"],
+        "steps": ["说明入住意图", "说出预订姓名", "递交护照", "询问退房", "询问 Wi-Fi", "礼貌结束"],
+        "dialogue": [
+          {
+            "speaker": "Desk clerk",
+            "english": "Good evening. Welcome to the Maple Hotel. How can I help you?",
+            "chinese": "晚上好。欢迎来到枫叶酒店。有什么可以帮您？"
+          },
+          {
+            "speaker": "Guest",
+            "learnerStep": 1,
+            "english": "I'd like to check in, please.",
+            "chinese": "我想办理入住。"
+          },
+          {
+            "speaker": "Desk clerk",
+            "english": "What name is the reservation under?",
+            "chinese": "请问预订登记在哪个名字下？"
+          },
+          {
+            "speaker": "Guest",
+            "learnerStep": 2,
+            "english": "The reservation is under the name Chen.",
+            "chinese": "预订登记在 Chen 名下。"
+          },
+          {
+            "speaker": "Desk clerk",
+            "english": "May I see your passport, please?",
+            "chinese": "可以看一下您的护照吗？"
+          },
+          {
+            "speaker": "Guest",
+            "learnerStep": 3,
+            "english": "Sure. Here you are.",
+            "chinese": "好的，给您。"
+          },
+          {
+            "speaker": "Desk clerk",
+            "english": "You booked a double room for two nights. Breakfast is included.",
+            "chinese": "您预订的是双人房，入住两晚，含早餐。"
+          },
+          {
+            "speaker": "Guest",
+            "learnerStep": 4,
+            "english": "What time is checkout?",
+            "chinese": "几点退房？"
+          },
+          {
+            "speaker": "Desk clerk",
+            "english": "Checkout is at 11 a.m. Your room is 508, on the fifth floor. Here is your key card.",
+            "chinese": "上午 11 点退房。您的房间是 508，在五楼。这是您的房卡。"
+          },
+          {
+            "speaker": "Guest",
+            "learnerStep": 5,
+            "english": "Could I have the Wi-Fi password, please?",
+            "chinese": "可以告诉我 Wi-Fi 密码吗？"
+          },
+          {
+            "speaker": "Desk clerk",
+            "english": "The Wi-Fi password is MAPLE508. Is there anything else?",
+            "chinese": "Wi-Fi 密码是 MAPLE508。还需要别的帮助吗？"
+          },
+          {
+            "speaker": "Guest",
+            "learnerStep": 6,
+            "english": "No, that's all. Thank you.",
+            "chinese": "不用了，就这些。谢谢。"
+          },
+          {
+            "speaker": "Desk clerk",
+            "english": "You're welcome. Enjoy your stay.",
+            "chinese": "不客气。祝您入住愉快。"
+          }
+        ]
+      },
+      "studyWords": [
+        {
+          "id": "hc-reservation",
+          "word": "reservation",
+          "pronunciation": "/ˌrez.ɚˈveɪ.ʃən/",
+          "gloss": "预订、预约",
+          "english": "an arrangement to keep a hotel room for you",
+          "answers": ["预订", "预约", "房间预订", "booking", "an arrangement to keep a hotel room"],
+          "role": "answer",
+          "example": "I have a reservation under the name Chen.",
+          "exampleTranslation": "我有一个登记在 Chen 名下的预订。"
+        },
+        {
+          "id": "hc-desk-clerk",
+          "word": "desk clerk",
+          "pronunciation": "/ˈdesk ˌklɝːk/",
+          "gloss": "前台职员、酒店接待员",
+          "english": "a person who helps guests at a hotel front desk",
+          "answers": ["前台职员", "酒店前台", "酒店接待员", "front desk clerk", "hotel receptionist"],
+          "role": "context",
+          "example": "The desk clerk welcomes guests at the hotel.",
+          "exampleTranslation": "前台职员在酒店迎接住客。"
+        },
+        {
+          "id": "hc-book-room",
+          "word": "book a room",
+          "pronunciation": "/ˌbʊk ə ˈruːm/",
+          "gloss": "预订房间",
+          "english": "to arrange for a hotel room before you arrive",
+          "answers": ["预订房间", "订房", "to reserve a hotel room", "to arrange for a hotel room"],
+          "role": "context",
+          "example": "We booked a room for two nights.",
+          "exampleTranslation": "我们预订了一个住两晚的房间。"
+        },
+        {
+          "id": "hc-check-in",
+          "word": "check in",
+          "pronunciation": "/ˌtʃek ˈɪn/",
+          "gloss": "办理入住、登记入住",
+          "english": "to register when you arrive at a hotel",
+          "answers": ["办理入住", "登记入住", "入住登记", "to register at a hotel", "to register when you arrive at a hotel"],
+          "role": "answer",
+          "example": "I'd like to check in, please.",
+          "exampleTranslation": "我想办理入住。"
+        },
+        {
+          "id": "hc-under-name",
+          "word": "under the name",
+          "pronunciation": "/ˌʌn.dɚ ðə ˈneɪm/",
+          "gloss": "登记在……名下",
+          "english": "using the name attached to a reservation",
+          "answers": ["登记在某人名下", "以某人的名字", "using the name on a reservation"],
+          "role": "answer",
+          "example": "The reservation is under the name Chen.",
+          "exampleTranslation": "预订登记在 Chen 名下。"
+        },
+        {
+          "id": "hc-passport",
+          "word": "passport",
+          "pronunciation": "/ˈpæs.pɔːrt/",
+          "gloss": "护照",
+          "english": "an official document used for international travel",
+          "answers": ["护照", "an official travel document", "an official document for travel"],
+          "role": "context",
+          "example": "May I see your passport, please?",
+          "exampleTranslation": "可以看一下您的护照吗？"
+        },
+        {
+          "id": "hc-double-room",
+          "word": "double room",
+          "pronunciation": "/ˌdʌb.əl ˈruːm/",
+          "gloss": "双人房、双人间",
+          "english": "a hotel room for two people",
+          "answers": ["双人房", "双人间", "a room for two people", "a hotel room for two people"],
+          "role": "context",
+          "example": "Your reservation is for a double room.",
+          "exampleTranslation": "您预订的是一间双人房。"
+        },
+        {
+          "id": "hc-included",
+          "word": "included",
+          "pronunciation": "/ɪnˈkluː.dɪd/",
+          "gloss": "已包含、包含在价格内",
+          "english": "provided as part of the price",
+          "answers": ["已包含", "包括在内", "包含在价格内", "part of the price", "provided at no extra cost"],
+          "role": "context",
+          "example": "Breakfast is included.",
+          "exampleTranslation": "房费含早餐。"
+        },
+        {
+          "id": "hc-checkout",
+          "word": "checkout",
+          "pronunciation": "/ˈtʃek.aʊt/",
+          "gloss": "退房、退房时间",
+          "english": "the time or process of leaving a hotel",
+          "answers": ["退房", "办理退房", "退房时间", "leaving a hotel", "the time when you leave a hotel"],
+          "role": "answer",
+          "example": "What time is checkout?",
+          "exampleTranslation": "几点退房？"
+        },
+        {
+          "id": "hc-floor",
+          "word": "floor",
+          "pronunciation": "/flɔːr/",
+          "gloss": "楼层",
+          "english": "one level of a building",
+          "answers": ["楼层", "层", "one level of a building"],
+          "role": "context",
+          "example": "Your room is on the fifth floor.",
+          "exampleTranslation": "您的房间在五楼。"
+        },
+        {
+          "id": "hc-key-card",
+          "word": "key card",
+          "pronunciation": "/ˈkiː ˌkɑːrd/",
+          "gloss": "房卡、电子门卡",
+          "english": "a card used to open a hotel room",
+          "answers": ["房卡", "门卡", "电子房卡", "电子门卡", "a card used to open a hotel room"],
+          "role": "context",
+          "example": "Here is your key card.",
+          "exampleTranslation": "这是您的房卡。"
+        },
+        {
+          "id": "hc-wifi-password",
+          "word": "Wi-Fi password",
+          "pronunciation": "/ˈwaɪ.faɪ ˌpæs.wɝːd/",
+          "gloss": "Wi-Fi 密码、无线网络密码",
+          "english": "the password used to connect to the hotel Wi-Fi",
+          "answers": ["Wi-Fi 密码", "无线网络密码", "网络密码", "the hotel Wi-Fi password", "the password for the Wi-Fi"],
+          "role": "answer",
+          "example": "Could I have the Wi-Fi password, please?",
+          "exampleTranslation": "可以告诉我 Wi-Fi 密码吗？"
+        }
+      ],
+      "sentenceLexicon": [
+        {
+          "id": "hc-book-verb",
+          "word": "book",
+          "forms": ["booked"],
+          "pronunciation": "/bʊk/",
+          "gloss": "预订",
+          "english": "to arrange for a hotel room before you arrive"
+        }
+      ],
+      "sections": [
+        {
+          "id": "hotel-check-in-roleplay",
+          "title": "Hotel Check-in · 6 步入住对话",
+          "type": "text_input",
+          "instructions": "按顺序完成对话。每题只写住客要说的一句；系统接受多种自然表达。",
+          "items": [
+            {
+              "id": "hc-scene-01",
+              "number": 1,
+              "prompt": "Front desk: “Good evening. Welcome to the Maple Hotel. How can I help you?” 任务：告诉前台你想办理入住。",
+              "scene": {
+                "speaker": "FRONT DESK",
+                "cue": "Good evening. Welcome to the Maple Hotel. How can I help you?",
+                "translation": "晚上好。欢迎来到枫叶酒店。有什么可以帮您？",
+                "task": "告诉前台你想办理入住。"
+              },
+              "canonicalAnswer": "I'd like to check in, please.",
+              "answerTranslation": "我想办理入住。",
+              "answers": ["I'd like to check in, please.", "I would like to check in, please.", "I'd like to check in.", "I would like to check in.", "I want to check in, please.", "I'm here to check in.", "I am here to check in.", "Can I check in, please?", "I have a reservation.", "I have a booking."],
+              "intent": "request_check_in",
+              "meaningPatterns": [
+                {"all": ["check", "in"], "none": ["not", "cannot", "can't", "don't"]},
+                {"all": ["my", "reservation"], "none": ["not", "cannot", "can't", "don't"]},
+                {"all": ["my", "booking"], "none": ["not", "cannot", "can't", "don't"]}
+              ],
+              "polishNote": "意思已经表达清楚；更自然、礼貌的说法是：I'd like to check in, please.",
+              "ambiguityNote": "接受表达入住意图或说明已有预订的自然回答。",
+              "reviewWords": ["check in"]
+            },
+            {
+              "id": "hc-scene-02",
+              "number": 2,
+              "prompt": "Front desk: “What name is the reservation under?” 任务：告诉前台预订登记在 Chen 名下。",
+              "scene": {
+                "speaker": "FRONT DESK",
+                "cue": "What name is the reservation under?",
+                "translation": "请问预订登记在哪个名字下？",
+                "task": "告诉前台预订登记在 Chen 名下。"
+              },
+              "canonicalAnswer": "The reservation is under the name Chen.",
+              "answerTranslation": "预订登记在 Chen 名下。",
+              "answers": ["Chen.", "Under Chen.", "It's under Chen.", "It is under Chen.", "It's under the name Chen.", "It is under the name Chen.", "The reservation is under Chen.", "The reservation is under the name Chen.", "My reservation is under Chen.", "My reservation is under the name Chen.", "I have a reservation under Chen.", "I have a reservation under the name Chen.", "I have a booking under Chen.", "I have a booking under the name Chen."],
+              "intent": "give_reservation_name",
+              "meaningPatterns": [
+                {"all": ["chen"], "none": ["not", "isn't", "isnt"]}
+              ],
+              "polishNote": "意思已经表达清楚；完整说法可以是：The reservation is under the name Chen.",
+              "ambiguityNote": "直接回答姓名，或使用 reservation / booking 的完整句子都可以。",
+              "reviewWords": ["reservation", "under the name"]
+            },
+            {
+              "id": "hc-scene-03",
+              "number": 3,
+              "prompt": "Front desk: “May I see your passport, please?” 任务：把护照递给前台。",
+              "scene": {
+                "speaker": "FRONT DESK",
+                "cue": "May I see your passport, please?",
+                "translation": "可以看一下您的护照吗？",
+                "task": "把护照递给前台。"
+              },
+              "canonicalAnswer": "Sure. Here you are.",
+              "answerTranslation": "好的，给您。",
+              "answers": ["Sure. Here you are.", "Sure, here you are.", "Of course. Here you are.", "Of course, here you are.", "Certainly. Here you are.", "Yes. Here you are.", "Okay. Here you are.", "Here you are.", "Here you go.", "Sure."],
+              "intent": "hand_over_passport",
+              "meaningPatterns": [
+                {"all": ["here", "you", "are"], "none": ["not", "cannot", "can't", "don't"]},
+                {"all": ["here", "you", "go"], "none": ["not", "cannot", "can't", "don't"]}
+              ],
+              "polishNote": "意思已经表达清楚；递交物品时可以说：Sure. Here you are.",
+              "ambiguityNote": "接受表示同意并递交证件的常见自然表达。",
+              "reviewWords": ["passport", "desk clerk"]
+            },
+            {
+              "id": "hc-scene-04",
+              "number": 4,
+              "prompt": "Front desk: “You booked a double room for two nights. Breakfast is included.” 任务：询问几点退房。",
+              "scene": {
+                "speaker": "FRONT DESK",
+                "cue": "You booked a double room for two nights. Breakfast is included.",
+                "translation": "您预订的是双人房，入住两晚，含早餐。",
+                "task": "询问几点退房。"
+              },
+              "canonicalAnswer": "What time is checkout?",
+              "answerTranslation": "几点退房？",
+              "answers": ["What time is checkout?", "When is checkout?", "What is the checkout time?", "What time is check-out?", "When is check-out?", "What time do I need to check out?", "When do I need to check out?", "What time should I check out?", "When should I check out?", "When do I have to check out?", "What time do we check out?"],
+              "intent": "ask_checkout_time",
+              "meaningPatterns": [
+                {"all": ["checkout", "time"], "none": ["not", "don't"]},
+                {"all": ["when", "checkout"], "none": ["not", "don't"]},
+                {"all": ["what", "time", "check", "out"], "none": ["not", "don't"]}
+              ],
+              "polishNote": "意思已经表达清楚；更自然的问法是：What time is checkout?",
+              "ambiguityNote": "checkout 是名词；check out 是动词短语，两种结构都接受。",
+              "reviewWords": ["book a room", "double room", "included", "checkout"]
+            },
+            {
+              "id": "hc-scene-05",
+              "number": 5,
+              "prompt": "Front desk: “Checkout is at 11 a.m. Your room is 508, on the fifth floor. Here is your key card.” 任务：询问酒店 Wi-Fi 密码。",
+              "scene": {
+                "speaker": "FRONT DESK",
+                "cue": "Checkout is at 11 a.m. Your room is 508, on the fifth floor. Here is your key card.",
+                "translation": "上午 11 点退房。您的房间是 508，在五楼。这是您的房卡。",
+                "task": "询问酒店 Wi-Fi 密码。"
+              },
+              "canonicalAnswer": "Could I have the Wi-Fi password, please?",
+              "answerTranslation": "可以告诉我 Wi-Fi 密码吗？",
+              "answers": ["Could I have the Wi-Fi password, please?", "Can I have the Wi-Fi password, please?", "May I have the Wi-Fi password, please?", "Could I get the Wi-Fi password, please?", "Can I get the Wi-Fi password, please?", "Could you tell me the Wi-Fi password, please?", "Can you tell me the Wi-Fi password, please?", "What is the Wi-Fi password?", "What's the Wi-Fi password?", "What's the hotel Wi-Fi password?", "Wi-Fi password, please."],
+              "intent": "ask_wifi_password",
+              "meaningPatterns": [
+                {"all": ["wifi", "password"], "none": ["not", "don't"]}
+              ],
+              "polishNote": "意思表达正确；询问密码时通常要加 the。更自然的说法是：What is the Wi-Fi password?",
+              "ambiguityNote": "接受 could / can / may，以及 Wi-Fi、WiFi、Wi Fi 等常见写法。",
+              "reviewWords": ["key card", "floor", "Wi-Fi password"]
+            },
+            {
+              "id": "hc-scene-06",
+              "number": 6,
+              "prompt": "Front desk: “The Wi-Fi password is MAPLE508. Is there anything else?” 任务：表示没有别的问题并道谢。",
+              "scene": {
+                "speaker": "FRONT DESK",
+                "cue": "The Wi-Fi password is MAPLE508. Is there anything else?",
+                "translation": "Wi-Fi 密码是 MAPLE508。还需要别的帮助吗？",
+                "task": "表示没有别的问题并道谢。"
+              },
+              "canonicalAnswer": "No, that's all. Thank you.",
+              "answerTranslation": "不用了，就这些。谢谢。",
+              "answers": ["No, that's all. Thank you.", "No, that's all, thank you.", "That's all. Thank you.", "That's all, thank you.", "No, thank you.", "No, thanks.", "I'm all set, thank you.", "I am all set, thank you.", "That's everything, thank you.", "Nothing else, thank you.", "Thank you. That's all.", "Thanks. That's all.", "I'm good, thank you."],
+              "intent": "close_conversation_politely",
+              "meaningPatterns": [
+                {"all": ["all", "thank"]},
+                {"all": ["nothing", "thank"]},
+                {"all": ["no", "thank"]}
+              ],
+              "polishNote": "意思已经表达清楚；可以说：No, that's all. Thank you.",
+              "ambiguityNote": "接受表示不需要其他帮助并礼貌结束对话的自然回答。",
+              "reviewWords": ["Wi-Fi password"]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

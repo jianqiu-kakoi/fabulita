@@ -1,0 +1,11 @@
+[Unit]
+Description=Daily My English SQLite backup
+
+[Timer]
+OnCalendar=*-*-* 03:17:00
+RandomizedDelaySec=30m
+Persistent=true
+Unit=my-english-backup.service
+
+[Install]
+WantedBy=timers.target

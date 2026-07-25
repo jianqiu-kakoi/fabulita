@@ -30,7 +30,10 @@ def main(argv=None):
     p.add_argument("--gloss-lang", dest="gloss_lang", help="language of glosses/translations (default: zh)")
     p.add_argument("--ui", dest="ui_default", choices=["zh", "en", "es", "ja"], help="default UI language")
 
-    p = sub.add_parser("import", help="import vocabulary CSV/TSV (word,gloss[,note])")
+    p = sub.add_parser(
+        "import",
+        help="import vocabulary CSV/TSV (word,gloss[,note,category,kind,example,example_trans,answers,review_mode])",
+    )
     p.add_argument("file")
 
     p = sub.add_parser("next", help="print the LLM prompt for the next story")

@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="My English 场景英语学习：通过真实旅行情境练习开口表达。"
+    />
+    <meta name="theme-color" content="#f7f3ec" />
+    <meta property="og:title" content="My English · 场景英语学习" />
+    <meta
+      property="og:description"
+      content="在酒店等真实场景中学习、练习并复习英语。"
+    />
+    <meta property="og:image" content="/hotel-checkin-preview.png" />
+    <link rel="icon" href="data:," />
+    <title>My English · 场景英语学习</title>
+  </head>
+  <body>
+    <div id="cloud-app" class="cloud-app">
+      <main class="guest-landing" id="guest-landing">
+        <nav class="landing-nav" aria-label="My English">
+          <a class="account-brand" href="/" aria-label="My English 首页">
+            <span class="account-brand-mark" aria-hidden="true">ME</span>
+            <span>
+              <strong>My English</strong>
+              <small>场景英语学习</small>
+            </span>
+          </a>
+          <span class="landing-badge">邀请测试</span>
+        </nav>
+
+        <section class="guest-hero">
+          <div class="guest-copy">
+            <p class="guest-kicker">SCENE-BASED ENGLISH · INVITE BETA</p>
+            <h1>在真实场景里，<br />开口说英语。</h1>
+            <p class="guest-lead">
+              从酒店入住开始，先看懂一段对话，再把英语真正说出来。
+            </p>
+            <div class="landing-actions">
+              <button
+                class="landing-button primary"
+                id="register-entry"
+                type="button"
+                disabled
+              >
+                使用邀请码注册
+              </button>
+              <button
+                class="landing-button secondary"
+                id="login-entry"
+                type="button"
+                disabled
+              >
+                已有账号登录
+              </button>
+            </div>
+            <p
+              class="landing-status"
+              id="landing-status"
+              role="status"
+              aria-live="polite"
+              hidden
+            ></p>
+          </div>
+
+          <figure class="guest-visual">
+            <img
+              src="/hotel-checkin-preview.png"
+              alt="My English 酒店入住场景课程与对话练习界面预览"
+              width="1760"
+              height="910"
+              fetchpriority="high"
+            />
+            <figcaption>首个场景 · Hotel Check-in</figcaption>
+          </figure>
+        </section>
+
+        <footer class="landing-footer">
+          <span>My English · 邀请测试</span>
+          <a href="/privacy.html">隐私说明</a>
+        </footer>
+      </main>
+
+      <section class="learning-app" id="learning-app" hidden>
+        <header class="account-bar">
+          <a class="account-brand" href="/" aria-label="My English 首页">
+            <span class="account-brand-mark" aria-hidden="true">ME</span>
+            <span>
+              <strong>My English</strong>
+              <small>场景英语学习</small>
+            </span>
+          </a>
+
+          <div class="account-actions">
+            <span
+              class="sync-state is-local"
+              id="sync-state"
+              role="status"
+              aria-live="polite"
+            >
+              <i aria-hidden="true"></i>
+              <span>正在准备</span>
+            </span>
+            <button class="account-button" id="account-button" type="button">
+              <span id="account-label">我的账号</span>
+            </button>
+          </div>
+        </header>
+
+        <aside class="setup-banner" id="setup-banner" hidden>
+          云端同步暂时不可用，你仍可继续学习。
+        </aside>
+
+        <main class="learner-shell" id="learner-shell"></main>
+      </section>
+    </div>
+
+    <dialog
+      class="account-dialog"
+      id="account-dialog"
+      aria-labelledby="dialog-title"
+    >
+      <form class="account-dialog-card" id="account-form" method="dialog">
+        <button
+          class="dialog-close"
+          type="button"
+          aria-label="关闭登录窗口"
+        >
+          ×
+        </button>
+
+        <div id="login-panel">
+          <p class="dialog-kicker">跨设备学习</p>
+          <div class="auth-mode-tabs" role="tablist" aria-label="账号操作">
+            <button
+              class="auth-mode-tab is-active"
+              id="auth-mode-login"
+              type="button"
+              role="tab"
+              aria-selected="true"
+            >
+              登录
+            </button>
+            <button
+              class="auth-mode-tab"
+              id="auth-mode-register"
+              type="button"
+              role="tab"
+              aria-selected="false"
+              hidden
+            >
+              注册
+            </button>
+          </div>
+
+          <h1 id="dialog-title">登录学习账号</h1>
+          <p class="dialog-copy" id="dialog-copy">
+            登录后进入学习页，并自动同步你的学习进度。
+          </p>
+
+          <label
+            class="field registration-only"
+            id="display-name-field"
+            hidden
+          >
+            <span>姓名</span>
+            <input
+              id="display-name-input"
+              name="displayName"
+              type="text"
+              autocomplete="name"
+              placeholder="你的姓名或称呼"
+              disabled
+            />
+          </label>
+
+          <label class="field">
+            <span>邮箱</span>
+            <input
+              id="email-input"
+              name="email"
+              type="email"
+              inputmode="email"
+              autocomplete="email"
+              maxlength="254"
+              placeholder="you@example.com"
+              required
+            />
+          </label>
+
+          <label class="field">
+            <span>密码</span>
+            <input
+              id="password-input"
+              name="password"
+              type="password"
+              autocomplete="current-password"
+              minlength="10"
+              maxlength="128"
+              placeholder="至少 10 个字符"
+              required
+            />
+          </label>
+
+          <label class="field registration-only" id="invite-code-field" hidden>
+            <span>邀请码</span>
+            <input
+              id="invite-code-input"
+              name="inviteCode"
+              type="text"
+              autocomplete="off"
+              maxlength="64"
+              placeholder="ME-XXXXX-XXXXX-XXXXX-XXXXX-XXXXXX"
+              autocapitalize="characters"
+              spellcheck="false"
+              disabled
+            />
+          </label>
+
+          <p
+            class="form-message"
+            id="form-message"
+            role="status"
+            aria-live="polite"
+          ></p>
+
+          <label
+            class="consent-row registration-only"
+            id="privacy-consent-row"
+            hidden
+          >
+            <input id="privacy-consent" type="checkbox" disabled />
+            <span>
+              注册新账号时，我已阅读并同意
+              <a href="/privacy.html" target="_blank" rel="noopener">
+                《隐私说明》
+              </a>
+              ，了解登录后学习进度会上传到本站服务器。
+            </span>
+          </label>
+
+          <button class="dialog-submit" id="auth-submit-button" type="submit">
+            登录并同步进度
+          </button>
+
+          <p class="privacy-note">
+            密码只通过加密连接发送给本站服务器，服务端只保存安全哈希；
+            模型密钥不会写入网页。测试版暂不提供找回密码，请勿使用其他网站的相同密码。
+          </p>
+        </div>
+
+        <div id="profile-panel" hidden>
+          <p class="dialog-kicker">云端账号</p>
+          <h1>进度已同步</h1>
+          <p class="dialog-copy" id="profile-copy"></p>
+          <button
+            class="dialog-submit secondary"
+            id="sync-now-button"
+            type="button"
+          >
+            立即同步
+          </button>
+          <button
+            class="dialog-submit danger"
+            id="logout-button"
+            type="button"
+          >
+            退出登录
+          </button>
+        </div>
+      </form>
+    </dialog>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

@@ -5,12 +5,16 @@ Usage: uv run python scripts/build_docs.py
 """
 from pathlib import Path
 
-from fabulita import build
+from fabulita import build, vocab
 from fabulita.project import Project
 
 ROOT = Path(__file__).resolve().parent.parent
 DOCS = ROOT / "docs"
 DEMOS = {"es": "es-a1", "en": "en-a1", "ja": "ja-n5"}
+VOCAB_APPS = {
+    "mi-espanol": "mi-espanol.html",
+    "my-english": "my-english.html",
+}
 
 
 def main():
@@ -39,6 +43,24 @@ def main():
     build.build_reader(DOCS / "reader.html")
     build.build_studio(DOCS / "studio.html")
     print("wrote reader.html + studio.html")
+
+    for project_name, output_name in VOCAB_APPS.items():
+        project_root = ROOT / "examples" / project_name
+        if not (project_root / "fabulita.json").exists():
+            print("skipping optional app " + project_name + " (source not present)")
+            continue
+        vocab_project = Project(project_root)
+        # Rich learning dashboards treat vocab.csv as the source of truth.
+        # Rebuild the ignored cache from scratch so removed rows cannot linger.
+        vocab_project.save_vocab([])
+        vocab.import_file(vocab_project, vocab_project.root / "vocab.csv")
+        page, psize, n, clips = build.build(
+            vocab_project,
+            out=DOCS / output_name,
+            include_candidates=False,
+            home="index.html",
+        )
+        print("wrote " + str(page) + " (" + str(psize // 1024) + " KB, " + str(n) + " stories)")
 
 
 if __name__ == "__main__":

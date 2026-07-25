@@ -1,0 +1,10 @@
+node_modules/
+dist/
+!backend/dist/
+!backend/dist/**
+public/my-english.html
+public/og.png
+.env
+.env.*
+!.env.example
+.DS_Store

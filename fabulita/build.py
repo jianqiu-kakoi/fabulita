@@ -1,6 +1,7 @@
 """Assemble the single-file page: template + JSON payload + base64 audio."""
 
 import base64
+import hashlib
 import json
 from pathlib import Path
 
@@ -9,6 +10,40 @@ from .ui import UI_LANGS, UI_STRINGS
 
 TEMPLATE = Path(__file__).parent / "template.html"
 STUDIO = Path(__file__).parent / "studio.html"
+
+
+def _homework_payload(project):
+    """Load optional homework data and embed its local PDF source in the single-file page."""
+    root = project.root.resolve()
+    assignments = []
+    for raw in project.homeworks:
+        if not isinstance(raw, dict):
+            continue
+        assignment = dict(raw)
+        source = dict(assignment.get("source") or {})
+        source_file = source.pop("file", "")
+        if source_file:
+            source_path = (project.root / source_file).resolve()
+            try:
+                source_path.relative_to(root)
+            except ValueError as exc:
+                raise ValueError(f"homework source must stay inside project: {source_file}") from exc
+            if not source_path.is_file():
+                raise ValueError(f"homework source not found: {source_file}")
+            content = source_path.read_bytes()
+            digest = hashlib.sha256(content).hexdigest()
+            expected = source.get("sha256")
+            if expected and expected != digest:
+                raise ValueError(f"homework source checksum mismatch: {source_file}")
+            source.update({
+                "filename": source.get("filename") or source_path.name,
+                "sha256": digest,
+                "size": len(content),
+                "dataUrl": "data:application/pdf;base64," + base64.b64encode(content).decode(),
+            })
+        assignment["source"] = source
+        assignments.append(assignment)
+    return assignments
 
 
 def payload(project, include_candidates=True, home=None):
@@ -33,6 +68,11 @@ def payload(project, include_candidates=True, home=None):
             "gloss_lang": cfg["gloss_lang"],
             "ui_default": cfg["ui_default"],
             "home": home or cfg.get("home") or "",
+            "review_id": cfg.get("review_id") or project.root.name,
+            "qa_id": cfg.get("qa_id") or project.root.name,
+            "history_id": cfg.get("history_id") or project.root.name,
+            "homework_id": cfg.get("homework_id") or project.root.name,
+            "layout": cfg.get("layout") or "reader",
         },
         "ui": UI_STRINGS,
         "uiLangs": UI_LANGS,
@@ -40,6 +80,7 @@ def payload(project, include_candidates=True, home=None):
         "glossary": project.glossary,
         "stories": stories,
         "audio": audio,
+        "homeworks": _homework_payload(project),
     }
 
 
@@ -110,8 +151,9 @@ def build_reader(out="reader.html"):
         "ui": UI_STRINGS,
         "uiLangs": UI_LANGS,
         "config": {"name": "fabulita", "lang": "", "gloss_lang": "en",
-                   "ui_default": "en", "home": "index.html"},
-        "vocab": [], "glossary": {}, "stories": [], "audio": {},
+                   "ui_default": "en", "home": "index.html", "review_id": "self",
+                   "qa_id": "self", "history_id": "self", "homework_id": "self", "layout": "reader"},
+        "vocab": [], "glossary": {}, "stories": [], "audio": {}, "homeworks": [],
     }
     blob = json.dumps(data, ensure_ascii=False).replace("</", "<\\/")
     html = TEMPLATE.read_text(encoding="utf-8")
@@ -143,8 +185,10 @@ def unpack(bundle_path, dest="."):
         if not isinstance(v, dict) or not (v.get("w") or v.get("word")):
             raise ValueError(f"bad vocab entry (need 'w' and 'gloss' keys): {v!r}")
         entry = {"w": v.get("w") or v["word"], "gloss": v.get("gloss", "")}
-        if v.get("note"):
-            entry["note"] = v["note"]
+        for field in ("note", "category", "kind", "example", "example_trans", "answers", "review_mode",
+                      "display", "english"):
+            if v.get(field):
+                entry[field] = v[field]
         vocab_list.append(entry)
     proj.save_vocab(vocab_list)
     proj._write("glossary.json", bundle.get("glossary", {}))

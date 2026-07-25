@@ -6,6 +6,11 @@ build/
 .venv/
 .pytest_cache/
 
+# local credentials and deployment secrets
+.env
+.env.*
+!.env.example
+
 # generated per-project artifacts
 examples/*/vocab.json
 examples/*/audio/
@@ -13,3 +18,12 @@ examples/*/dist/
 
 # local dev-process scratch (superpowers SDD ledger/briefs)
 .superpowers/
+
+# local publish/build scratch
+/tmp/
+
+# connected OpenAI Sites worktree; published and versioned separately
+/deploy/my-english-site/
+
+# Third-party classroom material: keep out of the public repo
+examples/mi-espanol/materials/ejercicios-vocabulario-a1-1.pdf
