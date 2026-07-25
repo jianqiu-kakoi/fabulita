@@ -1,0 +1,64 @@
+{
+  "id": "toms-morning",
+  "title": "Tom's Morning",
+  "title_note": "汤姆的早晨",
+  "status": "accepted",
+  "sentences": [
+    {
+      "text": "Tom wakes up at seven every morning.",
+      "trans": "汤姆每天早上七点起床。"
+    },
+    {
+      "text": "He eats bread and drinks coffee for breakfast.",
+      "trans": "他早餐吃面包、喝咖啡。"
+    },
+    {
+      "text": "Then he takes the bus to school.",
+      "trans": "然后他坐公交车去学校。"
+    },
+    {
+      "text": "At school, he meets his friend Anna and his teacher.",
+      "trans": "在学校，他见到朋友安娜和老师。"
+    },
+    {
+      "text": "After school, Tom reads a book in the park with his dog.",
+      "trans": "放学后，汤姆和他的狗在公园里读书。"
+    },
+    {
+      "text": "In the evening, the family has dinner in the house.",
+      "trans": "傍晚，一家人在家里吃晚餐。"
+    }
+  ],
+  "vocab_used": [
+    "morning",
+    "breakfast",
+    "coffee",
+    "bread",
+    "school",
+    "bus",
+    "friend",
+    "teacher",
+    "book",
+    "park",
+    "dog",
+    "evening",
+    "dinner",
+    "family",
+    "house"
+  ],
+  "glossary": {},
+  "grammar": [
+    [
+      "wakes / eats / drinks / takes / meets / reads",
+      "一般现在时里，he / she / it 后面的动词通常加 -s 或 -es。"
+    ],
+    [
+      "at seven / in the evening",
+      "具体时间点常用 at，较长的时间段常用 in。"
+    ],
+    [
+      "takes the bus to school",
+      "take + 交通工具表示乘坐某种交通工具。"
+    ]
+  ]
+}

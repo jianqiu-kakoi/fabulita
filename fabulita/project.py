@@ -3,6 +3,7 @@
     fabulita.json    config (language, gloss language, UI default, TTS)
     vocab.json       master vocabulary list driving coverage
     glossary.json    shared glossary (function words etc.), merged into every story
+    homework.json    optional structured interactive assignments
     stories/*.json   one story per file, status: candidate | accepted
     audio/<id>/<n>.mp3   TTS cache, keyed by story id + sentence index
     dist/index.html  build output
@@ -16,6 +17,7 @@ from pathlib import Path
 CONFIG_FILE = "fabulita.json"
 VOCAB_FILE = "vocab.json"
 GLOSSARY_FILE = "glossary.json"
+HOMEWORK_FILE = "homework.json"
 STORIES_DIR = "stories"
 AUDIO_DIR = "audio"
 
@@ -113,6 +115,13 @@ class Project:
     @property
     def glossary(self):
         return self._read(GLOSSARY_FILE, {})
+
+    @property
+    def homeworks(self):
+        """Optional interactive assignments kept separate from the vocabulary catalog."""
+        data = self._read(HOMEWORK_FILE, {"assignments": []})
+        assignments = data.get("assignments", []) if isinstance(data, dict) else []
+        return assignments if isinstance(assignments, list) else []
 
     # ---------- stories ----------
 

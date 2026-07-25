@@ -1,0 +1,78 @@
+word,gloss,note,category,kind,example,example_trans,answers,review_mode
+morning,早晨、上午,the first part of the day,时间,noun,I study in the morning.,我早上学习。,早晨|早上|上午|the first part of the day
+afternoon,下午,the part of the day after noon,时间,noun,We read in the afternoon.,我们下午读书。,下午|the part of the day after noon
+evening,傍晚、晚上,the later part of the day,时间,noun,I go home in the evening.,我傍晚回家。,傍晚|晚上|the later part of the day
+night,夜晚、晚上,the dark part of the day,时间,noun,I sleep at night.,我晚上睡觉。,夜晚|晚上|the dark part of the day
+today,今天,this day,时间,adverb,I am busy today.,我今天很忙。,今天|this day
+tomorrow,明天,the day after today,时间,adverb,See you tomorrow.,明天见。,明天|the day after today
+every day,每天,on each day,时间,phrase,I study English every day.,我每天学习英语。,每天|天天|on each day
+weekend,周末,Saturday and Sunday,时间,noun,We go to the park on the weekend.,我们周末去公园。,周末|Saturday and Sunday
+early,早、提早,before the usual time,时间,adverb,I get up early.,我起得早。,早|提早|before the usual time
+late,晚、迟,after the expected time,时间,adverb,The bus is late.,公交车晚点了。,晚|迟|迟到|after the expected time
+breakfast,早餐,the first meal of the day,食物,noun,I have breakfast at seven.,我七点吃早餐。,早餐|早饭|the first meal of the day
+lunch,午餐,the meal in the middle of the day,食物,noun,We have lunch at school.,我们在学校吃午餐。,午餐|午饭|the meal in the middle of the day
+dinner,晚餐、正餐,the main evening meal,食物,noun,My family has dinner together.,我们一家人一起吃晚餐。,晚餐|晚饭|正餐|the main evening meal
+bread,面包,food made from flour,食物,noun,He eats bread for breakfast.,他早餐吃面包。,面包|food made from flour
+coffee,咖啡,a dark drink made from roasted beans,食物,noun,She drinks coffee in the morning.,她早上喝咖啡。,咖啡|a dark drink made from roasted beans
+water,水,a clear drink that people need,食物,noun,I drink water after school.,我放学后喝水。,水|a clear drink that people need
+fruit,水果,food such as apples or bananas,食物,noun,I eat fruit at lunch.,我午餐吃水果。,水果|food such as apples or bananas
+family,家庭、家人,the people you are related to,人物,noun,My family eats together.,我的家人一起吃饭。,家庭|家人|the people you are related to
+friend,朋友,a person you know and like,人物,noun,Anna is my friend.,安娜是我的朋友。,朋友|好友|a person you know and like
+teacher,老师,a person who helps students learn,人物,noun,Our teacher reads with us.,老师和我们一起阅读。,老师|教师|a person who helps students learn
+student,学生,a person who studies,人物,noun,Tom is a student.,汤姆是一名学生。,学生|a person who studies
+mother,母亲、妈妈,a female parent,人物,noun,My mother is at home.,我妈妈在家。,母亲|妈妈|a female parent
+father,父亲、爸爸,a male parent,人物,noun,My father takes the bus.,我爸爸坐公交车。,父亲|爸爸|a male parent
+home,家、在家,the place where you live,地点,noun,I go home after school.,我放学后回家。,家|在家|the place where you live
+house,房子、住宅,a building where people live,地点,noun,The family is in the house.,一家人在房子里。,房子|住宅|a building where people live
+school,学校,a place where students learn,地点,noun,Tom goes to school by bus.,汤姆坐公交车去学校。,学校|a place where students learn
+park,公园,a public green place,地点,noun,The dog runs in the park.,狗在公园里跑。,公园|a public green place
+library,图书馆,a place with books to read or borrow,地点,noun,I study in the library.,我在图书馆学习。,图书馆|a place with books to read or borrow
+bus stop,公交车站,a place where buses stop,地点,noun,We meet at the bus stop.,我们在公交车站见面。,公交车站|公交站|a place where buses stop
+beach,海滩、沙滩,a sandy place beside the sea,地点,noun,We walk on the beach.,我们在海滩上散步。,海滩|沙滩|a sandy place beside the sea
+book,书、书本,a set of written pages,物品,noun,I read a book after school.,我放学后读书。,书|书本|a set of written pages
+bag,包、书包,a container used to carry things,物品,noun,My book is in the bag.,我的书在包里。,包|书包|a container used to carry things
+phone,电话、手机,a device used to call people,物品,noun,Her phone is in the bag.,她的手机在包里。,电话|手机|a device used to call people
+key,钥匙,a small tool used to open a lock,物品,noun,The key is on the table.,钥匙在桌子上。,钥匙|a small tool used to open a lock
+bus,公交车、公共汽车,a large road vehicle for many people,交通,noun,We take the bus to school.,我们坐公交车去学校。,公交车|公共汽车|巴士|a large road vehicle
+dog,狗,a common animal kept as a pet,动物,noun,The dog is in the park.,狗在公园里。,狗|犬|a common animal kept as a pet
+wake up,醒来、起床,to stop sleeping,日常作息,phrasal verb,I wake up at seven.,我七点起床。,醒来|起床|to stop sleeping
+get dressed,穿好衣服、穿衣,to put on your clothes,日常作息,phrasal verb,I get dressed after I wake up.,我起床后穿衣服。,穿好衣服|穿衣|to put on your clothes
+have breakfast,吃早餐,to eat the first meal of the day,日常作息,phrase,I have breakfast at home.,我在家吃早餐。,吃早餐|吃早饭|to eat the first meal of the day
+go to school,去上学,to travel to school,日常作息,phrase,We go to school at eight.,我们八点去上学。,去上学|to travel to school
+study,学习,to spend time learning,动作,verb,I study English every day.,我每天学英语。,学习|读书|to spend time learning
+read,阅读、读,to look at and understand written words,动作,verb,She reads a book in the library.,她在图书馆读书。,阅读|读|看书|to understand written words
+listen,听、倾听,to pay attention to sound,动作,verb,We listen to our teacher.,我们听老师讲课。,听|倾听|to pay attention to sound
+eat,吃,to put food in your mouth,动作,verb,They eat lunch at school.,他们在学校吃午饭。,吃|食用|to put food in your mouth
+drink,喝,to take liquid into your mouth,动作,verb,I drink water every day.,我每天喝水。,喝|饮用|to take liquid into your mouth
+take,拿、乘坐,to carry something or travel by transport,动作,verb,He takes the bus to school.,他坐公交车上学。,拿|取|乘坐|to carry something|to travel by transport
+meet,遇见、见面,to see and speak to someone,动作,verb,I meet my friend at school.,我在学校见到朋友。,遇见|见面|会面|to see and speak to someone
+go home,回家,to travel to your home,日常作息,phrase,I go home after school.,我放学后回家。,回家|to travel to your home
+have dinner,吃晚餐,to eat the evening meal,日常作息,phrase,We have dinner at seven.,我们七点吃晚餐。,吃晚餐|吃晚饭|to eat the evening meal
+go to bed,上床睡觉,to get into bed to sleep,日常作息,phrase,I go to bed at ten.,我十点上床睡觉。,上床睡觉|睡觉|to get into bed to sleep
+like,喜欢,to enjoy or think something is good,动作,verb,I like this book.,我喜欢这本书。,喜欢|喜爱|to enjoy something
+want,想要、希望,to wish to have or do something,动作,verb,I want some water.,我想要一些水。,想要|希望|to wish to have something
+need,需要,to require something,动作,verb,I need my book.,我需要我的书。,需要|必须有|to require something
+happy,开心的、幸福的,feeling pleased,形容词,adjective,We are happy today.,我们今天很开心。,开心|高兴|幸福|feeling pleased
+tired,累的、疲惫的,needing rest,形容词,adjective,He is tired after school.,他放学后很累。,累|疲惫|疲劳|needing rest
+busy,忙的,having many things to do,形容词,adjective,My teacher is busy today.,老师今天很忙。,忙|忙碌|having many things to do
+ready,准备好的,prepared to do something,形容词,adjective,I am ready for school.,我准备好去上学了。,准备好的|准备就绪|prepared
+with,和……一起、带着,together with another person or thing,小词,preposition,Tom reads with his friend.,汤姆和朋友一起读书。,和|与|一起|带着|together with
+after,在……之后,later than something,小词,preposition,I read after school.,我放学后读书。,之后|在之后|later than
+before,在……之前,earlier than something,小词,preposition,I eat breakfast before school.,我上学前吃早餐。,之前|在之前|earlier than
+because,因为,for the reason that,小词,conjunction,I study because I want to learn.,我学习是因为我想学会。,因为|由于|for the reason that
+be,是；处于,am is and are are forms of be,语法,grammar,I am ready.,我准备好了。,be|am|is|are|是|处于,grammar
+have / has,有；吃；进行,has follows he she or it,语法,grammar,She has breakfast at seven.,她七点吃早餐。,have|has|有|吃|进行,grammar
+do / does,做；构成一般现在时问句和否定句,does follows he she or it,语法,grammar,Do you like coffee?,你喜欢咖啡吗？,do|does|做|助动词,grammar
+third-person -s,一般现在时第三人称单数词尾,he she or it usually takes a verb ending in s,语法,grammar,Tom reads every evening.,汤姆每天晚上读书。,第三人称单数|动词加s|third person singular,grammar
+reservation,预订、预约,an arrangement to keep a hotel room for you,酒店,noun,I have a reservation under the name Chen.,我有一个登记在 Chen 名下的预订。,预订|预约|房间预订|booking|an arrangement to keep a hotel room
+desk clerk,前台职员、酒店接待员,a person who helps guests at a hotel front desk,酒店,noun,The desk clerk welcomes guests at the hotel.,前台职员在酒店迎接住客。,前台职员|酒店前台|酒店接待员|front desk clerk|hotel receptionist
+book a room,预订房间,to arrange for a hotel room before you arrive,酒店,phrase,We booked a room for two nights.,我们预订了一个住两晚的房间。,预订房间|订房|to reserve a hotel room|to arrange for a hotel room
+check in,办理入住、登记入住,to register when you arrive at a hotel,酒店,phrasal verb,I'd like to check in please.,我想办理入住。,办理入住|登记入住|入住登记|to register at a hotel
+under the name,登记在……名下,using the name attached to a reservation,酒店,phrase,The reservation is under the name Chen.,预订登记在 Chen 名下。,登记在某人名下|以某人的名字|using the name on a reservation
+passport,护照,an official document used for international travel,酒店,noun,May I see your passport please?,可以看一下您的护照吗？,护照|an official travel document|an official document for travel
+double room,双人房、双人间,a hotel room for two people,酒店,noun,Your reservation is for a double room.,您预订的是一间双人房。,双人房|双人间|a room for two people|a hotel room for two people
+included,已包含、包含在价格内,provided as part of the price,酒店,adjective,Breakfast is included.,房费含早餐。,已包含|包括在内|包含在价格内|part of the price|provided at no extra cost
+checkout,退房、退房时间,the time or process of leaving a hotel,酒店,noun,What time is checkout?,几点退房？,退房|办理退房|退房时间|leaving a hotel|the time when you leave a hotel
+floor,楼层,one level of a building,酒店,noun,Your room is on the fifth floor.,您的房间在五楼。,楼层|层|one level of a building
+key card,房卡、电子门卡,a card used to open a hotel room,酒店,noun,Here is your key card.,这是您的房卡。,房卡|门卡|电子房卡|电子门卡|a card used to open a hotel room
+Wi-Fi password,Wi-Fi 密码、无线网络密码,the password used to connect to the hotel Wi-Fi,酒店,phrase,Could I have the Wi-Fi password please?,可以告诉我 Wi-Fi 密码吗？,Wi-Fi密码|无线网络密码|网络密码|the hotel Wi-Fi password|the password for the Wi-Fi

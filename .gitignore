@@ -13,3 +13,9 @@ examples/*/dist/
 
 # local dev-process scratch (superpowers SDD ledger/briefs)
 .superpowers/
+
+# local publish/build scratch
+/tmp/
+
+# connected OpenAI Sites worktree; published and versioned separately
+/deploy/my-english-site/

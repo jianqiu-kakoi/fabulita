@@ -1,0 +1,16 @@
+{
+  "name": "My English",
+  "lang": "en",
+  "gloss_lang": "zh",
+  "ui_default": "zh",
+  "review_id": "my-english-core-v1",
+  "qa_id": "my-english",
+  "history_id": "my-english",
+  "homework_id": "my-english",
+  "layout": "vocab",
+  "tts": {
+    "backend": "none",
+    "voice": "en-US-JennyNeural"
+  },
+  "max_words_per_story": 20
+}

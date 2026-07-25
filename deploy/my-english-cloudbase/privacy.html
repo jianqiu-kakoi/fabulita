@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f7f3ec" />
+    <title>隐私说明 · My English</title>
+    <style>
+      :root {
+        color: #25303a;
+        background: #f7f3ec;
+        font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont,
+          "PingFang SC", "Microsoft YaHei", sans-serif;
+      }
+      * { box-sizing: border-box; }
+      body { margin: 0; }
+      main {
+        width: min(100% - 2rem, 48rem);
+        margin: 0 auto;
+        padding: 3rem 0 5rem;
+      }
+      a { color: #b54333; }
+      h1 {
+        margin: 0;
+        color: #1f2833;
+        font-size: clamp(2rem, 8vw, 3.5rem);
+        letter-spacing: -0.055em;
+      }
+      h2 {
+        margin: 2.2rem 0 0.65rem;
+        color: #1f2833;
+        font-size: 1.05rem;
+      }
+      p, li {
+        color: #625d56;
+        font-size: 0.92rem;
+        line-height: 1.8;
+      }
+      ul { padding-left: 1.25rem; }
+      .kicker {
+        margin: 0 0 0.55rem;
+        color: #e85f43;
+        font-size: 0.75rem;
+        font-weight: 900;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+      .meta {
+        padding: 1rem 1.1rem;
+        border: 1px solid #e4ddd2;
+        border-radius: 1rem;
+        background: #fffdf9;
+      }
+      .todo {
+        padding: 0.08rem 0.32rem;
+        border-radius: 0.3rem;
+        background: #fff0c9;
+        color: #785d13;
+        font-weight: 800;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p class="kicker">My English</p>
+      <h1>隐私说明</h1>
+      <p class="meta">
+        版本日期：2026 年 7 月 25 日。运营者：
+        <span class="todo">正式上线前填写</span>；联系邮箱：
+        <span class="todo">正式上线前填写</span>。
+      </p>
+
+      <h2>1. 未登录学习</h2>
+      <p>
+        未登录时，词汇、复习、作业和问答记录只保存在当前浏览器的本地存储中，
+        不会发送到 CloudBase，也不会调用智能判分服务。清除浏览器数据可能导致这些记录丢失。
+      </p>
+
+      <h2>2. 登录与云端同步</h2>
+      <p>
+        选择手机号验证码登录后，CloudBase 身份认证服务会处理手机号和登录会话。
+        本产品自己的学习数据库不保存手机号，只使用不可逆处理后的 CloudBase 用户标识隔离数据。
+        登录后会同步复习状态、作业进度、原始作答、学习事件以及用户主动写入的问答内容。
+      </p>
+
+      <h2>3. 智能判分</h2>
+      <p>
+        只有本地规则无法接受的酒店场景文本答案，才会交给服务端配置的模型复核。
+        模型收到练习要求、服务端参考规则和该次作答，不会收到手机号或 CloudBase 用户标识。
+        正式上线前，运营者应在这里列明模型服务商、处理地域与其隐私政策：
+        <span class="todo">正式上线前填写</span>。
+      </p>
+
+      <h2>4. 用途与安全</h2>
+      <ul>
+        <li>数据仅用于保存进度、跨设备同步、恢复学习状态和提供判分反馈。</li>
+        <li>浏览器不能直接读写学习数据库，所有操作都经需要登录的云函数验证。</li>
+        <li>模型密钥和云端管理凭据只配置在服务端，不写入网页或代码仓库。</li>
+      </ul>
+
+      <h2>5. 保存期限与用户权利</h2>
+      <p>
+        数据在账号使用期间保存。你可以退出登录并继续使用本地模式，也可以通过上方联系邮箱
+        申请查询、更正、导出或删除云端学习数据。正式开放注册前，运营者应建立并验证请求处理流程。
+      </p>
+
+      <h2>6. 未成年人</h2>
+      <p>
+        本 V0 不面向不满 14 周岁的未成年人独立注册。若后续面向未成年人提供服务，
+        应先补充监护人同意、专门规则和相应保护措施。
+      </p>
+
+      <h2>7. 变更</h2>
+      <p>
+        收集范围、模型服务商或处理目的发生实质变化时，将更新本说明，并在需要时重新取得同意。
+      </p>
+
+      <p><a href="/">返回 My English</a></p>
+    </main>
+  </body>
+</html>

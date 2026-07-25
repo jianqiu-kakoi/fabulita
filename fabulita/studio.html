@@ -353,7 +353,7 @@ function readerTemplate() {
 
 function exportPage(p) {
   var payload = {
-    config: { name: p.config.name, lang: p.config.lang, gloss_lang: p.config.gloss_lang, ui_default: state.lang },
+    config: { name: p.config.name, lang: p.config.lang, gloss_lang: p.config.gloss_lang, ui_default: state.lang, review_id: p.id },
     ui: READER_UI.ui, uiLangs: READER_UI.uiLangs,
     vocab: p.vocab, glossary: p.glossary || {}, stories: p.stories, audio: {}
   };
