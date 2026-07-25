@@ -12,9 +12,12 @@
     "start": "node dist/server.js",
     "test": "npm run build && node --test test/*.test.mjs"
   },
-  "dependencies": {},
+  "dependencies": {
+    "nodemailer": "^9.0.3"
+  },
   "devDependencies": {
     "@types/node": "22.15.32",
+    "@types/nodemailer": "^8.0.1",
     "typescript": "5.9.3"
   }
 }

@@ -35,7 +35,8 @@ server/
 ```
 
 The deployer installs production dependencies with lifecycle scripts disabled.
-The current backend uses only Node 22 built-ins, including `node:sqlite`.
+The backend uses Node's built-in `node:sqlite` plus Nodemailer for generic SMTP
+delivery of registration codes.
 
 From the repository, build that archive with:
 
@@ -67,12 +68,13 @@ ALLOWED_ORIGINS=https://english.chyuopen.com
 DATABASE_PATH=/var/lib/my-english/my-english.sqlite
 ```
 
-Add the LLM provider values only in `/etc/my-english/my-english.env`. Then:
+Add SMTP, email-verification, and optional LLM provider values only in
+`/etc/my-english/my-english.env`. Then:
 
 ```sh
 sudo chown root:myenglish /etc/my-english/my-english.env
 sudo chmod 0640 /etc/my-english/my-english.env
-sudo systemctl restart caddy
+sudo systemctl restart my-english
 ```
 
 ### Registration and password-work gate
@@ -81,18 +83,54 @@ The production environment example deliberately contains:
 
 ```text
 REGISTRATION_ENABLED=false
+EMAIL_VERIFICATION_ENABLED=false
 PASSWORD_SCRYPT_CONCURRENCY=2
 PASSWORD_SCRYPT_QUEUE_LIMIT=8
 ```
 
-Leave registration closed through the first deployment. The health response
-must report `"registrationEnabled": false` and
+Leave registration and email verification closed through the first deployment.
+The health response must report `"registrationEnabled": false`,
+`"emailVerificationEnabled": false`, and
 `"privacyConsentVersion": "2026-07-25"`. Before changing the flag to `true`,
-verify that the public privacy notice is the matching version and that the
-registration client sends:
+verify that the public privacy notice is the matching version. Configure all of
+the following before setting both feature flags to `true`; the API refuses to
+start with open registration and incomplete verification configuration:
+
+```text
+EMAIL_VERIFICATION_SECRET=<private random value of at least 32 bytes>
+SMTP_HOST=<provider host>
+SMTP_PORT=465
+SMTP_SECURE=true
+SMTP_USER=<provider username>
+SMTP_PASSWORD=<provider password>
+SMTP_FROM=<provider-approved sender address>
+SMTP_MAX_CONCURRENCY=2
+AUTH_VERIFICATION_GLOBAL_LIMIT_PER_MINUTE=10
+AUTH_VERIFICATION_GLOBAL_LIMIT_PER_HOUR=100
+AUTH_VERIFICATION_GLOBAL_LIMIT_PER_DAY=500
+```
+
+Use port 587 with `SMTP_SECURE=false` for a STARTTLS provider. The verification
+mailer uses a pooled Nodemailer transport; `SMTP_MAX_CONCURRENCY` defaults to
+two and the backend clamps it to at most two connections. The persistent global
+minute, hourly, and daily budgets are checked and consumed in the same
+SQLite-backed limiter call as the per-IP and per-email verification limits, so
+a restart or many source addresses cannot bypass the SMTP budget.
+
+Resending after 60 seconds creates a new active challenge but carries its
+failed-attempt count forward. A retained obsolete code is rejected without
+incrementing the new active challenge. Its HMAC retention deadline is separate
+from its validity deadline and lasts through the current active challenge, so
+this remains true even when the resend happened near the old code's expiry.
+Five failed active attempts lock that
+email until the active challenge expires; requesting another code cannot bypass
+the lock.
+
+The verification request client must send:
 
 ```json
 {
+  "email": "learner@example.com",
   "privacyConsent": {
     "accepted": true,
     "version": "2026-07-25"
@@ -100,10 +138,25 @@ registration client sends:
 }
 ```
 
-After deliberately opening registration, restart `my-english` and recheck the
-health response. Do not raise password concurrency above two on the 1.6 GB
-VPS. Each current scrypt operation uses roughly 128 MiB, and the backend also
-clamps this setting to two.
+The registration client must then send:
+
+```json
+{
+  "email": "learner@example.com",
+  "password": "at least ten characters",
+  "verificationCode": "123456",
+  "privacyConsent": {
+    "accepted": true,
+    "version": "2026-07-25"
+  }
+}
+```
+
+After deliberately opening both flags, restart `my-english` and recheck the
+health response. Send one real verification email and complete one registration
+before announcing availability. Do not raise password concurrency above two on
+the 1.6 GB VPS. Each current scrypt operation uses roughly 128 MiB, and the
+backend also clamps this setting to two.
 
 At Cloudflare, point `english.chyuopen.com` to the VPS, enable the orange cloud,
 and select **Full (strict)** TLS. Do not enable Rocket Loader or third-party
@@ -178,8 +231,12 @@ Or select a 16-character release ID:
 sudo ./scripts/rollback-release.sh RELEASE_ID
 ```
 
-Rollback also performs a health check and restores the previously active
-release if the selected target is unhealthy.
+Rollback always changes `REGISTRATION_ENABLED=true` to `false` before switching
+releases. This prevents an older release from reopening the pre-verification
+registration path. It also performs a health check and restores the previously
+active release if the selected target is unhealthy. Registration remains
+closed after either outcome; reopen it only after verifying the active release
+still enforces email verification.
 
 ## 5. Backups
 

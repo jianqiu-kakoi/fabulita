@@ -30,6 +30,7 @@ test("health reports whether registration matches the active privacy notice", as
       return jsonResponse({
         ok: true,
         registrationEnabled: false,
+        emailVerificationEnabled: false,
         privacyConsentVersion: "2026-07-25",
       });
     },
@@ -37,6 +38,7 @@ test("health reports whether registration matches the active privacy notice", as
 
   assert.deepEqual(await api.getHealth(), {
     registrationEnabled: false,
+    emailVerificationEnabled: false,
     privacyConsentVersion: "2026-07-25",
   });
   assert.equal(calls[0].url, "/api/health");
@@ -81,7 +83,46 @@ test("signed-out me response becomes a guest without throwing", async () => {
   assert.equal(api.csrfToken, "");
 });
 
-test("register sends explicit privacy acceptance while login sends only credentials", async () => {
+test("verification request sends email and current privacy acceptance", async () => {
+  const calls = [];
+  const api = createApiClient({
+    async fetcher(url, options) {
+      calls.push({ url, options });
+      return jsonResponse({
+        ok: true,
+        expiresInSeconds: 600,
+        resendAfterSeconds: 60,
+      });
+    },
+  });
+
+  assert.deepEqual(
+    await api.requestEmailVerification({
+      email: "a@example.com",
+      privacyConsent: {
+        accepted: true,
+        version: "2026-07-25",
+      },
+    }),
+    {
+      expiresInSeconds: 600,
+      resendAfterSeconds: 60,
+    },
+  );
+  assert.equal(calls[0].url, "/api/auth/verification/request");
+  assert.equal(calls[0].options.method, "POST");
+  assert.equal(calls[0].options.credentials, "include");
+  assert.equal(calls[0].options.headers["X-CSRF-Token"], undefined);
+  assert.deepEqual(JSON.parse(calls[0].options.body), {
+    email: "a@example.com",
+    privacyConsent: {
+      accepted: true,
+      version: "2026-07-25",
+    },
+  });
+});
+
+test("register sends verification and privacy while login sends only credentials", async () => {
   const calls = [];
   const api = createApiClient({
     async fetcher(url, options) {
@@ -101,6 +142,7 @@ test("register sends explicit privacy acceptance while login sends only credenti
       accepted: true,
       version: "2026-07-25",
     },
+    verificationCode: "123456",
   });
   await api.login({ email: "a@example.com", password: "password-2" });
 
@@ -121,6 +163,7 @@ test("register sends explicit privacy acceptance while login sends only credenti
       accepted: true,
       version: "2026-07-25",
     },
+    verificationCode: "123456",
   });
   assert.deepEqual(JSON.parse(calls[1].options.body), {
     email: "a@example.com",
@@ -157,6 +200,48 @@ test("registration stays hidden until the server explicitly enables it", () => {
   assert.match(registerTab, /\bhidden\b/);
 });
 
+test("email verification controls are registration-only and form-safe", () => {
+  const html = readFileSync(
+    new URL("../index.html", import.meta.url),
+    "utf8",
+  );
+  const panel = html.match(
+    /<div\b[^>]*\bid="verification-field"[^>]*>/,
+  )?.[0];
+  const input = html.match(
+    /<input\b[^>]*\bid="verification-code-input"[^>]*>/,
+  )?.[0];
+  const button = html.match(
+    /<button\b[^>]*\bid="verification-send-button"[^>]*>/,
+  )?.[0];
+
+  assert.ok(panel, "registration should include a verification panel");
+  assert.match(panel, /\bhidden\b/);
+  assert.ok(input, "registration should include a verification input");
+  assert.match(input, /\binputmode="numeric"/);
+  assert.match(input, /\bautocomplete="one-time-code"/);
+  assert.match(input, /\bmaxlength="6"/);
+  assert.match(input, /\bdisabled\b/);
+  assert.ok(button, "registration should include a send-code button");
+  assert.match(button, /\btype="button"/);
+  assert.match(button, /\bdisabled\b/);
+});
+
+test("verification UI includes Chinese retry, countdown, and error states", () => {
+  const source = readFileSync(
+    new URL("../src/main.js", import.meta.url),
+    "utf8",
+  );
+
+  assert.match(source, /EMAIL_VERIFICATION_REQUIRED/);
+  assert.match(source, /EMAIL_VERIFICATION_UNAVAILABLE/);
+  assert.match(source, /VERIFICATION_RATE_LIMITED/);
+  assert.match(source, /秒后重发/);
+  assert.match(source, /重新发送/);
+  assert.match(source, /requestEmailVerification/);
+  assert.match(source, /requireVerification:\s*registering/);
+});
+
 test("privacy notice states that third-party model scoring is disabled", () => {
   const html = readFileSync(
     new URL("../privacy.html", import.meta.url),
@@ -177,15 +262,21 @@ test("privacy notice states that third-party model scoring is disabled", () => {
   );
 });
 
-test("closed preview privacy notice has no fake operator placeholders", () => {
+test("public beta preparation notice discloses verification gates and contact", () => {
   const privacy = readFileSync(
     new URL("../privacy.html", import.meta.url),
     "utf8",
   );
 
   assert.doesNotMatch(privacy, /正式上线前填写/);
-  assert.match(privacy, /新账号注册尚未开放/);
-  assert.match(privacy, /补充运营者名称与有效联系邮箱/);
+  assert.match(privacy, /当前为公开测试准备阶段/);
+  assert.match(privacy, /新账号注册不会开放/);
+  assert.match(privacy, /Jianqiu Ye（叶剑秋）/);
+  assert.match(privacy, /github\.com\/jianqiu-kakoi\/fabulita\/issues/);
+  assert.match(privacy, /新账号注册必须通过发送到该邮箱的一次性验证码/);
+  assert.match(privacy, /实际服务商及处理地域/);
+  assert.match(privacy, /仍不提供找回密码/);
+  assert.match(privacy, /尚未提供自助导出或删除账号功能/);
 });
 
 test("action and logout attach the latest CSRF token", async () => {

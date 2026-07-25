@@ -15,6 +15,7 @@ readonly current_link="${app_root}/current"
 readonly previous_link="${app_root}/previous"
 readonly next_link="${app_root}/.current.next"
 readonly health_url="http://127.0.0.1:3000/api/health"
+readonly environment_file="/etc/my-english/my-english.env"
 
 exec 9>/run/lock/my-english-deploy.lock
 flock 9
@@ -33,11 +34,25 @@ case "${target_release}" in
 esac
 [[ -d "${target_release}" && -f "${target_release}/.release-sha256" ]] ||
   die "rollback target is not a valid release"
+[[ -f "${environment_file}" ]] ||
+  die "application environment file is missing"
 
 old_target=""
 [[ -L "${current_link}" ]] && old_target="$(readlink -f "${current_link}")"
 [[ -n "${old_target}" ]] || die "there is no active release"
 [[ "${old_target}" != "${target_release}" ]] || die "target release is already active"
+
+# A prior release may predate mandatory email verification. Always close
+# registration before changing code so a rollback can never reopen the old
+# unverified registration path. Reopening is a separate, deliberate operation.
+grep -Eq '^REGISTRATION_ENABLED=(true|false)$' "${environment_file}" ||
+  die "REGISTRATION_ENABLED must be an exact true/false entry before rollback"
+if grep -Eq '^REGISTRATION_ENABLED=true$' "${environment_file}"; then
+  sed -i 's/^REGISTRATION_ENABLED=true$/REGISTRATION_ENABLED=false/' \
+    "${environment_file}"
+  printf '%s\n' \
+    'Registration was open and has been closed before rollback.' >&2
+fi
 
 rm -f -- "${next_link}"
 ln -s "${target_release}" "${next_link}"

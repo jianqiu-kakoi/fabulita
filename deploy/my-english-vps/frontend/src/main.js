@@ -29,6 +29,12 @@ const elements = {
   registerModeButton: document.querySelector("#auth-mode-register"),
   emailInput: document.querySelector("#email-input"),
   passwordInput: document.querySelector("#password-input"),
+  verificationField: document.querySelector("#verification-field"),
+  verificationCodeInput: document.querySelector("#verification-code-input"),
+  verificationSendButton: document.querySelector(
+    "#verification-send-button",
+  ),
+  verificationHelp: document.querySelector("#verification-help"),
   privacyConsent: document.querySelector("#privacy-consent"),
   formMessage: document.querySelector("#form-message"),
   authSubmitButton: document.querySelector("#auth-submit-button"),
@@ -39,6 +45,10 @@ const elements = {
 let currentUser = null;
 let authMode = "login";
 let registrationEnabled = false;
+let verificationSending = false;
+let verificationResendSeconds = 0;
+let verificationCountdownTimer = null;
+let verificationRequestedEmail = "";
 let activeLearningProfile = "guest";
 let bridge = null;
 
@@ -76,6 +86,12 @@ function friendlyError(error) {
     REGISTRATION_DISABLED: "当前暂未开放新账号注册，请稍后再试。",
     REGISTRATION_CLOSED: "当前暂未开放新账号注册，请稍后再试。",
     PRIVACY_CONSENT_REQUIRED: "请确认并同意当前版本的隐私说明后再注册。",
+    EMAIL_VERIFICATION_REQUIRED:
+      "邮箱验证码无效或已过期，请重新获取后再注册。",
+    EMAIL_VERIFICATION_UNAVAILABLE:
+      "验证码暂时无法发送，请稍后再试。",
+    VERIFICATION_RATE_LIMITED:
+      "验证码发送过于频繁，请稍后再试。",
   };
   return messages[code] || error?.message || "暂时无法连接服务器，请稍后重试。";
 }
@@ -137,6 +153,53 @@ function setBusy(button, busy, label) {
   }
 }
 
+function currentPrivacyConsent() {
+  return {
+    accepted: elements.privacyConsent.checked === true,
+    version: PRIVACY_ACCEPTED_VERSION,
+  };
+}
+
+function updateVerificationUi() {
+  const registering = authMode === "register" && registrationEnabled;
+  elements.verificationField.hidden = !registering;
+  elements.verificationCodeInput.disabled = !registering;
+  elements.verificationSendButton.disabled =
+    !registering || verificationSending || verificationResendSeconds > 0;
+  if (verificationSending) {
+    elements.verificationSendButton.textContent = "发送中…";
+  } else if (verificationResendSeconds > 0) {
+    elements.verificationSendButton.textContent =
+      `${verificationResendSeconds} 秒后重发`;
+  } else {
+    elements.verificationSendButton.textContent = verificationRequestedEmail
+      ? "重新发送"
+      : "发送验证码";
+  }
+}
+
+function startVerificationCountdown(seconds) {
+  if (verificationCountdownTimer) {
+    window.clearInterval(verificationCountdownTimer);
+  }
+  verificationResendSeconds = Math.max(
+    1,
+    Math.min(3600, Math.round(Number(seconds) || 60)),
+  );
+  updateVerificationUi();
+  verificationCountdownTimer = window.setInterval(() => {
+    verificationResendSeconds = Math.max(
+      0,
+      verificationResendSeconds - 1,
+    );
+    if (verificationResendSeconds === 0) {
+      window.clearInterval(verificationCountdownTimer);
+      verificationCountdownTimer = null;
+    }
+    updateVerificationUi();
+  }, 1000);
+}
+
 function setAuthMode(mode) {
   authMode =
     mode === "register" && registrationEnabled ? "register" : "login";
@@ -156,17 +219,20 @@ function setAuthMode(mode) {
     ? "注册并同步进度"
     : "登录并同步进度";
   elements.privacyConsent.required = registering;
+  updateVerificationUi();
   showMessage("");
 }
 
 function setRegistrationAvailability(health) {
   registrationEnabled =
     health?.registrationEnabled === true &&
+    health?.emailVerificationEnabled === true &&
     health?.privacyConsentVersion === PRIVACY_ACCEPTED_VERSION;
   elements.registerModeButton.hidden = !registrationEnabled;
   if (!registrationEnabled && authMode === "register") {
     setAuthMode("login");
   }
+  updateVerificationUi();
 }
 
 function showLoginPanel() {
@@ -223,7 +289,10 @@ async function refreshSession() {
   return currentUser;
 }
 
-function validateCredentials({ requirePrivacy = false } = {}) {
+function validateCredentials({
+  requirePrivacy = false,
+  requireVerification = false,
+} = {}) {
   if (requirePrivacy && !elements.privacyConsent.checked) {
     showMessage("请先阅读并同意隐私说明。", "error");
     elements.privacyConsent.focus();
@@ -241,12 +310,75 @@ function validateCredentials({ requirePrivacy = false } = {}) {
     elements.passwordInput.focus();
     return null;
   }
+  if (requireVerification) {
+    const verificationCode = elements.verificationCodeInput.value.trim();
+    if (!/^\d{6}$/.test(verificationCode)) {
+      showMessage("请输入邮件中的 6 位数字验证码。", "error");
+      elements.verificationCodeInput.setAttribute("aria-invalid", "true");
+      elements.verificationCodeInput.focus();
+      return null;
+    }
+    return { email, password, verificationCode };
+  }
   return { email, password };
+}
+
+function validateVerificationRequest() {
+  if (!registrationEnabled || authMode !== "register") {
+    showMessage("当前暂未开放新账号注册，请稍后再试。", "error");
+    return "";
+  }
+  if (!elements.emailInput.checkValidity()) {
+    showMessage("请输入正确的邮箱地址。", "error");
+    elements.emailInput.focus();
+    return "";
+  }
+  if (!elements.privacyConsent.checked) {
+    showMessage("发送验证码前，请先阅读并同意隐私说明。", "error");
+    elements.privacyConsent.focus();
+    return "";
+  }
+  return elements.emailInput.value.trim().toLowerCase();
+}
+
+async function requestEmailVerification() {
+  if (verificationSending || verificationResendSeconds > 0) return;
+  const email = validateVerificationRequest();
+  if (!email) return;
+  verificationSending = true;
+  updateVerificationUi();
+  showMessage("");
+  try {
+    const result = await api.requestEmailVerification({
+      email,
+      privacyConsent: currentPrivacyConsent(),
+    });
+    verificationRequestedEmail = email;
+    elements.verificationCodeInput.value = "";
+    elements.verificationCodeInput.removeAttribute("aria-invalid");
+    const validMinutes = Math.max(
+      1,
+      Math.ceil(result.expiresInSeconds / 60),
+    );
+    elements.verificationHelp.textContent =
+      `验证码已发送到 ${email}，${validMinutes} 分钟内有效。`;
+    startVerificationCountdown(result.resendAfterSeconds);
+    showMessage("验证码已发送，请查收邮箱。", "success");
+    if (authMode === "register") elements.verificationCodeInput.focus();
+  } catch (error) {
+    showMessage(friendlyError(error), "error");
+  } finally {
+    verificationSending = false;
+    updateVerificationUi();
+  }
 }
 
 async function authenticate() {
   const registering = authMode === "register";
-  const credentials = validateCredentials({ requirePrivacy: registering });
+  const credentials = validateCredentials({
+    requirePrivacy: registering,
+    requireVerification: registering,
+  });
   if (!credentials) return;
   setBusy(
     elements.authSubmitButton,
@@ -258,10 +390,7 @@ async function authenticate() {
     currentUser = registering
       ? await api.register({
           ...credentials,
-          privacyConsent: {
-            accepted: elements.privacyConsent.checked === true,
-            version: PRIVACY_ACCEPTED_VERSION,
-          },
+          privacyConsent: currentPrivacyConsent(),
         })
       : await api.login(credentials);
     if (!currentUser) currentUser = await api.getCurrentUser();
@@ -275,6 +404,14 @@ async function authenticate() {
     currentUser = null;
     updateAccountUi();
     showMessage(friendlyError(error), "error");
+    if (
+      registering &&
+      String(error?.code || "").toUpperCase() ===
+        "EMAIL_VERIFICATION_REQUIRED"
+    ) {
+      elements.verificationCodeInput.setAttribute("aria-invalid", "true");
+      elements.verificationCodeInput.focus();
+    }
   } finally {
     setBusy(elements.authSubmitButton, false);
   }
@@ -325,6 +462,30 @@ elements.loginModeButton.addEventListener("click", () => setAuthMode("login"));
 elements.registerModeButton.addEventListener("click", () =>
   setAuthMode("register"),
 );
+elements.verificationSendButton.addEventListener(
+  "click",
+  requestEmailVerification,
+);
+elements.verificationCodeInput.addEventListener("input", () => {
+  elements.verificationCodeInput.value =
+    elements.verificationCodeInput.value.replace(/\D/g, "").slice(0, 6);
+  elements.verificationCodeInput.removeAttribute("aria-invalid");
+});
+elements.emailInput.addEventListener("input", () => {
+  if (
+    verificationRequestedEmail &&
+    elements.emailInput.value.trim().toLowerCase() !==
+      verificationRequestedEmail
+  ) {
+    verificationRequestedEmail = "";
+    elements.verificationCodeInput.value = "";
+    elements.verificationHelp.textContent =
+      verificationResendSeconds > 0
+        ? "邮箱已更改，请在倒计时结束后重新发送验证码。"
+        : "邮箱已更改，请重新发送验证码。";
+    updateVerificationUi();
+  }
+});
 elements.accountForm.addEventListener("submit", (event) => {
   event.preventDefault();
   authenticate();

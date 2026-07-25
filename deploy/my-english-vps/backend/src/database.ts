@@ -26,8 +26,21 @@ export function openDatabase(path: string): DatabaseSync {
       password_hash_version TEXT,
       privacy_consent_version TEXT,
       privacy_consent_accepted_at INTEGER,
+      email_verified_at INTEGER,
       created_at INTEGER NOT NULL,
       updated_at INTEGER NOT NULL
+    ) STRICT;
+
+    CREATE TABLE IF NOT EXISTS registration_email_verifications (
+      challenge_id TEXT PRIMARY KEY,
+      email_normalized TEXT NOT NULL,
+      code_hash TEXT NOT NULL,
+      created_at INTEGER NOT NULL,
+      expires_at INTEGER NOT NULL,
+      retain_until INTEGER NOT NULL,
+      last_sent_at INTEGER NOT NULL,
+      attempt_count INTEGER NOT NULL,
+      active INTEGER NOT NULL CHECK(active IN (0, 1))
     ) STRICT;
 
     CREATE TABLE IF NOT EXISTS sessions (
@@ -99,13 +112,17 @@ export function openDatabase(path: string): DatabaseSync {
       ON learning_rate_limits(expires_at);
   `);
 
-  // Existing V0 databases predate consent audit fields and versioned password
-  // hashes. SQLite cannot add several columns in one ALTER TABLE statement, so
-  // discover and add only missing nullable columns inside one transaction.
+  // Existing V0 databases predate consent audit fields, verified-email time,
+  // and versioned password hashes. SQLite cannot add several columns in one
+  // ALTER TABLE statement, so discover and add only missing nullable columns
+  // inside one transaction. Verification challenges are ephemeral; an older
+  // single-row schema is safely discarded rather than carrying active codes
+  // across this security migration.
   const additions = [
     ["password_hash_version", "TEXT"],
     ["privacy_consent_version", "TEXT"],
     ["privacy_consent_accepted_at", "INTEGER"],
+    ["email_verified_at", "INTEGER"],
   ] as const;
   database.exec("BEGIN IMMEDIATE");
   try {
@@ -121,6 +138,46 @@ export function openDatabase(path: string): DatabaseSync {
         database.exec(`ALTER TABLE users ADD COLUMN ${name} ${type}`);
       }
     }
+    const verificationColumns = database
+      .prepare("PRAGMA table_info(registration_email_verifications)")
+      .all() as unknown as Array<{ name: string; pk: number }>;
+    const challengeIdColumn = verificationColumns.find(
+      (column) => column.name === "challenge_id",
+    );
+    const hasActive = verificationColumns.some(
+      (column) => column.name === "active",
+    );
+    const hasRetainUntil = verificationColumns.some(
+      (column) => column.name === "retain_until",
+    );
+    if (!hasActive || !hasRetainUntil || challengeIdColumn?.pk !== 1) {
+      database.exec(`
+        DROP TABLE registration_email_verifications;
+        CREATE TABLE registration_email_verifications (
+          challenge_id TEXT PRIMARY KEY,
+          email_normalized TEXT NOT NULL,
+          code_hash TEXT NOT NULL,
+          created_at INTEGER NOT NULL,
+          expires_at INTEGER NOT NULL,
+          retain_until INTEGER NOT NULL,
+          last_sent_at INTEGER NOT NULL,
+          attempt_count INTEGER NOT NULL,
+          active INTEGER NOT NULL CHECK(active IN (0, 1))
+        ) STRICT;
+      `);
+    }
+    database.exec(`
+      CREATE UNIQUE INDEX IF NOT EXISTS
+        registration_email_verifications_one_active_idx
+        ON registration_email_verifications(email_normalized)
+        WHERE active = 1;
+      CREATE INDEX IF NOT EXISTS
+        registration_email_verifications_email_idx
+        ON registration_email_verifications(email_normalized, active, created_at);
+      CREATE INDEX IF NOT EXISTS
+        registration_email_verifications_retain_until_idx
+        ON registration_email_verifications(retain_until);
+    `);
     database.exec("COMMIT");
   } catch (error) {
     try {

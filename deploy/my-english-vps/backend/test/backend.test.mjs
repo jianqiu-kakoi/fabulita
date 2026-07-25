@@ -27,6 +27,8 @@ const { SqliteLearningStore } = require("../dist/store.js");
 const NOW = 1_780_000_100_000;
 const ORIGIN = "https://english.example.test";
 const SCOPE = "book:my-english:en";
+const EMAIL_VERIFICATION_SECRET =
+  "test-only-email-verification-secret-32-bytes";
 
 function fakeScorer() {
   return {
@@ -53,12 +55,25 @@ async function fixture({
   learningQuotas,
   llmGlobalLimits,
   registrationEnabled = true,
+  emailVerificationEnabled = true,
+  emailVerificationSecret = EMAIL_VERIFICATION_SECRET,
+  verificationEmailSender,
   passwordWork,
+  now = () => NOW,
 } = {}) {
   const directory = mkdtempSync(join(tmpdir(), "my-english-vps-test-"));
   const path = join(directory, "learning.sqlite");
   const database = openDatabase(path);
   const scorer = fakeScorer();
+  const sentVerificationEmails = [];
+  const emailSender =
+    verificationEmailSender === false
+      ? undefined
+      : verificationEmailSender || {
+          async sendRegistrationCode(email, code) {
+            sentVerificationEmails.push({ email, code });
+          },
+        };
   const server = createAppServer({
     database,
     allowedOrigins: new Set([ORIGIN]),
@@ -66,12 +81,15 @@ async function fixture({
     sessionTtlDays: 30,
     scoreLimitPerMinute,
     scorer,
-    now: () => NOW,
+    now,
     authRateLimits,
     actionRequestsPerMinute,
     learningQuotas,
     llmGlobalLimits,
     registrationEnabled,
+    emailVerificationEnabled,
+    emailVerificationSecret,
+    verificationEmailSender: emailSender,
     passwordWork,
   });
   await new Promise((resolve, reject) => {
@@ -85,6 +103,7 @@ async function fixture({
   return {
     database,
     scorer,
+    sentVerificationEmails,
     path,
     baseUrl: `http://127.0.0.1:${address.port}`,
     async close() {
@@ -138,13 +157,51 @@ function currentPrivacyConsent(overrides = {}) {
   };
 }
 
-async function register(baseUrl, email = "learner@example.com") {
-  const result = await api(baseUrl, "/api/auth/register", {
+async function requestVerification(
+  app,
+  email = "learner@example.com",
+  { headers = {}, privacyConsent = currentPrivacyConsent() } = {},
+) {
+  const result = await api(
+    app.baseUrl,
+    "/api/auth/verification/request",
+    {
+      method: "POST",
+      headers,
+      body: {
+        email,
+        privacyConsent,
+      },
+    },
+  );
+  const normalized = email.trim().toLowerCase();
+  const delivery = app.sentVerificationEmails
+    .toReversed()
+    .find((entry) => entry.email === normalized);
+  return {
+    ...result,
+    code: delivery?.code,
+  };
+}
+
+async function register(
+  app,
+  email = "learner@example.com",
+  { headers = {} } = {},
+) {
+  const verification = await requestVerification(app, email, {
+    headers,
+  });
+  assert.equal(verification.response.status, 202);
+  assert.match(verification.code, /^\d{6}$/);
+  const result = await api(app.baseUrl, "/api/auth/register", {
     method: "POST",
+    headers,
     body: {
       email,
       password: "correct horse battery staple",
       privacyConsent: currentPrivacyConsent(),
+      verificationCode: verification.code,
     },
   });
   assert.equal(result.response.status, 201);
@@ -340,6 +397,7 @@ test("SQLite initializes WAL and all durable tables; health is public", async ()
       "learning_events",
       "learning_rate_limits",
       "learning_usage",
+      "registration_email_verifications",
       "sessions",
       "users",
     ]);
@@ -351,6 +409,7 @@ test("SQLite initializes WAL and all durable tables; health is public", async ()
     assert.equal(payload.service, "my-english-api");
     assert.equal(payload.version, "0.2.0");
     assert.equal(payload.registrationEnabled, true);
+    assert.equal(payload.emailVerificationEnabled, true);
     assert.equal(payload.privacyConsentVersion, PRIVACY_CONSENT_VERSION);
   } finally {
     await app.close();
@@ -375,6 +434,19 @@ test("opening a legacy database safely adds consent and hash-version columns", (
       'legacy-user', 'legacy@example.com', 'legacy@example.com',
       'salt', 'hash', 100, 100
     );
+    CREATE TABLE registration_email_verifications (
+      email_normalized TEXT PRIMARY KEY,
+      challenge_id TEXT NOT NULL,
+      code_hash TEXT NOT NULL,
+      created_at INTEGER NOT NULL,
+      expires_at INTEGER NOT NULL,
+      last_sent_at INTEGER NOT NULL,
+      attempt_count INTEGER NOT NULL
+    );
+    INSERT INTO registration_email_verifications VALUES (
+      'pending@example.com', 'legacy-challenge', 'legacy-code-hash',
+      100, 200, 100, 3
+    );
   `);
   legacy.close();
 
@@ -387,10 +459,11 @@ test("opening a legacy database safely adds consent and hash-version columns", (
     assert.ok(columns.includes("password_hash_version"));
     assert.ok(columns.includes("privacy_consent_version"));
     assert.ok(columns.includes("privacy_consent_accepted_at"));
+    assert.ok(columns.includes("email_verified_at"));
     const preserved = migrated
       .prepare(`
         SELECT id, password_hash_version, privacy_consent_version,
-               privacy_consent_accepted_at
+               privacy_consent_accepted_at, email_verified_at
         FROM users WHERE id = 'legacy-user'
       `)
       .get();
@@ -398,6 +471,34 @@ test("opening a legacy database safely adds consent and hash-version columns", (
     assert.equal(preserved.password_hash_version, null);
     assert.equal(preserved.privacy_consent_version, null);
     assert.equal(preserved.privacy_consent_accepted_at, null);
+    assert.equal(preserved.email_verified_at, null);
+    const verificationColumns = migrated
+      .prepare("PRAGMA table_info(registration_email_verifications)")
+      .all();
+    assert.equal(
+      verificationColumns.find(
+        (column) => column.name === "challenge_id",
+      ).pk,
+      1,
+    );
+    assert.ok(
+      verificationColumns.some((column) => column.name === "active"),
+    );
+    assert.ok(
+      verificationColumns.some(
+        (column) => column.name === "retain_until",
+      ),
+    );
+    assert.equal(
+      migrated
+        .prepare(`
+          SELECT COUNT(*) AS count
+          FROM registration_email_verifications
+        `)
+        .get().count,
+      0,
+      "ephemeral challenges from the legacy schema must not survive migration",
+    );
   } finally {
     migrated.close();
     rmSync(directory, { recursive: true, force: true });
@@ -435,6 +536,16 @@ test("registration requires exact current consent and stores server acceptance t
       0,
     );
 
+    const verification = await requestVerification(
+      app,
+      "accepted@example.com",
+      {
+        privacyConsent: currentPrivacyConsent({
+          acceptedAt: 1,
+        }),
+      },
+    );
+    assert.equal(verification.response.status, 202);
     const accepted = await api(app.baseUrl, "/api/auth/register", {
       method: "POST",
       body: {
@@ -444,19 +555,729 @@ test("registration requires exact current consent and stores server acceptance t
           // This untrusted timestamp must never be persisted.
           acceptedAt: 1,
         }),
+        verificationCode: verification.code,
       },
     });
     assert.equal(accepted.response.status, 201);
     const row = app.database
       .prepare(`
-        SELECT privacy_consent_version, privacy_consent_accepted_at
+        SELECT privacy_consent_version, privacy_consent_accepted_at,
+               email_verified_at
         FROM users WHERE email_normalized = 'accepted@example.com'
       `)
       .get();
     assert.equal(row.privacy_consent_version, PRIVACY_CONSENT_VERSION);
     assert.equal(row.privacy_consent_accepted_at, NOW);
+    assert.equal(row.email_verified_at, NOW);
   } finally {
     await app.close();
+  }
+});
+
+test("verification request has the exact response, stores only a bound hash, and invalidates resends", async () => {
+  let clock = NOW;
+  const app = await fixture({
+    now: () => clock,
+    authRateLimits: {
+      verificationIpPerHour: 10,
+      verificationEmailPerHour: 10,
+      registerIpPerHour: 10,
+      registerEmailPerHour: 10,
+    },
+  });
+  try {
+    const missingConsent = await api(
+      app.baseUrl,
+      "/api/auth/verification/request",
+      {
+        method: "POST",
+        body: { email: "learner@example.com" },
+      },
+    );
+    assert.equal(missingConsent.response.status, 400);
+    assert.equal(
+      missingConsent.payload.code,
+      "PRIVACY_CONSENT_REQUIRED",
+    );
+
+    const first = await requestVerification(
+      app,
+      " Learner@Example.COM ",
+    );
+    assert.equal(first.response.status, 202);
+    assert.deepEqual(first.payload, {
+      ok: true,
+      expiresInSeconds: 600,
+      resendAfterSeconds: 60,
+    });
+    assert.match(first.code, /^\d{6}$/);
+    const firstRow = app.database
+      .prepare(`
+        SELECT email_normalized, challenge_id, code_hash, expires_at,
+               attempt_count
+        FROM registration_email_verifications
+      `)
+      .get();
+    assert.equal(firstRow.email_normalized, "learner@example.com");
+    assert.equal(firstRow.expires_at, NOW + 600_000);
+    assert.equal(firstRow.attempt_count, 0);
+    assert.notEqual(firstRow.code_hash, first.code);
+    assert.doesNotMatch(JSON.stringify(firstRow), new RegExp(first.code));
+
+    const tooSoon = await requestVerification(
+      app,
+      "learner@example.com",
+    );
+    assert.equal(tooSoon.response.status, 429);
+    assert.equal(tooSoon.payload.code, "VERIFICATION_RATE_LIMITED");
+    assert.equal(tooSoon.response.headers.get("retry-after"), "60");
+
+    clock += 61_000;
+    const resent = await requestVerification(
+      app,
+      "learner@example.com",
+    );
+    assert.equal(resent.response.status, 202);
+    const resentRow = app.database
+      .prepare(`
+        SELECT challenge_id, code_hash, attempt_count
+        FROM registration_email_verifications
+        WHERE active = 1
+      `)
+      .get();
+    assert.notEqual(resentRow.challenge_id, firstRow.challenge_id);
+    assert.notEqual(resent.code, first.code);
+    assert.equal(resentRow.attempt_count, 0);
+    const retainedOld = app.database
+      .prepare(`
+        SELECT active, expires_at, retain_until
+        FROM registration_email_verifications
+        WHERE challenge_id = ?
+      `)
+      .get(firstRow.challenge_id);
+    assert.equal(retainedOld.active, 0);
+    assert.equal(retainedOld.expires_at, NOW + 600_000);
+    assert.equal(retainedOld.retain_until, NOW + 661_000);
+
+    const obsolete = await api(app.baseUrl, "/api/auth/register", {
+      method: "POST",
+      body: {
+        email: "learner@example.com",
+        password: "correct horse battery staple",
+        privacyConsent: currentPrivacyConsent(),
+        verificationCode: first.code,
+      },
+    });
+    assert.equal(obsolete.response.status, 400);
+    assert.equal(
+      obsolete.payload.code,
+      "EMAIL_VERIFICATION_REQUIRED",
+    );
+    assert.equal(
+      app.database
+        .prepare(`
+          SELECT attempt_count
+          FROM registration_email_verifications
+          WHERE email_normalized = 'learner@example.com'
+            AND active = 1
+        `)
+        .get().attempt_count,
+      0,
+      "an obsolete code must not consume an attempt on the active challenge",
+    );
+
+    clock += 539_001;
+    const obsoleteAfterOwnExpiry = await api(
+      app.baseUrl,
+      "/api/auth/register",
+      {
+        method: "POST",
+        body: {
+          email: "learner@example.com",
+          password: "correct horse battery staple",
+          privacyConsent: currentPrivacyConsent(),
+          verificationCode: first.code,
+        },
+      },
+    );
+    assert.equal(obsoleteAfterOwnExpiry.response.status, 400);
+    assert.equal(
+      obsoleteAfterOwnExpiry.payload.code,
+      "EMAIL_VERIFICATION_REQUIRED",
+    );
+    assert.equal(
+      app.database
+        .prepare(`
+          SELECT attempt_count
+          FROM registration_email_verifications
+          WHERE email_normalized = 'learner@example.com'
+            AND active = 1
+        `)
+        .get().attempt_count,
+      0,
+      "an obsolete code remains recognizable after its own expiry and must not consume the active challenge",
+    );
+
+    const accepted = await api(app.baseUrl, "/api/auth/register", {
+      method: "POST",
+      body: {
+        email: "learner@example.com",
+        password: "correct horse battery staple",
+        privacyConsent: currentPrivacyConsent(),
+        verificationCode: resent.code,
+      },
+    });
+    assert.equal(accepted.response.status, 201);
+    assert.equal(
+      app.database
+        .prepare(`
+          SELECT COUNT(*) AS count
+          FROM registration_email_verifications
+        `)
+        .get().count,
+      0,
+    );
+  } finally {
+    await app.close();
+  }
+});
+
+test("verification attempts survive resend, obsolete codes do not count, and lock lasts to expiry", async () => {
+  let clock = NOW;
+  const app = await fixture({
+    now: () => clock,
+    authRateLimits: {
+      verificationIpPerHour: 20,
+      verificationEmailPerHour: 20,
+      registerIpPerHour: 20,
+      registerEmailPerHour: 20,
+    },
+  });
+  try {
+    const first = await requestVerification(app, "attempts@example.com");
+    const wrongBeforeResend =
+      first.code === "999999" ? "888888" : "999999";
+    for (let attempt = 1; attempt <= 4; attempt += 1) {
+      const rejected = await api(app.baseUrl, "/api/auth/register", {
+        method: "POST",
+        body: {
+          email: "attempts@example.com",
+          password: "correct horse battery staple",
+          privacyConsent: currentPrivacyConsent(),
+          verificationCode: wrongBeforeResend,
+        },
+      });
+      assert.equal(rejected.response.status, 400);
+      assert.equal(
+        rejected.payload.code,
+        "EMAIL_VERIFICATION_REQUIRED",
+      );
+    }
+    assert.equal(
+      app.database
+        .prepare(`
+          SELECT attempt_count
+          FROM registration_email_verifications
+          WHERE email_normalized = 'attempts@example.com'
+            AND active = 1
+        `)
+        .get().attempt_count,
+      4,
+    );
+
+    clock += 61_000;
+    const resent = await requestVerification(
+      app,
+      "attempts@example.com",
+    );
+    assert.equal(resent.response.status, 202);
+    assert.notEqual(resent.code, first.code);
+    const activeAfterResend = app.database
+      .prepare(`
+        SELECT challenge_id, attempt_count
+        FROM registration_email_verifications
+        WHERE email_normalized = 'attempts@example.com'
+          AND active = 1
+      `)
+      .get();
+    assert.equal(activeAfterResend.attempt_count, 4);
+    assert.equal(
+      app.database
+        .prepare(`
+          SELECT COUNT(*) AS count
+          FROM registration_email_verifications
+          WHERE email_normalized = 'attempts@example.com'
+        `)
+        .get().count,
+      2,
+    );
+
+    const obsolete = await api(app.baseUrl, "/api/auth/register", {
+      method: "POST",
+      body: {
+        email: "attempts@example.com",
+        password: "correct horse battery staple",
+        privacyConsent: currentPrivacyConsent(),
+        verificationCode: first.code,
+      },
+    });
+    assert.equal(obsolete.response.status, 400);
+    assert.equal(
+      obsolete.payload.code,
+      "EMAIL_VERIFICATION_REQUIRED",
+    );
+    assert.equal(
+      app.database
+        .prepare(`
+          SELECT attempt_count
+          FROM registration_email_verifications
+          WHERE email_normalized = 'attempts@example.com'
+            AND active = 1
+        `)
+        .get().attempt_count,
+      4,
+      "the obsolete pre-resend code must not consume the fifth attempt",
+    );
+
+    const fifthWrong = [first.code, resent.code, wrongBeforeResend]
+      .includes("777777")
+      ? "666666"
+      : "777777";
+    const fifth = await api(app.baseUrl, "/api/auth/register", {
+      method: "POST",
+      body: {
+        email: "attempts@example.com",
+        password: "correct horse battery staple",
+        privacyConsent: currentPrivacyConsent(),
+        verificationCode: fifthWrong,
+      },
+    });
+    assert.equal(fifth.response.status, 400);
+    assert.equal(fifth.payload.code, "EMAIL_VERIFICATION_REQUIRED");
+    assert.equal(
+      app.database
+        .prepare(`
+          SELECT attempt_count
+          FROM registration_email_verifications
+          WHERE email_normalized = 'attempts@example.com'
+            AND active = 1
+        `)
+        .get().attempt_count,
+      5,
+    );
+
+    const lockedResend = await requestVerification(
+      app,
+      "attempts@example.com",
+    );
+    assert.equal(lockedResend.response.status, 429);
+    assert.equal(
+      lockedResend.payload.code,
+      "VERIFICATION_RATE_LIMITED",
+    );
+    assert.equal(
+      lockedResend.response.headers.get("retry-after"),
+      "600",
+    );
+
+    const lockedCorrect = await api(
+      app.baseUrl,
+      "/api/auth/register",
+      {
+        method: "POST",
+        body: {
+          email: "attempts@example.com",
+          password: "correct horse battery staple",
+          privacyConsent: currentPrivacyConsent(),
+          verificationCode: resent.code,
+        },
+      },
+    );
+    assert.equal(lockedCorrect.response.status, 400);
+    assert.equal(
+      lockedCorrect.payload.code,
+      "EMAIL_VERIFICATION_REQUIRED",
+    );
+
+    clock += 600_001;
+    const unlocked = await requestVerification(
+      app,
+      "attempts@example.com",
+    );
+    assert.equal(unlocked.response.status, 202);
+    assert.equal(
+      app.database
+        .prepare(`
+          SELECT attempt_count
+          FROM registration_email_verifications
+          WHERE email_normalized = 'attempts@example.com'
+            AND active = 1
+        `)
+        .get().attempt_count,
+      0,
+    );
+    const created = await api(app.baseUrl, "/api/auth/register", {
+      method: "POST",
+      body: {
+        email: "attempts@example.com",
+        password: "correct horse battery staple",
+        privacyConsent: currentPrivacyConsent(),
+        verificationCode: unlocked.code,
+      },
+    });
+    assert.equal(created.response.status, 201);
+  } finally {
+    await app.close();
+  }
+});
+
+test("verification is single-use and duplicate insertion rollback preserves the challenge", async () => {
+  let clock = NOW;
+  const app = await fixture({
+    now: () => clock,
+    authRateLimits: {
+      verificationIpPerHour: 20,
+      verificationEmailPerHour: 20,
+      registerIpPerHour: 20,
+      registerEmailPerHour: 20,
+    },
+  });
+  try {
+    const valid = await requestVerification(app, "atomic@example.com");
+    const created = await api(app.baseUrl, "/api/auth/register", {
+      method: "POST",
+      body: {
+        email: "atomic@example.com",
+        password: "correct horse battery staple",
+        privacyConsent: currentPrivacyConsent(),
+        verificationCode: valid.code,
+      },
+    });
+    assert.equal(created.response.status, 201);
+    const reused = await api(app.baseUrl, "/api/auth/register", {
+      method: "POST",
+      body: {
+        email: "atomic@example.com",
+        password: "another correct horse battery staple",
+        privacyConsent: currentPrivacyConsent(),
+        verificationCode: valid.code,
+      },
+    });
+    assert.equal(reused.response.status, 400);
+    assert.equal(
+      reused.payload.code,
+      "EMAIL_VERIFICATION_REQUIRED",
+    );
+
+    clock += 61_000;
+    const existing = await requestVerification(app, "atomic@example.com");
+    assert.deepEqual(existing.payload, {
+      ok: true,
+      expiresInSeconds: 600,
+      resendAfterSeconds: 60,
+    });
+    const duplicate = await api(app.baseUrl, "/api/auth/register", {
+      method: "POST",
+      body: {
+        email: "atomic@example.com",
+        password: "another correct horse battery staple",
+        privacyConsent: currentPrivacyConsent(),
+        verificationCode: existing.code,
+      },
+    });
+    assert.equal(duplicate.response.status, 409);
+    assert.equal(duplicate.payload.code, "EMAIL_ALREADY_REGISTERED");
+    assert.equal(
+      app.database
+        .prepare(`
+          SELECT COUNT(*) AS count
+          FROM registration_email_verifications
+          WHERE email_normalized = 'atomic@example.com'
+        `)
+        .get().count,
+      1,
+      "duplicate insertion rollback must restore the consumed challenge",
+    );
+  } finally {
+    await app.close();
+  }
+});
+
+test("the same verification challenge can create only one user under concurrent registration", async () => {
+  const app = await fixture({
+    authRateLimits: {
+      verificationIpPerHour: 20,
+      verificationEmailPerHour: 20,
+      registerIpPerHour: 20,
+      registerEmailPerHour: 20,
+    },
+    passwordWork: {
+      concurrency: 2,
+      queueLimit: 2,
+    },
+  });
+  try {
+    const verification = await requestVerification(
+      app,
+      "race@example.com",
+    );
+    const registerWithSameChallenge = () =>
+      api(app.baseUrl, "/api/auth/register", {
+        method: "POST",
+        body: {
+          email: "race@example.com",
+          password: "correct horse battery staple",
+          privacyConsent: currentPrivacyConsent(),
+          verificationCode: verification.code,
+        },
+      });
+    const results = await Promise.all([
+      registerWithSameChallenge(),
+      registerWithSameChallenge(),
+    ]);
+    assert.deepEqual(
+      results.map((result) => result.response.status).sort(),
+      [201, 400],
+    );
+    const rejected = results.find(
+      (result) => result.response.status === 400,
+    );
+    assert.equal(
+      rejected.payload.code,
+      "EMAIL_VERIFICATION_REQUIRED",
+    );
+    assert.equal(
+      app.database
+        .prepare(`
+          SELECT COUNT(*) AS count
+          FROM users WHERE email_normalized = 'race@example.com'
+        `)
+        .get().count,
+      1,
+    );
+    assert.equal(
+      app.database
+        .prepare(`
+          SELECT COUNT(*) AS count
+          FROM sessions
+        `)
+        .get().count,
+      1,
+    );
+    assert.equal(
+      app.database
+        .prepare(`
+          SELECT COUNT(*) AS count
+          FROM registration_email_verifications
+          WHERE email_normalized = 'race@example.com'
+        `)
+        .get().count,
+      0,
+    );
+  } finally {
+    await app.close();
+  }
+});
+
+test("verification request limits IP and email without storing raw subjects", async () => {
+  let clock = NOW;
+  const app = await fixture({
+    now: () => clock,
+    authRateLimits: {
+      verificationIpPerHour: 1,
+      verificationEmailPerHour: 1,
+    },
+  });
+  try {
+    const first = await requestVerification(
+      app,
+      "limited@example.com",
+      { headers: { "X-Forwarded-For": "203.0.113.20" } },
+    );
+    assert.equal(first.response.status, 202);
+    clock += 61_000;
+    const emailLimited = await requestVerification(
+      app,
+      "limited@example.com",
+      { headers: { "X-Forwarded-For": "203.0.113.21" } },
+    );
+    assert.equal(emailLimited.response.status, 429);
+    assert.equal(
+      emailLimited.payload.code,
+      "VERIFICATION_RATE_LIMITED",
+    );
+    const ipLimited = await requestVerification(
+      app,
+      "different@example.com",
+      { headers: { "X-Forwarded-For": "203.0.113.20" } },
+    );
+    assert.equal(ipLimited.response.status, 429);
+    assert.equal(ipLimited.payload.code, "VERIFICATION_RATE_LIMITED");
+
+    const storedLimits = JSON.stringify(
+      app.database
+        .prepare(`
+          SELECT bucket, subject_hash
+          FROM auth_rate_limits
+          WHERE bucket LIKE 'verify:%'
+        `)
+        .all(),
+    );
+    assert.doesNotMatch(storedLimits, /limited@example\.com/);
+    assert.doesNotMatch(storedLimits, /203\.0\.113\.20/);
+  } finally {
+    await app.close();
+  }
+});
+
+test("verification requests share persistent global minute, hourly, and daily budgets", async () => {
+  const exerciseBudget = async ({
+    verificationGlobalPerMinute,
+    verificationGlobalPerHour,
+    verificationGlobalPerDay,
+    blockedBucket,
+  }) => {
+    const app = await fixture({
+      authRateLimits: {
+        verificationIpPerHour: 20,
+        verificationEmailPerHour: 20,
+        verificationGlobalPerMinute,
+        verificationGlobalPerHour,
+        verificationGlobalPerDay,
+      },
+    });
+    try {
+      for (const [index, address] of [
+        ["one", "203.0.113.31"],
+        ["two", "203.0.113.32"],
+      ]) {
+        const accepted = await requestVerification(
+          app,
+          `${index}@example.com`,
+          { headers: { "X-Forwarded-For": address } },
+        );
+        assert.equal(accepted.response.status, 202);
+      }
+      const blocked = await requestVerification(
+        app,
+        "three@example.com",
+        { headers: { "X-Forwarded-For": "203.0.113.33" } },
+      );
+      assert.equal(blocked.response.status, 429);
+      assert.equal(
+        blocked.payload.code,
+        "VERIFICATION_RATE_LIMITED",
+      );
+      const globalRows = app.database
+        .prepare(`
+          SELECT bucket, request_count
+          FROM auth_rate_limits
+          WHERE bucket LIKE 'verify:global:%'
+          ORDER BY bucket
+        `)
+        .all()
+        .map((row) => ({
+          bucket: row.bucket,
+          request_count: row.request_count,
+        }));
+      assert.deepEqual(
+        globalRows,
+        [
+          { bucket: "verify:global:day", request_count: 2 },
+          { bucket: "verify:global:hour", request_count: 2 },
+          { bucket: "verify:global:minute", request_count: 2 },
+        ],
+      );
+      assert.ok(
+        globalRows.some((row) => row.bucket === blockedBucket),
+      );
+    } finally {
+      await app.close();
+    }
+  };
+
+  await exerciseBudget({
+    verificationGlobalPerMinute: 2,
+    verificationGlobalPerHour: 10,
+    verificationGlobalPerDay: 10,
+    blockedBucket: "verify:global:minute",
+  });
+  await exerciseBudget({
+    verificationGlobalPerMinute: 10,
+    verificationGlobalPerHour: 2,
+    verificationGlobalPerDay: 10,
+    blockedBucket: "verify:global:hour",
+  });
+  await exerciseBudget({
+    verificationGlobalPerMinute: 10,
+    verificationGlobalPerHour: 10,
+    verificationGlobalPerDay: 2,
+    blockedBucket: "verify:global:day",
+  });
+});
+
+test("email verification fails closed when SMTP is absent or delivery fails", async () => {
+  const absent = await fixture({ verificationEmailSender: false });
+  try {
+    const request = await api(
+      absent.baseUrl,
+      "/api/auth/verification/request",
+      {
+        method: "POST",
+        body: {
+          email: "absent@example.com",
+          privacyConsent: currentPrivacyConsent(),
+        },
+      },
+    );
+    assert.equal(request.response.status, 503);
+    assert.equal(
+      request.payload.code,
+      "EMAIL_VERIFICATION_UNAVAILABLE",
+    );
+  } finally {
+    await absent.close();
+  }
+
+  const failing = await fixture({
+    verificationEmailSender: {
+      async sendRegistrationCode() {
+        throw new Error("provider detail must not escape");
+      },
+    },
+  });
+  try {
+    const request = await api(
+      failing.baseUrl,
+      "/api/auth/verification/request",
+      {
+        method: "POST",
+        body: {
+          email: "failure@example.com",
+          privacyConsent: currentPrivacyConsent(),
+        },
+      },
+    );
+    assert.equal(request.response.status, 503);
+    assert.equal(
+      request.payload.code,
+      "EMAIL_VERIFICATION_UNAVAILABLE",
+    );
+    assert.doesNotMatch(
+      JSON.stringify(request.payload),
+      /provider detail/,
+    );
+    assert.equal(
+      failing.database
+        .prepare(`
+          SELECT COUNT(*) AS count
+          FROM registration_email_verifications
+        `)
+        .get().count,
+      0,
+    );
+  } finally {
+    await failing.close();
   }
 });
 
@@ -466,6 +1287,15 @@ test("registration is closed unless the server explicitly enables it", async () 
     DATABASE_PATH: "/tmp/not-opened-by-config-test.sqlite",
   });
   assert.equal(conservative.registrationEnabled, false);
+  assert.equal(conservative.emailVerificationEnabled, false);
+  const closedWithSmtpDefaults = loadRuntimeConfig({
+    ALLOWED_ORIGINS: ORIGIN,
+    DATABASE_PATH: "/tmp/not-opened-by-config-test.sqlite",
+    SMTP_PORT: "465",
+    SMTP_SECURE: "true",
+    SMTP_FROM: "My English <no-reply@example.test>",
+  });
+  assert.equal(closedWithSmtpDefaults.smtp, null);
   assert.throws(
     () =>
       loadRuntimeConfig({
@@ -475,6 +1305,77 @@ test("registration is closed unless the server explicitly enables it", async () 
       }),
     /must be true or false/,
   );
+  assert.throws(
+    () =>
+      loadRuntimeConfig({
+        ALLOWED_ORIGINS: ORIGIN,
+        DATABASE_PATH: "/tmp/not-opened-by-config-test.sqlite",
+        REGISTRATION_ENABLED: "true",
+      }),
+    /Open registration requires EMAIL_VERIFICATION_ENABLED=true/,
+  );
+  assert.throws(
+    () =>
+      loadRuntimeConfig({
+        ALLOWED_ORIGINS: ORIGIN,
+        DATABASE_PATH: "/tmp/not-opened-by-config-test.sqlite",
+        EMAIL_VERIFICATION_ENABLED: "true",
+        EMAIL_VERIFICATION_SECRET,
+        SMTP_HOST: "smtp.example.test",
+      }),
+    /SMTP configuration is incomplete/,
+  );
+  const configuredEnvironment = {
+    ALLOWED_ORIGINS: ORIGIN,
+    DATABASE_PATH: "/tmp/not-opened-by-config-test.sqlite",
+    REGISTRATION_ENABLED: "true",
+    EMAIL_VERIFICATION_ENABLED: "true",
+    EMAIL_VERIFICATION_SECRET,
+    SMTP_HOST: "smtp.example.test",
+    SMTP_PORT: "465",
+    SMTP_SECURE: "true",
+    SMTP_USER: "mailer",
+    SMTP_PASSWORD: "smtp-password",
+    SMTP_FROM: "My English <no-reply@example.test>",
+  };
+  const configured = loadRuntimeConfig(configuredEnvironment);
+  assert.equal(configured.registrationEnabled, true);
+  assert.equal(configured.emailVerificationEnabled, true);
+  assert.equal(configured.smtp.port, 465);
+  assert.equal(configured.smtp.secure, true);
+  assert.equal(configured.smtp.maxConcurrency, 2);
+  assert.equal(
+    configured.authRateLimits.verificationGlobalPerMinute,
+    10,
+  );
+  assert.equal(
+    configured.authRateLimits.verificationGlobalPerHour,
+    100,
+  );
+  assert.equal(
+    configured.authRateLimits.verificationGlobalPerDay,
+    500,
+  );
+  const boundedSmtp = loadRuntimeConfig({
+    ...configuredEnvironment,
+    SMTP_MAX_CONCURRENCY: "99",
+    AUTH_VERIFICATION_GLOBAL_LIMIT_PER_MINUTE: "3",
+    AUTH_VERIFICATION_GLOBAL_LIMIT_PER_HOUR: "7",
+    AUTH_VERIFICATION_GLOBAL_LIMIT_PER_DAY: "9",
+  });
+  assert.equal(boundedSmtp.smtp.maxConcurrency, 2);
+  assert.equal(
+    boundedSmtp.authRateLimits.verificationGlobalPerMinute,
+    3,
+  );
+  assert.equal(
+    boundedSmtp.authRateLimits.verificationGlobalPerHour,
+    7,
+  );
+  assert.equal(
+    boundedSmtp.authRateLimits.verificationGlobalPerDay,
+    9,
+  );
 
   const app = await fixture({ registrationEnabled: false });
   try {
@@ -482,6 +1383,19 @@ test("registration is closed unless the server explicitly enables it", async () 
       origin: null,
     });
     assert.equal(health.payload.registrationEnabled, false);
+    const verification = await api(
+      app.baseUrl,
+      "/api/auth/verification/request",
+      {
+        method: "POST",
+        body: {
+          email: "closed@example.com",
+          privacyConsent: currentPrivacyConsent(),
+        },
+      },
+    );
+    assert.equal(verification.response.status, 403);
+    assert.equal(verification.payload.code, "REGISTRATION_CLOSED");
     const result = await api(app.baseUrl, "/api/auth/register", {
       method: "POST",
       body: {
@@ -499,6 +1413,28 @@ test("registration is closed unless the server explicitly enables it", async () 
   } finally {
     await app.close();
   }
+
+  const verificationOff = await fixture({
+    registrationEnabled: true,
+    emailVerificationEnabled: false,
+  });
+  try {
+    const result = await api(
+      verificationOff.baseUrl,
+      "/api/auth/verification/request",
+      {
+        method: "POST",
+        body: {
+          email: "closed@example.com",
+          privacyConsent: currentPrivacyConsent(),
+        },
+      },
+    );
+    assert.equal(result.response.status, 403);
+    assert.equal(result.payload.code, "REGISTRATION_CLOSED");
+  } finally {
+    await verificationOff.close();
+  }
 });
 
 test("registration and login are rate-limited by trusted client IP and normalized email", async () => {
@@ -511,24 +1447,22 @@ test("registration and login are rate-limited by trusted client IP and normalize
     },
   });
   try {
-    await register(app.baseUrl);
-    const registrationBlocked = await api(
-      app.baseUrl,
-      "/api/auth/register",
-      {
-        method: "POST",
-        headers: { "X-Forwarded-For": "203.0.113.10" },
-        body: {
-          email: "second@example.com",
-          password: "correct horse battery staple",
-          privacyConsent: currentPrivacyConsent(),
-        },
-      },
+    await register(app);
+    const second = await register(
+      app,
+      "second@example.com",
+      { headers: { "X-Forwarded-For": "203.0.113.10" } },
     );
     // The first registration used the direct loopback subject, so this distinct
     // trusted forwarded client receives its own IP bucket.
-    assert.equal(registrationBlocked.response.status, 201);
+    assert.equal(second.response.status, 201);
 
+    const thirdVerification = await requestVerification(
+      app,
+      "third@example.com",
+      { headers: { "X-Forwarded-For": "203.0.113.10" } },
+    );
+    assert.equal(thirdVerification.response.status, 202);
     const sameIpBlocked = await api(
       app.baseUrl,
       "/api/auth/register",
@@ -539,6 +1473,7 @@ test("registration and login are rate-limited by trusted client IP and normalize
           email: "third@example.com",
           password: "correct horse battery staple",
           privacyConsent: currentPrivacyConsent(),
+          verificationCode: thirdVerification.code,
         },
       },
     );
@@ -587,7 +1522,8 @@ test("registration and login are rate-limited by trusted client IP and normalize
 });
 
 test("email/password auth hashes passwords and uses secure session + CSRF controls", async () => {
-  const app = await fixture();
+  let clock = NOW;
+  const app = await fixture({ now: () => clock });
   try {
     const untrusted = await api(app.baseUrl, "/api/auth/register", {
       method: "POST",
@@ -602,7 +1538,7 @@ test("email/password auth hashes passwords and uses secure session + CSRF contro
     assert.equal(untrusted.payload.code, "ORIGIN_NOT_ALLOWED");
 
     const registered = await register(
-      app.baseUrl,
+      app,
       " Learner@Example.COM ",
     );
     assert.equal(registered.payload.user.email, "learner@example.com");
@@ -613,7 +1549,7 @@ test("email/password auth hashes passwords and uses secure session + CSRF contro
       .prepare(`
         SELECT email_normalized, password_hash, password_salt,
                password_hash_version, privacy_consent_version,
-               privacy_consent_accepted_at
+               privacy_consent_accepted_at, email_verified_at
         FROM users
       `)
       .get();
@@ -633,6 +1569,7 @@ test("email/password auth hashes passwords and uses secure session + CSRF contro
       PRIVACY_CONSENT_VERSION,
     );
     assert.equal(userRow.privacy_consent_accepted_at, NOW);
+    assert.equal(userRow.email_verified_at, NOW);
     const sessionRow = app.database
       .prepare("SELECT token_hash FROM sessions")
       .get();
@@ -657,12 +1594,19 @@ test("email/password auth hashes passwords and uses secure session + CSRF contro
     assert.equal(noCsrf.response.status, 403);
     assert.equal(noCsrf.payload.code, "CSRF_TOKEN_INVALID");
 
+    clock += 61_000;
+    const duplicateVerification = await requestVerification(
+      app,
+      "learner@example.com",
+    );
+    assert.equal(duplicateVerification.response.status, 202);
     const duplicate = await api(app.baseUrl, "/api/auth/register", {
       method: "POST",
       body: {
         email: "learner@example.com",
         password: "another secure password",
         privacyConsent: currentPrivacyConsent(),
+        verificationCode: duplicateVerification.code,
       },
     });
     assert.equal(duplicate.response.status, 409);
@@ -748,7 +1692,7 @@ test("successful legacy login upgrades the password hash to the current format",
     const upgraded = app.database
       .prepare(`
         SELECT password_salt, password_hash, password_hash_version,
-               privacy_consent_version
+               privacy_consent_version, email_verified_at
         FROM users WHERE id = 'legacy-user'
       `)
       .get();
@@ -760,6 +1704,7 @@ test("successful legacy login upgrades the password hash to the current format",
     assert.notEqual(upgraded.password_hash, legacyHash);
     // Legacy accounts remain usable without inventing a historical consent.
     assert.equal(upgraded.privacy_consent_version, null);
+    assert.equal(upgraded.email_verified_at, null);
 
     const second = await api(app.baseUrl, "/api/auth/login", {
       method: "POST",
@@ -793,18 +1738,27 @@ test("password work concurrency rejects excess expensive hashes before memory gr
     },
   });
   try {
-    const request = (email) =>
+    const firstVerification = await requestVerification(
+      app,
+      "capacity-one@example.com",
+    );
+    const secondVerification = await requestVerification(
+      app,
+      "capacity-two@example.com",
+    );
+    const request = (email, verificationCode) =>
       api(app.baseUrl, "/api/auth/register", {
         method: "POST",
         body: {
           email,
           password: "correct horse battery staple",
           privacyConsent: currentPrivacyConsent(),
+          verificationCode,
         },
       });
     const results = await Promise.all([
-      request("capacity-one@example.com"),
-      request("capacity-two@example.com"),
+      request("capacity-one@example.com", firstVerification.code),
+      request("capacity-two@example.com", secondVerification.code),
     ]);
     assert.deepEqual(
       results.map((result) => result.response.status).sort(),
@@ -824,7 +1778,7 @@ test("password work concurrency rejects excess expensive hashes before memory gr
 test("authenticated action requests have a durable per-user throttle", async () => {
   const app = await fixture({ actionRequestsPerMinute: 2 });
   try {
-    const auth = await register(app.baseUrl);
+    const auth = await register(app);
     const action = () =>
       api(app.baseUrl, "/api/action", {
         method: "POST",
@@ -845,7 +1799,7 @@ test("authenticated action requests have a durable per-user throttle", async () 
 test("sync is transactional, idempotent, isolated, and preserves tombstones", async () => {
   const app = await fixture();
   try {
-    const auth = await register(app.baseUrl);
+    const auth = await register(app);
     const invoke = (body) =>
       api(app.baseUrl, "/api/action", {
         method: "POST",
@@ -1158,7 +2112,7 @@ test("per-user storage quotas count only new events and rollback overflowing bat
 test("scoreAnswer uses server rubrics and a SQLite-backed per-user limiter", async () => {
   const app = await fixture({ scoreLimitPerMinute: 2 });
   try {
-    const auth = await register(app.baseUrl);
+    const auth = await register(app);
     const invoke = (body) =>
       api(app.baseUrl, "/api/action", {
         method: "POST",
@@ -1216,8 +2170,8 @@ test("LLM scoring has a server-global durable budget across accounts", async () 
     },
   });
   try {
-    const first = await register(app.baseUrl, "first@example.com");
-    const second = await register(app.baseUrl, "second@example.com");
+    const first = await register(app, "first@example.com");
+    const second = await register(app, "second@example.com");
     const score = (auth) =>
       api(app.baseUrl, "/api/action", {
         method: "POST",

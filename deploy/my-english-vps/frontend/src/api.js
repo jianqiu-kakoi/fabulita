@@ -90,6 +90,8 @@ export function createApiClient({
       const payload = await request("/health");
       return {
         registrationEnabled: payload?.registrationEnabled === true,
+        emailVerificationEnabled:
+          payload?.emailVerificationEnabled === true,
         privacyConsentVersion: String(
           payload?.privacyConsentVersion || "",
         ).trim(),
@@ -101,10 +103,33 @@ export function createApiClient({
       return rememberSession(payload);
     },
 
+    async requestEmailVerification({ email, privacyConsent }) {
+      const payload = await request("/auth/verification/request", {
+        method: "POST",
+        body: {
+          email,
+          privacyConsent,
+        },
+      });
+      const expiresInSeconds = Number(payload?.expiresInSeconds);
+      const resendAfterSeconds = Number(payload?.resendAfterSeconds);
+      return {
+        expiresInSeconds:
+          Number.isFinite(expiresInSeconds) && expiresInSeconds > 0
+            ? Math.round(expiresInSeconds)
+            : 600,
+        resendAfterSeconds:
+          Number.isFinite(resendAfterSeconds) && resendAfterSeconds > 0
+            ? Math.round(resendAfterSeconds)
+            : 60,
+      };
+    },
+
     async register({
       email,
       password,
       privacyConsent,
+      verificationCode,
     }) {
       const payload = await request("/auth/register", {
         method: "POST",
@@ -112,6 +137,7 @@ export function createApiClient({
           email,
           password,
           privacyConsent,
+          verificationCode,
         },
       });
       return rememberSession(payload);
