@@ -56,9 +56,12 @@ application = application.slice(0, close) + `
     homeworkVerdict,
     homeworkProgress,
     learningEvents,
+    reviewSnapshotForExport,
     openHomework,
     startHomeworkScenarioExercise,
-    checkHomeworkAnswerEnhanced
+    checkHomeworkAnswerEnhanced,
+    dashboardHomeworkQuestionHtml,
+    HOMEWORK_SCORING_TIMEOUT_MS
   };
 ` + application.slice(close);
 
@@ -265,8 +268,40 @@ vm.runInContext(application, context);
     "the homework snapshot should contain the final remote grade metadata"
   );
 
-  // A rejected scoring request falls back to the local incorrect grade. It
-  // must likewise commit only once, after the rejection is handled.
+  // A malformed model response is also retriable and must never be converted
+  // into a local incorrect result.
+  runtime.state.homeworkIndex = 0;
+  const greetingItem = items[0].item;
+  const malformedAnswer = "Bananas are purple.";
+  assert(runtime.homeworkVerdict(greetingItem, malformedAnswer) === "incorrect",
+    "malformed-grade fixture must fail the local matcher");
+  context.fabulitaLearningServices = {
+    scoreAnswer() {
+      scoreCalls += 1;
+      return Promise.resolve({ verdict: "unknown", meaningCorrect: false });
+    }
+  };
+
+  knownIds = new Set(runtime.learningEvents().map((event) => event.id));
+  const reviewBeforeMalformed = JSON.stringify(runtime.reviewSnapshotForExport());
+  assert(await runtime.checkHomeworkAnswerEnhanced(malformedAnswer) === false,
+    "a malformed model response should leave the answer unsubmitted");
+  created = newAnswerEvents(runtime, knownIds, hotel.id, greetingItem.id);
+  assert(created.length === 0,
+    "a malformed model response must not record a provisional local result");
+  assert(!runtime.homeworkProgress(hotel).responses[greetingItem.id],
+    "a malformed model response must not persist an incorrect response");
+  assert(JSON.stringify(runtime.reviewSnapshotForExport()) === reviewBeforeMalformed,
+    "a malformed model response must not queue any review card");
+  assert(runtime.state.homeworkNotice.includes("智能复核暂时不可用") &&
+      runtime.state.homeworkNotice.includes("答案尚未提交"),
+    "a malformed model response should show a retriable notice");
+  assert(runtime.dashboardHomeworkQuestionHtml(hotel).includes(
+      'value="' + malformedAnswer + '"'),
+    "the answer must remain available after a malformed model response");
+
+  // A rejected scoring request is retriable. A provisional local failure must
+  // not become a saved attempt or queue review work.
   runtime.state.homeworkIndex = 3;
   const checkoutItem = items[3].item;
   const fallbackAnswer = "Where is the swimming pool?";
@@ -281,29 +316,74 @@ vm.runInContext(application, context);
 
   const callsBeforeFallback = scoreCalls;
   knownIds = new Set(runtime.learningEvents().map((event) => event.id));
-  assert(await runtime.checkHomeworkAnswerEnhanced(fallbackAnswer) === true,
-    "the local fallback answer should still save");
+  const reviewBeforeFallback = JSON.stringify(runtime.reviewSnapshotForExport());
+  assert(await runtime.checkHomeworkAnswerEnhanced(fallbackAnswer) === false,
+    "a provider outage should leave the answer unsubmitted");
   created = newAnswerEvents(runtime, knownIds, hotel.id, checkoutItem.id);
   assert(scoreCalls === callsBeforeFallback + 1,
-    "fallback should attempt the scorer exactly once");
-  assert(created.length === 1,
-    "scorer rejection should record exactly one final answer attempt");
+    "the failed submission should attempt the scorer exactly once");
+  assert(created.length === 0,
+    "scorer rejection must not record a provisional local result");
   assert(
-    created[0].verdict === "incorrect" &&
-    created[0].originalVerdict === "incorrect" &&
-    created[0].meaningCorrect === false &&
-    created[0].scoringSource === "local",
-    "scorer rejection should persist the local fallback grade"
+    runtime.learningEvents().every((event) => knownIds.has(event.id)),
+    "scorer rejection must not create any hidden learning event"
   );
   const fallbackProgress = runtime.homeworkProgress(hotel)
     .responses[checkoutItem.id];
-  assert(
-    fallbackProgress.status === "incorrect" &&
-    fallbackProgress.scoringSource === "local",
-    "the fallback snapshot should identify local scoring"
-  );
-  assert(runtime.state.homeworkNotice.includes("智能复核暂时不可用"),
-    "the learner should be told that local fallback was used");
+  assert(!fallbackProgress,
+    "scorer rejection must not persist an incorrect homework result");
+  assert(JSON.stringify(runtime.reviewSnapshotForExport()) === reviewBeforeFallback,
+    "scorer rejection must not queue any review card");
+  assert(runtime.state.homeworkNotice.includes("智能复核暂时不可用") &&
+      runtime.state.homeworkNotice.includes("答案尚未提交") &&
+      runtime.state.homeworkNotice.includes("重试"),
+    "the learner should see a clear retriable provider notice");
+  assert(runtime.dashboardHomeworkQuestionHtml(hotel).includes(
+      'value="' + fallbackAnswer + '"'),
+    "the rejected answer must remain in the input for retry");
+
+  // The browser must outwait the backend's provider deadline. Accelerate the
+  // actual timer in this VM while still asserting the production duration.
+  runtime.state.homeworkIndex = 2;
+  const passportItem = items[2].item;
+  const timeoutAnswer = "Please call me a taxi.";
+  assert(runtime.homeworkVerdict(passportItem, timeoutAnswer) === "incorrect",
+    "timeout fixture must fail the local matcher");
+  context.fabulitaLearningServices = {
+    scoreAnswer() {
+      scoreCalls += 1;
+      return new Promise(() => {});
+    }
+  };
+  const originalVmSetTimeout = context.setTimeout;
+  let observedTimeoutMs = null;
+  context.setTimeout = function (callback, delay) {
+    observedTimeoutMs = delay;
+    return setTimeout(callback, 1);
+  };
+
+  knownIds = new Set(runtime.learningEvents().map((event) => event.id));
+  const reviewBeforeTimeout = JSON.stringify(runtime.reviewSnapshotForExport());
+  assert(await runtime.checkHomeworkAnswerEnhanced(timeoutAnswer) === false,
+    "a timed-out remote grade should remain unsubmitted");
+  context.setTimeout = originalVmSetTimeout;
+  created = newAnswerEvents(runtime, knownIds, hotel.id, passportItem.id);
+  assert(runtime.HOMEWORK_SCORING_TIMEOUT_MS === 25000 &&
+      observedTimeoutMs === 25000,
+    "the learner timeout must be 25 s, above the backend's 20 s hard cap");
+  assert(created.length === 0,
+    "a real timeout must not commit a local incorrect result");
+  assert(!runtime.homeworkProgress(hotel).responses[passportItem.id],
+    "a timeout must not persist an incorrect homework response");
+  assert(JSON.stringify(runtime.reviewSnapshotForExport()) === reviewBeforeTimeout,
+    "a timeout must not queue any review card");
+  assert(runtime.state.homeworkNotice.includes("智能复核等待超时") &&
+      runtime.state.homeworkNotice.includes("答案尚未提交") &&
+      runtime.state.homeworkNotice.includes("重试"),
+    "the actual timeout must be explained as retriable");
+  assert(runtime.dashboardHomeworkQuestionHtml(hotel).includes(
+      'value="' + timeoutAnswer + '"'),
+    "the timed-out answer must remain in the input for retry");
 })().catch((error) => {
   console.error(error && error.stack ? error.stack : error);
   process.exitCode = 1;

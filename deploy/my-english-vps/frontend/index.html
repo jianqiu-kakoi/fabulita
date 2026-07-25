@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="My English 场景英语学习：未登录可本地学习，登录后同步进度。"
+    />
+    <meta name="theme-color" content="#f7f3ec" />
+    <meta property="og:title" content="My English · 场景英语学习" />
+    <meta
+      property="og:description"
+      content="在酒店等真实场景中学习、练习并复习英语。"
+    />
+    <meta property="og:image" content="/my-english-og.png" />
+    <link rel="icon" href="data:," />
+    <title>My English · 场景英语学习</title>
+  </head>
+  <body>
+    <div id="cloud-app" class="cloud-app">
+      <header class="account-bar">
+        <a class="account-brand" href="/" aria-label="My English 首页">
+          <span class="account-brand-mark" aria-hidden="true">ME</span>
+          <span>
+            <strong>My English</strong>
+            <small>场景英语学习</small>
+          </span>
+        </a>
+
+        <div class="account-actions">
+          <span
+            class="sync-state is-local"
+            id="sync-state"
+            role="status"
+            aria-live="polite"
+          >
+            <i aria-hidden="true"></i>
+            <span>本机保存</span>
+          </span>
+          <button class="account-button primary" id="login-button" type="button">
+            登录并同步
+          </button>
+          <button class="account-button" id="account-button" type="button" hidden>
+            <span id="account-label">我的账号</span>
+          </button>
+        </div>
+      </header>
+
+      <aside class="setup-banner" id="setup-banner" hidden>
+        账户服务暂时不可用，当前仍可正常学习，进度只保存在这台设备。
+      </aside>
+
+      <main class="learner-shell">
+        <iframe
+          id="learner-frame"
+          class="learner-frame"
+          src="/my-english.html?storageProfile=guest"
+          title="My English 英语学习"
+        ></iframe>
+      </main>
+    </div>
+
+    <dialog
+      class="account-dialog"
+      id="account-dialog"
+      aria-labelledby="dialog-title"
+    >
+      <form class="account-dialog-card" id="account-form" method="dialog">
+        <button
+          class="dialog-close"
+          type="button"
+          aria-label="关闭登录窗口"
+        >
+          ×
+        </button>
+
+        <div id="login-panel">
+          <p class="dialog-kicker">跨设备学习</p>
+          <div class="auth-mode-tabs" role="tablist" aria-label="账号操作">
+            <button
+              class="auth-mode-tab is-active"
+              id="auth-mode-login"
+              type="button"
+              role="tab"
+              aria-selected="true"
+            >
+              登录
+            </button>
+            <button
+              class="auth-mode-tab"
+              id="auth-mode-register"
+              type="button"
+              role="tab"
+              aria-selected="false"
+            >
+              注册
+            </button>
+          </div>
+
+          <h1 id="dialog-title">登录学习账号</h1>
+          <p class="dialog-copy" id="dialog-copy">
+            登录后自动合并本机与云端进度；未登录时仍可正常学习。
+          </p>
+
+          <label class="field">
+            <span>邮箱</span>
+            <input
+              id="email-input"
+              name="email"
+              type="email"
+              inputmode="email"
+              autocomplete="email"
+              maxlength="254"
+              placeholder="you@example.com"
+              required
+            />
+          </label>
+
+          <label class="field">
+            <span>密码</span>
+            <input
+              id="password-input"
+              name="password"
+              type="password"
+              autocomplete="current-password"
+              minlength="10"
+              maxlength="128"
+              placeholder="至少 10 个字符"
+              required
+            />
+          </label>
+
+          <p
+            class="form-message"
+            id="form-message"
+            role="status"
+            aria-live="polite"
+          ></p>
+
+          <label class="consent-row">
+            <input id="privacy-consent" type="checkbox" />
+            <span>
+              注册新账号时，我已阅读并同意
+              <a href="/privacy.html" target="_blank" rel="noopener">
+                《隐私说明》
+              </a>
+              ，了解登录后学习进度及需智能复核的作答会上传。
+            </span>
+          </label>
+
+          <button class="dialog-submit" id="auth-submit-button" type="submit">
+            登录并同步进度
+          </button>
+
+          <p class="privacy-note">
+            密码只通过加密连接发送给本站服务器，服务端只保存安全哈希；
+            模型密钥不会写入网页。测试版暂不提供找回密码，请勿使用其他网站的相同密码。
+          </p>
+        </div>
+
+        <div id="profile-panel" hidden>
+          <p class="dialog-kicker">云端账号</p>
+          <h1>进度已同步</h1>
+          <p class="dialog-copy" id="profile-copy"></p>
+          <button
+            class="dialog-submit secondary"
+            id="sync-now-button"
+            type="button"
+          >
+            立即同步
+          </button>
+          <button
+            class="dialog-submit danger"
+            id="logout-button"
+            type="button"
+          >
+            退出登录
+          </button>
+        </div>
+      </form>
+    </dialog>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

@@ -1757,6 +1757,9 @@
     listEvents: function () {
       return learningEvents();
     },
+    acknowledgeEvents: function (eventIds) {
+      return acknowledgeLearningSync(eventIds, null);
+    },
     setTransport: function (transport) {
       if (transport != null && typeof transport.pushBatch !== "function") {
         throw new TypeError("Learning transport must expose pushBatch(batch).");
@@ -1787,6 +1790,20 @@
         return Promise.resolve(report);
       }
       var exportEnvelope = learningExportEnvelope();
+      var cloudCurrentState = learningCurrentStateForSync(
+        exportEnvelope.currentState
+      );
+      var syncPlan = prepareLearningSync(
+        exportEnvelope.events,
+        cloudCurrentState
+      );
+      report.pendingEvents = syncPlan.events.length;
+      if (!syncPlan.shouldPush) {
+        report.status = "synced";
+        report.remote = { ok: true, skipped: true, acknowledgedEventIds: [] };
+        learningFlushInProgress = false;
+        return Promise.resolve(report);
+      }
       var batch = {
         schema: "fabulita.learning-sync-batch.v1",
         scope: historyScopeKey,
@@ -1796,8 +1813,8 @@
           homework: homeworkScopeKey,
           qa: qaScopeKey
         },
-        events: exportEnvelope.events,
-        currentState: exportEnvelope.currentState
+        events: syncPlan.events,
+        currentState: cloudCurrentState
       };
       var remotePush;
       try {
@@ -1809,8 +1826,13 @@
         return Promise.resolve(report);
       }
       return Promise.resolve(remotePush).then(function (result) {
+        var acknowledgement = acknowledgeLearningSync(
+          result && result.acknowledgedEventIds,
+          syncPlan.stateMarker
+        );
         report.status = "synced";
         report.remote = result == null ? null : result;
+        report.pendingEvents = acknowledgement.pendingEvents;
         return report;
       }).catch(function (error) {
         report.status = "sync_failed";
@@ -1917,9 +1939,12 @@
 
   // ── unified learning persistence: snapshots + append-only local outbox ──
   var LEARNING_EVENTS_LS = "fabulita.learning.events.v1";
+  var LEARNING_SYNC_LS = "fabulita.learning.sync.v1";
+  var LEARNING_SYNC_MIGRATION_VERSION = 1;
   var LEARNING_EVENT_SCHEMA = "fabulita.learning-event.v1";
   var pendingLearningEvents = [];
   var learningEventStorageBlocked = false;
+  var learningSyncStorageBlocked = false;
   function learningEventText(value, limit) {
     return String(value == null ? "" : value).slice(0, limit || 500);
   }
@@ -2004,6 +2029,156 @@
     }
     return merged.sort(function (a, b) { return b.occurredAt - a.occurredAt; });
   }
+  function learningStableStringify(value) {
+    if (value === null || typeof value !== "object") return JSON.stringify(value);
+    if (Array.isArray(value)) {
+      return "[" + value.map(function (entry) {
+        return learningStableStringify(entry);
+      }).join(",") + "]";
+    }
+    return "{" + Object.keys(value).sort().filter(function (key) {
+      return value[key] !== undefined && typeof value[key] !== "function";
+    }).map(function (key) {
+      return JSON.stringify(key) + ":" + learningStableStringify(value[key]);
+    }).join(",") + "}";
+  }
+  function learningStateMarker(value) {
+    var text = learningStableStringify(value);
+    var first = 2166136261;
+    var second = 5381;
+    for (var index = 0; index < text.length; index++) {
+      var code = text.charCodeAt(index);
+      first = Math.imul(first ^ code, 16777619);
+      second = Math.imul(second, 33) ^ code;
+    }
+    return "state-v1:" + text.length + ":" +
+      (first >>> 0).toString(16) + ":" + (second >>> 0).toString(16);
+  }
+  function loadLearningSyncRoot() {
+    var inspected = learningPersistence.inspectSnapshot(LEARNING_SYNC_LS);
+    if (inspected.status === "missing") {
+      learningSyncStorageBlocked = false;
+      return { version: 1, scopes: {} };
+    }
+    var root = inspected.value;
+    if (inspected.status === "ok" && root && root.version === 1 && root.scopes &&
+        typeof root.scopes === "object" && !Array.isArray(root.scopes)) {
+      learningSyncStorageBlocked = false;
+      return root;
+    }
+    learningSyncStorageBlocked = true;
+    return { version: 1, scopes: {} };
+  }
+  function learningSyncScope(root) {
+    var raw = root && root.scopes ? root.scopes[historyScopeKey] : null;
+    raw = raw && typeof raw === "object" && !Array.isArray(raw) ? raw : {};
+    var acknowledged = Object.create(null);
+    (Array.isArray(raw.acknowledgedEventIds) ? raw.acknowledgedEventIds : [])
+      .forEach(function (id) {
+        if (typeof id === "string" && id) acknowledged[id] = true;
+      });
+    return {
+      migrationVersion: +raw.migrationVersion || 0,
+      seededAt: validEventTime(raw.seededAt) ? +raw.seededAt : 0,
+      events: mergeLearningEventLists(Array.isArray(raw.events) ? raw.events : []),
+      acknowledgedEventIds: Object.keys(acknowledged),
+      acknowledgedStateMarker: typeof raw.acknowledgedStateMarker === "string" ?
+        raw.acknowledgedStateMarker : "",
+      lastAcknowledgedAt: validEventTime(raw.lastAcknowledgedAt) ?
+        +raw.lastAcknowledgedAt : 0,
+      updatedAt: validEventTime(raw.updatedAt) ? +raw.updatedAt : 0
+    };
+  }
+  function saveLearningSyncScope(root, scope) {
+    try {
+      root.scopes[historyScopeKey] = scope;
+      learningPersistence.write(LEARNING_SYNC_LS, JSON.stringify(root));
+      learningSyncStorageBlocked = false;
+      return true;
+    } catch (e) {
+      learningSyncStorageBlocked = true;
+      return false;
+    }
+  }
+  function ensureLearningSyncState(seedEvents) {
+    var root = loadLearningSyncRoot();
+    var scope = learningSyncScope(root);
+    var acknowledged = Object.create(null);
+    scope.acknowledgedEventIds.forEach(function (id) { acknowledged[id] = true; });
+    var beforeEvents = JSON.stringify(scope.events.map(function (event) { return event.id; }));
+    scope.events = mergeLearningEventLists(
+      scope.events,
+      (seedEvents || []).filter(function (event) {
+        return event && !acknowledged[event.id];
+      })
+    ).filter(function (event) {
+      return !acknowledged[event.id];
+    });
+    var migrationNeeded =
+      scope.migrationVersion < LEARNING_SYNC_MIGRATION_VERSION;
+    var afterEvents = JSON.stringify(scope.events.map(function (event) { return event.id; }));
+    if (migrationNeeded || beforeEvents !== afterEvents) {
+      scope.migrationVersion = LEARNING_SYNC_MIGRATION_VERSION;
+      if (!scope.seededAt) scope.seededAt = Date.now();
+      scope.updatedAt = Date.now();
+      saveLearningSyncScope(root, scope);
+    }
+    return { root: root, scope: scope };
+  }
+  function enqueueLearningSyncEvents(events) {
+    var state = ensureLearningSyncState(learningEventsForExport());
+    var acknowledged = Object.create(null);
+    state.scope.acknowledgedEventIds.forEach(function (id) {
+      acknowledged[id] = true;
+    });
+    var before = JSON.stringify(state.scope.events.map(function (event) { return event.id; }));
+    state.scope.events = mergeLearningEventLists(
+      state.scope.events,
+      (events || []).filter(function (event) {
+        return event && !acknowledged[event.id];
+      })
+    );
+    var after = JSON.stringify(state.scope.events.map(function (event) { return event.id; }));
+    if (before !== after) {
+      state.scope.updatedAt = Date.now();
+      return saveLearningSyncScope(state.root, state.scope);
+    }
+    return !learningSyncStorageBlocked;
+  }
+  function prepareLearningSync(auditEvents, currentState) {
+    var state = ensureLearningSyncState(auditEvents);
+    var stateMarker = learningStateMarker(currentState);
+    return {
+      events: state.scope.events.slice(),
+      stateMarker: stateMarker,
+      shouldPush: state.scope.events.length > 0 ||
+        state.scope.acknowledgedStateMarker !== stateMarker
+    };
+  }
+  function acknowledgeLearningSync(eventIds, stateMarker) {
+    var state = ensureLearningSyncState(learningEventsForExport());
+    var acknowledged = Object.create(null);
+    state.scope.acknowledgedEventIds.forEach(function (id) {
+      acknowledged[id] = true;
+    });
+    (Array.isArray(eventIds) ? eventIds : []).forEach(function (id) {
+      if (typeof id === "string" && id) acknowledged[id] = true;
+    });
+    state.scope.events = state.scope.events.filter(function (event) {
+      return !acknowledged[event.id];
+    });
+    state.scope.acknowledgedEventIds = Object.keys(acknowledged).sort();
+    if (typeof stateMarker === "string" && stateMarker) {
+      state.scope.acknowledgedStateMarker = stateMarker;
+    }
+    state.scope.lastAcknowledgedAt = Date.now();
+    state.scope.updatedAt = state.scope.lastAcknowledgedAt;
+    saveLearningSyncScope(state.root, state.scope);
+    return {
+      saved: !learningSyncStorageBlocked,
+      pendingEvents: state.scope.events.length
+    };
+  }
   function persistedLearningEvents(root) {
     root = root || loadLearningEventRoot();
     var scope = root.scopes[historyScopeKey];
@@ -2039,7 +2214,9 @@
     var normalized = normalizeLearningEvent(event);
     if (!normalized) return false;
     pendingLearningEvents = mergeLearningEventLists(pendingLearningEvents, [normalized]);
-    return persistPendingLearningEvents();
+    var auditSaved = persistPendingLearningEvents();
+    var outboxSaved = enqueueLearningSyncEvents([normalized]);
+    return auditSaved && outboxSaved;
   }
   function learningAttemptNumber(source, action, entityId, assignmentId) {
     return learningEvents().filter(function (event) {
@@ -2411,6 +2588,20 @@
   // ── interactive homework (dashboard only; independent by default, with opt-in review bridge) ──
   var HOMEWORK_LS = "fabulita.homework.v1";
   var HOMEWORK_MAX_ANSWER = 300;
+  // Backend provider calls are capped at 20 s (12 s in the VPS profile).
+  // Keep a small response/transport margin while staying below Caddy's 30 s.
+  var HOMEWORK_SCORING_TIMEOUT_MS = 25000;
+  var homeworkRetryDrafts = Object.create(null);
+  function homeworkRetryDraftKey(assignment, item) {
+    return String(assignment && assignment.id || "") + "\n" +
+      String(item && item.id || "");
+  }
+  function clearHomeworkRetryDrafts(assignmentId) {
+    var prefix = String(assignmentId || "") + "\n";
+    Object.keys(homeworkRetryDrafts).forEach(function (key) {
+      if (key.slice(0, prefix.length) === prefix) delete homeworkRetryDrafts[key];
+    });
+  }
   function homeworkScope() {
     var project = norm(P.config.homework_id || P.config.history_id || P.config.review_id || P.config.name || "fabulita");
     return "book:" + project + ":" + (P.config.lang || "und");
@@ -2524,6 +2715,7 @@
       snapshotPersisted = false;
     }
     if (resetApplied) {
+      clearHomeworkRetryDrafts(assignment.id);
       recordLearningEvent("homework", "assignment_reset", {
         assignmentId: assignment.id,
         entityId: assignment.id,
@@ -3243,6 +3435,11 @@
     var progress = homeworkProgress(assignment);
     var previous = progress.responses[entry.item.id] || { answer: "" };
     var nextAnswer = String(value == null ? "" : value).slice(0, HOMEWORK_MAX_ANSWER);
+    var retryDraftKey = homeworkRetryDraftKey(assignment, entry.item);
+    if (Object.prototype.hasOwnProperty.call(homeworkRetryDrafts, retryDraftKey)) {
+      if (nextAnswer) homeworkRetryDrafts[retryDraftKey] = nextAnswer;
+      else delete homeworkRetryDrafts[retryDraftKey];
+    }
     var changed = previous.answer !== nextAnswer;
     if (changed) state.homeworkSentenceWordId = "";
     var hadStatus = !!previous.status;
@@ -3339,7 +3536,9 @@
       state.homeworkNotice = "请先选择或填写答案。";
       return false;
     }
-    return commitHomeworkAnswer(assignment, entry, submitted, homeworkLocalGrade(entry.item, submitted));
+    var saved = commitHomeworkAnswer(assignment, entry, submitted, homeworkLocalGrade(entry.item, submitted));
+    if (saved) delete homeworkRetryDrafts[homeworkRetryDraftKey(assignment, entry.item)];
+    return saved;
   }
   function normalizeHomeworkRemoteGrade(result, localVerdict) {
     var raw = result && result.grade && typeof result.grade === "object" ? result.grade : result;
@@ -3363,8 +3562,10 @@
       var timer = setTimeout(function () {
         if (settled) return;
         settled = true;
-        reject(new Error("smart scoring timed out"));
-      }, 5000);
+        var error = new Error("smart scoring timed out");
+        error.code = "SCORING_CLIENT_TIMEOUT";
+        reject(error);
+      }, HOMEWORK_SCORING_TIMEOUT_MS);
       Promise.resolve().then(function () {
         return score(payload);
       }).then(function (result) {
@@ -3391,14 +3592,19 @@
       state.homeworkNotice = "请先选择或填写答案。";
       return Promise.resolve(false);
     }
+    var retryDraftKey = homeworkRetryDraftKey(assignment, entry.item);
     var localGrade = homeworkLocalGrade(entry.item, submitted);
     var services = window.fabulitaLearningServices;
     var score = services && typeof services.scoreAnswer === "function" ?
       services.scoreAnswer : null;
     if (entry.type !== "text_input" || localGrade.status !== "incorrect" || !score) {
-      return Promise.resolve(commitHomeworkAnswer(assignment, entry, submitted, localGrade));
+      var locallySaved = commitHomeworkAnswer(assignment, entry, submitted, localGrade);
+      if (locallySaved) delete homeworkRetryDrafts[retryDraftKey];
+      else homeworkRetryDrafts[retryDraftKey] = submitted;
+      return Promise.resolve(locallySaved);
     }
 
+    homeworkRetryDrafts[retryDraftKey] = submitted;
     state.homeworkScoringItemId = entry.item.id;
     state.homeworkNotice = "正在智能复核这句话的意思和自然度…";
     render();
@@ -3409,23 +3615,21 @@
       learnerAnswer: submitted,
       clientLocalVerdict: localGrade.status
     };
-    var fallback = false;
+    function scoringFailed(error) {
+      state.homeworkScoringItemId = "";
+      state.homeworkNotice = error && error.code === "SCORING_CLIENT_TIMEOUT" ?
+        "智能复核等待超时，答案尚未提交，请稍后重试。" :
+        "智能复核暂时不可用，答案尚未提交，请稍后重试。";
+      return false;
+    }
     return homeworkScoreWithTimeout(score, payload).then(function (result) {
       var grade = normalizeHomeworkRemoteGrade(result, localGrade.status);
-      if (!grade) throw new Error("invalid smart scoring result");
-      return grade;
-    }).catch(function () {
-      fallback = true;
-      return localGrade;
-    }).then(function (grade) {
+      if (!grade) return scoringFailed(new Error("invalid smart scoring result"));
       state.homeworkScoringItemId = "";
       var saved = commitHomeworkAnswer(assignment, entry, submitted, grade);
-      if (fallback) {
-        state.homeworkNotice += (state.homeworkNotice ? " " : "") +
-          "智能复核暂时不可用，本次已按本地规则判分。";
-      }
+      if (saved) delete homeworkRetryDrafts[retryDraftKey];
       return saved;
-    });
+    }, scoringFailed);
   }
   function finishHomeworkSequence(assignment) {
     var progress = homeworkProgress(assignment);
@@ -4175,6 +4379,9 @@
     var entry = active[state.homeworkIndex];
     var progress = homeworkProgress(assignment);
     var response = progress.responses[entry.item.id] || { answer: "" };
+    var retryDraftKey = homeworkRetryDraftKey(assignment, entry.item);
+    var displayedAnswer = Object.prototype.hasOwnProperty.call(homeworkRetryDrafts, retryDraftKey) ?
+      homeworkRetryDrafts[retryDraftKey] : response.answer;
     var scoringPending = state.homeworkScoringItemId === entry.item.id;
     var retryLabel = state.homeworkRetryIds.length ? "错题重做 · " : "";
     var typePosition = homeworkTypePosition(assignment);
@@ -4186,7 +4393,7 @@
           var id = "homework-option-" + optionIndex;
           return '<label class="homework-option" for="' + id + '"><input id="' + id +
             '" type="radio" name="homework-answer" value="' + esc(option) + '"' +
-            (response.answer === option ? " checked" : "") + (scoringPending ? " disabled" : "") +
+            (displayedAnswer === option ? " checked" : "") + (scoringPending ? " disabled" : "") +
             '><span>' + esc(option) + "</span></label>";
         }).join("") + "</div>";
     } else {
@@ -4194,7 +4401,7 @@
         (homeworkIsScenario(assignment) ? "你会怎么说？" : "你的" + esc(targetLanguageLabel()) + "答案") +
         '</label><input class="homework-text-answer' + (homeworkIsScenario(assignment) ? " is-dialogue" : "") + '" ' +
         'id="homework-answer-input" name="homework-answer" type="text" maxlength="' + HOMEWORK_MAX_ANSWER +
-        '" value="' + esc(response.answer) + '" autocomplete="off" autocapitalize="none" spellcheck="false"' +
+        '" value="' + esc(displayedAnswer) + '" autocomplete="off" autocapitalize="none" spellcheck="false"' +
         (scoringPending ? " disabled" : "") + ">";
     }
     var sourceLabel = homeworkIsScenario(assignment) ?
@@ -4204,7 +4411,7 @@
     form += '<div class="homework-check-row"><span class="homework-source-page">' +
       esc(sourceLabel) + " · " + esc(learningStorageLabel("答案会自动保存在本浏览器",
         "答案会先保存在本机并自动同步")) + '</span><button class="homework-button primary" type="submit"' +
-      (response.answer.trim() && !scoringPending ? "" : " disabled") + ">" +
+      (displayedAnswer.trim() && !scoringPending ? "" : " disabled") + ">" +
       (scoringPending ? "智能复核中…" : (response.status ? "重新检查" : "检查答案")) +
       "</button></div></form>";
     var positionLabel = homeworkIsScenario(assignment) ?
@@ -4847,7 +5054,9 @@
       esc(state.qaDraft) + '</textarea><div class="qa-form-foot"><span class="qa-shortcut">⌘ / Ctrl + Enter 保存 · <span id="qa-character-count">' +
       draftLength + " / " + QA_MAX_LENGTH + '</span></span><button class="qa-save" id="qa-save-button" type="submit"' +
       (state.qaDraft.trim() ? "" : " disabled") + '>保存问题</button></div></form><p class="qa-notice" id="qa-notice" role="status" aria-live="polite">' +
-      esc(state.qaNotice) + '</p><p class="qa-privacy" id="qa-privacy">问题仅保存在这个浏览器中，不会上传。</p></section>' +
+      esc(state.qaNotice) + '</p><p class="qa-privacy" id="qa-privacy">' +
+      esc(learningStorageLabel("问题仅保存在这个浏览器中，不会上传。",
+        "登录后问题会同步到你的云端账号。")) + '</p></section>' +
       '<section class="qa-list-panel" aria-labelledby="qa-list-title"><div class="qa-list-head"><h2 id="qa-list-title">我的问题</h2>' +
       '<span class="qa-list-count">' + questions.length + " 条</span></div>" + dashboardQaItemsHtml(questions) + "</section></div></main>";
   }
@@ -5091,6 +5300,18 @@
     });
     return summary;
   }
+  function learningCurrentStateForSync(currentState) {
+    var copy;
+    try {
+      copy = JSON.parse(JSON.stringify(currentState || {}));
+    } catch (e) {
+      copy = {};
+    }
+    if (copy.rawScopes && typeof copy.rawScopes === "object") {
+      delete copy.rawScopes.reviewEvents;
+    }
+    return copy;
+  }
   function learningExportEnvelope() {
     var events = learningEventsForExport();
     return {
@@ -5104,9 +5325,10 @@
       },
       persistence: {
         driver: learningPersistence.driver,
-        localOutboxKey: LEARNING_EVENTS_LS,
+        localAuditKey: LEARNING_EVENTS_LS,
+        localOutboxKey: LEARNING_SYNC_LS,
         pendingInMemoryEvents: pendingLearningEvents.length,
-        storageBlocked: learningEventStorageBlocked
+        storageBlocked: learningEventStorageBlocked || learningSyncStorageBlocked
       },
       privacy: "Contains raw typed answers and questions. Stored locally; share only with explicit consent.",
       completeness: {
@@ -5244,7 +5466,10 @@
       dashboardNavButton("homework", "✓", "作业", homeworkAssignments.length) +
       dashboardNavButton("qa", "?", "Q&amp;A", questions.length) +
       dashboardNavButton("progress", "▥", "学习进度", allLearningEventCount) +
-      '</nav><p class="vocab-local-note">复习进度、作业作答、逐次历史和 Q&amp;A 问题仅保存在这个浏览器中。无需登录，也不会上传。</p></aside>' +
+      '</nav><p class="vocab-local-note">' +
+      esc(learningStorageLabel("复习进度、作业作答、逐次历史和 Q&A 问题仅保存在这个浏览器中。无需登录，也不会上传。",
+        "登录后，复习进度、作业作答、逐次历史和 Q&A 问题会同步到你的云端账号。")) +
+      '</p></aside>' +
       (state.dashboardNav === "homework" ? dashboardHomeworkHtml() :
       (state.dashboardNav === "qa" ? dashboardQaHtml(questions) : (state.dashboardNav === "progress" ? dashboardProgressHtml(events) :
       '<main class="vocab-main"><header class="vocab-topbar" id="dashboard-progress"><div class="vocab-topbar-copy">' +

@@ -6,6 +6,11 @@ build/
 .venv/
 .pytest_cache/
 
+# local credentials and deployment secrets
+.env
+.env.*
+!.env.example
+
 # generated per-project artifacts
 examples/*/vocab.json
 examples/*/audio/

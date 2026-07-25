@@ -1,0 +1,20 @@
+{
+  "name": "my-english-vps-api",
+  "version": "0.2.0",
+  "private": true,
+  "type": "commonjs",
+  "main": "dist/server.js",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/server.js",
+    "test": "npm run build && node --test test/*.test.mjs"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "22.15.32",
+    "typescript": "5.9.3"
+  }
+}
