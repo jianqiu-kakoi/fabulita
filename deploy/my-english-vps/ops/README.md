@@ -35,8 +35,8 @@ server/
 ```
 
 The deployer installs production dependencies with lifecycle scripts disabled.
-The backend uses Node's built-in `node:sqlite` plus Nodemailer for generic SMTP
-delivery of registration codes.
+The backend uses Node's built-in `node:sqlite`; invite-only registration has no
+SMTP dependency.
 
 From the repository, build that archive with:
 
@@ -68,7 +68,7 @@ ALLOWED_ORIGINS=https://english.chyuopen.com
 DATABASE_PATH=/var/lib/my-english/my-english.sqlite
 ```
 
-Add SMTP, email-verification, and optional LLM provider values only in
+Add optional LLM provider values only in
 `/etc/my-english/my-english.env`. Then:
 
 ```sh
@@ -77,86 +77,51 @@ sudo chmod 0640 /etc/my-english/my-english.env
 sudo systemctl restart my-english
 ```
 
-### Registration and password-work gate
+### Registration, invite, and password-work gate
 
-The production environment example deliberately contains:
+The production environment starts fail-closed:
 
 ```text
 REGISTRATION_ENABLED=false
-EMAIL_VERIFICATION_ENABLED=false
 PASSWORD_SCRYPT_CONCURRENCY=2
 PASSWORD_SCRYPT_QUEUE_LIMIT=8
 ```
 
-Leave registration and email verification closed through the first deployment.
-The health response must report `"registrationEnabled": false`,
-`"emailVerificationEnabled": false`, and
-`"privacyConsentVersion": "2026-07-25"`. Before changing the flag to `true`,
-verify that the public privacy notice is the matching version. Configure all of
-the following before setting both feature flags to `true`; the API refuses to
-start with open registration and incomplete verification configuration:
+Deploy and confirm health reports `"registrationEnabled": false` and the
+expected privacy version before creating codes. Generate invites directly
+against the live SQLite database using the current immutable release and the
+same unprivileged service account:
 
-```text
-EMAIL_VERIFICATION_SECRET=<private random value of at least 32 bytes>
-SMTP_HOST=<provider host>
-SMTP_PORT=465
-SMTP_SECURE=true
-SMTP_USER=<provider username>
-SMTP_PASSWORD=<provider password>
-SMTP_FROM=<provider-approved sender address>
-SMTP_MAX_CONCURRENCY=2
-AUTH_VERIFICATION_GLOBAL_LIMIT_PER_MINUTE=10
-AUTH_VERIFICATION_GLOBAL_LIMIT_PER_HOUR=100
-AUTH_VERIFICATION_GLOBAL_LIMIT_PER_DAY=500
+```sh
+# One code, default 30-day expiry:
+sudo -u myenglish /usr/bin/node \
+  /opt/chyuopen/my-english/current/server/dist/invite-cli.js \
+  create --count 1 \
+  --database /var/lib/my-english/my-english.sqlite
+
+# Multiple codes, optionally bound to one normalized email:
+sudo -u myenglish /usr/bin/node \
+  /opt/chyuopen/my-english/current/server/dist/invite-cli.js \
+  create --count 3 --email learner@example.com --days 30 \
+  --database /var/lib/my-english/my-english.sqlite
 ```
 
-Use port 587 with `SMTP_SECURE=false` for a STARTTLS provider. The verification
-mailer uses a pooled Nodemailer transport; `SMTP_MAX_CONCURRENCY` defaults to
-two and the backend clamps it to at most two connections. The persistent global
-minute, hourly, and daily budgets are checked and consumed in the same
-SQLite-backed limiter call as the per-IP and per-email verification limits, so
-a restart or many source addresses cannot bypass the SMTP budget.
+Each 128-bit code is printed once on stdout. SQLite stores only its SHA-256.
+The command prints a non-secret `batch_id` on stderr; revoke every still-unused
+code in that batch with:
 
-Resending after 60 seconds creates a new active challenge but carries its
-failed-attempt count forward. A retained obsolete code is rejected without
-incrementing the new active challenge. Its HMAC retention deadline is separate
-from its validity deadline and lasts through the current active challenge, so
-this remains true even when the resend happened near the old code's expiry.
-Five failed active attempts lock that
-email until the active challenge expires; requesting another code cannot bypass
-the lock.
-
-The verification request client must send:
-
-```json
-{
-  "email": "learner@example.com",
-  "privacyConsent": {
-    "accepted": true,
-    "version": "2026-07-25"
-  }
-}
+```sh
+sudo -u myenglish /usr/bin/node \
+  /opt/chyuopen/my-english/current/server/dist/invite-cli.js \
+  revoke --batch-id invb_REPLACE_WITH_REAL_BATCH \
+  --database /var/lib/my-english/my-english.sqlite
 ```
 
-The registration client must then send:
-
-```json
-{
-  "email": "learner@example.com",
-  "password": "at least ten characters",
-  "verificationCode": "123456",
-  "privacyConsent": {
-    "accepted": true,
-    "version": "2026-07-25"
-  }
-}
-```
-
-After deliberately opening both flags, restart `my-english` and recheck the
-health response. Send one real verification email and complete one registration
-before announcing availability. Do not raise password concurrency above two on
-the 1.6 GB VPS. Each current scrypt operation uses roughly 128 MiB, and the
-backend also clamps this setting to two.
+After creating at least one code and verifying the public consent UI, set
+`REGISTRATION_ENABLED=true`, restart the service, and complete one real
+registration. Invalid, expired, revoked, consumed, and email-mismatched codes
+all return `INVITE_INVALID_OR_USED`. Do not raise password concurrency above
+two on this VPS; each active current-cost scrypt uses roughly 128 MiB.
 
 At Cloudflare, point `english.chyuopen.com` to the VPS, enable the orange cloud,
 and select **Full (strict)** TLS. Do not enable Rocket Loader or third-party
@@ -232,11 +197,11 @@ sudo ./scripts/rollback-release.sh RELEASE_ID
 ```
 
 Rollback always changes `REGISTRATION_ENABLED=true` to `false` before switching
-releases. This prevents an older release from reopening the pre-verification
-registration path. It also performs a health check and restores the previously
-active release if the selected target is unhealthy. Registration remains
-closed after either outcome; reopen it only after verifying the active release
-still enforces email verification.
+releases. This prevents an older release from reopening a path that does not
+enforce the current invite contract. It also performs a health check and
+restores the previously active release if the selected target is unhealthy.
+Registration remains closed after either outcome; reopen it only after
+verifying the active release.
 
 ## 5. Backups
 

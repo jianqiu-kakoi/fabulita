@@ -42,9 +42,9 @@ old_target=""
 [[ -n "${old_target}" ]] || die "there is no active release"
 [[ "${old_target}" != "${target_release}" ]] || die "target release is already active"
 
-# A prior release may predate mandatory email verification. Always close
-# registration before changing code so a rollback can never reopen the old
-# unverified registration path. Reopening is a separate, deliberate operation.
+# A prior release may not enforce the current invite contract. Always close
+# registration before changing code. Reopening is a separate, deliberate
+# operation after the selected release has been verified.
 grep -Eq '^REGISTRATION_ENABLED=(true|false)$' "${environment_file}" ||
   die "REGISTRATION_ENABLED must be an exact true/false entry before rollback"
 if grep -Eq '^REGISTRATION_ENABLED=true$' "${environment_file}"; then

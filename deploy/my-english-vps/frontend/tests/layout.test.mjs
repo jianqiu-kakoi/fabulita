@@ -7,10 +7,10 @@ const styles = readFileSync(
   "utf8",
 );
 
-test("the learner iframe fills a definite viewport-height grid row", () => {
+test("the authenticated learner iframe fills a definite viewport-height grid row", () => {
   assert.match(
     styles,
-    /\.cloud-app\s*\{[^}]*height:\s*100vh;[^}]*height:\s*100dvh;[^}]*min-height:\s*0;/s,
+    /\.learning-app\s*\{[^}]*height:\s*100vh;[^}]*height:\s*100dvh;[^}]*min-height:\s*0;[^}]*grid-template-rows:\s*auto auto minmax\(0,\s*1fr\);/s,
   );
   assert.match(
     styles,

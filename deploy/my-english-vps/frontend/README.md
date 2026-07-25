@@ -1,8 +1,9 @@
 # My English VPS frontend
 
-Static Vite shell for the My English learner. The learner stays inside the
-same-origin iframe while this shell provides email/password accounts, progress
-sync, and the server-side LLM scoring bridge.
+Static Vite shell for the My English learner. Signed-out visitors see the
+invite-only landing page; the same-origin learner iframe is created only after
+authentication. The shell then provides progress sync and the server-side LLM
+scoring bridge.
 
 ## Build and verify
 
@@ -11,8 +12,8 @@ npm ci
 npm run check
 ```
 
-`npm run build` copies `docs/my-english.html` and
-`docs/my-english-og.png` from the repository into the generated `dist/`
+`npm run build` copies `docs/my-english.html`, `docs/my-english-og.png`, and the
+hotel check-in concept image from the repository into the generated `dist/`
 directory. Generated `public/`, `dist/`, and `node_modules/` directories are
 ignored.
 
@@ -27,15 +28,15 @@ uses:
 
 - `GET /api/auth/me`
 - `POST /api/auth/register` with
-  `{ "email", "password", "privacyConsent": { "accepted": true, "version": "2026-07-25" } }`
+  `{ "displayName", "email", "password", "inviteCode", "privacyConsent": { "accepted": true, "version": "2026-07-25" } }`
 - `POST /api/auth/login` with `{ "email", "password" }`
 - `POST /api/auth/logout`
 - `POST /api/action` with the existing sync or score action payload
 
 Successful authentication responses provide
-`{ "ok": true, "user": { "id", "email" }, "csrfToken" }`. The current CSRF
-token is sent as `X-CSRF-Token` on logout and action calls. Errors use
-`{ "ok": false, "code", "message" }` with a matching non-2xx status.
+`{ "ok": true, "user": { "id", "displayName", "email" }, "csrfToken" }`. The
+current CSRF token is sent as `X-CSRF-Token` on logout and action calls. Errors
+use `{ "ok": false, "code", "message" }` with a matching non-2xx status.
 
 The backend cookie must be `HttpOnly`, `Secure` in production, and use an
 appropriate `SameSite` policy. The browser never stores the password or any LLM

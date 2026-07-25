@@ -41,22 +41,22 @@ backend package files plus `backend/dist/` as `server/`. See
 `ops/README.md` for host installation, deployment, rollback, and backup
 commands.
 
-## Public beta registration gates
+## Invite beta registration gates
 
-When public test registration is enabled:
+Before enabling invitation registration:
 
-1. Keep the operator identity, contact route, email-verification limitation,
+1. Keep the operator identity, contact route, unverified-email limitation,
    password-recovery limitation, and data-request process accurate in
    `frontend/privacy.html`.
-2. Require email verification and test real delivery, expiry, resend, attempt
-   limits, single use, and concurrent registration before setting
+2. Generate at least one unexpired one-time invite with the server-side CLI,
+   then verify single use and concurrent registration before setting
    `REGISTRATION_ENABLED=true`.
-3. Name the SMTP provider and its processing region in `frontend/privacy.html`
-   before public registration.
+3. Keep invite plaintext out of Git, logs, URLs, and public pages; revoke a
+   leaked batch before issuing replacements.
 4. If LLM scoring is enabled, name the provider, processing region, and privacy
-   policy in that page.
+   policy in the privacy notice first.
 5. Add an A record for `english.chyuopen.com`, enable the Cloudflare proxy, and
    use Full (strict) TLS.
-6. Verify registration, login, cross-device sync, logout, backup, and restore.
-7. Keep registration disabled and password recovery clearly marked as
-   unavailable until the related flows and operational gates are complete.
+6. Verify registration, login, per-user data isolation, cross-device sync,
+   logout, backup, and restore.
+7. Keep password recovery clearly marked as unavailable during the invite beta.

@@ -25,6 +25,12 @@ cleanup() {
 }
 trap cleanup EXIT
 
+# Generated output is disposable. Clear it first so removed source modules can
+# never survive in a new immutable release as stale JavaScript.
+rm -rf -- \
+  "${deployment_root}/backend/dist" \
+  "${deployment_root}/frontend/dist"
+
 (
   cd "${deployment_root}/backend"
   npm run build

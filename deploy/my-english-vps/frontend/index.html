@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="My English 场景英语学习：未登录可本地学习，登录后同步进度。"
+      content="My English 场景英语学习：通过真实旅行情境练习开口表达。"
     />
     <meta name="theme-color" content="#f7f3ec" />
     <meta property="og:title" content="My English · 场景英语学习" />
@@ -13,52 +13,108 @@
       property="og:description"
       content="在酒店等真实场景中学习、练习并复习英语。"
     />
-    <meta property="og:image" content="/my-english-og.png" />
+    <meta property="og:image" content="/hotel-checkin-preview.png" />
     <link rel="icon" href="data:," />
     <title>My English · 场景英语学习</title>
   </head>
   <body>
     <div id="cloud-app" class="cloud-app">
-      <header class="account-bar">
-        <a class="account-brand" href="/" aria-label="My English 首页">
-          <span class="account-brand-mark" aria-hidden="true">ME</span>
-          <span>
-            <strong>My English</strong>
-            <small>场景英语学习</small>
-          </span>
-        </a>
+      <main class="guest-landing" id="guest-landing">
+        <nav class="landing-nav" aria-label="My English">
+          <a class="account-brand" href="/" aria-label="My English 首页">
+            <span class="account-brand-mark" aria-hidden="true">ME</span>
+            <span>
+              <strong>My English</strong>
+              <small>场景英语学习</small>
+            </span>
+          </a>
+          <span class="landing-badge">邀请测试</span>
+        </nav>
 
-        <div class="account-actions">
-          <span
-            class="sync-state is-local"
-            id="sync-state"
-            role="status"
-            aria-live="polite"
-          >
-            <i aria-hidden="true"></i>
-            <span>本机保存</span>
-          </span>
-          <button class="account-button primary" id="login-button" type="button">
-            登录并同步
-          </button>
-          <button class="account-button" id="account-button" type="button" hidden>
-            <span id="account-label">我的账号</span>
-          </button>
-        </div>
-      </header>
+        <section class="guest-hero">
+          <div class="guest-copy">
+            <p class="guest-kicker">SCENE-BASED ENGLISH · INVITE BETA</p>
+            <h1>在真实场景里，<br />开口说英语。</h1>
+            <p class="guest-lead">
+              从酒店入住开始，先看懂一段对话，再把英语真正说出来。
+            </p>
+            <div class="landing-actions">
+              <button
+                class="landing-button primary"
+                id="register-entry"
+                type="button"
+                disabled
+              >
+                使用邀请码注册
+              </button>
+              <button
+                class="landing-button secondary"
+                id="login-entry"
+                type="button"
+                disabled
+              >
+                已有账号登录
+              </button>
+            </div>
+            <p
+              class="landing-status"
+              id="landing-status"
+              role="status"
+              aria-live="polite"
+              hidden
+            ></p>
+          </div>
 
-      <aside class="setup-banner" id="setup-banner" hidden>
-        账户服务暂时不可用，当前仍可正常学习，进度只保存在这台设备。
-      </aside>
+          <figure class="guest-visual">
+            <img
+              src="/hotel-checkin-preview.png"
+              alt="My English 酒店入住场景课程与对话练习界面预览"
+              width="1760"
+              height="910"
+              fetchpriority="high"
+            />
+            <figcaption>首个场景 · Hotel Check-in</figcaption>
+          </figure>
+        </section>
 
-      <main class="learner-shell">
-        <iframe
-          id="learner-frame"
-          class="learner-frame"
-          src="/my-english.html?storageProfile=guest"
-          title="My English 英语学习"
-        ></iframe>
+        <footer class="landing-footer">
+          <span>My English · 邀请测试</span>
+          <a href="/privacy.html">隐私说明</a>
+        </footer>
       </main>
+
+      <section class="learning-app" id="learning-app" hidden>
+        <header class="account-bar">
+          <a class="account-brand" href="/" aria-label="My English 首页">
+            <span class="account-brand-mark" aria-hidden="true">ME</span>
+            <span>
+              <strong>My English</strong>
+              <small>场景英语学习</small>
+            </span>
+          </a>
+
+          <div class="account-actions">
+            <span
+              class="sync-state is-local"
+              id="sync-state"
+              role="status"
+              aria-live="polite"
+            >
+              <i aria-hidden="true"></i>
+              <span>正在准备</span>
+            </span>
+            <button class="account-button" id="account-button" type="button">
+              <span id="account-label">我的账号</span>
+            </button>
+          </div>
+        </header>
+
+        <aside class="setup-banner" id="setup-banner" hidden>
+          云端同步暂时不可用，你仍可继续学习。
+        </aside>
+
+        <main class="learner-shell" id="learner-shell"></main>
+      </section>
     </div>
 
     <dialog
@@ -101,8 +157,24 @@
 
           <h1 id="dialog-title">登录学习账号</h1>
           <p class="dialog-copy" id="dialog-copy">
-            登录后自动合并本机与云端进度；未登录时仍可正常学习。
+            登录后进入学习页，并自动同步你的学习进度。
           </p>
+
+          <label
+            class="field registration-only"
+            id="display-name-field"
+            hidden
+          >
+            <span>姓名</span>
+            <input
+              id="display-name-input"
+              name="displayName"
+              type="text"
+              autocomplete="name"
+              placeholder="你的姓名或称呼"
+              disabled
+            />
+          </label>
 
           <label class="field">
             <span>邮箱</span>
@@ -118,43 +190,6 @@
             />
           </label>
 
-          <div
-            class="field verification-field"
-            id="verification-field"
-            hidden
-          >
-            <label for="verification-code-input">邮箱验证码</label>
-            <div class="verification-code-row">
-              <input
-                id="verification-code-input"
-                name="verificationCode"
-                type="text"
-                inputmode="numeric"
-                autocomplete="one-time-code"
-                maxlength="6"
-                placeholder="6 位数字"
-                aria-describedby="verification-help"
-                disabled
-              />
-              <button
-                class="verification-send-button"
-                id="verification-send-button"
-                type="button"
-                disabled
-              >
-                发送验证码
-              </button>
-            </div>
-            <p
-              class="verification-help"
-              id="verification-help"
-              role="status"
-              aria-live="polite"
-            >
-              验证码将发送到上方邮箱，10 分钟内有效。
-            </p>
-          </div>
-
           <label class="field">
             <span>密码</span>
             <input
@@ -169,6 +204,21 @@
             />
           </label>
 
+          <label class="field registration-only" id="invite-code-field" hidden>
+            <span>邀请码</span>
+            <input
+              id="invite-code-input"
+              name="inviteCode"
+              type="text"
+              autocomplete="off"
+              maxlength="64"
+              placeholder="ME-XXXXX-XXXXX-XXXXX-XXXXX-XXXXXX"
+              autocapitalize="characters"
+              spellcheck="false"
+              disabled
+            />
+          </label>
+
           <p
             class="form-message"
             id="form-message"
@@ -176,14 +226,18 @@
             aria-live="polite"
           ></p>
 
-          <label class="consent-row">
-            <input id="privacy-consent" type="checkbox" />
+          <label
+            class="consent-row registration-only"
+            id="privacy-consent-row"
+            hidden
+          >
+            <input id="privacy-consent" type="checkbox" disabled />
             <span>
               注册新账号时，我已阅读并同意
               <a href="/privacy.html" target="_blank" rel="noopener">
                 《隐私说明》
               </a>
-              ，了解登录后学习进度及需智能复核的作答会上传。
+              ，了解登录后学习进度会上传到本站服务器。
             </span>
           </label>
 

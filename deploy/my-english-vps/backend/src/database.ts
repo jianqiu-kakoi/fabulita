@@ -19,6 +19,7 @@ export function openDatabase(path: string): DatabaseSync {
 
     CREATE TABLE IF NOT EXISTS users (
       id TEXT PRIMARY KEY,
+      display_name TEXT,
       email TEXT NOT NULL,
       email_normalized TEXT NOT NULL UNIQUE,
       password_salt TEXT NOT NULL,
@@ -31,17 +32,29 @@ export function openDatabase(path: string): DatabaseSync {
       updated_at INTEGER NOT NULL
     ) STRICT;
 
-    CREATE TABLE IF NOT EXISTS registration_email_verifications (
-      challenge_id TEXT PRIMARY KEY,
-      email_normalized TEXT NOT NULL,
+    CREATE TABLE IF NOT EXISTS registration_invites (
+      id TEXT PRIMARY KEY,
       code_hash TEXT NOT NULL,
+      email_normalized TEXT,
+      batch_id TEXT NOT NULL,
+      secret_version INTEGER NOT NULL,
       created_at INTEGER NOT NULL,
       expires_at INTEGER NOT NULL,
-      retain_until INTEGER NOT NULL,
-      last_sent_at INTEGER NOT NULL,
-      attempt_count INTEGER NOT NULL,
-      active INTEGER NOT NULL CHECK(active IN (0, 1))
+      revoked_at INTEGER,
+      consumed_at INTEGER,
+      consumed_by_user_id TEXT REFERENCES users(id),
+      UNIQUE(code_hash),
+      CHECK (
+        (consumed_at IS NULL AND consumed_by_user_id IS NULL) OR
+        (consumed_at IS NOT NULL AND consumed_by_user_id IS NOT NULL)
+      )
     ) STRICT;
+    CREATE INDEX IF NOT EXISTS registration_invites_batch_idx
+      ON registration_invites(batch_id);
+    CREATE INDEX IF NOT EXISTS registration_invites_expires_at_idx
+      ON registration_invites(expires_at);
+    CREATE INDEX IF NOT EXISTS registration_invites_available_idx
+      ON registration_invites(consumed_at, revoked_at, expires_at);
 
     CREATE TABLE IF NOT EXISTS sessions (
       token_hash TEXT PRIMARY KEY,
@@ -112,13 +125,14 @@ export function openDatabase(path: string): DatabaseSync {
       ON learning_rate_limits(expires_at);
   `);
 
-  // Existing V0 databases predate consent audit fields, verified-email time,
-  // and versioned password hashes. SQLite cannot add several columns in one
-  // ALTER TABLE statement, so discover and add only missing nullable columns
-  // inside one transaction. Verification challenges are ephemeral; an older
-  // single-row schema is safely discarded rather than carrying active codes
-  // across this security migration.
+  // Existing V0 databases predate display names, consent audit fields,
+  // verified-email time, and versioned password hashes. SQLite cannot add
+  // several columns in one ALTER TABLE statement, so discover and add only
+  // missing nullable columns inside one transaction. Email-verification
+  // challenges are ephemeral and are intentionally removed when migrating to
+  // invite-only registration.
   const additions = [
+    ["display_name", "TEXT"],
     ["password_hash_version", "TEXT"],
     ["privacy_consent_version", "TEXT"],
     ["privacy_consent_accepted_at", "INTEGER"],
@@ -138,46 +152,7 @@ export function openDatabase(path: string): DatabaseSync {
         database.exec(`ALTER TABLE users ADD COLUMN ${name} ${type}`);
       }
     }
-    const verificationColumns = database
-      .prepare("PRAGMA table_info(registration_email_verifications)")
-      .all() as unknown as Array<{ name: string; pk: number }>;
-    const challengeIdColumn = verificationColumns.find(
-      (column) => column.name === "challenge_id",
-    );
-    const hasActive = verificationColumns.some(
-      (column) => column.name === "active",
-    );
-    const hasRetainUntil = verificationColumns.some(
-      (column) => column.name === "retain_until",
-    );
-    if (!hasActive || !hasRetainUntil || challengeIdColumn?.pk !== 1) {
-      database.exec(`
-        DROP TABLE registration_email_verifications;
-        CREATE TABLE registration_email_verifications (
-          challenge_id TEXT PRIMARY KEY,
-          email_normalized TEXT NOT NULL,
-          code_hash TEXT NOT NULL,
-          created_at INTEGER NOT NULL,
-          expires_at INTEGER NOT NULL,
-          retain_until INTEGER NOT NULL,
-          last_sent_at INTEGER NOT NULL,
-          attempt_count INTEGER NOT NULL,
-          active INTEGER NOT NULL CHECK(active IN (0, 1))
-        ) STRICT;
-      `);
-    }
-    database.exec(`
-      CREATE UNIQUE INDEX IF NOT EXISTS
-        registration_email_verifications_one_active_idx
-        ON registration_email_verifications(email_normalized)
-        WHERE active = 1;
-      CREATE INDEX IF NOT EXISTS
-        registration_email_verifications_email_idx
-        ON registration_email_verifications(email_normalized, active, created_at);
-      CREATE INDEX IF NOT EXISTS
-        registration_email_verifications_retain_until_idx
-        ON registration_email_verifications(retain_until);
-    `);
+    database.exec("DROP TABLE IF EXISTS registration_email_verifications");
     database.exec("COMMIT");
   } catch (error) {
     try {

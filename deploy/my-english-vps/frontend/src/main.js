@@ -10,11 +10,16 @@ const api = createApiClient();
 const PRIVACY_ACCEPTED_VERSION = "2026-07-25";
 
 const elements = {
-  frame: document.querySelector("#learner-frame"),
+  frame: null,
+  guestLanding: document.querySelector("#guest-landing"),
+  landingStatus: document.querySelector("#landing-status"),
+  registerEntry: document.querySelector("#register-entry"),
+  loginEntry: document.querySelector("#login-entry"),
+  learningApp: document.querySelector("#learning-app"),
+  learnerShell: document.querySelector("#learner-shell"),
   setupBanner: document.querySelector("#setup-banner"),
   syncState: document.querySelector("#sync-state"),
   syncStateText: document.querySelector("#sync-state span"),
-  loginButton: document.querySelector("#login-button"),
   accountButton: document.querySelector("#account-button"),
   accountLabel: document.querySelector("#account-label"),
   dialog: document.querySelector("#account-dialog"),
@@ -27,14 +32,13 @@ const elements = {
   dialogCopy: document.querySelector("#dialog-copy"),
   loginModeButton: document.querySelector("#auth-mode-login"),
   registerModeButton: document.querySelector("#auth-mode-register"),
+  displayNameField: document.querySelector("#display-name-field"),
+  displayNameInput: document.querySelector("#display-name-input"),
   emailInput: document.querySelector("#email-input"),
   passwordInput: document.querySelector("#password-input"),
-  verificationField: document.querySelector("#verification-field"),
-  verificationCodeInput: document.querySelector("#verification-code-input"),
-  verificationSendButton: document.querySelector(
-    "#verification-send-button",
-  ),
-  verificationHelp: document.querySelector("#verification-help"),
+  inviteCodeField: document.querySelector("#invite-code-field"),
+  inviteCodeInput: document.querySelector("#invite-code-input"),
+  privacyConsentRow: document.querySelector("#privacy-consent-row"),
   privacyConsent: document.querySelector("#privacy-consent"),
   formMessage: document.querySelector("#form-message"),
   authSubmitButton: document.querySelector("#auth-submit-button"),
@@ -45,11 +49,8 @@ const elements = {
 let currentUser = null;
 let authMode = "login";
 let registrationEnabled = false;
-let verificationSending = false;
-let verificationResendSeconds = 0;
-let verificationCountdownTimer = null;
-let verificationRequestedEmail = "";
-let activeLearningProfile = "guest";
+let sessionReady = false;
+let activeLearningProfile = "";
 let bridge = null;
 
 function setSyncStatus(status, error) {
@@ -86,12 +87,8 @@ function friendlyError(error) {
     REGISTRATION_DISABLED: "当前暂未开放新账号注册，请稍后再试。",
     REGISTRATION_CLOSED: "当前暂未开放新账号注册，请稍后再试。",
     PRIVACY_CONSENT_REQUIRED: "请确认并同意当前版本的隐私说明后再注册。",
-    EMAIL_VERIFICATION_REQUIRED:
-      "邮箱验证码无效或已过期，请重新获取后再注册。",
-    EMAIL_VERIFICATION_UNAVAILABLE:
-      "验证码暂时无法发送，请稍后再试。",
-    VERIFICATION_RATE_LIMITED:
-      "验证码发送过于频繁，请稍后再试。",
+    INVALID_DISPLAY_NAME: "请输入有效的姓名或称呼。",
+    INVITE_INVALID_OR_USED: "邀请码不可用，请向邀请人确认后重试。",
   };
   return messages[code] || error?.message || "暂时无法连接服务器，请稍后重试。";
 }
@@ -113,26 +110,66 @@ function learnerUrl(profile) {
 }
 
 async function switchLearningProfile(profile) {
-  const target = profile || "guest";
+  const target = String(profile || "");
+  if (!currentUser || !target || target === "guest") {
+    throw new Error("只有登录后才能加载学习页面。");
+  }
   const runtime =
-    elements.frame.contentWindow?.fabulitaLearningPersistence || null;
+    elements.frame?.contentWindow?.fabulitaLearningPersistence || null;
   if (activeLearningProfile === target && runtime) return runtime;
 
   await bridge?.disconnect();
+  bridge = null;
+  elements.frame?.remove();
+  elements.frame = null;
+
+  const frame = document.createElement("iframe");
+  frame.id = "learner-frame";
+  frame.className = "learner-frame";
+  frame.title = "My English 英语学习";
   const loaded = new Promise((resolve) => {
-    elements.frame.addEventListener("load", resolve, { once: true });
+    frame.addEventListener("load", resolve, { once: true });
   });
   activeLearningProfile = target;
-  elements.frame.src = learnerUrl(target);
+  frame.src = learnerUrl(target);
+  elements.frame = frame;
+  elements.learnerShell.replaceChildren(frame);
+  bridge = createLearningCloudBridge({
+    frame,
+    invoke,
+    onStatus: setSyncStatus,
+  });
   await loaded;
-  return elements.frame.contentWindow?.fabulitaLearningPersistence || null;
+  return frame.contentWindow?.fabulitaLearningPersistence || null;
+}
+
+async function destroyLearningExperience() {
+  await bridge?.disconnect();
+  bridge = null;
+  activeLearningProfile = "";
+  elements.frame?.remove();
+  elements.frame = null;
+  elements.learnerShell.replaceChildren();
 }
 
 async function activateUser(user) {
+  if (!user) throw new Error("登录会话缺少用户信息。");
+  // Reflect the authenticated server session before touching localStorage or
+  // loading the learner. A local migration failure must never make a signed-in
+  // shared device look signed out while its HttpOnly cookie is still valid.
+  showAuthenticatedUi(user);
   const profile = profileForUser(user);
   claimGuestProgress(window.localStorage, profile);
   await switchLearningProfile(profile);
   await connectCloudProgress();
+}
+
+function showLearningLoadError(error) {
+  if (currentUser) showAuthenticatedUi(currentUser);
+  elements.setupBanner.hidden = false;
+  elements.setupBanner.textContent =
+    "账号已登录，但学习内容暂时没有加载成功，请刷新页面重试。";
+  elements.setupBanner.title = error?.message || "";
 }
 
 function showMessage(message, kind = "") {
@@ -160,44 +197,27 @@ function currentPrivacyConsent() {
   };
 }
 
-function updateVerificationUi() {
-  const registering = authMode === "register" && registrationEnabled;
-  elements.verificationField.hidden = !registering;
-  elements.verificationCodeInput.disabled = !registering;
-  elements.verificationSendButton.disabled =
-    !registering || verificationSending || verificationResendSeconds > 0;
-  if (verificationSending) {
-    elements.verificationSendButton.textContent = "发送中…";
-  } else if (verificationResendSeconds > 0) {
-    elements.verificationSendButton.textContent =
-      `${verificationResendSeconds} 秒后重发`;
-  } else {
-    elements.verificationSendButton.textContent = verificationRequestedEmail
-      ? "重新发送"
-      : "发送验证码";
-  }
+function isValidDisplayName(value) {
+  const normalized = String(value || "").trim();
+  const length = [...normalized].length;
+  return (
+    length >= 1 &&
+    length <= 80 &&
+    !/[\u0000-\u001f\u007f]/.test(normalized)
+  );
 }
 
-function startVerificationCountdown(seconds) {
-  if (verificationCountdownTimer) {
-    window.clearInterval(verificationCountdownTimer);
-  }
-  verificationResendSeconds = Math.max(
-    1,
-    Math.min(3600, Math.round(Number(seconds) || 60)),
-  );
-  updateVerificationUi();
-  verificationCountdownTimer = window.setInterval(() => {
-    verificationResendSeconds = Math.max(
-      0,
-      verificationResendSeconds - 1,
-    );
-    if (verificationResendSeconds === 0) {
-      window.clearInterval(verificationCountdownTimer);
-      verificationCountdownTimer = null;
-    }
-    updateVerificationUi();
-  }, 1000);
+function updateRegistrationUi() {
+  const registering = authMode === "register" && registrationEnabled;
+  elements.displayNameField.hidden = !registering;
+  elements.inviteCodeField.hidden = !registering;
+  elements.privacyConsentRow.hidden = !registering;
+  elements.displayNameInput.disabled = !registering;
+  elements.inviteCodeInput.disabled = !registering;
+  elements.privacyConsent.disabled = !registering;
+  elements.displayNameInput.required = registering;
+  elements.inviteCodeInput.required = registering;
+  elements.privacyConsent.required = registering;
 }
 
 function setAuthMode(mode) {
@@ -210,36 +230,50 @@ function setAuthMode(mode) {
   elements.registerModeButton.setAttribute("aria-selected", String(registering));
   elements.dialogTitle.textContent = registering ? "创建学习账号" : "登录学习账号";
   elements.dialogCopy.textContent = registering
-    ? "注册后会把这台设备上的学习记录合并到你的账号，并在设备间同步。"
-    : "登录后自动合并本机与云端进度；未登录时仍可正常学习。";
+    ? "受邀测试用户可用一次性邀请码创建账号，并同步这台设备上的学习记录。"
+    : "登录后进入学习页，并自动同步你的学习进度。";
   elements.passwordInput.autocomplete = registering
     ? "new-password"
     : "current-password";
   elements.authSubmitButton.textContent = registering
     ? "注册并同步进度"
     : "登录并同步进度";
-  elements.privacyConsent.required = registering;
-  updateVerificationUi();
+  updateRegistrationUi();
   showMessage("");
+}
+
+function updateLandingEntries() {
+  elements.loginEntry.disabled = !sessionReady;
+  elements.registerEntry.disabled =
+    !sessionReady || !registrationEnabled;
+  elements.registerEntry.setAttribute(
+    "aria-disabled",
+    String(elements.registerEntry.disabled),
+  );
 }
 
 function setRegistrationAvailability(health) {
   registrationEnabled =
     health?.registrationEnabled === true &&
-    health?.emailVerificationEnabled === true &&
     health?.privacyConsentVersion === PRIVACY_ACCEPTED_VERSION;
   elements.registerModeButton.hidden = !registrationEnabled;
+  updateLandingEntries();
+  elements.registerEntry.title = registrationEnabled
+    ? ""
+    : "邀请码注册暂时不可用";
   if (!registrationEnabled && authMode === "register") {
     setAuthMode("login");
   }
-  updateVerificationUi();
+  updateRegistrationUi();
 }
 
-function showLoginPanel() {
+function showLoginPanel(mode = "login") {
   elements.loginPanel.hidden = false;
   elements.profilePanel.hidden = true;
   elements.accountForm.reset();
-  setAuthMode("login");
+  elements.displayNameInput.removeAttribute("aria-invalid");
+  elements.inviteCodeInput.removeAttribute("aria-invalid");
+  setAuthMode(mode);
 }
 
 function showProfilePanel() {
@@ -249,23 +283,32 @@ function showProfilePanel() {
     `${maskEmail(currentUser?.email)} · 登录后自动同步学习进度`;
 }
 
-function openAccountDialog() {
+function openAccountDialog(mode = "login") {
   if (currentUser) showProfilePanel();
-  else showLoginPanel();
+  else showLoginPanel(mode);
   elements.dialog.showModal();
-  if (!currentUser) setTimeout(() => elements.emailInput.focus(), 0);
+  if (!currentUser) {
+    const target =
+      authMode === "register"
+        ? elements.displayNameInput
+        : elements.emailInput;
+    setTimeout(() => target.focus(), 0);
+  }
 }
 
-function updateAccountUi() {
-  if (currentUser) {
-    elements.loginButton.hidden = true;
-    elements.accountButton.hidden = false;
-    elements.accountLabel.textContent = maskEmail(currentUser.email);
-  } else {
-    elements.loginButton.hidden = false;
-    elements.accountButton.hidden = true;
-    setSyncStatus("local");
-  }
+function showAuthenticatedUi(user) {
+  elements.guestLanding.hidden = true;
+  elements.learningApp.hidden = false;
+  elements.accountLabel.textContent = maskEmail(user?.email);
+  elements.setupBanner.hidden = true;
+  document.body.classList.add("is-learning");
+}
+
+function showGuestUi() {
+  elements.guestLanding.hidden = false;
+  elements.learningApp.hidden = true;
+  document.body.classList.remove("is-learning");
+  setSyncStatus("local");
 }
 
 async function invoke(data) {
@@ -283,19 +326,28 @@ async function connectCloudProgress() {
 
 async function refreshSession() {
   currentUser = await api.getCurrentUser();
-  updateAccountUi();
-  if (currentUser) await activateUser(currentUser);
-  else await switchLearningProfile("guest");
+  if (currentUser) {
+    await activateUser(currentUser);
+  } else {
+    await destroyLearningExperience();
+    showGuestUi();
+  }
   return currentUser;
 }
 
 function validateCredentials({
   requirePrivacy = false,
-  requireVerification = false,
+  requireInvitation = false,
 } = {}) {
-  if (requirePrivacy && !elements.privacyConsent.checked) {
-    showMessage("请先阅读并同意隐私说明。", "error");
-    elements.privacyConsent.focus();
+  const displayName = elements.displayNameInput.value.trim();
+  if (
+    requireInvitation &&
+    (!isValidDisplayName(displayName) ||
+      !elements.displayNameInput.checkValidity())
+  ) {
+    showMessage("请输入有效的姓名或称呼。", "error");
+    elements.displayNameInput.setAttribute("aria-invalid", "true");
+    elements.displayNameInput.focus();
     return null;
   }
   if (!elements.emailInput.checkValidity()) {
@@ -310,74 +362,32 @@ function validateCredentials({
     elements.passwordInput.focus();
     return null;
   }
-  if (requireVerification) {
-    const verificationCode = elements.verificationCodeInput.value.trim();
-    if (!/^\d{6}$/.test(verificationCode)) {
-      showMessage("请输入邮件中的 6 位数字验证码。", "error");
-      elements.verificationCodeInput.setAttribute("aria-invalid", "true");
-      elements.verificationCodeInput.focus();
-      return null;
-    }
-    return { email, password, verificationCode };
+  const inviteCode = elements.inviteCodeInput.value.trim();
+  if (
+    requireInvitation &&
+    (!inviteCode || !elements.inviteCodeInput.checkValidity())
+  ) {
+    showMessage("请输入邀请人提供的一次性邀请码。", "error");
+    elements.inviteCodeInput.setAttribute("aria-invalid", "true");
+    elements.inviteCodeInput.focus();
+    return null;
+  }
+  if (requirePrivacy && !elements.privacyConsent.checked) {
+    showMessage("请先阅读并同意隐私说明。", "error");
+    elements.privacyConsent.focus();
+    return null;
+  }
+  if (requireInvitation) {
+    return { displayName, email, password, inviteCode };
   }
   return { email, password };
-}
-
-function validateVerificationRequest() {
-  if (!registrationEnabled || authMode !== "register") {
-    showMessage("当前暂未开放新账号注册，请稍后再试。", "error");
-    return "";
-  }
-  if (!elements.emailInput.checkValidity()) {
-    showMessage("请输入正确的邮箱地址。", "error");
-    elements.emailInput.focus();
-    return "";
-  }
-  if (!elements.privacyConsent.checked) {
-    showMessage("发送验证码前，请先阅读并同意隐私说明。", "error");
-    elements.privacyConsent.focus();
-    return "";
-  }
-  return elements.emailInput.value.trim().toLowerCase();
-}
-
-async function requestEmailVerification() {
-  if (verificationSending || verificationResendSeconds > 0) return;
-  const email = validateVerificationRequest();
-  if (!email) return;
-  verificationSending = true;
-  updateVerificationUi();
-  showMessage("");
-  try {
-    const result = await api.requestEmailVerification({
-      email,
-      privacyConsent: currentPrivacyConsent(),
-    });
-    verificationRequestedEmail = email;
-    elements.verificationCodeInput.value = "";
-    elements.verificationCodeInput.removeAttribute("aria-invalid");
-    const validMinutes = Math.max(
-      1,
-      Math.ceil(result.expiresInSeconds / 60),
-    );
-    elements.verificationHelp.textContent =
-      `验证码已发送到 ${email}，${validMinutes} 分钟内有效。`;
-    startVerificationCountdown(result.resendAfterSeconds);
-    showMessage("验证码已发送，请查收邮箱。", "success");
-    if (authMode === "register") elements.verificationCodeInput.focus();
-  } catch (error) {
-    showMessage(friendlyError(error), "error");
-  } finally {
-    verificationSending = false;
-    updateVerificationUi();
-  }
 }
 
 async function authenticate() {
   const registering = authMode === "register";
   const credentials = validateCredentials({
     requirePrivacy: registering,
-    requireVerification: registering,
+    requireInvitation: registering,
   });
   if (!credentials) return;
   setBusy(
@@ -395,22 +405,25 @@ async function authenticate() {
       : await api.login(credentials);
     if (!currentUser) currentUser = await api.getCurrentUser();
     if (!currentUser) throw new Error("服务器没有返回登录账号。");
-    elements.setupBanner.hidden = true;
-    updateAccountUi();
     showMessage("登录成功，正在合并本机与云端进度。", "success");
-    await activateUser(currentUser);
+    try {
+      await activateUser(currentUser);
+    } catch (error) {
+      showLearningLoadError(error);
+    }
     elements.dialog.close();
   } catch (error) {
     currentUser = null;
-    updateAccountUi();
+    await destroyLearningExperience();
+    showGuestUi();
     showMessage(friendlyError(error), "error");
-    if (
-      registering &&
-      String(error?.code || "").toUpperCase() ===
-        "EMAIL_VERIFICATION_REQUIRED"
-    ) {
-      elements.verificationCodeInput.setAttribute("aria-invalid", "true");
-      elements.verificationCodeInput.focus();
+    const code = String(error?.code || "").toUpperCase();
+    if (registering && code === "INVITE_INVALID_OR_USED") {
+      elements.inviteCodeInput.setAttribute("aria-invalid", "true");
+      elements.inviteCodeInput.focus();
+    } else if (registering && code === "INVALID_DISPLAY_NAME") {
+      elements.displayNameInput.setAttribute("aria-invalid", "true");
+      elements.displayNameInput.focus();
     }
   } finally {
     setBusy(elements.authSubmitButton, false);
@@ -421,10 +434,9 @@ async function signOut() {
   setBusy(elements.logoutButton, true, "正在退出…");
   try {
     await api.logout();
-    await bridge?.disconnect();
     currentUser = null;
-    updateAccountUi();
-    await switchLearningProfile("guest");
+    await destroyLearningExperience();
+    showGuestUi();
     elements.dialog.close();
   } catch (error) {
     elements.profileCopy.textContent = friendlyError(error);
@@ -434,57 +446,53 @@ async function signOut() {
 }
 
 function initialize() {
-  bridge = createLearningCloudBridge({
-    frame: elements.frame,
-    invoke,
-    onStatus: setSyncStatus,
-  });
-
+  showGuestUi();
   api
     .getHealth()
     .then(setRegistrationAvailability)
     .catch(() => setRegistrationAvailability(null));
 
-  refreshSession().catch((error) => {
-    currentUser = null;
-    updateAccountUi();
-    elements.setupBanner.hidden = false;
-    elements.setupBanner.textContent =
-      "账户服务暂时不可用，当前仍可正常学习，进度只保存在这台设备。";
-    elements.setupBanner.title = error?.message || "";
-  });
+  refreshSession()
+    .then(() => {
+      sessionReady = true;
+      updateLandingEntries();
+    })
+    .catch((error) => {
+      if (currentUser) {
+        showLearningLoadError(error);
+        sessionReady = true;
+        updateLandingEntries();
+        return;
+      }
+      currentUser = null;
+      sessionReady = false;
+      updateLandingEntries();
+      destroyLearningExperience().catch(() => {});
+      showGuestUi();
+      elements.landingStatus.hidden = false;
+      elements.landingStatus.textContent =
+        "账户服务暂时不可用，请稍后再试。";
+      elements.landingStatus.title = error?.message || "";
+    });
 }
 
-elements.loginButton.addEventListener("click", openAccountDialog);
+elements.registerEntry.addEventListener("click", () =>
+  openAccountDialog("register"),
+);
+elements.loginEntry.addEventListener("click", () =>
+  openAccountDialog("login"),
+);
 elements.accountButton.addEventListener("click", openAccountDialog);
 elements.closeButton.addEventListener("click", () => elements.dialog.close());
 elements.loginModeButton.addEventListener("click", () => setAuthMode("login"));
 elements.registerModeButton.addEventListener("click", () =>
   setAuthMode("register"),
 );
-elements.verificationSendButton.addEventListener(
-  "click",
-  requestEmailVerification,
-);
-elements.verificationCodeInput.addEventListener("input", () => {
-  elements.verificationCodeInput.value =
-    elements.verificationCodeInput.value.replace(/\D/g, "").slice(0, 6);
-  elements.verificationCodeInput.removeAttribute("aria-invalid");
+elements.displayNameInput.addEventListener("input", () => {
+  elements.displayNameInput.removeAttribute("aria-invalid");
 });
-elements.emailInput.addEventListener("input", () => {
-  if (
-    verificationRequestedEmail &&
-    elements.emailInput.value.trim().toLowerCase() !==
-      verificationRequestedEmail
-  ) {
-    verificationRequestedEmail = "";
-    elements.verificationCodeInput.value = "";
-    elements.verificationHelp.textContent =
-      verificationResendSeconds > 0
-        ? "邮箱已更改，请在倒计时结束后重新发送验证码。"
-        : "邮箱已更改，请重新发送验证码。";
-    updateVerificationUi();
-  }
+elements.inviteCodeInput.addEventListener("input", () => {
+  elements.inviteCodeInput.removeAttribute("aria-invalid");
 });
 elements.accountForm.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -502,15 +510,6 @@ elements.syncNowButton.addEventListener("click", async () => {
   }
 });
 elements.logoutButton.addEventListener("click", signOut);
-elements.frame.addEventListener("load", () => {
-  if (
-    currentUser &&
-    bridge &&
-    activeLearningProfile === profileForUser(currentUser)
-  ) {
-    connectCloudProgress();
-  }
-});
 document.addEventListener("visibilitychange", () => {
   if (document.visibilityState === "hidden" && currentUser && bridge?.connected) {
     bridge.flush().catch(() => {});

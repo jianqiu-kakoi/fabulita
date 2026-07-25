@@ -11,19 +11,11 @@ import { openDatabase } from "./database";
 import {
   PRIVACY_CONSENT_VERSION,
   normalizeEmail,
-  registrationVerificationEmail,
   SqliteAuthStore,
   type AuthenticatedSession,
   type PasswordWorkOptions,
 } from "./auth";
 import { SqliteAuthRateLimiter } from "./auth-rate-limit";
-import {
-  EMAIL_VERIFICATION_RESEND_SECONDS,
-  EMAIL_VERIFICATION_TTL_SECONDS,
-  NodemailerRegistrationVerificationEmailSender,
-  type RegistrationVerificationEmailSender,
-  type SmtpConfig,
-} from "./email-verification";
 import { ApiError, errorResponse } from "./errors";
 import {
   OpenAiCompatibleAnswerScorer,
@@ -53,20 +45,12 @@ export interface AppServerOptions {
   learningQuotas?: Partial<LearningStorageQuotas>;
   llmGlobalLimits?: Partial<LlmGlobalLimitConfig>;
   registrationEnabled?: boolean;
-  emailVerificationEnabled?: boolean;
-  emailVerificationSecret?: string;
-  verificationEmailSender?: RegistrationVerificationEmailSender;
   passwordWork?: PasswordWorkOptions;
 }
 
 export interface AuthRateLimitConfig {
   registerIpPerHour: number;
   registerEmailPerHour: number;
-  verificationIpPerHour: number;
-  verificationEmailPerHour: number;
-  verificationGlobalPerMinute: number;
-  verificationGlobalPerHour: number;
-  verificationGlobalPerDay: number;
   loginIpPer15Minutes: number;
   loginEmailPer15Minutes: number;
 }
@@ -90,20 +74,12 @@ export interface RuntimeConfig {
   learningQuotas: LearningStorageQuotas;
   llmGlobalLimits: LlmGlobalLimitConfig;
   registrationEnabled: boolean;
-  emailVerificationEnabled: boolean;
-  emailVerificationSecret: string;
-  smtp: SmtpConfig | null;
   passwordWork: Required<PasswordWorkOptions>;
 }
 
 const DEFAULT_AUTH_RATE_LIMITS: AuthRateLimitConfig = {
   registerIpPerHour: 5,
   registerEmailPerHour: 3,
-  verificationIpPerHour: 5,
-  verificationEmailPerHour: 3,
-  verificationGlobalPerMinute: 10,
-  verificationGlobalPerHour: 100,
-  verificationGlobalPerDay: 500,
   loginIpPer15Minutes: 30,
   loginEmailPer15Minutes: 10,
 };
@@ -166,72 +142,6 @@ function normalizedOrigin(value: string): string {
   return parsed.origin;
 }
 
-function smtpConfig(
-  environment: Record<string, string | undefined>,
-  required: boolean,
-): SmtpConfig | null {
-  const keys = [
-    "SMTP_HOST",
-    "SMTP_PORT",
-    "SMTP_SECURE",
-    "SMTP_USER",
-    "SMTP_PASSWORD",
-    "SMTP_FROM",
-  ] as const;
-  const configured = keys.some((key) =>
-    Boolean(environment[key]?.trim()),
-  );
-  if (!configured) return null;
-
-  const missing = keys.filter((key) => {
-    const value = environment[key];
-    if (value == null || value.length === 0) return true;
-    return key === "SMTP_PASSWORD" ? false : !value.trim();
-  });
-  if (missing.length > 0) {
-    if (!required) return null;
-    throw new Error(
-      `SMTP configuration is incomplete: ${missing.join(", ")}.`,
-    );
-  }
-  const rawPort = environment.SMTP_PORT!.trim();
-  const port = Number(rawPort);
-  if (
-    !/^\d+$/.test(rawPort) ||
-    !Number.isInteger(port) ||
-    port < 1 ||
-    port > 65_535
-  ) {
-    if (!required) return null;
-    throw new Error("SMTP_PORT must be an integer from 1 to 65535.");
-  }
-  let secure: boolean;
-  try {
-    secure = booleanFlag(
-      environment.SMTP_SECURE,
-      false,
-      "SMTP_SECURE",
-    );
-  } catch (error) {
-    if (!required) return null;
-    throw error;
-  }
-  return {
-    host: environment.SMTP_HOST!.trim(),
-    port,
-    secure,
-    user: environment.SMTP_USER!.trim(),
-    password: environment.SMTP_PASSWORD!,
-    from: environment.SMTP_FROM!.trim(),
-    maxConcurrency: boundedInteger(
-      environment.SMTP_MAX_CONCURRENCY,
-      2,
-      1,
-      2,
-    ),
-  };
-}
-
 export function loadRuntimeConfig(
   environment: Record<string, string | undefined> = process.env,
 ): RuntimeConfig {
@@ -255,39 +165,6 @@ export function loadRuntimeConfig(
     false,
     "REGISTRATION_ENABLED",
   );
-  const emailVerificationEnabled = booleanFlag(
-    environment.EMAIL_VERIFICATION_ENABLED,
-    false,
-    "EMAIL_VERIFICATION_ENABLED",
-  );
-  const emailVerificationSecret =
-    environment.EMAIL_VERIFICATION_SECRET?.trim() || "";
-  const smtp = smtpConfig(environment, emailVerificationEnabled);
-  if (
-    registrationEnabled &&
-    (
-      !emailVerificationEnabled ||
-      Buffer.byteLength(emailVerificationSecret, "utf8") < 32 ||
-      !smtp
-    )
-  ) {
-    throw new Error(
-      "Open registration requires EMAIL_VERIFICATION_ENABLED=true, " +
-        "EMAIL_VERIFICATION_SECRET with at least 32 bytes, and complete SMTP configuration.",
-    );
-  }
-  if (
-    emailVerificationEnabled &&
-    (
-      Buffer.byteLength(emailVerificationSecret, "utf8") < 32 ||
-      !smtp
-    )
-  ) {
-    throw new Error(
-      "EMAIL_VERIFICATION_ENABLED=true requires EMAIL_VERIFICATION_SECRET " +
-        "with at least 32 bytes and complete SMTP configuration.",
-    );
-  }
   return {
     host: environment.HOST?.trim() || "127.0.0.1",
     port: boundedInteger(environment.PORT, 3000, 1, 65_535),
@@ -295,9 +172,6 @@ export function loadRuntimeConfig(
     allowedOrigins: new Set(origins),
     cookieName,
     registrationEnabled,
-    emailVerificationEnabled,
-    emailVerificationSecret,
-    smtp,
     sessionTtlDays: boundedInteger(
       environment.SESSION_TTL_DAYS,
       30,
@@ -328,36 +202,6 @@ export function loadRuntimeConfig(
         DEFAULT_AUTH_RATE_LIMITS.registerEmailPerHour,
         1,
         1000,
-      ),
-      verificationIpPerHour: boundedInteger(
-        environment.AUTH_VERIFICATION_IP_LIMIT_PER_HOUR,
-        DEFAULT_AUTH_RATE_LIMITS.verificationIpPerHour,
-        1,
-        1000,
-      ),
-      verificationEmailPerHour: boundedInteger(
-        environment.AUTH_VERIFICATION_EMAIL_LIMIT_PER_HOUR,
-        DEFAULT_AUTH_RATE_LIMITS.verificationEmailPerHour,
-        1,
-        1000,
-      ),
-      verificationGlobalPerMinute: boundedInteger(
-        environment.AUTH_VERIFICATION_GLOBAL_LIMIT_PER_MINUTE,
-        DEFAULT_AUTH_RATE_LIMITS.verificationGlobalPerMinute,
-        1,
-        10_000,
-      ),
-      verificationGlobalPerHour: boundedInteger(
-        environment.AUTH_VERIFICATION_GLOBAL_LIMIT_PER_HOUR,
-        DEFAULT_AUTH_RATE_LIMITS.verificationGlobalPerHour,
-        1,
-        100_000,
-      ),
-      verificationGlobalPerDay: boundedInteger(
-        environment.AUTH_VERIFICATION_GLOBAL_LIMIT_PER_DAY,
-        DEFAULT_AUTH_RATE_LIMITS.verificationGlobalPerDay,
-        1,
-        1_000_000,
       ),
       loginIpPer15Minutes: boundedInteger(
         environment.AUTH_LOGIN_IP_LIMIT_PER_15_MINUTES,
@@ -753,7 +597,6 @@ export function createAppServer(options: AppServerOptions): Server {
     options.database,
     options.sessionTtlDays || 30,
     options.passwordWork,
-    { secret: options.emailVerificationSecret },
   );
   const authLimiter = new SqliteAuthRateLimiter(options.database);
   const authLimits: AuthRateLimitConfig = {
@@ -798,8 +641,6 @@ export function createAppServer(options: AppServerOptions): Server {
           service: "my-english-api",
           version: "0.2.0",
           registrationEnabled: options.registrationEnabled === true,
-          emailVerificationEnabled:
-            options.emailVerificationEnabled === true,
           privacyConsentVersion: PRIVACY_CONSENT_VERSION,
           serverTime: new Date(now()).toISOString(),
         });
@@ -819,145 +660,16 @@ export function createAppServer(options: AppServerOptions): Server {
 
       if (
         request.method === "POST" &&
-        path === "/api/auth/verification/request"
-      ) {
-        assertAllowedOrigin(request, options.allowedOrigins);
-        if (
-          options.registrationEnabled !== true ||
-          options.emailVerificationEnabled !== true
-        ) {
-          throw new ApiError(
-            "REGISTRATION_CLOSED",
-            "New account registration is currently closed.",
-            403,
-          );
-        }
-        if (
-          !options.verificationEmailSender ||
-          Buffer.byteLength(
-              options.emailVerificationSecret || "",
-              "utf8",
-            ) < 32
-        ) {
-          throw new ApiError(
-            "EMAIL_VERIFICATION_UNAVAILABLE",
-            "Email verification is temporarily unavailable.",
-            503,
-          );
-        }
-        const body = await readJson(request, AUTH_BODY_LIMIT);
-        const email = registrationVerificationEmail(body);
-        const resendRetryAfter =
-          authStore.registrationVerificationRetryAfter(email, now());
-        if (resendRetryAfter > 0) {
-          throw new ApiError(
-            "VERIFICATION_RATE_LIMITED",
-            "Please wait before requesting another verification code.",
-            429,
-            resendRetryAfter,
-          );
-        }
-        const address = clientAddress(request);
-        const verificationLimit = authLimiter.consume(
-          [
-            {
-              bucket: "verify:ip",
-              subject: address,
-              limit: authLimits.verificationIpPerHour,
-              windowMs: 60 * 60_000,
-            },
-            {
-              bucket: "verify:email",
-              subject: email,
-              limit: authLimits.verificationEmailPerHour,
-              windowMs: 60 * 60_000,
-            },
-            {
-              bucket: "verify:global:minute",
-              subject: "server",
-              limit: authLimits.verificationGlobalPerMinute,
-              windowMs: 60_000,
-            },
-            {
-              bucket: "verify:global:hour",
-              subject: "server",
-              limit: authLimits.verificationGlobalPerHour,
-              windowMs: 60 * 60_000,
-            },
-            {
-              bucket: "verify:global:day",
-              subject: "server",
-              limit: authLimits.verificationGlobalPerDay,
-              windowMs: 24 * 60 * 60_000,
-            },
-          ],
-          now(),
-        );
-        if (!verificationLimit.allowed) {
-          throw new ApiError(
-            "VERIFICATION_RATE_LIMITED",
-            "Too many verification requests. Please try again later.",
-            429,
-            verificationLimit.retryAfterMs,
-          );
-        }
-        const issued = authStore.issueRegistrationVerification(
-          email,
-          now(),
-        );
-        try {
-          await options.verificationEmailSender.sendRegistrationCode(
-            email,
-            issued.code,
-          );
-        } catch {
-          authStore.discardRegistrationVerification(
-            email,
-            issued.challengeId,
-            now(),
-          );
-          throw new ApiError(
-            "EMAIL_VERIFICATION_UNAVAILABLE",
-            "Email verification is temporarily unavailable.",
-            503,
-          );
-        }
-        sendJson(response, 202, {
-          ok: true,
-          expiresInSeconds: EMAIL_VERIFICATION_TTL_SECONDS,
-          resendAfterSeconds: EMAIL_VERIFICATION_RESEND_SECONDS,
-        });
-        return;
-      }
-
-      if (
-        request.method === "POST" &&
         (path === "/api/auth/register" || path === "/api/auth/login")
       ) {
         assertAllowedOrigin(request, options.allowedOrigins);
         const registering = path === "/api/auth/register";
         if (registering) {
-          if (
-            options.registrationEnabled !== true ||
-            options.emailVerificationEnabled !== true
-          ) {
+          if (options.registrationEnabled !== true) {
             throw new ApiError(
               "REGISTRATION_CLOSED",
               "New account registration is currently closed.",
               403,
-            );
-          }
-          if (
-            !options.verificationEmailSender ||
-            Buffer.byteLength(
-                options.emailVerificationSecret || "",
-                "utf8",
-              ) < 32
-          ) {
-            throw new ApiError(
-              "EMAIL_VERIFICATION_UNAVAILABLE",
-              "Email verification is temporarily unavailable.",
-              503,
             );
           }
         }
@@ -1125,11 +837,6 @@ export function startServerFromEnvironment(): {
     allowedOrigins: config.allowedOrigins,
     cookieName: config.cookieName,
     registrationEnabled: config.registrationEnabled,
-    emailVerificationEnabled: config.emailVerificationEnabled,
-    emailVerificationSecret: config.emailVerificationSecret,
-    verificationEmailSender: config.smtp
-      ? new NodemailerRegistrationVerificationEmailSender(config.smtp)
-      : undefined,
     sessionTtlDays: config.sessionTtlDays,
     passwordWork: config.passwordWork,
     scoreLimitPerMinute: config.scoreLimitPerMinute,

@@ -16,3 +16,7 @@ await copyFile(
   path.join(repository, "docs", "my-english-og.png"),
   path.join(publicDir, "my-english-og.png"),
 );
+await copyFile(
+  path.join(repository, "docs", "my-english-hotel-checkin-concept-v0.png"),
+  path.join(publicDir, "hotel-checkin-preview.png"),
+);

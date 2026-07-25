@@ -1,19 +1,17 @@
 import {
-  createHmac,
   randomBytes,
-  randomInt,
   randomUUID,
   scrypt,
   timingSafeEqual,
 } from "node:crypto";
 import type { SqliteDatabase } from "./database";
-import {
-  EMAIL_VERIFICATION_MAX_ATTEMPTS,
-  EMAIL_VERIFICATION_RESEND_SECONDS,
-  EMAIL_VERIFICATION_TTL_SECONDS,
-} from "./email-verification";
 import { ApiError } from "./errors";
 import { sha256 } from "./hash";
+import {
+  INVITE_SECRET_VERSION,
+  inviteCodeHash,
+  normalizeInviteCode,
+} from "./invites";
 
 const SCRYPT_KEY_LENGTH = 64;
 export const PRIVACY_CONSENT_VERSION = "2026-07-25";
@@ -48,6 +46,7 @@ const CURRENT_SCRYPT_PROFILE: ScryptProfile = {
 
 interface UserRow {
   id: string;
+  display_name: string | null;
   email: string;
   email_normalized: string;
   password_salt: string;
@@ -59,16 +58,15 @@ interface UserRow {
   created_at: number;
 }
 
-interface RegistrationEmailVerificationRow {
-  email_normalized: string;
-  challenge_id: string;
+interface RegistrationInviteRow {
+  id: string;
   code_hash: string;
-  created_at: number;
+  email_normalized: string | null;
+  secret_version: number;
   expires_at: number;
-  retain_until: number;
-  last_sent_at: number;
-  attempt_count: number;
-  active: number;
+  revoked_at: number | null;
+  consumed_at: number | null;
+  consumed_by_user_id: string | null;
 }
 
 interface SessionRow extends UserRow {
@@ -80,6 +78,7 @@ interface SessionRow extends UserRow {
 
 export interface PublicUser {
   id: string;
+  displayName: string | null;
   email: string;
   createdAt: number;
 }
@@ -97,16 +96,6 @@ export interface NewSession extends AuthenticatedSession {
 export interface PasswordWorkOptions {
   concurrency?: number;
   queueLimit?: number;
-}
-
-export interface EmailVerificationOptions {
-  secret?: string;
-}
-
-export interface IssuedRegistrationVerification {
-  challengeId: string;
-  code: string;
-  expiresAt: number;
 }
 
 class PasswordWorkLimiter {
@@ -230,6 +219,30 @@ function validatePassword(value: unknown): string {
   return value;
 }
 
+export function validateDisplayName(value: unknown): string {
+  if (typeof value !== "string") {
+    throw new ApiError(
+      "INVALID_DISPLAY_NAME",
+      "Display name must be a string.",
+      400,
+    );
+  }
+  const displayName = value.trim();
+  const length = Array.from(displayName).length;
+  if (
+    length < 1 ||
+    length > 80 ||
+    /[\u0000-\u001f\u007f]/u.test(displayName)
+  ) {
+    throw new ApiError(
+      "INVALID_DISPLAY_NAME",
+      "Display name must contain 1 to 80 characters without control characters.",
+      400,
+    );
+  }
+  return displayName;
+}
+
 export function assertCurrentPrivacyConsent(
   input: Record<string, unknown>,
 ): void {
@@ -250,15 +263,10 @@ export function assertCurrentPrivacyConsent(
   }
 }
 
-export function registrationVerificationEmail(value: unknown): string {
-  const input = inputObject(value);
-  assertCurrentPrivacyConsent(input);
-  return normalizeEmail(input.email);
-}
-
 function publicUser(row: UserRow): PublicUser {
   return {
     id: row.id,
+    displayName: row.display_name,
     email: row.email,
     createdAt: Number(row.created_at),
   };
@@ -283,336 +291,50 @@ function rollback(database: SqliteDatabase): void {
 export class SqliteAuthStore {
   private readonly sessionTtlMs: number;
   private readonly passwordWork: PasswordWorkLimiter;
-  private readonly emailVerificationSecret: string;
 
   constructor(
     private readonly database: SqliteDatabase,
     sessionTtlDays = 30,
     passwordWorkOptions: PasswordWorkOptions = {},
-    emailVerificationOptions: EmailVerificationOptions = {},
   ) {
     this.sessionTtlMs =
       Math.max(1, Math.min(90, sessionTtlDays)) * 24 * 60 * 60 * 1000;
     this.passwordWork = new PasswordWorkLimiter(passwordWorkOptions);
-    this.emailVerificationSecret =
-      emailVerificationOptions.secret || "";
   }
 
-  private registrationCodeHash(
+  private invalidInvite(): ApiError {
+    return new ApiError(
+      "INVITE_INVALID_OR_USED",
+      "The invite code is invalid or has already been used.",
+      400,
+    );
+  }
+
+  private preflightRegistrationInvite(
     email: string,
-    challengeId: string,
-    code: string,
-  ): string {
-    return createHmac("sha256", this.emailVerificationSecret)
-      .update("registration-email")
-      .update("\0")
-      .update(email)
-      .update("\0")
-      .update(challengeId)
-      .update("\0")
-      .update(code)
-      .digest("hex");
-  }
-
-  private assertEmailVerificationConfigured(): void {
-    if (Buffer.byteLength(this.emailVerificationSecret, "utf8") < 32) {
-      throw new ApiError(
-        "EMAIL_VERIFICATION_UNAVAILABLE",
-        "Email verification is temporarily unavailable.",
-        503,
-      );
-    }
-  }
-
-  registrationVerificationRetryAfter(
-    email: string,
+    codeHash: string,
     now: number,
-  ): number {
-    const row = this.database
+  ): string {
+    const invite = this.database
       .prepare(`
-        SELECT last_sent_at, expires_at, attempt_count
-        FROM registration_email_verifications
-        WHERE email_normalized = ? AND active = 1 AND expires_at > ?
+        SELECT id, code_hash, email_normalized, secret_version,
+               expires_at, revoked_at, consumed_at, consumed_by_user_id
+        FROM registration_invites
+        WHERE code_hash = ?
+          AND secret_version = ?
+          AND expires_at > ?
+          AND revoked_at IS NULL
+          AND consumed_at IS NULL
+          AND (email_normalized IS NULL OR email_normalized = ?)
       `)
-      .get(email, now) as
-        | {
-            last_sent_at: number;
-            expires_at: number;
-            attempt_count: number;
-          }
-        | undefined;
-    if (!row) return 0;
-    if (
-      Number(row.attempt_count) >= EMAIL_VERIFICATION_MAX_ATTEMPTS
-    ) {
-      return Math.max(0, Number(row.expires_at) - now);
-    }
-    return Math.max(
-      0,
-      Number(row.last_sent_at) +
-        EMAIL_VERIFICATION_RESEND_SECONDS * 1000 -
+      .get(
+        codeHash,
+        INVITE_SECRET_VERSION,
         now,
-    );
-  }
-
-  issueRegistrationVerification(
-    email: string,
-    now: number,
-  ): IssuedRegistrationVerification {
-    this.assertEmailVerificationConfigured();
-    const challengeId = randomBytes(18).toString("base64url");
-    const expiresAt =
-      now + EMAIL_VERIFICATION_TTL_SECONDS * 1000;
-    let code = "";
-    let codeHash = "";
-
-    this.database.exec("BEGIN IMMEDIATE");
-    try {
-      this.database
-        .prepare(`
-          DELETE FROM registration_email_verifications
-          WHERE retain_until <= ?
-        `)
-        .run(now);
-      this.database
-        .prepare(`
-          UPDATE registration_email_verifications
-          SET active = 0
-          WHERE active = 1 AND expires_at <= ?
-        `)
-        .run(now);
-      const existing = this.database
-        .prepare(`
-          SELECT email_normalized, challenge_id, code_hash, created_at,
-                 expires_at, retain_until, last_sent_at, attempt_count,
-                 active
-          FROM registration_email_verifications
-          WHERE email_normalized = ? AND active = 1 AND expires_at > ?
-        `)
-        .get(email, now) as RegistrationEmailVerificationRow | undefined;
-      if (
-        existing &&
-        Number(existing.attempt_count) >=
-          EMAIL_VERIFICATION_MAX_ATTEMPTS
-      ) {
-        const retryAfterMs =
-          Number(existing.expires_at) - now;
-        this.database.exec("COMMIT");
-        throw new ApiError(
-          "VERIFICATION_RATE_LIMITED",
-          "Too many verification attempts. Please try again later.",
-          429,
-          retryAfterMs,
-        );
-      }
-      if (
-        existing &&
-        now - Number(existing.last_sent_at) <
-          EMAIL_VERIFICATION_RESEND_SECONDS * 1000
-      ) {
-        const retryAfterMs =
-          Number(existing.last_sent_at) +
-          EMAIL_VERIFICATION_RESEND_SECONDS * 1000 -
-          now;
-        this.database.exec("COMMIT");
-        throw new ApiError(
-          "VERIFICATION_RATE_LIMITED",
-          "Please wait before requesting another verification code.",
-          429,
-          retryAfterMs,
-        );
-      }
-      const history = this.database
-        .prepare(`
-          SELECT email_normalized, challenge_id, code_hash, created_at,
-                 expires_at, retain_until, last_sent_at, attempt_count,
-                 active
-          FROM registration_email_verifications
-          WHERE email_normalized = ?
-          ORDER BY created_at DESC
-        `)
-        .all(email) as unknown as RegistrationEmailVerificationRow[];
-      do {
-        code = randomInt(0, 1_000_000).toString().padStart(6, "0");
-      } while (
-        history.some((challenge) =>
-          this.registrationCodeMatches(challenge, code)
-        )
-      );
-      codeHash = this.registrationCodeHash(
         email,
-        challengeId,
-        code,
-      );
-      this.database
-        .prepare(`
-          UPDATE registration_email_verifications
-          SET active = 0,
-              retain_until = MAX(retain_until, ?)
-          WHERE email_normalized = ?
-        `)
-        .run(expiresAt, email);
-      const carriedAttempts = history.reduce(
-        (maximum, challenge) =>
-          Math.max(maximum, Number(challenge.attempt_count) || 0),
-        0,
-      );
-      this.database
-        .prepare(`
-          INSERT INTO registration_email_verifications (
-            challenge_id, email_normalized, code_hash, created_at,
-            expires_at, retain_until, last_sent_at, attempt_count, active
-          ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 1)
-        `)
-        .run(
-          challengeId,
-          email,
-          codeHash,
-          now,
-          expiresAt,
-          expiresAt,
-          now,
-          carriedAttempts,
-        );
-      this.database.exec("COMMIT");
-      return { challengeId, code, expiresAt };
-    } catch (error) {
-      rollback(this.database);
-      throw error;
-    }
-  }
-
-  discardRegistrationVerification(
-    email: string,
-    challengeId: string,
-    now: number,
-  ): void {
-    this.database.exec("BEGIN IMMEDIATE");
-    try {
-      this.database
-        .prepare(`
-          DELETE FROM registration_email_verifications
-          WHERE email_normalized = ? AND challenge_id = ?
-        `)
-        .run(email, challengeId);
-      const previous = this.database
-        .prepare(`
-          SELECT challenge_id
-          FROM registration_email_verifications
-          WHERE email_normalized = ? AND active = 0 AND expires_at > ?
-          ORDER BY created_at DESC
-          LIMIT 1
-        `)
-        .get(email, now) as { challenge_id: string } | undefined;
-      if (previous) {
-        this.database
-          .prepare(`
-            UPDATE registration_email_verifications
-            SET active = 1
-            WHERE challenge_id = ?
-          `)
-          .run(previous.challenge_id);
-      }
-      this.database.exec("COMMIT");
-    } catch (error) {
-      rollback(this.database);
-      throw error;
-    }
-  }
-
-  private registrationCodeMatches(
-    challenge: RegistrationEmailVerificationRow,
-    code: string,
-  ): boolean {
-    const candidateHash = Buffer.from(
-      this.registrationCodeHash(
-        challenge.email_normalized,
-        challenge.challenge_id,
-        code,
-      ),
-      "hex",
-    );
-    const expectedHash = Buffer.from(challenge.code_hash, "hex");
-    return (
-      expectedHash.length === candidateHash.length &&
-      timingSafeEqual(expectedHash, candidateHash)
-    );
-  }
-
-  private preflightRegistrationVerification(
-    email: string,
-    code: string,
-    now: number,
-  ): string {
-    this.assertEmailVerificationConfigured();
-    this.database.exec("BEGIN IMMEDIATE");
-    try {
-      this.database
-        .prepare(`
-          DELETE FROM registration_email_verifications
-          WHERE retain_until <= ?
-        `)
-        .run(now);
-      this.database
-        .prepare(`
-          UPDATE registration_email_verifications
-          SET active = 0
-          WHERE active = 1 AND expires_at <= ?
-        `)
-        .run(now);
-      const challenges = this.database
-        .prepare(`
-          SELECT email_normalized, challenge_id, code_hash, created_at,
-                 expires_at, retain_until, last_sent_at, attempt_count,
-                 active
-          FROM registration_email_verifications
-          WHERE email_normalized = ?
-          ORDER BY active DESC, created_at DESC
-        `)
-        .all(email) as unknown as RegistrationEmailVerificationRow[];
-      const active = challenges.find(
-        (challenge) => Number(challenge.active) === 1,
-      );
-      const activeMatches =
-        active != null && this.registrationCodeMatches(active, code);
-      const obsoleteMatches = challenges.some(
-        (challenge) =>
-          Number(challenge.active) === 0 &&
-          this.registrationCodeMatches(challenge, code),
-      );
-      if (
-        active &&
-        activeMatches &&
-        Number(active.attempt_count) <
-          EMAIL_VERIFICATION_MAX_ATTEMPTS
-      ) {
-        this.database.exec("COMMIT");
-        return active.challenge_id;
-      }
-      if (
-        active &&
-        !obsoleteMatches &&
-        Number(active.attempt_count) <
-          EMAIL_VERIFICATION_MAX_ATTEMPTS
-      ) {
-        this.database
-          .prepare(`
-            UPDATE registration_email_verifications
-            SET attempt_count = attempt_count + 1
-            WHERE challenge_id = ? AND active = 1
-          `)
-          .run(active.challenge_id);
-      }
-      this.database.exec("COMMIT");
-      throw new ApiError(
-        "EMAIL_VERIFICATION_REQUIRED",
-        "A valid email verification code is required.",
-        400,
-      );
-    } catch (error) {
-      rollback(this.database);
-      throw error;
-    }
+      ) as RegistrationInviteRow | undefined;
+    if (!invite) throw this.invalidInvite();
+    return invite.id;
   }
 
   private derivePassword(
@@ -661,17 +383,15 @@ export class SqliteAuthStore {
   ): Promise<NewSession> {
     const input = inputObject(value);
     assertCurrentPrivacyConsent(input);
+    const displayName = validateDisplayName(input.displayName);
     const email = normalizeEmail(input.email);
     const password = validatePassword(input.password);
-    this.assertEmailVerificationConfigured();
-    const verificationCode =
-      typeof input.verificationCode === "string" &&
-      /^\d{6}$/.test(input.verificationCode)
-        ? input.verificationCode
-        : "invalid";
-    const challengeId = this.preflightRegistrationVerification(
+    const normalizedInvite = normalizeInviteCode(input.inviteCode);
+    if (!normalizedInvite) throw this.invalidInvite();
+    const codeHash = inviteCodeHash(normalizedInvite);
+    const inviteId = this.preflightRegistrationInvite(
       email,
-      verificationCode,
+      codeHash,
       clock(),
     );
     const salt = randomBytes(16).toString("hex");
@@ -685,6 +405,7 @@ export class SqliteAuthStore {
     const now = clock();
     const user: UserRow = {
       id: `usr_${randomUUID().replaceAll("-", "")}`,
+      display_name: displayName,
       email,
       email_normalized: email,
       password_salt: salt,
@@ -692,61 +413,48 @@ export class SqliteAuthStore {
       password_hash_version: CURRENT_PASSWORD_HASH_VERSION,
       privacy_consent_version: PRIVACY_CONSENT_VERSION,
       privacy_consent_accepted_at: now,
-      email_verified_at: now,
+      email_verified_at: null,
       created_at: now,
     };
 
     this.database.exec("BEGIN IMMEDIATE");
     try {
-      const challenge = this.database
+      const invite = this.database
         .prepare(`
-          SELECT email_normalized, challenge_id, code_hash, created_at,
-                 expires_at, retain_until, last_sent_at, attempt_count,
-                 active
-          FROM registration_email_verifications
-          WHERE email_normalized = ? AND challenge_id = ? AND active = 1
+          SELECT id, code_hash, email_normalized, secret_version,
+                 expires_at, revoked_at, consumed_at, consumed_by_user_id
+          FROM registration_invites
+          WHERE id = ? AND code_hash = ?
         `)
         .get(
-          email,
-          challengeId,
-        ) as RegistrationEmailVerificationRow | undefined;
+          inviteId,
+          codeHash,
+        ) as RegistrationInviteRow | undefined;
       if (
-        !challenge ||
-        Number(challenge.expires_at) <= now ||
-        Number(challenge.attempt_count) >=
-          EMAIL_VERIFICATION_MAX_ATTEMPTS ||
-        !this.registrationCodeMatches(challenge, verificationCode)
+        !invite ||
+        Number(invite.secret_version) !== INVITE_SECRET_VERSION ||
+        Number(invite.expires_at) <= now ||
+        invite.revoked_at != null ||
+        invite.consumed_at != null ||
+        (
+          invite.email_normalized != null &&
+          invite.email_normalized !== email
+        )
       ) {
-        throw new ApiError(
-          "EMAIL_VERIFICATION_REQUIRED",
-          "A valid email verification code is required.",
-          400,
-        );
-      }
-      const consumed = this.database
-        .prepare(`
-          DELETE FROM registration_email_verifications
-          WHERE email_normalized = ?
-        `)
-        .run(email);
-      if (Number(consumed.changes) < 1) {
-        throw new ApiError(
-          "EMAIL_VERIFICATION_REQUIRED",
-          "A valid email verification code is required.",
-          400,
-        );
+        throw this.invalidInvite();
       }
       this.database
         .prepare(`
           INSERT INTO users (
-            id, email, email_normalized, password_salt,
+            id, display_name, email, email_normalized, password_salt,
             password_hash, password_hash_version,
             privacy_consent_version, privacy_consent_accepted_at,
             email_verified_at, created_at, updated_at
-          ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+          ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         `)
         .run(
           user.id,
+          user.display_name,
           user.email,
           user.email_normalized,
           user.password_salt,
@@ -758,6 +466,30 @@ export class SqliteAuthStore {
           now,
           now,
         );
+      const consumed = this.database
+        .prepare(`
+          UPDATE registration_invites
+          SET consumed_at = ?, consumed_by_user_id = ?
+          WHERE id = ?
+            AND code_hash = ?
+            AND secret_version = ?
+            AND expires_at > ?
+            AND revoked_at IS NULL
+            AND consumed_at IS NULL
+            AND (email_normalized IS NULL OR email_normalized = ?)
+        `)
+        .run(
+          now,
+          user.id,
+          inviteId,
+          codeHash,
+          INVITE_SECRET_VERSION,
+          now,
+          email,
+        );
+      if (Number(consumed.changes) !== 1) {
+        throw this.invalidInvite();
+      }
       const session = this.insertSession(user, now);
       this.database.exec("COMMIT");
       return session;
@@ -765,7 +497,7 @@ export class SqliteAuthStore {
       rollback(this.database);
       if (
         error instanceof Error &&
-        /users\.email_normalized|UNIQUE constraint/i.test(error.message)
+        /users\.email_normalized/i.test(error.message)
       ) {
         throw new ApiError(
           "EMAIL_ALREADY_REGISTERED",
@@ -788,7 +520,7 @@ export class SqliteAuthStore {
         : "";
     const row = this.database
       .prepare(`
-        SELECT id, email, email_normalized, password_salt,
+        SELECT id, display_name, email, email_normalized, password_salt,
                password_hash, password_hash_version,
                privacy_consent_version, privacy_consent_accepted_at,
                email_verified_at,
@@ -905,7 +637,8 @@ export class SqliteAuthStore {
       .prepare(`
         SELECT sessions.token_hash, sessions.csrf_token,
                sessions.expires_at, sessions.last_seen_at,
-               users.id, users.email, users.email_normalized,
+               users.id, users.display_name, users.email,
+               users.email_normalized,
                users.password_salt, users.password_hash,
                users.password_hash_version,
                users.privacy_consent_version,
