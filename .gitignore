@@ -27,3 +27,9 @@ examples/*/dist/
 
 # Third-party classroom material: keep out of the public repo
 examples/mi-espanol/materials/ejercicios-vocabulario-a1-1.pdf
+examples/mi-espanol/materials/Ejercicio_SER_y_ESTAR_1*.pdf
+examples/mi-espanol/materials/Ejercicio_SER_y_ESTAR_2*.pdf
+examples/mi-espanol/materials/ejercicio-ser-estar-01-practica-bilingue.pdf
+examples/mi-espanol/materials/ejercicio-ser-estar-02-conjugacion-presente.pdf
+examples/*/homework.local.json
+docs/*.local.html

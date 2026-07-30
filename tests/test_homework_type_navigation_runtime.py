@@ -160,8 +160,16 @@ const vocabularyAssignment = runtime.homeworkAssignments.find(
 const conjugationAssignment = runtime.homeworkAssignments.find(
   (candidate) => candidate.id === "ser-estar-conjugation-a1"
 );
+const bilingualSerEstar = runtime.homeworkAssignments.find(
+  (candidate) => candidate.id === "ser-estar-practice-a1-01"
+);
+const presentSerEstar = runtime.homeworkAssignments.find(
+  (candidate) => candidate.id === "ser-estar-present-a1-02"
+);
 assert(vocabularyAssignment, "expected the A1 vocabulary homework assignment");
 assert(conjugationAssignment, "expected the Ser/Estar conjugation assignment");
+assert(bilingualSerEstar, "expected the rewritten bilingual Ser/Estar assignment");
+assert(presentSerEstar, "expected the rewritten present-tense Ser/Estar assignment");
 
 const vocabularyItems = runtime.homeworkItems(vocabularyAssignment);
 assert(vocabularyItems.length === 50, "the vocabulary assignment should have 50 items");
@@ -303,6 +311,60 @@ assert(position.type === "text_input" && position.position === 0 &&
 nextTarget = runtime.homeworkNextTarget(conjugationAssignment);
 assert(nextTarget.index === 1 && nextTarget.label === "下一题",
   "next navigation should work normally within the only available type");
+
+const rewrittenListHtml = runtime.dashboardHomeworkListHtml();
+assert(rewrittenListHtml.includes("Ser / Estar 双语语境练习 A1 - 1") &&
+    rewrittenListHtml.includes("21 道填空题"),
+  "the homework list should expose the 21-item bilingual assignment");
+assert(rewrittenListHtml.includes("Ser / Estar 现在时语境练习 A1 - 2") &&
+    rewrittenListHtml.includes("31 道填空题"),
+  "the homework list should expose the 31-item present-tense assignment");
+
+const bilingualItems = runtime.homeworkItems(bilingualSerEstar);
+assert(bilingualItems.length === 21,
+  "the bilingual assignment should contain twenty-one rewritten items");
+runtime.openHomework(bilingualSerEstar);
+assert(runtime.saveHomeworkAnswer("está").saved === true,
+  "an accented estar form should save");
+assert(runtime.checkHomeworkAnswer() === true,
+  "an accented estar form should grade as correct");
+
+runtime.state.homeworkIndex = 13;
+assert(bilingualItems[13].item.prompt.includes("La reunión"),
+  "the event-location regression should target the meeting item");
+assert(runtime.saveHomeworkAnswer("es").saved === true,
+  "the event-location ser answer should save");
+assert(runtime.checkHomeworkAnswer() === true,
+  "an event location should grade with ser");
+
+runtime.state.homeworkIndex = 11;
+assert(runtime.saveHomeworkAnswer("es").saved === true,
+  "the general-characteristic soup answer should save");
+assert(runtime.checkHomeworkAnswer() === true,
+  "the documented ambiguous soup answer should be accepted");
+assert(runtime.dashboardHomeworkQuestionHtml(bilingualSerEstar).includes(
+    "原句没有更多语境，因此两者均接受"),
+  "the accepted ambiguity should remain visible to the learner");
+
+const presentItems = runtime.homeworkItems(presentSerEstar);
+assert(presentItems.length === 31,
+  "the present-tense assignment should contain thirty-one rewritten items");
+runtime.openHomework(presentSerEstar);
+runtime.state.homeworkIndex = 23;
+assert(runtime.saveHomeworkAnswer("está").saved === true,
+  "the current-price estar answer should save");
+assert(runtime.checkHomeworkAnswer() === true,
+  "the documented current-price alternative should be accepted");
+
+runtime.openHomework(bilingualSerEstar);
+runtime.state.homeworkIndex = 2;
+runtime.saveHomeworkAnswer("estamos");
+runtime.checkHomeworkAnswer();
+var sentenceHtml = runtime.dashboardHomeworkQuestionHtml(bilingualSerEstar);
+assert(sentenceHtml.indexOf('homework-sentence-term" type="button" data-homework-sentence-word=') !== -1 &&
+    sentenceHtml.indexOf("biblioteca<") !== -1,
+  "biblioteca should render as a clickable sentence term after the lexicon backfill");
+// note: the matched segment may include the article ("la biblioteca"), so match "biblioteca<" not ">biblioteca<"
 """
 
 

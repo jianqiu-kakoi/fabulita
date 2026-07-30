@@ -12,11 +12,14 @@ TEMPLATE = Path(__file__).parent / "template.html"
 STUDIO = Path(__file__).parent / "studio.html"
 
 
-def _homework_payload(project):
+def _homework_payload(project, include_local=False):
     """Load optional homework data and embed its local PDF source in the single-file page."""
     root = project.root.resolve()
     assignments = []
-    for raw in project.homeworks:
+    raw_assignments = list(project.homeworks) + (
+        list(project.local_homeworks) if include_local else []
+    )
+    for raw in raw_assignments:
         if not isinstance(raw, dict):
             continue
         assignment = dict(raw)
@@ -46,7 +49,7 @@ def _homework_payload(project):
     return assignments
 
 
-def payload(project, include_candidates=True, home=None):
+def payload(project, include_candidates=True, home=None, include_local_homework=False):
     cfg = project.config
     stories = [
         s for s in project.stories()
@@ -80,7 +83,7 @@ def payload(project, include_candidates=True, home=None):
         "glossary": project.glossary,
         "stories": stories,
         "audio": audio,
-        "homeworks": _homework_payload(project),
+        "homeworks": _homework_payload(project, include_local=include_local_homework),
     }
 
 
@@ -119,8 +122,9 @@ def demo_manifest_js(projects):
     return "window.FABULITA_DEMO_COUNTS=" + blob + ";\n"
 
 
-def build(project, out=None, include_candidates=True, home=None):
-    data = payload(project, include_candidates=include_candidates, home=home)
+def build(project, out=None, include_candidates=True, home=None, include_local_homework=False):
+    data = payload(project, include_candidates=include_candidates, home=home,
+                    include_local_homework=include_local_homework)
     blob = json.dumps(data, ensure_ascii=False).replace("</", "<\\/")
     html = TEMPLATE.read_text(encoding="utf-8")
     html = html.replace("__TITLE__", data["config"]["name"])

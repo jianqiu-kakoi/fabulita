@@ -617,7 +617,7 @@
   .homework-type-card-head strong { font-size: 0.83rem; }
   .homework-type-card-head span { color: var(--v-muted); font-size: 0.68rem; font-weight: 750; }
   .homework-type-track {
-    height: 0.45rem; margin-top: 0.55rem; overflow: hidden; border-radius: 99px; background: #ebe8e3;
+    display: block; height: 0.45rem; margin-top: 0.55rem; overflow: hidden; border-radius: 99px; background: #ebe8e3;
   }
   .homework-type-track span { display: block; height: 100%; border-radius: inherit; background: var(--v-accent); }
   .homework-type-card small { display: block; margin-top: 0.45rem; color: var(--v-muted); font-size: 0.62rem; }
@@ -902,6 +902,7 @@
     display: inline-flex; align-items: center; justify-content: center; width: 3.5rem; height: 3.5rem;
     border-radius: 50%; background: var(--v-mint); color: var(--v-mint-ink); font-size: 1.4rem; font-weight: 850;
   }
+  .homework-summary-note { margin: 0.2rem 0 0; color: var(--v-muted); font-size: 0.72rem; }
   .homework-summary h2 { margin: 0.8rem 0 0.3rem; font-size: 1.35rem; }
   .homework-summary > p { margin: 0; color: var(--v-muted); font-size: 0.78rem; }
   .homework-summary-stats {
@@ -1097,6 +1098,23 @@
   .vocab-review-column .review-action.primary { background: #edf6eb; border-color: #c9dec7; color: #315f3c; }
   .vocab-review-column .review-reveal { border-radius: 9px; background: var(--v-accent); border-color: var(--v-accent); color: #fff; }
   .vocab-review-foot { padding: 0.85rem 1.35rem; border-top: 1px solid var(--v-line); color: var(--v-muted); font-size: 0.72rem; text-align: center; }
+  .homework-mistakes { margin-top: 1rem; padding-top: 0.9rem; border-top: 1px solid var(--v-line); }
+  .homework-mistakes-head { display: flex; align-items: baseline; justify-content: space-between; }
+  .homework-mistakes-head h2 { margin: 0; font-size: 0.9rem; }
+  .homework-mistakes-head span { color: var(--v-muted); font-size: 0.68rem; font-weight: 750; }
+  .homework-mistakes-empty, .homework-mistakes-notice { margin: 0.6rem 0 0; color: var(--v-muted); font-size: 0.72rem; }
+  .homework-mistakes-list { margin: 0.6rem 0 0; padding: 0; list-style: none; display: grid; gap: 0.5rem; }
+  .homework-mistake { border: 1px solid var(--v-line); border-radius: 10px; background: rgba(255,255,255,0.72); }
+  .homework-mistake-summary { display: block; width: 100%; padding: 0.6rem 0.7rem; border: 0; background: none; text-align: left; cursor: pointer; font: inherit; }
+  .homework-mistake-title { display: block; color: var(--v-muted); font-size: 0.62rem; font-weight: 750; }
+  .homework-mistake-prompt { display: block; margin-top: 0.2rem; font-size: 0.74rem; }
+  .homework-mistake.is-resolved .homework-mistake-prompt { color: var(--v-muted); }
+  .homework-mistake-redo { display: flex; gap: 0.45rem; padding: 0 0.7rem 0.65rem; }
+  .homework-mistake-input { flex: 1; min-width: 0; padding: 0.4rem 0.55rem; border: 1px solid var(--v-line); border-radius: 8px; font: inherit; }
+  .homework-mistake-check, .homework-mistakes-toggle { padding: 0.4rem 0.7rem; border: 1px solid var(--v-line); border-radius: 8px; background: #fff; cursor: pointer; font: inherit; font-size: 0.7rem; }
+  .homework-mistakes-toggle { margin-top: 0.6rem; }
+  .homework-mistake-options { display: flex; flex-wrap: wrap; gap: 0.45rem; padding: 0 0.7rem 0.65rem; }
+  .homework-mistake-option { padding: 0.4rem 0.7rem; border: 1px solid var(--v-line); border-radius: 8px; background: #fff; cursor: pointer; font: inherit; font-size: 0.72rem; }
   .vocab-dashboard button:focus-visible, .vocab-dashboard input:focus-visible, .vocab-dashboard textarea:focus-visible {
     outline: 3px solid rgba(230,95,67,0.28); outline-offset: 2px;
   }
@@ -1336,6 +1354,28 @@
     .review-stat strong { font-size: 1.2rem; }
     .review-panel { min-height: 21rem; padding: 1.45rem 1.1rem; }
   }
+
+  .chat-widget { position: fixed; right: 1.1rem; bottom: 1.1rem; z-index: 60; display: flex; flex-direction: column; align-items: flex-end; gap: 0.6rem; }
+  .chat-fab {
+    width: 3rem; height: 3rem; border: 0; border-radius: 50%; background: var(--v-accent); color: #fff;
+    font-size: 1.25rem; cursor: pointer; box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+  }
+  .chat-panel {
+    width: min(20rem, calc(100vw - 2.2rem)); max-height: 24rem; display: flex; flex-direction: column;
+    border: 1px solid var(--v-line); border-radius: 14px; background: #fff; box-shadow: 0 10px 30px rgba(0,0,0,0.16); overflow: hidden;
+  }
+  .chat-panel-head { display: flex; align-items: center; justify-content: space-between; padding: 0.6rem 0.8rem; border-bottom: 1px solid var(--v-line); }
+  .chat-panel-head h2 { margin: 0; font-size: 0.8rem; }
+  .chat-close { border: 0; background: none; font-size: 1rem; cursor: pointer; color: var(--v-muted); }
+  .chat-log { flex: 1; min-height: 6rem; overflow-y: auto; padding: 0.7rem 0.8rem; display: flex; flex-direction: column; gap: 0.45rem; }
+  .chat-empty, .chat-note { margin: 0; color: var(--v-muted); font-size: 0.68rem; }
+  .chat-note { padding: 0 0.8rem 0.6rem; }
+  .chat-message { margin: 0; max-width: 85%; padding: 0.42rem 0.6rem; border-radius: 10px; font-size: 0.74rem; white-space: pre-wrap; }
+  .chat-message.is-user { align-self: flex-end; background: var(--v-accent-soft); }
+  .chat-message.is-assistant { align-self: flex-start; background: #f1efe9; }
+  .chat-compose { display: flex; gap: 0.45rem; padding: 0.55rem 0.8rem; border-top: 1px solid var(--v-line); }
+  .chat-input { flex: 1; min-width: 0; padding: 0.45rem 0.6rem; border: 1px solid var(--v-line); border-radius: 9px; font: inherit; font-size: 0.74rem; }
+  .chat-send { padding: 0.45rem 0.8rem; border: 0; border-radius: 9px; background: var(--v-accent); color: #fff; cursor: pointer; font: inherit; font-size: 0.72rem; }
 </style>
 
 <div class="wrap" id="app"></div>
@@ -1480,7 +1520,12 @@
     homeworkScenarioIntro: false,
     homeworkScenarioTeaching: false,
     homeworkTeachingWordKey: "",
-    homeworkDialogueTranslations: true
+    homeworkDialogueTranslations: true,
+    mistakeOpenKey: "",
+    mistakeNotice: "",
+    mistakeShowResolved: false,
+    chatOpen: false,
+    chatDraft: ""
   };
 
   function t(key) { return (UI[state.lang] || UI.en)[key] || key; }
@@ -2592,6 +2637,7 @@
   // Keep a small response/transport margin while staying below Caddy's 30 s.
   var HOMEWORK_SCORING_TIMEOUT_MS = 25000;
   var homeworkRetryDrafts = Object.create(null);
+  var homeworkMistakeDrafts = Object.create(null);
   function homeworkRetryDraftKey(assignment, item) {
     return String(assignment && assignment.id || "") + "\n" +
       String(item && item.id || "");
@@ -2664,6 +2710,15 @@
       if (typeof response.modelVersion === "string") item.modelVersion = response.modelVersion.slice(0, 120);
       if (typeof response.rubricVersion === "string") item.rubricVersion = response.rubricVersion.slice(0, 120);
       if (typeof response.originalVerdict === "string") item.originalVerdict = response.originalVerdict.slice(0, 40);
+      if (["correct", "near_miss", "incorrect"].indexOf(response.firstStatus) !== -1) {
+        item.firstStatus = response.firstStatus;
+      }
+      if (isFinite(+response.firstCheckedAt) && +response.firstCheckedAt > 0) {
+        item.firstCheckedAt = +response.firstCheckedAt;
+      }
+      if (isFinite(+response.mistakeResolvedAt) && +response.mistakeResolvedAt > 0) {
+        item.mistakeResolvedAt = +response.mistakeResolvedAt;
+      }
       item.updatedAt = isFinite(+response.updatedAt) ? +response.updatedAt : 0;
       clean.responses[id] = item;
     });
@@ -2723,6 +2778,59 @@
       });
     }
     return snapshotPersisted;
+  }
+  var CHAT_LS = "fabulita.chat.v1";
+  var CHAT_MAX_MESSAGE = 2000;
+  var CHAT_MAX_HISTORY = 200;
+  function loadChatRoot() {
+    var root = learningPersistence.loadSnapshot(CHAT_LS, null);
+    if (root && root.version === 1 && root.scopes && typeof root.scopes === "object" && !Array.isArray(root.scopes)) {
+      return root;
+    }
+    return { version: 1, scopes: {} };
+  }
+  function chatMessages() {
+    var root = loadChatRoot();
+    var scope = root.scopes[homeworkScopeKey];
+    var list = scope && Array.isArray(scope.messages) ? scope.messages : [];
+    return list.filter(function (message) {
+      return message && (message.role === "user" || message.role === "assistant") &&
+        typeof message.text === "string" && message.text;
+    });
+  }
+  function appendChatMessage(role, text) {
+    try {
+      var root = loadChatRoot();
+      var scope = root.scopes[homeworkScopeKey];
+      if (!scope || typeof scope !== "object" || Array.isArray(scope)) scope = { messages: [] };
+      if (!Array.isArray(scope.messages)) scope.messages = [];
+      scope.messages.push({
+        id: reviewEventNewId("chat"),
+        role: role,
+        text: String(text).slice(0, CHAT_MAX_MESSAGE),
+        at: Date.now()
+      });
+      if (scope.messages.length > CHAT_MAX_HISTORY) {
+        scope.messages = scope.messages.slice(-CHAT_MAX_HISTORY);
+      }
+      scope.updatedAt = Date.now();
+      root.scopes[homeworkScopeKey] = scope;
+      return learningPersistence.saveSnapshot(CHAT_LS, root);
+    } catch (e) {
+      return false;
+    }
+  }
+  function chatAutoReply() {
+    // Seam for a future LLM transport (window.fabulitaLearningServices.chat).
+    return "收到";
+  }
+  function sendChatMessage(text) {
+    var trimmed = String(text == null ? "" : text).trim();
+    if (!trimmed) return false;
+    if (!appendChatMessage("user", trimmed)) return false;
+    appendChatMessage("assistant", chatAutoReply());
+    state.chatDraft = "";
+    return true;
   }
   var HOMEWORK_STUDY_LS = "fabulita.homework.study.v1";
   var HOMEWORK_STUDY_MAX_ANSWER = 180;
@@ -3163,15 +3271,27 @@
     return queued.length;
   }
   function homeworkStats(assignment, progress) {
-    var stats = { total: 0, checked: 0, correct: 0, near: 0, incorrect: 0 };
+    var stats = { total: 0, checked: 0, correct: 0, near: 0, incorrect: 0,
+      firstCorrect: 0, firstNear: 0, firstIncorrect: 0 };
     homeworkItems(assignment).forEach(function (entry) {
       stats.total += 1;
       var response = progress.responses[entry.item.id];
-      if (!response || !response.status) return;
+      if (!response || !response.status) {
+        if (response && response.firstStatus) {
+          if (response.firstStatus === "correct") stats.firstCorrect += 1;
+          else if (response.firstStatus === "near_miss") stats.firstNear += 1;
+          else stats.firstIncorrect += 1;
+        }
+        return;
+      }
       stats.checked += 1;
       if (response.status === "correct") stats.correct += 1;
       else if (response.status === "near_miss") stats.near += 1;
       else stats.incorrect += 1;
+      var first = response.firstStatus || response.status;
+      if (first === "correct") stats.firstCorrect += 1;
+      else if (first === "near_miss") stats.firstNear += 1;
+      else stats.firstIncorrect += 1;
     });
     return stats;
   }
@@ -3447,6 +3567,11 @@
       answer: nextAnswer,
       updatedAt: Date.now()
     };
+    if (previous.firstStatus) {
+      progress.responses[entry.item.id].firstStatus = previous.firstStatus;
+      if (previous.firstCheckedAt) progress.responses[entry.item.id].firstCheckedAt = previous.firstCheckedAt;
+      if (previous.mistakeResolvedAt) progress.responses[entry.item.id].mistakeResolvedAt = previous.mistakeResolvedAt;
+    }
     if (!changed && previous.status) {
       progress.responses[entry.item.id].status = previous.status;
       progress.responses[entry.item.id].checkedAt = previous.checkedAt;
@@ -3473,6 +3598,15 @@
     if (grade.modelVersion) response.modelVersion = String(grade.modelVersion).slice(0, 120);
     if (grade.rubricVersion) response.rubricVersion = String(grade.rubricVersion).slice(0, 120);
     response.updatedAt = response.checkedAt;
+    var previousResponse = progress.responses[entry.item.id] || {};
+    if (previousResponse.firstStatus) {
+      response.firstStatus = previousResponse.firstStatus;
+      if (previousResponse.firstCheckedAt) response.firstCheckedAt = previousResponse.firstCheckedAt;
+      if (previousResponse.mistakeResolvedAt) response.mistakeResolvedAt = previousResponse.mistakeResolvedAt;
+    } else {
+      response.firstStatus = grade.status;
+      response.firstCheckedAt = response.checkedAt;
+    }
     progress.responses[entry.item.id] = response;
     progress.currentItemId = entry.item.id;
     progress.completedAt = null;
@@ -3492,6 +3626,7 @@
       submittedAnswer: response.answer,
       expectedAnswers: entry.item.answers,
       verdict: response.status,
+      firstVerdict: response.firstStatus,
       originalVerdict: response.originalVerdict,
       answerCorrect: response.status === "correct",
       meaningCorrect: response.meaningCorrect,
@@ -3676,6 +3811,48 @@
     state.homeworkNotice = "";
     state.homeworkIssueNotice = "";
     state.homeworkSentenceWordId = "";
+  }
+  function homeworkMistakeKey(assignment, item) {
+    return String(assignment.id) + "\n" + String(item.id);
+  }
+  function homeworkMistakeEntries() {
+    var out = [];
+    homeworkAssignments.forEach(function (assignment) {
+      var progress = homeworkProgress(assignment);
+      homeworkItems(assignment).forEach(function (entry) {
+        var response = progress.responses[entry.item.id];
+        if (!response || !response.firstStatus || response.firstStatus === "correct") return;
+        out.push({
+          assignment: assignment,
+          entry: entry,
+          response: response,
+          key: homeworkMistakeKey(assignment, entry.item),
+          resolved: !!response.mistakeResolvedAt
+        });
+      });
+    });
+    return out;
+  }
+  function resolveHomeworkMistake(key, value) {
+    var found = homeworkMistakeEntries().filter(function (candidate) {
+      return candidate.key === key;
+    })[0];
+    if (!found) return "";
+    var verdict = homeworkVerdict(found.entry.item, value);
+    if (verdict === "correct") {
+      var progress = homeworkProgress(found.assignment);
+      var response = progress.responses[found.entry.item.id];
+      if (response) {
+        response.mistakeResolvedAt = Date.now();
+        saveHomeworkProgress(found.assignment, progress);
+      }
+      state.mistakeNotice = "已订正，做对了。";
+      state.mistakeOpenKey = "";
+      delete homeworkMistakeDrafts[key];
+    } else {
+      state.mistakeNotice = verdict === "near_miss" ? "意思接近了，再注意拼写或重音。" : "还不对，再想想。";
+    }
+    return verdict;
   }
   function homeworkIssueSourceRef(assignment, item) {
     return "homework:" + homeworkScopeKey + ":" + assignment.id + ":" + item.id;
@@ -4443,14 +4620,17 @@
     var retryCount = stats.total - stats.correct;
     return homeworkReferenceTablesHtml(assignment) + dashboardHomeworkTypeProgressHtml(assignment) +
       '<section class="homework-summary" aria-labelledby="homework-summary-title"><span class="homework-summary-mark" aria-hidden="true">' +
-      stats.correct + '</span><h2 id="homework-summary-title" tabindex="-1">本次作业结果</h2><p>' +
+      stats.firstCorrect + '</span><h2 id="homework-summary-title" tabindex="-1">本次作业结果</h2><p>' +
       (stats.checked === stats.total ? "全部题目都已检查，记录已保存在这个浏览器中。" :
       "还有 " + (stats.total - stats.checked) + " 道题没有检查。") +
-      '</p><div class="homework-summary-stats"><div class="homework-summary-stat"><strong>' + stats.total +
-      '</strong><span>总题数</span></div><div class="homework-summary-stat"><strong>' + stats.correct +
-      '</strong><span>正确</span></div><div class="homework-summary-stat"><strong>' + stats.near +
+      '</p>' +
+      (stats.correct > stats.firstCorrect ?
+        '<p class="homework-summary-note">按第一次作答统计；订正后已答对 ' + stats.correct + ' 题。</p>' : '') +
+      '<div class="homework-summary-stats"><div class="homework-summary-stat"><strong>' + stats.total +
+      '</strong><span>总题数</span></div><div class="homework-summary-stat"><strong>' + stats.firstCorrect +
+      '</strong><span>正确</span></div><div class="homework-summary-stat"><strong>' + stats.firstNear +
       '</strong><span>' + (homeworkIsScenario(assignment) ? "意思正确，可优化" : "重音 / 拼写接近") +
-      '</span></div><div class="homework-summary-stat"><strong>' + stats.incorrect +
+      '</span></div><div class="homework-summary-stat"><strong>' + stats.firstIncorrect +
       '</strong><span>暂时不对</span></div></div><div class="homework-summary-actions">' +
       (retryCount ? '<button class="homework-button primary" data-homework-action="retry">重做未完全答对的 ' + retryCount + " 题</button>" : "") +
       '<button class="homework-button" data-homework-action="browse">查看题目</button>' +
@@ -4990,7 +5170,83 @@
       '<div class="vocab-review-head"><div class="vocab-review-title"><h2>今日复习</h2><span>' + done + " / " + total +
       '</span></div><div class="vocab-review-bar" aria-hidden="true"><span style="width:' + pct + '%"></span></div></div>' +
       (state.reviewHistoryNotice ? '<p class="review-history-notice" role="status">' + esc(state.reviewHistoryNotice) + "</p>" : "") +
-      reviewCardHtml() + '<div class="vocab-review-foot">回车检查答案 · 可直接看答案 · 1 没想起 · 2 其他 · 3 想起来了</div></aside>';
+      reviewCardHtml() + '<div class="vocab-review-foot">回车检查答案 · 可直接看答案 · 1 没想起 · 2 其他 · 3 想起来了</div>' +
+      homeworkMistakesHtml() + '</aside>';
+  }
+
+  function homeworkMistakesHtml() {
+    var entries = homeworkMistakeEntries();
+    var open = entries.filter(function (entry) { return !entry.resolved; });
+    var resolved = entries.filter(function (entry) { return entry.resolved; });
+    var h = '<section class="homework-mistakes" aria-label="错题复习"><div class="homework-mistakes-head"><h2>错题</h2><span>' +
+      open.length + ' 待订正</span></div>';
+    if (!entries.length) {
+      return h + '<p class="homework-mistakes-empty">还没有错题。第一次没答对的题会出现在这里。</p></section>';
+    }
+    if (state.mistakeNotice) {
+      h += '<p class="homework-mistakes-notice" role="status">' + esc(state.mistakeNotice) + "</p>";
+    }
+    h += '<ol class="homework-mistakes-list">';
+    open.forEach(function (candidate) {
+      var isOpen = state.mistakeOpenKey === candidate.key;
+      h += '<li class="homework-mistake' + (isOpen ? " is-open" : "") + '">' +
+        '<button class="homework-mistake-summary" data-mistake-open="' + esc(candidate.key) + '">' +
+        '<span class="homework-mistake-title">' + esc(candidate.assignment.title || candidate.assignment.id) + " · 第 " +
+        (candidate.entry.item.number || "?") + ' 题</span><span class="homework-mistake-prompt">' +
+        esc(candidate.entry.item.prompt) + "</span></button>";
+      if (isOpen) {
+        if (candidate.entry.type === "single_choice") {
+          h += '<div class="homework-mistake-options">';
+          (candidate.entry.item.options || []).forEach(function (option) {
+            h += '<button class="homework-mistake-option" data-mistake-option="' + esc(candidate.key) +
+              '" data-mistake-value="' + esc(option) + '">' + esc(option) + "</button>";
+          });
+          h += "</div>";
+        } else {
+          h += '<div class="homework-mistake-redo"><input class="homework-mistake-input" data-mistake-input="' +
+            esc(candidate.key) + '" value="' + esc(homeworkMistakeDrafts[candidate.key] || "") +
+            '" autocomplete="off" lang="' + esc(P.config.lang || "") + '">' +
+            '<button class="homework-mistake-check" data-mistake-check="' + esc(candidate.key) + '">检查</button></div>';
+        }
+      }
+      h += "</li>";
+    });
+    h += "</ol>";
+    if (resolved.length) {
+      h += '<button class="homework-mistakes-toggle" data-mistake-toggle-resolved>已订正 ' + resolved.length +
+        ' 题 ' + (state.mistakeShowResolved ? "收起" : "展开") + "</button>";
+      if (state.mistakeShowResolved) {
+        h += '<ol class="homework-mistakes-list is-resolved">';
+        resolved.forEach(function (candidate) {
+          h += '<li class="homework-mistake is-resolved"><span class="homework-mistake-prompt">' +
+            esc(candidate.entry.item.prompt) + "</span></li>";
+        });
+        h += "</ol>";
+      }
+    }
+    return h + "</section>";
+  }
+
+  function chatWidgetHtml() {
+    var h = '<div class="chat-widget">';
+    if (state.chatOpen) {
+      var messages = chatMessages();
+      h += '<section class="chat-panel" aria-label="需求对话"><header class="chat-panel-head"><h2>需求与反馈</h2>' +
+        '<button class="chat-close" data-chat-toggle aria-label="收起对话框">×</button></header>' +
+        '<div class="chat-log" role="log" aria-live="polite">';
+      if (!messages.length) {
+        h += '<p class="chat-empty">想调整作业、报告问题或提需求，直接发在这里。</p>';
+      }
+      messages.forEach(function (message) {
+        h += '<p class="chat-message is-' + message.role + '">' + esc(message.text) + "</p>";
+      });
+      h += '</div><form class="chat-compose" id="chat-form"><input class="chat-input" id="chat-input" ' +
+        'autocomplete="off" maxlength="' + CHAT_MAX_MESSAGE + '" placeholder="输入消息…" value="' + esc(state.chatDraft) + '">' +
+        '<button class="chat-send" type="submit" data-chat-send>发送</button></form>' +
+        '<p class="chat-note">消息仅保存在这个浏览器中；稍后会接入智能助手处理。</p></section>';
+    }
+    h += '<button class="chat-fab" data-chat-toggle aria-expanded="' + state.chatOpen + '" aria-label="打开需求对话框">💬</button></div>';
+    return h;
   }
 
   function dashboardNavButton(name, mark, label, count) {
@@ -5495,7 +5751,7 @@
     var app = document.getElementById("app");
     if (VOCAB_DASHBOARD) {
       app.className = "wrap vocab-dashboard-wrap";
-      app.innerHTML = dashboardHtml();
+      app.innerHTML = dashboardHtml() + chatWidgetHtml();
       return;
     }
     app.className = "wrap";
@@ -6274,6 +6530,43 @@
       showPop(el, -1, el.dataset.key);
       return;
     }
+    if ((el = e.target.closest("[data-mistake-open]"))) {
+      var mistakeKey = el.getAttribute("data-mistake-open");
+      state.mistakeOpenKey = state.mistakeOpenKey === mistakeKey ? "" : mistakeKey;
+      state.mistakeNotice = "";
+      render();
+      return;
+    }
+    if ((el = e.target.closest("[data-mistake-check]"))) {
+      var checkKey = el.getAttribute("data-mistake-check");
+      resolveHomeworkMistake(checkKey, homeworkMistakeDrafts[checkKey] || "");
+      render();
+      return;
+    }
+    if ((el = e.target.closest("[data-mistake-option]"))) {
+      resolveHomeworkMistake(el.getAttribute("data-mistake-option"),
+        el.getAttribute("data-mistake-value") || "");
+      render();
+      return;
+    }
+    if (e.target.closest("[data-mistake-toggle-resolved]")) {
+      state.mistakeShowResolved = !state.mistakeShowResolved;
+      render();
+      return;
+    }
+    if (e.target.closest("[data-chat-send]")) {
+      e.preventDefault();
+      var chatInput = document.getElementById("chat-input");
+      if (chatInput) state.chatDraft = chatInput.value;
+      sendChatMessage(state.chatDraft);
+      render();
+      return;
+    }
+    if (e.target.closest("[data-chat-toggle]")) {
+      state.chatOpen = !state.chatOpen;
+      render();
+      return;
+    }
     if (!e.target.closest(".pop")) hidePop();
   });
 
@@ -6427,6 +6720,14 @@
       state.vocabSearch = e.target.value;
       updateDashboardVocabList();
     }
+    if (e.target && e.target.hasAttribute && e.target.hasAttribute("data-mistake-input")) {
+      homeworkMistakeDrafts[e.target.getAttribute("data-mistake-input")] = e.target.value;
+      return;
+    }
+    if (e.target && e.target.id === "chat-input") {
+      state.chatDraft = e.target.value;
+      return;
+    }
   });
 
   document.addEventListener("change", function (e) {
@@ -6438,6 +6739,13 @@
   });
 
   document.addEventListener("keydown", function (e) {
+    if (e.key === "Enter" && e.target && e.target.id === "chat-input") {
+      e.preventDefault();
+      state.chatDraft = e.target.value;
+      sendChatMessage(state.chatDraft);
+      render();
+      return;
+    }
     if (e.key === "Escape") {
       hidePop();
       if (state.dashboardNav === "qa" && state.qaDeleteArmed) {

@@ -2410,6 +2410,193 @@
           ]
         }
       ],
+      "sentenceLexicon": [
+        {
+          "id": "pse-a0-lx-abierto",
+          "word": "abierto",
+          "forms": [
+            "abiertos",
+            "abiertas"
+          ],
+          "gloss": "开着的；开放的",
+          "english": "open"
+        },
+        {
+          "id": "pse-a0-lx-cerrado",
+          "word": "cerrado",
+          "forms": [
+            "cerrados",
+            "cerradas"
+          ],
+          "gloss": "关着的；关闭的",
+          "english": "closed"
+        },
+        {
+          "id": "pse-a0-lx-grande",
+          "word": "grande",
+          "forms": [
+            "grandes"
+          ],
+          "gloss": "大的",
+          "english": "big; large"
+        },
+        {
+          "id": "pse-a0-lx-pequeno",
+          "word": "pequeño",
+          "forms": [
+            "pequeños",
+            "pequeñas"
+          ],
+          "gloss": "小的",
+          "english": "small"
+        },
+        {
+          "id": "pse-a0-lx-cansado",
+          "word": "cansado",
+          "forms": [
+            "cansados",
+            "cansadas"
+          ],
+          "gloss": "累的；疲倦的",
+          "english": "tired"
+        },
+        {
+          "id": "pse-a0-lx-limpio",
+          "word": "limpio",
+          "forms": [
+            "limpios",
+            "limpias"
+          ],
+          "gloss": "干净的",
+          "english": "clean"
+        },
+        {
+          "id": "pse-a0-lx-amigo",
+          "word": "amigo",
+          "forms": [
+            "amigos"
+          ],
+          "gloss": "朋友（复数）",
+          "english": "friends"
+        },
+        {
+          "id": "pse-a0-lx-comer",
+          "word": "comer",
+          "forms": [
+            "comemos"
+          ],
+          "gloss": "吃",
+          "english": "to eat; we eat"
+        },
+        {
+          "id": "pse-a0-lx-doctora",
+          "word": "doctora",
+          "forms": [
+            "doctora"
+          ],
+          "gloss": "女医生；医生",
+          "english": "female doctor; doctor"
+        },
+        {
+          "id": "pse-a0-lx-espana",
+          "word": "España",
+          "forms": [
+            "España"
+          ],
+          "gloss": "西班牙",
+          "english": "Spain"
+        },
+        {
+          "id": "pse-a0-lx-estudiar",
+          "word": "estudiar",
+          "forms": [
+            "estudiar"
+          ],
+          "gloss": "学习",
+          "english": "to study"
+        },
+        {
+          "id": "pse-a0-lx-madrid",
+          "word": "Madrid",
+          "forms": [
+            "Madrid"
+          ],
+          "gloss": "马德里",
+          "english": "Madrid"
+        },
+        {
+          "id": "pse-a0-lx-maria",
+          "word": "María",
+          "forms": [
+            "María"
+          ],
+          "gloss": "玛丽亚（人名）",
+          "english": "Maria (name)"
+        },
+        {
+          "id": "pse-a0-lx-mejor",
+          "word": "mejor",
+          "forms": [
+            "mejor"
+          ],
+          "gloss": "最好的；更好的",
+          "english": "best; better"
+        },
+        {
+          "id": "pse-a0-lx-mochila",
+          "word": "mochila",
+          "forms": [
+            "mochila"
+          ],
+          "gloss": "背包",
+          "english": "backpack"
+        },
+        {
+          "id": "pse-a0-lx-medico",
+          "word": "médico",
+          "forms": [
+            "médico"
+          ],
+          "gloss": "医生（男性）；医生",
+          "english": "male doctor; doctor"
+        },
+        {
+          "id": "pse-a0-lx-mexico",
+          "word": "México",
+          "forms": [
+            "México"
+          ],
+          "gloss": "墨西哥",
+          "english": "Mexico"
+        },
+        {
+          "id": "pse-a0-lx-simpatico",
+          "word": "simpático",
+          "forms": [
+            "simpático"
+          ],
+          "gloss": "友好的；和蔼的",
+          "english": "nice; friendly"
+        },
+        {
+          "id": "pse-a0-lx-tener",
+          "word": "tener",
+          "forms": [
+            "tiene"
+          ],
+          "gloss": "有",
+          "english": "to have; has"
+        },
+        {
+          "id": "pse-a0-lx-trabajar",
+          "word": "trabajar",
+          "forms": [
+            "trabaja"
+          ],
+          "gloss": "工作",
+          "english": "to work; works"
+        }
+      ],
       "studyWords": [
         {
           "id": "pse-a0-word-soy",
@@ -4353,6 +4540,1899 @@
               "answers": [
                 "están"
               ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ser-estar-practice-a1-01",
+      "title": "Ser / Estar 双语语境练习 A1 - 1",
+      "badge": "新练习",
+      "sourceTitle": "Práctica bilingüe de ser y estar - 1",
+      "teacher": "Profesor de ejemplo",
+      "level": "A1",
+      "answerKeyBasis": "inferred_from_context",
+      "contentOrigin": "independently_rewritten_private_classroom_adaptation",
+      "source": {},
+      "referenceTables": [
+        {
+          "id": "se01-ser-reference",
+          "verb": "ser",
+          "title": "Ser：身份、来源、所属、日期和活动信息",
+          "rows": [
+            {
+              "person": "yo",
+              "form": "soy"
+            },
+            {
+              "person": "tú",
+              "form": "eres"
+            },
+            {
+              "person": "él / ella",
+              "form": "es"
+            },
+            {
+              "person": "nosotros / nosotras",
+              "form": "somos"
+            },
+            {
+              "person": "vosotros / vosotras",
+              "form": "sois"
+            },
+            {
+              "person": "ellos / ellas",
+              "form": "son"
+            }
+          ]
+        },
+        {
+          "id": "se01-estar-reference",
+          "verb": "estar",
+          "title": "Estar：位置、当前状态和结果状态",
+          "rows": [
+            {
+              "person": "yo",
+              "form": "estoy"
+            },
+            {
+              "person": "tú",
+              "form": "estás"
+            },
+            {
+              "person": "él / ella",
+              "form": "está"
+            },
+            {
+              "person": "nosotros / nosotras",
+              "form": "estamos"
+            },
+            {
+              "person": "vosotros / vosotras",
+              "form": "estáis"
+            },
+            {
+              "person": "ellos / ellas",
+              "form": "están"
+            }
+          ]
+        }
+      ],
+      "sentenceLexicon": [
+        {
+          "id": "se01-lx-hermana",
+          "word": "hermana",
+          "forms": [
+            "hermana"
+          ],
+          "gloss": "姐姐；妹妹",
+          "english": "sister"
+        },
+        {
+          "id": "se01-lx-resfriado",
+          "word": "resfriado",
+          "forms": [
+            "resfriada"
+          ],
+          "gloss": "感冒的",
+          "english": "having a cold"
+        },
+        {
+          "id": "se01-lx-chocolate",
+          "word": "chocolate",
+          "forms": [
+            "chocolate"
+          ],
+          "gloss": "巧克力",
+          "english": "chocolate"
+        },
+        {
+          "id": "se01-lx-ecuador",
+          "word": "Ecuador",
+          "forms": [
+            "Ecuador"
+          ],
+          "gloss": "厄瓜多尔",
+          "english": "Ecuador"
+        },
+        {
+          "id": "se01-lx-biblioteca",
+          "word": "biblioteca",
+          "forms": [
+            "la biblioteca"
+          ],
+          "gloss": "图书馆",
+          "english": "library"
+        },
+        {
+          "id": "se01-lx-vecina",
+          "word": "vecino",
+          "forms": [
+            "vecina"
+          ],
+          "gloss": "邻居",
+          "english": "neighbor"
+        },
+        {
+          "id": "se01-lx-persona",
+          "word": "persona",
+          "forms": [
+            "persona"
+          ],
+          "gloss": "人",
+          "english": "person"
+        },
+        {
+          "id": "se01-lx-amable",
+          "word": "amable",
+          "forms": [
+            "amable"
+          ],
+          "gloss": "友好的；和蔼的",
+          "english": "kind; friendly"
+        },
+        {
+          "id": "se01-lx-divertida",
+          "word": "divertido",
+          "forms": [
+            "divertida"
+          ],
+          "gloss": "有趣的；好玩的",
+          "english": "fun; entertaining"
+        },
+        {
+          "id": "se01-lx-cortinas",
+          "word": "cortina",
+          "forms": [
+            "cortinas"
+          ],
+          "gloss": "窗帘",
+          "english": "curtain(s)"
+        },
+        {
+          "id": "se01-lx-abierto",
+          "word": "abierto",
+          "forms": [
+            "abiertas"
+          ],
+          "gloss": "开着的；打开的",
+          "english": "open"
+        },
+        {
+          "id": "se01-lx-dejar",
+          "word": "dejar",
+          "forms": [
+            "dejar"
+          ],
+          "gloss": "让；允许；留下",
+          "english": "to let; to allow; to leave"
+        },
+        {
+          "id": "se01-lx-entrar",
+          "word": "entrar",
+          "forms": [
+            "entrar"
+          ],
+          "gloss": "进入",
+          "english": "to enter; to come in"
+        },
+        {
+          "id": "se01-lx-luz",
+          "word": "luz",
+          "forms": [
+            "luz"
+          ],
+          "gloss": "光；光线",
+          "english": "light"
+        },
+        {
+          "id": "se01-lx-manana",
+          "word": "mañana",
+          "forms": [
+            "mañana"
+          ],
+          "gloss": "明天",
+          "english": "tomorrow"
+        },
+        {
+          "id": "se01-lx-martes",
+          "word": "martes",
+          "forms": [
+            "martes"
+          ],
+          "gloss": "星期二",
+          "english": "Tuesday"
+        },
+        {
+          "id": "se01-lx-tio",
+          "word": "tío",
+          "forms": [
+            "tíos"
+          ],
+          "gloss": "叔叔阿姨（合称）",
+          "english": "uncle and aunt; uncles"
+        },
+        {
+          "id": "se01-lx-peru",
+          "word": "Perú",
+          "forms": [
+            "Perú"
+          ],
+          "gloss": "秘鲁",
+          "english": "Peru"
+        },
+        {
+          "id": "se01-lx-mes",
+          "word": "mes",
+          "forms": [
+            "mes"
+          ],
+          "gloss": "月；月份",
+          "english": "month"
+        },
+        {
+          "id": "se01-lx-cocina",
+          "word": "cocina",
+          "forms": [
+            "cocina"
+          ],
+          "gloss": "厨房",
+          "english": "kitchen"
+        },
+        {
+          "id": "se01-lx-ordenada",
+          "word": "ordenado",
+          "forms": [
+            "ordenada"
+          ],
+          "gloss": "整洁的；有条理的",
+          "english": "tidy; organized"
+        },
+        {
+          "id": "se01-lx-mochila",
+          "word": "mochila",
+          "forms": [
+            "mochila"
+          ],
+          "gloss": "背包",
+          "english": "backpack"
+        },
+        {
+          "id": "se01-lx-lucia",
+          "word": "Lucía",
+          "forms": [
+            "Lucía"
+          ],
+          "gloss": "露西亚（人名）",
+          "english": "Lucía (name)"
+        },
+        {
+          "id": "se01-lx-agotada",
+          "word": "agotado",
+          "forms": [
+            "agotada"
+          ],
+          "gloss": "筋疲力尽的",
+          "english": "exhausted"
+        },
+        {
+          "id": "se01-lx-despues",
+          "word": "después",
+          "forms": [
+            "después"
+          ],
+          "gloss": "之后；然后",
+          "english": "after; afterward"
+        },
+        {
+          "id": "se01-lx-correr",
+          "word": "correr",
+          "forms": [
+            "correr"
+          ],
+          "gloss": "跑步；跑",
+          "english": "to run"
+        },
+        {
+          "id": "se01-lx-ocupada",
+          "word": "ocupado",
+          "forms": [
+            "ocupada"
+          ],
+          "gloss": "忙碌的",
+          "english": "busy"
+        },
+        {
+          "id": "se01-lx-semana",
+          "word": "semana",
+          "forms": [
+            "semana"
+          ],
+          "gloss": "星期；周",
+          "english": "week"
+        },
+        {
+          "id": "se01-lx-sopa",
+          "word": "sopa",
+          "forms": [
+            "sopa"
+          ],
+          "gloss": "汤",
+          "english": "soup"
+        },
+        {
+          "id": "se01-lx-deliciosa",
+          "word": "delicioso",
+          "forms": [
+            "deliciosa"
+          ],
+          "gloss": "美味的",
+          "english": "delicious"
+        },
+        {
+          "id": "se01-lx-preparados",
+          "word": "preparado",
+          "forms": [
+            "preparados"
+          ],
+          "gloss": "准备好的",
+          "english": "ready; prepared"
+        },
+        {
+          "id": "se01-lx-prueba",
+          "word": "prueba",
+          "forms": [
+            "prueba"
+          ],
+          "gloss": "测验；考试",
+          "english": "test; quiz"
+        },
+        {
+          "id": "se01-lx-reunion",
+          "word": "reunión",
+          "forms": [
+            "reunión"
+          ],
+          "gloss": "会议；聚会",
+          "english": "meeting"
+        },
+        {
+          "id": "se01-lx-sala",
+          "word": "sala",
+          "forms": [
+            "sala"
+          ],
+          "gloss": "房间；厅",
+          "english": "room; hall"
+        },
+        {
+          "id": "se01-lx-azul",
+          "word": "azul",
+          "forms": [
+            "azul"
+          ],
+          "gloss": "蓝色的",
+          "english": "blue"
+        },
+        {
+          "id": "se01-lx-daniel",
+          "word": "Daniel",
+          "forms": [
+            "Daniel"
+          ],
+          "gloss": "丹尼尔（人名）",
+          "english": "Daniel (name)"
+        },
+        {
+          "id": "se01-lx-sofia",
+          "word": "Sofía",
+          "forms": [
+            "Sofía"
+          ],
+          "gloss": "索菲亚（人名）",
+          "english": "Sofía (name)"
+        },
+        {
+          "id": "se01-lx-chile",
+          "word": "Chile",
+          "forms": [
+            "Chile"
+          ],
+          "gloss": "智利",
+          "english": "Chile"
+        },
+        {
+          "id": "se01-lx-valencia",
+          "word": "Valencia",
+          "forms": [
+            "Valencia"
+          ],
+          "gloss": "瓦伦西亚",
+          "english": "Valencia"
+        },
+        {
+          "id": "se01-lx-problema",
+          "word": "problema",
+          "forms": [
+            "problema"
+          ],
+          "gloss": "问题",
+          "english": "problem"
+        },
+        {
+          "id": "se01-lx-siempre",
+          "word": "siempre",
+          "forms": [
+            "siempre"
+          ],
+          "gloss": "总是；一直",
+          "english": "always"
+        },
+        {
+          "id": "se01-lx-principiantes",
+          "word": "principiante",
+          "forms": [
+            "principiantes"
+          ],
+          "gloss": "初学者",
+          "english": "beginner"
+        },
+        {
+          "id": "se01-lx-satisfecha",
+          "word": "satisfecho",
+          "forms": [
+            "satisfecha"
+          ],
+          "gloss": "满意的",
+          "english": "satisfied"
+        },
+        {
+          "id": "se01-lx-avances",
+          "word": "avance",
+          "forms": [
+            "avances"
+          ],
+          "gloss": "进步；进展",
+          "english": "progress"
+        },
+        {
+          "id": "se01-lx-lima",
+          "word": "Lima",
+          "forms": [
+            "Lima"
+          ],
+          "gloss": "利马（秘鲁首都）",
+          "english": "Lima (capital of Peru)"
+        },
+        {
+          "id": "se01-lx-gafas",
+          "word": "gafas",
+          "forms": [
+            "gafas"
+          ],
+          "gloss": "眼镜",
+          "english": "glasses"
+        }
+      ],
+      "sections": [
+        {
+          "id": "se01-context",
+          "title": "Parte 1 - Práctica bilingüe de ser y estar",
+          "instructions": "Completa cada oración con la forma correcta de ser o estar.",
+          "type": "text_input",
+          "items": [
+            {
+              "id": "se01-01",
+              "number": 1,
+              "prompt": "Mi hermana _______ resfriada hoy. (My sister is sick with a cold today.)",
+              "answers": [
+                "está"
+              ],
+              "canonicalAnswer": "está",
+              "sentenceTranslations": {
+                "está": "我姐姐（或妹妹）今天感冒了。"
+              }
+            },
+            {
+              "id": "se01-02",
+              "number": 2,
+              "prompt": "Este chocolate _______ de Ecuador. (This chocolate is from Ecuador.)",
+              "answers": [
+                "es"
+              ],
+              "canonicalAnswer": "es",
+              "sentenceTranslations": {
+                "es": "这种巧克力来自厄瓜多尔。"
+              }
+            },
+            {
+              "id": "se01-03",
+              "number": 3,
+              "prompt": "Nosotros _______ en la biblioteca ahora. (We are in the library now.)",
+              "answers": [
+                "estamos"
+              ],
+              "canonicalAnswer": "estamos",
+              "sentenceTranslations": {
+                "estamos": "我们现在在图书馆。"
+              }
+            },
+            {
+              "id": "se01-04",
+              "number": 4,
+              "prompt": "Mi vecina _______ una persona amable y divertida. (My neighbor is a kind and fun person.)",
+              "answers": [
+                "es"
+              ],
+              "canonicalAnswer": "es",
+              "sentenceTranslations": {
+                "es": "我的邻居是一个友善又有趣的人。"
+              }
+            },
+            {
+              "id": "se01-05",
+              "number": 5,
+              "prompt": "Las cortinas _______ abiertas para dejar entrar la luz. (The curtains are open to let the light in.)",
+              "answers": [
+                "están"
+              ],
+              "canonicalAnswer": "están",
+              "sentenceTranslations": {
+                "están": "窗帘拉开着，好让光线进来。"
+              }
+            },
+            {
+              "id": "se01-06",
+              "number": 6,
+              "prompt": "Mañana _______ martes. (Tomorrow is Tuesday.)",
+              "answers": [
+                "es"
+              ],
+              "canonicalAnswer": "es",
+              "sentenceTranslations": {
+                "es": "明天是星期二。"
+              }
+            },
+            {
+              "id": "se01-07",
+              "number": 7,
+              "prompt": "Mis tíos _______ en Perú este mes. (My aunt and uncle are in Peru this month.)",
+              "answers": [
+                "están"
+              ],
+              "canonicalAnswer": "están",
+              "sentenceTranslations": {
+                "están": "我的叔叔阿姨这个月在秘鲁。"
+              }
+            },
+            {
+              "id": "se01-08",
+              "number": 8,
+              "prompt": "La cocina _______ muy ordenada hoy. (The kitchen is very tidy today.)",
+              "answers": [
+                "está"
+              ],
+              "canonicalAnswer": "está",
+              "sentenceTranslations": {
+                "está": "厨房今天很整洁。"
+              }
+            },
+            {
+              "id": "se01-09",
+              "number": 9,
+              "prompt": "Esta mochila _______ de Lucía. (This backpack belongs to Lucía.)",
+              "answers": [
+                "es"
+              ],
+              "canonicalAnswer": "es",
+              "sentenceTranslations": {
+                "es": "这个背包是露西亚的。"
+              }
+            },
+            {
+              "id": "se01-10",
+              "number": 10,
+              "prompt": "Yo _______ agotada después de correr. (I am exhausted after running.)",
+              "answers": [
+                "estoy"
+              ],
+              "canonicalAnswer": "estoy",
+              "sentenceTranslations": {
+                "estoy": "我跑步后筋疲力尽。"
+              }
+            },
+            {
+              "id": "se01-11",
+              "number": 11,
+              "prompt": "Tú _______ muy ocupada esta semana. (You are very busy this week.)",
+              "answers": [
+                "estás"
+              ],
+              "canonicalAnswer": "estás",
+              "sentenceTranslations": {
+                "estás": "你这周很忙。"
+              }
+            },
+            {
+              "id": "se01-12",
+              "number": 12,
+              "prompt": "Esta sopa _______ deliciosa. (This soup is delicious.)",
+              "answers": [
+                "está",
+                "es"
+              ],
+              "canonicalAnswer": "está",
+              "sentenceTranslations": {
+                "está": "这碗汤现在尝起来很美味。",
+                "es": "这种汤本身很美味。"
+              },
+              "ambiguityNote": "用 estar 可表示眼前这碗汤现在尝起来很美味；用 ser 可描述这种汤的一般特性。原句没有更多语境，因此两者均接受。"
+            },
+            {
+              "id": "se01-13",
+              "number": 13,
+              "prompt": "Ustedes _______ preparados para la prueba. (You are ready for the test.)",
+              "answers": [
+                "están"
+              ],
+              "canonicalAnswer": "están",
+              "sentenceTranslations": {
+                "están": "你们已经准备好参加考试了。"
+              }
+            },
+            {
+              "id": "se01-14",
+              "number": 14,
+              "prompt": "La reunión _______ en la sala azul. (The meeting is in the blue room.)",
+              "answers": [
+                "es"
+              ],
+              "canonicalAnswer": "es",
+              "sentenceTranslations": {
+                "es": "会议在蓝色会议室举行。"
+              }
+            },
+            {
+              "id": "se01-15",
+              "number": 15,
+              "prompt": "Daniel y Sofía _______ de Chile. (Daniel and Sofía are from Chile.)",
+              "answers": [
+                "son"
+              ],
+              "canonicalAnswer": "son",
+              "sentenceTranslations": {
+                "son": "丹尼尔和索菲娅来自智利。"
+              }
+            },
+            {
+              "id": "se01-16",
+              "number": 16,
+              "prompt": "Ahora ellos _______ en Valencia. (They are in Valencia now.)",
+              "answers": [
+                "están"
+              ],
+              "canonicalAnswer": "están",
+              "sentenceTranslations": {
+                "están": "他们现在在瓦伦西亚。"
+              }
+            },
+            {
+              "id": "se01-17",
+              "number": 17,
+              "prompt": "¿Dónde _______ vosotros ahora? (Where are you now?)",
+              "answers": [
+                "estáis"
+              ],
+              "canonicalAnswer": "estáis",
+              "sentenceTranslations": {
+                "estáis": "你们现在在哪里？"
+              }
+            },
+            {
+              "id": "se01-18",
+              "number": 18,
+              "prompt": "Este problema siempre _______ sencillo para los principiantes. (This problem is always simple for beginners.)",
+              "answers": [
+                "es"
+              ],
+              "canonicalAnswer": "es",
+              "sentenceTranslations": {
+                "es": "这道题对初学者来说一直很简单。"
+              }
+            },
+            {
+              "id": "se01-19",
+              "number": 19,
+              "prompt": "Yo _______ muy satisfecha con mis avances de hoy. (I am very satisfied with my progress today.)",
+              "answers": [
+                "estoy"
+              ],
+              "canonicalAnswer": "estoy",
+              "sentenceTranslations": {
+                "estoy": "我对今天的进步很满意。"
+              }
+            },
+            {
+              "id": "se01-20",
+              "number": 20,
+              "prompt": "Lima _______ en Perú. (Lima is in Peru.)",
+              "answers": [
+                "está"
+              ],
+              "canonicalAnswer": "está",
+              "sentenceTranslations": {
+                "está": "利马位于秘鲁。"
+              }
+            },
+            {
+              "id": "se01-21",
+              "number": 21,
+              "prompt": "¿De quién _______ estas gafas? (Whose glasses are these?)",
+              "answers": [
+                "son"
+              ],
+              "canonicalAnswer": "son",
+              "sentenceTranslations": {
+                "son": "这副眼镜是谁的？"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ser-estar-present-a1-02",
+      "title": "Ser / Estar 现在时语境练习 A1 - 2",
+      "badge": "新练习",
+      "sourceTitle": "Ser y estar en presente - práctica 2",
+      "teacher": "Profesor de ejemplo",
+      "level": "A1",
+      "answerKeyBasis": "inferred_from_context",
+      "contentOrigin": "independently_rewritten_private_classroom_adaptation",
+      "source": {},
+      "referenceTables": [
+        {
+          "id": "se02-ser-reference",
+          "verb": "ser",
+          "title": "Ser：身份、来源、所属、日期和活动信息",
+          "rows": [
+            {
+              "person": "yo",
+              "form": "soy"
+            },
+            {
+              "person": "tú",
+              "form": "eres"
+            },
+            {
+              "person": "él / ella",
+              "form": "es"
+            },
+            {
+              "person": "nosotros / nosotras",
+              "form": "somos"
+            },
+            {
+              "person": "vosotros / vosotras",
+              "form": "sois"
+            },
+            {
+              "person": "ellos / ellas",
+              "form": "son"
+            }
+          ]
+        },
+        {
+          "id": "se02-estar-reference",
+          "verb": "estar",
+          "title": "Estar：位置、当前状态和结果状态",
+          "rows": [
+            {
+              "person": "yo",
+              "form": "estoy"
+            },
+            {
+              "person": "tú",
+              "form": "estás"
+            },
+            {
+              "person": "él / ella",
+              "form": "está"
+            },
+            {
+              "person": "nosotros / nosotras",
+              "form": "estamos"
+            },
+            {
+              "person": "vosotros / vosotras",
+              "form": "estáis"
+            },
+            {
+              "person": "ellos / ellas",
+              "form": "están"
+            }
+          ]
+        }
+      ],
+      "sentenceLexicon": [
+        {
+          "id": "se02-lx-ingeniero",
+          "word": "ingeniero",
+          "forms": [
+            "ingeniero"
+          ],
+          "gloss": "工程师",
+          "english": "engineer"
+        },
+        {
+          "id": "se02-lx-momento",
+          "word": "momento",
+          "forms": [
+            "momento"
+          ],
+          "gloss": "时刻；此刻",
+          "english": "moment"
+        },
+        {
+          "id": "se02-lx-museo",
+          "word": "museo",
+          "forms": [
+            "museo"
+          ],
+          "gloss": "博物馆",
+          "english": "museum"
+        },
+        {
+          "id": "se02-lx-nervioso",
+          "word": "nervioso",
+          "forms": [
+            "nervioso",
+            "nerviosa"
+          ],
+          "gloss": "紧张的",
+          "english": "nervous"
+        },
+        {
+          "id": "se02-lx-edificio",
+          "word": "edificio",
+          "forms": [
+            "edificio"
+          ],
+          "gloss": "建筑；大楼",
+          "english": "building"
+        },
+        {
+          "id": "se02-lx-siglo",
+          "word": "siglo",
+          "forms": [
+            "siglo"
+          ],
+          "gloss": "世纪",
+          "english": "century"
+        },
+        {
+          "id": "se02-lx-xviii",
+          "word": "XVIII",
+          "forms": [
+            "XVIII"
+          ],
+          "gloss": "十八（罗马数字，用于世纪）",
+          "english": "eighteen (Roman numeral, used for centuries)"
+        },
+        {
+          "id": "se02-lx-alumno",
+          "word": "alumno",
+          "forms": [
+            "alumnos",
+            "alumnas"
+          ],
+          "gloss": "学生",
+          "english": "student"
+        },
+        {
+          "id": "se02-lx-cansado",
+          "word": "cansado",
+          "forms": [
+            "cansadas"
+          ],
+          "gloss": "累的；疲倦的",
+          "english": "tired"
+        },
+        {
+          "id": "se02-lx-despues",
+          "word": "después",
+          "forms": [
+            "después"
+          ],
+          "gloss": "之后；然后",
+          "english": "after; afterward"
+        },
+        {
+          "id": "se02-lx-entrenamiento",
+          "word": "entrenamiento",
+          "forms": [
+            "entrenamiento"
+          ],
+          "gloss": "训练",
+          "english": "training"
+        },
+        {
+          "id": "se02-lx-cena",
+          "word": "cena",
+          "forms": [
+            "cena"
+          ],
+          "gloss": "晚餐",
+          "english": "dinner"
+        },
+        {
+          "id": "se02-lx-listo",
+          "word": "listo",
+          "forms": [
+            "lista"
+          ],
+          "gloss": "准备好的",
+          "english": "ready"
+        },
+        {
+          "id": "se02-lx-poder",
+          "word": "poder",
+          "forms": [
+            "podemos"
+          ],
+          "gloss": "能；可以",
+          "english": "can; to be able to; we can"
+        },
+        {
+          "id": "se02-lx-comer",
+          "word": "comer",
+          "forms": [
+            "comer"
+          ],
+          "gloss": "吃",
+          "english": "to eat"
+        },
+        {
+          "id": "se02-lx-uruguay",
+          "word": "Uruguay",
+          "forms": [
+            "Uruguay"
+          ],
+          "gloss": "乌拉圭",
+          "english": "Uruguay"
+        },
+        {
+          "id": "se02-lx-primo",
+          "word": "primo",
+          "forms": [
+            "primos"
+          ],
+          "gloss": "表兄弟姐妹；堂兄弟姐妹",
+          "english": "cousin(s)"
+        },
+        {
+          "id": "se02-lx-montana",
+          "word": "montaña",
+          "forms": [
+            "montaña"
+          ],
+          "gloss": "山",
+          "english": "mountain"
+        },
+        {
+          "id": "se02-lx-semana",
+          "word": "semana",
+          "forms": [
+            "semana"
+          ],
+          "gloss": "星期；周",
+          "english": "week"
+        },
+        {
+          "id": "se02-lx-entrevista",
+          "word": "entrevista",
+          "forms": [
+            "entrevista"
+          ],
+          "gloss": "面试；采访",
+          "english": "interview"
+        },
+        {
+          "id": "se02-lx-jueves",
+          "word": "jueves",
+          "forms": [
+            "jueves"
+          ],
+          "gloss": "星期四",
+          "english": "Thursday"
+        },
+        {
+          "id": "se02-lx-diez",
+          "word": "diez",
+          "forms": [
+            "diez"
+          ],
+          "gloss": "十；十点",
+          "english": "ten; ten o'clock"
+        },
+        {
+          "id": "se02-lx-lluvia",
+          "word": "lluvia",
+          "forms": [
+            "lluvia"
+          ],
+          "gloss": "雨",
+          "english": "rain"
+        },
+        {
+          "id": "se02-lx-planta",
+          "word": "planta",
+          "forms": [
+            "plantas"
+          ],
+          "gloss": "植物",
+          "english": "plant(s)"
+        },
+        {
+          "id": "se02-lx-bonito",
+          "word": "bonito",
+          "forms": [
+            "bonitas"
+          ],
+          "gloss": "漂亮的",
+          "english": "pretty"
+        },
+        {
+          "id": "se02-lx-marta",
+          "word": "Marta",
+          "forms": [
+            "Marta"
+          ],
+          "gloss": "玛尔塔（人名）",
+          "english": "Marta (name)"
+        },
+        {
+          "id": "se02-lx-nuevo",
+          "word": "nuevo",
+          "forms": [
+            "nuevo",
+            "nueva"
+          ],
+          "gloss": "新的",
+          "english": "new"
+        },
+        {
+          "id": "se02-lx-piso",
+          "word": "piso",
+          "forms": [
+            "piso"
+          ],
+          "gloss": "公寓；楼层",
+          "english": "apartment; floor"
+        },
+        {
+          "id": "se02-lx-arquitectura",
+          "word": "arquitectura",
+          "forms": [
+            "arquitectura"
+          ],
+          "gloss": "建筑学",
+          "english": "architecture"
+        },
+        {
+          "id": "se02-lx-cerrado",
+          "word": "cerrado",
+          "forms": [
+            "cerrado"
+          ],
+          "gloss": "关闭的",
+          "english": "closed"
+        },
+        {
+          "id": "se02-lx-lunes",
+          "word": "lunes",
+          "forms": [
+            "lunes"
+          ],
+          "gloss": "星期一",
+          "english": "Monday"
+        },
+        {
+          "id": "se02-lx-te",
+          "word": "té",
+          "forms": [
+            "té"
+          ],
+          "gloss": "茶",
+          "english": "tea"
+        },
+        {
+          "id": "se02-lx-demasiado",
+          "word": "demasiado",
+          "forms": [
+            "demasiado"
+          ],
+          "gloss": "太；过于",
+          "english": "too; excessively"
+        },
+        {
+          "id": "se02-lx-dulce",
+          "word": "dulce",
+          "forms": [
+            "dulce"
+          ],
+          "gloss": "甜的",
+          "english": "sweet"
+        },
+        {
+          "id": "se02-lx-toledo",
+          "word": "Toledo",
+          "forms": [
+            "Toledo"
+          ],
+          "gloss": "托莱多",
+          "english": "Toledo"
+        },
+        {
+          "id": "se02-lx-centro",
+          "word": "centro",
+          "forms": [
+            "centro"
+          ],
+          "gloss": "中心",
+          "english": "center"
+        },
+        {
+          "id": "se02-lx-espana",
+          "word": "España",
+          "forms": [
+            "España"
+          ],
+          "gloss": "西班牙",
+          "english": "Spain"
+        },
+        {
+          "id": "se02-lx-vecino",
+          "word": "vecino",
+          "forms": [
+            "vecinos"
+          ],
+          "gloss": "邻居",
+          "english": "neighbor(s)"
+        },
+        {
+          "id": "se02-lx-persona",
+          "word": "persona",
+          "forms": [
+            "personas"
+          ],
+          "gloss": "人",
+          "english": "person(s)"
+        },
+        {
+          "id": "se02-lx-divertido",
+          "word": "divertido",
+          "forms": [
+            "divertidas"
+          ],
+          "gloss": "有趣的；好玩的",
+          "english": "fun; entertaining"
+        },
+        {
+          "id": "se02-lx-dia",
+          "word": "día",
+          "forms": [
+            "día"
+          ],
+          "gloss": "天；日子",
+          "english": "day"
+        },
+        {
+          "id": "se02-lx-perfecto",
+          "word": "perfecto",
+          "forms": [
+            "perfecto"
+          ],
+          "gloss": "完美的",
+          "english": "perfect"
+        },
+        {
+          "id": "se02-lx-caminar",
+          "word": "caminar",
+          "forms": [
+            "caminar"
+          ],
+          "gloss": "走路；散步",
+          "english": "to walk"
+        },
+        {
+          "id": "se02-lx-ocupado",
+          "word": "ocupado",
+          "forms": [
+            "ocupado"
+          ],
+          "gloss": "忙碌的",
+          "english": "busy"
+        },
+        {
+          "id": "se02-lx-trimestre",
+          "word": "trimestre",
+          "forms": [
+            "trimestre"
+          ],
+          "gloss": "学期（季度制）",
+          "english": "term; trimester"
+        },
+        {
+          "id": "se02-lx-llave",
+          "word": "llave",
+          "forms": [
+            "llaves"
+          ],
+          "gloss": "钥匙",
+          "english": "key(s)"
+        },
+        {
+          "id": "se02-lx-carlos",
+          "word": "Carlos",
+          "forms": [
+            "Carlos"
+          ],
+          "gloss": "卡洛斯（人名）",
+          "english": "Carlos (name)"
+        },
+        {
+          "id": "se02-lx-elegante",
+          "word": "elegante",
+          "forms": [
+            "elegante"
+          ],
+          "gloss": "优雅的；讲究的",
+          "english": "elegant"
+        },
+        {
+          "id": "se02-lx-traje",
+          "word": "traje",
+          "forms": [
+            "traje"
+          ],
+          "gloss": "西装；套装",
+          "english": "suit (clothing)"
+        },
+        {
+          "id": "se02-lx-preparados",
+          "word": "preparado",
+          "forms": [
+            "preparados"
+          ],
+          "gloss": "准备好的",
+          "english": "ready; prepared"
+        },
+        {
+          "id": "se02-lx-salir",
+          "word": "salir",
+          "forms": [
+            "salir"
+          ],
+          "gloss": "出去；离开",
+          "english": "to leave; to go out"
+        },
+        {
+          "id": "se02-lx-tomas",
+          "word": "Tomás",
+          "forms": [
+            "Tomás"
+          ],
+          "gloss": "托马斯（人名）",
+          "english": "Tomás (name)"
+        },
+        {
+          "id": "se02-lx-alemania",
+          "word": "Alemania",
+          "forms": [
+            "Alemania"
+          ],
+          "gloss": "德国",
+          "english": "Germany"
+        },
+        {
+          "id": "se02-lx-costa-rica",
+          "word": "Costa Rica",
+          "forms": [
+            "Costa Rica"
+          ],
+          "gloss": "哥斯达黎加",
+          "english": "Costa Rica"
+        },
+        {
+          "id": "se02-lx-restaurante",
+          "word": "restaurante",
+          "forms": [
+            "restaurante"
+          ],
+          "gloss": "餐厅；餐馆",
+          "english": "restaurant"
+        },
+        {
+          "id": "se02-lx-bastante",
+          "word": "bastante",
+          "forms": [
+            "bastante"
+          ],
+          "gloss": "相当；足够",
+          "english": "quite; rather; enough"
+        },
+        {
+          "id": "se02-lx-caro",
+          "word": "caro",
+          "forms": [
+            "caro"
+          ],
+          "gloss": "贵的",
+          "english": "expensive"
+        },
+        {
+          "id": "se02-lx-escritorio",
+          "word": "escritorio",
+          "forms": [
+            "escritorio"
+          ],
+          "gloss": "书桌",
+          "english": "desk"
+        },
+        {
+          "id": "se02-lx-limpio",
+          "word": "limpio",
+          "forms": [
+            "limpio"
+          ],
+          "gloss": "干净的",
+          "english": "clean"
+        },
+        {
+          "id": "se02-lx-bicicleta",
+          "word": "bicicleta",
+          "forms": [
+            "bicicleta"
+          ],
+          "gloss": "自行车",
+          "english": "bicycle"
+        },
+        {
+          "id": "se02-lx-hermana",
+          "word": "hermana",
+          "forms": [
+            "hermana"
+          ],
+          "gloss": "姐姐；妹妹",
+          "english": "sister"
+        },
+        {
+          "id": "se02-lx-puerta",
+          "word": "puerta",
+          "forms": [
+            "puertas"
+          ],
+          "gloss": "门",
+          "english": "door(s)"
+        },
+        {
+          "id": "se02-lx-abierto",
+          "word": "abierto",
+          "forms": [
+            "abiertas"
+          ],
+          "gloss": "开着的；打开的",
+          "english": "open"
+        },
+        {
+          "id": "se02-lx-ventilar",
+          "word": "ventilar",
+          "forms": [
+            "ventilar"
+          ],
+          "gloss": "通风；使……透气",
+          "english": "to air out; to ventilate"
+        },
+        {
+          "id": "se02-lx-gazpacho",
+          "word": "gazpacho",
+          "forms": [
+            "gazpacho"
+          ],
+          "gloss": "西班牙冷汤（加斯帕乔）",
+          "english": "gazpacho (cold Spanish soup)"
+        },
+        {
+          "id": "se02-lx-frio",
+          "word": "frío",
+          "forms": [
+            "frío"
+          ],
+          "gloss": "冷的；凉的",
+          "english": "cold"
+        },
+        {
+          "id": "se02-lx-deber",
+          "word": "deber",
+          "forms": [
+            "debe"
+          ],
+          "gloss": "应该；应当",
+          "english": "should; ought to; must"
+        },
+        {
+          "id": "se02-lx-ana",
+          "word": "Ana",
+          "forms": [
+            "Ana"
+          ],
+          "gloss": "安娜（人名）",
+          "english": "Ana (name)"
+        },
+        {
+          "id": "se02-lx-bueno",
+          "word": "bueno",
+          "forms": [
+            "buenas"
+          ],
+          "gloss": "好的",
+          "english": "good"
+        },
+        {
+          "id": "se02-lx-amiga",
+          "word": "amiga",
+          "forms": [
+            "amigas"
+          ],
+          "gloss": "女性朋友",
+          "english": "female friend(s)"
+        },
+        {
+          "id": "se02-lx-manana",
+          "word": "mañana",
+          "forms": [
+            "mañana"
+          ],
+          "gloss": "早晨；上午",
+          "english": "morning"
+        },
+        {
+          "id": "se02-lx-poco",
+          "word": "poco",
+          "forms": [
+            "poco"
+          ],
+          "gloss": "一点；少许",
+          "english": "a little; a bit"
+        },
+        {
+          "id": "se02-lx-antes",
+          "word": "antes",
+          "forms": [
+            "antes"
+          ],
+          "gloss": "之前",
+          "english": "before"
+        },
+        {
+          "id": "se02-lx-clase",
+          "word": "clase",
+          "forms": [
+            "clase"
+          ],
+          "gloss": "课；班级",
+          "english": "class"
+        }
+      ],
+      "sections": [
+        {
+          "id": "se02-context",
+          "title": "Parte 1 - Ser y estar en presente",
+          "instructions": "Completa las oraciones con la forma correcta de ser o estar en presente de indicativo.",
+          "type": "text_input",
+          "items": [
+            {
+              "id": "se02-01",
+              "number": 1,
+              "prompt": "Mi padre _______ ingeniero.",
+              "answers": [
+                "es"
+              ],
+              "canonicalAnswer": "es",
+              "sentenceTranslations": {
+                "es": "我父亲是工程师。"
+              }
+            },
+            {
+              "id": "se02-02",
+              "number": 2,
+              "prompt": "En este momento nosotros _______ en el museo.",
+              "answers": [
+                "estamos"
+              ],
+              "canonicalAnswer": "estamos",
+              "sentenceTranslations": {
+                "estamos": "此刻我们在博物馆。"
+              }
+            },
+            {
+              "id": "se02-03",
+              "number": 3,
+              "prompt": "Tú _______ muy nervioso hoy.",
+              "answers": [
+                "estás"
+              ],
+              "canonicalAnswer": "estás",
+              "sentenceTranslations": {
+                "estás": "你今天很紧张。"
+              }
+            },
+            {
+              "id": "se02-04",
+              "number": 4,
+              "prompt": "Ese edificio _______ del siglo XVIII.",
+              "answers": [
+                "es"
+              ],
+              "canonicalAnswer": "es",
+              "sentenceTranslations": {
+                "es": "那座建筑建于十八世纪。"
+              }
+            },
+            {
+              "id": "se02-05",
+              "number": 5,
+              "prompt": "Las alumnas _______ cansadas después del entrenamiento.",
+              "answers": [
+                "están"
+              ],
+              "canonicalAnswer": "están",
+              "sentenceTranslations": {
+                "están": "女学生们训练后很累。"
+              }
+            },
+            {
+              "id": "se02-06",
+              "number": 6,
+              "prompt": "La cena _______ lista; podemos comer.",
+              "answers": [
+                "está"
+              ],
+              "canonicalAnswer": "está",
+              "sentenceTranslations": {
+                "está": "晚饭准备好了，我们可以吃了。"
+              }
+            },
+            {
+              "id": "se02-07",
+              "number": 7,
+              "prompt": "Yo _______ de Uruguay.",
+              "answers": [
+                "soy"
+              ],
+              "canonicalAnswer": "soy",
+              "sentenceTranslations": {
+                "soy": "我来自乌拉圭。"
+              }
+            },
+            {
+              "id": "se02-08",
+              "number": 8,
+              "prompt": "Mis primos _______ en la montaña esta semana.",
+              "answers": [
+                "están"
+              ],
+              "canonicalAnswer": "están",
+              "sentenceTranslations": {
+                "están": "我的表（堂）兄弟姐妹这周在山里。"
+              }
+            },
+            {
+              "id": "se02-09",
+              "number": 9,
+              "prompt": "La entrevista _______ el jueves a las diez.",
+              "answers": [
+                "es"
+              ],
+              "canonicalAnswer": "es",
+              "sentenceTranslations": {
+                "es": "面试在星期四十点举行。"
+              }
+            },
+            {
+              "id": "se02-10",
+              "number": 10,
+              "prompt": "Después de la lluvia, estas plantas _______ muy bonitas.",
+              "answers": [
+                "están",
+                "son"
+              ],
+              "canonicalAnswer": "están",
+              "sentenceTranslations": {
+                "están": "雨后这些植物现在显得很漂亮。",
+                "son": "这些植物每逢雨后通常都很漂亮。"
+              },
+              "ambiguityNote": "用 estar 可描述这场雨后植物眼下的状态；若把 después de la lluvia 理解为反复出现的一般情形，也可用 ser 描述它们通常很漂亮。"
+            },
+            {
+              "id": "se02-11",
+              "number": 11,
+              "prompt": "Marta _______ contenta con su nuevo piso.",
+              "answers": [
+                "está"
+              ],
+              "canonicalAnswer": "está",
+              "sentenceTranslations": {
+                "está": "玛尔塔对她的新公寓很满意。"
+              }
+            },
+            {
+              "id": "se02-12",
+              "number": 12,
+              "prompt": "Nosotros _______ alumnos de arquitectura.",
+              "answers": [
+                "somos"
+              ],
+              "canonicalAnswer": "somos",
+              "sentenceTranslations": {
+                "somos": "我们是建筑系学生。"
+              }
+            },
+            {
+              "id": "se02-13",
+              "number": 13,
+              "prompt": "El museo _______ cerrado los lunes.",
+              "answers": [
+                "está"
+              ],
+              "canonicalAnswer": "está",
+              "sentenceTranslations": {
+                "está": "博物馆每周一闭馆。"
+              }
+            },
+            {
+              "id": "se02-14",
+              "number": 14,
+              "prompt": "Este té _______ demasiado dulce hoy.",
+              "answers": [
+                "está"
+              ],
+              "canonicalAnswer": "está",
+              "sentenceTranslations": {
+                "está": "这杯茶今天太甜了。"
+              }
+            },
+            {
+              "id": "se02-15",
+              "number": 15,
+              "prompt": "Toledo _______ en el centro de España.",
+              "answers": [
+                "está"
+              ],
+              "canonicalAnswer": "está",
+              "sentenceTranslations": {
+                "está": "托莱多位于西班牙中部。"
+              }
+            },
+            {
+              "id": "se02-16",
+              "number": 16,
+              "prompt": "Mis vecinos _______ personas muy divertidas.",
+              "answers": [
+                "son"
+              ],
+              "canonicalAnswer": "son",
+              "sentenceTranslations": {
+                "son": "我的邻居们都是很有趣的人。"
+              }
+            },
+            {
+              "id": "se02-17",
+              "number": 17,
+              "prompt": "Hoy _______ un día perfecto para caminar.",
+              "answers": [
+                "es"
+              ],
+              "canonicalAnswer": "es",
+              "sentenceTranslations": {
+                "es": "今天是很适合散步的一天。"
+              }
+            },
+            {
+              "id": "se02-18",
+              "number": 18,
+              "prompt": "Yo _______ muy ocupado este trimestre.",
+              "answers": [
+                "estoy"
+              ],
+              "canonicalAnswer": "estoy",
+              "sentenceTranslations": {
+                "estoy": "我这个季度很忙。"
+              }
+            },
+            {
+              "id": "se02-19",
+              "number": 19,
+              "prompt": "Estas llaves _______ de Carlos.",
+              "answers": [
+                "son"
+              ],
+              "canonicalAnswer": "son",
+              "sentenceTranslations": {
+                "son": "这些钥匙是卡洛斯的。"
+              }
+            },
+            {
+              "id": "se02-20",
+              "number": 20,
+              "prompt": "Tú _______ muy elegante con ese traje.",
+              "answers": [
+                "estás"
+              ],
+              "canonicalAnswer": "estás",
+              "sentenceTranslations": {
+                "estás": "你穿那套衣服显得很优雅。"
+              }
+            },
+            {
+              "id": "se02-21",
+              "number": 21,
+              "prompt": "Nosotros _______ preparados para salir.",
+              "answers": [
+                "estamos"
+              ],
+              "canonicalAnswer": "estamos",
+              "sentenceTranslations": {
+                "estamos": "我们已经准备好出发了。"
+              }
+            },
+            {
+              "id": "se02-22",
+              "number": 22,
+              "prompt": "Clara y Tomás _______ de Alemania.",
+              "answers": [
+                "son"
+              ],
+              "canonicalAnswer": "son",
+              "sentenceTranslations": {
+                "son": "克拉拉和托马斯来自德国。"
+              }
+            },
+            {
+              "id": "se02-23",
+              "number": 23,
+              "prompt": "Ahora ellos _______ en Costa Rica.",
+              "answers": [
+                "están"
+              ],
+              "canonicalAnswer": "están",
+              "sentenceTranslations": {
+                "están": "他们现在在哥斯达黎加。"
+              }
+            },
+            {
+              "id": "se02-24",
+              "number": 24,
+              "prompt": "Este restaurante _______ bastante caro.",
+              "answers": [
+                "es",
+                "está"
+              ],
+              "canonicalAnswer": "es",
+              "sentenceTranslations": {
+                "es": "这家餐厅总体上价格很高。",
+                "está": "这家餐厅现在的价格偏高。"
+              },
+              "ambiguityNote": "用 ser 可描述餐厅总体上的价格档次；用 estar 可强调当前价格偏高。原句没有时间范围，因此两者均接受。"
+            },
+            {
+              "id": "se02-25",
+              "number": 25,
+              "prompt": "Mi escritorio _______ muy limpio hoy.",
+              "answers": [
+                "está"
+              ],
+              "canonicalAnswer": "está",
+              "sentenceTranslations": {
+                "está": "我的书桌今天很干净。"
+              }
+            },
+            {
+              "id": "se02-26",
+              "number": 26,
+              "prompt": "¿Dónde _______ tus padres ahora?",
+              "answers": [
+                "están"
+              ],
+              "canonicalAnswer": "están",
+              "sentenceTranslations": {
+                "están": "你父母现在在哪里？"
+              }
+            },
+            {
+              "id": "se02-27",
+              "number": 27,
+              "prompt": "La bicicleta nueva _______ de mi hermana.",
+              "answers": [
+                "es"
+              ],
+              "canonicalAnswer": "es",
+              "sentenceTranslations": {
+                "es": "那辆新自行车是我姐姐（或妹妹）的。"
+              }
+            },
+            {
+              "id": "se02-28",
+              "number": 28,
+              "prompt": "Las puertas _______ abiertas para ventilar.",
+              "answers": [
+                "están"
+              ],
+              "canonicalAnswer": "están",
+              "sentenceTranslations": {
+                "están": "门开着通风。"
+              }
+            },
+            {
+              "id": "se02-29",
+              "number": 29,
+              "prompt": "Este gazpacho _______ frío, como debe ser.",
+              "answers": [
+                "está",
+                "es"
+              ],
+              "canonicalAnswer": "está",
+              "sentenceTranslations": {
+                "está": "这份西班牙冷汤现在是冷的，正合适。",
+                "es": "西班牙冷汤本来就是冷食，正合适。"
+              },
+              "ambiguityNote": "用 estar 可描述眼前这份 gazpacho 的当前温度；用 ser 可把 gazpacho 作为通常冷食的品类来说明。两种理解都自然，因此均接受。"
+            },
+            {
+              "id": "se02-30",
+              "number": 30,
+              "prompt": "Ana y yo _______ muy buenas amigas.",
+              "answers": [
+                "somos"
+              ],
+              "canonicalAnswer": "somos",
+              "sentenceTranslations": {
+                "somos": "安娜和我是很好的朋友。"
+              }
+            },
+            {
+              "id": "se02-31",
+              "number": 31,
+              "prompt": "Esta mañana yo _______ un poco nerviosa antes de la clase.",
+              "answers": [
+                "estoy"
+              ],
+              "canonicalAnswer": "estoy",
+              "sentenceTranslations": {
+                "estoy": "今天早上上课前我有点紧张。"
+              }
             }
           ]
         }

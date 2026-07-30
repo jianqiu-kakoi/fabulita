@@ -2,7 +2,9 @@
 """Rebuild every generated file under docs/ from examples/ and fabulita/.
 
 Usage: uv run python scripts/build_docs.py
+       uv run python scripts/build_docs.py --local
 """
+import argparse
 from pathlib import Path
 
 from fabulita import build, vocab
@@ -17,7 +19,7 @@ VOCAB_APPS = {
 }
 
 
-def main():
+def main(local=False):
     projects = []
     for lang, name in DEMOS.items():
         proj = Project(ROOT / "examples" / name)
@@ -62,6 +64,21 @@ def main():
         )
         print("wrote " + str(page) + " (" + str(psize // 1024) + " KB, " + str(n) + " stories)")
 
+        local_source = project_root / "homework.local.json"
+        if local and local_source.exists():
+            local_name = output_name.replace(".html", ".local.html")
+            page, psize, n, clips = build.build(
+                vocab_project,
+                out=DOCS / local_name,
+                include_candidates=False,
+                home="index.html",
+                include_local_homework=True,
+            )
+            print("wrote " + str(page) + " (local, " + str(psize // 1024) + " KB)")
+
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--local", action="store_true",
+                        help="additionally build docs/*.local.html with homework.local.json appended")
+    main(local=parser.parse_args().local)

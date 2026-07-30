@@ -2,6 +2,7 @@ import base64
 import hashlib
 import json
 import re
+import subprocess
 import unicodedata
 from collections import Counter
 from pathlib import Path
@@ -324,6 +325,165 @@ def test_mi_espanol_does_not_ship_the_classroom_worksheet():
     assert assignment["teacher"] == "Profesor de ejemplo"
 
 
+def test_rewritten_ser_estar_assignments_are_complete_and_private():
+    assignments = Project(MI_ESPANOL).homeworks
+    expected = {
+        "ser-estar-practice-a1-01": {
+            "title": "Ser / Estar 双语语境练习 A1 - 1",
+            "section_id": "se01-context",
+            "answers": [
+                "está",
+                "es",
+                "estamos",
+                "es",
+                "están",
+                "es",
+                "están",
+                "está",
+                "es",
+                "estoy",
+                "estás",
+                "está",
+                "están",
+                "es",
+                "son",
+                "están",
+                "estáis",
+                "es",
+                "estoy",
+                "está",
+                "son",
+            ],
+        },
+        "ser-estar-present-a1-02": {
+            "title": "Ser / Estar 现在时语境练习 A1 - 2",
+            "section_id": "se02-context",
+            "answers": [
+                "es",
+                "estamos",
+                "estás",
+                "es",
+                "están",
+                "está",
+                "soy",
+                "están",
+                "es",
+                "están",
+                "está",
+                "somos",
+                "está",
+                "está",
+                "está",
+                "son",
+                "es",
+                "estoy",
+                "son",
+                "estás",
+                "estamos",
+                "son",
+                "están",
+                "es",
+                "está",
+                "están",
+                "es",
+                "están",
+                "está",
+                "somos",
+                "estoy",
+            ],
+        },
+    }
+
+    for assignment_id, spec in expected.items():
+        assignment = _assignment_by_id(assignments, assignment_id)
+        assert assignment["title"] == spec["title"]
+        assert assignment["badge"] == "新练习"
+        assert assignment["teacher"] == "Profesor de ejemplo"
+        assert assignment["level"] == "A1"
+        assert assignment["answerKeyBasis"] == "inferred_from_context"
+        assert (
+            assignment["contentOrigin"]
+            == "independently_rewritten_private_classroom_adaptation"
+        )
+        assert assignment["source"] == {}
+
+        assert len(assignment["sections"]) == 1
+        section = assignment["sections"][0]
+        assert section["id"] == spec["section_id"]
+        assert section["type"] == "text_input"
+        items = section["items"]
+        assert len(items) == len(spec["answers"])
+        assert [item["number"] for item in items] == list(
+            range(1, len(items) + 1)
+        )
+        assert [item["canonicalAnswer"] for item in items] == spec["answers"]
+        assert len({item["id"] for item in items}) == len(items)
+
+        for item in items:
+            assert item["prompt"].count("_______") == 1, item["id"]
+            assert item["canonicalAnswer"] == item["answers"][0]
+            assert all(
+                isinstance(answer, str) and answer.strip()
+                for answer in item["answers"]
+            ), item["id"]
+            assert set(item["sentenceTranslations"]) == set(item["answers"])
+            assert all(
+                isinstance(translation, str) and translation.strip()
+                for translation in item["sentenceTranslations"].values()
+            ), item["id"]
+
+        reference_tables = assignment["referenceTables"]
+        assert [table["verb"] for table in reference_tables] == ["ser", "estar"]
+        assert [
+            row["form"]
+            for table in reference_tables
+            for row in table["rows"]
+        ] == [
+            "soy",
+            "eres",
+            "es",
+            "somos",
+            "sois",
+            "son",
+            "estoy",
+            "estás",
+            "está",
+            "estamos",
+            "estáis",
+            "están",
+        ]
+
+    bilingual = _assignment_by_id(assignments, "ser-estar-practice-a1-01")
+    bilingual_ambiguous = bilingual["sections"][0]["items"][11]
+    assert set(bilingual_ambiguous["answers"]) == {"está", "es"}
+    assert bilingual_ambiguous["ambiguityNote"]
+
+    present = _assignment_by_id(assignments, "ser-estar-present-a1-02")
+    present_rain_plants = present["sections"][0]["items"][9]
+    assert set(present_rain_plants["answers"]) == {"están", "son"}
+    assert present_rain_plants["ambiguityNote"]
+    present_ambiguous = present["sections"][0]["items"][23]
+    assert set(present_ambiguous["answers"]) == {"es", "está"}
+    assert present_ambiguous["ambiguityNote"]
+    present_gazpacho = present["sections"][0]["items"][28]
+    assert set(present_gazpacho["answers"]) == {"está", "es"}
+    assert present_gazpacho["ambiguityNote"]
+
+    source_text = (MI_ESPANOL / "homework.json").read_text(encoding="utf-8")
+    derived = _verbatim_fingerprints()
+    if derived is not None:
+        # The real teacher's name is derived from the gitignored local file so
+        # it is never committed here in plaintext.
+        assert derived["teacher"] not in source_text
+    assert "Ejercicio_SER_y_ESTAR" not in source_text
+
+    payload_assignments = build.payload(Project(MI_ESPANOL))["homeworks"]
+    for assignment_id in expected:
+        assignment = _assignment_by_id(payload_assignments, assignment_id)
+        assert assignment["source"] == {}
+        assert "dataUrl" not in assignment["source"]
+
+
 def test_practica_ser_estar_vocabulario_assignment_is_complete():
     assignments = Project(MI_ESPANOL).homeworks
     assignment = _assignment_by_id(
@@ -642,3 +802,101 @@ def test_homework_source_path_escape_is_rejected(tmp_path):
 
     with pytest.raises(ValueError, match="homework source must stay inside project"):
         build.payload(project)
+
+
+def test_homework_type_track_is_block_level():
+    # The track is a <span> inside a non-flex button; without display:block its
+    # height collapses and the inner accent bar paints as a broken orange blob.
+    template = (REPO / "fabulita" / "template.html").read_text(encoding="utf-8")
+    match = re.search(r"\.homework-type-track \{[^}]*\}", template)
+    assert match, "expected a .homework-type-track CSS rule"
+    assert "display: block" in match.group(0)
+
+
+def test_answer_sentence_words_have_gloss_coverage():
+    # Every content word in a resolved answer sentence must be known to
+    # studyWords, sentenceLexicon, or vocab.csv, or the learner page cannot
+    # underline it (the "biblioteca" bug).
+    import importlib.util
+    spec = importlib.util.spec_from_file_location(
+        "collect_lexicon", REPO / "scripts" / "collect_lexicon.py"
+    )
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    vocab_rows = mod.load_vocab_rows(MI_ESPANOL)
+    for assignment in Project(MI_ESPANOL).homeworks:
+        missing = mod.uncovered_words(assignment, vocab_rows)
+        assert not missing, f"{assignment['id']} uncovered: {sorted(missing)}"
+
+
+def _verbatim_fingerprints():
+    # Fingerprints of the private worksheet content are derived at test time
+    # from the gitignored homework.local.json so that neither the teacher's
+    # name nor any verbatim sentence is ever committed in this file. Returns
+    # None when the local file is absent (fresh clones). Each sentence becomes
+    # an order-preserving regex over the pieces around the "_______" blank with
+    # a bounded gap, so both the raw-blank form and an answer-filled copy are
+    # caught, while rewritten public items that legitimately share half a
+    # sentence are not flagged.
+    local = MI_ESPANOL / "homework.local.json"
+    if not local.exists():
+        return None
+    data = json.loads(local.read_text(encoding="utf-8"))
+    teacher = ""
+    patterns = {}
+    for assignment in data.get("assignments", []):
+        teacher = (assignment.get("teacher") or "").strip() or teacher
+        for section in assignment.get("sections", []):
+            for item in section.get("items", []):
+                prompt = str(item.get("prompt") or "")
+                sentence = re.sub(r"\s*\([^)]*\)\s*$", "", prompt).strip()
+                pieces = [p.strip() for p in sentence.split("_______")]
+                pieces = [p for p in pieces if len(p) >= 4]
+                if not pieces or sum(len(p) for p in pieces) < 12:
+                    continue
+                label = item.get("id") or sentence
+                patterns[label] = re.compile(
+                    r".{0,24}".join(re.escape(p) for p in pieces)
+                )
+    assert teacher, "local worksheet file must carry the teacher field"
+    assert patterns, "local worksheet file yielded no sentence fingerprints"
+    # Also match the name without its honorific (e.g. a bare surname leak).
+    bare = re.sub(
+        r"^(profesora?|prof\.?|sra?\.)\s+", "", teacher, flags=re.IGNORECASE
+    ).strip()
+    name = bare if len(bare) >= 4 else teacher
+    patterns["teacher"] = re.compile(re.escape(name))
+    return {"teacher": name, "patterns": patterns}
+
+
+def test_verbatim_worksheet_content_never_ships():
+    # The verbatim transcriptions live only in gitignored homework.local.json /
+    # docs/*.local.html. None of their fingerprints may appear in ANY
+    # git-tracked file (data, docs, plans, specs, tests, NOTICE, ...).
+    derived = _verbatim_fingerprints()
+    if derived is None:
+        pytest.skip("homework.local.json not present")
+    tracked = subprocess.run(
+        ["git", "ls-files"], cwd=REPO, capture_output=True, text=True,
+        check=True,
+    ).stdout.splitlines()
+    assert tracked, "git ls-files returned nothing"
+    for rel in tracked:
+        path = REPO / rel
+        try:
+            text = path.read_text(encoding="utf-8")
+        except (UnicodeDecodeError, FileNotFoundError):
+            continue  # binary or deleted-from-worktree file
+        for label, pattern in derived["patterns"].items():
+            assert not pattern.search(text), (
+                f"verbatim fingerprint {label!r} leaked into {rel}"
+            )
+
+
+def test_local_homework_file_is_gitignored():
+    result = subprocess.run(
+        ["git", "check-ignore", "examples/mi-espanol/homework.local.json",
+         "docs/mi-espanol.local.html"],
+        cwd=REPO, capture_output=True, text=True,
+    )
+    assert result.returncode == 0, "local homework artifacts must be gitignored"
