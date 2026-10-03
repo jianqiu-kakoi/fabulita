@@ -77,6 +77,12 @@ compilation are not covered by this repository's Apache-2.0 license.
   class notes: question words, por qué / porque / para qué, ser vs estar,
   ser / estar conjugation and short translations. Standard grammar answer key.
 
+- The homework `frases-a1-01` (built by
+  `scripts/build_mi_espanol_frases_homework.py`) turns the same class notes
+  into sentence practice: ordering chunks, answering with full sentences,
+  sentence translation, short dialogues and self-reviewed free writing. All
+  sentences are written for this list from words already in `vocab.csv`.
+
 ## A0 visual vocabulary photos (public, CC0 / public domain)
 
 - Directory: `assets/vocab-images/` (`manifest.json` + `images/`).
