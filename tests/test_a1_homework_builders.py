@@ -163,5 +163,11 @@ def test_regular_verb_sentences_are_committed_and_correct():
     by_id = {item["id"]: item for item in items}
     for item_id, form in expected.items():
         assert by_id[item_id]["answers"] == [form]
+    assert {section["type"] for section in assignment["sections"]} == {"single_choice"}
     for item in items:
         assert item["prompt"].count("_______") == 1 and item["prompt"].endswith(f"({item['verb']})")
+        assert len(item["options"]) == len(set(item["options"])) == 4
+        assert item["answers"][0] in item["options"]
+        assert set(item["options"]) <= set(regulares_builder.conjugate(item["verb"]))
+    positions = [item["options"].index(item["answers"][0]) for item in items]
+    assert len(set(positions)) == 4

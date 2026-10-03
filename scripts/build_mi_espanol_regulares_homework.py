@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Build the regular-verb sentence assignment ``verbos-regulares-frases-a1-a2``.
 
-Upserts one assignment into ``examples/mi-espanol/homework.json``: 90 text_input
+Upserts one assignment into ``examples/mi-espanol/homework.json``: 90 single_choice
 sentences, each with one blank for a regular -ar / -er / -ir verb in the present
 indicative, -ar / -er / -ir mixed as in class.
 
@@ -15,7 +15,9 @@ from __future__ import annotations
 
 import argparse
 import csv
+import hashlib
 import json
+import random
 import sys
 from pathlib import Path
 
@@ -220,12 +222,10 @@ def _vocab_glosses() -> dict[str, tuple[str, str]]:
 
 def _sentence_lexicon() -> list[dict]:
     glosses = _vocab_glosses()
+    # Every present form, so the meaning panel can gloss each choice option.
     used: dict[str, list[str]] = {}
-    for subject, _, verb, _ in SENTENCES:
-        form = conjugate(verb)[PERSONS[subject.lower()]]
-        used.setdefault(verb, [])
-        if form not in used[verb]:
-            used[verb].append(form)
+    for _, _, verb, _ in SENTENCES:
+        used.setdefault(verb, conjugate(verb))
     lexicon = [
         {
             "id": f"vr-lx-{verb}",
@@ -242,6 +242,16 @@ def _sentence_lexicon() -> list[dict]:
     return lexicon
 
 
+def choice_options(item_id: str, verb: str, form: str) -> list[str]:
+    """The answer plus three other present forms of the same verb, in a stable shuffled order."""
+    digest = hashlib.sha256(f"{ASSIGNMENT_ID}:{item_id}".encode("utf-8")).hexdigest()
+    rng = random.Random(int(digest, 16))
+    others = rng.sample([other for other in conjugate(verb) if other != form], 3)
+    options = [form, *others]
+    rng.shuffle(options)
+    return options
+
+
 def _items(start: int, stop: int) -> list[dict]:
     items = []
     for number in range(start, stop + 1):
@@ -254,6 +264,7 @@ def _items(start: int, stop: int) -> list[dict]:
             "person": subject.lower(),
             "verb": verb,
             "prompt": f"{subject} {rest} ({verb})",
+            "options": choice_options(f"vr-{number:02d}", verb, form),
             "answers": [form],
             "canonicalAnswer": form,
             "sentenceTranslations": {form: translation},
@@ -276,9 +287,9 @@ def build_assignment() -> dict:
         sections.append({
             "id": f"vr-part-{part}",
             "title": f"Parte {part} - Ejercicios {start}–{stop}",
-            "instructions": "用括号里动词的现在时填空。-AR、-ER、-IR 动词混在一起：先看主语是谁，再看动词以什么结尾。"
+            "instructions": "选出括号里动词正确的现在时形式。-AR、-ER、-IR 动词混在一起：先看主语是谁，再看动词以什么结尾。"
                             "usted 和 él / ella 用同一个形式，ustedes 和 ellos / ellas 用同一个形式。",
-            "type": "text_input",
+            "type": "single_choice",
             "items": _items(start, stop),
         })
     return {

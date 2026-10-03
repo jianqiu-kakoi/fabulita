@@ -41769,7 +41769,12 @@
           "id": "vr-lx-recibir",
           "word": "recibir",
           "forms": [
-            "recibo"
+            "recibo",
+            "recibes",
+            "recibe",
+            "recibimos",
+            "recibís",
+            "reciben"
           ],
           "gloss": "收到",
           "english": "to receive"
@@ -41778,7 +41783,12 @@
           "id": "vr-lx-ceder",
           "word": "ceder",
           "forms": [
-            "cedéis"
+            "cedo",
+            "cedes",
+            "cede",
+            "cedemos",
+            "cedéis",
+            "ceden"
           ],
           "gloss": "让出",
           "english": "to give up; to yield"
@@ -41787,7 +41797,12 @@
           "id": "vr-lx-desayunar",
           "word": "desayunar",
           "forms": [
-            "desayuna"
+            "desayuno",
+            "desayunas",
+            "desayuna",
+            "desayunamos",
+            "desayunáis",
+            "desayunan"
           ],
           "gloss": "吃早餐",
           "english": "to have breakfast"
@@ -41796,7 +41811,12 @@
           "id": "vr-lx-correr",
           "word": "correr",
           "forms": [
-            "corres"
+            "corro",
+            "corres",
+            "corre",
+            "corremos",
+            "corréis",
+            "corren"
           ],
           "gloss": "跑",
           "english": "to run"
@@ -41805,7 +41825,12 @@
           "id": "vr-lx-unir",
           "word": "unir",
           "forms": [
-            "unimos"
+            "uno",
+            "unes",
+            "une",
+            "unimos",
+            "unís",
+            "unen"
           ],
           "gloss": "连接、合并",
           "english": "to join"
@@ -41814,6 +41839,11 @@
           "id": "vr-lx-cenar",
           "word": "cenar",
           "forms": [
+            "ceno",
+            "cenas",
+            "cena",
+            "cenamos",
+            "cenáis",
             "cenan"
           ],
           "gloss": "吃晚餐",
@@ -41823,7 +41853,12 @@
           "id": "vr-lx-visitar",
           "word": "visitar",
           "forms": [
-            "visita"
+            "visito",
+            "visitas",
+            "visita",
+            "visitamos",
+            "visitáis",
+            "visitan"
           ],
           "gloss": "拜访",
           "english": "to visit"
@@ -41833,7 +41868,11 @@
           "word": "comer",
           "forms": [
             "como",
-            "comemos"
+            "comes",
+            "come",
+            "comemos",
+            "coméis",
+            "comen"
           ],
           "gloss": "吃",
           "english": "to eat"
@@ -41842,7 +41881,12 @@
           "id": "vr-lx-omitir",
           "word": "omitir",
           "forms": [
-            "omitís"
+            "omito",
+            "omites",
+            "omite",
+            "omitimos",
+            "omitís",
+            "omiten"
           ],
           "gloss": "省略",
           "english": "to omit"
@@ -41851,7 +41895,12 @@
           "id": "vr-lx-viajar",
           "word": "viajar",
           "forms": [
-            "viaja"
+            "viajo",
+            "viajas",
+            "viaja",
+            "viajamos",
+            "viajáis",
+            "viajan"
           ],
           "gloss": "旅行",
           "english": "to travel"
@@ -41860,7 +41909,12 @@
           "id": "vr-lx-compartir",
           "word": "compartir",
           "forms": [
-            "compartes"
+            "comparto",
+            "compartes",
+            "comparte",
+            "compartimos",
+            "compartís",
+            "comparten"
           ],
           "gloss": "分享",
           "english": "to share"
@@ -41869,8 +41923,12 @@
           "id": "vr-lx-vender",
           "word": "vender",
           "forms": [
-            "venden",
-            "vendo"
+            "vendo",
+            "vendes",
+            "vende",
+            "vendemos",
+            "vendéis",
+            "venden"
           ],
           "gloss": "卖",
           "english": "to sell"
@@ -41879,7 +41937,12 @@
           "id": "vr-lx-necesitar",
           "word": "necesitar",
           "forms": [
-            "necesitamos"
+            "necesito",
+            "necesitas",
+            "necesita",
+            "necesitamos",
+            "necesitáis",
+            "necesitan"
           ],
           "gloss": "需要",
           "english": "to need"
@@ -41888,7 +41951,12 @@
           "id": "vr-lx-temer",
           "word": "temer",
           "forms": [
-            "teme"
+            "temo",
+            "temes",
+            "teme",
+            "tememos",
+            "teméis",
+            "temen"
           ],
           "gloss": "害怕",
           "english": "to fear"
@@ -41898,7 +41966,11 @@
           "word": "escribir",
           "forms": [
             "escribo",
-            "escribe"
+            "escribes",
+            "escribe",
+            "escribimos",
+            "escribís",
+            "escriben"
           ],
           "gloss": "写",
           "english": "to write"
@@ -41907,7 +41979,12 @@
           "id": "vr-lx-mirar",
           "word": "mirar",
           "forms": [
-            "miras"
+            "miro",
+            "miras",
+            "mira",
+            "miramos",
+            "miráis",
+            "miran"
           ],
           "gloss": "看",
           "english": "to watch; to look at"
@@ -41916,8 +41993,12 @@
           "id": "vr-lx-beber",
           "word": "beber",
           "forms": [
-            "beben",
-            "bebo"
+            "bebo",
+            "bebes",
+            "bebe",
+            "bebemos",
+            "bebéis",
+            "beben"
           ],
           "gloss": "喝",
           "english": "to drink"
@@ -41926,7 +42007,12 @@
           "id": "vr-lx-descubrir",
           "word": "descubrir",
           "forms": [
-            "descubre"
+            "descubro",
+            "descubres",
+            "descubre",
+            "descubrimos",
+            "descubrís",
+            "descubren"
           ],
           "gloss": "发现",
           "english": "to discover"
@@ -41935,7 +42021,12 @@
           "id": "vr-lx-practicar",
           "word": "practicar",
           "forms": [
-            "practicáis"
+            "practico",
+            "practicas",
+            "practica",
+            "practicamos",
+            "practicáis",
+            "practican"
           ],
           "gloss": "练习",
           "english": "to practice"
@@ -41945,7 +42036,11 @@
           "word": "leer",
           "forms": [
             "leo",
-            "leemos"
+            "lees",
+            "lee",
+            "leemos",
+            "leéis",
+            "leen"
           ],
           "gloss": "读",
           "english": "to read"
@@ -41954,7 +42049,12 @@
           "id": "vr-lx-añadir",
           "word": "añadir",
           "forms": [
-            "añadimos"
+            "añado",
+            "añades",
+            "añade",
+            "añadimos",
+            "añadís",
+            "añaden"
           ],
           "gloss": "添加",
           "english": "to add"
@@ -41963,6 +42063,11 @@
           "id": "vr-lx-descansar",
           "word": "descansar",
           "forms": [
+            "descanso",
+            "descansas",
+            "descansa",
+            "descansamos",
+            "descansáis",
             "descansan"
           ],
           "gloss": "休息",
@@ -41972,7 +42077,12 @@
           "id": "vr-lx-deber",
           "word": "deber",
           "forms": [
-            "debes"
+            "debo",
+            "debes",
+            "debe",
+            "debemos",
+            "debéis",
+            "deben"
           ],
           "gloss": "应该",
           "english": "must; should"
@@ -41981,7 +42091,12 @@
           "id": "vr-lx-caminar",
           "word": "caminar",
           "forms": [
-            "camino"
+            "camino",
+            "caminas",
+            "camina",
+            "caminamos",
+            "camináis",
+            "caminan"
           ],
           "gloss": "走路",
           "english": "to walk"
@@ -41990,7 +42105,12 @@
           "id": "vr-lx-decidir",
           "word": "decidir",
           "forms": [
-            "decides"
+            "decido",
+            "decides",
+            "decide",
+            "decidimos",
+            "decidís",
+            "deciden"
           ],
           "gloss": "决定",
           "english": "to decide"
@@ -41999,6 +42119,11 @@
           "id": "vr-lx-entrar",
           "word": "entrar",
           "forms": [
+            "entro",
+            "entras",
+            "entra",
+            "entramos",
+            "entráis",
             "entran"
           ],
           "gloss": "进入",
@@ -42008,7 +42133,12 @@
           "id": "vr-lx-dividir",
           "word": "dividir",
           "forms": [
-            "divide"
+            "divido",
+            "divides",
+            "divide",
+            "dividimos",
+            "dividís",
+            "dividen"
           ],
           "gloss": "分开",
           "english": "to divide"
@@ -42017,7 +42147,12 @@
           "id": "vr-lx-romper",
           "word": "romper",
           "forms": [
-            "rompe"
+            "rompo",
+            "rompes",
+            "rompe",
+            "rompemos",
+            "rompéis",
+            "rompen"
           ],
           "gloss": "打破",
           "english": "to break"
@@ -42026,7 +42161,12 @@
           "id": "vr-lx-estudiar",
           "word": "estudiar",
           "forms": [
-            "estudio"
+            "estudio",
+            "estudias",
+            "estudia",
+            "estudiamos",
+            "estudiáis",
+            "estudian"
           ],
           "gloss": "学习",
           "english": "to study"
@@ -42035,7 +42175,12 @@
           "id": "vr-lx-repartir",
           "word": "repartir",
           "forms": [
-            "repartís"
+            "reparto",
+            "repartes",
+            "reparte",
+            "repartimos",
+            "repartís",
+            "reparten"
           ],
           "gloss": "分发",
           "english": "to hand out"
@@ -42044,7 +42189,12 @@
           "id": "vr-lx-creer",
           "word": "creer",
           "forms": [
-            "crees"
+            "creo",
+            "crees",
+            "cree",
+            "creemos",
+            "creéis",
+            "creen"
           ],
           "gloss": "相信",
           "english": "to believe"
@@ -42053,7 +42203,12 @@
           "id": "vr-lx-ayudar",
           "word": "ayudar",
           "forms": [
-            "ayudamos"
+            "ayudo",
+            "ayudas",
+            "ayuda",
+            "ayudamos",
+            "ayudáis",
+            "ayudan"
           ],
           "gloss": "帮助",
           "english": "to help"
@@ -42062,8 +42217,12 @@
           "id": "vr-lx-acceder",
           "word": "acceder",
           "forms": [
-            "acceden",
-            "accedéis"
+            "accedo",
+            "accedes",
+            "accede",
+            "accedemos",
+            "accedéis",
+            "acceden"
           ],
           "gloss": "进入",
           "english": "to access"
@@ -42073,6 +42232,10 @@
           "word": "abrir",
           "forms": [
             "abro",
+            "abres",
+            "abre",
+            "abrimos",
+            "abrís",
             "abren"
           ],
           "gloss": "打开",
@@ -42082,7 +42245,12 @@
           "id": "vr-lx-nadar",
           "word": "nadar",
           "forms": [
-            "nadáis"
+            "nado",
+            "nadas",
+            "nada",
+            "nadamos",
+            "nadáis",
+            "nadan"
           ],
           "gloss": "游泳",
           "english": "to swim"
@@ -42091,7 +42259,12 @@
           "id": "vr-lx-sufrir",
           "word": "sufrir",
           "forms": [
-            "sufre"
+            "sufro",
+            "sufres",
+            "sufre",
+            "sufrimos",
+            "sufrís",
+            "sufren"
           ],
           "gloss": "受苦",
           "english": "to suffer"
@@ -42100,7 +42273,12 @@
           "id": "vr-lx-escuchar",
           "word": "escuchar",
           "forms": [
-            "escuchas"
+            "escucho",
+            "escuchas",
+            "escucha",
+            "escuchamos",
+            "escucháis",
+            "escuchan"
           ],
           "gloss": "听",
           "english": "to listen"
@@ -42109,8 +42287,12 @@
           "id": "vr-lx-subir",
           "word": "subir",
           "forms": [
-            "suben",
-            "subo"
+            "subo",
+            "subes",
+            "sube",
+            "subimos",
+            "subís",
+            "suben"
           ],
           "gloss": "上去；搬上去",
           "english": "to go up; to carry up"
@@ -42119,7 +42301,12 @@
           "id": "vr-lx-coser",
           "word": "coser",
           "forms": [
-            "cosemos"
+            "coso",
+            "coses",
+            "cose",
+            "cosemos",
+            "coséis",
+            "cosen"
           ],
           "gloss": "缝",
           "english": "to sew"
@@ -42128,7 +42315,12 @@
           "id": "vr-lx-lavar",
           "word": "lavar",
           "forms": [
-            "lava"
+            "lavo",
+            "lavas",
+            "lava",
+            "lavamos",
+            "laváis",
+            "lavan"
           ],
           "gloss": "洗",
           "english": "to wash"
@@ -42137,7 +42329,12 @@
           "id": "vr-lx-comprender",
           "word": "comprender",
           "forms": [
-            "comprendes"
+            "comprendo",
+            "comprendes",
+            "comprende",
+            "comprendemos",
+            "comprendéis",
+            "comprenden"
           ],
           "gloss": "理解",
           "english": "to understand"
@@ -42146,7 +42343,12 @@
           "id": "vr-lx-admitir",
           "word": "admitir",
           "forms": [
-            "admitimos"
+            "admito",
+            "admites",
+            "admite",
+            "admitimos",
+            "admitís",
+            "admiten"
           ],
           "gloss": "承认",
           "english": "to admit"
@@ -42155,6 +42357,11 @@
           "id": "vr-lx-preguntar",
           "word": "preguntar",
           "forms": [
+            "pregunto",
+            "preguntas",
+            "pregunta",
+            "preguntamos",
+            "preguntáis",
             "preguntan"
           ],
           "gloss": "问",
@@ -42164,7 +42371,12 @@
           "id": "vr-lx-cubrir",
           "word": "cubrir",
           "forms": [
-            "cubrís"
+            "cubro",
+            "cubres",
+            "cubre",
+            "cubrimos",
+            "cubrís",
+            "cubren"
           ],
           "gloss": "盖住",
           "english": "to cover"
@@ -42173,7 +42385,12 @@
           "id": "vr-lx-esperar",
           "word": "esperar",
           "forms": [
-            "esperamos"
+            "espero",
+            "esperas",
+            "espera",
+            "esperamos",
+            "esperáis",
+            "esperan"
           ],
           "gloss": "等待",
           "english": "to wait"
@@ -42182,7 +42399,12 @@
           "id": "vr-lx-describir",
           "word": "describir",
           "forms": [
-            "describe"
+            "describo",
+            "describes",
+            "describe",
+            "describimos",
+            "describís",
+            "describen"
           ],
           "gloss": "描述",
           "english": "to describe"
@@ -42191,7 +42413,12 @@
           "id": "vr-lx-toser",
           "word": "toser",
           "forms": [
-            "toséis"
+            "toso",
+            "toses",
+            "tose",
+            "tosemos",
+            "toséis",
+            "tosen"
           ],
           "gloss": "咳嗽",
           "english": "to cough"
@@ -42200,7 +42427,12 @@
           "id": "vr-lx-cocinar",
           "word": "cocinar",
           "forms": [
-            "cocinas"
+            "cocino",
+            "cocinas",
+            "cocina",
+            "cocinamos",
+            "cocináis",
+            "cocinan"
           ],
           "gloss": "做饭",
           "english": "to cook"
@@ -42209,7 +42441,12 @@
           "id": "vr-lx-depender",
           "word": "depender",
           "forms": [
-            "dependemos"
+            "dependo",
+            "dependes",
+            "depende",
+            "dependemos",
+            "dependéis",
+            "dependen"
           ],
           "gloss": "依赖",
           "english": "to depend"
@@ -42218,6 +42455,11 @@
           "id": "vr-lx-aplaudir",
           "word": "aplaudir",
           "forms": [
+            "aplaudo",
+            "aplaudes",
+            "aplaude",
+            "aplaudimos",
+            "aplaudís",
             "aplauden"
           ],
           "gloss": "鼓掌",
@@ -42227,7 +42469,12 @@
           "id": "vr-lx-hablar",
           "word": "hablar",
           "forms": [
-            "hablo"
+            "hablo",
+            "hablas",
+            "habla",
+            "hablamos",
+            "habláis",
+            "hablan"
           ],
           "gloss": "说话",
           "english": "to speak"
@@ -42236,7 +42483,12 @@
           "id": "vr-lx-prometer",
           "word": "prometer",
           "forms": [
-            "promete"
+            "prometo",
+            "prometes",
+            "promete",
+            "prometemos",
+            "prometéis",
+            "prometen"
           ],
           "gloss": "承诺",
           "english": "to promise"
@@ -42245,7 +42497,12 @@
           "id": "vr-lx-asistir",
           "word": "asistir",
           "forms": [
-            "asistes"
+            "asisto",
+            "asistes",
+            "asiste",
+            "asistimos",
+            "asistís",
+            "asisten"
           ],
           "gloss": "参加",
           "english": "to attend"
@@ -42254,7 +42511,12 @@
           "id": "vr-lx-llevar",
           "word": "llevar",
           "forms": [
-            "lleváis"
+            "llevo",
+            "llevas",
+            "lleva",
+            "llevamos",
+            "lleváis",
+            "llevan"
           ],
           "gloss": "带、穿",
           "english": "to carry; to wear"
@@ -42263,7 +42525,12 @@
           "id": "vr-lx-sorprender",
           "word": "sorprender",
           "forms": [
-            "sorprendemos"
+            "sorprendo",
+            "sorprendes",
+            "sorprende",
+            "sorprendemos",
+            "sorprendéis",
+            "sorprenden"
           ],
           "gloss": "使惊喜",
           "english": "to surprise"
@@ -42272,6 +42539,11 @@
           "id": "vr-lx-contestar",
           "word": "contestar",
           "forms": [
+            "contesto",
+            "contestas",
+            "contesta",
+            "contestamos",
+            "contestáis",
             "contestan"
           ],
           "gloss": "回答",
@@ -42281,7 +42553,12 @@
           "id": "vr-lx-responder",
           "word": "responder",
           "forms": [
-            "respondes"
+            "respondo",
+            "respondes",
+            "responde",
+            "respondemos",
+            "respondéis",
+            "responden"
           ],
           "gloss": "回复",
           "english": "to reply"
@@ -42290,7 +42567,12 @@
           "id": "vr-lx-discutir",
           "word": "discutir",
           "forms": [
-            "discute"
+            "discuto",
+            "discutes",
+            "discute",
+            "discutimos",
+            "discutís",
+            "discuten"
           ],
           "gloss": "争吵",
           "english": "to argue"
@@ -42299,7 +42581,12 @@
           "id": "vr-lx-comprar",
           "word": "comprar",
           "forms": [
-            "compro"
+            "compro",
+            "compras",
+            "compra",
+            "compramos",
+            "compráis",
+            "compran"
           ],
           "gloss": "买",
           "english": "to buy"
@@ -42308,7 +42595,12 @@
           "id": "vr-lx-permitir",
           "word": "permitir",
           "forms": [
-            "permites"
+            "permito",
+            "permites",
+            "permite",
+            "permitimos",
+            "permitís",
+            "permiten"
           ],
           "gloss": "允许",
           "english": "to allow"
@@ -42317,7 +42609,12 @@
           "id": "vr-lx-preparar",
           "word": "preparar",
           "forms": [
-            "preparamos"
+            "preparo",
+            "preparas",
+            "prepara",
+            "preparamos",
+            "preparáis",
+            "preparan"
           ],
           "gloss": "准备",
           "english": "to prepare"
@@ -42326,6 +42623,11 @@
           "id": "vr-lx-aprender",
           "word": "aprender",
           "forms": [
+            "aprendo",
+            "aprendes",
+            "aprende",
+            "aprendemos",
+            "aprendéis",
             "aprenden"
           ],
           "gloss": "学会",
@@ -42335,7 +42637,12 @@
           "id": "vr-lx-cumplir",
           "word": "cumplir",
           "forms": [
-            "cumple"
+            "cumplo",
+            "cumples",
+            "cumple",
+            "cumplimos",
+            "cumplís",
+            "cumplen"
           ],
           "gloss": "满（岁）；履行",
           "english": "to turn (an age); to fulfil"
@@ -42344,7 +42651,12 @@
           "id": "vr-lx-dibujar",
           "word": "dibujar",
           "forms": [
-            "dibujáis"
+            "dibujo",
+            "dibujas",
+            "dibuja",
+            "dibujamos",
+            "dibujáis",
+            "dibujan"
           ],
           "gloss": "画画",
           "english": "to draw"
@@ -42353,7 +42665,12 @@
           "id": "vr-lx-poseer",
           "word": "poseer",
           "forms": [
-            "poseemos"
+            "poseo",
+            "posees",
+            "posee",
+            "poseemos",
+            "poseéis",
+            "poseen"
           ],
           "gloss": "拥有",
           "english": "to own"
@@ -42363,6 +42680,10 @@
           "word": "vivir",
           "forms": [
             "vivo",
+            "vives",
+            "vive",
+            "vivimos",
+            "vivís",
             "viven"
           ],
           "gloss": "居住、生活",
@@ -42372,7 +42693,12 @@
           "id": "vr-lx-bailar",
           "word": "bailar",
           "forms": [
-            "bailas"
+            "bailo",
+            "bailas",
+            "baila",
+            "bailamos",
+            "bailáis",
+            "bailan"
           ],
           "gloss": "跳舞",
           "english": "to dance"
@@ -42381,7 +42707,12 @@
           "id": "vr-lx-cometer",
           "word": "cometer",
           "forms": [
-            "cometéis"
+            "cometo",
+            "cometes",
+            "comete",
+            "cometemos",
+            "cometéis",
+            "cometen"
           ],
           "gloss": "犯（错）",
           "english": "to commit; to make (a mistake)"
@@ -42390,7 +42721,12 @@
           "id": "vr-lx-insistir",
           "word": "insistir",
           "forms": [
-            "insistimos"
+            "insisto",
+            "insistes",
+            "insiste",
+            "insistimos",
+            "insistís",
+            "insisten"
           ],
           "gloss": "坚持",
           "english": "to insist"
@@ -42399,7 +42735,12 @@
           "id": "vr-lx-ordenar",
           "word": "ordenar",
           "forms": [
-            "ordena"
+            "ordeno",
+            "ordenas",
+            "ordena",
+            "ordenamos",
+            "ordenáis",
+            "ordenan"
           ],
           "gloss": "整理",
           "english": "to tidy"
@@ -42408,7 +42749,12 @@
           "id": "vr-lx-recorrer",
           "word": "recorrer",
           "forms": [
-            "recorréis"
+            "recorro",
+            "recorres",
+            "recorre",
+            "recorremos",
+            "recorréis",
+            "recorren"
           ],
           "gloss": "走遍",
           "english": "to go around"
@@ -42417,6 +42763,11 @@
           "id": "vr-lx-consumir",
           "word": "consumir",
           "forms": [
+            "consumo",
+            "consumes",
+            "consume",
+            "consumimos",
+            "consumís",
             "consumen"
           ],
           "gloss": "消耗",
@@ -42426,7 +42777,12 @@
           "id": "vr-lx-tomar",
           "word": "tomar",
           "forms": [
-            "tomáis"
+            "tomo",
+            "tomas",
+            "toma",
+            "tomamos",
+            "tomáis",
+            "toman"
           ],
           "gloss": "拿；晒（太阳）；喝",
           "english": "to take"
@@ -42435,7 +42791,12 @@
           "id": "vr-lx-esconder",
           "word": "esconder",
           "forms": [
-            "escondemos"
+            "escondo",
+            "escondes",
+            "esconde",
+            "escondemos",
+            "escondéis",
+            "esconden"
           ],
           "gloss": "藏",
           "english": "to hide"
@@ -42444,7 +42805,12 @@
           "id": "vr-lx-trabajar",
           "word": "trabajar",
           "forms": [
-            "trabajo"
+            "trabajo",
+            "trabajas",
+            "trabaja",
+            "trabajamos",
+            "trabajáis",
+            "trabajan"
           ],
           "gloss": "工作",
           "english": "to work"
@@ -42453,7 +42819,12 @@
           "id": "vr-lx-barrer",
           "word": "barrer",
           "forms": [
-            "barre"
+            "barro",
+            "barres",
+            "barre",
+            "barremos",
+            "barréis",
+            "barren"
           ],
           "gloss": "扫地",
           "english": "to sweep"
@@ -42462,7 +42833,12 @@
           "id": "vr-lx-partir",
           "word": "partir",
           "forms": [
-            "partís"
+            "parto",
+            "partes",
+            "parte",
+            "partimos",
+            "partís",
+            "parten"
           ],
           "gloss": "切开",
           "english": "to cut; to split"
@@ -42471,7 +42847,12 @@
           "id": "vr-lx-cantar",
           "word": "cantar",
           "forms": [
-            "cantas"
+            "canto",
+            "cantas",
+            "canta",
+            "cantamos",
+            "cantáis",
+            "cantan"
           ],
           "gloss": "唱歌",
           "english": "to sing"
@@ -42480,7 +42861,12 @@
           "id": "vr-lx-meter",
           "word": "meter",
           "forms": [
-            "mete"
+            "meto",
+            "metes",
+            "mete",
+            "metemos",
+            "metéis",
+            "meten"
           ],
           "gloss": "放进",
           "english": "to put in"
@@ -42489,7 +42875,12 @@
           "id": "vr-lx-imprimir",
           "word": "imprimir",
           "forms": [
-            "imprimimos"
+            "imprimo",
+            "imprimes",
+            "imprime",
+            "imprimimos",
+            "imprimís",
+            "imprimen"
           ],
           "gloss": "打印",
           "english": "to print"
@@ -42498,7 +42889,12 @@
           "id": "vr-lx-usar",
           "word": "usar",
           "forms": [
-            "usamos"
+            "uso",
+            "usas",
+            "usa",
+            "usamos",
+            "usáis",
+            "usan"
           ],
           "gloss": "使用",
           "english": "to use"
@@ -43140,8 +43536,8 @@
         {
           "id": "vr-part-1",
           "title": "Parte 1 - Ejercicios 1–30",
-          "instructions": "用括号里动词的现在时填空。-AR、-ER、-IR 动词混在一起：先看主语是谁，再看动词以什么结尾。usted 和 él / ella 用同一个形式，ustedes 和 ellos / ellas 用同一个形式。",
-          "type": "text_input",
+          "instructions": "选出括号里动词正确的现在时形式。-AR、-ER、-IR 动词混在一起：先看主语是谁，再看动词以什么结尾。usted 和 él / ella 用同一个形式，ustedes 和 ellos / ellas 用同一个形式。",
+          "type": "single_choice",
           "items": [
             {
               "id": "vr-01",
@@ -43149,6 +43545,12 @@
               "person": "yo",
               "verb": "recibir",
               "prompt": "Yo _______ una carta de mi madre. (recibir)",
+              "options": [
+                "recibís",
+                "recibes",
+                "recibimos",
+                "recibo"
+              ],
               "answers": [
                 "recibo"
               ],
@@ -43163,6 +43565,12 @@
               "person": "vosotras",
               "verb": "ceder",
               "prompt": "Vosotras _______ el turno a los niños. (ceder)",
+              "options": [
+                "cedemos",
+                "cedéis",
+                "cede",
+                "ceden"
+              ],
               "answers": [
                 "cedéis"
               ],
@@ -43177,6 +43585,12 @@
               "person": "él",
               "verb": "desayunar",
               "prompt": "Él _______ pan y fruta en la cocina. (desayunar)",
+              "options": [
+                "desayunamos",
+                "desayuna",
+                "desayuno",
+                "desayunas"
+              ],
               "answers": [
                 "desayuna"
               ],
@@ -43191,6 +43605,12 @@
               "person": "tú",
               "verb": "correr",
               "prompt": "Tú _______ en el parque por la mañana. (correr)",
+              "options": [
+                "corro",
+                "corres",
+                "corren",
+                "corréis"
+              ],
               "answers": [
                 "corres"
               ],
@@ -43205,6 +43625,12 @@
               "person": "nosotros",
               "verb": "unir",
               "prompt": "Nosotros _______ las piezas del juego. (unir)",
+              "options": [
+                "unimos",
+                "unen",
+                "unís",
+                "unes"
+              ],
               "answers": [
                 "unimos"
               ],
@@ -43219,6 +43645,12 @@
               "person": "ellas",
               "verb": "cenar",
               "prompt": "Ellas _______ pescado los viernes. (cenar)",
+              "options": [
+                "cenan",
+                "cenas",
+                "cenamos",
+                "cena"
+              ],
               "answers": [
                 "cenan"
               ],
@@ -43233,6 +43665,12 @@
               "person": "usted",
               "verb": "visitar",
               "prompt": "Usted _______ el museo con su familia. (visitar)",
+              "options": [
+                "visito",
+                "visitáis",
+                "visita",
+                "visitas"
+              ],
               "answers": [
                 "visita"
               ],
@@ -43247,6 +43685,12 @@
               "person": "yo",
               "verb": "comer",
               "prompt": "Yo _______ arroz con verduras. (comer)",
+              "options": [
+                "como",
+                "coméis",
+                "comes",
+                "come"
+              ],
               "answers": [
                 "como"
               ],
@@ -43261,6 +43705,12 @@
               "person": "vosotros",
               "verb": "omitir",
               "prompt": "Vosotros _______ una palabra en la frase. (omitir)",
+              "options": [
+                "omites",
+                "omito",
+                "omitís",
+                "omite"
+              ],
               "answers": [
                 "omitís"
               ],
@@ -43275,6 +43725,12 @@
               "person": "ella",
               "verb": "viajar",
               "prompt": "Ella _______ en tren a Valencia. (viajar)",
+              "options": [
+                "viaja",
+                "viajáis",
+                "viajas",
+                "viajan"
+              ],
               "answers": [
                 "viaja"
               ],
@@ -43289,6 +43745,12 @@
               "person": "tú",
               "verb": "compartir",
               "prompt": "Tú _______ el piso con dos amigos. (compartir)",
+              "options": [
+                "comparten",
+                "compartes",
+                "comparto",
+                "compartimos"
+              ],
               "answers": [
                 "compartes"
               ],
@@ -43303,6 +43765,12 @@
               "person": "ellos",
               "verb": "vender",
               "prompt": "Ellos _______ fruta en la calle. (vender)",
+              "options": [
+                "vendemos",
+                "vendo",
+                "venden",
+                "vendes"
+              ],
               "answers": [
                 "venden"
               ],
@@ -43317,6 +43785,12 @@
               "person": "nosotros",
               "verb": "necesitar",
               "prompt": "Nosotros _______ un mapa de la ciudad. (necesitar)",
+              "options": [
+                "necesitan",
+                "necesito",
+                "necesitamos",
+                "necesita"
+              ],
               "answers": [
                 "necesitamos"
               ],
@@ -43331,6 +43805,12 @@
               "person": "ella",
               "verb": "temer",
               "prompt": "Ella _______ a los perros grandes. (temer)",
+              "options": [
+                "tememos",
+                "temen",
+                "teme",
+                "teméis"
+              ],
               "answers": [
                 "teme"
               ],
@@ -43345,6 +43825,12 @@
               "person": "yo",
               "verb": "escribir",
               "prompt": "Yo _______ mi nombre en el cuaderno. (escribir)",
+              "options": [
+                "escribís",
+                "escribimos",
+                "escribo",
+                "escribe"
+              ],
               "answers": [
                 "escribo"
               ],
@@ -43359,6 +43845,12 @@
               "person": "tú",
               "verb": "mirar",
               "prompt": "Tú _______ las fotos del viaje. (mirar)",
+              "options": [
+                "miramos",
+                "miráis",
+                "miran",
+                "miras"
+              ],
               "answers": [
                 "miras"
               ],
@@ -43373,6 +43865,12 @@
               "person": "ustedes",
               "verb": "beber",
               "prompt": "Ustedes _______ agua fría en verano. (beber)",
+              "options": [
+                "bebo",
+                "bebe",
+                "bebéis",
+                "beben"
+              ],
               "answers": [
                 "beben"
               ],
@@ -43387,6 +43885,12 @@
               "person": "ella",
               "verb": "descubrir",
               "prompt": "Ella _______ una tienda nueva en el barrio. (descubrir)",
+              "options": [
+                "descubro",
+                "descubre",
+                "descubren",
+                "descubrimos"
+              ],
               "answers": [
                 "descubre"
               ],
@@ -43401,6 +43905,12 @@
               "person": "vosotros",
               "verb": "practicar",
               "prompt": "Vosotros _______ el piano en casa. (practicar)",
+              "options": [
+                "practican",
+                "practicáis",
+                "practico",
+                "practicas"
+              ],
               "answers": [
                 "practicáis"
               ],
@@ -43415,6 +43925,12 @@
               "person": "yo",
               "verb": "leer",
               "prompt": "Yo _______ el periódico en el tren. (leer)",
+              "options": [
+                "leo",
+                "leemos",
+                "lee",
+                "lees"
+              ],
               "answers": [
                 "leo"
               ],
@@ -43429,6 +43945,12 @@
               "person": "nosotras",
               "verb": "añadir",
               "prompt": "Nosotras _______ sal a la sopa. (añadir)",
+              "options": [
+                "añaden",
+                "añadimos",
+                "añades",
+                "añade"
+              ],
               "answers": [
                 "añadimos"
               ],
@@ -43443,6 +43965,12 @@
               "person": "ellos",
               "verb": "descansar",
               "prompt": "Ellos _______ en el sofá el domingo. (descansar)",
+              "options": [
+                "descansa",
+                "descanso",
+                "descansan",
+                "descansas"
+              ],
               "answers": [
                 "descansan"
               ],
@@ -43457,6 +43985,12 @@
               "person": "tú",
               "verb": "deber",
               "prompt": "Tú _______ estudiar más para el examen. (deber)",
+              "options": [
+                "debes",
+                "deben",
+                "debéis",
+                "debe"
+              ],
               "answers": [
                 "debes"
               ],
@@ -43471,6 +44005,12 @@
               "person": "ella",
               "verb": "escribir",
               "prompt": "Ella _______ un mensaje a su amiga. (escribir)",
+              "options": [
+                "escriben",
+                "escribimos",
+                "escribís",
+                "escribe"
+              ],
               "answers": [
                 "escribe"
               ],
@@ -43485,6 +44025,12 @@
               "person": "yo",
               "verb": "caminar",
               "prompt": "Yo _______ a la escuela con mi hermano. (caminar)",
+              "options": [
+                "caminan",
+                "caminamos",
+                "camino",
+                "camina"
+              ],
               "answers": [
                 "camino"
               ],
@@ -43499,6 +44045,12 @@
               "person": "nosotros",
               "verb": "leer",
               "prompt": "Nosotros _______ un cuento a los niños. (leer)",
+              "options": [
+                "leemos",
+                "lee",
+                "leo",
+                "leen"
+              ],
               "answers": [
                 "leemos"
               ],
@@ -43513,6 +44065,12 @@
               "person": "tú",
               "verb": "decidir",
               "prompt": "Tú _______ el color de la camisa. (decidir)",
+              "options": [
+                "decides",
+                "decidimos",
+                "deciden",
+                "decido"
+              ],
               "answers": [
                 "decides"
               ],
@@ -43527,6 +44085,12 @@
               "person": "ellas",
               "verb": "entrar",
               "prompt": "Ellas _______ en clase a las nueve. (entrar)",
+              "options": [
+                "entramos",
+                "entra",
+                "entran",
+                "entráis"
+              ],
               "answers": [
                 "entran"
               ],
@@ -43541,6 +44105,12 @@
               "person": "usted",
               "verb": "dividir",
               "prompt": "Usted _______ la pizza en ocho trozos. (dividir)",
+              "options": [
+                "dividís",
+                "divido",
+                "divide",
+                "dividimos"
+              ],
               "answers": [
                 "divide"
               ],
@@ -43555,6 +44125,12 @@
               "person": "él",
               "verb": "romper",
               "prompt": "Él _______ un vaso en la cocina. (romper)",
+              "options": [
+                "rompe",
+                "rompes",
+                "rompo",
+                "rompen"
+              ],
               "answers": [
                 "rompe"
               ],
@@ -43568,8 +44144,8 @@
         {
           "id": "vr-part-2",
           "title": "Parte 2 - Ejercicios 31–60",
-          "instructions": "用括号里动词的现在时填空。-AR、-ER、-IR 动词混在一起：先看主语是谁，再看动词以什么结尾。usted 和 él / ella 用同一个形式，ustedes 和 ellos / ellas 用同一个形式。",
-          "type": "text_input",
+          "instructions": "选出括号里动词正确的现在时形式。-AR、-ER、-IR 动词混在一起：先看主语是谁，再看动词以什么结尾。usted 和 él / ella 用同一个形式，ustedes 和 ellos / ellas 用同一个形式。",
+          "type": "single_choice",
           "items": [
             {
               "id": "vr-31",
@@ -43577,6 +44153,12 @@
               "person": "yo",
               "verb": "estudiar",
               "prompt": "Yo _______ español todos los días. (estudiar)",
+              "options": [
+                "estudia",
+                "estudias",
+                "estudio",
+                "estudiáis"
+              ],
               "answers": [
                 "estudio"
               ],
@@ -43591,6 +44173,12 @@
               "person": "vosotras",
               "verb": "repartir",
               "prompt": "Vosotras _______ los libros en la clase. (repartir)",
+              "options": [
+                "repartes",
+                "repartís",
+                "reparte",
+                "reparto"
+              ],
               "answers": [
                 "repartís"
               ],
@@ -43605,6 +44193,12 @@
               "person": "tú",
               "verb": "creer",
               "prompt": "Tú _______ en tus amigos. (creer)",
+              "options": [
+                "cree",
+                "creemos",
+                "crees",
+                "creen"
+              ],
               "answers": [
                 "crees"
               ],
@@ -43619,6 +44213,12 @@
               "person": "nosotros",
               "verb": "ayudar",
               "prompt": "Nosotros _______ a la profesora. (ayudar)",
+              "options": [
+                "ayudan",
+                "ayudáis",
+                "ayudo",
+                "ayudamos"
+              ],
               "answers": [
                 "ayudamos"
               ],
@@ -43633,6 +44233,12 @@
               "person": "ellos",
               "verb": "acceder",
               "prompt": "Ellos _______ a la página web con su contraseña. (acceder)",
+              "options": [
+                "acceden",
+                "accedemos",
+                "accedéis",
+                "accedes"
+              ],
               "answers": [
                 "acceden"
               ],
@@ -43647,6 +44253,12 @@
               "person": "yo",
               "verb": "abrir",
               "prompt": "Yo _______ la puerta de la casa. (abrir)",
+              "options": [
+                "abre",
+                "abrís",
+                "abro",
+                "abren"
+              ],
               "answers": [
                 "abro"
               ],
@@ -43661,6 +44273,12 @@
               "person": "vosotras",
               "verb": "nadar",
               "prompt": "Vosotras _______ en el mar en verano. (nadar)",
+              "options": [
+                "nadamos",
+                "nadan",
+                "nado",
+                "nadáis"
+              ],
               "answers": [
                 "nadáis"
               ],
@@ -43675,6 +44293,12 @@
               "person": "nosotros",
               "verb": "comer",
               "prompt": "Nosotros _______ en casa de mis abuelos. (comer)",
+              "options": [
+                "comes",
+                "comen",
+                "como",
+                "comemos"
+              ],
               "answers": [
                 "comemos"
               ],
@@ -43689,6 +44313,12 @@
               "person": "ella",
               "verb": "sufrir",
               "prompt": "Ella _______ mucho con el frío. (sufrir)",
+              "options": [
+                "sufrimos",
+                "sufrís",
+                "sufre",
+                "sufres"
+              ],
               "answers": [
                 "sufre"
               ],
@@ -43703,6 +44333,12 @@
               "person": "tú",
               "verb": "escuchar",
               "prompt": "Tú _______ la radio en el coche. (escuchar)",
+              "options": [
+                "escuchas",
+                "escucho",
+                "escuchan",
+                "escucha"
+              ],
               "answers": [
                 "escuchas"
               ],
@@ -43717,6 +44353,12 @@
               "person": "ellos",
               "verb": "subir",
               "prompt": "Ellos _______ a la montaña en verano. (subir)",
+              "options": [
+                "subimos",
+                "subes",
+                "subo",
+                "suben"
+              ],
               "answers": [
                 "suben"
               ],
@@ -43731,6 +44373,12 @@
               "person": "nosotras",
               "verb": "coser",
               "prompt": "Nosotras _______ un vestido para la fiesta. (coser)",
+              "options": [
+                "cosemos",
+                "coses",
+                "cosen",
+                "coséis"
+              ],
               "answers": [
                 "cosemos"
               ],
@@ -43745,6 +44393,12 @@
               "person": "él",
               "verb": "lavar",
               "prompt": "Él _______ los platos después de cenar. (lavar)",
+              "options": [
+                "lava",
+                "laváis",
+                "lavan",
+                "lavas"
+              ],
               "answers": [
                 "lava"
               ],
@@ -43759,6 +44413,12 @@
               "person": "tú",
               "verb": "comprender",
               "prompt": "Tú _______ la pregunta del profesor. (comprender)",
+              "options": [
+                "comprendemos",
+                "comprendo",
+                "comprenden",
+                "comprendes"
+              ],
               "answers": [
                 "comprendes"
               ],
@@ -43773,6 +44433,12 @@
               "person": "nosotros",
               "verb": "admitir",
               "prompt": "Nosotros _______ que es un problema. (admitir)",
+              "options": [
+                "admite",
+                "admiten",
+                "admitimos",
+                "admitís"
+              ],
               "answers": [
                 "admitimos"
               ],
@@ -43787,6 +44453,12 @@
               "person": "ustedes",
               "verb": "preguntar",
               "prompt": "Ustedes _______ el precio en la tienda. (preguntar)",
+              "options": [
+                "preguntamos",
+                "pregunto",
+                "preguntan",
+                "preguntáis"
+              ],
               "answers": [
                 "preguntan"
               ],
@@ -43801,6 +44473,12 @@
               "person": "yo",
               "verb": "vender",
               "prompt": "Yo _______ mi bicicleta vieja. (vender)",
+              "options": [
+                "vende",
+                "vendemos",
+                "vendo",
+                "vendéis"
+              ],
               "answers": [
                 "vendo"
               ],
@@ -43815,6 +44493,12 @@
               "person": "vosotras",
               "verb": "cubrir",
               "prompt": "Vosotras _______ la cama con una manta. (cubrir)",
+              "options": [
+                "cubrís",
+                "cubren",
+                "cubrimos",
+                "cubres"
+              ],
               "answers": [
                 "cubrís"
               ],
@@ -43829,6 +44513,12 @@
               "person": "nosotros",
               "verb": "esperar",
               "prompt": "Nosotros _______ a nuestros amigos en la estación. (esperar)",
+              "options": [
+                "esperáis",
+                "esperas",
+                "esperamos",
+                "espero"
+              ],
               "answers": [
                 "esperamos"
               ],
@@ -43843,6 +44533,12 @@
               "person": "él",
               "verb": "describir",
               "prompt": "Él _______ su ciudad en la clase. (describir)",
+              "options": [
+                "describen",
+                "describe",
+                "describo",
+                "describimos"
+              ],
               "answers": [
                 "describe"
               ],
@@ -43857,6 +44553,12 @@
               "person": "vosotros",
               "verb": "toser",
               "prompt": "Vosotros _______ porque estáis resfriados. (toser)",
+              "options": [
+                "tosemos",
+                "tosen",
+                "toséis",
+                "toses"
+              ],
               "answers": [
                 "toséis"
               ],
@@ -43871,6 +44573,12 @@
               "person": "tú",
               "verb": "cocinar",
               "prompt": "Tú _______ la cena para tu familia. (cocinar)",
+              "options": [
+                "cocina",
+                "cocinas",
+                "cocino",
+                "cocinamos"
+              ],
               "answers": [
                 "cocinas"
               ],
@@ -43885,6 +44593,12 @@
               "person": "nosotros",
               "verb": "depender",
               "prompt": "Nosotros _______ del autobús para ir al trabajo. (depender)",
+              "options": [
+                "dependemos",
+                "dependo",
+                "dependen",
+                "dependes"
+              ],
               "answers": [
                 "dependemos"
               ],
@@ -43899,6 +44613,12 @@
               "person": "ellas",
               "verb": "aplaudir",
               "prompt": "Ellas _______ en el teatro. (aplaudir)",
+              "options": [
+                "aplaude",
+                "aplaudo",
+                "aplaudes",
+                "aplauden"
+              ],
               "answers": [
                 "aplauden"
               ],
@@ -43913,6 +44633,12 @@
               "person": "yo",
               "verb": "hablar",
               "prompt": "Yo _______ con mi madre por teléfono. (hablar)",
+              "options": [
+                "habla",
+                "hablo",
+                "hablan",
+                "hablas"
+              ],
               "answers": [
                 "hablo"
               ],
@@ -43927,6 +44653,12 @@
               "person": "usted",
               "verb": "prometer",
               "prompt": "Usted _______ volver mañana. (prometer)",
+              "options": [
+                "promete",
+                "prometemos",
+                "prometéis",
+                "prometen"
+              ],
               "answers": [
                 "promete"
               ],
@@ -43941,6 +44673,12 @@
               "person": "tú",
               "verb": "asistir",
               "prompt": "Tú _______ a la clase de yoga los lunes. (asistir)",
+              "options": [
+                "asistís",
+                "asisten",
+                "asiste",
+                "asistes"
+              ],
               "answers": [
                 "asistes"
               ],
@@ -43955,6 +44693,12 @@
               "person": "vosotros",
               "verb": "llevar",
               "prompt": "Vosotros _______ la comida a la playa. (llevar)",
+              "options": [
+                "lleváis",
+                "llevo",
+                "lleva",
+                "llevan"
+              ],
               "answers": [
                 "lleváis"
               ],
@@ -43969,6 +44713,12 @@
               "person": "nosotras",
               "verb": "sorprender",
               "prompt": "Nosotras _______ a mamá con un regalo. (sorprender)",
+              "options": [
+                "sorprendéis",
+                "sorprendes",
+                "sorprendo",
+                "sorprendemos"
+              ],
               "answers": [
                 "sorprendemos"
               ],
@@ -43983,6 +44733,12 @@
               "person": "yo",
               "verb": "subir",
               "prompt": "Yo _______ al tercer piso a pie. (subir)",
+              "options": [
+                "subís",
+                "subo",
+                "suben",
+                "subes"
+              ],
               "answers": [
                 "subo"
               ],
@@ -43996,8 +44752,8 @@
         {
           "id": "vr-part-3",
           "title": "Parte 3 - Ejercicios 61–90",
-          "instructions": "用括号里动词的现在时填空。-AR、-ER、-IR 动词混在一起：先看主语是谁，再看动词以什么结尾。usted 和 él / ella 用同一个形式，ustedes 和 ellos / ellas 用同一个形式。",
-          "type": "text_input",
+          "instructions": "选出括号里动词正确的现在时形式。-AR、-ER、-IR 动词混在一起：先看主语是谁，再看动词以什么结尾。usted 和 él / ella 用同一个形式，ustedes 和 ellos / ellas 用同一个形式。",
+          "type": "single_choice",
           "items": [
             {
               "id": "vr-61",
@@ -44005,6 +44761,12 @@
               "person": "ellos",
               "verb": "contestar",
               "prompt": "Ellos _______ las preguntas del examen. (contestar)",
+              "options": [
+                "contesta",
+                "contesto",
+                "contestáis",
+                "contestan"
+              ],
               "answers": [
                 "contestan"
               ],
@@ -44019,6 +44781,12 @@
               "person": "tú",
               "verb": "responder",
               "prompt": "Tú _______ al teléfono. (responder)",
+              "options": [
+                "responden",
+                "responde",
+                "respondes",
+                "respondéis"
+              ],
               "answers": [
                 "respondes"
               ],
@@ -44033,6 +44801,12 @@
               "person": "ella",
               "verb": "discutir",
               "prompt": "Ella _______ el problema con su jefe. (discutir)",
+              "options": [
+                "discutes",
+                "discute",
+                "discutimos",
+                "discuten"
+              ],
               "answers": [
                 "discute"
               ],
@@ -44047,6 +44821,12 @@
               "person": "yo",
               "verb": "comprar",
               "prompt": "Yo _______ pan en la panadería. (comprar)",
+              "options": [
+                "compran",
+                "compráis",
+                "compro",
+                "compra"
+              ],
               "answers": [
                 "compro"
               ],
@@ -44061,6 +44841,12 @@
               "person": "vosotros",
               "verb": "acceder",
               "prompt": "Vosotros _______ al parque por esta puerta. (acceder)",
+              "options": [
+                "accedéis",
+                "accedes",
+                "acceden",
+                "accedemos"
+              ],
               "answers": [
                 "accedéis"
               ],
@@ -44075,6 +44861,12 @@
               "person": "tú",
               "verb": "permitir",
               "prompt": "Tú _______ a tu perro dormir en el sofá. (permitir)",
+              "options": [
+                "permitís",
+                "permito",
+                "permites",
+                "permite"
+              ],
               "answers": [
                 "permites"
               ],
@@ -44089,6 +44881,12 @@
               "person": "nosotras",
               "verb": "preparar",
               "prompt": "Nosotras _______ la comida para la fiesta. (preparar)",
+              "options": [
+                "preparamos",
+                "preparo",
+                "preparas",
+                "preparan"
+              ],
               "answers": [
                 "preparamos"
               ],
@@ -44103,6 +44901,12 @@
               "person": "ellas",
               "verb": "aprender",
               "prompt": "Ellas _______ inglés en la universidad. (aprender)",
+              "options": [
+                "aprendéis",
+                "aprendo",
+                "aprenden",
+                "aprende"
+              ],
               "answers": [
                 "aprenden"
               ],
@@ -44117,6 +44921,12 @@
               "person": "él",
               "verb": "cumplir",
               "prompt": "Él _______ diez años mañana. (cumplir)",
+              "options": [
+                "cumplís",
+                "cumplimos",
+                "cumplen",
+                "cumple"
+              ],
               "answers": [
                 "cumple"
               ],
@@ -44131,6 +44941,12 @@
               "person": "vosotros",
               "verb": "dibujar",
               "prompt": "Vosotros _______ un mapa en la pizarra. (dibujar)",
+              "options": [
+                "dibujas",
+                "dibujan",
+                "dibujáis",
+                "dibujo"
+              ],
               "answers": [
                 "dibujáis"
               ],
@@ -44145,6 +44961,12 @@
               "person": "nosotras",
               "verb": "poseer",
               "prompt": "Nosotras _______ una casa en el campo. (poseer)",
+              "options": [
+                "posees",
+                "poseéis",
+                "poseemos",
+                "poseo"
+              ],
               "answers": [
                 "poseemos"
               ],
@@ -44159,6 +44981,12 @@
               "person": "yo",
               "verb": "vivir",
               "prompt": "Yo _______ en Madrid con mi familia. (vivir)",
+              "options": [
+                "vivo",
+                "vivimos",
+                "vivís",
+                "vive"
+              ],
               "answers": [
                 "vivo"
               ],
@@ -44173,6 +45001,12 @@
               "person": "tú",
               "verb": "bailar",
               "prompt": "Tú _______ muy bien en las fiestas. (bailar)",
+              "options": [
+                "bailáis",
+                "baila",
+                "bailas",
+                "bailan"
+              ],
               "answers": [
                 "bailas"
               ],
@@ -44187,6 +45021,12 @@
               "person": "vosotros",
               "verb": "cometer",
               "prompt": "Vosotros _______ pocos errores en el examen. (cometer)",
+              "options": [
+                "cometemos",
+                "cometéis",
+                "cometen",
+                "cometes"
+              ],
               "answers": [
                 "cometéis"
               ],
@@ -44201,6 +45041,12 @@
               "person": "nosotras",
               "verb": "insistir",
               "prompt": "Nosotras _______ en ayudar a la abuela. (insistir)",
+              "options": [
+                "insistimos",
+                "insistís",
+                "insisten",
+                "insiste"
+              ],
               "answers": [
                 "insistimos"
               ],
@@ -44215,6 +45061,12 @@
               "person": "ella",
               "verb": "ordenar",
               "prompt": "Ella _______ los libros en la estantería. (ordenar)",
+              "options": [
+                "ordenáis",
+                "ordenamos",
+                "ordenas",
+                "ordena"
+              ],
               "answers": [
                 "ordena"
               ],
@@ -44229,6 +45081,12 @@
               "person": "vosotras",
               "verb": "recorrer",
               "prompt": "Vosotras _______ la ciudad en bicicleta. (recorrer)",
+              "options": [
+                "recorro",
+                "recorre",
+                "recorres",
+                "recorréis"
+              ],
               "answers": [
                 "recorréis"
               ],
@@ -44243,6 +45101,12 @@
               "person": "ellos",
               "verb": "consumir",
               "prompt": "Ellos _______ mucha agua en verano. (consumir)",
+              "options": [
+                "consumís",
+                "consumen",
+                "consumes",
+                "consumo"
+              ],
               "answers": [
                 "consumen"
               ],
@@ -44257,6 +45121,12 @@
               "person": "vosotras",
               "verb": "tomar",
               "prompt": "Vosotras _______ café con leche por la mañana. (tomar)",
+              "options": [
+                "tomáis",
+                "tomo",
+                "tomamos",
+                "toma"
+              ],
               "answers": [
                 "tomáis"
               ],
@@ -44271,6 +45141,12 @@
               "person": "nosotras",
               "verb": "esconder",
               "prompt": "Nosotras _______ el chocolate de los niños. (esconder)",
+              "options": [
+                "escondéis",
+                "escondemos",
+                "esconde",
+                "escondo"
+              ],
               "answers": [
                 "escondemos"
               ],
@@ -44285,6 +45161,12 @@
               "person": "ustedes",
               "verb": "abrir",
               "prompt": "Ustedes _______ la tienda a las diez. (abrir)",
+              "options": [
+                "abren",
+                "abro",
+                "abre",
+                "abrimos"
+              ],
               "answers": [
                 "abren"
               ],
@@ -44299,6 +45181,12 @@
               "person": "yo",
               "verb": "trabajar",
               "prompt": "Yo _______ en un hospital. (trabajar)",
+              "options": [
+                "trabajo",
+                "trabajamos",
+                "trabajas",
+                "trabajan"
+              ],
               "answers": [
                 "trabajo"
               ],
@@ -44313,6 +45201,12 @@
               "person": "él",
               "verb": "barrer",
               "prompt": "Él _______ la terraza los domingos. (barrer)",
+              "options": [
+                "barremos",
+                "barro",
+                "barres",
+                "barre"
+              ],
               "answers": [
                 "barre"
               ],
@@ -44327,6 +45221,12 @@
               "person": "vosotros",
               "verb": "partir",
               "prompt": "Vosotros _______ el pastel para todos. (partir)",
+              "options": [
+                "parten",
+                "partís",
+                "partimos",
+                "partes"
+              ],
               "answers": [
                 "partís"
               ],
@@ -44341,6 +45241,12 @@
               "person": "tú",
               "verb": "cantar",
               "prompt": "Tú _______ en el coro de la escuela. (cantar)",
+              "options": [
+                "canta",
+                "cantan",
+                "cantas",
+                "canto"
+              ],
               "answers": [
                 "cantas"
               ],
@@ -44355,6 +45261,12 @@
               "person": "ella",
               "verb": "meter",
               "prompt": "Ella _______ la ropa en la maleta. (meter)",
+              "options": [
+                "metes",
+                "meten",
+                "meto",
+                "mete"
+              ],
               "answers": [
                 "mete"
               ],
@@ -44369,6 +45281,12 @@
               "person": "nosotras",
               "verb": "imprimir",
               "prompt": "Nosotras _______ las fotos del viaje. (imprimir)",
+              "options": [
+                "imprime",
+                "imprimen",
+                "imprimimos",
+                "imprimes"
+              ],
               "answers": [
                 "imprimimos"
               ],
@@ -44383,6 +45301,12 @@
               "person": "yo",
               "verb": "beber",
               "prompt": "Yo _______ un vaso de leche antes de dormir. (beber)",
+              "options": [
+                "bebo",
+                "bebéis",
+                "bebes",
+                "beben"
+              ],
               "answers": [
                 "bebo"
               ],
@@ -44397,6 +45321,12 @@
               "person": "nosotros",
               "verb": "usar",
               "prompt": "Nosotros _______ el móvil para hacer fotos. (usar)",
+              "options": [
+                "usas",
+                "usan",
+                "uso",
+                "usamos"
+              ],
               "answers": [
                 "usamos"
               ],
@@ -44411,6 +45341,12 @@
               "person": "ellos",
               "verb": "vivir",
               "prompt": "Ellos _______ cerca de la playa. (vivir)",
+              "options": [
+                "vivimos",
+                "vives",
+                "viven",
+                "vive"
+              ],
               "answers": [
                 "viven"
               ],
