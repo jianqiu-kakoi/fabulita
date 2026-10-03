@@ -7435,11 +7435,13 @@
       if (homeworkNotice) homeworkNotice.textContent = state.homeworkNotice;
       if (homeworkSaveResult.cleared) {
         var restoreTextFocus = e.target.id === "homework-answer-input";
+        var homeworkCaret = restoreTextFocus ? e.target.selectionStart : null;
         render();
         var restoredHomeworkInput = document.getElementById("homework-answer-input");
         if (restoreTextFocus && restoredHomeworkInput) {
           restoredHomeworkInput.focus();
-          restoredHomeworkInput.setSelectionRange(restoredHomeworkInput.value.length, restoredHomeworkInput.value.length);
+          if (typeof homeworkCaret !== "number") homeworkCaret = restoredHomeworkInput.value.length;
+          try { restoredHomeworkInput.setSelectionRange(homeworkCaret, homeworkCaret); } catch (err) {}
         }
       }
       return;
