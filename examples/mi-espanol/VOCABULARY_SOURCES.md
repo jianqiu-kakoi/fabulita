@@ -53,6 +53,14 @@ compilation are not covered by this repository's Apache-2.0 license.
   for the present-tense conjugation assignment (`presente-verbos-a1`, standard
   conjugations, not taken from any worksheet).
 
+## Homework lexicon words (2026-10-03)
+
+- 121 rows were added to `vocab.csv` for words that the public homework
+  assignments already glossed in their own `studyWords` / `sentenceLexicon`
+  but that were missing from the main list, plus common function words
+  (`al`, `del`, `por`, `para`, `me`, `se`, ...). Personal names, city names and
+  conjugated forms of `ser` / `estar` were left out.
+
 ## A0 visual vocabulary photos (public, CC0 / public domain)
 
 - Directory: `assets/vocab-images/` (`manifest.json` + `images/`).

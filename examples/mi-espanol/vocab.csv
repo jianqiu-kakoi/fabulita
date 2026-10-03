@@ -605,3 +605,124 @@ imprimir,打印,to print,动词,verb
 usar,使用,to use,动词,verb
 tener,有：tengo / tienes / tiene / tenemos / tenéis / tienen,to have,语法,grammar,Tengo un perro.,我有一只狗。,to have|have|有,grammar
 salir,出去、离开：salgo / sales / sale / salimos / salís / salen,to go out; to leave,语法,grammar,,,to go out|go out|to leave|leave|出去|离开,grammar
+a,到；向；在（几点）,to; at,小词,preposition,,,到|向|在|to|at
+al,到……；向……（a + el）,to the,小词,preposition,,,到|向|to the|a el
+del,……的；从……（de + el）,of the; from the,小词,preposition,,,的|从|of the|from the|de el
+por,因为；经过；在（上午、下午）,because of; through; in (the morning),小词,preposition,,,因为|由于|经过|通过|在|by|through|because of|for|in
+para,为了；给,for; in order to,小词,preposition,,,为了|给|for|in order to|to
+sin,没有、不带,without,小词,preposition,,,没有|无|不带|without
+junto a,在……旁边,next to; beside,小词,preposition,,,在旁边|旁边|next to|beside
+antes de,在……之前,before,小词,preposition,,,在之前|之前|before
+que,……的（关系词）；连接从句,that; which; who,小词,connector,,,的|that|which|who
+cuando,当……时,when,小词,connector,,,当|当时|当……时|when
+un / una,一个（不定冠词）,a; an,小词,determiner,,,一个|一|a|an
+cada,每、每个,each; every,小词,determiner,,,每|每个|each|every
+todo / toda,全部的；每个,all; every,小词,determiner,,,全部|所有|每个|all|every|everything
+mucho / mucha,很多的,much; many; a lot,小词,determiner,,,很多|许多|much|many|a lot
+poco / poca,少的；一点,little; few; a bit,小词,determiner,,,少|很少|一点|little|few|a bit
+su / sus,他的、她的、他们的、您的,his; her; their; your (formal),小词,determiner,,,他的|她的|它的|他们的|您的|his|her|its|their|your
+me,我（宾语）；我自己,me; myself,小词,pronoun,,,我|给我|我自己|me|myself
+te,你（宾语）；你自己,you; yourself,小词,pronoun,,,你|给你|你自己|you|yourself
+se,自己（反身）；也用于无人称和被动,himself; herself; itself; oneself,小词,pronoun,,,自己|他自己|她自己|himself|herself|itself|oneself|themselves
+le,给他、给她、给您,to him; to her; to you (formal),小词,pronoun,,,给他|给她|给您|他|她|him|her|to him|to her
+nos,我们（宾语）；我们自己,us; ourselves,小词,pronoun,,,我们|给我们|我们自己|us|ourselves
+lo,他、它（直接宾语）,him; it,小词,pronoun,,,他|它|him|it
+más,更；更多,more,常用表达,adverb,,,更|更多|more
+menos,更少；减,less; minus,常用表达,adverb,,,更少|少|减|less|fewer|minus
+también,也,also; too,常用表达,adverb
+ya,已经,already,常用表达,adverb
+bastante,相当；足够,quite; enough,常用表达,adverb
+demasiado,太、过于,too; too much,常用表达,adverb
+antes,之前,before,常用表达,adverb
+después,之后、然后,after; afterwards,常用表达,adverb
+hay,有、存在,there is; there are,常用表达,verb
+tener sed,口渴,to be thirsty,常用表达,phrase
+servir para,用于、用来,to be used for,常用表达,phrase
+frío / fría,冷的,cold,形容词,adjective
+abierto / abierta,开着的、开放的,open,形容词,adjective
+cerrado / cerrada,关着的、关闭的,closed,形容词,adjective
+interesante,有趣的,interesting,形容词,adjective
+simpático / simpática,友好的、讨人喜欢的,nice; friendly,形容词,adjective
+puntual,准时的,punctual,形容词,adjective
+nuevo / nueva,新的,new,形容词,adjective
+grande,大的,big; large,形容词,adjective
+pequeño / pequeña,小的,small,形容词,adjective
+cansado / cansada,累的,tired,形容词,adjective
+limpio / limpia,干净的,clean,形容词,adjective
+caliente,热的,hot,形容词,adjective
+mejor,更好的；最好的,better; best,形容词,adjective
+resfriado / resfriada,感冒的,having a cold,形容词,adjective
+amable,和蔼的、友好的,kind,形容词,adjective
+divertido / divertida,有趣的、好玩的,fun,形容词,adjective
+ordenado / ordenada,整洁的、有条理的,tidy,形容词,adjective
+agotado / agotada,筋疲力尽的,exhausted,形容词,adjective
+ocupado / ocupada,忙碌的,busy,形容词,adjective
+delicioso / deliciosa,美味的,delicious,形容词,adjective
+preparado / preparada,准备好的,prepared,形容词,adjective
+satisfecho / satisfecha,满意的,satisfied,形容词,adjective
+nervioso / nerviosa,紧张的,nervous,形容词,adjective
+listo / lista,准备好的；聪明的,ready; clever,形容词,adjective
+bonito / bonita,漂亮的,pretty,形容词,adjective
+dulce,甜的,sweet,形容词,adjective
+perfecto / perfecta,完美的,perfect,形容词,adjective
+elegante,优雅的,elegant,形容词,adjective
+caro / cara,贵的,expensive,形容词,adjective
+la doctora,女医生,female doctor,人物,word
+el vecino / la vecina,邻居,neighbor,人物,word
+el tío / la tía,叔叔、舅舅 / 阿姨、姑姑,uncle / aunt,人物,word
+el primo / la prima,堂（表）兄弟 / 堂（表）姐妹,cousin,人物,word
+el ingeniero / la ingeniera,工程师,engineer,人物,word
+el alumno / la alumna,学生,pupil; student,人物,word
+el vaso,玻璃杯,drinking glass,家居,word
+el jardín,花园,garden,家居,word
+la luz,光、灯光,light,家居,word
+la sala,厅、房间,room; hall,家居,word
+el colegio,学校,school,城市与场所,word
+el castillo,城堡,castle,城市与场所,word
+la biblioteca,图书馆,library,城市与场所,word
+el edificio,建筑、大楼,building,城市与场所,word
+el centro,中心、市中心,centre; downtown,城市与场所,word
+el chocolate,巧克力,chocolate,食物,word
+la sopa,汤,soup,食物,word
+la cena,晚餐,dinner,食物,word
+el té,茶,tea,食物,word
+el gazpacho,西班牙冷汤,gazpacho,食物,word
+la semana,星期、周,week,时间,word
+el mes,月、月份,month,时间,word
+el siglo,世纪,century,时间,word
+el momento,时刻、此刻,moment,时间,word
+el trimestre,学期、季度,term; trimester,时间,word
+los deberes,家庭作业,homework,学习与工作,word
+la prueba,测验,test; quiz,学习与工作,word
+la reunión,会议,meeting,学习与工作,word
+el problema,问题,problem,学习与工作,word
+el avance,进步、进展,progress,学习与工作,word
+el entrenamiento,训练,training,学习与工作,word
+la entrevista,面试、采访,interview,学习与工作,word
+la arquitectura,建筑学,architecture,学习与工作,word
+la mochila,背包,backpack,学习与工作,word
+las gafas,眼镜,glasses,衣服,word
+el traje,西装、套装,suit,衣服,word
+ocho,八,eight,数字,word
+diez,十,ten,数字,word
+España,西班牙,Spain,国家,word
+México,墨西哥,Mexico,国家,word
+Perú,秘鲁,Peru,国家,word
+Chile,智利,Chile,国家,word
+Ecuador,厄瓜多尔,Ecuador,国家,word
+Uruguay,乌拉圭,Uruguay,国家,word
+Alemania,德国,Germany,国家,word
+Costa Rica,哥斯达黎加,Costa Rica,国家,word
+explicar,解释、讲解,to explain,动词,verb
+dormir,睡觉,to sleep,动词,verb
+ponerse,穿上、戴上,to put on,动词,verb
+empezar,开始,to begin; to start,动词,verb
+llegar,到达,to arrive,动词,verb
+hacer,做,to do; to make,动词,verb
+servir,有用；服务,to serve; to be useful,动词,verb
+ir,去,to go,动词,verb
+verse,看得见、被看见,to be seen,动词,verb
+dejar,让、留下,to let; to leave,动词,verb
+ventilar,通风,to air out,动词,verb
+este / esta,这个,this,小词,determiner,,,这|这个|this
+el/la principiante,初学者,beginner,人物,word

@@ -295,7 +295,7 @@ assert(firstSegments.some((segment) =>
     segment.text.toLowerCase() === "lunes" && segment.wordId === lunes.id
   ), "the filled answer should be an expandable sentence word");
 assert(firstSegments.some((segment) =>
-    segment.text.toLowerCase() === "semana" && segment.wordId === "hw-c-semana"
+    segment.word && /^(la )?semana$/.test(segment.text.toLowerCase())
   ), "the context word semana should be expandable");
 assert(firstSegments.some((segment) =>
     segment.text.toLowerCase() === "es" && segment.wordId === "hw-s-ser"
