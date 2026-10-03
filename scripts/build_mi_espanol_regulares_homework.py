@@ -27,6 +27,7 @@ ROOT = Path(__file__).resolve().parent.parent
 PROJECT = ROOT / "examples" / "mi-espanol"
 HOMEWORK = PROJECT / "homework.json"
 ASSIGNMENT_ID = "verbos-regulares-frases-a1-a2"
+ORDER_ASSIGNMENT_ID = "verbos-regulares-ordenar-a1-a2"
 BLANK = "_______"
 PERSONS = {
     "yo": 0, "tú": 1, "él": 2, "ella": 2, "usted": 2,
@@ -338,6 +339,103 @@ def build_assignment() -> dict:
     }
 
 
+# Words that stay glued to the word after them, so a tile is a small phrase
+# ("una carta", "de mi madre") instead of a lone article or preposition.
+LEADERS = {
+    "el", "la", "los", "las", "un", "una", "unos", "unas", "al", "del",
+    "a", "de", "en", "con", "por", "para", "sin", "sobre", "entre", "desde", "hasta",
+    "mi", "mis", "tu", "tus", "su", "sus", "nuestro", "nuestra", "nuestros", "nuestras",
+    "vuestro", "vuestra", "vuestros", "vuestras",
+    "muy", "más", "y", "o", "que", "cada", "todos", "todas", "todo", "toda",
+    "dos", "tres", "ocho", "nueve", "diez", "mucho", "mucha", "muchos", "muchas",
+    "antes", "después", "cerca", "no", "se", "me", "te", "lo", "le", "nos",
+}
+
+
+def sentence_tiles(number: int) -> tuple[list[str], str]:
+    """Split sentence ``number`` into ordered phrase chunks and return (chunks, full sentence)."""
+    subject, rest, verb, _ = SENTENCES[number - 1]
+    form = conjugate(verb)[PERSONS[subject.lower()]]
+    before, after = rest.split(BLANK)
+    full = f"{subject} {before}{form}{after}".replace("  ", " ")
+    chunks, pending = [], []
+    for word in full.rstrip(".").replace(",", "").split():
+        pending.append(word)
+        if word.lower() in LEADERS:
+            continue
+        chunks.append(" ".join(pending))
+        pending = []
+    if pending:
+        chunks[-1] += " " + " ".join(pending)
+    chunks[0] = chunks[0][0].lower() + chunks[0][1:]
+    return chunks, full
+
+
+# Sentences whose last two phrases (place / time / manner / companion) may swap:
+# "en el parque por la mañana" and "por la mañana en el parque" are both fine.
+SWAPPABLE_ENDINGS = {4, 37, 72, 41, 10, 49, 55, 25, 59}
+
+
+def accepted_orders(number: int, chunks: list[str]) -> list[str]:
+    def sentence(parts: list[str]) -> str:
+        text = " ".join(parts)
+        return text[0].upper() + text[1:] + "."
+
+    orders = [sentence(chunks)]
+    if number in SWAPPABLE_ENDINGS:
+        orders.append(sentence(chunks[:-2] + [chunks[-1], chunks[-2]]))
+    return orders
+
+
+def _order_items(start: int, stop: int) -> list[dict]:
+    items = []
+    for number in range(start, stop + 1):
+        chunks, full = sentence_tiles(number)
+        translation = SENTENCES[number - 1][3]
+        digest = hashlib.sha256(f"{ORDER_ASSIGNMENT_ID}:{number}".encode("utf-8")).hexdigest()
+        tiles = list(chunks)
+        rng = random.Random(int(digest, 16))
+        while len(tiles) > 1 and tiles == chunks:
+            rng.shuffle(tiles)
+        items.append({
+            "id": f"vo-{number:02d}",
+            "number": number,
+            "verb": SENTENCES[number - 1][2],
+            "prompt": "排成句子：" + translation,
+            "wordTiles": tiles,
+            "answers": accepted_orders(number, chunks),
+            "canonicalAnswer": full,
+            "answerTranslation": translation,
+            "ambiguityNote": "翻译：" + translation,
+        })
+    return items
+
+
+def build_order_assignment() -> dict:
+    """The same 90 sentences as tap-to-order practice."""
+    sections = []
+    for part, (start, stop) in enumerate([(1, 30), (31, 60), (61, 90)], start=1):
+        sections.append({
+            "id": f"vo-part-{part}",
+            "title": f"Parte {part} - Ordena las frases {start}–{stop}",
+            "instructions": "看中文意思，按顺序点词块拼成句子：先主语，再动词，然后是其余部分。点错了，点上面已选的词块就能撤回。",
+            "type": "text_input",
+            "items": _order_items(start, stop),
+        })
+    return {
+        "id": ORDER_ASSIGNMENT_ID,
+        "title": "规则动词现在时 · 90 句成句练习 A1–A2",
+        "badge": "成句练习",
+        "sourceTitle": "Verbos regulares en presente: ordena las frases",
+        "level": "A1–A2",
+        "answerKeyBasis": "standard_conjugation",
+        "contentOrigin": "independently_rewritten_private_classroom_adaptation",
+        "source": {},
+        "sentenceLexicon": _sentence_lexicon(),
+        "sections": sections,
+    }
+
+
 def upsert(homework_path: Path, assignment: dict) -> None:
     data = json.loads(homework_path.read_text(encoding="utf-8"))
     assignments = data.get("assignments", [])
@@ -355,13 +453,13 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--homework", type=Path, default=HOMEWORK)
     args = parser.parse_args(argv)
-    assignment = build_assignment()
-    upsert(args.homework, assignment)
-    print(json.dumps({
-        "assignment": assignment["id"],
-        "questions": sum(len(section["items"]) for section in assignment["sections"]),
-        "homework": str(args.homework),
-    }, ensure_ascii=False, indent=2))
+    for assignment in (build_assignment(), build_order_assignment()):
+        upsert(args.homework, assignment)
+        print(json.dumps({
+            "assignment": assignment["id"],
+            "questions": sum(len(section["items"]) for section in assignment["sections"]),
+            "homework": str(args.homework),
+        }, ensure_ascii=False, indent=2))
     return 0
 
 

@@ -38,11 +38,12 @@ compilation are not covered by this repository's Apache-2.0 license.
 
 ## A1 topic picture homework (2026-10-03)
 
-- 106 of the A1 words have a picture, recorded in
+- 181 of the A1 words have a picture, recorded in
   `assets/vocab-images/a1-topics.json` with files in `assets/vocab-images/a1/`.
-  They are grouped into nine topics; each topic becomes its own assignment
+  They are grouped into fourteen topics (the last five, added later the same
+  day, cover action verbs and everyday words from the sentence homework); each topic becomes its own assignment
   (`vocabulario-a1-<topic>`), so the homework list is organised by category.
-- 98 illustrations are from [Icons8](https://icons8.com/), used under its
+- 173 illustrations are from [Icons8](https://icons8.com/), used under its
   [free license with link attribution](https://icons8.com/license); the learning
   page shows the Icons8 credit. They are not CC0 or Apache-2.0 assets.
 - The eight colour swatches were generated for this project and are CC0-1.0.

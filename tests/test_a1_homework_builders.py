@@ -171,3 +171,29 @@ def test_regular_verb_sentences_are_committed_and_correct():
         assert set(item["options"]) <= set(regulares_builder.conjugate(item["verb"]))
     positions = [item["options"].index(item["answers"][0]) for item in items]
     assert len(set(positions)) == 4
+
+
+def test_regular_verb_order_assignment_is_committed_and_well_formed():
+    assignment = regulares_builder.build_order_assignment()
+    assert _homework()["verbos-regulares-ordenar-a1-a2"] == assignment
+    items = [item for section in assignment["sections"] for item in section["items"]]
+    assert len(items) == 90 and len({item["id"] for item in items}) == 90
+    for item in items:
+        chunks, full = regulares_builder.sentence_tiles(item["number"])
+        assert sorted(item["wordTiles"]) == sorted(chunks) and item["wordTiles"] != chunks
+        assert item["answers"][0] == item["canonicalAnswer"] == full
+        assert " ".join(chunks).lower() == full.rstrip(".").replace(",", "").lower()
+        assert item["prompt"] == "排成句子：" + item["answerTranslation"]
+    by_id = {item["id"]: item for item in items}
+    assert by_id["vo-01"]["answers"] == ["Yo recibo una carta de mi madre."]
+    assert by_id["vo-04"]["answers"] == [
+        "Tú corres en el parque por la mañana.", "Tú corres por la mañana en el parque.",
+    ]
+
+
+def test_new_picture_topics_cover_verbs_and_everyday_words():
+    topics = {topic["id"]: topic for topic in _topics()}
+    assert {"acciones", "cosas", "comida-2", "lugares-2", "personas-2"} <= set(topics)
+    verbs = {entry["spanish"] for entry in topics["acciones"]["entries"]}
+    assert {"correr", "nadar", "leer", "escribir", "dormir"} <= verbs and len(verbs) == 38
+
