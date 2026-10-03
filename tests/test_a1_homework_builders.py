@@ -116,3 +116,28 @@ def test_interrogativos_assignment_is_committed_and_correct():
     assert "Cómo te llamas?" in first["answers"]
     ids = [item["id"] for section in assignment["sections"] for item in section["items"]]
     assert len(ids) == len(set(ids))
+
+
+frases_builder = _load("build_mi_espanol_frases_homework")
+
+
+def test_frases_assignment_is_committed_and_well_formed():
+    assignment = frases_builder.build_assignment()
+    assert _homework()["frases-a1-01"] == assignment
+    # Sections of one type stay contiguous: the page groups questions by type.
+    order, answer, translate, dialogue, write = assignment["sections"]
+    assert [section["type"] for section in assignment["sections"]] == [
+        "text_input", "text_input", "text_input", "multi_input", "open_response",
+    ]
+    assert [len(section["items"]) for section in assignment["sections"]] == [10, 10, 8, 4, 3]
+    for item in dialogue["items"]:
+        assert item["prompt"].count("______") == len(item["blanks"]) == 3
+    for section in (order, answer, translate):
+        for item in section["items"]:
+            assert item["canonicalAnswer"] in item["answers"]
+            bare = item["canonicalAnswer"].replace("¿", "")
+            assert bare in item["answers"]
+    for item in write["items"]:
+        assert item["answerMode"] == "self_review" and item["answers"]
+    ids = [item["id"] for section in assignment["sections"] for item in section["items"]]
+    assert len(ids) == len(set(ids))

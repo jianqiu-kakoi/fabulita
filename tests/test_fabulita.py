@@ -312,7 +312,7 @@ def test_mi_espanol_vocab_dashboard_build():
     assert "function reviewHistoryCsv" in html and "function csvSafeValue" in html
     assert "typedAnswer" in html and "answerCorrect" in html and "ratingInput" in html
     assignments = project.homeworks
-    assert len(assignments) == 17
+    assert len(assignments) == 18
     assignment = next(
         item for item in assignments
         if item["id"] == "ejercicios-vocabulario-a1-1"

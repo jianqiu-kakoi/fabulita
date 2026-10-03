@@ -40736,6 +40736,877 @@
           ]
         }
       ]
+    },
+    {
+      "id": "frases-a1-01",
+      "title": "成句练习 A1 - 1：疑问词与 Ser / Estar",
+      "badge": "成句练习",
+      "sourceTitle": "Práctica de frases: preguntas, ser y estar",
+      "level": "A1",
+      "answerKeyBasis": "standard_grammar",
+      "sentenceLexicon": [
+        {
+          "id": "fr-lx-estudiar",
+          "word": "estudiar",
+          "forms": [
+            "estudio",
+            "estudias"
+          ],
+          "gloss": "学习",
+          "english": "to study"
+        },
+        {
+          "id": "fr-lx-llamarse",
+          "word": "llamarse",
+          "forms": [
+            "te llamas",
+            "me llamo",
+            "llamas",
+            "llamo"
+          ],
+          "gloss": "叫（名字）",
+          "english": "to be called"
+        },
+        {
+          "id": "fr-lx-tener",
+          "word": "tener",
+          "forms": [
+            "tienes",
+            "tengo"
+          ],
+          "gloss": "有",
+          "english": "to have"
+        },
+        {
+          "id": "fr-lx-venir",
+          "word": "venir",
+          "forms": [
+            "vengo",
+            "vienes"
+          ],
+          "gloss": "来",
+          "english": "to come"
+        },
+        {
+          "id": "fr-lx-ir",
+          "word": "ir",
+          "forms": [
+            "voy"
+          ],
+          "gloss": "去",
+          "english": "to go"
+        },
+        {
+          "id": "fr-lx-querer",
+          "word": "querer",
+          "forms": [
+            "quiero"
+          ],
+          "gloss": "想要",
+          "english": "to want"
+        },
+        {
+          "id": "fr-lx-poder",
+          "word": "poder",
+          "forms": [
+            "puedo"
+          ],
+          "gloss": "能、可以",
+          "english": "can"
+        },
+        {
+          "id": "fr-lx-gustar",
+          "word": "gustar",
+          "forms": [
+            "me gusta",
+            "gusta"
+          ],
+          "gloss": "使喜欢（me gusta = 我喜欢）",
+          "english": "to like"
+        },
+        {
+          "id": "fr-lx-cuantos",
+          "word": "¿cuántos?",
+          "forms": [
+            "cuántos"
+          ],
+          "gloss": "多少个？",
+          "english": "how many?"
+        },
+        {
+          "id": "fr-lx-dos",
+          "word": "dos",
+          "forms": [
+            "dos"
+          ],
+          "gloss": "二、两个",
+          "english": "two"
+        },
+        {
+          "id": "fr-lx-chinochina",
+          "word": "chino / china",
+          "forms": [
+            "china",
+            "chino"
+          ],
+          "gloss": "中国人；中国的",
+          "english": "Chinese"
+        },
+        {
+          "id": "fr-lx-china",
+          "word": "China",
+          "forms": [
+            "China"
+          ],
+          "gloss": "中国",
+          "english": "China"
+        },
+        {
+          "id": "fr-lx-ana",
+          "word": "Ana",
+          "forms": [
+            "Ana"
+          ],
+          "gloss": "安娜（人名）",
+          "english": "Ana (name)"
+        },
+        {
+          "id": "fr-lx-juan",
+          "word": "Juan",
+          "forms": [
+            "Juan"
+          ],
+          "gloss": "胡安（人名）",
+          "english": "Juan (name)"
+        }
+      ],
+      "sections": [
+        {
+          "id": "fr-order",
+          "title": "Parte 1 - Ordena la frase",
+          "instructions": "把给出的词块排成一个正确的句子，整句写出来。问句记得加 ¿?；大小写和标点不影响判分。",
+          "type": "text_input",
+          "items": [
+            {
+              "id": "fr-order-01",
+              "number": 1,
+              "prompt": "排成句子：español / porque / estudio / me gusta",
+              "answers": [
+                "Estudio español porque me gusta."
+              ],
+              "canonicalAnswer": "Estudio español porque me gusta.",
+              "answerTranslation": "我学西班牙语，因为我喜欢。",
+              "ambiguityNote": "翻译：我学西班牙语，因为我喜欢。"
+            },
+            {
+              "id": "fr-order-02",
+              "number": 2,
+              "prompt": "排成句子：el baño / está / dónde",
+              "answers": [
+                "¿Dónde está el baño?",
+                "Dónde está el baño?"
+              ],
+              "canonicalAnswer": "¿Dónde está el baño?",
+              "answerTranslation": "洗手间在哪里？",
+              "ambiguityNote": "翻译：洗手间在哪里？"
+            },
+            {
+              "id": "fr-order-03",
+              "number": 3,
+              "prompt": "排成句子：bien / mi padre / está",
+              "answers": [
+                "Mi padre está bien."
+              ],
+              "canonicalAnswer": "Mi padre está bien.",
+              "answerTranslation": "我父亲很好。",
+              "ambiguityNote": "翻译：我父亲很好。"
+            },
+            {
+              "id": "fr-order-04",
+              "number": 4,
+              "prompt": "排成句子：pequeño / es / mi perro",
+              "answers": [
+                "Mi perro es pequeño."
+              ],
+              "canonicalAnswer": "Mi perro es pequeño.",
+              "answerTranslation": "我的狗很小。",
+              "ambiguityNote": "翻译：我的狗很小。"
+            },
+            {
+              "id": "fr-order-05",
+              "number": 5,
+              "prompt": "排成句子：perros / cuántos / tienes",
+              "answers": [
+                "¿Cuántos perros tienes?",
+                "Cuántos perros tienes?"
+              ],
+              "canonicalAnswer": "¿Cuántos perros tienes?",
+              "answerTranslation": "你有几只狗？",
+              "ambiguityNote": "翻译：你有几只狗？"
+            },
+            {
+              "id": "fr-order-06",
+              "number": 6,
+              "prompt": "排成句子：viajar a España / estudio / para / español",
+              "answers": [
+                "Estudio español para viajar a España."
+              ],
+              "canonicalAnswer": "Estudio español para viajar a España.",
+              "answerTranslation": "我学西班牙语是为了去西班牙旅行。",
+              "ambiguityNote": "翻译：我学西班牙语是为了去西班牙旅行。"
+            },
+            {
+              "id": "fr-order-07",
+              "number": 7,
+              "prompt": "排成句子：en casa / nosotros / estamos",
+              "answers": [
+                "Nosotros estamos en casa."
+              ],
+              "canonicalAnswer": "Nosotros estamos en casa.",
+              "answerTranslation": "我们在家。",
+              "ambiguityNote": "翻译：我们在家。"
+            },
+            {
+              "id": "fr-order-08",
+              "number": 8,
+              "prompt": "排成句子：es / el azul / mi color favorito",
+              "answers": [
+                "Mi color favorito es el azul.",
+                "El azul es mi color favorito."
+              ],
+              "canonicalAnswer": "Mi color favorito es el azul.",
+              "answerTranslation": "我最喜欢的颜色是蓝色。",
+              "ambiguityNote": "翻译：我最喜欢的颜色是蓝色。"
+            },
+            {
+              "id": "fr-order-09",
+              "number": 9,
+              "prompt": "排成句子：como tú / quiero / ser",
+              "answers": [
+                "Quiero ser como tú."
+              ],
+              "canonicalAnswer": "Quiero ser como tú.",
+              "answerTranslation": "我想成为像你一样的人。",
+              "ambiguityNote": "翻译：我想成为像你一样的人。"
+            },
+            {
+              "id": "fr-order-10",
+              "number": 10,
+              "prompt": "排成句子：no puedo beber / no tengo agua / como",
+              "answers": [
+                "Como no tengo agua, no puedo beber."
+              ],
+              "canonicalAnswer": "Como no tengo agua, no puedo beber.",
+              "answerTranslation": "因为我没有水，所以我不能喝。",
+              "ambiguityNote": "翻译：因为我没有水，所以我不能喝。"
+            }
+          ]
+        },
+        {
+          "id": "fr-answer",
+          "title": "Parte 2 - Responde con una frase completa",
+          "instructions": "按括号里的提示，用完整句子回答。只写一个词也能看懂，但会提示你说整句。",
+          "type": "text_input",
+          "items": [
+            {
+              "id": "fr-answer-01",
+              "number": 1,
+              "prompt": "¿Cómo te llamas?（用 Ana 回答，写完整句子）",
+              "answers": [
+                "Me llamo Ana.",
+                "Yo me llamo Ana.",
+                "Soy Ana.",
+                "Yo soy Ana."
+              ],
+              "canonicalAnswer": "Me llamo Ana.",
+              "answerTranslation": "我叫 Ana。",
+              "meaningPatterns": [
+                {
+                  "all": [
+                    "ana"
+                  ]
+                }
+              ],
+              "polishNote": "意思对了；练习说完整句子：Me llamo Ana."
+            },
+            {
+              "id": "fr-answer-02",
+              "number": 2,
+              "prompt": "¿Qué estudias?（你学西班牙语，写完整句子）",
+              "answers": [
+                "Estudio español.",
+                "Yo estudio español."
+              ],
+              "canonicalAnswer": "Estudio español.",
+              "answerTranslation": "我学西班牙语。",
+              "meaningPatterns": [
+                {
+                  "all": [
+                    "español"
+                  ]
+                }
+              ],
+              "polishNote": "意思对了；练习说完整句子：Estudio español."
+            },
+            {
+              "id": "fr-answer-03",
+              "number": 3,
+              "prompt": "¿Dónde estás?（你在家，写完整句子）",
+              "answers": [
+                "Estoy en casa.",
+                "Yo estoy en casa."
+              ],
+              "canonicalAnswer": "Estoy en casa.",
+              "answerTranslation": "我在家。",
+              "meaningPatterns": [
+                {
+                  "all": [
+                    "casa"
+                  ],
+                  "none": [
+                    "soy"
+                  ]
+                }
+              ],
+              "polishNote": "意思对了；练习说完整句子：Estoy en casa.",
+              "ambiguityNote": "提示：位置用 estar：estoy en…"
+            },
+            {
+              "id": "fr-answer-04",
+              "number": 4,
+              "prompt": "¿Cómo estás?（你很好，写完整句子）",
+              "answers": [
+                "Estoy bien.",
+                "Estoy muy bien.",
+                "Yo estoy bien.",
+                "Yo estoy muy bien."
+              ],
+              "canonicalAnswer": "Estoy bien.",
+              "answerTranslation": "我很好。",
+              "meaningPatterns": [
+                {
+                  "all": [
+                    "bien"
+                  ],
+                  "none": [
+                    "soy"
+                  ]
+                }
+              ],
+              "polishNote": "意思对了；练习说完整句子：Estoy bien.",
+              "ambiguityNote": "提示：状态用 estar：estoy bien。"
+            },
+            {
+              "id": "fr-answer-05",
+              "number": 5,
+              "prompt": "¿Cómo es tu perro?（小而且白，写完整句子）",
+              "answers": [
+                "Mi perro es pequeño y blanco.",
+                "Es pequeño y blanco."
+              ],
+              "canonicalAnswer": "Mi perro es pequeño y blanco.",
+              "answerTranslation": "我的狗又小又白。",
+              "meaningPatterns": [
+                {
+                  "all": [
+                    "pequeño",
+                    "blanco"
+                  ],
+                  "none": [
+                    "está"
+                  ]
+                }
+              ],
+              "polishNote": "意思对了；练习说完整句子：Mi perro es pequeño y blanco.",
+              "ambiguityNote": "提示：特征用 ser：es pequeño。"
+            },
+            {
+              "id": "fr-answer-06",
+              "number": 6,
+              "prompt": "¿Cuándo vienes a casa?（星期一，写完整句子）",
+              "answers": [
+                "Vengo a casa el lunes.",
+                "Vengo el lunes.",
+                "El lunes vengo a casa.",
+                "Voy a casa el lunes."
+              ],
+              "canonicalAnswer": "Vengo a casa el lunes.",
+              "answerTranslation": "我星期一来家里。",
+              "meaningPatterns": [
+                {
+                  "all": [
+                    "lunes"
+                  ]
+                }
+              ],
+              "polishNote": "意思对了；练习说完整句子：Vengo a casa el lunes.",
+              "ambiguityNote": "提示：只回答 El lunes 也能听懂；这里练习说整句：Vengo a casa el lunes."
+            },
+            {
+              "id": "fr-answer-07",
+              "number": 7,
+              "prompt": "¿Por qué estudias español?（因为我喜欢，写完整句子）",
+              "answers": [
+                "Estudio español porque me gusta.",
+                "Porque me gusta."
+              ],
+              "canonicalAnswer": "Estudio español porque me gusta.",
+              "answerTranslation": "因为我喜欢。",
+              "meaningPatterns": [
+                {
+                  "all": [
+                    "gusta"
+                  ]
+                }
+              ],
+              "polishNote": "意思对了；练习说完整句子：Estudio español porque me gusta.",
+              "ambiguityNote": "提示：回答原因用 porque。"
+            },
+            {
+              "id": "fr-answer-08",
+              "number": 8,
+              "prompt": "¿Para qué estudias español?（为了去西班牙旅行，写完整句子）",
+              "answers": [
+                "Estudio español para viajar a España.",
+                "Para viajar a España."
+              ],
+              "canonicalAnswer": "Estudio español para viajar a España.",
+              "answerTranslation": "为了去西班牙旅行。",
+              "meaningPatterns": [
+                {
+                  "all": [
+                    "viajar"
+                  ]
+                }
+              ],
+              "polishNote": "意思对了；练习说完整句子：Estudio español para viajar a España.",
+              "ambiguityNote": "提示：回答目的用 para + 动词原形。"
+            },
+            {
+              "id": "fr-answer-09",
+              "number": 9,
+              "prompt": "¿Cuántos perros tienes?（两只，写完整句子）",
+              "answers": [
+                "Tengo dos perros.",
+                "Yo tengo dos perros."
+              ],
+              "canonicalAnswer": "Tengo dos perros.",
+              "answerTranslation": "我有两只狗。",
+              "meaningPatterns": [
+                {
+                  "all": [
+                    "dos"
+                  ]
+                }
+              ],
+              "polishNote": "意思对了；练习说完整句子：Tengo dos perros."
+            },
+            {
+              "id": "fr-answer-10",
+              "number": 10,
+              "prompt": "¿De dónde eres?（中国，写完整句子）",
+              "answers": [
+                "Soy de China.",
+                "Yo soy de China."
+              ],
+              "canonicalAnswer": "Soy de China.",
+              "answerTranslation": "我来自中国。",
+              "meaningPatterns": [
+                {
+                  "all": [
+                    "china"
+                  ],
+                  "none": [
+                    "estoy"
+                  ]
+                }
+              ],
+              "polishNote": "意思对了；练习说完整句子：Soy de China.",
+              "ambiguityNote": "提示：来源、国籍用 ser：soy de…"
+            }
+          ]
+        },
+        {
+          "id": "fr-translate",
+          "title": "Parte 3 - Traduce la frase",
+          "instructions": "把整句翻译成西班牙语。注意一句话里 ser 和 estar 可能都要用。",
+          "type": "text_input",
+          "items": [
+            {
+              "id": "fr-translate-01",
+              "number": 1,
+              "prompt": "我叫 Ana，我是中国人。（Ana 是女生）",
+              "answers": [
+                "Me llamo Ana y soy china.",
+                "Me llamo Ana, soy china.",
+                "Me llamo Ana y soy de China.",
+                "Me llamo Ana, soy de China.",
+                "Soy Ana y soy china.",
+                "Soy Ana y soy de China."
+              ],
+              "canonicalAnswer": "Me llamo Ana y soy china.",
+              "meaningPatterns": [
+                {
+                  "all": [
+                    "ana",
+                    "china"
+                  ],
+                  "none": [
+                    "estoy"
+                  ]
+                }
+              ],
+              "polishNote": "意思基本对了；参考说法：Me llamo Ana y soy china.",
+              "ambiguityNote": "提示：国籍用 ser；女生用 china，男生用 chino。"
+            },
+            {
+              "id": "fr-translate-02",
+              "number": 2,
+              "prompt": "我今天很累。",
+              "answers": [
+                "Hoy estoy cansado.",
+                "Hoy estoy cansada.",
+                "Estoy cansado hoy.",
+                "Estoy cansada hoy.",
+                "Hoy estoy muy cansado.",
+                "Hoy estoy muy cansada.",
+                "Estoy muy cansado hoy.",
+                "Estoy muy cansada hoy."
+              ],
+              "canonicalAnswer": "Hoy estoy cansado.",
+              "meaningPatterns": [
+                {
+                  "any": [
+                    "cansado",
+                    "cansada"
+                  ],
+                  "none": [
+                    "soy"
+                  ]
+                }
+              ],
+              "polishNote": "意思基本对了；参考说法：Hoy estoy cansado.",
+              "ambiguityNote": "提示：今天的状态用 estar。"
+            },
+            {
+              "id": "fr-translate-03",
+              "number": 3,
+              "prompt": "我的狗很小，而且（现在）很开心。",
+              "answers": [
+                "Mi perro es pequeño y está contento.",
+                "Mi perro es pequeño y está feliz.",
+                "Mi perro es pequeño y está muy contento.",
+                "Mi perro es pequeño y ahora está contento.",
+                "Mi perro es muy pequeño y está contento.",
+                "Mi perro es muy pequeño y está muy contento.",
+                "Mi perro es pequeño y está muy feliz.",
+                "Mi perro es pequeño y ahora está feliz.",
+                "Mi perro es pequeño y ahora está muy contento.",
+                "Mi perro es pequeño y ahora está muy feliz."
+              ],
+              "canonicalAnswer": "Mi perro es pequeño y está contento.",
+              "meaningPatterns": [
+                {
+                  "all": [
+                    "perro",
+                    "es pequeño"
+                  ],
+                  "any": [
+                    "está contento",
+                    "está feliz",
+                    "está muy contento",
+                    "está muy feliz"
+                  ]
+                }
+              ],
+              "polishNote": "意思基本对了；参考说法：Mi perro es pequeño y está contento.",
+              "ambiguityNote": "提示：pequeño 是特征 → es；开心是现在的心情 → está。一句话里两个都用。"
+            },
+            {
+              "id": "fr-translate-04",
+              "number": 4,
+              "prompt": "洗手间在右边。",
+              "answers": [
+                "El baño está a la derecha."
+              ],
+              "canonicalAnswer": "El baño está a la derecha.",
+              "meaningPatterns": [
+                {
+                  "all": [
+                    "baño",
+                    "está",
+                    "derecha"
+                  ]
+                }
+              ],
+              "polishNote": "意思基本对了；参考说法：El baño está a la derecha.",
+              "ambiguityNote": "提示：位置用 estar。"
+            },
+            {
+              "id": "fr-translate-05",
+              "number": 5,
+              "prompt": "我学西班牙语，因为我想去西班牙旅行。",
+              "answers": [
+                "Estudio español porque quiero viajar a España.",
+                "Yo estudio español porque quiero viajar a España."
+              ],
+              "canonicalAnswer": "Estudio español porque quiero viajar a España.",
+              "meaningPatterns": [
+                {
+                  "all": [
+                    "porque",
+                    "viajar"
+                  ]
+                }
+              ],
+              "polishNote": "意思基本对了；参考说法：Estudio español porque quiero viajar a España."
+            },
+            {
+              "id": "fr-translate-06",
+              "number": 6,
+              "prompt": "你在哪儿？我在家。",
+              "answers": [
+                "¿Dónde estás? Estoy en casa.",
+                "Dónde estás? Estoy en casa.",
+                "¿Dónde estás tú? Estoy en casa.",
+                "Dónde estás tú? Estoy en casa.",
+                "¿Dónde estás? Yo estoy en casa.",
+                "Dónde estás? Yo estoy en casa."
+              ],
+              "canonicalAnswer": "¿Dónde estás? Estoy en casa.",
+              "meaningPatterns": [
+                {
+                  "all": [
+                    "dónde",
+                    "casa"
+                  ]
+                }
+              ],
+              "polishNote": "意思基本对了；参考说法：¿Dónde estás? Estoy en casa."
+            },
+            {
+              "id": "fr-translate-07",
+              "number": 7,
+              "prompt": "我的父亲是老师，他现在很好。",
+              "answers": [
+                "Mi padre es profesor y ahora está bien.",
+                "Mi padre es profesor y está bien.",
+                "Mi padre es profesor y ahora está muy bien.",
+                "Mi padre es profesor. Ahora está bien.",
+                "Mi padre es profesor y está bien ahora."
+              ],
+              "canonicalAnswer": "Mi padre es profesor y ahora está bien.",
+              "meaningPatterns": [
+                {
+                  "all": [
+                    "es profesor",
+                    "está bien"
+                  ]
+                }
+              ],
+              "polishNote": "意思基本对了；参考说法：Mi padre es profesor y ahora está bien.",
+              "ambiguityNote": "提示：职业用 ser（es profesor），状态用 estar（está bien）。"
+            },
+            {
+              "id": "fr-translate-08",
+              "number": 8,
+              "prompt": "因为我没有水，所以我不能喝。",
+              "answers": [
+                "Como no tengo agua, no puedo beber.",
+                "No puedo beber porque no tengo agua."
+              ],
+              "canonicalAnswer": "Como no tengo agua, no puedo beber.",
+              "meaningPatterns": [
+                {
+                  "all": [
+                    "agua",
+                    "beber"
+                  ]
+                }
+              ],
+              "polishNote": "意思基本对了；参考说法：Como no tengo agua, no puedo beber.",
+              "ambiguityNote": "提示：como 放在句首表示“因为”；也可以说 …porque no tengo agua。"
+            }
+          ]
+        },
+        {
+          "id": "fr-dialogue",
+          "title": "Parte 4 - Completa el diálogo",
+          "instructions": "每段小对话有 3 个空，按顺序填写。",
+          "type": "multi_input",
+          "items": [
+            {
+              "id": "fr-dialogue-01",
+              "number": 1,
+              "prompt": "A: ¿Cómo ______ llamas?　B: Me ______ Juan.　A: ¿De dónde ______?　B: Soy de España.",
+              "blanks": [
+                {
+                  "id": "fr-dialogue-01-1",
+                  "label": "A 第 1 空",
+                  "answers": [
+                    "te"
+                  ],
+                  "canonicalAnswer": "te"
+                },
+                {
+                  "id": "fr-dialogue-01-2",
+                  "label": "B 第 2 空",
+                  "answers": [
+                    "llamo"
+                  ],
+                  "canonicalAnswer": "llamo"
+                },
+                {
+                  "id": "fr-dialogue-01-3",
+                  "label": "A 第 3 空",
+                  "answers": [
+                    "eres"
+                  ],
+                  "canonicalAnswer": "eres"
+                }
+              ],
+              "ambiguityNote": "翻译：A：你叫什么名字？ B：我叫 Juan。 A：你是哪里人？ B：我来自西班牙。"
+            },
+            {
+              "id": "fr-dialogue-02",
+              "number": 2,
+              "prompt": "A: ¿Cómo ______ tu hermano?　B: ______ cansado.　A: ¿Dónde ______ ahora?　B: Está en casa.",
+              "blanks": [
+                {
+                  "id": "fr-dialogue-02-1",
+                  "label": "A 第 1 空",
+                  "answers": [
+                    "está"
+                  ],
+                  "canonicalAnswer": "está"
+                },
+                {
+                  "id": "fr-dialogue-02-2",
+                  "label": "B 第 2 空",
+                  "answers": [
+                    "Está"
+                  ],
+                  "canonicalAnswer": "Está"
+                },
+                {
+                  "id": "fr-dialogue-02-3",
+                  "label": "A 第 3 空",
+                  "answers": [
+                    "está"
+                  ],
+                  "canonicalAnswer": "está"
+                }
+              ],
+              "ambiguityNote": "翻译：A：你兄弟怎么样？ B：他累了。 A：他现在在哪儿？ B：他在家。"
+            },
+            {
+              "id": "fr-dialogue-03",
+              "number": 3,
+              "prompt": "A: ¿______ estudias español?　B: ______ me gusta.　A: ¿Y ______ qué?　B: Para viajar a España.",
+              "blanks": [
+                {
+                  "id": "fr-dialogue-03-1",
+                  "label": "A 第 1 空",
+                  "answers": [
+                    "Por qué"
+                  ],
+                  "canonicalAnswer": "Por qué"
+                },
+                {
+                  "id": "fr-dialogue-03-2",
+                  "label": "B 第 2 空",
+                  "answers": [
+                    "Porque"
+                  ],
+                  "canonicalAnswer": "Porque"
+                },
+                {
+                  "id": "fr-dialogue-03-3",
+                  "label": "A 第 3 空",
+                  "answers": [
+                    "para"
+                  ],
+                  "canonicalAnswer": "para"
+                }
+              ],
+              "ambiguityNote": "翻译：A：你为什么学西班牙语？ B：因为我喜欢。 A：那是为了什么？ B：为了去西班牙旅行。"
+            },
+            {
+              "id": "fr-dialogue-04",
+              "number": 4,
+              "prompt": "A: ¿Cómo ______ tu perro?　B: ______ pequeño y muy bonito.　A: ¿Cuántos perros ______?　B: Tengo un perro.",
+              "blanks": [
+                {
+                  "id": "fr-dialogue-04-1",
+                  "label": "A 第 1 空",
+                  "answers": [
+                    "es"
+                  ],
+                  "canonicalAnswer": "es"
+                },
+                {
+                  "id": "fr-dialogue-04-2",
+                  "label": "B 第 2 空",
+                  "answers": [
+                    "Es"
+                  ],
+                  "canonicalAnswer": "Es"
+                },
+                {
+                  "id": "fr-dialogue-04-3",
+                  "label": "A 第 3 空",
+                  "answers": [
+                    "tienes"
+                  ],
+                  "canonicalAnswer": "tienes"
+                }
+              ],
+              "ambiguityNote": "翻译：A：你的狗是什么样的？ B：它很小，非常漂亮。 A：你有几只狗？ B：我有一只狗。"
+            }
+          ]
+        },
+        {
+          "id": "fr-write",
+          "title": "Parte 5 - Escribe sobre ti",
+          "instructions": "自由写作，不自动判分。写完后对照参考作答，自己检查 ser / estar 和疑问词。",
+          "type": "open_response",
+          "items": [
+            {
+              "id": "fr-write-01",
+              "number": 1,
+              "prompt": "用 3 句话介绍你自己：叫什么、从哪里来、今天在哪里 / 心情怎么样。",
+              "answerMode": "self_review",
+              "answers": [
+                "Me llamo Ana. Soy de China. Hoy estoy en casa y estoy muy contenta."
+              ],
+              "canonicalAnswer": "Me llamo Ana. Soy de China. Hoy estoy en casa y estoy muy contenta.",
+              "answerTranslation": "我叫 Ana。我来自中国。今天我在家，我很开心。"
+            },
+            {
+              "id": "fr-write-02",
+              "number": 2,
+              "prompt": "用两个不同的疑问词问同学两个问题，再替他回答。",
+              "answerMode": "self_review",
+              "answers": [
+                "¿Cómo te llamas? Me llamo Juan. ¿Dónde estás? Estoy en casa."
+              ],
+              "canonicalAnswer": "¿Cómo te llamas? Me llamo Juan. ¿Dónde estás? Estoy en casa.",
+              "answerTranslation": "你叫什么名字？我叫 Juan。你在哪儿？我在家。"
+            },
+            {
+              "id": "fr-write-03",
+              "number": 3,
+              "prompt": "介绍你的一位家人或宠物：他 / 它是什么样的（ser），现在怎么样（estar）。",
+              "answerMode": "self_review",
+              "answers": [
+                "Mi perro es pequeño y blanco. Hoy está muy contento."
+              ],
+              "canonicalAnswer": "Mi perro es pequeño y blanco. Hoy está muy contento.",
+              "answerTranslation": "我的狗又小又白。它今天很开心。"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
