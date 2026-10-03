@@ -32,3 +32,27 @@ Department of State, or FHI 360.
 Any material in the source packet that is separately credited or licensed
 remains subject to its own terms. Project names, organization names, logos, and
 trademarks are not licensed merely because they are mentioned here.
+
+## Mi Español visual vocabulary
+
+The library illustrations and photographs in
+`examples/mi-espanol/assets/vocab-images/curated/` and their generated copies
+under `docs/assets/mi-espanol/vocab/` retain their original licenses:
+[Icons8 free license with attribution](https://icons8.com/license) or
+[Pexels License](https://www.pexels.com/license/). They are not covered by the
+repository's Apache-2.0 license. Preserve the visible Icons8 credit when
+reusing the learning page. Per-image creators, source links, licenses, and
+checksums are recorded in `assets/vocab-images/curated.json` within the
+Mi Español example. See its [vocabulary sources](examples/mi-espanol/VOCABULARY_SOURCES.md)
+for details and the separately retained Openverse originals.
+
+The A1 topic illustrations in `examples/mi-espanol/assets/vocab-images/a1/`
+(and their generated copies) are likewise outside the Apache-2.0 license:
+the Icons8 illustrations keep the Icons8 free license with attribution, and the
+project-made colour swatches are CC0-1.0. Per-image records are in
+`assets/vocab-images/a1-topics.json`.
+
+The Openverse photographs retained in
+`examples/mi-espanol/assets/vocab-images/images/` are CC0 or Public Domain Mark
+works; their creators, source links, and licenses are recorded in
+`assets/vocab-images/manifest.json`.

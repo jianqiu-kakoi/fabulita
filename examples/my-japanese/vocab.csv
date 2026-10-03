@@ -1,0 +1,52 @@
+word,gloss,note,category,kind,example,example_trans,answers,review_mode
+学生,学生,student / がくせい,人物,noun,わたしは学生です。,我是学生。,学生|student
+学校,学校,school / がっこう,地点,noun,学校で勉強します。,我在学校学习。,学校|school
+先生,老师,teacher / せんせい,人物,noun,先生と話します。,我和老师说话。,老师|教师|teacher
+友だち,朋友,friend / ともだち,人物,noun,友だちと会います。,我和朋友见面。,朋友|好友|friend
+電車,电车,train / でんしゃ,交通,noun,電車で学校へ行きます。,我坐电车去学校。,电车|列车|train
+朝,早晨,morning / あさ,时间,noun,朝に本を読みます。,我早晨读书。,早晨|早上|morning
+夜,夜晚,night / よる,时间,noun,夜に音楽を聞きます。,我晚上听音乐。,夜晚|晚上|night
+家,家、住宅,home / いえ,地点,noun,家で本を読みます。,我在家读书。,家|住宅|home|house
+本,书,book / ほん,物品,noun,本を読みます。,我读书。,书|书本|book
+パン,面包,bread / パン,食物,noun,朝、パンを食べます。,早晨我吃面包。,面包|bread
+コーヒー,咖啡,coffee / コーヒー,食物,noun,コーヒーを飲みます。,我喝咖啡。,咖啡|coffee
+犬,狗,dog / いぬ,动物,noun,犬は公園にいます。,狗在公园里。,狗|犬|dog
+公園,公园,park / こうえん,地点,noun,公園へ行きます。,我去公园。,公园|park
+水,水,water / みず,食物,noun,水を飲みます。,我喝水。,水|water
+音楽,音乐,music / おんがく,活动,noun,音楽を聞きます。,我听音乐。,音乐|music
+映画,电影,movie / えいが,活动,noun,映画を見ます。,我看电影。,电影|影片|movie|film
+企画,计划、策划,planning / きかく,学习与工作,noun,新しい企画を考えています。,我正在思考一个新企划。,计划|策划|planning|plan
+内容,内容、详情,content / ないよう,学习与工作,noun,本の内容を簡単に説明します。,我简单说明书的内容。,内容|详情|content|details
+興味,兴趣,interest / きょうみ,心情与想法,noun,科学の研究に興味を持っています。,我对科学研究感兴趣。,兴趣|interest
+刺激,刺激、启发,stimulus / inspiration / しげき,心情与想法,noun,海外での経験から刺激を受けました。,海外经历给了我启发。,刺激|启发|stimulus|inspiration
+辛い,辣的,spicy / からい,食物,adjective,この牛肉麺はとても辛いです。,这碗牛肉面很辣。,辣|辣的|spicy|hot
+時々,有时、偶尔,sometimes / ときどき,时间,adverb,時々、日本の映画を見ます。,我有时看日本电影。,有时|偶尔|sometimes
+種類,种类,type / kind / しゅるい,学习与工作,noun,日本にはたくさんの種類のキノコがあります。,日本有很多种类的蘑菇。,种类|类型|type|kind
+毒,毒,poison / どく,安全,noun,そのキノコには毒があるから、食べられません。,那种蘑菇有毒，所以不能吃。,毒|poison
+キノコ,蘑菇,mushroom / きのこ,食物,noun,このキノコは食べられます。,这种蘑菇可以吃。,蘑菇|菌菇|mushroom
+洗濯,洗衣服,laundry / せんたく,生活,noun,旅行の前に服を洗濯しておきます。,旅行前我会先把衣服洗好。,洗衣服|洗衣|laundry
+選択,选择,choice / selection / せんたく,生活,noun,彼女らしい選択です。,这是很有她风格的选择。,选择|choice|selection
+服,衣服,clothes / ふく,生活,noun,あなたらしい服です。,这是很有你风格的衣服。,衣服|服装|clothes
+準備,准备,preparation / じゅんび,旅行,noun,旅行の準備をしておきます。,我会提前做好旅行准备。,准备|preparation
+予約,预订、预约,reservation / よやく,旅行,noun,来週のホテルを予約しました。,我预订了下周的酒店。,预订|预约|reservation|booking
+用意,准备、备好,preparation / readiness / ようい,旅行,noun,旅行のためにお金を用意します。,我为旅行准备钱。,准备|备好|preparation|readiness
+足元,脚下、脚边,one's step / underfoot / あしもと,道路与人生,noun,足元に気をつけてください。,请小心脚下。,脚下|脚边|underfoot|step
+歩む,行走、前行,to walk / move forward / あゆむ,道路与人生,verb,自分の道を歩んでいきたいです。,我想在自己的道路上继续前行。,行走|前行|walk|move forward
+歩道,人行道,sidewalk / ほどう,道路与人生,noun,子どもたちは歩道を歩いています。,孩子们正在人行道上走。,人行道|sidewalk|pavement
+抱く,抱、怀有,to embrace / hold / have a feeling / いだく・だく,心情与想法,verb,将来に大きな夢を抱いています。,我对未来怀有伟大的梦想。,抱|怀有|embrace|hold
+繰り返す,重复,repeat / くりかえす,行动,verb,同じ間違いを繰り返さないようにします。,我会尽量不再犯同样的错误。,重复|反复|repeat
+幼い,年幼的、不成熟的,young / immature / おさない,成长,adjective,幼いころ、自転車の練習を繰り返しました。,年幼时，我反复练习骑自行车。,年幼|年轻|young|immature
+素直,坦率的、听话的,honest / straightforward / obedient / すなお,性格,na-adjective,先生の意見を素直に聞きます。,我坦率地听老师的意见。,坦率|听话|honest|straightforward|obedient
+励ます,鼓励,encourage / はげます,人际关系,verb,母がいつも私を励ましてくれました。,妈妈总是鼓励我。,鼓励|encourage
+未来,未来,future / みらい,道路与人生,noun,未来へ向かって歩いていきます。,我将朝着未来走下去。,未来|future
+追い続ける,继续追求,keep pursuing / おいつづける,行动,verb,自分の夢を追い続けたいです。,我想继续追求自己的梦想。,继续追求|keep pursuing
+あきらめる,放弃,give up / あきらめる,行动,verb,夢を追い続けるために、簡単にはあきらめません。,为了继续追求梦想，我不会轻易放弃。,放弃|give up|quit
+穏やか,平静的、温和的,calm / gentle / おだやか,性格,na-adjective,穏やかな音楽を聴いています。,我正在听舒缓的音乐。,平静|温和|calm|gentle
+あくび,哈欠,yawn / あくび,身体,noun,友だちがずっとあくびをしています。,朋友一直在打哈欠。,哈欠|yawn
+注文,点菜、订购,order / ちゅうもん,餐厅,noun,注文したものと違う料理が来ました。,上来的菜与我点的不一样。,点菜|订购|order
+店員,店员,shop or restaurant staff / てんいん,餐厅,noun,店員さんを呼んで、注文と違うと伝えます。,我会叫店员过来，说这和我点的不一样。,店员|staff|server
+いいね,真不错、好啊,nice / sounds good / いいね,会话,expression,その考え、いいね。,那个想法真不错。,真不错|好啊|nice|sounds good
+よかった,太好了、当时很好,was good / glad / よかった,会话,expression,試験に合格してよかったです。,通过了考试，太好了。,太好了|很好|was good|glad
+足元が悪い,脚下路况不好,poor footing / あしもとがわるい,安全,expression,雨で足元が悪くなっています。,因为下雨，脚下的路不好走。,脚下路况不好|poor footing
+など,等、之类,etc. / such as / など,连接,particle,本や映画などが好きです。,我喜欢书和电影等。,等|之类|etc.|such as
+続ける,继续,continue / keep doing / つづける,行动,verb,毎日、練習を続けています。,我每天都在继续练习。,继续|continue|keep doing

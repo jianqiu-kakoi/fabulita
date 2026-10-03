@@ -12,8 +12,70 @@ TEMPLATE = Path(__file__).parent / "template.html"
 STUDIO = Path(__file__).parent / "studio.html"
 
 
-def _homework_payload(project, include_local=False):
-    """Load optional homework data and embed its local PDF source in the single-file page."""
+def _homework_image_media_type(path, content):
+    suffix = path.suffix.lower()
+    if suffix in (".jpg", ".jpeg") and content.startswith(b"\xff\xd8\xff"):
+        return "image/jpeg"
+    if suffix == ".png" and content.startswith(b"\x89PNG\r\n\x1a\n"):
+        return "image/png"
+    if (suffix == ".webp" and len(content) >= 12 and
+            content[:4] == b"RIFF" and content[8:12] == b"WEBP"):
+        return "image/webp"
+    raise ValueError(f"unsupported or invalid homework image: {path.name}")
+
+
+def _embed_homework_images(project, root, assignment, asset_dir=None, asset_url=""):
+    """Resolve homework images: base64-embed by default, or copy ``deliver: "file"``
+    images into ``asset_dir`` and reference them by a page-relative ``src``."""
+    if "images" not in assignment:
+        return
+    raw_images = assignment.get("images") or {}
+    if not isinstance(raw_images, dict):
+        raise ValueError("homework images must be an object keyed by image id")
+    images = {}
+    for image_id, raw in raw_images.items():
+        if not isinstance(image_id, str) or not image_id or not isinstance(raw, dict):
+            raise ValueError("homework images need nonempty string ids and object values")
+        image = dict(raw)
+        image_file = image.pop("file", "")
+        if image_file:
+            image_path = (project.root / image_file).resolve()
+            try:
+                image_path.relative_to(root)
+            except ValueError as exc:
+                raise ValueError(
+                    f"homework image must stay inside project: {image_file}"
+                ) from exc
+            if not image_path.is_file():
+                raise ValueError(f"homework image not found: {image_file}")
+            content = image_path.read_bytes()
+            digest = hashlib.sha256(content).hexdigest()
+            expected = image.get("sha256")
+            if expected and expected != digest:
+                raise ValueError(f"homework image checksum mismatch: {image_file}")
+            media_type = _homework_image_media_type(image_path, content)
+            deliver = image.pop("deliver", "embed")
+            image.update({
+                "filename": image.get("filename") or image_path.name,
+                "sha256": digest,
+                "size": len(content),
+                "mediaType": media_type,
+            })
+            if deliver == "file" and asset_dir is not None:
+                asset_dir = Path(asset_dir)
+                asset_dir.mkdir(parents=True, exist_ok=True)
+                target = asset_dir / image_path.name
+                if not target.exists() or target.read_bytes() != content:
+                    target.write_bytes(content)
+                image["src"] = (asset_url.rstrip("/") + "/" if asset_url else "") + image_path.name
+            else:
+                image["dataUrl"] = f"data:{media_type};base64," + base64.b64encode(content).decode()
+        images[image_id] = image
+    assignment["images"] = images
+
+
+def _homework_payload(project, include_local=False, asset_dir=None, asset_url=""):
+    """Load homework data and embed its local PDF/image sources in the page."""
     root = project.root.resolve()
     assignments = []
     raw_assignments = list(project.homeworks) + (
@@ -45,11 +107,13 @@ def _homework_payload(project, include_local=False):
                 "dataUrl": "data:application/pdf;base64," + base64.b64encode(content).decode(),
             })
         assignment["source"] = source
+        _embed_homework_images(project, root, assignment, asset_dir=asset_dir, asset_url=asset_url)
         assignments.append(assignment)
     return assignments
 
 
-def payload(project, include_candidates=True, home=None, include_local_homework=False):
+def payload(project, include_candidates=True, home=None, include_local_homework=False,
+            asset_dir=None, asset_url=""):
     cfg = project.config
     stories = [
         s for s in project.stories()
@@ -83,7 +147,8 @@ def payload(project, include_candidates=True, home=None, include_local_homework=
         "glossary": project.glossary,
         "stories": stories,
         "audio": audio,
-        "homeworks": _homework_payload(project, include_local=include_local_homework),
+        "homeworks": _homework_payload(project, include_local=include_local_homework,
+                                       asset_dir=asset_dir, asset_url=asset_url),
     }
 
 
@@ -122,9 +187,11 @@ def demo_manifest_js(projects):
     return "window.FABULITA_DEMO_COUNTS=" + blob + ";\n"
 
 
-def build(project, out=None, include_candidates=True, home=None, include_local_homework=False):
+def build(project, out=None, include_candidates=True, home=None, include_local_homework=False,
+          asset_dir=None, asset_url=""):
     data = payload(project, include_candidates=include_candidates, home=home,
-                    include_local_homework=include_local_homework)
+                    include_local_homework=include_local_homework,
+                    asset_dir=asset_dir, asset_url=asset_url)
     blob = json.dumps(data, ensure_ascii=False).replace("</", "<\\/")
     html = TEMPLATE.read_text(encoding="utf-8")
     html = html.replace("__TITLE__", data["config"]["name"])

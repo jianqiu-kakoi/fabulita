@@ -22,6 +22,7 @@ SER_ESTAR_VOCAB_PDF_SHA256 = (
     "0c206fdd4b3b89e1cdfd1bad6281c9f09062525d9ad700cae4a025a678e37c8e"
 )
 SER_ESTAR_VOCAB_PDF_SIZE = 5805
+VISUAL_ASSIGNMENT_ID = "vocabulario-a0-visual-english"
 
 
 def _write_homework(project_root, source_file, checksum):
@@ -804,6 +805,89 @@ def test_homework_source_path_escape_is_rejected(tmp_path):
         build.payload(project)
 
 
+def test_local_visual_homework_keeps_all_images_and_all_modes_private():
+    local_file = MI_ESPANOL / "homework.local.json"
+    if not local_file.exists():
+        pytest.skip("local visual homework not generated")
+    raw_assignments = json.loads(local_file.read_text(encoding="utf-8"))["assignments"]
+    matches = [item for item in raw_assignments if item.get("id") == VISUAL_ASSIGNMENT_ID]
+    if not matches:
+        pytest.skip("local visual homework not generated")
+    assignment = matches[0]
+
+    assert assignment["localOnly"] is True
+    assert assignment["source"]["reusedImages"] is True
+    assert assignment["source"]["license"] == "仅限本地学习"
+    assert len(assignment["images"]) == 287
+    spanish_section, write_section, choice_section = assignment["sections"]
+    assert (write_section["type"], len(write_section["items"])) == ("text_input", 287)
+    assert (choice_section["type"], len(choice_section["items"])) == ("single_choice", 287)
+    assert (spanish_section["type"], len(spanish_section["items"])) == ("single_choice", 287)
+
+    write_by_number = {item["number"]: item for item in write_section["items"]}
+    choice_by_number = {item["number"]: item for item in choice_section["items"]}
+    spanish_by_number = {item["number"]: item for item in spanish_section["items"]}
+    assert set(write_by_number) == set(choice_by_number) == set(spanish_by_number) == set(range(1, 288))
+
+    for image_id, image in assignment["images"].items():
+        image_path = (MI_ESPANOL / image["file"]).resolve()
+        image_path.relative_to(MI_ESPANOL.resolve())
+        content = image_path.read_bytes()
+        assert content.startswith(b"\xff\xd8\xff"), image_id
+        assert hashlib.sha256(content).hexdigest() == image["sha256"]
+
+    for number in range(1, 288):
+        write_item = write_by_number[number]
+        choice_item = choice_by_number[number]
+        assert write_item["localOnlyGrading"] is True
+        assert write_item["imageId"] in assignment["images"]
+        assert write_item["answers"] == [write_item["english"]]
+        assert write_item["answerLanguage"] == "en"
+
+        assert choice_item["localOnlyGrading"] is True
+        assert len(choice_item["options"]) == len(set(choice_item["options"])) == 3
+        assert choice_item["answers"] == [choice_item["english"]]
+        assert choice_item["english"] in choice_item["options"]
+        assert [option["value"] for option in choice_item["imageOptions"]] == choice_item["options"]
+        assert len({option["imageId"] for option in choice_item["imageOptions"]}) == 3
+        assert all(option["imageId"] in assignment["images"] for option in choice_item["imageOptions"])
+        correct = next(
+            option for option in choice_item["imageOptions"]
+            if option["value"] == choice_item["english"]
+        )
+        assert correct["imageId"] == write_item["imageId"]
+
+        spanish_item = spanish_by_number[number]
+        assert spanish_item["localOnlyGrading"] is True
+        assert spanish_item["imageId"] == write_item["imageId"]
+        assert "imageOptions" not in spanish_item
+        assert len(spanish_item["options"]) == len(set(spanish_item["options"])) == 4
+        assert spanish_item["spanish"] in spanish_item["options"]
+        assert spanish_item["answers"] == [spanish_item["spanish"]]
+        assert spanish_item["answerLanguage"] == "es"
+
+    public_ids = {item["id"] for item in build.payload(Project(MI_ESPANOL))["homeworks"]}
+    assert VISUAL_ASSIGNMENT_ID not in public_ids
+
+    local_payload = build.payload(Project(MI_ESPANOL), include_local_homework=True)
+    embedded = _assignment_by_id(local_payload["homeworks"], VISUAL_ASSIGNMENT_ID)
+    assert len(embedded["images"]) == 287
+    for image in embedded["images"].values():
+        assert "file" not in image
+        assert image["mediaType"] == "image/jpeg"
+        prefix, encoded = image["dataUrl"].split(",", 1)
+        assert prefix == "data:image/jpeg;base64"
+        assert hashlib.sha256(base64.b64decode(encoded)).hexdigest() == image["sha256"]
+
+    ignored = subprocess.run(
+        ["git", "check-ignore", "examples/mi-espanol/materials/vocabulario-a0-visual/images/001-turtle.jpg"],
+        cwd=REPO,
+        capture_output=True,
+        text=True,
+    )
+    assert ignored.returncode == 0
+
+
 def test_homework_type_track_is_block_level():
     # The track is a <span> inside a non-flex button; without display:block its
     # height collapses and the inner accent bar paints as a broken orange blob.
@@ -845,6 +929,8 @@ def _verbatim_fingerprints():
     teacher = ""
     patterns = {}
     for assignment in data.get("assignments", []):
+        if assignment.get("contentOrigin") != "verbatim_private":
+            continue
         teacher = (assignment.get("teacher") or "").strip() or teacher
         for section in assignment.get("sections", []):
             for item in section.get("items", []):
@@ -900,3 +986,64 @@ def test_local_homework_file_is_gitignored():
         cwd=REPO, capture_output=True, text=True,
     )
     assert result.returncode == 0, "local homework artifacts must be gitignored"
+
+
+PUBLIC_VISUAL_ASSIGNMENT_ID = "vocabulario-a0-visual"
+
+
+def test_public_visual_homework_ships_licensed_images_as_files(tmp_path):
+    homework = json.loads((MI_ESPANOL / "homework.json").read_text(encoding="utf-8"))
+    matches = [item for item in homework["assignments"] if item.get("id") == PUBLIC_VISUAL_ASSIGNMENT_ID]
+    if not matches:
+        pytest.skip("public visual homework not generated yet")
+    assignment = matches[0]
+    assert assignment["localOnly"] is False
+    curated_path = MI_ESPANOL / "assets" / "vocab-images" / "curated.json"
+    curated = json.loads(curated_path.read_text(encoding="utf-8"))["images"] if curated_path.exists() else {}
+    curated_licenses = {
+        "Icons8": ("Icons8 free with link attribution", "https://icons8.com/license", "https://icons8.com/"),
+        "Pexels": ("Pexels License", "https://www.pexels.com/license/", "https://www.pexels.com/"),
+    }
+
+    pdf_manifest = MI_ESPANOL / "materials" / "vocabulario-a0-visual" / "manifest.json"
+    pdf_hashes = set()
+    if pdf_manifest.exists():
+        pdf_hashes = {entry["imageSha256"] for entry in json.loads(pdf_manifest.read_text(encoding="utf-8"))["entries"]}
+
+    assert assignment["images"], "public visual homework must ship pictures"
+    for image_id, image in assignment["images"].items():
+        assert image["deliver"] == "file", image_id
+        if image_id in curated:
+            assert image == {**curated[image_id], "deliver": "file"}, image_id
+            assert image["reviewed"] is True, image_id
+            assert image["provider"] in curated_licenses, image_id
+            assert (image["license"], image["licenseUrl"], image["creditUrl"]) == curated_licenses[image["provider"]], image_id
+        else:
+            assert image["license"] in {"cc0", "pdm"}, image_id
+        assert image["sourceUrl"].startswith("https://"), image_id
+        path = (MI_ESPANOL / image["file"]).resolve()
+        path.relative_to(MI_ESPANOL.resolve())
+        assert path.is_file(), image_id
+        digest = hashlib.sha256(path.read_bytes()).hexdigest()
+        assert digest == image["sha256"], image_id
+        assert digest not in pdf_hashes, f"{image_id} is a copyrighted PDF illustration"
+
+    for section in assignment["sections"]:
+        for item in section["items"]:
+            if "imageId" in item:
+                assert item["imageId"] in assignment["images"]
+            for option in item.get("imageOptions", []):
+                assert option["imageId"] in assignment["images"]
+
+    asset_dir = tmp_path / "assets" / "mi-espanol" / "vocab"
+    public_payload = build.payload(
+        Project(MI_ESPANOL), asset_dir=asset_dir, asset_url="assets/mi-espanol/vocab"
+    )
+    embedded = _assignment_by_id(public_payload["homeworks"], PUBLIC_VISUAL_ASSIGNMENT_ID)
+    for image in embedded["images"].values():
+        assert "dataUrl" not in image and "file" not in image
+        assert image["src"].startswith("assets/mi-espanol/vocab/")
+        assert (asset_dir / image["src"].rsplit("/", 1)[1]).is_file()
+    page = json.dumps(public_payload, ensure_ascii=False)
+    for digest in pdf_hashes:
+        assert digest not in page

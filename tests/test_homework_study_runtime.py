@@ -51,6 +51,7 @@ function bootPage(pagePath) {
       recordHomeworkStudyResult,
       rateHomeworkStudy,
       homeworkOptionMeaningRows,
+      homeworkOptionMeaningsHtml,
       homeworkAnswerVocabulary,
       homeworkAnswerVocabularyHtml,
       homeworkResolvedSentence,
@@ -256,7 +257,7 @@ const ungradedRows = runtime.homeworkOptionMeaningRows(
 );
 assert(ungradedRows.length === 0, "choice meanings must stay hidden before grading");
 const ungradedHtml = runtime.dashboardHomeworkQuestionHtml(assignment);
-assert(!ungradedHtml.includes("三个选项的意思"),
+assert(!ungradedHtml.includes('aria-label="选项意思"'),
   "the first question must not reveal the option glossary before grading");
 assert(!ungradedHtml.includes("星期一、周一") &&
     !ungradedHtml.includes("太阳；阳光") &&
@@ -327,7 +328,7 @@ assert(gradedHtml.includes("homework-sentence-result") &&
     gradedText.includes("El lunes es el primer día de la semana.") &&
     gradedText.includes("星期一是一周的第一天。"),
   "a correct grade should render the completed sentence and its translation");
-assert(gradedHtml.includes("三个选项的意思") &&
+assert(gradedHtml.includes("3 个选项的意思") &&
     gradedHtml.includes("星期一、周一") && gradedHtml.includes("Monday") &&
     gradedHtml.includes("太阳；阳光") && gradedHtml.includes("sun; sunshine") &&
     gradedHtml.includes("寒冷；冷的") && gradedHtml.includes("cold"),
@@ -597,6 +598,65 @@ assert(studyCardHtml.includes("homework-study-result is-near_miss") &&
     studyCardHtml.includes("参考拼写：coffee") &&
     !studyCardHtml.includes("暂时不对"),
   "caffee should render the yellow near-miss state with a coffee suggestion");
+
+// Picture homework has no studyWords; feedback must still use the main vocabulary.
+const visualAssignment = runtime.homeworkAssignments.find(
+  (candidate) => candidate.id === "vocabulario-a0-visual"
+);
+assert(visualAssignment && runtime.homeworkStudyWords(visualAssignment).length === 0,
+  "the regression must cover real picture homework without study words");
+const visualItems = visualAssignment.sections.flatMap((section) => section.items);
+const foreheadItem = visualItems.find((item) =>
+  item.options && item.options.includes("la frente") && item.answers.includes("la frente")
+);
+assert(foreheadItem, "expected the reported forehead question");
+const feedbackStorageKeys = [HOMEWORK_LS, STUDY_LS, REVIEW_LS, EVENTS_LS, QA_LS];
+const feedbackStorageBefore = JSON.stringify(
+  feedbackStorageKeys.map((key) => localStorage.getItem(key))
+);
+assert(runtime.homeworkOptionMeaningsHtml(
+  visualAssignment, foreheadItem, { answer: "la frente" }
+) === "", "picture meanings must stay hidden for an unchecked draft");
+const foreheadRows = runtime.homeworkOptionMeaningRows(
+  visualAssignment, foreheadItem, { answer: "la frente", status: "correct" }
+);
+const expectedBodyMeanings = {
+  "la frente": ["额头", "forehead"],
+  "la nariz": ["鼻子", "nose"],
+  "el pecho": ["胸部", "chest"],
+  "la cintura": ["腰", "waist"]
+};
+assert(foreheadRows.length === 4 && foreheadRows.every((row) =>
+  row.gloss === expectedBodyMeanings[row.option][0] &&
+  row.english === expectedBodyMeanings[row.option][1]
+), "all four reported options must show their Chinese and English meanings");
+const foreheadHtml = runtime.homeworkOptionMeaningsHtml(
+  visualAssignment, foreheadItem, { answer: "la nariz", status: "incorrect" }
+);
+assert(foreheadHtml.includes("4 个选项的意思") &&
+    foreheadHtml.includes("额头") && foreheadHtml.includes("waist") &&
+    occurrences(foreheadHtml, "你的选择") === 1 &&
+    occurrences(foreheadHtml, "可接受答案") === 1,
+  "incorrect picture answers must also show all meanings and the actual option count");
+let checkedPictureChoices = 0;
+visualItems.forEach((item) => {
+  const response = { answer: item.answers[0], status: "correct" };
+  const rows = runtime.homeworkOptionMeaningRows(visualAssignment, item, response);
+  if (item.options && !item.imageOptions) {
+    checkedPictureChoices++;
+    assert(rows.length === item.options.length && rows.every((row) =>
+      row.gloss && row.gloss !== "—" && row.english && row.english !== "—"
+    ), "missing bilingual picture option feedback for " + item.id);
+  } else {
+    assert(rows.length === 0, "image options must not get a text-option glossary");
+  }
+  const answerWord = runtime.homeworkAnswerVocabulary(visualAssignment, item, response);
+  assert(answerWord && answerWord.gloss && answerWord.english,
+    "picture answer feedback must resolve the main vocabulary for " + item.id);
+});
+assert(checkedPictureChoices === 262, "all 262 picture-to-word questions must be covered");
+assert(JSON.stringify(feedbackStorageKeys.map((key) => localStorage.getItem(key))) === feedbackStorageBefore,
+  "rendering the recovered feedback must not change saved learning records");
 """
 
 

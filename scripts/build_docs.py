@@ -16,6 +16,7 @@ DEMOS = {"es": "es-a1", "en": "en-a1", "ja": "ja-n5"}
 VOCAB_APPS = {
     "mi-espanol": "mi-espanol.html",
     "my-english": "my-english.html",
+    "my-japanese": "my-japanese.html",
 }
 
 
@@ -56,11 +57,18 @@ def main(local=False):
         # Rebuild the ignored cache from scratch so removed rows cannot linger.
         vocab_project.save_vocab([])
         vocab.import_file(vocab_project, vocab_project.root / "vocab.csv")
+        # Homework images marked deliver:"file" are copied next to the page
+        # instead of being base64-embedded, so photo-heavy assignments do not
+        # bloat the HTML. The URL is relative to docs/.
+        asset_url = "assets/" + project_name + "/vocab"
+        asset_dir = DOCS / asset_url
         page, psize, n, clips = build.build(
             vocab_project,
             out=DOCS / output_name,
             include_candidates=False,
             home="index.html",
+            asset_dir=asset_dir,
+            asset_url=asset_url,
         )
         print("wrote " + str(page) + " (" + str(psize // 1024) + " KB, " + str(n) + " stories)")
 
@@ -73,6 +81,8 @@ def main(local=False):
                 include_candidates=False,
                 home="index.html",
                 include_local_homework=True,
+                asset_dir=asset_dir,
+                asset_url=asset_url,
             )
             print("wrote " + str(page) + " (local, " + str(psize // 1024) + " KB)")
 

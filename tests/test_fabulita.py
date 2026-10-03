@@ -193,7 +193,8 @@ def test_studio_build(tmp_path):
 
 
 @pytest.mark.parametrize("demo,n", [("es-a1", 6), ("en-a1", 1), ("ja-n5", 1),
-                                     ("mi-espanol", 0), ("my-english", 1)])
+                                     ("mi-espanol", 0), ("my-english", 1),
+                                     ("my-japanese", 0)])
 def test_example_projects_validate(demo, n):
     proj = Project(REPO / "examples" / demo)
     if not (proj.root / "vocab.json").exists():
@@ -224,10 +225,14 @@ def test_mi_espanol_vocab_dashboard_build():
     project = Project(project_root)
     vocab.import_file(project, project_root / "vocab.csv")
     words = project.vocab
-    assert len(words) == 80
-    assert len({w["w"].casefold() for w in words}) == 80
+    assert len(words) == 606
+    assert len({w["w"].casefold() for w in words}) == 606
     headwords = {w["w"] for w in words}
-    assert {"la llave", "el queso", "¿cómo estás?", "ser", "estar"} <= headwords
+    assert {
+        "la llave", "el queso", "¿cómo estás?", "ser", "estar",
+        "la tortuga", "el baloncesto", "miércoles", "el frigorífico",
+        "la playa", "el aguacate", "el helicóptero", "el sofá",
+    } <= headwords
     assert "Yencho" not in headwords and "Budist" not in headwords
     by_word = {w["w"]: w for w in words}
     assert by_word["el profesor"]["answers"] == "男老师|老师|male teacher|teacher"
@@ -235,8 +240,8 @@ def test_mi_espanol_vocab_dashboard_build():
     assert by_word["inteligente"]["answers"] == "聪明|聪明的|intelligent|smart|clever"
     assert by_word["bien"]["answers"] == "好|好地|状态良好|well|good"
     assert "and" not in by_word["con"].get("answers", "").split("|")
-    assert sum(word.get("kind") == "grammar" for word in words) == 5
-    assert sum(word.get("review_mode") == "grammar" for word in words) == 3
+    assert sum(word.get("kind") == "grammar" for word in words) == 7
+    assert sum(word.get("review_mode") == "grammar" for word in words) == 5
     out, _, n_stories, _ = build.build(project)
     html = out.read_text(encoding="utf-8")
     assert n_stories == 0
@@ -307,7 +312,7 @@ def test_mi_espanol_vocab_dashboard_build():
     assert "function reviewHistoryCsv" in html and "function csvSafeValue" in html
     assert "typedAnswer" in html and "answerCorrect" in html and "ratingInput" in html
     assignments = project.homeworks
-    assert len(assignments) == 5
+    assert len(assignments) == 16
     assignment = next(
         item for item in assignments
         if item["id"] == "ejercicios-vocabulario-a1-1"

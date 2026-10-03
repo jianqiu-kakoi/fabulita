@@ -79,3 +79,529 @@ aumentar,增加、提高,to increase,课程词汇,verb,Juntos aumentaremos tu co
 la confianza,信心,confidence,课程词汇,word,Juntos aumentaremos tu confianza.,我们会一起增强你的信心。
 disfrutar,享受,to enjoy,课程词汇,verb,Disfrutaremos del español.,我们会享受学习西班牙语的过程。
 el español,西班牙语,Spanish,课程词汇,word,Disfrutaremos del español.,我们会享受学习西班牙语的过程。
+la tortuga,乌龟,turtle,动物,word
+el perro,狗,dog,动物,word
+el gato,猫,cat,动物,word
+el caballo,马,horse,动物,word
+el cerdo,猪,pig,动物,word
+la vaca,牛,cow,动物,word
+la oveja,绵羊,sheep,动物,word
+la rana,青蛙,frog,动物,word
+el oso,熊,bear,动物,word
+el ratón,老鼠,mouse,动物,word
+el pez,鱼,fish,动物,word
+el canguro,袋鼠,kangaroo,动物,word
+el león,狮子,lion,动物,word
+la jirafa,长颈鹿,giraffe,动物,word
+el mono,猴子,monkey,动物,word
+el elefante,大象,elephant,动物,word
+el pato,鸭子,duck,动物,word
+el pájaro,鸟,bird,动物,word
+el zorro,狐狸,fox,动物,word
+el camello,骆驼,camel,动物,word
+el cocodrilo,鳄鱼,crocodile,动物,word
+el tigre,老虎,tiger,动物,word
+la serpiente,蛇,snake,动物,word
+el conejo,兔子,rabbit,动物,word
+la llama,羊驼,llama,动物,word
+el lobo,狼,wolf,动物,word
+el delfín,海豚,dolphin,动物,word
+la cebra,斑马,zebra,动物,word
+el ciervo,鹿,deer,动物,word
+el mapache,浣熊,raccoon,动物,word
+el gorila,大猩猩,gorilla,动物,word
+el murciélago,蝙蝠,bat,动物,word
+el hipopótamo,河马,hippopotamus,动物,word
+el tiburón,鲨鱼,shark,动物,word
+el koala,考拉,koala,动物,word
+el rinoceronte,犀牛,rhinoceros,动物,word
+el pulpo,章鱼,octopus,动物,word
+el erizo,刺猬,hedgehog,动物,word
+la medusa,水母,jellyfish,动物,word
+la paloma,鸽子,pigeon,动物,word
+el caracol,蜗牛,snail,动物,word
+el calamar,鱿鱼,squid,动物,word
+la gallina,母鸡,hen,动物,word
+el cangrejo,螃蟹,crab,动物,word
+la ballena,鲸,whale,动物,word
+la ardilla,松鼠,squirrel,动物,word
+la abeja,蜜蜂,bee,动物,word
+el pingüino,企鹅,penguin,动物,word
+el burro,驴,donkey,动物,word
+la foca,海豹,seal,动物,word
+la cabra,山羊,goat,动物,word
+el pavo real,孔雀,peacock,动物,word
+el avestruz,鸵鸟,ostrich,动物,word
+el camaleón,变色龙,chameleon,动物,word
+el baloncesto,篮球,basketball,运动,word
+el ciclismo,骑自行车,cycling,运动,word
+el fútbol,足球,soccer,运动,word
+el balonmano,手球,handball,运动,word
+el béisbol,棒球,baseball,运动,word
+el boxeo,拳击,boxing,运动,word
+el atletismo,田径,track and field,运动,word
+la escalada,攀岩,climbing,运动,word
+el senderismo,徒步,hiking,运动,word
+las artes marciales,武术,martial arts,运动,word
+el bádminton,羽毛球,badminton,运动,word
+el tenis,网球,tennis,运动,word
+el surf,冲浪,surfing,运动,word
+el esquí,滑雪,skiing,运动,word
+el snowboard,单板滑雪,snowboarding,运动,word
+el golf,高尔夫,golf,运动,word
+el hockey,曲棍球,hockey,运动,word
+el rugby,橄榄球,rugby,运动,word
+el patinaje,滑冰,skating,运动,word
+el voleibol,排球,volleyball,运动,word
+el buceo,水肺潜水,scuba diving,运动,word
+el paracaidismo,跳伞,skydiving,运动,word
+el yoga,瑜伽,yoga,运动,word
+el pilates,普拉提,Pilates,运动,word
+el crossfit,综合体能训练,CrossFit,运动,word
+la esgrima,击剑,fencing,运动,word
+el paddle surf,桨板冲浪,paddleboarding,运动,word
+lunes,星期一,Monday,日历与季节,word
+martes,星期二,Tuesday,日历与季节,word
+miércoles,星期三,Wednesday,日历与季节,word
+jueves,星期四,Thursday,日历与季节,word
+viernes,星期五,Friday,日历与季节,word
+sábado,星期六,Saturday,日历与季节,word
+domingo,星期日,Sunday,日历与季节,word
+enero,一月,January,日历与季节,word
+febrero,二月,February,日历与季节,word
+marzo,三月,March,日历与季节,word
+abril,四月,April,日历与季节,word
+mayo,五月,May,日历与季节,word
+junio,六月,June,日历与季节,word
+julio,七月,July,日历与季节,word
+agosto,八月,August,日历与季节,word
+septiembre,九月,September,日历与季节,word
+octubre,十月,October,日历与季节,word
+noviembre,十一月,November,日历与季节,word
+diciembre,十二月,December,日历与季节,word
+primavera,春天,spring,日历与季节,word
+verano,夏天,summer,日历与季节,word
+otoño,秋天,autumn,日历与季节,word
+invierno,冬天,winter,日历与季节,word
+la cabeza,头,head,身体部位,word
+las cejas,眉毛,eyebrows,身体部位,word
+las pestañas,睫毛,eyelashes,身体部位,word
+las orejas,耳朵,ears,身体部位,word
+las mejillas,脸颊,cheeks,身体部位,word
+la barbilla,下巴,chin,身体部位,word
+la frente,额头,forehead,身体部位,word
+los ojos,眼睛,eyes,身体部位,word
+la nariz,鼻子,nose,身体部位,word
+la boca,嘴,mouth,身体部位,word
+la espalda,背部,back,身体部位,word
+la cintura,腰,waist,身体部位,word
+el pecho,胸部,chest,身体部位,word
+el ombligo,肚脐,belly button,身体部位,word
+el abdomen,腹部,abdomen,身体部位,word
+el tronco,躯干,torso,身体部位,word
+el hombro,肩膀,shoulder,身体部位,word
+el brazo,手臂,arm,身体部位,word
+el antebrazo,前臂,forearm,身体部位,word
+el codo,肘部,elbow,身体部位,word
+la mano,手,hand,身体部位,word
+el dedo,手指,finger,身体部位,word
+la muñeca,手腕,wrist,身体部位,word
+la rodilla,膝盖,knee,身体部位,word
+el muslo,大腿,thigh,身体部位,word
+la pierna,腿,leg,身体部位,word
+el pie,脚,foot,身体部位,word
+el tobillo,脚踝,ankle,身体部位,word
+el pelo,头发,hair,身体部位,word
+el cuello,脖子,neck,身体部位,word
+las caderas,臀部,hips,身体部位,word
+las nalgas,臀部,bottom,身体部位,word
+la barriga,肚子,tummy,身体部位,word
+la lengua,舌头,tongue,身体部位,word
+el frigorífico,冰箱,refrigerator,家用电器,word
+la plancha,熨斗,iron,家用电器,word
+la aspiradora,吸尘器,vacuum cleaner,家用电器,word
+la tostadora,烤面包机,toaster,家用电器,word
+el microondas,微波炉,microwave,家用电器,word
+el horno,烤箱,oven,家用电器,word
+la televisión,电视,television,家用电器,word
+la lavadora,洗衣机,washing machine,家用电器,word
+la radio,收音机,radio,家用电器,word
+la vitrocerámica,电陶炉,ceramic cooktop,家用电器,word
+la secadora,烘干机,dryer,家用电器,word
+la cafetera,咖啡机,coffee maker,家用电器,word
+el ventilador,风扇,fan,家用电器,word
+el hervidor,电热水壶,kettle,家用电器,word
+el radiador,暖气片,radiator,家用电器,word
+el lavavajillas,洗碗机,dishwasher,家用电器,word
+el aire acondicionado,空调,air conditioner,家用电器,word
+el secador,吹风机,hair dryer,家用电器,word
+la campana extractora,抽油烟机,extractor hood,家用电器,word
+el teléfono fijo,固定电话,landline telephone,家用电器,word
+el calentador de agua,热水器,water heater,家用电器,word
+la batidora,搅拌机,blender,家用电器,word
+la plancha del pelo,直发器,hair straightener,家用电器,word
+la freidora de aire,空气炸锅,air fryer,家用电器,word
+la maquinilla de afeitar,电动剃须刀,electric razor,家用电器,word
+la sandwichera,三明治机,sandwich maker,家用电器,word
+el exprimidor,柑橘榨汁器,citrus juicer,家用电器,word
+hace frío,天气冷,it is cold,天气,phrase
+hace viento,刮风,it is windy,天气,phrase
+el aire,空气,air,天气,word
+hace mal tiempo,天气不好,the weather is bad,天气,phrase
+hace sol,阳光明媚,it is sunny,天气,phrase
+hace calor,天气热,it is hot,天气,phrase
+hace buen tiempo,天气很好,the weather is nice,天气,phrase
+la nube,云,cloud,天气,word
+la nieve,雪,snow,天气,word
+nevar,下雪,to snow,天气,verb
+la tormenta,暴风雨,storm,天气,word
+la lluvia,雨,rain,天气,word
+llover,下雨,to rain,天气,verb
+la niebla,雾,fog,天气,word
+la sombrilla,遮阳伞,beach umbrella,海滩,word
+el castillo de arena,沙堡,sandcastle,海滩,word
+las vacaciones,假期,vacation,海滩,word
+el sol,太阳,sun,海滩,word
+el bañador,泳衣,swimsuit,海滩,word
+la gorra,鸭舌帽,cap,海滩,word
+el helado,冰淇淋,ice cream,海滩,word
+las gafas de sol,太阳镜,sunglasses,海滩,word
+la toalla,毛巾,towel,海滩,word
+el protector solar,防晒霜,sunscreen,海滩,word
+el flotador,游泳圈,swim ring,海滩,word
+el refresco,汽水,soda,海滩,word
+las chanclas,人字拖,flip-flops,海滩,word
+la piscina,游泳池,swimming pool,海滩,word
+la playa,海滩,beach,海滩,word
+el sombrero,帽子,hat,海滩,word
+el balón,球,ball,海滩,word
+la limonada,柠檬水,lemonade,海滩,word
+la palmera,棕榈树,palm tree,海滩,word
+la tumbona,躺椅,sun lounger,海滩,word
+el mar,海,sea,海滩,word
+el cubo,桶,bucket,海滩,word
+la pala,铲子,shovel,海滩,word
+el rastrillo,耙子,rake,海滩,word
+las gafas de buceo,潜水镜,diving goggles,海滩,word
+el abanico,折扇,hand fan,海滩,word
+el barco,船,boat,海滩,word
+la estrella de mar,海星,starfish,海滩,word
+la caracola,海螺,seashell,海滩,word
+las palas,沙滩球拍,beach paddles,海滩,word
+la ola,海浪,wave,海滩,word
+el/la socorrista,救生员,lifeguard,海滩,word
+el caqui,柿子,persimmon,水果和蔬菜,word
+la granada,石榴,pomegranate,水果和蔬菜,word
+la berenjena,茄子,eggplant,水果和蔬菜,word
+el calabacín,西葫芦,zucchini,水果和蔬菜,word
+la calabaza,南瓜,pumpkin,水果和蔬菜,word
+el níspero,枇杷,loquat,水果和蔬菜,word
+el kiwi,猕猴桃,kiwi,水果和蔬菜,word
+la papaya,木瓜,papaya,水果和蔬菜,word
+el pepino,黄瓜,cucumber,水果和蔬菜,word
+la frambuesa,覆盆子,raspberry,水果和蔬菜,word
+el arándano,蓝莓,blueberry,水果和蔬菜,word
+el higo,无花果,fig,水果和蔬菜,word
+la mandarina,柑橘,mandarin,水果和蔬菜,word
+la ciruela,李子,plum,水果和蔬菜,word
+el coco,椰子,coconut,水果和蔬菜,word
+el plátano,香蕉,banana,水果和蔬菜,word
+la fresa,草莓,strawberry,水果和蔬菜,word
+el aguacate,牛油果,avocado,水果和蔬菜,word
+el melocotón,桃子,peach,水果和蔬菜,word
+el pimiento,彩椒,bell pepper,水果和蔬菜,word
+el tomate,西红柿,tomato,水果和蔬菜,word
+la piña,菠萝,pineapple,水果和蔬菜,word
+el limón,柠檬,lemon,水果和蔬菜,word
+la lima,青柠,lime,水果和蔬菜,word
+la pera,梨,pear,水果和蔬菜,word
+la uva,葡萄,grape,水果和蔬菜,word
+la naranja,橙子,orange,水果和蔬菜,word
+la sandía,西瓜,watermelon,水果和蔬菜,word
+el melón,甜瓜,melon,水果和蔬菜,word
+la manzana,苹果,apple,水果和蔬菜,word
+el mango,芒果,mango,水果和蔬菜,word
+el coche,汽车,car,交通工具,word
+la moto,摩托车,motorcycle,交通工具,word
+el bus,公共汽车,bus,交通工具,word
+los patines,轮滑鞋,roller skates,交通工具,word
+la bicicleta,自行车,bicycle,交通工具,word
+el patinete,滑板车,scooter,交通工具,word
+el tranvía,有轨电车,tram,交通工具,word
+el metro,地铁,subway,交通工具,word
+el avión,飞机,airplane,交通工具,word
+el tren,火车,train,交通工具,word
+el submarino,潜艇,submarine,交通工具,word
+la autocaravana,房车,camper van,交通工具,word
+la furgoneta,厢式货车,van,交通工具,word
+el camión,卡车,truck,交通工具,word
+el helicóptero,直升机,helicopter,交通工具,word
+el tractor,拖拉机,tractor,交通工具,word
+la barca,小船,small boat,交通工具,word
+el sofá,沙发,sofa,家具,word
+el armario,衣柜,wardrobe,家具,word
+la estantería,书架,bookshelf,家具,word
+el escritorio,书桌,desk,家具,word
+la alfombra,地毯,rug,家具,word
+el sillón,扶手椅,armchair,家具,word
+el cuadro,挂画,painting,家具,word
+la tele,电视,TV,家具,word
+las cortinas,窗帘,curtains,家具,word
+la planta,植物,plant,家具,word
+la mesita de noche,床头柜,nightstand,家具,word
+el espejo,镜子,mirror,家具,word
+la manta,毯子,blanket,家具,word
+la almohada,枕头,pillow,家具,word
+el cajón,抽屉,drawer,家具,word
+el zapatero,鞋柜,shoe rack,家具,word
+el puf,豆袋椅,beanbag,家具,word
+el jarrón,花瓶,vase,家具,word
+el cojín,靠垫,cushion,家具,word
+hola,你好,hello,问候与称呼,word
+adiós,再见,goodbye,问候与称呼,word
+el señor,先生,mister; sir,问候与称呼,word
+la señora,夫人、太太,Mrs.; madam,问候与称呼,word
+la señorita,小姐,miss,问候与称呼,word
+la familia,家庭、家人,family,人物,word
+la hermana,姐妹,sister,人物,word
+el hijo,儿子,son,人物,word
+la hija,女儿,daughter,人物,word
+el niño,男孩、小孩,child; boy,人物,word
+la niña,女孩,girl,人物,word
+la persona,人,person,人物,word
+el hombre,男人,man,人物,word
+la mujer,女人,woman,人物,word
+el nombre,名字,name,人物,word
+el/la estudiante,学生,student,人物,word
+el médico,医生,doctor,人物,word
+el enfermero,护士,nurse,人物,word
+el piso,公寓；楼层,apartment,家居,word
+la habitación,房间,room,家居,word
+la puerta,门,door,家居,word
+la ventana,窗户,window,家居,word
+la cocina,厨房,kitchen,家居,word
+el baño,浴室、洗手间,bathroom,家居,word
+la taza,杯子,cup,家居,word
+el plato,盘子,plate,家居,word
+la cuchara,勺子,spoon,家居,word
+el cuchillo,刀,knife,家居,word
+el tenedor,叉子,fork,家居,word
+la escalera,楼梯,stairs,家居,word
+el reloj,钟、手表,clock; watch,家居,word
+la cosa,东西、事情,thing,家居,word
+la calle,街道,street,城市与场所,word
+la ciudad,城市,city,城市与场所,word
+el pueblo,小镇、村庄,town,城市与场所,word
+el país,国家,country,城市与场所,word
+la escuela,学校,school,城市与场所,word
+la universidad,大学,university,城市与场所,word
+la oficina,办公室,office,城市与场所,word
+la tienda,商店,shop; store,城市与场所,word
+el mercado,市场,market,城市与场所,word
+el banco,银行,bank,城市与场所,word
+el restaurante,餐厅,restaurant,城市与场所,word
+el bar,酒吧,bar,城市与场所,word
+el hotel,酒店,hotel,城市与场所,word
+la estación,车站,station,城市与场所,word
+el aeropuerto,机场,airport,城市与场所,word
+el cine,电影院,cinema,城市与场所,word
+el teatro,剧院,theatre,城市与场所,word
+el museo,博物馆,museum,城市与场所,word
+la iglesia,教堂,church,城市与场所,word
+el parque,公园,park,城市与场所,word
+el hospital,医院,hospital,城市与场所,word
+la farmacia,药店,pharmacy,城市与场所,word
+el puente,桥,bridge,城市与场所,word
+la plaza,广场,square,城市与场所,word
+la torre,塔,tower,城市与场所,word
+la clase,课、班级,class; lesson,学习与工作,word
+el trabajo,工作,work; job,学习与工作,word
+el dinero,钱,money,学习与工作,word
+el libro,书,book,学习与工作,word
+el cuaderno,笔记本,notebook,学习与工作,word
+el bolígrafo,圆珠笔,pen,学习与工作,word
+el lápiz,铅笔,pencil,学习与工作,word
+el papel,纸,paper,学习与工作,word
+el ordenador,电脑,computer,学习与工作,word
+el teléfono,电话,phone,学习与工作,word
+el correo,邮件,mail,学习与工作,word
+el mapa,地图,map,学习与工作,word
+la comida,食物、饭,food,食物,word
+el agua,水,water,食物,word
+la fruta,水果,fruit,食物,word
+la carne,肉,meat,食物,word
+el pescado,鱼（食物）,fish (food),食物,word
+el arroz,米饭,rice,食物,word
+la leche,牛奶,milk,食物,word
+el vino,葡萄酒,wine,食物,word
+la cerveza,啤酒,beer,食物,word
+la sal,盐,salt,食物,word
+el azúcar,糖,sugar,食物,word
+el café,咖啡；咖啡馆,coffee; café,食物,word
+el animal,动物,animal,动物,word
+el pollo,鸡,chicken,动物,word
+el día,天、白天,day,时间,word
+la noche,夜晚,night,时间,word
+la mañana,早晨、上午,morning,时间,word
+la tarde,下午,afternoon,时间,word
+el mediodía,中午,noon,时间,word
+el tiempo,时间；天气,time; weather,时间,word
+la hora,小时、钟点,hour,时间,word
+el minuto,分钟,minute,时间,word
+el segundo,秒,second,时间,word
+mañana,明天,tomorrow,时间,adverb
+ayer,昨天,yesterday,时间,adverb
+siempre,总是,always,时间,adverb
+nunca,从不,never,时间,adverb
+a veces,有时,sometimes,时间,adverb
+generalmente,通常,usually,时间,adverb
+raramente,很少,rarely,时间,adverb
+todos los días,每天,every day,时间,phrase
+una vez a la semana,每周一次,once a week,时间,phrase
+dos veces al mes,每月两次,twice a month,时间,phrase
+en punto,整点,o'clock,时间,phrase
+y media,……点半,half past,时间,phrase
+y cuarto,……点一刻,quarter past,时间,phrase
+menos cuarto,差一刻……点,quarter to,时间,phrase
+la luna,月亮,moon,自然,word
+la estrella,星星,star,自然,word
+el cielo,天空,sky,自然,word
+el río,河,river,自然,word
+el lago,湖,lake,自然,word
+la montaña,山,mountain,自然,word
+el bosque,森林,forest,自然,word
+el árbol,树,tree,自然,word
+la flor,花,flower,自然,word
+la isla,岛,island,自然,word
+el norte,北,north,方位,word
+el sur,南,south,方位,word
+el este,东,east,方位,word
+el oeste,西,west,方位,word
+a la derecha,在右边,on the right,方位,phrase
+llueve,下雨了,it's raining,天气,phrase
+nieva,下雪了,it's snowing,天气,phrase
+la ropa,衣服,clothes,衣服,word
+la camisa,衬衫,shirt,衣服,word
+el pantalón,裤子,trousers,衣服,word
+los zapatos,鞋子,shoes,衣服,word
+el vestido,连衣裙,dress,衣服,word
+la chaqueta,夹克,jacket,衣服,word
+el abrigo,大衣,coat,衣服,word
+los calcetines,袜子,socks,衣服,word
+el color,颜色,color,颜色,word
+rojo / roja,红色的,red,颜色,adjective
+azul,蓝色的,blue,颜色,adjective
+verde,绿色的,green,颜色,adjective
+amarillo / amarilla,黄色的,yellow,颜色,adjective
+blanco / blanca,白色的,white,颜色,adjective
+negro / negra,黑色的,black,颜色,adjective
+marrón,棕色的,brown,颜色,adjective
+gris,灰色的,grey,颜色,adjective
+favorito / favorita,最喜欢的,favorite,颜色,adjective
+el autobús,公共汽车,bus,交通工具,word
+el taxi,出租车,taxi,交通工具,word
+el amor,爱,love,生活与休闲,word
+la amistad,友谊,friendship,生活与休闲,word
+la salud,健康,health,生活与休闲,word
+la mercancía,商品、货物,goods,生活与休闲,word
+la fiesta,聚会、节日,party,生活与休闲,word
+la música,音乐,music,生活与休闲,word
+la película,电影,movie,生活与休闲,word
+el juego,游戏,game,生活与休闲,word
+el deporte,运动,sport,生活与休闲,word
+el equipo,队伍,team,生活与休闲,word
+¿quién? / ¿quiénes?,谁？,who?,疑问词,question
+¿cuál? / ¿cuáles?,哪一个？,which?,疑问词,question
+¿cuándo?,什么时候？,when?,疑问词,question
+¿dónde?,哪里？,where?,疑问词,question
+¿por qué?,为什么？,why?,疑问词,question
+¿cuánto? / ¿cuánta?,多少？,how much? how many?,疑问词,question
+¿para qué?,为了什么？,what for?,疑问词,question
+porque,因为,because,小词,connector
+querer,想要,to want,动词,verb
+poder,能、可以,can; to be able to,动词,verb
+venir,来,to come,动词,verb
+llamarse,叫（名字）,to be called,动词,verb
+gustar,使喜欢（me gusta = 我喜欢）,to like,动词,verb
+trabajar,工作,to work,动词,verb
+hablar,说话,to speak,动词,verb
+comer,吃,to eat,动词,verb
+beber,喝,to drink,动词,verb
+vivir,居住、生活,to live,动词,verb
+abrir,打开,to open,动词,verb
+recibir,收到,to receive,动词,verb
+ceder,让出,to give up; to yield,动词,verb
+desayunar,吃早餐,to have breakfast,动词,verb
+correr,跑,to run,动词,verb
+unir,连接、合并,to join,动词,verb
+cenar,吃晚餐,to have dinner,动词,verb
+visitar,拜访,to visit,动词,verb
+omitir,省略,to omit,动词,verb
+viajar,旅行,to travel,动词,verb
+compartir,分享,to share,动词,verb
+vender,卖,to sell,动词,verb
+necesitar,需要,to need,动词,verb
+temer,害怕,to fear,动词,verb
+escribir,写,to write,动词,verb
+mirar,看,to watch; to look at,动词,verb
+descubrir,发现,to discover,动词,verb
+leer,读,to read,动词,verb
+añadir,添加,to add,动词,verb
+descansar,休息,to rest,动词,verb
+deber,应该,must; should,动词,verb
+caminar,走路,to walk,动词,verb
+decidir,决定,to decide,动词,verb
+entrar,进入,to enter,动词,verb
+dividir,分开,to divide,动词,verb
+romper,打破,to break,动词,verb
+estudiar,学习,to study,动词,verb
+repartir,分发,to hand out,动词,verb
+creer,相信,to believe,动词,verb
+ayudar,帮助,to help,动词,verb
+acceder,进入,to access,动词,verb
+nadar,游泳,to swim,动词,verb
+sufrir,受苦,to suffer,动词,verb
+escuchar,听,to listen,动词,verb
+subir,上去；搬上去,to go up; to carry up,动词,verb
+coser,缝,to sew,动词,verb
+lavar,洗,to wash,动词,verb
+comprender,理解,to understand,动词,verb
+admitir,承认,to admit,动词,verb
+preguntar,问,to ask,动词,verb
+cubrir,盖住,to cover,动词,verb
+esperar,等待,to wait,动词,verb
+describir,描述,to describe,动词,verb
+toser,咳嗽,to cough,动词,verb
+cocinar,做饭,to cook,动词,verb
+depender,依赖,to depend,动词,verb
+aplaudir,鼓掌,to applaud,动词,verb
+prometer,承诺,to promise,动词,verb
+asistir,参加,to attend,动词,verb
+llevar,带、穿,to carry; to wear,动词,verb
+sorprender,使惊喜,to surprise,动词,verb
+contestar,回答,to answer,动词,verb
+responder,回复,to reply,动词,verb
+discutir,争吵,to argue,动词,verb
+comprar,买,to buy,动词,verb
+permitir,允许,to allow,动词,verb
+preparar,准备,to prepare,动词,verb
+aprender,学会,to learn,动词,verb
+cumplir,满（岁）；履行,to turn (an age); to fulfil,动词,verb
+dibujar,画画,to draw,动词,verb
+poseer,拥有,to own,动词,verb
+bailar,跳舞,to dance,动词,verb
+cometer,犯（错）,to commit; to make (a mistake),动词,verb
+insistir,坚持,to insist,动词,verb
+ordenar,整理,to tidy,动词,verb
+recorrer,走遍,to go around,动词,verb
+consumir,消耗,to consume,动词,verb
+tomar,拿；晒（太阳）；喝,to take,动词,verb
+esconder,藏,to hide,动词,verb
+barrer,扫地,to sweep,动词,verb
+partir,切开,to cut; to split,动词,verb
+cantar,唱歌,to sing,动词,verb
+meter,放进,to put in,动词,verb
+imprimir,打印,to print,动词,verb
+usar,使用,to use,动词,verb
+tener,有：tengo / tienes / tiene / tenemos / tenéis / tienen,to have,语法,grammar,Tengo un perro.,我有一只狗。,to have|have|有,grammar
+salir,出去、离开：salgo / sales / sale / salimos / salís / salen,to go out; to leave,语法,grammar,,,to go out|go out|to leave|leave|出去|离开,grammar
