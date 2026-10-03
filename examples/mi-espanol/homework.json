@@ -41063,7 +41063,7 @@
             {
               "id": "fr-answer-01",
               "number": 1,
-              "prompt": "¿Cómo te llamas?（用 Ana 回答，写完整句子）",
+              "prompt": "¿Cómo te llamas?（你叫什么名字？用“用 Ana 回答”回答，写完整句子）",
               "answers": [
                 "Me llamo Ana.",
                 "Yo me llamo Ana.",
@@ -41079,12 +41079,13 @@
                   ]
                 }
               ],
-              "polishNote": "意思对了；练习说完整句子：Me llamo Ana."
+              "polishNote": "意思对了；练习说完整句子：Me llamo Ana.",
+              "ambiguityNote": "翻译：问“你叫什么名字？” 答“我叫 Ana。”"
             },
             {
               "id": "fr-answer-02",
               "number": 2,
-              "prompt": "¿Qué estudias?（你学西班牙语，写完整句子）",
+              "prompt": "¿Qué estudias?（你学什么？用“你学西班牙语”回答，写完整句子）",
               "answers": [
                 "Estudio español.",
                 "Yo estudio español."
@@ -41098,12 +41099,13 @@
                   ]
                 }
               ],
-              "polishNote": "意思对了；练习说完整句子：Estudio español."
+              "polishNote": "意思对了；练习说完整句子：Estudio español.",
+              "ambiguityNote": "翻译：问“你学什么？” 答“我学西班牙语。”"
             },
             {
               "id": "fr-answer-03",
               "number": 3,
-              "prompt": "¿Dónde estás?（你在家，写完整句子）",
+              "prompt": "¿Dónde estás?（你在哪儿？用“你在家”回答，写完整句子）",
               "answers": [
                 "Estoy en casa.",
                 "Yo estoy en casa."
@@ -41121,12 +41123,12 @@
                 }
               ],
               "polishNote": "意思对了；练习说完整句子：Estoy en casa.",
-              "ambiguityNote": "提示：位置用 estar：estoy en…"
+              "ambiguityNote": "翻译：问“你在哪儿？” 答“我在家。” 提示：位置用 estar：estoy en…"
             },
             {
               "id": "fr-answer-04",
               "number": 4,
-              "prompt": "¿Cómo estás?（你很好，写完整句子）",
+              "prompt": "¿Cómo estás?（你好吗？用“你很好”回答，写完整句子）",
               "answers": [
                 "Estoy bien.",
                 "Estoy muy bien.",
@@ -41146,12 +41148,12 @@
                 }
               ],
               "polishNote": "意思对了；练习说完整句子：Estoy bien.",
-              "ambiguityNote": "提示：状态用 estar：estoy bien。"
+              "ambiguityNote": "翻译：问“你好吗？” 答“我很好。” 提示：状态用 estar：estoy bien。"
             },
             {
               "id": "fr-answer-05",
               "number": 5,
-              "prompt": "¿Cómo es tu perro?（小而且白，写完整句子）",
+              "prompt": "¿Cómo es tu perro?（你的狗是什么样的？用“小而且白”回答，写完整句子）",
               "answers": [
                 "Mi perro es pequeño y blanco.",
                 "Es pequeño y blanco."
@@ -41170,12 +41172,12 @@
                 }
               ],
               "polishNote": "意思对了；练习说完整句子：Mi perro es pequeño y blanco.",
-              "ambiguityNote": "提示：特征用 ser：es pequeño。"
+              "ambiguityNote": "翻译：问“你的狗是什么样的？” 答“我的狗又小又白。” 提示：特征用 ser：es pequeño。"
             },
             {
               "id": "fr-answer-06",
               "number": 6,
-              "prompt": "¿Cuándo vienes a casa?（星期一，写完整句子）",
+              "prompt": "¿Cuándo vienes a casa?（你什么时候回家？用“星期一”回答，写完整句子）",
               "answers": [
                 "Vengo a casa el lunes.",
                 "Vengo el lunes.",
@@ -41183,7 +41185,7 @@
                 "Voy a casa el lunes."
               ],
               "canonicalAnswer": "Vengo a casa el lunes.",
-              "answerTranslation": "我星期一来家里。",
+              "answerTranslation": "我星期一回家。",
               "meaningPatterns": [
                 {
                   "all": [
@@ -41192,18 +41194,18 @@
                 }
               ],
               "polishNote": "意思对了；练习说完整句子：Vengo a casa el lunes.",
-              "ambiguityNote": "提示：只回答 El lunes 也能听懂；这里练习说整句：Vengo a casa el lunes."
+              "ambiguityNote": "翻译：问“你什么时候回家？” 答“我星期一回家。” 提示：只回答 El lunes 也能听懂；这里练习说整句：Vengo a casa el lunes."
             },
             {
               "id": "fr-answer-07",
               "number": 7,
-              "prompt": "¿Por qué estudias español?（因为我喜欢，写完整句子）",
+              "prompt": "¿Por qué estudias español?（你为什么学西班牙语？用“因为我喜欢”回答，写完整句子）",
               "answers": [
                 "Estudio español porque me gusta.",
                 "Porque me gusta."
               ],
               "canonicalAnswer": "Estudio español porque me gusta.",
-              "answerTranslation": "因为我喜欢。",
+              "answerTranslation": "我学西班牙语，因为我喜欢。",
               "meaningPatterns": [
                 {
                   "all": [
@@ -41212,18 +41214,18 @@
                 }
               ],
               "polishNote": "意思对了；练习说完整句子：Estudio español porque me gusta.",
-              "ambiguityNote": "提示：回答原因用 porque。"
+              "ambiguityNote": "翻译：问“你为什么学西班牙语？” 答“我学西班牙语，因为我喜欢。” 提示：回答原因用 porque。"
             },
             {
               "id": "fr-answer-08",
               "number": 8,
-              "prompt": "¿Para qué estudias español?（为了去西班牙旅行，写完整句子）",
+              "prompt": "¿Para qué estudias español?（你学西班牙语是为了什么？用“为了去西班牙旅行”回答，写完整句子）",
               "answers": [
                 "Estudio español para viajar a España.",
                 "Para viajar a España."
               ],
               "canonicalAnswer": "Estudio español para viajar a España.",
-              "answerTranslation": "为了去西班牙旅行。",
+              "answerTranslation": "我学西班牙语是为了去西班牙旅行。",
               "meaningPatterns": [
                 {
                   "all": [
@@ -41232,12 +41234,12 @@
                 }
               ],
               "polishNote": "意思对了；练习说完整句子：Estudio español para viajar a España.",
-              "ambiguityNote": "提示：回答目的用 para + 动词原形。"
+              "ambiguityNote": "翻译：问“你学西班牙语是为了什么？” 答“我学西班牙语是为了去西班牙旅行。” 提示：回答目的用 para + 动词原形。"
             },
             {
               "id": "fr-answer-09",
               "number": 9,
-              "prompt": "¿Cuántos perros tienes?（两只，写完整句子）",
+              "prompt": "¿Cuántos perros tienes?（你有几只狗？用“两只”回答，写完整句子）",
               "answers": [
                 "Tengo dos perros.",
                 "Yo tengo dos perros."
@@ -41251,12 +41253,13 @@
                   ]
                 }
               ],
-              "polishNote": "意思对了；练习说完整句子：Tengo dos perros."
+              "polishNote": "意思对了；练习说完整句子：Tengo dos perros.",
+              "ambiguityNote": "翻译：问“你有几只狗？” 答“我有两只狗。”"
             },
             {
               "id": "fr-answer-10",
               "number": 10,
-              "prompt": "¿De dónde eres?（中国，写完整句子）",
+              "prompt": "¿De dónde eres?（你是哪里人？用“中国”回答，写完整句子）",
               "answers": [
                 "Soy de China.",
                 "Yo soy de China."
@@ -41274,7 +41277,7 @@
                 }
               ],
               "polishNote": "意思对了；练习说完整句子：Soy de China.",
-              "ambiguityNote": "提示：来源、国籍用 ser：soy de…"
+              "ambiguityNote": "翻译：问“你是哪里人？” 答“我来自中国。” 提示：来源、国籍用 ser：soy de…"
             }
           ]
         },
@@ -43530,6 +43533,1758 @@
           ],
           "gloss": "手机",
           "english": "mobile phone"
+        }
+      ],
+      "studyWords": [
+        {
+          "id": "vr-sw-recibir",
+          "word": "recibir",
+          "gloss": "收到",
+          "english": "to receive",
+          "answers": [
+            "收到",
+            "to receive",
+            "receive"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-ceder",
+          "word": "ceder",
+          "gloss": "让出",
+          "english": "to give up; to yield",
+          "answers": [
+            "让出",
+            "to give up",
+            "give up",
+            "to yield",
+            "yield"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-desayunar",
+          "word": "desayunar",
+          "gloss": "吃早餐",
+          "english": "to have breakfast",
+          "answers": [
+            "吃早餐",
+            "to have breakfast",
+            "have breakfast"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-correr",
+          "word": "correr",
+          "gloss": "跑",
+          "english": "to run",
+          "answers": [
+            "跑",
+            "to run",
+            "run"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-unir",
+          "word": "unir",
+          "gloss": "连接、合并",
+          "english": "to join",
+          "answers": [
+            "连接",
+            "合并",
+            "to join",
+            "join"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-cenar",
+          "word": "cenar",
+          "gloss": "吃晚餐",
+          "english": "to have dinner",
+          "answers": [
+            "吃晚餐",
+            "to have dinner",
+            "have dinner"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-visitar",
+          "word": "visitar",
+          "gloss": "拜访",
+          "english": "to visit",
+          "answers": [
+            "拜访",
+            "to visit",
+            "visit"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-comer",
+          "word": "comer",
+          "gloss": "吃",
+          "english": "to eat",
+          "answers": [
+            "吃",
+            "to eat",
+            "eat"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-omitir",
+          "word": "omitir",
+          "gloss": "省略",
+          "english": "to omit",
+          "answers": [
+            "省略",
+            "to omit",
+            "omit"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-viajar",
+          "word": "viajar",
+          "gloss": "旅行",
+          "english": "to travel",
+          "answers": [
+            "旅行",
+            "to travel",
+            "travel"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-compartir",
+          "word": "compartir",
+          "gloss": "分享",
+          "english": "to share",
+          "answers": [
+            "分享",
+            "to share",
+            "share"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-vender",
+          "word": "vender",
+          "gloss": "卖",
+          "english": "to sell",
+          "answers": [
+            "卖",
+            "to sell",
+            "sell"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-necesitar",
+          "word": "necesitar",
+          "gloss": "需要",
+          "english": "to need",
+          "answers": [
+            "需要",
+            "to need",
+            "need"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-temer",
+          "word": "temer",
+          "gloss": "害怕",
+          "english": "to fear",
+          "answers": [
+            "害怕",
+            "to fear",
+            "fear"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-escribir",
+          "word": "escribir",
+          "gloss": "写",
+          "english": "to write",
+          "answers": [
+            "写",
+            "to write",
+            "write"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-mirar",
+          "word": "mirar",
+          "gloss": "看",
+          "english": "to watch; to look at",
+          "answers": [
+            "看",
+            "to watch",
+            "watch",
+            "to look at",
+            "look at"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-beber",
+          "word": "beber",
+          "gloss": "喝",
+          "english": "to drink",
+          "answers": [
+            "喝",
+            "to drink",
+            "drink"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-descubrir",
+          "word": "descubrir",
+          "gloss": "发现",
+          "english": "to discover",
+          "answers": [
+            "发现",
+            "to discover",
+            "discover"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-practicar",
+          "word": "practicar",
+          "gloss": "练习",
+          "english": "to practice",
+          "answers": [
+            "练习",
+            "to practice",
+            "practice"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-leer",
+          "word": "leer",
+          "gloss": "读",
+          "english": "to read",
+          "answers": [
+            "读",
+            "to read",
+            "read"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-añadir",
+          "word": "añadir",
+          "gloss": "添加",
+          "english": "to add",
+          "answers": [
+            "添加",
+            "to add",
+            "add"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-descansar",
+          "word": "descansar",
+          "gloss": "休息",
+          "english": "to rest",
+          "answers": [
+            "休息",
+            "to rest",
+            "rest"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-deber",
+          "word": "deber",
+          "gloss": "应该",
+          "english": "must; should",
+          "answers": [
+            "应该",
+            "must",
+            "should"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-caminar",
+          "word": "caminar",
+          "gloss": "走路",
+          "english": "to walk",
+          "answers": [
+            "走路",
+            "to walk",
+            "walk"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-decidir",
+          "word": "decidir",
+          "gloss": "决定",
+          "english": "to decide",
+          "answers": [
+            "决定",
+            "to decide",
+            "decide"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-entrar",
+          "word": "entrar",
+          "gloss": "进入",
+          "english": "to enter",
+          "answers": [
+            "进入",
+            "to enter",
+            "enter"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-dividir",
+          "word": "dividir",
+          "gloss": "分开",
+          "english": "to divide",
+          "answers": [
+            "分开",
+            "to divide",
+            "divide"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-romper",
+          "word": "romper",
+          "gloss": "打破",
+          "english": "to break",
+          "answers": [
+            "打破",
+            "to break",
+            "break"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-estudiar",
+          "word": "estudiar",
+          "gloss": "学习",
+          "english": "to study",
+          "answers": [
+            "学习",
+            "to study",
+            "study"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-repartir",
+          "word": "repartir",
+          "gloss": "分发",
+          "english": "to hand out",
+          "answers": [
+            "分发",
+            "to hand out",
+            "hand out"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-creer",
+          "word": "creer",
+          "gloss": "相信",
+          "english": "to believe",
+          "answers": [
+            "相信",
+            "to believe",
+            "believe"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-ayudar",
+          "word": "ayudar",
+          "gloss": "帮助",
+          "english": "to help",
+          "answers": [
+            "帮助",
+            "to help",
+            "help"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-acceder",
+          "word": "acceder",
+          "gloss": "进入",
+          "english": "to access",
+          "answers": [
+            "进入",
+            "to access",
+            "access"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-abrir",
+          "word": "abrir",
+          "gloss": "打开",
+          "english": "to open",
+          "answers": [
+            "打开",
+            "to open",
+            "open"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-nadar",
+          "word": "nadar",
+          "gloss": "游泳",
+          "english": "to swim",
+          "answers": [
+            "游泳",
+            "to swim",
+            "swim"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-sufrir",
+          "word": "sufrir",
+          "gloss": "受苦",
+          "english": "to suffer",
+          "answers": [
+            "受苦",
+            "to suffer",
+            "suffer"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-escuchar",
+          "word": "escuchar",
+          "gloss": "听",
+          "english": "to listen",
+          "answers": [
+            "听",
+            "to listen",
+            "listen"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-subir",
+          "word": "subir",
+          "gloss": "上去；搬上去",
+          "english": "to go up; to carry up",
+          "answers": [
+            "上去",
+            "搬上去",
+            "to go up",
+            "go up",
+            "to carry up",
+            "carry up"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-coser",
+          "word": "coser",
+          "gloss": "缝",
+          "english": "to sew",
+          "answers": [
+            "缝",
+            "to sew",
+            "sew"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-lavar",
+          "word": "lavar",
+          "gloss": "洗",
+          "english": "to wash",
+          "answers": [
+            "洗",
+            "to wash",
+            "wash"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-comprender",
+          "word": "comprender",
+          "gloss": "理解",
+          "english": "to understand",
+          "answers": [
+            "理解",
+            "to understand",
+            "understand"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-admitir",
+          "word": "admitir",
+          "gloss": "承认",
+          "english": "to admit",
+          "answers": [
+            "承认",
+            "to admit",
+            "admit"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-preguntar",
+          "word": "preguntar",
+          "gloss": "问",
+          "english": "to ask",
+          "answers": [
+            "问",
+            "to ask",
+            "ask"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-cubrir",
+          "word": "cubrir",
+          "gloss": "盖住",
+          "english": "to cover",
+          "answers": [
+            "盖住",
+            "to cover",
+            "cover"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-esperar",
+          "word": "esperar",
+          "gloss": "等待",
+          "english": "to wait",
+          "answers": [
+            "等待",
+            "to wait",
+            "wait"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-describir",
+          "word": "describir",
+          "gloss": "描述",
+          "english": "to describe",
+          "answers": [
+            "描述",
+            "to describe",
+            "describe"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-toser",
+          "word": "toser",
+          "gloss": "咳嗽",
+          "english": "to cough",
+          "answers": [
+            "咳嗽",
+            "to cough",
+            "cough"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-cocinar",
+          "word": "cocinar",
+          "gloss": "做饭",
+          "english": "to cook",
+          "answers": [
+            "做饭",
+            "to cook",
+            "cook"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-depender",
+          "word": "depender",
+          "gloss": "依赖",
+          "english": "to depend",
+          "answers": [
+            "依赖",
+            "to depend",
+            "depend"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-aplaudir",
+          "word": "aplaudir",
+          "gloss": "鼓掌",
+          "english": "to applaud",
+          "answers": [
+            "鼓掌",
+            "to applaud",
+            "applaud"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-hablar",
+          "word": "hablar",
+          "gloss": "说话",
+          "english": "to speak",
+          "answers": [
+            "说话",
+            "to speak",
+            "speak"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-prometer",
+          "word": "prometer",
+          "gloss": "承诺",
+          "english": "to promise",
+          "answers": [
+            "承诺",
+            "to promise",
+            "promise"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-asistir",
+          "word": "asistir",
+          "gloss": "参加",
+          "english": "to attend",
+          "answers": [
+            "参加",
+            "to attend",
+            "attend"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-llevar",
+          "word": "llevar",
+          "gloss": "带、穿",
+          "english": "to carry; to wear",
+          "answers": [
+            "带",
+            "穿",
+            "to carry",
+            "carry",
+            "to wear",
+            "wear"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-sorprender",
+          "word": "sorprender",
+          "gloss": "使惊喜",
+          "english": "to surprise",
+          "answers": [
+            "使惊喜",
+            "to surprise",
+            "surprise"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-contestar",
+          "word": "contestar",
+          "gloss": "回答",
+          "english": "to answer",
+          "answers": [
+            "回答",
+            "to answer",
+            "answer"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-responder",
+          "word": "responder",
+          "gloss": "回复",
+          "english": "to reply",
+          "answers": [
+            "回复",
+            "to reply",
+            "reply"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-discutir",
+          "word": "discutir",
+          "gloss": "争吵",
+          "english": "to argue",
+          "answers": [
+            "争吵",
+            "to argue",
+            "argue"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-comprar",
+          "word": "comprar",
+          "gloss": "买",
+          "english": "to buy",
+          "answers": [
+            "买",
+            "to buy",
+            "buy"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-permitir",
+          "word": "permitir",
+          "gloss": "允许",
+          "english": "to allow",
+          "answers": [
+            "允许",
+            "to allow",
+            "allow"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-preparar",
+          "word": "preparar",
+          "gloss": "准备",
+          "english": "to prepare",
+          "answers": [
+            "准备",
+            "to prepare",
+            "prepare"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-aprender",
+          "word": "aprender",
+          "gloss": "学会",
+          "english": "to learn",
+          "answers": [
+            "学会",
+            "to learn",
+            "learn"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-cumplir",
+          "word": "cumplir",
+          "gloss": "满（岁）；履行",
+          "english": "to turn (an age); to fulfil",
+          "answers": [
+            "满（岁）",
+            "履行",
+            "to turn (an age)",
+            "turn (an age)",
+            "to fulfil",
+            "fulfil"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-dibujar",
+          "word": "dibujar",
+          "gloss": "画画",
+          "english": "to draw",
+          "answers": [
+            "画画",
+            "to draw",
+            "draw"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-poseer",
+          "word": "poseer",
+          "gloss": "拥有",
+          "english": "to own",
+          "answers": [
+            "拥有",
+            "to own",
+            "own"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-vivir",
+          "word": "vivir",
+          "gloss": "居住、生活",
+          "english": "to live",
+          "answers": [
+            "居住",
+            "生活",
+            "to live",
+            "live"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-bailar",
+          "word": "bailar",
+          "gloss": "跳舞",
+          "english": "to dance",
+          "answers": [
+            "跳舞",
+            "to dance",
+            "dance"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-cometer",
+          "word": "cometer",
+          "gloss": "犯（错）",
+          "english": "to commit; to make (a mistake)",
+          "answers": [
+            "犯（错）",
+            "to commit",
+            "commit",
+            "to make (a mistake)",
+            "make (a mistake)"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-insistir",
+          "word": "insistir",
+          "gloss": "坚持",
+          "english": "to insist",
+          "answers": [
+            "坚持",
+            "to insist",
+            "insist"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-ordenar",
+          "word": "ordenar",
+          "gloss": "整理",
+          "english": "to tidy",
+          "answers": [
+            "整理",
+            "to tidy",
+            "tidy"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-recorrer",
+          "word": "recorrer",
+          "gloss": "走遍",
+          "english": "to go around",
+          "answers": [
+            "走遍",
+            "to go around",
+            "go around"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-consumir",
+          "word": "consumir",
+          "gloss": "消耗",
+          "english": "to consume",
+          "answers": [
+            "消耗",
+            "to consume",
+            "consume"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-tomar",
+          "word": "tomar",
+          "gloss": "拿；晒（太阳）；喝",
+          "english": "to take",
+          "answers": [
+            "拿",
+            "晒（太阳）",
+            "喝",
+            "to take",
+            "take"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-esconder",
+          "word": "esconder",
+          "gloss": "藏",
+          "english": "to hide",
+          "answers": [
+            "藏",
+            "to hide",
+            "hide"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-trabajar",
+          "word": "trabajar",
+          "gloss": "工作",
+          "english": "to work",
+          "answers": [
+            "工作",
+            "to work",
+            "work"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-barrer",
+          "word": "barrer",
+          "gloss": "扫地",
+          "english": "to sweep",
+          "answers": [
+            "扫地",
+            "to sweep",
+            "sweep"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-partir",
+          "word": "partir",
+          "gloss": "切开",
+          "english": "to cut; to split",
+          "answers": [
+            "切开",
+            "to cut",
+            "cut",
+            "to split",
+            "split"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-cantar",
+          "word": "cantar",
+          "gloss": "唱歌",
+          "english": "to sing",
+          "answers": [
+            "唱歌",
+            "to sing",
+            "sing"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-meter",
+          "word": "meter",
+          "gloss": "放进",
+          "english": "to put in",
+          "answers": [
+            "放进",
+            "to put in",
+            "put in"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-imprimir",
+          "word": "imprimir",
+          "gloss": "打印",
+          "english": "to print",
+          "answers": [
+            "打印",
+            "to print",
+            "print"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-usar",
+          "word": "usar",
+          "gloss": "使用",
+          "english": "to use",
+          "answers": [
+            "使用",
+            "to use",
+            "use"
+          ],
+          "role": "answer"
+        },
+        {
+          "id": "vr-sw-x-turno",
+          "word": "el turno",
+          "gloss": "轮次、顺序",
+          "english": "turn",
+          "answers": [
+            "轮次",
+            "顺序",
+            "turn"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "vr-sw-x-piezas",
+          "word": "la pieza",
+          "gloss": "零件、块",
+          "english": "piece",
+          "answers": [
+            "零件",
+            "块",
+            "piece"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "vr-sw-x-juego",
+          "word": "el juego",
+          "gloss": "游戏",
+          "english": "game",
+          "answers": [
+            "游戏",
+            "game"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "vr-sw-x-pescado",
+          "word": "el pescado",
+          "gloss": "鱼（食物）",
+          "english": "fish (food)",
+          "answers": [
+            "鱼（食物）",
+            "fish (food)"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "vr-sw-x-palabra",
+          "word": "la palabra",
+          "gloss": "词、单词",
+          "english": "word",
+          "answers": [
+            "词",
+            "单词",
+            "word"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "vr-sw-x-frase",
+          "word": "la frase",
+          "gloss": "句子",
+          "english": "sentence",
+          "answers": [
+            "句子",
+            "sentence"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "vr-sw-x-amigos",
+          "word": "el amigo / la amiga",
+          "gloss": "朋友",
+          "english": "friend",
+          "answers": [
+            "朋友",
+            "friend"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "vr-sw-x-barrio",
+          "word": "el barrio",
+          "gloss": "街区",
+          "english": "neighborhood",
+          "answers": [
+            "街区",
+            "neighborhood"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "vr-sw-x-periódico",
+          "word": "el periódico",
+          "gloss": "报纸",
+          "english": "newspaper",
+          "answers": [
+            "报纸",
+            "newspaper"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "vr-sw-x-sal",
+          "word": "la sal",
+          "gloss": "盐",
+          "english": "salt",
+          "answers": [
+            "盐",
+            "salt"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "vr-sw-x-cuento",
+          "word": "el cuento",
+          "gloss": "故事",
+          "english": "story",
+          "answers": [
+            "故事",
+            "story"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "vr-sw-x-camisa",
+          "word": "la camisa",
+          "gloss": "衬衫",
+          "english": "shirt",
+          "answers": [
+            "衬衫",
+            "shirt"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "vr-sw-x-trozos",
+          "word": "el trozo",
+          "gloss": "块、片",
+          "english": "piece",
+          "answers": [
+            "块",
+            "片",
+            "piece"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "vr-sw-x-ocho",
+          "word": "ocho",
+          "gloss": "八",
+          "english": "eight",
+          "answers": [
+            "八",
+            "eight"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "vr-sw-x-diez",
+          "word": "diez",
+          "gloss": "十",
+          "english": "ten",
+          "answers": [
+            "十",
+            "ten"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "vr-sw-x-tercer",
+          "word": "tercero / tercer",
+          "gloss": "第三",
+          "english": "third",
+          "answers": [
+            "第三",
+            "third"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "vr-sw-x-páginaweb",
+          "word": "la página web",
+          "gloss": "网站、网页",
+          "english": "web page",
+          "answers": [
+            "网站",
+            "网页",
+            "web page"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "vr-sw-x-contraseña",
+          "word": "la contraseña",
+          "gloss": "密码",
+          "english": "password",
+          "answers": [
+            "密码",
+            "password"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "vr-sw-x-abuelos",
+          "word": "los abuelos",
+          "gloss": "祖父母",
+          "english": "grandparents",
+          "answers": [
+            "祖父母",
+            "grandparents"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "vr-sw-x-radio",
+          "word": "la radio",
+          "gloss": "收音机、广播",
+          "english": "radio",
+          "answers": [
+            "收音机",
+            "广播",
+            "radio"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "vr-sw-x-vestido",
+          "word": "el vestido",
+          "gloss": "连衣裙",
+          "english": "dress",
+          "answers": [
+            "连衣裙",
+            "dress"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "vr-sw-x-platos",
+          "word": "el plato",
+          "gloss": "盘子；碗碟",
+          "english": "plate; dish",
+          "answers": [
+            "盘子",
+            "碗碟",
+            "plate",
+            "dish"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "vr-sw-x-precio",
+          "word": "el precio",
+          "gloss": "价格",
+          "english": "price",
+          "answers": [
+            "价格",
+            "price"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "vr-sw-x-manta",
+          "word": "la manta",
+          "gloss": "毯子",
+          "english": "blanket",
+          "answers": [
+            "毯子",
+            "blanket"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "vr-sw-x-resfriados",
+          "word": "resfriado / resfriada",
+          "gloss": "感冒的",
+          "english": "having a cold",
+          "answers": [
+            "感冒的",
+            "having a cold"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "vr-sw-x-volver",
+          "word": "volver",
+          "gloss": "回来",
+          "english": "to come back",
+          "answers": [
+            "回来",
+            "to come back",
+            "come back"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "vr-sw-x-yoga",
+          "word": "el yoga",
+          "gloss": "瑜伽",
+          "english": "yoga",
+          "answers": [
+            "瑜伽",
+            "yoga"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "vr-sw-x-jefe",
+          "word": "el jefe / la jefa",
+          "gloss": "老板、上司",
+          "english": "boss",
+          "answers": [
+            "老板",
+            "上司",
+            "boss"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "vr-sw-x-panadería",
+          "word": "la panadería",
+          "gloss": "面包店",
+          "english": "bakery",
+          "answers": [
+            "面包店",
+            "bakery"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "vr-sw-x-pizarra",
+          "word": "la pizarra",
+          "gloss": "黑板",
+          "english": "blackboard",
+          "answers": [
+            "黑板",
+            "blackboard"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "vr-sw-x-errores",
+          "word": "el error",
+          "gloss": "错误",
+          "english": "mistake",
+          "answers": [
+            "错误",
+            "mistake"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "vr-sw-x-pocos",
+          "word": "poco / poca",
+          "gloss": "很少的",
+          "english": "few; little",
+          "answers": [
+            "很少的",
+            "few",
+            "little"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "vr-sw-x-abuela",
+          "word": "la abuela",
+          "gloss": "奶奶、外婆",
+          "english": "grandmother",
+          "answers": [
+            "奶奶",
+            "外婆",
+            "grandmother"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "vr-sw-x-estantería",
+          "word": "la estantería",
+          "gloss": "书架",
+          "english": "bookshelf",
+          "answers": [
+            "书架",
+            "bookshelf"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "vr-sw-x-mucha",
+          "word": "mucho / mucha",
+          "gloss": "很多",
+          "english": "a lot of",
+          "answers": [
+            "很多",
+            "a lot of"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "vr-sw-x-terraza",
+          "word": "la terraza",
+          "gloss": "露台",
+          "english": "terrace",
+          "answers": [
+            "露台",
+            "terrace"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "vr-sw-x-pastel",
+          "word": "el pastel",
+          "gloss": "蛋糕",
+          "english": "cake",
+          "answers": [
+            "蛋糕",
+            "cake"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "vr-sw-x-todos",
+          "word": "todos / todas",
+          "gloss": "所有人；大家",
+          "english": "everyone; all",
+          "answers": [
+            "所有人",
+            "大家",
+            "everyone",
+            "all"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "vr-sw-x-coro",
+          "word": "el coro",
+          "gloss": "合唱团",
+          "english": "choir",
+          "answers": [
+            "合唱团",
+            "choir"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "vr-sw-x-maleta",
+          "word": "la maleta",
+          "gloss": "行李箱",
+          "english": "suitcase",
+          "answers": [
+            "行李箱",
+            "suitcase"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "vr-sw-x-hacerfotos",
+          "word": "hacer fotos",
+          "gloss": "拍照",
+          "english": "to take photos",
+          "answers": [
+            "拍照",
+            "to take photos",
+            "take photos"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "vr-sw-x-antesde",
+          "word": "antes de",
+          "gloss": "在……之前",
+          "english": "before",
+          "answers": [
+            "在……之前",
+            "before"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "vr-sw-x-despuésde",
+          "word": "después de",
+          "gloss": "在……之后",
+          "english": "after",
+          "answers": [
+            "在……之后",
+            "after"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "vr-sw-x-cercade",
+          "word": "cerca de",
+          "gloss": "在……附近",
+          "english": "near",
+          "answers": [
+            "在……附近",
+            "near"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "vr-sw-x-apie",
+          "word": "a pie",
+          "gloss": "步行",
+          "english": "on foot",
+          "answers": [
+            "步行",
+            "on foot"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "vr-sw-x-hermano",
+          "word": "el hermano",
+          "gloss": "兄弟",
+          "english": "brother",
+          "answers": [
+            "兄弟",
+            "brother"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "vr-sw-x-madre",
+          "word": "la madre / mamá",
+          "gloss": "妈妈",
+          "english": "mother; mom",
+          "answers": [
+            "妈妈",
+            "mother",
+            "mom"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "vr-sw-x-carta",
+          "word": "la carta",
+          "gloss": "信",
+          "english": "letter",
+          "answers": [
+            "信",
+            "letter"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "vr-sw-x-niños",
+          "word": "el niño / la niña",
+          "gloss": "孩子",
+          "english": "child",
+          "answers": [
+            "孩子",
+            "child"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "vr-sw-x-verduras",
+          "word": "la verdura",
+          "gloss": "蔬菜",
+          "english": "vegetable",
+          "answers": [
+            "蔬菜",
+            "vegetable"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "vr-sw-x-grandes",
+          "word": "grande",
+          "gloss": "大的",
+          "english": "big",
+          "answers": [
+            "大的",
+            "big"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "vr-sw-x-viaje",
+          "word": "el viaje",
+          "gloss": "旅行",
+          "english": "trip",
+          "answers": [
+            "旅行",
+            "trip"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "vr-sw-x-piano",
+          "word": "el piano",
+          "gloss": "钢琴",
+          "english": "piano",
+          "answers": [
+            "钢琴",
+            "piano"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "vr-sw-x-examen",
+          "word": "el examen",
+          "gloss": "考试",
+          "english": "exam",
+          "answers": [
+            "考试",
+            "exam"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "vr-sw-x-mensaje",
+          "word": "el mensaje",
+          "gloss": "消息、短信",
+          "english": "message",
+          "answers": [
+            "消息",
+            "短信",
+            "message"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "vr-sw-x-nueve",
+          "word": "nueve",
+          "gloss": "九",
+          "english": "nine",
+          "answers": [
+            "九",
+            "nine"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "vr-sw-x-pizza",
+          "word": "la pizza",
+          "gloss": "披萨",
+          "english": "pizza",
+          "answers": [
+            "披萨",
+            "pizza"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "vr-sw-x-libros",
+          "word": "el libro",
+          "gloss": "书",
+          "english": "book",
+          "answers": [
+            "书",
+            "book"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "vr-sw-x-pregunta",
+          "word": "la pregunta",
+          "gloss": "问题",
+          "english": "question",
+          "answers": [
+            "问题",
+            "question"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "vr-sw-x-vieja",
+          "word": "viejo / vieja",
+          "gloss": "旧的；老的",
+          "english": "old",
+          "answers": [
+            "旧的",
+            "老的",
+            "old"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "vr-sw-x-regalo",
+          "word": "el regalo",
+          "gloss": "礼物",
+          "english": "gift",
+          "answers": [
+            "礼物",
+            "gift"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "vr-sw-x-inglés",
+          "word": "el inglés",
+          "gloss": "英语",
+          "english": "English",
+          "answers": [
+            "英语",
+            "English"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "vr-sw-x-años",
+          "word": "el año",
+          "gloss": "年；岁",
+          "english": "year",
+          "answers": [
+            "年",
+            "岁",
+            "year"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "vr-sw-x-campo",
+          "word": "el campo",
+          "gloss": "乡下；田野",
+          "english": "countryside",
+          "answers": [
+            "乡下",
+            "田野",
+            "countryside"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "vr-sw-x-fiestas",
+          "word": "la fiesta",
+          "gloss": "聚会",
+          "english": "party",
+          "answers": [
+            "聚会",
+            "party"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "vr-sw-x-domingos",
+          "word": "domingo",
+          "gloss": "星期日",
+          "english": "Sunday",
+          "answers": [
+            "星期日",
+            "Sunday"
+          ],
+          "role": "context"
+        },
+        {
+          "id": "vr-sw-x-móvil",
+          "word": "el móvil",
+          "gloss": "手机",
+          "english": "mobile phone",
+          "answers": [
+            "手机",
+            "mobile phone"
+          ],
+          "role": "context"
         }
       ],
       "sections": [

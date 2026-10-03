@@ -18,6 +18,7 @@ import csv
 import hashlib
 import json
 import random
+import re
 import sys
 from pathlib import Path
 
@@ -242,6 +243,35 @@ def _sentence_lexicon() -> list[dict]:
     return lexicon
 
 
+def _study_answers(gloss: str, english: str) -> list[str]:
+    answers = []
+    for part in re.split(r"[、；;，]", gloss) + re.split(r";", english):
+        part = part.strip()
+        if part and part not in answers:
+            answers.append(part)
+            if part.startswith("to "):
+                answers.append(part[3:])
+    return answers
+
+
+def _study_words() -> list[dict]:
+    """The assignment's own word list: the verbs to conjugate, then the other sentence words."""
+    words = []
+    for entry in _sentence_lexicon():
+        if entry["word"][:1].isupper():
+            continue  # place names
+        is_verb = not entry["id"].startswith("vr-lx-x-")
+        words.append({
+            "id": entry["id"].replace("vr-lx-", "vr-sw-", 1),
+            "word": entry["word"],
+            "gloss": entry["gloss"],
+            "english": entry["english"],
+            "answers": _study_answers(entry["gloss"], entry["english"]),
+            "role": "answer" if is_verb else "context",
+        })
+    return words
+
+
 def choice_options(item_id: str, verb: str, form: str) -> list[str]:
     """The answer plus three other present forms of the same verb, in a stable shuffled order."""
     digest = hashlib.sha256(f"{ASSIGNMENT_ID}:{item_id}".encode("utf-8")).hexdigest()
@@ -303,6 +333,7 @@ def build_assignment() -> dict:
         "source": {},
         "referenceTables": reference_tables,
         "sentenceLexicon": _sentence_lexicon(),
+        "studyWords": _study_words(),
         "sections": sections,
     }
 
