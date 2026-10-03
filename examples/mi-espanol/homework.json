@@ -39745,6 +39745,997 @@
           ]
         }
       ]
+    },
+    {
+      "id": "interrogativos-ser-estar-a1",
+      "title": "疑问词 + Ser / Estar 练习 A1",
+      "badge": "新练习",
+      "sourceTitle": "Práctica: palabras interrogativas, ser y estar",
+      "level": "A1",
+      "answerKeyBasis": "standard_grammar",
+      "sentenceLexicon": [
+        {
+          "id": "int-lx-estudiar",
+          "word": "estudiar",
+          "forms": [
+            "estudio",
+            "estudias"
+          ],
+          "gloss": "学习",
+          "english": "to study"
+        },
+        {
+          "id": "int-lx-llamarse",
+          "word": "llamarse",
+          "forms": [
+            "te llamas",
+            "me llamo",
+            "llamas",
+            "llamo"
+          ],
+          "gloss": "叫（名字）",
+          "english": "to be called"
+        },
+        {
+          "id": "int-lx-tener",
+          "word": "tener",
+          "forms": [
+            "tienes",
+            "tengo"
+          ],
+          "gloss": "有",
+          "english": "to have"
+        },
+        {
+          "id": "int-lx-beber",
+          "word": "beber",
+          "forms": [
+            "bebes"
+          ],
+          "gloss": "喝",
+          "english": "to drink"
+        },
+        {
+          "id": "int-lx-gustar",
+          "word": "gustar",
+          "forms": [
+            "me gusta",
+            "gusta"
+          ],
+          "gloss": "使喜欢（me gusta = 我喜欢）",
+          "english": "to like"
+        },
+        {
+          "id": "int-lx-cuantos",
+          "word": "¿cuántos?",
+          "forms": [
+            "cuántos"
+          ],
+          "gloss": "多少个？",
+          "english": "how many?"
+        },
+        {
+          "id": "int-lx-amigo",
+          "word": "amigo",
+          "forms": [
+            "amigos",
+            "amigo"
+          ],
+          "gloss": "朋友",
+          "english": "friend"
+        },
+        {
+          "id": "int-lx-estudiante",
+          "word": "estudiante",
+          "forms": [
+            "estudiantes"
+          ],
+          "gloss": "学生",
+          "english": "student"
+        },
+        {
+          "id": "int-lx-alto",
+          "word": "alto",
+          "forms": [
+            "altos"
+          ],
+          "gloss": "高的；个子高",
+          "english": "tall"
+        },
+        {
+          "id": "int-lx-china",
+          "word": "China",
+          "forms": [
+            "China"
+          ],
+          "gloss": "中国",
+          "english": "China"
+        },
+        {
+          "id": "int-lx-juan",
+          "word": "Juan",
+          "forms": [
+            "Juan"
+          ],
+          "gloss": "胡安（人名）",
+          "english": "Juan (name)"
+        },
+        {
+          "id": "int-lx-maria",
+          "word": "María",
+          "forms": [
+            "María"
+          ],
+          "gloss": "玛丽亚（人名）",
+          "english": "María (name)"
+        }
+      ],
+      "referenceTables": [
+        {
+          "id": "int-ser-reference",
+          "verb": "ser",
+          "title": "Ser：what? 名字、特征、国籍、宗教（较“永久”）",
+          "rows": [
+            {
+              "person": "yo",
+              "form": "soy"
+            },
+            {
+              "person": "tú",
+              "form": "eres"
+            },
+            {
+              "person": "él / ella",
+              "form": "es"
+            },
+            {
+              "person": "nosotros / nosotras",
+              "form": "somos"
+            },
+            {
+              "person": "vosotros / vosotras",
+              "form": "sois"
+            },
+            {
+              "person": "ellos / ellas",
+              "form": "son"
+            }
+          ]
+        },
+        {
+          "id": "int-estar-reference",
+          "verb": "estar",
+          "title": "Estar：how? where? 心情、状态、位置（较“暂时”）",
+          "rows": [
+            {
+              "person": "yo",
+              "form": "estoy"
+            },
+            {
+              "person": "tú",
+              "form": "estás"
+            },
+            {
+              "person": "él / ella",
+              "form": "está"
+            },
+            {
+              "person": "nosotros / nosotras",
+              "form": "estamos"
+            },
+            {
+              "person": "vosotros / vosotras",
+              "form": "estáis"
+            },
+            {
+              "person": "ellos / ellas",
+              "form": "están"
+            }
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "int-question-words",
+          "title": "Parte 1 - Elige la palabra interrogativa",
+          "instructions": "看回答，选出合适的疑问词：qué 什么 · quién 谁 · cuál 哪个 · cómo 怎样 · cuándo 什么时候 · dónde 哪里 · cuántos 多少。",
+          "type": "single_choice",
+          "items": [
+            {
+              "id": "int-qw-01",
+              "number": 1,
+              "prompt": "¿_______ estudias? — Estudio español.",
+              "options": [
+                "quién",
+                "dónde",
+                "qué"
+              ],
+              "answers": [
+                "qué"
+              ],
+              "canonicalAnswer": "qué",
+              "sentenceTranslations": {
+                "qué": "你学什么？——我学西班牙语。"
+              }
+            },
+            {
+              "id": "int-qw-02",
+              "number": 2,
+              "prompt": "¿_______ eres? — Soy Juan.",
+              "options": [
+                "cuándo",
+                "cuántos",
+                "quién"
+              ],
+              "answers": [
+                "quién"
+              ],
+              "canonicalAnswer": "quién",
+              "sentenceTranslations": {
+                "quién": "你是谁？——我是 Juan。"
+              }
+            },
+            {
+              "id": "int-qw-03",
+              "number": 3,
+              "prompt": "¿_______ es tu color favorito? — El azul.",
+              "options": [
+                "cuál",
+                "dónde",
+                "quién"
+              ],
+              "answers": [
+                "cuál"
+              ],
+              "canonicalAnswer": "cuál",
+              "sentenceTranslations": {
+                "cuál": "你最喜欢什么颜色？——蓝色。"
+              },
+              "ambiguityNote": "提示：问“哪一个”时用 cuál，后面常接 es / son。"
+            },
+            {
+              "id": "int-qw-04",
+              "number": 4,
+              "prompt": "¿_______ te llamas? — Me llamo Juan.",
+              "options": [
+                "cómo",
+                "cuántos",
+                "dónde"
+              ],
+              "answers": [
+                "cómo"
+              ],
+              "canonicalAnswer": "cómo",
+              "sentenceTranslations": {
+                "cómo": "你叫什么名字？——我叫 Juan。"
+              },
+              "ambiguityNote": "提示：西语说“你怎么称呼自己”，所以用 cómo，不用 qué。"
+            },
+            {
+              "id": "int-qw-05",
+              "number": 5,
+              "prompt": "¿_______ estás? — Estoy bien.",
+              "options": [
+                "cómo",
+                "quién",
+                "cuándo"
+              ],
+              "answers": [
+                "cómo"
+              ],
+              "canonicalAnswer": "cómo",
+              "sentenceTranslations": {
+                "cómo": "你好吗？——我很好。"
+              }
+            },
+            {
+              "id": "int-qw-06",
+              "number": 6,
+              "prompt": "¿_______ vienes a casa? — El lunes.",
+              "options": [
+                "cómo",
+                "quién",
+                "cuándo"
+              ],
+              "answers": [
+                "cuándo"
+              ],
+              "canonicalAnswer": "cuándo",
+              "sentenceTranslations": {
+                "cuándo": "你什么时候来家里？——星期一。"
+              }
+            },
+            {
+              "id": "int-qw-07",
+              "number": 7,
+              "prompt": "¿_______ estás? — Estoy en casa.",
+              "options": [
+                "dónde",
+                "quién",
+                "cuándo"
+              ],
+              "answers": [
+                "dónde"
+              ],
+              "canonicalAnswer": "dónde",
+              "sentenceTranslations": {
+                "dónde": "你在哪儿？——我在家。"
+              }
+            },
+            {
+              "id": "int-qw-08",
+              "number": 8,
+              "prompt": "¿_______ está el baño? — A la derecha.",
+              "options": [
+                "dónde",
+                "quién",
+                "cuándo"
+              ],
+              "answers": [
+                "dónde"
+              ],
+              "canonicalAnswer": "dónde",
+              "sentenceTranslations": {
+                "dónde": "洗手间在哪里？——在右边。"
+              }
+            },
+            {
+              "id": "int-qw-09",
+              "number": 9,
+              "prompt": "¿_______ perros tienes? — Tengo un perro.",
+              "options": [
+                "cuál",
+                "cuántos",
+                "cómo"
+              ],
+              "answers": [
+                "cuántos"
+              ],
+              "canonicalAnswer": "cuántos",
+              "sentenceTranslations": {
+                "cuántos": "你有几只狗？——我有一只狗。"
+              },
+              "ambiguityNote": "提示：perros 是阳性复数，所以用 cuántos。"
+            },
+            {
+              "id": "int-qw-10",
+              "number": 10,
+              "prompt": "¿_______ abro la puerta?",
+              "options": [
+                "cuántos",
+                "quién",
+                "cómo"
+              ],
+              "answers": [
+                "cómo"
+              ],
+              "canonicalAnswer": "cómo",
+              "sentenceTranslations": {
+                "cómo": "我怎么开门？"
+              }
+            }
+          ]
+        },
+        {
+          "id": "int-por-que",
+          "title": "Parte 2 - ¿Por qué?, porque, ¿para qué? o para",
+          "instructions": "¿por qué? 问原因 → porque…（因为）；¿para qué? 问目的 → para + 动词原形（为了）。",
+          "type": "single_choice",
+          "items": [
+            {
+              "id": "int-why-01",
+              "number": 1,
+              "prompt": "¿_______ estudias español? — Porque me gusta.",
+              "options": [
+                "para qué",
+                "por qué",
+                "porque",
+                "para"
+              ],
+              "answers": [
+                "por qué"
+              ],
+              "canonicalAnswer": "por qué",
+              "sentenceTranslations": {
+                "por qué": "你为什么学西班牙语？——因为我喜欢。"
+              },
+              "ambiguityNote": "提示：回答用 porque（因为），所以问的是原因：¿por qué?"
+            },
+            {
+              "id": "int-why-02",
+              "number": 2,
+              "prompt": "¿Por qué estudias español? — _______ me gusta.",
+              "options": [
+                "para qué",
+                "porque",
+                "para",
+                "por qué"
+              ],
+              "answers": [
+                "porque"
+              ],
+              "canonicalAnswer": "porque",
+              "sentenceTranslations": {
+                "porque": "你为什么学西班牙语？——因为我喜欢。"
+              },
+              "ambiguityNote": "提示：回答原因用 porque：连写、不带重音。"
+            },
+            {
+              "id": "int-why-03",
+              "number": 3,
+              "prompt": "¿_______ estudias español? — Para viajar a España.",
+              "options": [
+                "para qué",
+                "para",
+                "porque",
+                "por qué"
+              ],
+              "answers": [
+                "para qué"
+              ],
+              "canonicalAnswer": "para qué",
+              "sentenceTranslations": {
+                "para qué": "你学西班牙语是为了什么？——为了去西班牙旅行。"
+              },
+              "ambiguityNote": "提示：回答是 para + 动词原形（目的），所以问 ¿para qué?"
+            },
+            {
+              "id": "int-why-04",
+              "number": 4,
+              "prompt": "¿Para qué estudias español? — _______ viajar a España.",
+              "options": [
+                "porque",
+                "para qué",
+                "por qué",
+                "para"
+              ],
+              "answers": [
+                "para"
+              ],
+              "canonicalAnswer": "para",
+              "sentenceTranslations": {
+                "para": "你学西班牙语是为了什么？——为了去西班牙旅行。"
+              },
+              "ambiguityNote": "提示：表示目的：para + 动词原形。"
+            },
+            {
+              "id": "int-why-05",
+              "number": 5,
+              "prompt": "No puedo beber _______ no tengo agua.",
+              "options": [
+                "para qué",
+                "porque",
+                "para",
+                "por qué"
+              ],
+              "answers": [
+                "porque"
+              ],
+              "canonicalAnswer": "porque",
+              "sentenceTranslations": {
+                "porque": "我不能喝，因为我没有水。"
+              }
+            },
+            {
+              "id": "int-why-06",
+              "number": 6,
+              "prompt": "¿_______ no bebes? — Porque no tengo agua.",
+              "options": [
+                "por qué",
+                "porque",
+                "para",
+                "para qué"
+              ],
+              "answers": [
+                "por qué"
+              ],
+              "canonicalAnswer": "por qué",
+              "sentenceTranslations": {
+                "por qué": "你为什么不喝？——因为我没有水。"
+              }
+            }
+          ]
+        },
+        {
+          "id": "int-ser-estar",
+          "title": "Parte 3 - ¿Ser o estar?",
+          "instructions": "Ser：名字、特征、国籍；Estar：心情、状态、位置。选出正确的形式。",
+          "type": "single_choice",
+          "items": [
+            {
+              "id": "int-se-01",
+              "number": 1,
+              "prompt": "¿Cómo _______ tu perro? — Es pequeño y blanco.",
+              "options": [
+                "está",
+                "es"
+              ],
+              "answers": [
+                "es"
+              ],
+              "canonicalAnswer": "es",
+              "sentenceTranslations": {
+                "es": "你的狗是什么样的？——它又小又白。"
+              },
+              "ambiguityNote": "提示：问特征（长什么样）用 ser：¿cómo es…?"
+            },
+            {
+              "id": "int-se-02",
+              "number": 2,
+              "prompt": "¿Cómo _______ tu hermano? — Está cansado.",
+              "options": [
+                "está",
+                "es"
+              ],
+              "answers": [
+                "está"
+              ],
+              "canonicalAnswer": "está",
+              "sentenceTranslations": {
+                "está": "你兄弟现在怎么样？——他累了。"
+              },
+              "ambiguityNote": "提示：问现在的状态用 estar：¿cómo está…?"
+            },
+            {
+              "id": "int-se-03",
+              "number": 3,
+              "prompt": "¿Dónde _______ el baño?",
+              "options": [
+                "está",
+                "es"
+              ],
+              "answers": [
+                "está"
+              ],
+              "canonicalAnswer": "está",
+              "sentenceTranslations": {
+                "está": "洗手间在哪里？"
+              },
+              "ambiguityNote": "提示：位置用 estar。"
+            },
+            {
+              "id": "int-se-04",
+              "number": 4,
+              "prompt": "Mi padre _______ bien.",
+              "options": [
+                "está",
+                "es"
+              ],
+              "answers": [
+                "está"
+              ],
+              "canonicalAnswer": "está",
+              "sentenceTranslations": {
+                "está": "我父亲很好。"
+              },
+              "ambiguityNote": "提示：状态（好不好）用 estar。"
+            },
+            {
+              "id": "int-se-05",
+              "number": 5,
+              "prompt": "Yo _______ Juan.",
+              "options": [
+                "estoy",
+                "soy"
+              ],
+              "answers": [
+                "soy"
+              ],
+              "canonicalAnswer": "soy",
+              "sentenceTranslations": {
+                "soy": "我是 Juan。"
+              },
+              "ambiguityNote": "提示：名字用 ser。"
+            },
+            {
+              "id": "int-se-06",
+              "number": 6,
+              "prompt": "¿Quién _______? — Soy Juan.",
+              "options": [
+                "eres",
+                "estás"
+              ],
+              "answers": [
+                "eres"
+              ],
+              "canonicalAnswer": "eres",
+              "sentenceTranslations": {
+                "eres": "你是谁？——我是 Juan。"
+              },
+              "ambiguityNote": "提示：问身份用 ser。"
+            },
+            {
+              "id": "int-se-07",
+              "number": 7,
+              "prompt": "Nosotros _______ en casa.",
+              "options": [
+                "somos",
+                "estamos"
+              ],
+              "answers": [
+                "estamos"
+              ],
+              "canonicalAnswer": "estamos",
+              "sentenceTranslations": {
+                "estamos": "我们在家。"
+              },
+              "ambiguityNote": "提示：位置用 estar。"
+            },
+            {
+              "id": "int-se-08",
+              "number": 8,
+              "prompt": "Ellos _______ de España.",
+              "options": [
+                "son",
+                "están"
+              ],
+              "answers": [
+                "son"
+              ],
+              "canonicalAnswer": "son",
+              "sentenceTranslations": {
+                "son": "他们来自西班牙。"
+              },
+              "ambiguityNote": "提示：国籍、来源用 ser。"
+            },
+            {
+              "id": "int-se-09",
+              "number": 9,
+              "prompt": "María _______ muy contenta hoy.",
+              "options": [
+                "está",
+                "es"
+              ],
+              "answers": [
+                "está"
+              ],
+              "canonicalAnswer": "está",
+              "sentenceTranslations": {
+                "está": "María 今天很开心。"
+              },
+              "ambiguityNote": "提示：心情（暂时）用 estar。"
+            },
+            {
+              "id": "int-se-10",
+              "number": 10,
+              "prompt": "Vosotros _______ amigos.",
+              "options": [
+                "estáis",
+                "sois"
+              ],
+              "answers": [
+                "sois"
+              ],
+              "canonicalAnswer": "sois",
+              "sentenceTranslations": {
+                "sois": "你们是朋友。"
+              },
+              "ambiguityNote": "提示：身份、关系用 ser。"
+            },
+            {
+              "id": "int-se-11",
+              "number": 11,
+              "prompt": "Quiero _______ como tú.",
+              "options": [
+                "estar",
+                "ser"
+              ],
+              "answers": [
+                "ser"
+              ],
+              "canonicalAnswer": "ser",
+              "sentenceTranslations": {
+                "ser": "我想成为像你一样的人。"
+              },
+              "ambiguityNote": "提示：“成为什么样的人”是特征，用 ser。"
+            }
+          ]
+        },
+        {
+          "id": "int-conjugation",
+          "title": "Parte 4 - Conjuga ser y estar",
+          "instructions": "写出括号里动词的正确现在时形式。",
+          "type": "text_input",
+          "items": [
+            {
+              "id": "int-conj-01",
+              "number": 1,
+              "person": "yo",
+              "verb": "ser",
+              "prompt": "Yo _______ Juan. (ser)",
+              "answers": [
+                "soy"
+              ],
+              "canonicalAnswer": "soy",
+              "sentenceTranslations": {
+                "soy": "我是 Juan。"
+              }
+            },
+            {
+              "id": "int-conj-02",
+              "number": 2,
+              "person": "tú",
+              "verb": "ser",
+              "prompt": "Tú _______ mi amigo. (ser)",
+              "answers": [
+                "eres"
+              ],
+              "canonicalAnswer": "eres",
+              "sentenceTranslations": {
+                "eres": "你是我的朋友。"
+              }
+            },
+            {
+              "id": "int-conj-03",
+              "number": 3,
+              "person": "él / ella",
+              "verb": "ser",
+              "prompt": "Ella _______ profesora. (ser)",
+              "answers": [
+                "es"
+              ],
+              "canonicalAnswer": "es",
+              "sentenceTranslations": {
+                "es": "她是老师。"
+              }
+            },
+            {
+              "id": "int-conj-04",
+              "number": 4,
+              "person": "nosotros / nosotras",
+              "verb": "ser",
+              "prompt": "Nosotros _______ estudiantes. (ser)",
+              "answers": [
+                "somos"
+              ],
+              "canonicalAnswer": "somos",
+              "sentenceTranslations": {
+                "somos": "我们是学生。"
+              }
+            },
+            {
+              "id": "int-conj-05",
+              "number": 5,
+              "person": "vosotros / vosotras",
+              "verb": "ser",
+              "prompt": "Vosotras _______ de China. (ser)",
+              "answers": [
+                "sois"
+              ],
+              "canonicalAnswer": "sois",
+              "sentenceTranslations": {
+                "sois": "你们来自中国。"
+              }
+            },
+            {
+              "id": "int-conj-06",
+              "number": 6,
+              "person": "ellos / ellas",
+              "verb": "ser",
+              "prompt": "Ellos _______ altos. (ser)",
+              "answers": [
+                "son"
+              ],
+              "canonicalAnswer": "son",
+              "sentenceTranslations": {
+                "son": "他们个子高。"
+              }
+            },
+            {
+              "id": "int-conj-07",
+              "number": 7,
+              "person": "yo",
+              "verb": "estar",
+              "prompt": "Yo _______ bien. (estar)",
+              "answers": [
+                "estoy"
+              ],
+              "canonicalAnswer": "estoy",
+              "sentenceTranslations": {
+                "estoy": "我很好。"
+              }
+            },
+            {
+              "id": "int-conj-08",
+              "number": 8,
+              "person": "tú",
+              "verb": "estar",
+              "prompt": "¿Dónde _______ tú? (estar)",
+              "answers": [
+                "estás"
+              ],
+              "canonicalAnswer": "estás",
+              "sentenceTranslations": {
+                "estás": "你在哪儿？"
+              }
+            },
+            {
+              "id": "int-conj-09",
+              "number": 9,
+              "person": "él / ella",
+              "verb": "estar",
+              "prompt": "Mi hermano _______ cansado. (estar)",
+              "answers": [
+                "está"
+              ],
+              "canonicalAnswer": "está",
+              "sentenceTranslations": {
+                "está": "我兄弟累了。"
+              }
+            },
+            {
+              "id": "int-conj-10",
+              "number": 10,
+              "person": "nosotros / nosotras",
+              "verb": "estar",
+              "prompt": "Nosotras _______ en casa. (estar)",
+              "answers": [
+                "estamos"
+              ],
+              "canonicalAnswer": "estamos",
+              "sentenceTranslations": {
+                "estamos": "我们在家。"
+              }
+            },
+            {
+              "id": "int-conj-11",
+              "number": 11,
+              "person": "vosotros / vosotras",
+              "verb": "estar",
+              "prompt": "¿Cómo _______ vosotros? (estar)",
+              "answers": [
+                "estáis"
+              ],
+              "canonicalAnswer": "estáis",
+              "sentenceTranslations": {
+                "estáis": "你们好吗？"
+              }
+            },
+            {
+              "id": "int-conj-12",
+              "number": 12,
+              "person": "ellos / ellas",
+              "verb": "estar",
+              "prompt": "Mis padres _______ en España. (estar)",
+              "answers": [
+                "están"
+              ],
+              "canonicalAnswer": "están",
+              "sentenceTranslations": {
+                "están": "我父母在西班牙。"
+              }
+            }
+          ]
+        },
+        {
+          "id": "int-translate",
+          "title": "Parte 5 - Traduce al español",
+          "instructions": "把中文翻译成西班牙语。问号 ¿? 可写可不写；忘了重音会提示“很接近”。",
+          "type": "text_input",
+          "items": [
+            {
+              "id": "int-tr-01",
+              "number": 1,
+              "prompt": "你叫什么名字？",
+              "answers": [
+                "¿Cómo te llamas?",
+                "Cómo te llamas?",
+                "¿Cómo te llamas tú?",
+                "Cómo te llamas tú?",
+                "¿Tú cómo te llamas?",
+                "Tú cómo te llamas?"
+              ],
+              "canonicalAnswer": "¿Cómo te llamas?"
+            },
+            {
+              "id": "int-tr-02",
+              "number": 2,
+              "prompt": "你是谁？",
+              "answers": [
+                "¿Quién eres?",
+                "Quién eres?",
+                "¿Quién eres tú?",
+                "Quién eres tú?"
+              ],
+              "canonicalAnswer": "¿Quién eres?"
+            },
+            {
+              "id": "int-tr-03",
+              "number": 3,
+              "prompt": "你学什么？",
+              "answers": [
+                "¿Qué estudias?",
+                "Qué estudias?",
+                "¿Qué estudias tú?",
+                "Qué estudias tú?"
+              ],
+              "canonicalAnswer": "¿Qué estudias?"
+            },
+            {
+              "id": "int-tr-04",
+              "number": 4,
+              "prompt": "你好吗？",
+              "answers": [
+                "¿Cómo estás?",
+                "Cómo estás?",
+                "¿Cómo estás tú?",
+                "Cómo estás tú?",
+                "¿Qué tal?",
+                "Qué tal?"
+              ],
+              "canonicalAnswer": "¿Cómo estás?"
+            },
+            {
+              "id": "int-tr-05",
+              "number": 5,
+              "prompt": "洗手间在哪里？",
+              "answers": [
+                "¿Dónde está el baño?",
+                "Dónde está el baño?",
+                "¿Dónde está el servicio?",
+                "Dónde está el servicio?",
+                "¿Dónde está el aseo?",
+                "Dónde está el aseo?"
+              ],
+              "canonicalAnswer": "¿Dónde está el baño?"
+            },
+            {
+              "id": "int-tr-06",
+              "number": 6,
+              "prompt": "你最喜欢什么颜色？",
+              "answers": [
+                "¿Cuál es tu color favorito?",
+                "Cuál es tu color favorito?"
+              ],
+              "canonicalAnswer": "¿Cuál es tu color favorito?"
+            },
+            {
+              "id": "int-tr-07",
+              "number": 7,
+              "prompt": "你什么时候来家里？",
+              "answers": [
+                "¿Cuándo vienes a casa?",
+                "Cuándo vienes a casa?"
+              ],
+              "canonicalAnswer": "¿Cuándo vienes a casa?"
+            },
+            {
+              "id": "int-tr-08",
+              "number": 8,
+              "prompt": "你为什么学西班牙语？",
+              "answers": [
+                "¿Por qué estudias español?",
+                "Por qué estudias español?",
+                "¿Por qué estudias tú español?",
+                "Por qué estudias tú español?"
+              ],
+              "canonicalAnswer": "¿Por qué estudias español?"
+            },
+            {
+              "id": "int-tr-09",
+              "number": 9,
+              "prompt": "你有几只狗？",
+              "answers": [
+                "¿Cuántos perros tienes?",
+                "Cuántos perros tienes?",
+                "¿Cuántos perros tienes tú?",
+                "Cuántos perros tienes tú?"
+              ],
+              "canonicalAnswer": "¿Cuántos perros tienes?"
+            },
+            {
+              "id": "int-tr-10",
+              "number": 10,
+              "prompt": "我想成为像你一样的人。",
+              "answers": [
+                "Quiero ser como tú.",
+                "Yo quiero ser como tú."
+              ],
+              "canonicalAnswer": "Quiero ser como tú."
+            }
+          ]
+        }
+      ]
     }
   ]
 }

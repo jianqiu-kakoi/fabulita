@@ -92,3 +92,27 @@ def test_conjugation_assignment_is_committed_and_correct():
         assert set(item["options"]) <= set(conjugation_builder.conjugate(item["verb"]))
     ids = [item["id"] for section in assignment["sections"] for item in section["items"]]
     assert len(ids) == len(set(ids)) == 72
+
+
+interrogativos_builder = _load("build_mi_espanol_interrogativos_homework")
+
+
+def test_interrogativos_assignment_is_committed_and_correct():
+    assignment = interrogativos_builder.build_assignment()
+    assert _homework()["interrogativos-ser-estar-a1"] == assignment
+    question_words, why_for, ser_estar, conjugation, translate = assignment["sections"]
+    assert [len(section["items"]) for section in assignment["sections"]] == [10, 6, 11, 12, 10]
+    for section in (question_words, why_for, ser_estar):
+        for item in section["items"]:
+            assert item["prompt"].count("_______") == 1
+            assert item["answers"][0] in item["options"]
+            assert len(set(item["options"])) == len(item["options"])
+    assert [item["answers"] for item in conjugation["items"]] == [
+        ["soy"], ["eres"], ["es"], ["somos"], ["sois"], ["son"],
+        ["estoy"], ["estás"], ["está"], ["estamos"], ["estáis"], ["están"],
+    ]
+    first = translate["items"][0]
+    assert first["canonicalAnswer"] == "¿Cómo te llamas?"
+    assert "Cómo te llamas?" in first["answers"]
+    ids = [item["id"] for section in assignment["sections"] for item in section["items"]]
+    assert len(ids) == len(set(ids))
