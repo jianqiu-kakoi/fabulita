@@ -726,3 +726,28 @@ dejar,让、留下,to let; to leave,动词,verb
 ventilar,通风,to air out,动词,verb
 este / esta,这个,this,小词,determiner,,,这|这个|this
 el/la principiante,初学者,beginner,人物,word
+¿qué estudias?,你学什么？,What do you study?,疑问词,phrase,¿Qué estudias? Estudio español.,你学什么？我学西班牙语。,你学什么|你在学什么|what do you study|what are you studying
+¿quién eres?,你是谁？,Who are you?,疑问词,phrase,¿Quién eres? Soy Juan.,你是谁？我是 Juan。,你是谁|who are you
+¿cuál es tu color favorito?,你最喜欢什么颜色？,What is your favorite color?,疑问词,phrase,¿Cuál es tu color favorito? El azul.,你最喜欢什么颜色？蓝色。,你最喜欢什么颜色|你最喜欢的颜色是什么|what is your favorite color|what's your favorite color
+¿cómo te llamas?,你叫什么名字？,What's your name?,疑问词,phrase,¿Cómo te llamas? Me llamo Juan.,你叫什么名字？我叫 Juan。,你叫什么名字|你叫什么|what's your name|what is your name
+me llamo…,我叫……,My name is…,常用表达,phrase,Me llamo Juan.,我叫 Juan。,我叫|我的名字是|my name is|i am called
+¿cómo es tu perro?,你的狗是什么样的？（ser 问特征）,What is your dog like? (ser: traits),疑问词,phrase,¿Cómo es tu perro? Es pequeño y blanco.,你的狗是什么样的？它又小又白。,你的狗是什么样的|你的狗长什么样|what is your dog like|what's your dog like
+¿cómo está tu hermano?,你的兄弟（现在）怎么样？（estar 问状态）,How is your brother (doing)? (estar: state),疑问词,phrase,¿Cómo está tu hermano? Está cansado.,你兄弟现在怎么样？他累了。,你的兄弟怎么样|你兄弟好吗|你哥哥怎么样|你弟弟怎么样|how is your brother|how's your brother
+¿cómo está tu padre?,你父亲（现在）好吗？,How is your father?,疑问词,phrase,¿Cómo está tu padre? Mi padre está bien.,你父亲好吗？我父亲很好。,你父亲好吗|你爸爸好吗|你父亲怎么样|你爸爸怎么样|how is your father|how's your father|how is your dad
+¿cómo abro la puerta?,我怎么开这扇门？,How do I open the door?,疑问词,phrase,¿Cómo abro la puerta?,我怎么开门？,我怎么开门|怎么开门|how do i open the door
+¿cuándo vienes a casa?,你什么时候来家里？,When are you coming home?,疑问词,phrase,¿Cuándo vienes a casa? El lunes.,你什么时候来家里？星期一。,你什么时候来家里|你什么时候回家|你什么时候来我家|when are you coming home|when do you come home
+¿dónde estás?,你在哪里？,Where are you?,疑问词,phrase,¿Dónde estás? Estoy en casa.,你在哪儿？我在家。,你在哪里|你在哪儿|where are you
+¿dónde está el baño?,洗手间在哪里？,Where is the bathroom?,疑问词,phrase,¿Dónde está el baño? A la derecha.,洗手间在哪里？在右边。,洗手间在哪里|厕所在哪里|卫生间在哪里|洗手间在哪|where is the bathroom|where's the bathroom|where is the toilet
+¿por qué estudias español?,你为什么学西班牙语？,Why do you study Spanish?,疑问词,phrase,¿Por qué estudias español? Porque me gusta.,你为什么学西班牙语？因为我喜欢。,你为什么学西班牙语|why do you study spanish|why are you studying spanish
+¿cuántos? / ¿cuántas?,多少个？（可数名词复数前）,how many?,疑问词,question,¿Cuántos perros tienes? Tengo un perro.,你有几只狗？我有一只狗。,多少|多少个|几个|几|how many
+¿cuántos perros tienes?,你有几只狗？,How many dogs do you have?,疑问词,phrase,¿Cuántos perros tienes? Tengo un perro.,你有几只狗？我有一只狗。,你有几只狗|你有多少只狗|how many dogs do you have
+¿para qué estudias español?,你学西班牙语是为了什么？,What do you study Spanish for?,疑问词,phrase,¿Para qué estudias español? Para viajar a España.,你学西班牙语是为了什么？为了去西班牙旅行。,你学西班牙语是为了什么|你为了什么学西班牙语|what do you study spanish for|why do you study spanish
+¿por qué? vs porque,¿por qué? 分开写、带重音 = 为什么（提问）；porque 连写、无重音 = 因为（回答）,por qué = why (question); porque = because (answer),语法,grammar,¿Por qué estudias español? Porque me gusta.,你为什么学西班牙语？因为我喜欢。,,grammar
+¿por qué? vs ¿para qué?,¿por qué? 问原因 → porque…（因为……）；¿para qué? 问目的 → para + 动词原形（为了……）,por qué asks for a reason (porque…); para qué asks for a purpose (para + infinitive),语法,grammar,¿Para qué estudias español? Para viajar a España.,你学西班牙语是为了什么？为了去西班牙旅行。,,grammar
+ser vs estar,SER 回答 what?，表示“永久”：名字、特征、国籍、宗教；ESTAR 回答 how? / where?，表示“暂时”：心情、状态、位置,"ser = what? (permanent: name, traits, nationality, religion); estar = how? where? (temporary: mood, state, location)",语法,grammar,Soy Juan. Estoy en casa.,我是 Juan。我在家。,,grammar
+ser：yo soy / tú eres / él·ella es / nosotros·as somos / vosotros·as sois / ellos·as son,ser 的现在时变位,present tense of ser,语法,grammar,¿Quién eres? Soy Juan.,你是谁？我是 Juan。,,grammar
+estar：estoy / estás / está / estamos / estáis / están,estar 的现在时变位,present tense of estar,语法,grammar,¿Cómo estás? Estoy bien.,你好吗？我很好。,,grammar
+¿cómo es…? vs ¿cómo está…?,¿cómo es…?（ser）问特征：长什么样、什么性格；¿cómo está…?（estar）问现在的状态：好不好、累不累,cómo es asks about traits (ser); cómo está asks about current state (estar),语法,grammar,¿Cómo es tu perro? Es pequeño. / ¿Cómo está tu hermano? Está bien.,你的狗什么样？它很小。／你兄弟怎么样？他很好。,,grammar
+¿cómo? vs como,¿cómo? 带重音 = 怎样、如何（提问）；como 不带重音 = 像……；也可放句首表示“因为、既然”,"cómo = how (question); como = like / as; at the start of a sentence: since, because",语法,grammar,"Quiero ser como tú. / Como no tengo agua, no puedo beber.",我想成为像你一样的人。／因为我没有水，所以我不能喝。,,grammar
+quiero ser como tú,我想成为像你一样的人,I want to be like you,常用表达,phrase,Quiero ser como tú.,我想成为像你一样的人。,我想成为像你一样的人|我想像你一样|i want to be like you
+"como no tengo agua, no puedo beber",因为我没有水，所以我不能喝,"Since I have no water, I can't drink",常用表达,phrase,"Como no tengo agua, no puedo beber.",因为我没有水，所以我不能喝。,因为我没有水所以我不能喝|因为我没有水，所以我不能喝|我没有水所以不能喝|since i have no water i can't drink|since i don't have water i can't drink|as i have no water i cannot drink
