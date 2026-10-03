@@ -40884,13 +40884,19 @@
         {
           "id": "fr-order",
           "title": "Parte 1 - Ordena la frase",
-          "instructions": "把给出的词块排成一个正确的句子，整句写出来。问句记得加 ¿?；大小写和标点不影响判分。",
+          "instructions": "看中文意思，按顺序点词块拼成句子。点错了，点上面已选的词块就能撤回。",
           "type": "text_input",
           "items": [
             {
               "id": "fr-order-01",
               "number": 1,
-              "prompt": "排成句子：español / porque / estudio / me gusta",
+              "prompt": "排成句子：我学西班牙语，因为我喜欢。",
+              "wordTiles": [
+                "español",
+                "porque",
+                "estudio",
+                "me gusta"
+              ],
               "answers": [
                 "Estudio español porque me gusta."
               ],
@@ -40901,7 +40907,12 @@
             {
               "id": "fr-order-02",
               "number": 2,
-              "prompt": "排成句子：el baño / está / dónde",
+              "prompt": "排成句子：洗手间在哪里？",
+              "wordTiles": [
+                "el baño",
+                "está",
+                "dónde"
+              ],
               "answers": [
                 "¿Dónde está el baño?",
                 "Dónde está el baño?"
@@ -40913,7 +40924,12 @@
             {
               "id": "fr-order-03",
               "number": 3,
-              "prompt": "排成句子：bien / mi padre / está",
+              "prompt": "排成句子：我父亲很好。",
+              "wordTiles": [
+                "bien",
+                "mi padre",
+                "está"
+              ],
               "answers": [
                 "Mi padre está bien."
               ],
@@ -40924,7 +40940,12 @@
             {
               "id": "fr-order-04",
               "number": 4,
-              "prompt": "排成句子：pequeño / es / mi perro",
+              "prompt": "排成句子：我的狗很小。",
+              "wordTiles": [
+                "pequeño",
+                "es",
+                "mi perro"
+              ],
               "answers": [
                 "Mi perro es pequeño."
               ],
@@ -40935,7 +40956,12 @@
             {
               "id": "fr-order-05",
               "number": 5,
-              "prompt": "排成句子：perros / cuántos / tienes",
+              "prompt": "排成句子：你有几只狗？",
+              "wordTiles": [
+                "perros",
+                "cuántos",
+                "tienes"
+              ],
               "answers": [
                 "¿Cuántos perros tienes?",
                 "Cuántos perros tienes?"
@@ -40947,7 +40973,13 @@
             {
               "id": "fr-order-06",
               "number": 6,
-              "prompt": "排成句子：viajar a España / estudio / para / español",
+              "prompt": "排成句子：我学西班牙语是为了去西班牙旅行。",
+              "wordTiles": [
+                "viajar a España",
+                "estudio",
+                "para",
+                "español"
+              ],
               "answers": [
                 "Estudio español para viajar a España."
               ],
@@ -40958,7 +40990,12 @@
             {
               "id": "fr-order-07",
               "number": 7,
-              "prompt": "排成句子：en casa / nosotros / estamos",
+              "prompt": "排成句子：我们在家。",
+              "wordTiles": [
+                "en casa",
+                "nosotros",
+                "estamos"
+              ],
               "answers": [
                 "Nosotros estamos en casa."
               ],
@@ -40969,7 +41006,12 @@
             {
               "id": "fr-order-08",
               "number": 8,
-              "prompt": "排成句子：es / el azul / mi color favorito",
+              "prompt": "排成句子：我最喜欢的颜色是蓝色。",
+              "wordTiles": [
+                "es",
+                "el azul",
+                "mi color favorito"
+              ],
               "answers": [
                 "Mi color favorito es el azul.",
                 "El azul es mi color favorito."
@@ -40981,7 +41023,12 @@
             {
               "id": "fr-order-09",
               "number": 9,
-              "prompt": "排成句子：como tú / quiero / ser",
+              "prompt": "排成句子：我想成为像你一样的人。",
+              "wordTiles": [
+                "como tú",
+                "quiero",
+                "ser"
+              ],
               "answers": [
                 "Quiero ser como tú."
               ],
@@ -40992,7 +41039,12 @@
             {
               "id": "fr-order-10",
               "number": 10,
-              "prompt": "排成句子：no puedo beber / no tengo agua / como",
+              "prompt": "排成句子：因为我没有水，所以我不能喝。",
+              "wordTiles": [
+                "no puedo beber",
+                "no tengo agua",
+                "como"
+              ],
               "answers": [
                 "Como no tengo agua, no puedo beber."
               ],

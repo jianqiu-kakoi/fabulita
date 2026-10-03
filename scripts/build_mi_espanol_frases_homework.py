@@ -3,7 +3,7 @@
 
 Upserts one assignment into ``examples/mi-espanol/homework.json``:
 
-  1. 连词成句      text_input: put the given chunks in order
+  1. 连词成句      text_input + wordTiles: tap the chunks in order
   2. 完整句回答    text_input: answer a question with a whole sentence
   3. 整句中译西    text_input: translate a sentence that mixes ser and estar
   4. 小对话        multi_input: fill three gaps in a short A/B dialogue
@@ -197,7 +197,8 @@ def build_assignment() -> dict:
         {
             "id": f"fr-order-{number:02d}",
             "number": number,
-            "prompt": "排成句子：" + " / ".join(chunks),
+            "prompt": "排成句子：" + translation,
+            "wordTiles": chunks,
             "answers": _with_bare_variants(answers),
             "canonicalAnswer": answers[0],
             "answerTranslation": translation,
@@ -286,7 +287,7 @@ def build_assignment() -> dict:
             {
                 "id": "fr-order",
                 "title": "Parte 1 - Ordena la frase",
-                "instructions": "把给出的词块排成一个正确的句子，整句写出来。问句记得加 ¿?；大小写和标点不影响判分。",
+                "instructions": "看中文意思，按顺序点词块拼成句子。点错了，点上面已选的词块就能撤回。",
                 "type": "text_input",
                 "items": order_items,
             },

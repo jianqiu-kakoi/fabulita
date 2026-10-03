@@ -139,6 +139,11 @@ def test_frases_assignment_is_committed_and_well_formed():
             assert bare in item["answers"]
     for item in write["items"]:
         assert item["answerMode"] == "self_review" and item["answers"]
+    for item in order["items"]:
+        # Tapping every tile in the right order must rebuild an accepted answer.
+        assert item["id"].startswith("fr-order-") and len(item["wordTiles"]) >= 3
+        joined = " ".join(item["wordTiles"]).lower()
+        assert sorted(joined.split()) == sorted(item["canonicalAnswer"].lower().replace(",", "").replace(".", "").replace("¿", "").replace("?", "").split())
     ids = [item["id"] for section in assignment["sections"] for item in section["items"]]
     assert len(ids) == len(set(ids))
 
