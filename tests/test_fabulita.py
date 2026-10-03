@@ -193,7 +193,8 @@ def test_studio_build(tmp_path):
 
 
 @pytest.mark.parametrize("demo,n", [("es-a1", 6), ("en-a1", 1), ("ja-n5", 1),
-                                     ("mi-espanol", 0), ("my-english", 1)])
+                                     ("mi-espanol", 0), ("my-english", 1),
+                                     ("my-japanese", 0)])
 def test_example_projects_validate(demo, n):
     proj = Project(REPO / "examples" / demo)
     if not (proj.root / "vocab.json").exists():
@@ -224,10 +225,14 @@ def test_mi_espanol_vocab_dashboard_build():
     project = Project(project_root)
     vocab.import_file(project, project_root / "vocab.csv")
     words = project.vocab
-    assert len(words) == 80
-    assert len({w["w"].casefold() for w in words}) == 80
+    assert len(words) == 606
+    assert len({w["w"].casefold() for w in words}) == 606
     headwords = {w["w"] for w in words}
-    assert {"la llave", "el queso", "¿cómo estás?", "ser", "estar"} <= headwords
+    assert {
+        "la llave", "el queso", "¿cómo estás?", "ser", "estar",
+        "la tortuga", "el baloncesto", "miércoles", "el frigorífico",
+        "la playa", "el aguacate", "el helicóptero", "el sofá",
+    } <= headwords
     assert "Yencho" not in headwords and "Budist" not in headwords
     by_word = {w["w"]: w for w in words}
     assert by_word["el profesor"]["answers"] == "男老师|老师|male teacher|teacher"
@@ -235,8 +240,8 @@ def test_mi_espanol_vocab_dashboard_build():
     assert by_word["inteligente"]["answers"] == "聪明|聪明的|intelligent|smart|clever"
     assert by_word["bien"]["answers"] == "好|好地|状态良好|well|good"
     assert "and" not in by_word["con"].get("answers", "").split("|")
-    assert sum(word.get("kind") == "grammar" for word in words) == 5
-    assert sum(word.get("review_mode") == "grammar" for word in words) == 3
+    assert sum(word.get("kind") == "grammar" for word in words) == 7
+    assert sum(word.get("review_mode") == "grammar" for word in words) == 5
     out, _, n_stories, _ = build.build(project)
     html = out.read_text(encoding="utf-8")
     assert n_stories == 0
@@ -307,7 +312,7 @@ def test_mi_espanol_vocab_dashboard_build():
     assert "function reviewHistoryCsv" in html and "function csvSafeValue" in html
     assert "typedAnswer" in html and "answerCorrect" in html and "ratingInput" in html
     assignments = project.homeworks
-    assert len(assignments) == 3
+    assert len(assignments) == 16
     assignment = next(
         item for item in assignments
         if item["id"] == "ejercicios-vocabulario-a1-1"
@@ -315,6 +320,14 @@ def test_mi_espanol_vocab_dashboard_build():
     conjugation = next(
         item for item in assignments
         if item["id"] == "ser-estar-conjugation-a1"
+    )
+    bilingual_ser_estar = next(
+        item for item in assignments
+        if item["id"] == "ser-estar-practice-a1-01"
+    )
+    present_ser_estar = next(
+        item for item in assignments
+        if item["id"] == "ser-estar-present-a1-02"
     )
     assert len(assignment["sections"]) == 2
     items = [item for section in assignment["sections"] for item in section["items"]]
@@ -324,6 +337,14 @@ def test_mi_espanol_vocab_dashboard_build():
     ]
     assert len(conjugation_items) == 12
     assert {section["type"] for section in conjugation["sections"]} == {"text_input"}
+    assert sum(
+        len(section["items"]) for section in bilingual_ser_estar["sections"]
+    ) == 21
+    assert sum(
+        len(section["items"]) for section in present_ser_estar["sections"]
+    ) == 31
+    assert bilingual_ser_estar["source"] == {}
+    assert present_ser_estar["source"] == {}
     assert assignment["answerKeyBasis"] == "inferred_from_context"
     assert assignment["sections"][0]["items"][11]["answers"] == ["zapato", "sombrero"]
     assert assignment["sections"][1]["items"][14]["answers"] == ["café"]
@@ -378,6 +399,29 @@ def test_demo_data_js(proj, tmp_path):
     assert all(s["status"] == "accepted" for s in data["stories"])
     out, size = build.build_demo_data(proj, tmp_path / "demo-data-es.js")
     assert out.exists() and size == len(js)
+
+
+def test_local_homework_appends_only_when_requested(tmp_path):
+    root = tmp_path / "proj"
+    root.mkdir()
+    (root / "fabulita.json").write_text(json.dumps({
+        "name": "Local Test", "lang": "es",
+    }), encoding="utf-8")
+    (root / "homework.json").write_text(json.dumps({
+        "version": 1,
+        "assignments": [{"id": "public-1", "title": "公开", "sections": []}],
+    }), encoding="utf-8")
+    (root / "homework.local.json").write_text(json.dumps({
+        "version": 1,
+        "assignments": [{"id": "local-1", "title": "原样", "sections": []}],
+    }), encoding="utf-8")
+    project = Project(root)
+
+    public = build.payload(project)["homeworks"]
+    assert [a["id"] for a in public] == ["public-1"]
+
+    combined = build.payload(project, include_local_homework=True)["homeworks"]
+    assert [a["id"] for a in combined] == ["public-1", "local-1"]
 
 
 def test_demo_manifest_js(proj, tmp_path):

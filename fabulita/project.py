@@ -18,6 +18,7 @@ CONFIG_FILE = "fabulita.json"
 VOCAB_FILE = "vocab.json"
 GLOSSARY_FILE = "glossary.json"
 HOMEWORK_FILE = "homework.json"
+LOCAL_HOMEWORK_FILE = "homework.local.json"
 STORIES_DIR = "stories"
 AUDIO_DIR = "audio"
 
@@ -120,6 +121,13 @@ class Project:
     def homeworks(self):
         """Optional interactive assignments kept separate from the vocabulary catalog."""
         data = self._read(HOMEWORK_FILE, {"assignments": []})
+        assignments = data.get("assignments", []) if isinstance(data, dict) else []
+        return assignments if isinstance(assignments, list) else []
+
+    @property
+    def local_homeworks(self):
+        """Private verbatim assignments; never shipped in committed builds."""
+        data = self._read(LOCAL_HOMEWORK_FILE, {"assignments": []})
         assignments = data.get("assignments", []) if isinstance(data, dict) else []
         return assignments if isinstance(assignments, list) else []
 

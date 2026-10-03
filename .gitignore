@@ -27,3 +27,11 @@ examples/*/dist/
 
 # Third-party classroom material: keep out of the public repo
 examples/mi-espanol/materials/ejercicios-vocabulario-a1-1.pdf
+examples/mi-espanol/materials/Ejercicio_SER_y_ESTAR_1*.pdf
+examples/mi-espanol/materials/Ejercicio_SER_y_ESTAR_2*.pdf
+examples/mi-espanol/materials/ejercicio-ser-estar-01-practica-bilingue.pdf
+examples/mi-espanol/materials/ejercicio-ser-estar-02-conjugacion-presente.pdf
+# User-supplied A0 visual vocabulary artwork; local study use only.
+examples/mi-espanol/materials/vocabulario-a0-visual/
+examples/*/homework.local.json
+docs/*.local.html

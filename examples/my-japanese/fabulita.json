@@ -1,0 +1,16 @@
+{
+  "name": "My Japanese",
+  "lang": "ja",
+  "gloss_lang": "zh",
+  "ui_default": "zh",
+  "review_id": "my-japanese-core-v1",
+  "qa_id": "my-japanese",
+  "history_id": "my-japanese",
+  "homework_id": "my-japanese",
+  "layout": "vocab",
+  "tts": {
+    "backend": "none",
+    "voice": "ja-JP-NanamiNeural"
+  },
+  "max_words_per_story": 20
+}

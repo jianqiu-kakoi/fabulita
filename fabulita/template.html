@@ -617,7 +617,7 @@
   .homework-type-card-head strong { font-size: 0.83rem; }
   .homework-type-card-head span { color: var(--v-muted); font-size: 0.68rem; font-weight: 750; }
   .homework-type-track {
-    height: 0.45rem; margin-top: 0.55rem; overflow: hidden; border-radius: 99px; background: #ebe8e3;
+    display: block; height: 0.45rem; margin-top: 0.55rem; overflow: hidden; border-radius: 99px; background: #ebe8e3;
   }
   .homework-type-track span { display: block; height: 100%; border-radius: inherit; background: var(--v-accent); }
   .homework-type-card small { display: block; margin-top: 0.45rem; color: var(--v-muted); font-size: 0.62rem; }
@@ -658,6 +658,20 @@
   .homework-prompt {
     margin: 0 0 1.3rem; font: 720 clamp(1.15rem, 2.1vw, 1.5rem)/1.55 var(--sans); overflow-wrap: anywhere;
   }
+  .homework-visual-prompt {
+    display: grid; place-items: center; gap: 0.45rem; width: min(100%, 30rem); margin: 0 auto 1.2rem;
+  }
+  .homework-visual-prompt img {
+    display: block; width: 100%; max-height: 20rem; aspect-ratio: 21 / 16; object-fit: contain;
+    border: 1px solid #e3ddd3; border-radius: 16px; background: #fbf7f0;
+    box-shadow: 0 12px 30px rgba(56,47,37,0.08);
+  }
+  .homework-visual-prompt figcaption { color: var(--v-muted); font-size: 0.68rem; }
+  .homework-visual-prompt img.homework-library-icon {
+    width: min(100%, 18rem); height: 12rem; object-fit: scale-down; background: #fff;
+  }
+  .vocab-image-credits { font-size: 0.68rem; color: var(--v-muted); line-height: 1.6; }
+  .vocab-image-credits a { color: inherit; text-underline-offset: 3px; }
   .homework-sheet.is-dialogue {
     max-width: 58rem; margin: 0 auto; border-color: #eadfd2;
     background: linear-gradient(150deg, rgba(255,253,248,0.96), rgba(255,247,237,0.9));
@@ -690,9 +704,25 @@
   .homework-dialogue-task p { margin: 0.3rem 0 0; color: #315f7f; font-size: 0.76rem; }
   .homework-text-answer.is-dialogue { height: 3.6rem; border-color: #bcd4e8; background: #f7fbff; font-size: 1rem; }
   .homework-options { display: grid; gap: 0.65rem; margin: 0 0 1.25rem; }
+  .homework-options.is-image { grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: stretch; }
   .homework-option {
     display: flex; align-items: center; gap: 0.75rem; min-height: 3rem; padding: 0.7rem 0.85rem;
     border: 1px solid #d8d3cb; border-radius: 9px; background: rgba(255,255,255,0.78); cursor: pointer;
+  }
+  .homework-option.is-image { align-items: flex-start; min-width: 0; padding: 0.65rem; }
+  .homework-option-image { display: grid; place-items: center; width: 100%; min-width: 0; }
+  .homework-option-image img {
+    display: block; width: 100%; aspect-ratio: 21 / 16; object-fit: contain; border-radius: 10px; background: #fbf7f0;
+  }
+  .homework-option-image img.homework-library-icon { height: 10rem; object-fit: scale-down; background: #fff; }
+  .homework-option-letter {
+    flex: 0 0 auto; display: inline-grid; place-items: center; width: 1.7rem; height: 1.7rem;
+    border-radius: 999px; border: 1px solid #cfc7bb; background: #fbf7f0; color: #5b5449;
+    font-size: 0.82rem; font-weight: 700; letter-spacing: 0.02em;
+  }
+  .homework-option.is-image .homework-option-letter { margin-top: 0.1rem; }
+  .homework-option:has(input:checked) .homework-option-letter {
+    border-color: var(--v-accent); background: var(--v-accent); color: #fff;
   }
   .homework-option:hover { border-color: var(--v-accent); }
   .homework-option:has(input:checked) { border-color: var(--v-accent); background: var(--v-accent-soft); }
@@ -700,6 +730,9 @@
   .homework-text-answer {
     width: 100%; height: 3.1rem; margin: 0 0 1.25rem; padding: 0 0.95rem; border: 1px solid #d6d0c7;
     border-radius: 9px; background: rgba(255,255,255,0.82); color: var(--v-ink); font: 0.92rem var(--sans); outline: none;
+  }
+  .homework-text-answer.is-open-response {
+    min-height: 7rem; height: auto; padding: 0.8rem 0.95rem; line-height: 1.55; resize: vertical;
   }
   .homework-text-answer:focus { border-color: var(--v-accent); box-shadow: 0 0 0 3px rgba(230,95,67,0.12); }
   .homework-check-row { display: flex; align-items: center; justify-content: space-between; gap: 0.8rem; }
@@ -711,7 +744,37 @@
   .homework-feedback.is-correct { border-color: #c9dec7; background: #edf6eb; color: #315f3c; }
   .homework-feedback.is-near_miss { border-color: #efd58b; background: #fff8e8; color: #765f28; }
   .homework-feedback.is-incorrect { border-color: #efc7bd; background: #fff0ec; color: #9e3f2f; }
+  .homework-feedback.is-self_reviewed { border-color: #bfd6e9; background: #eef6ff; color: #315f7f; }
   .homework-ambiguity { display: block; margin-top: 0.35rem; opacity: 0.84; }
+  .homework-multi { display: flex; gap: 0.8rem; flex-wrap: wrap; }
+  .homework-multi-field { flex: 1 1 12rem; min-width: 10rem; display: flex; flex-direction: column; gap: 0.3rem; }
+  .homework-blank-results { margin: 0.45rem 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 0.3rem; }
+  .homework-blank-result { display: flex; gap: 0.55rem; align-items: baseline; flex-wrap: wrap; }
+  .homework-blank-result .homework-blank-label { font-size: 0.68rem; opacity: 0.8; min-width: 7.5rem; }
+  .homework-blank-result .homework-blank-answer { font-weight: 700; }
+  .homework-blank-result.is-correct .homework-blank-mark { color: #315f3c; }
+  .homework-blank-result.is-incorrect .homework-blank-mark { color: #9e3f2f; }
+  .homework-history { margin-top: 0.9rem; border-top: 1px dashed var(--v-line); padding-top: 0.6rem; }
+  .homework-history-toggle {
+    border: 0; background: none; padding: 0; cursor: pointer; font: inherit; font-size: 0.74rem; color: var(--v-muted);
+  }
+  .homework-history-toggle:hover { color: var(--v-accent); }
+  .homework-history-list { list-style: none; margin: 0.55rem 0 0; padding: 0; display: flex; flex-direction: column; gap: 0.28rem; }
+  .homework-history-row { display: flex; gap: 0.6rem; align-items: baseline; font-size: 0.74rem; }
+  .homework-history-time { color: var(--v-muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .homework-history-answer { flex: 1; min-width: 0; word-break: break-all; }
+  .homework-history-blank { font-style: normal; color: var(--v-muted); font-size: 0.68rem; }
+  .homework-history-verdict { white-space: nowrap; font-size: 0.68rem; padding: 0.06rem 0.45rem; border-radius: 99px; background: #f1efe9; color: var(--v-muted); }
+  .homework-history-row.is-correct .homework-history-verdict { background: #edf6eb; color: #315f3c; }
+  .homework-history-row.is-near_miss .homework-history-verdict { background: #fff8e8; color: #765f28; }
+  .homework-history-row.is-incorrect .homework-history-verdict { background: #fff0ec; color: #9e3f2f; }
+  .homework-history-empty { margin: 0.5rem 0 0; color: var(--v-muted); font-size: 0.72rem; }
+  .homework-analysis { margin-top: 0.7rem; display: flex; flex-direction: column; gap: 0.45rem; align-items: flex-start; }
+  .homework-analysis-text {
+    white-space: pre-wrap; border: 1px solid var(--v-line); border-radius: 10px; background: #faf8f2;
+    padding: 0.65rem 0.8rem; font-size: 0.78rem; line-height: 1.6; width: 100%; box-sizing: border-box;
+  }
+  .homework-analysis-meta, .homework-analysis-status { margin: 0; color: var(--v-muted); font-size: 0.7rem; }
   .homework-dialogue-model {
     display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-top: 0.85rem;
     padding: 0.9rem 1rem; border: 1px solid #bfd6e9; border-radius: 14px; background: #eef6ff;
@@ -902,6 +965,7 @@
     display: inline-flex; align-items: center; justify-content: center; width: 3.5rem; height: 3.5rem;
     border-radius: 50%; background: var(--v-mint); color: var(--v-mint-ink); font-size: 1.4rem; font-weight: 850;
   }
+  .homework-summary-note { margin: 0.2rem 0 0; color: var(--v-muted); font-size: 0.72rem; }
   .homework-summary h2 { margin: 0.8rem 0 0.3rem; font-size: 1.35rem; }
   .homework-summary > p { margin: 0; color: var(--v-muted); font-size: 0.78rem; }
   .homework-summary-stats {
@@ -1097,6 +1161,26 @@
   .vocab-review-column .review-action.primary { background: #edf6eb; border-color: #c9dec7; color: #315f3c; }
   .vocab-review-column .review-reveal { border-radius: 9px; background: var(--v-accent); border-color: var(--v-accent); color: #fff; }
   .vocab-review-foot { padding: 0.85rem 1.35rem; border-top: 1px solid var(--v-line); color: var(--v-muted); font-size: 0.72rem; text-align: center; }
+  .homework-mistakes { margin-top: 1rem; padding-top: 0.9rem; border-top: 1px solid var(--v-line); }
+  .homework-mistakes-head { display: flex; align-items: baseline; justify-content: space-between; }
+  .homework-mistakes-head h2 { margin: 0; font-size: 0.9rem; }
+  .homework-mistakes-head span { color: var(--v-muted); font-size: 0.68rem; font-weight: 750; }
+  .homework-mistakes-empty, .homework-mistakes-notice { margin: 0.6rem 0 0; color: var(--v-muted); font-size: 0.72rem; }
+  .homework-mistakes-list { margin: 0.6rem 0 0; padding: 0; list-style: none; display: grid; gap: 0.5rem; }
+  .homework-mistake { border: 1px solid var(--v-line); border-radius: 10px; background: rgba(255,255,255,0.72); }
+  .homework-mistake-summary { display: block; width: 100%; padding: 0.6rem 0.7rem; border: 0; background: none; text-align: left; cursor: pointer; font: inherit; }
+  .homework-mistake-title { display: block; color: var(--v-muted); font-size: 0.62rem; font-weight: 750; }
+  .homework-mistake-prompt { display: block; margin-top: 0.2rem; font-size: 0.74rem; }
+  .homework-mistake.is-resolved .homework-mistake-prompt { color: var(--v-muted); }
+  .homework-mistake-redo { display: flex; gap: 0.45rem; padding: 0 0.7rem 0.65rem; }
+  .homework-mistake-input { flex: 1; min-width: 0; padding: 0.4rem 0.55rem; border: 1px solid var(--v-line); border-radius: 8px; font: inherit; }
+  .homework-mistake-check, .homework-mistakes-toggle { padding: 0.4rem 0.7rem; border: 1px solid var(--v-line); border-radius: 8px; background: #fff; cursor: pointer; font: inherit; font-size: 0.7rem; }
+  .homework-mistakes-toggle { margin-top: 0.6rem; }
+  .homework-mistake-options { display: flex; flex-wrap: wrap; gap: 0.45rem; padding: 0 0.7rem 0.65rem; }
+  .homework-mistake-options.is-image { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .homework-mistake-option { padding: 0.4rem 0.7rem; border: 1px solid var(--v-line); border-radius: 8px; background: #fff; cursor: pointer; font: inherit; font-size: 0.72rem; }
+  .homework-mistake-option.is-image { min-width: 0; padding: 0.4rem; }
+  .homework-mistake-option.is-image .homework-option-image img { border-radius: 6px; }
   .vocab-dashboard button:focus-visible, .vocab-dashboard input:focus-visible, .vocab-dashboard textarea:focus-visible {
     outline: 3px solid rgba(230,95,67,0.28); outline-offset: 2px;
   }
@@ -1186,6 +1270,7 @@
     .homework-progress { grid-template-columns: 1fr auto; }
     .homework-progress-bar { grid-column: 1 / -1; grid-row: 2; }
     .homework-check-row, .homework-nav { align-items: stretch; flex-direction: column; }
+    .homework-options.is-image { grid-template-columns: 1fr; }
     .homework-check-row .homework-button, .homework-nav .homework-button { width: 100%; }
     .homework-feedback-actions { align-items: flex-start; flex-direction: column; }
     .homework-option-meaning { grid-template-columns: 1fr 1fr; align-items: start; }
@@ -1336,6 +1421,28 @@
     .review-stat strong { font-size: 1.2rem; }
     .review-panel { min-height: 21rem; padding: 1.45rem 1.1rem; }
   }
+
+  .chat-widget { position: fixed; right: 1.1rem; bottom: 1.1rem; z-index: 60; display: flex; flex-direction: column; align-items: flex-end; gap: 0.6rem; }
+  .chat-fab {
+    width: 3rem; height: 3rem; border: 0; border-radius: 50%; background: var(--v-accent); color: #fff;
+    font-size: 1.25rem; cursor: pointer; box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+  }
+  .chat-panel {
+    width: min(20rem, calc(100vw - 2.2rem)); max-height: 24rem; display: flex; flex-direction: column;
+    border: 1px solid var(--v-line); border-radius: 14px; background: #fff; box-shadow: 0 10px 30px rgba(0,0,0,0.16); overflow: hidden;
+  }
+  .chat-panel-head { display: flex; align-items: center; justify-content: space-between; padding: 0.6rem 0.8rem; border-bottom: 1px solid var(--v-line); }
+  .chat-panel-head h2 { margin: 0; font-size: 0.8rem; }
+  .chat-close { border: 0; background: none; font-size: 1rem; cursor: pointer; color: var(--v-muted); }
+  .chat-log { flex: 1; min-height: 6rem; overflow-y: auto; padding: 0.7rem 0.8rem; display: flex; flex-direction: column; gap: 0.45rem; }
+  .chat-empty, .chat-note { margin: 0; color: var(--v-muted); font-size: 0.68rem; }
+  .chat-note { padding: 0 0.8rem 0.6rem; }
+  .chat-message { margin: 0; max-width: 85%; padding: 0.42rem 0.6rem; border-radius: 10px; font-size: 0.74rem; white-space: pre-wrap; }
+  .chat-message.is-user { align-self: flex-end; background: var(--v-accent-soft); }
+  .chat-message.is-assistant { align-self: flex-start; background: #f1efe9; }
+  .chat-compose { display: flex; gap: 0.45rem; padding: 0.55rem 0.8rem; border-top: 1px solid var(--v-line); }
+  .chat-input { flex: 1; min-width: 0; padding: 0.45rem 0.6rem; border: 1px solid var(--v-line); border-radius: 9px; font: inherit; font-size: 0.74rem; }
+  .chat-send { padding: 0.45rem 0.8rem; border: 0; border-radius: 9px; background: var(--v-accent); color: #fff; cursor: pointer; font: inherit; font-size: 0.72rem; }
 </style>
 
 <div class="wrap" id="app"></div>
@@ -1480,7 +1587,15 @@
     homeworkScenarioIntro: false,
     homeworkScenarioTeaching: false,
     homeworkTeachingWordKey: "",
-    homeworkDialogueTranslations: true
+    homeworkDialogueTranslations: true,
+    mistakeOpenKey: "",
+    mistakeNotice: "",
+    mistakeShowResolved: false,
+    chatOpen: false,
+    chatDraft: "",
+    homeworkHistoryOpenId: "",
+    homeworkAnalysisPendingId: "",
+    homeworkAnalysisNotice: ""
   };
 
   function t(key) { return (UI[state.lang] || UI.en)[key] || key; }
@@ -2588,10 +2703,12 @@
   // ── interactive homework (dashboard only; independent by default, with opt-in review bridge) ──
   var HOMEWORK_LS = "fabulita.homework.v1";
   var HOMEWORK_MAX_ANSWER = 300;
+  var HOMEWORK_MAX_STORED = 900;  // multi_input stores a JSON object of blank answers
   // Backend provider calls are capped at 20 s (12 s in the VPS profile).
   // Keep a small response/transport margin while staying below Caddy's 30 s.
   var HOMEWORK_SCORING_TIMEOUT_MS = 25000;
   var homeworkRetryDrafts = Object.create(null);
+  var homeworkMistakeDrafts = Object.create(null);
   function homeworkRetryDraftKey(assignment, item) {
     return String(assignment && assignment.id || "") + "\n" +
       String(item && item.id || "");
@@ -2625,9 +2742,18 @@
     (assignment && Array.isArray(assignment.sections) ? assignment.sections : []).forEach(function (section) {
       (section && Array.isArray(section.items) ? section.items : []).forEach(function (item) {
         if (!item || typeof item.id !== "string" || !item.id || seen[item.id]) return;
-        if (typeof item.prompt !== "string" || !Array.isArray(item.answers) || !item.answers.length) return;
+        if (typeof item.prompt !== "string") return;
+        if (section.type === "multi_input") {
+          if (!homeworkBlanks(item).length) return;
+          seen[item.id] = true;
+          out.push({ item: item, section: section, type: "multi_input" });
+          return;
+        }
+        if (!Array.isArray(item.answers) || !item.answers.length) return;
         seen[item.id] = true;
-        out.push({ item: item, section: section, type: section.type === "single_choice" ? "single_choice" : "text_input" });
+        var type = item.answerMode === "self_review" || section.type === "open_response" ?
+          "open_response" : (section.type === "single_choice" ? "single_choice" : "text_input");
+        out.push({ item: item, section: section, type: type });
       });
     });
     return out;
@@ -2652,8 +2778,10 @@
     Object.keys(responses).forEach(function (id) {
       var response = responses[id];
       if (!validIds[id] || !response || typeof response.answer !== "string") return;
-      var item = { answer: response.answer.slice(0, HOMEWORK_MAX_ANSWER) };
-      if (["correct", "near_miss", "incorrect"].indexOf(response.status) !== -1) item.status = response.status;
+      var item = { answer: response.answer.slice(0, HOMEWORK_MAX_STORED) };
+      if (["correct", "near_miss", "incorrect", "self_reviewed"].indexOf(response.status) !== -1) {
+        item.status = response.status;
+      }
       if (isFinite(+response.checkedAt)) item.checkedAt = +response.checkedAt;
       if (typeof response.meaningCorrect === "boolean") item.meaningCorrect = response.meaningCorrect;
       if (typeof response.feedbackZh === "string") item.feedbackZh = response.feedbackZh.slice(0, 500);
@@ -2664,6 +2792,15 @@
       if (typeof response.modelVersion === "string") item.modelVersion = response.modelVersion.slice(0, 120);
       if (typeof response.rubricVersion === "string") item.rubricVersion = response.rubricVersion.slice(0, 120);
       if (typeof response.originalVerdict === "string") item.originalVerdict = response.originalVerdict.slice(0, 40);
+      if (["correct", "near_miss", "incorrect"].indexOf(response.firstStatus) !== -1) {
+        item.firstStatus = response.firstStatus;
+      }
+      if (isFinite(+response.firstCheckedAt) && +response.firstCheckedAt > 0) {
+        item.firstCheckedAt = +response.firstCheckedAt;
+      }
+      if (isFinite(+response.mistakeResolvedAt) && +response.mistakeResolvedAt > 0) {
+        item.mistakeResolvedAt = +response.mistakeResolvedAt;
+      }
       item.updatedAt = isFinite(+response.updatedAt) ? +response.updatedAt : 0;
       clean.responses[id] = item;
     });
@@ -2724,6 +2861,59 @@
     }
     return snapshotPersisted;
   }
+  var CHAT_LS = "fabulita.chat.v1";
+  var CHAT_MAX_MESSAGE = 2000;
+  var CHAT_MAX_HISTORY = 200;
+  function loadChatRoot() {
+    var root = learningPersistence.loadSnapshot(CHAT_LS, null);
+    if (root && root.version === 1 && root.scopes && typeof root.scopes === "object" && !Array.isArray(root.scopes)) {
+      return root;
+    }
+    return { version: 1, scopes: {} };
+  }
+  function chatMessages() {
+    var root = loadChatRoot();
+    var scope = root.scopes[homeworkScopeKey];
+    var list = scope && Array.isArray(scope.messages) ? scope.messages : [];
+    return list.filter(function (message) {
+      return message && (message.role === "user" || message.role === "assistant") &&
+        typeof message.text === "string" && message.text;
+    });
+  }
+  function appendChatMessage(role, text) {
+    try {
+      var root = loadChatRoot();
+      var scope = root.scopes[homeworkScopeKey];
+      if (!scope || typeof scope !== "object" || Array.isArray(scope)) scope = { messages: [] };
+      if (!Array.isArray(scope.messages)) scope.messages = [];
+      scope.messages.push({
+        id: reviewEventNewId("chat"),
+        role: role,
+        text: String(text).slice(0, CHAT_MAX_MESSAGE),
+        at: Date.now()
+      });
+      if (scope.messages.length > CHAT_MAX_HISTORY) {
+        scope.messages = scope.messages.slice(-CHAT_MAX_HISTORY);
+      }
+      scope.updatedAt = Date.now();
+      root.scopes[homeworkScopeKey] = scope;
+      return learningPersistence.saveSnapshot(CHAT_LS, root);
+    } catch (e) {
+      return false;
+    }
+  }
+  function chatAutoReply() {
+    // Seam for a future LLM transport (window.fabulitaLearningServices.chat).
+    return "收到";
+  }
+  function sendChatMessage(text) {
+    var trimmed = String(text == null ? "" : text).trim();
+    if (!trimmed) return false;
+    if (!appendChatMessage("user", trimmed)) return false;
+    appendChatMessage("assistant", chatAutoReply());
+    state.chatDraft = "";
+    return true;
+  }
   var HOMEWORK_STUDY_LS = "fabulita.homework.study.v1";
   var HOMEWORK_STUDY_MAX_ANSWER = 180;
   function homeworkStudyWords(assignment) {
@@ -2745,12 +2935,12 @@
     });
     return out;
   }
-  function homeworkStudyWordByText(assignment, value) {
+  function homeworkWordByText(words, value) {
     var key = homeworkNormalize(value);
+    if (!key) return null;
     var articlePattern = String(P.config.lang || "").toLowerCase() === "en" ?
       /^(?:a|an|the)\s+/i : /^(?:el|la|los|las|un|una|unos|unas)\s+/i;
     var bareKey = key.replace(articlePattern, "");
-    var words = homeworkStudyWords(assignment);
     for (var i = 0; i < words.length; i++) {
       var forms = [words[i].word].concat(Array.isArray(words[i].forms) ? words[i].forms : []);
       for (var formIndex = 0; formIndex < forms.length; formIndex++) {
@@ -2759,6 +2949,14 @@
       }
     }
     return null;
+  }
+  function homeworkStudyWordByText(assignment, value) {
+    return homeworkWordByText(homeworkStudyWords(assignment), value);
+  }
+  function homeworkFeedbackWordByText(assignment, value) {
+    // The sentence vocabulary keeps assignment meanings ahead of the main
+    // vocabulary and also covers picture homework without its own studyWords.
+    return homeworkWordByText(homeworkSentenceVocabulary(assignment), value);
   }
   function homeworkStudyExpectedAnswers(word) {
     var expected = [];
@@ -3102,7 +3300,43 @@
         !none.some(function (term) { return homeworkMeaningTermMatches(submitted, term); });
     });
   }
+  function homeworkBlanks(item) {
+    return item && Array.isArray(item.blanks) ? item.blanks.filter(function (blank) {
+      return blank && typeof blank.id === "string" && blank.id &&
+        Array.isArray(blank.answers) && blank.answers.length;
+    }) : [];
+  }
+  function homeworkMultiAnswers(item, value) {
+    var parsed = null;
+    if (typeof value === "string" && value) {
+      try { parsed = JSON.parse(value); } catch (e) { parsed = null; }
+    } else if (value && typeof value === "object") {
+      parsed = value;
+    }
+    if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) parsed = {};
+    var out = {};
+    homeworkBlanks(item).forEach(function (blank) {
+      out[blank.id] = typeof parsed[blank.id] === "string" ? parsed[blank.id] : "";
+    });
+    return out;
+  }
+  function homeworkMultiVerdict(item, value) {
+    var blanks = homeworkBlanks(item);
+    var values = homeworkMultiAnswers(item, value);
+    var worst = "correct";
+    for (var i = 0; i < blanks.length; i++) {
+      var verdict = homeworkVerdict(blanks[i], values[blanks[i].id]);
+      if (!verdict) return "";
+      if (verdict === "incorrect") worst = "incorrect";
+      else if (verdict === "near_miss" && worst === "correct") worst = "near_miss";
+    }
+    return worst;
+  }
   function homeworkVerdict(item, value) {
+    if (item && item.answerMode === "self_review") {
+      return String(value == null ? "" : value).trim() ? "self_reviewed" : "";
+    }
+    if (homeworkBlanks(item).length) return homeworkMultiVerdict(item, value);
     var submitted = homeworkNormalize(value);
     if (!submitted) return "";
     var answers = item.answers.map(homeworkNormalize).filter(Boolean);
@@ -3117,6 +3351,12 @@
     return "incorrect";
   }
   function homeworkExpectedAnswer(item) {
+    var blanks = homeworkBlanks(item);
+    if (blanks.length) {
+      return blanks.map(function (blank) {
+        return (blank.label ? blank.label + "：" : "") + String(blank.canonicalAnswer || blank.answers[0] || "");
+      }).join("　·　");
+    }
     return String(item.canonicalAnswer || item.answers[0] || "");
   }
   function homeworkIsScenario(assignment) {
@@ -3126,7 +3366,8 @@
     return homeworkIsScenario(assignment) || !!assignment && assignment.navigation === "sequential";
   }
   function queueHomeworkWeakWordsForReview(assignment, item, status, submittedAnswer, meaningCorrect) {
-    if (!assignment || !assignment.reviewBridge || status === "correct" || !item) return 0;
+    if (!assignment || !assignment.reviewBridge ||
+        ["near_miss", "incorrect"].indexOf(status) === -1 || !item) return 0;
     if (status === "near_miss" &&
         (meaningCorrect === true || homeworkMeaningMatches(item, submittedAnswer))) return 0;
     var names = Array.isArray(item.reviewWords) ? item.reviewWords : [];
@@ -3163,20 +3404,38 @@
     return queued.length;
   }
   function homeworkStats(assignment, progress) {
-    var stats = { total: 0, checked: 0, correct: 0, near: 0, incorrect: 0 };
+    var stats = { total: 0, checked: 0, correct: 0, near: 0, incorrect: 0,
+      selfReviewed: 0, firstCorrect: 0, firstNear: 0, firstIncorrect: 0 };
     homeworkItems(assignment).forEach(function (entry) {
       stats.total += 1;
       var response = progress.responses[entry.item.id];
-      if (!response || !response.status) return;
+      if (!response || !response.status) {
+        if (response && response.firstStatus) {
+          if (response.firstStatus === "correct") stats.firstCorrect += 1;
+          else if (response.firstStatus === "near_miss") stats.firstNear += 1;
+          else if (response.firstStatus === "incorrect") stats.firstIncorrect += 1;
+        }
+        return;
+      }
       stats.checked += 1;
       if (response.status === "correct") stats.correct += 1;
       else if (response.status === "near_miss") stats.near += 1;
-      else stats.incorrect += 1;
+      else if (response.status === "incorrect") stats.incorrect += 1;
+      else if (response.status === "self_reviewed") stats.selfReviewed += 1;
+      var first = response.firstStatus || response.status;
+      if (first === "correct") stats.firstCorrect += 1;
+      else if (first === "near_miss") stats.firstNear += 1;
+      else if (first === "incorrect") stats.firstIncorrect += 1;
     });
     return stats;
   }
   function homeworkTypeLabel(type) {
+    if (type === "open_response") return "开放题";
+    if (type === "multi_input") return "变形题";
     return type === "text_input" ? "填空题" : "选择题";
+  }
+  function homeworkTypeProgressVerb(type) {
+    return type === "open_response" ? "已保存" : "已检查";
   }
   function homeworkAvailableTypes(assignment) {
     var seen = Object.create(null), out = [];
@@ -3189,7 +3448,8 @@
     return out;
   }
   function homeworkTypeStats(assignment, progress, type) {
-    var stats = { type: type, total: 0, checked: 0, correct: 0, near: 0, incorrect: 0 };
+    var stats = { type: type, total: 0, checked: 0, correct: 0, near: 0, incorrect: 0,
+      selfReviewed: 0 };
     homeworkItems(assignment).forEach(function (entry) {
       if (entry.type !== type) return;
       stats.total += 1;
@@ -3198,7 +3458,8 @@
       stats.checked += 1;
       if (response.status === "correct") stats.correct += 1;
       else if (response.status === "near_miss") stats.near += 1;
-      else stats.incorrect += 1;
+      else if (response.status === "incorrect") stats.incorrect += 1;
+      else if (response.status === "self_reviewed") stats.selfReviewed += 1;
     });
     return stats;
   }
@@ -3237,7 +3498,7 @@
     };
   }
   function jumpHomeworkType(assignment, type) {
-    if (type !== "single_choice" && type !== "text_input") return false;
+    if (homeworkAvailableTypes(assignment).indexOf(type) === -1) return false;
     var active = homeworkActiveItems(assignment);
     var indices = homeworkTypeIndices(assignment, type);
     if (!indices.length) return false;
@@ -3281,13 +3542,17 @@
       if (active[index].type === current.type) return { index: index, label: "下一题" };
     }
     var progress = homeworkProgress(assignment);
-    var otherType = current.type === "single_choice" ? "text_input" : "single_choice";
-    var otherIncomplete = homeworkTypeIndices(assignment, otherType).find(function (candidateIndex) {
-      var response = progress.responses[active[candidateIndex].item.id];
-      return !response || !response.status;
-    });
-    if (otherIncomplete != null) {
-      return { index: otherIncomplete, label: "去做" + homeworkTypeLabel(otherType) };
+    var types = homeworkAvailableTypes(assignment);
+    var currentTypeIndex = Math.max(0, types.indexOf(current.type));
+    for (var typeOffset = 1; typeOffset < types.length; typeOffset++) {
+      var otherType = types[(currentTypeIndex + typeOffset) % types.length];
+      var otherIncomplete = homeworkTypeIndices(assignment, otherType).find(function (candidateIndex) {
+        var response = progress.responses[active[candidateIndex].item.id];
+        return !response || !response.status;
+      });
+      if (otherIncomplete != null) {
+        return { index: otherIncomplete, label: "去做" + homeworkTypeLabel(otherType) };
+      }
     }
     var sameIncomplete = homeworkTypeIndices(assignment, current.type).find(function (candidateIndex) {
       if (candidateIndex === state.homeworkIndex) return false;
@@ -3309,6 +3574,7 @@
     var active = homeworkActiveItems(assignment);
     var current = active[state.homeworkIndex];
     var overall = homeworkStats(assignment, progress);
+    var overallProgressVerb = types.indexOf("open_response") !== -1 ? "已完成" : "已检查";
     if (homeworkIsSequential(assignment)) {
       return '<div class="homework-dialogue-progress" aria-label="对话进度"><strong>对话练习 · ' +
         (current ? state.homeworkIndex + 1 : overall.checked) + " / " + active.length +
@@ -3319,10 +3585,10 @@
           if (!state.homeworkSummary && index === state.homeworkIndex) cls += " is-current";
           return '<i class="' + cls.trim() + '"></i>';
         }).join("") + '</span><span>' + overall.checked + " / " + overall.total +
-        " 已检查</span></div>";
+        " " + overallProgressVerb + "</span></div>";
     }
     return '<p class="homework-type-summary">总进度 ' + overall.checked + " / " + overall.total +
-      ' 已检查' + (current ? " · 当前题目 " + (state.homeworkIndex + 1) + " / " + active.length : "") +
+      " " + overallProgressVerb + (current ? " · 当前题目 " + (state.homeworkIndex + 1) + " / " + active.length : "") +
       '</p><nav class="homework-type-switcher' + (types.length === 1 ? " is-single" : "") +
       '" aria-label="按题型查看作业进度">' + types.map(function (type) {
         var stats = homeworkTypeStats(assignment, progress, type);
@@ -3334,8 +3600,8 @@
         return '<button class="homework-type-card' + (activeType ? " is-active" : "") +
           '" type="button" data-homework-type="' + esc(type) + '" aria-pressed="' + activeType + '"' +
           (available ? "" : " disabled") + '><span class="homework-type-card-head"><strong>' +
-          homeworkTypeLabel(type) + '</strong><span>' + stats.checked + " / " + stats.total +
-          ' 已检查</span></span><span class="homework-type-track" role="progressbar" aria-label="' +
+          homeworkTypeLabel(type) + '</strong><span>' + stats.checked + " / " + stats.total + " " +
+          homeworkTypeProgressVerb(type) + '</span></span><span class="homework-type-track" role="progressbar" aria-label="' +
           homeworkTypeLabel(type) + '完成进度" aria-valuemin="0" aria-valuemax="' + stats.total +
           '" aria-valuenow="' + stats.checked + '"><span style="width:' +
           pct + '%"></span></span><small>' + esc(hint) + "</small></button>";
@@ -3427,6 +3693,84 @@
     saveHomeworkScenarioTab(assignment, "practice");
     return true;
   }
+  function homeworkOptionLetter(index) {
+    return String.fromCharCode(65 + (index % 26));
+  }
+  function selectHomeworkOptionByLetter(letter) {
+    var assignment = homeworkById(state.homeworkId);
+    var active = assignment ? homeworkActiveItems(assignment) : [];
+    var entry = active[state.homeworkIndex];
+    if (!assignment || !entry || entry.type !== "single_choice") return false;
+    if (state.homeworkScoringItemId === entry.item.id) return false;
+    var options = Array.isArray(entry.item.options) ? entry.item.options : [];
+    var index = String(letter || "").toUpperCase().charCodeAt(0) - 65;
+    if (!(index >= 0 && index < options.length)) return false;
+    saveHomeworkAnswer(options[index]);
+    render();
+    speakHomeworkOption(assignment, entry, options[index]);
+    return true;
+  }
+  function homeworkOptionIsTargetLanguage(assignment, entry) {
+    var target = String(P.config.lang || "").toLowerCase();
+    var lang = String(entry.item.answerLanguage || assignment.answerLanguage || target).toLowerCase();
+    return !target || lang.indexOf(target) === 0;
+  }
+  // Short word utterances are never cancelled: Chrome on macOS can wedge its
+  // speech engine when cancel() interrupts an active utterance, after which
+  // nothing ever starts again until the browser is fully restarted.
+  var wordSpeechUntil = 0;
+  var speechStuckFlag = false;
+  var homeworkOptionSpokenAt = 0;
+  function speechEngineStuck() { return speechStuckFlag; }
+  function speakWord(text) {
+    if (!synth || !text || typeof window.SpeechSynthesisUtterance !== "function") return;
+    var utterance = new SpeechSynthesisUtterance(reviewSpeechText(text));
+    utterance.lang = targetVoice ? targetVoice.lang : (P.config.lang || "es");
+    if (targetVoice) utterance.voice = targetVoice;
+    utterance.rate = state.slow ? 0.6 : 0.92;
+    var started = false;
+    utterance.onstart = function () { started = true; speechStuckFlag = false; };
+    utterance.onend = utterance.onerror = function () { wordSpeechUntil = 0; };
+    wordSpeechUntil = Date.now() + 1500;
+    homeworkOptionSpokenAt = Date.now();
+    synth.speak(utterance);
+    setTimeout(function () {
+      if (!started && synth.speaking) speechStuckFlag = true;
+    }, 2000);
+  }
+  function speakHomeworkOption(assignment, entry, option) {
+    if (!entry || entry.type !== "single_choice" || !option) return;
+    if (homeworkImageOptionMeta(entry.item, option)) return;
+    if (!homeworkOptionIsTargetLanguage(assignment, entry)) return;
+    speakWord(option);
+  }
+  var feedbackAudioContext = null;
+  function playHomeworkFeedbackTone(status) {
+    var Ctx = window.AudioContext || window.webkitAudioContext;
+    if (!Ctx) return;
+    try {
+      if (!feedbackAudioContext) feedbackAudioContext = new Ctx();
+      var ctx = feedbackAudioContext;
+      if (ctx.state === "suspended" && typeof ctx.resume === "function") ctx.resume();
+      var at = ctx.currentTime;
+      var notes = status === "correct" ?
+        [{ f: 660, t: 0, d: 0.12 }, { f: 880, t: 0.13, d: 0.18 }] :
+        [{ f: 196, t: 0, d: 0.28 }];
+      notes.forEach(function (note) {
+        var osc = ctx.createOscillator();
+        var gain = ctx.createGain();
+        osc.type = status === "correct" ? "sine" : "triangle";
+        osc.frequency.value = note.f;
+        gain.gain.setValueAtTime(0.0001, at + note.t);
+        gain.gain.exponentialRampToValueAtTime(0.18, at + note.t + 0.015);
+        gain.gain.exponentialRampToValueAtTime(0.0001, at + note.t + note.d);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(at + note.t);
+        osc.stop(at + note.t + note.d + 0.02);
+      });
+    } catch (err) {}
+  }
   function saveHomeworkAnswer(value) {
     var assignment = homeworkById(state.homeworkId);
     var active = assignment ? homeworkActiveItems(assignment) : [];
@@ -3434,7 +3778,7 @@
     if (!assignment || !entry) return { saved: false, cleared: false };
     var progress = homeworkProgress(assignment);
     var previous = progress.responses[entry.item.id] || { answer: "" };
-    var nextAnswer = String(value == null ? "" : value).slice(0, HOMEWORK_MAX_ANSWER);
+    var nextAnswer = String(value == null ? "" : value).slice(0, HOMEWORK_MAX_STORED);
     var retryDraftKey = homeworkRetryDraftKey(assignment, entry.item);
     if (Object.prototype.hasOwnProperty.call(homeworkRetryDrafts, retryDraftKey)) {
       if (nextAnswer) homeworkRetryDrafts[retryDraftKey] = nextAnswer;
@@ -3447,6 +3791,11 @@
       answer: nextAnswer,
       updatedAt: Date.now()
     };
+    if (entry.item.answerMode !== "self_review" && previous.firstStatus) {
+      progress.responses[entry.item.id].firstStatus = previous.firstStatus;
+      if (previous.firstCheckedAt) progress.responses[entry.item.id].firstCheckedAt = previous.firstCheckedAt;
+      if (previous.mistakeResolvedAt) progress.responses[entry.item.id].mistakeResolvedAt = previous.mistakeResolvedAt;
+    }
     if (!changed && previous.status) {
       progress.responses[entry.item.id].status = previous.status;
       progress.responses[entry.item.id].checkedAt = previous.checkedAt;
@@ -3460,23 +3809,36 @@
   }
   function commitHomeworkAnswer(assignment, entry, submitted, grade) {
     var progress = homeworkProgress(assignment);
+    var selfReviewed = grade.status === "self_reviewed";
     var response = {
       answer: submitted,
       status: grade.status,
       checkedAt: Date.now(),
-      meaningCorrect: grade.meaningCorrect === true,
       scoringSource: grade.scoringSource || "local",
       originalVerdict: grade.originalVerdict || grade.status
     };
+    if (!selfReviewed) response.meaningCorrect = grade.meaningCorrect === true;
     if (grade.feedbackZh) response.feedbackZh = String(grade.feedbackZh).slice(0, 500);
     if (grade.suggestedAnswer) response.suggestedAnswer = String(grade.suggestedAnswer).slice(0, 300);
     if (grade.modelVersion) response.modelVersion = String(grade.modelVersion).slice(0, 120);
     if (grade.rubricVersion) response.rubricVersion = String(grade.rubricVersion).slice(0, 120);
     response.updatedAt = response.checkedAt;
+    var previousResponse = progress.responses[entry.item.id] || {};
+    if (!selfReviewed) {
+      if (previousResponse.firstStatus) {
+        response.firstStatus = previousResponse.firstStatus;
+        if (previousResponse.firstCheckedAt) response.firstCheckedAt = previousResponse.firstCheckedAt;
+        if (previousResponse.mistakeResolvedAt) response.mistakeResolvedAt = previousResponse.mistakeResolvedAt;
+      } else {
+        response.firstStatus = grade.status;
+        response.firstCheckedAt = response.checkedAt;
+      }
+    }
     progress.responses[entry.item.id] = response;
     progress.currentItemId = entry.item.id;
     progress.completedAt = null;
     var saved = saveHomeworkProgress(assignment, progress);
+    if (!selfReviewed) playHomeworkFeedbackTone(grade.status === "correct" ? "correct" : "incorrect");
     var queuedForReview = queueHomeworkWeakWordsForReview(
       assignment, entry.item, response.status, response.answer, response.meaningCorrect
     );
@@ -3488,13 +3850,17 @@
       sectionId: entry.section.id || "",
       questionType: entry.type,
       prompt: entry.item.prompt,
-      answerMode: entry.type === "single_choice" ? "choice" : "typed",
+      answerMode: selfReviewed ? "self_review" : (entry.type === "single_choice" ? "choice" : "typed"),
       submittedAnswer: response.answer,
-      expectedAnswers: entry.item.answers,
+      expectedAnswers: Array.isArray(entry.item.answers) ? entry.item.answers :
+        homeworkBlanks(entry.item).map(function (blank) {
+          return String(blank.canonicalAnswer || blank.answers[0] || "");
+        }),
       verdict: response.status,
+      firstVerdict: response.firstStatus,
       originalVerdict: response.originalVerdict,
-      answerCorrect: response.status === "correct",
-      meaningCorrect: response.meaningCorrect,
+      answerCorrect: selfReviewed ? null : response.status === "correct",
+      meaningCorrect: selfReviewed ? null : response.meaningCorrect,
       scoringSource: response.scoringSource,
       modelVersion: response.modelVersion || "",
       rubricVersion: response.rubricVersion || "",
@@ -3503,9 +3869,36 @@
       attempt: learningAttemptNumber("homework", "answer_checked", entry.item.id, assignment.id),
       snapshotPersisted: saved
     });
-    state.homeworkNotice = (!saved && !eventSaved) ? "判分完成，但进度和逐次记录暂时无法写入。" :
-      (!saved ? "逐次记录已保留，但当前进度暂时无法保存。" :
-      (!eventSaved ? "当前进度已保存；逐次记录仍在页面内等待写入。" : ""));
+    if (entry.type === "multi_input") {
+      var blankValues = homeworkMultiAnswers(entry.item, response.answer);
+      homeworkBlanks(entry.item).forEach(function (blank) {
+        var blankVerdict = homeworkVerdict(blank, blankValues[blank.id]) || "incorrect";
+        recordLearningEvent("homework", "answer_checked", {
+          occurredAt: response.checkedAt,
+          entityId: blank.id,
+          attemptId: reviewEventNewId("la"),
+          assignmentId: assignment.id,
+          sectionId: entry.section.id || "",
+          questionType: "text_input",
+          prompt: entry.item.prompt + (blank.label ? "（" + blank.label + "）" : ""),
+          answerMode: "typed",
+          submittedAnswer: blankValues[blank.id],
+          expectedAnswers: blank.answers,
+          verdict: blankVerdict,
+          originalVerdict: blankVerdict,
+          answerCorrect: blankVerdict === "correct",
+          meaningCorrect: blankVerdict === "correct",
+          scoringSource: "local",
+          homeworkItemId: entry.item.id,
+          attempt: learningAttemptNumber("homework", "answer_checked", blank.id, assignment.id),
+          snapshotPersisted: saved
+        });
+      });
+    }
+    state.homeworkNotice = (!saved && !eventSaved) ?
+      (selfReviewed ? "回答已处理，但进度和逐次记录暂时无法写入。" : "判分完成，但进度和逐次记录暂时无法写入。") :
+      (!saved ? "逐次记录已保留，但当前回答暂时无法保存。" :
+      (!eventSaved ? "当前回答已保存；逐次记录仍在页面内等待写入。" : ""));
     if (queuedForReview) {
       state.homeworkNotice += (state.homeworkNotice ? " " : "") +
         "已把 " + queuedForReview + " 个相关词加入「复习」。";
@@ -3517,9 +3910,9 @@
     return {
       status: status,
       originalVerdict: status,
-      meaningCorrect: status === "correct" ||
-        (status === "near_miss" && homeworkMeaningMatches(item, submitted)),
-      scoringSource: "local"
+      meaningCorrect: status === "self_reviewed" ? null : (status === "correct" ||
+        (status === "near_miss" && homeworkMeaningMatches(item, submitted))),
+      scoringSource: status === "self_reviewed" ? "self_review" : "local"
     };
   }
   function checkHomeworkAnswer(submittedValue) {
@@ -3530,13 +3923,18 @@
     var progress = homeworkProgress(assignment);
     var previous = progress.responses[entry.item.id] || {};
     var submitted = arguments.length ?
-      String(submittedValue == null ? "" : submittedValue).trim().slice(0, HOMEWORK_MAX_ANSWER) :
-      String(previous.answer || "").trim().slice(0, HOMEWORK_MAX_ANSWER);
+      String(submittedValue == null ? "" : submittedValue).trim().slice(0, HOMEWORK_MAX_STORED) :
+      String(previous.answer || "").trim().slice(0, HOMEWORK_MAX_STORED);
     if (!submitted) {
       state.homeworkNotice = "请先选择或填写答案。";
       return false;
     }
-    var saved = commitHomeworkAnswer(assignment, entry, submitted, homeworkLocalGrade(entry.item, submitted));
+    var localGrade = homeworkLocalGrade(entry.item, submitted);
+    if (!localGrade.status) {
+      state.homeworkNotice = "请把每个空都填上再检查。";
+      return false;
+    }
+    var saved = commitHomeworkAnswer(assignment, entry, submitted, localGrade);
     if (saved) delete homeworkRetryDrafts[homeworkRetryDraftKey(assignment, entry.item)];
     return saved;
   }
@@ -3587,17 +3985,22 @@
     var entry = active[state.homeworkIndex];
     if (!assignment || !entry) return Promise.resolve(false);
     var submitted = String(submittedValue == null ? "" : submittedValue)
-      .trim().slice(0, HOMEWORK_MAX_ANSWER);
+      .trim().slice(0, HOMEWORK_MAX_STORED);
     if (!submitted) {
       state.homeworkNotice = "请先选择或填写答案。";
       return Promise.resolve(false);
     }
     var retryDraftKey = homeworkRetryDraftKey(assignment, entry.item);
     var localGrade = homeworkLocalGrade(entry.item, submitted);
+    if (!localGrade.status) {
+      state.homeworkNotice = "请把每个空都填上再检查。";
+      return Promise.resolve(false);
+    }
     var services = window.fabulitaLearningServices;
     var score = services && typeof services.scoreAnswer === "function" ?
       services.scoreAnswer : null;
-    if (entry.type !== "text_input" || localGrade.status !== "incorrect" || !score) {
+    if (entry.item.localOnlyGrading || entry.type !== "text_input" ||
+        localGrade.status !== "incorrect" || !score) {
       var locallySaved = commitHomeworkAnswer(assignment, entry, submitted, localGrade);
       if (locallySaved) delete homeworkRetryDrafts[retryDraftKey];
       else homeworkRetryDrafts[retryDraftKey] = submitted;
@@ -3656,7 +4059,8 @@
     var progress = homeworkProgress(assignment);
     var retryIds = homeworkItems(assignment).filter(function (entry) {
       var response = progress.responses[entry.item.id];
-      return !response || response.status !== "correct";
+      return !response || !response.status ||
+        ["near_miss", "incorrect"].indexOf(response.status) !== -1;
     }).map(function (entry) { return entry.item.id; });
     if (!retryIds.length) return;
     retryIds.forEach(function (id) {
@@ -3677,6 +4081,48 @@
     state.homeworkIssueNotice = "";
     state.homeworkSentenceWordId = "";
   }
+  function homeworkMistakeKey(assignment, item) {
+    return String(assignment.id) + "\n" + String(item.id);
+  }
+  function homeworkMistakeEntries() {
+    var out = [];
+    homeworkAssignments.forEach(function (assignment) {
+      var progress = homeworkProgress(assignment);
+      homeworkItems(assignment).forEach(function (entry) {
+        var response = progress.responses[entry.item.id];
+        if (!response || ["near_miss", "incorrect"].indexOf(response.firstStatus) === -1) return;
+        out.push({
+          assignment: assignment,
+          entry: entry,
+          response: response,
+          key: homeworkMistakeKey(assignment, entry.item),
+          resolved: !!response.mistakeResolvedAt
+        });
+      });
+    });
+    return out;
+  }
+  function resolveHomeworkMistake(key, value) {
+    var found = homeworkMistakeEntries().filter(function (candidate) {
+      return candidate.key === key;
+    })[0];
+    if (!found) return "";
+    var verdict = homeworkVerdict(found.entry.item, value);
+    if (verdict === "correct") {
+      var progress = homeworkProgress(found.assignment);
+      var response = progress.responses[found.entry.item.id];
+      if (response) {
+        response.mistakeResolvedAt = Date.now();
+        saveHomeworkProgress(found.assignment, progress);
+      }
+      state.mistakeNotice = "已订正，做对了。";
+      state.mistakeOpenKey = "";
+      delete homeworkMistakeDrafts[key];
+    } else {
+      state.mistakeNotice = verdict === "near_miss" ? "意思接近了，再注意拼写或重音。" : "还不对，再想想。";
+    }
+    return verdict;
+  }
   function homeworkIssueSourceRef(assignment, item) {
     return "homework:" + homeworkScopeKey + ":" + assignment.id + ":" + item.id;
   }
@@ -3687,6 +4133,7 @@
     if (!assignment || !entry) return;
     var progress = homeworkProgress(assignment);
     var response = progress.responses[entry.item.id] || { answer: "" };
+    var selfReview = entry.item.answerMode === "self_review";
     var sourceRef = homeworkIssueSourceRef(assignment, entry.item);
     var existing = qaQuestions().some(function (item) {
       return item.source === "homework_answer_issue" && item.sourceRef === sourceRef;
@@ -3714,9 +4161,49 @@
       homeworkSectionId: entry.section.id || "",
       homeworkVerdict: response.status || "unanswered"
     });
-    state.homeworkIssueNotice = saved ? "已记录到 Q&A；不会影响作业判分或词汇复习进度。" :
+    state.homeworkIssueNotice = saved ? (selfReview ?
+      "已记录到 Q&A；开放题不会自动判分。" : "已记录到 Q&A；不会影响作业判分或词汇复习进度。") :
       "暂时无法记录，请稍后重试。";
     render();
+  }
+  function safeHomeworkImageUrl(assignment, imageId) {
+    var images = assignment && assignment.images;
+    var image = images && typeof images === "object" && !Array.isArray(images) ? images[imageId] : null;
+    var embedded = image && image.dataUrl;
+    if (typeof embedded === "string" &&
+        /^data:image\/(?:jpeg|png|webp);base64,[A-Za-z0-9+/=]+$/.test(embedded)) return embedded;
+    // Page-relative licensed vocabulary assets. Only a plain
+    // path under assets/ is accepted: no scheme, no leading slash, no "..".
+    var src = image && image.src;
+    if (typeof src === "string" && /^assets\/(?:[A-Za-z0-9_\-]+\/)*[A-Za-z0-9_\-]+\.(?:jpe?g|png|webp)$/.test(src)) return src;
+    return "";
+  }
+  function homeworkVisualPromptHtml(assignment, item) {
+    if (!item || typeof item.imageId !== "string" || !item.imageId) return "";
+    var url = safeHomeworkImageUrl(assignment, item.imageId);
+    if (!url) return '<p class="homework-image-missing" role="status">这张本地图片暂时无法载入。</p>';
+    var caption = item.sourcePage ? "原材料第 " + item.sourcePage + " 页" : "本地词汇图片";
+    var imageClass = assignment.images[item.imageId].presentation === "icon" ? "homework-library-icon" : "";
+    return '<figure class="homework-visual-prompt"><img src="' + esc(url) +
+      '" class="' + imageClass + '" alt="本题词汇图片" width="420" height="320"><figcaption>' + esc(caption) + "</figcaption></figure>";
+  }
+  function homeworkImageOptionMeta(item, option) {
+    var options = item && Array.isArray(item.imageOptions) ? item.imageOptions : [];
+    for (var i = 0; i < options.length; i++) {
+      if (options[i] && options[i].value === option && typeof options[i].imageId === "string") {
+        return options[i];
+      }
+    }
+    return null;
+  }
+  function homeworkChoiceOptionHtml(assignment, item, option, optionIndex) {
+    var meta = homeworkImageOptionMeta(item, option);
+    if (!meta) return '<span>' + esc(option) + "</span>";
+    var url = safeHomeworkImageUrl(assignment, meta.imageId);
+    if (!url) return '<span class="homework-option-image">图片不可用</span>';
+    var imageClass = assignment.images[meta.imageId].presentation === "icon" ? "homework-library-icon" : "";
+    return '<span class="homework-option-image"><img src="' + esc(url) +
+      '" class="' + imageClass + '" alt="图片选项 ' + (optionIndex + 1) + '" width="420" height="320"></span>';
   }
   function safeHomeworkPdfUrl(assignment) {
     var source = assignment && assignment.source;
@@ -3751,7 +4238,7 @@
         license + "</a>" : license) +
       (sourceUrl ? '</span><span><a href="' + esc(sourceUrl) +
         '" target="_blank" rel="noopener">教材来源</a>' : "") +
-      '</span><span>未复用原教材图片</span></div>' +
+      '</span><span>' + (source.reusedImages ? "本地版保留原教材图片" : "未复用原教材图片") + '</span></div>' +
       (source.endorsementNotice ? '<small>' + esc(source.endorsementNotice) + "</small>" : "") +
       "</aside>";
   }
@@ -3782,12 +4269,14 @@
       var studyPct = studyStats.total ? Math.round(100 * studyStats.studied / studyStats.total) : 0;
       var sections = Array.isArray(assignment.sections) ? assignment.sections : [];
       var choice = homeworkItems(assignment).filter(function (entry) { return entry.type === "single_choice"; }).length;
-      var text = stats.total - choice;
+      var openResponse = homeworkItems(assignment).filter(function (entry) { return entry.type === "open_response"; }).length;
+      var text = stats.total - choice - openResponse;
       var typeMeta = [];
       if (homeworkIsScenario(assignment)) typeMeta.push(stats.total + " 个对话步骤");
       else {
         if (choice) typeMeta.push(choice + " 道选择题");
         if (text) typeMeta.push(text + " 道填空题");
+        if (openResponse) typeMeta.push(openResponse + " 道开放题");
       }
       var typeProgress = homeworkIsScenario(assignment) ?
         '<div class="homework-card-progress"><span class="homework-card-progress-label">场景</span><div class="homework-card-progress-bar" aria-hidden="true"><span style="width:' +
@@ -3803,7 +4292,8 @@
           '</span><span class="homework-card-progress-bar" role="progressbar" aria-label="' +
           homeworkTypeLabel(type) + '完成进度" aria-valuemin="0" aria-valuemax="' + typeStats.total +
           '" aria-valuenow="' + typeStats.checked + '"><span style="width:' +
-          typePct + '%"></span></span><span>' + typeStats.checked + " / " + typeStats.total + " 已检查</span></button>";
+          typePct + '%"></span></span><span>' + typeStats.checked + " / " + typeStats.total + " " +
+          homeworkTypeProgressVerb(type) + "</span></button>";
       }).join("");
       return '<article class="homework-card"><div><p class="homework-card-kicker">' +
       '<span class="homework-badge">' + esc(assignment.badge || assignment.level || "作业") + "</span>" +
@@ -3834,10 +4324,11 @@
   }
   function homeworkOptionMeaningRows(assignment, item, response) {
     if (!response || !response.status || !item || !Array.isArray(item.options)) return [];
+    if (Array.isArray(item.imageOptions) && item.imageOptions.length) return [];
     var accepted = (Array.isArray(item.answers) ? item.answers : []).map(homeworkNormalize);
     var selected = homeworkNormalize(response.answer || "");
     return item.options.map(function (option) {
-      var word = homeworkStudyWordByText(assignment, option);
+      var word = homeworkFeedbackWordByText(assignment, option);
       return {
         option: option,
         gloss: word ? word.gloss : "—",
@@ -3850,7 +4341,7 @@
   function homeworkOptionMeaningsHtml(assignment, item, response) {
     var rows = homeworkOptionMeaningRows(assignment, item, response);
     if (!rows.length) return "";
-    return '<section class="homework-option-meanings" aria-label="选项意思"><h3>三个选项的意思</h3>' +
+    return '<section class="homework-option-meanings" aria-label="选项意思"><h3>' + rows.length + ' 个选项的意思</h3>' +
       rows.map(function (row) {
         return '<div class="homework-option-meaning"><span class="homework-option-word" lang="' +
           esc(P.config.lang || "es") + '">' + esc(row.option) + '</span><span class="homework-option-gloss">' +
@@ -3868,8 +4359,8 @@
       return homeworkNormalize(answer) === submitted;
     });
     if (!accepted) return null;
-    var word = homeworkStudyWordByText(assignment, accepted) ||
-      homeworkStudyWordByText(assignment, item.canonicalAnswer || "");
+    var word = homeworkFeedbackWordByText(assignment, accepted) ||
+      homeworkFeedbackWordByText(assignment, item.canonicalAnswer || "");
     if (!word) return null;
     return { word: accepted, gloss: word.gloss, english: word.english };
   }
@@ -4066,6 +4557,36 @@
   function homeworkFeedbackHtml(assignment, entry, response) {
     if (!response || !response.status) return "";
     var expected = homeworkExpectedAnswer(entry.item);
+    if (response.status === "self_reviewed") {
+      return '<div class="homework-feedback is-self_reviewed" role="status" aria-live="polite"><strong>' +
+        '已保存，请自行对照</strong><span>这道开放题不自动判分。参考作答：' + esc(expected) + '</span>' +
+        (entry.item.answerTranslation ? '<span class="homework-ambiguity">参考翻译：' +
+          esc(entry.item.answerTranslation) + '</span>' : '') +
+        '</div><div class="homework-feedback-actions"><button class="homework-button" type="button" ' +
+        'data-homework-action="issue">参考作答有问题</button><p class="homework-issue-notice">' +
+        esc(state.homeworkIssueNotice) + "</p></div>";
+    }
+    var feedbackBlanks = homeworkBlanks(entry.item);
+    if (feedbackBlanks.length) {
+      var blankValues = homeworkMultiAnswers(entry.item, response.answer);
+      var blankRows = feedbackBlanks.map(function (blank) {
+        var blankVerdict = homeworkVerdict(blank, blankValues[blank.id]);
+        var blankOk = blankVerdict === "correct";
+        return '<li class="homework-blank-result is-' + (blankOk ? "correct" : "incorrect") + '">' +
+          '<span class="homework-blank-label">' + esc(blank.label || "") + '</span>' +
+          '<span class="homework-blank-answer">' + esc(blankValues[blank.id] || "（未填）") + '</span>' +
+          '<span class="homework-blank-mark">' + (blankOk ? "✓" :
+            "✗ 正解：" + esc(String(blank.canonicalAnswer || blank.answers[0] || ""))) + "</span></li>";
+      }).join("");
+      var multiTitle = response.status === "correct" ? "答对了" :
+        (response.status === "near_miss" ? "很接近了，再检查一下" : "暂时不对");
+      return '<div class="homework-feedback is-' + response.status + '" role="status" aria-live="polite"><strong>' +
+        esc(multiTitle) + '</strong><ul class="homework-blank-results">' + blankRows + "</ul>" +
+        (entry.item.ambiguityNote ? '<span class="homework-ambiguity">' + esc(entry.item.ambiguityNote) + "</span>" : "") +
+        '</div><div class="homework-feedback-actions"><button class="homework-button" type="button" ' +
+        'data-homework-action="issue">答案有问题</button><p class="homework-issue-notice">' +
+        esc(state.homeworkIssueNotice) + "</p></div>";
+    }
     var meaningCorrect = response.meaningCorrect === true ||
       (response.status === "near_miss" && homeworkMeaningMatches(entry.item, response.answer));
     var title = response.status === "correct" ? "答对了" :
@@ -4089,6 +4610,190 @@
       homeworkOptionMeaningsHtml(assignment, entry.item, response) +
       '<div class="homework-feedback-actions"><button class="homework-button" type="button" data-homework-action="issue">答案有问题</button>' +
       '<p class="homework-issue-notice">' + esc(state.homeworkIssueNotice) + "</p></div>";
+  }
+  var HOMEWORK_ANALYSIS_LS = "fabulita.homework.analysis.v1";
+  var HOMEWORK_AI_BASES = { ollama: "http://localhost:11434/v1", codex: "http://localhost:8130/v1" };
+  var HOMEWORK_VERDICT_LABELS = {
+    correct: "答对", near_miss: "接近", incorrect: "答错",
+    self_reviewed: "已自评", revealed: "看了答案"
+  };
+  function homeworkAttemptHistory(assignment, item) {
+    var blankIds = Object.create(null);
+    var blankLabels = Object.create(null);
+    var blanks = homeworkBlanks(item);
+    blanks.forEach(function (blank) {
+      blankIds[blank.id] = true;
+      if (blank.label) blankLabels[blank.id] = blank.label;
+    });
+    return learningEvents().filter(function (event) {
+      if (event.source !== "homework" || event.assignmentId !== assignment.id) return false;
+      if (["answer_checked", "answer_revealed"].indexOf(event.action) === -1) return false;
+      if (blanks.length) return !!blankIds[event.entityId];
+      return event.entityId === item.id;
+    }).sort(function (a, b) { return a.occurredAt - b.occurredAt; }).map(function (event) {
+      return {
+        occurredAt: event.occurredAt,
+        answer: event.submittedAnswer || "",
+        verdict: event.verdict || "",
+        label: blankLabels[event.entityId] || ""
+      };
+    });
+  }
+  function homeworkHistoryTime(timestamp) {
+    var d = new Date(+timestamp || 0);
+    function pad(n) { return (n < 10 ? "0" : "") + n; }
+    return pad(d.getMonth() + 1) + "-" + pad(d.getDate()) + " " + pad(d.getHours()) + ":" + pad(d.getMinutes());
+  }
+  function loadHomeworkAnalysisRoot() {
+    var root = learningPersistence.loadSnapshot(HOMEWORK_ANALYSIS_LS, null);
+    if (root && root.version === 1 && root.scopes && typeof root.scopes === "object" && !Array.isArray(root.scopes)) {
+      return root;
+    }
+    return { version: 1, scopes: {} };
+  }
+  function homeworkAnalysisFor(assignment, item) {
+    var root = loadHomeworkAnalysisRoot();
+    var scope = root.scopes[homeworkScopeKey] || {};
+    var byAssignment = scope[assignment.id] || {};
+    var record = byAssignment[item.id];
+    return record && typeof record.text === "string" && record.text ? record : null;
+  }
+  function saveHomeworkAnalysis(assignment, item, record) {
+    try {
+      var root = loadHomeworkAnalysisRoot();
+      var scope = root.scopes[homeworkScopeKey];
+      if (!scope || typeof scope !== "object" || Array.isArray(scope)) scope = {};
+      var byAssignment = scope[assignment.id];
+      if (!byAssignment || typeof byAssignment !== "object" || Array.isArray(byAssignment)) byAssignment = {};
+      byAssignment[item.id] = record;
+      scope[assignment.id] = byAssignment;
+      root.scopes[homeworkScopeKey] = scope;
+      return learningPersistence.saveSnapshot(HOMEWORK_ANALYSIS_LS, root);
+    } catch (e) {
+      return false;
+    }
+  }
+  function homeworkAiConfig() {
+    var stored = null;
+    try { stored = JSON.parse(localStorage.getItem("fabulita.gen") || "null"); } catch (e) { stored = null; }
+    if (!stored || typeof stored !== "object") stored = {};
+    var base = stored.base || HOMEWORK_AI_BASES[stored.provider] || HOMEWORK_AI_BASES.codex;
+    return {
+      base: String(base).replace(/\/+$/, ""),
+      model: typeof stored.model === "string" ? stored.model : "",
+      key: typeof stored.key === "string" ? stored.key : ""
+    };
+  }
+  function homeworkAnalysisPrompt(assignment, entry, attempts) {
+    var lines = [
+      "你是一位面向中文学习者的" + targetLanguageLabel() + "老师。请分析学生在下面这道题的历次作答。",
+      "",
+      "【题目】" + (entry.section.title ? entry.section.title + " — " : "") + entry.item.prompt,
+      entry.section.instructions ? "【本节要求】" + entry.section.instructions : "",
+      "【标准答案】" + homeworkExpectedAnswer(entry.item),
+      "",
+      "【历次作答（按时间顺序）】"
+    ];
+    attempts.forEach(function (attempt, index) {
+      lines.push((index + 1) + ". " + (attempt.label ? attempt.label + "：" : "") +
+        (attempt.answer || "（空）") + " → " + (HOMEWORK_VERDICT_LABELS[attempt.verdict] || attempt.verdict));
+    });
+    lines.push("",
+      "请用中文简洁输出：",
+      "1) 每次错误分别错在哪里（逐条对应，指出具体差在哪个假名或形态）；",
+      "2) 涉及的语法规则，讲清楚为什么是这个变形；",
+      "3) 一句话记忆要点；",
+      "4) 出 2 道针对同类错误的小练习并附答案。",
+      "直接输出纯文本，不要用 markdown 标题或表格。");
+    return lines.filter(function (line) { return line !== ""; }).join("\n");
+  }
+  function requestHomeworkAnalysis(assignment) {
+    var active = homeworkActiveItems(assignment);
+    var entry = active[state.homeworkIndex];
+    if (!entry || state.homeworkAnalysisPendingId) return;
+    var attempts = homeworkAttemptHistory(assignment, entry.item);
+    if (!attempts.length) {
+      state.homeworkAnalysisNotice = "这道题还没有作答记录，先答一次再分析。";
+      render();
+      return;
+    }
+    var config = homeworkAiConfig();
+    var headers = { "content-type": "application/json" };
+    if (config.key) headers.Authorization = "Bearer " + config.key;
+    var controller = typeof AbortController === "function" ? new AbortController() : null;
+    var timer = controller ? setTimeout(function () { controller.abort(); }, 180000) : null;
+    state.homeworkAnalysisPendingId = entry.item.id;
+    state.homeworkAnalysisNotice = "";
+    render();
+    fetch(config.base + "/chat/completions", {
+      method: "POST",
+      headers: headers,
+      signal: controller ? controller.signal : undefined,
+      body: JSON.stringify({
+        model: config.model,
+        stream: false,
+        messages: [{ role: "user", content: homeworkAnalysisPrompt(assignment, entry, attempts) }]
+      })
+    }).then(function (res) {
+      if (timer) clearTimeout(timer);
+      if (!res.ok) throw new Error("HTTP " + res.status);
+      return res.json();
+    }).then(function (data) {
+      var message = data && data.choices && data.choices[0] && data.choices[0].message;
+      var text = message && typeof message.content === "string" ? message.content.trim() : "";
+      if (!text) throw new Error("空回复");
+      saveHomeworkAnalysis(assignment, entry.item, {
+        text: text.slice(0, 6000),
+        occurredAt: Date.now(),
+        model: (data && data.model) || config.model || "",
+        attemptCount: attempts.length
+      });
+      state.homeworkAnalysisPendingId = "";
+      render();
+    }).catch(function (error) {
+      if (timer) clearTimeout(timer);
+      state.homeworkAnalysisPendingId = "";
+      state.homeworkAnalysisNotice = "AI 分析暂时不可用（" +
+        (error && error.name === "AbortError" ? "超时" : String(error && error.message || error)) +
+        "）。请确认本机 AI 服务：运行 uv run fabulita bridge，或在首页「故事工坊」配置模型。";
+      render();
+    });
+  }
+  function homeworkHistoryHtml(assignment, entry) {
+    var attempts = homeworkAttemptHistory(assignment, entry.item);
+    var open = state.homeworkHistoryOpenId === entry.item.id;
+    var h = '<div class="homework-history"><button class="homework-history-toggle" type="button" ' +
+      'data-homework-action="toggle-history" aria-expanded="' + (open ? "true" : "false") + '">' +
+      (open ? "▾" : "▸") + " 历史记录（" + attempts.length + " 次作答）</button>";
+    if (!open) return h + "</div>";
+    h += attempts.length ?
+      '<ol class="homework-history-list">' + attempts.map(function (attempt) {
+        return '<li class="homework-history-row is-' + esc(attempt.verdict || "none") + '">' +
+          '<span class="homework-history-time">' + homeworkHistoryTime(attempt.occurredAt) + '</span>' +
+          '<span class="homework-history-answer">' + (attempt.label ?
+            '<em class="homework-history-blank">' + esc(attempt.label) + '</em> ' : "") +
+          esc(attempt.answer || "（空）") + '</span>' +
+          '<span class="homework-history-verdict">' +
+          esc(HOMEWORK_VERDICT_LABELS[attempt.verdict] || attempt.verdict || "—") + "</span></li>";
+      }).join("") + "</ol>" :
+      '<p class="homework-history-empty">这道题还没有作答记录。</p>';
+    var analysis = homeworkAnalysisFor(assignment, entry.item);
+    h += '<div class="homework-analysis">';
+    if (state.homeworkAnalysisPendingId === entry.item.id) {
+      h += '<p class="homework-analysis-status">AI 分析中，请稍候…</p>';
+    } else {
+      if (analysis) {
+        h += '<div class="homework-analysis-text">' + esc(analysis.text) + '</div>' +
+          '<p class="homework-analysis-meta">分析于 ' + homeworkHistoryTime(analysis.occurredAt) +
+          (analysis.model ? " · " + esc(analysis.model) : "") + "</p>";
+      }
+      h += '<button class="homework-button" type="button" data-homework-action="analyze"' +
+        (attempts.length ? "" : " disabled") + ">" + (analysis ? "重新 AI 分析" : "AI 分析这道题") + "</button>";
+      if (state.homeworkAnalysisNotice) {
+        h += '<p class="homework-analysis-status">' + esc(state.homeworkAnalysisNotice) + "</p>";
+      }
+    }
+    return h + "</div></div>";
   }
   function homeworkStudyCalloutHtml(assignment) {
     var words = homeworkStudyWords(assignment);
@@ -4379,6 +5084,7 @@
     var entry = active[state.homeworkIndex];
     var progress = homeworkProgress(assignment);
     var response = progress.responses[entry.item.id] || { answer: "" };
+    var selfReview = entry.item.answerMode === "self_review";
     var retryDraftKey = homeworkRetryDraftKey(assignment, entry.item);
     var displayedAnswer = Object.prototype.hasOwnProperty.call(homeworkRetryDrafts, retryDraftKey) ?
       homeworkRetryDrafts[retryDraftKey] : response.answer;
@@ -4388,39 +5094,79 @@
     var nextTarget = homeworkNextTarget(assignment);
     var form = '<form id="homework-answer-form">';
     if (entry.type === "single_choice") {
-      form += '<div class="homework-options" role="radiogroup" aria-label="选择答案">' +
+      var hasImageOptions = Array.isArray(entry.item.imageOptions) && entry.item.imageOptions.length;
+      form += '<div class="homework-options' + (hasImageOptions ? " is-image" : "") +
+        '" role="radiogroup" aria-label="选择答案">' +
         (Array.isArray(entry.item.options) ? entry.item.options : []).map(function (option, optionIndex) {
           var id = "homework-option-" + optionIndex;
-          return '<label class="homework-option" for="' + id + '"><input id="' + id +
+          var letter = homeworkOptionLetter(optionIndex);
+          return '<label class="homework-option' + (hasImageOptions ? " is-image" : "") + '" for="' + id +
+            '" aria-label="' + esc(letter + ". " + option) + '"><input id="' + id +
             '" type="radio" name="homework-answer" value="' + esc(option) + '"' +
             (displayedAnswer === option ? " checked" : "") + (scoringPending ? " disabled" : "") +
-            '><span>' + esc(option) + "</span></label>";
+            '><span class="homework-option-letter" aria-hidden="true">' + letter + "</span>" +
+            homeworkChoiceOptionHtml(assignment, entry.item, option, optionIndex) + "</label>";
         }).join("") + "</div>";
+    } else if (entry.type === "multi_input") {
+      var multiBlankValues = homeworkMultiAnswers(entry.item, displayedAnswer);
+      form += '<div class="homework-multi">' + homeworkBlanks(entry.item).map(function (blank, blankIndex) {
+        var blankInputId = "homework-blank-" + blankIndex;
+        return '<div class="homework-multi-field"><label class="qa-label" for="' + blankInputId + '">' +
+          esc(blank.label || "空 " + (blankIndex + 1)) + '</label>' +
+          '<input class="homework-text-answer" id="' + blankInputId + '" type="text" ' +
+          'name="homework-answer-multi" data-homework-blank="' + esc(blank.id) +
+          '" maxlength="120" value="' + esc(multiBlankValues[blank.id]) +
+          '" autocomplete="off" autocapitalize="none" spellcheck="false"' +
+          (scoringPending ? " disabled" : "") + "></div>";
+      }).join("") + "</div>";
     } else {
+      var answerLanguageLabel = entry.item.answerLanguageLabel || assignment.answerLanguageLabel || targetLanguageLabel();
+      var answerLanguage = entry.item.answerLanguage || P.config.lang || "";
       form += '<label class="qa-label" for="homework-answer-input">' +
-        (homeworkIsScenario(assignment) ? "你会怎么说？" : "你的" + esc(targetLanguageLabel()) + "答案") +
-        '</label><input class="homework-text-answer' + (homeworkIsScenario(assignment) ? " is-dialogue" : "") + '" ' +
-        'id="homework-answer-input" name="homework-answer" type="text" maxlength="' + HOMEWORK_MAX_ANSWER +
-        '" value="' + esc(displayedAnswer) + '" autocomplete="off" autocapitalize="none" spellcheck="false"' +
-        (scoringPending ? " disabled" : "") + ">";
+        (selfReview ? "你的回答" : (homeworkIsScenario(assignment) ? "你会怎么说？" :
+          "你的" + esc(answerLanguageLabel) + "答案")) + '</label>';
+      if (entry.type === "open_response") {
+        form += '<textarea class="homework-text-answer is-open-response" id="homework-answer-input" ' +
+          'name="homework-answer" maxlength="' + HOMEWORK_MAX_ANSWER + '" autocomplete="off" ' +
+          'autocapitalize="none" spellcheck="false" lang="' + esc(answerLanguage) + '"' +
+          (scoringPending ? " disabled" : "") + '>' +
+          esc(displayedAnswer) + "</textarea>";
+      } else {
+        form += '<input class="homework-text-answer' + (homeworkIsScenario(assignment) ? " is-dialogue" : "") + '" ' +
+          'id="homework-answer-input" name="homework-answer" type="text" maxlength="' + HOMEWORK_MAX_ANSWER +
+          '" value="' + esc(displayedAnswer) + '" autocomplete="off" autocapitalize="none" spellcheck="false" lang="' +
+          esc(answerLanguage) + '"' +
+          (scoringPending ? " disabled" : "") + ">";
+      }
     }
     var sourceLabel = homeworkIsScenario(assignment) ?
       (assignment.title || "场景练习") + " · 场景练习" :
       (entry.item.sourcePage ? "原材料第 " + entry.item.sourcePage + " 页" :
       (assignment.sourceTitle || "互动练习"));
+    var readyToCheck = entry.type === "multi_input" ?
+      (function () {
+        var filledValues = homeworkMultiAnswers(entry.item, displayedAnswer);
+        return homeworkBlanks(entry.item).every(function (blank) {
+          return String(filledValues[blank.id] || "").trim();
+        });
+      })() : !!displayedAnswer.trim();
     form += '<div class="homework-check-row"><span class="homework-source-page">' +
       esc(sourceLabel) + " · " + esc(learningStorageLabel("答案会自动保存在本浏览器",
         "答案会先保存在本机并自动同步")) + '</span><button class="homework-button primary" type="submit"' +
-      (displayedAnswer.trim() && !scoringPending ? "" : " disabled") + ">" +
-      (scoringPending ? "智能复核中…" : (response.status ? "重新检查" : "检查答案")) +
+      (readyToCheck && !scoringPending ? "" : " disabled") + ">" +
+      (selfReview ? "保存并查看参考" :
+        (scoringPending ? "智能复核中…" : (response.status ? "重新检查" : "检查答案"))) +
       "</button></div></form>";
     var positionLabel = homeworkIsScenario(assignment) ?
       retryLabel + "对话练习 · 第 " + (typePosition.position + 1) + " / " + typePosition.total + " 步" :
       retryLabel + homeworkTypeLabel(entry.type) + " · 第 " + (typePosition.position + 1) +
         " / " + typePosition.total + " 题";
-    var questionHtml = homeworkIsScenario(assignment) ?
+    var speechStuckHtml = speechEngineStuck() ?
+      '<p class="qa-notice homework-speech-stuck" role="status">浏览器朗读无响应：这是 Chrome 语音引擎卡住了，请完全退出 Chrome（⌘Q）后重新打开再继续。</p>' : "";
+    var questionHtml = speechStuckHtml + (homeworkIsScenario(assignment) ?
       homeworkDialogueCueHtml(entry.item) :
-      '<h2 class="homework-prompt" id="homework-question-title" tabindex="-1">' + esc(entry.item.prompt) + "</h2>";
+      homeworkVisualPromptHtml(assignment, entry.item) +
+      '<h2 class="homework-prompt" id="homework-question-title" tabindex="-1">' + esc(entry.item.prompt) + "</h2>");
     return (homeworkIsScenario(assignment) ? "" : homeworkStudyCalloutHtml(assignment)) +
       homeworkReferenceTablesHtml(assignment) +
       dashboardHomeworkTypeProgressHtml(assignment) +
@@ -4429,7 +5175,8 @@
       '<p class="homework-section-label">' + esc(entry.section.title || "") + '</p><p class="homework-instructions">' +
       esc(entry.section.instructions || "") + '</p><p class="homework-question-number">' +
       esc(positionLabel) + "</p>" + questionHtml + form +
-      homeworkFeedbackHtml(assignment, entry, response) + '<p class="qa-notice" role="status" aria-live="polite">' +
+      homeworkFeedbackHtml(assignment, entry, response) + homeworkHistoryHtml(assignment, entry) +
+      '<p class="qa-notice" role="status" aria-live="polite">' +
       esc(state.homeworkNotice) + '</p></section><nav class="homework-nav" aria-label="作业题目导航"><button class="homework-button" ' +
       'data-homework-action="previous"' + (typePosition.position === 0 ? " disabled" : "") +
       ">" + (homeworkIsScenario(assignment) ? "上一步" : "上一题") + '</button><button class="homework-button primary" ' +
@@ -4440,18 +5187,34 @@
   function dashboardHomeworkSummaryHtml(assignment) {
     var progress = homeworkProgress(assignment);
     var stats = homeworkStats(assignment, progress);
-    var retryCount = stats.total - stats.correct;
+    var retryCount = stats.near + stats.incorrect;
+    var gradedTotal = stats.checked - stats.selfReviewed;
+    var completionText = stats.checked === stats.total ?
+      (stats.selfReviewed ?
+        "全部题目都已完成；开放题已保存，请对照参考作答自行核对。记录已保存在这个浏览器中。" :
+        "全部题目都已检查，记录已保存在这个浏览器中。") :
+      (stats.selfReviewed ? "还有 " + (stats.total - stats.checked) + " 道题未完成。" :
+        "还有 " + (stats.total - stats.checked) + " 道题没有检查。");
+    var summaryStats = '<div class="homework-summary-stat"><strong>' + stats.total +
+      '</strong><span>总题数</span></div>';
+    if (gradedTotal) {
+      summaryStats += '<div class="homework-summary-stat"><strong>' + stats.firstCorrect +
+        '</strong><span>正确</span></div><div class="homework-summary-stat"><strong>' + stats.firstNear +
+        '</strong><span>' + (homeworkIsScenario(assignment) ? "意思正确，可优化" : "重音 / 拼写接近") +
+        '</span></div><div class="homework-summary-stat"><strong>' + stats.firstIncorrect +
+        '</strong><span>暂时不对</span></div>';
+    }
+    if (stats.selfReviewed) {
+      summaryStats += '<div class="homework-summary-stat"><strong>' + stats.selfReviewed +
+        '</strong><span>开放题已保存</span></div>';
+    }
     return homeworkReferenceTablesHtml(assignment) + dashboardHomeworkTypeProgressHtml(assignment) +
       '<section class="homework-summary" aria-labelledby="homework-summary-title"><span class="homework-summary-mark" aria-hidden="true">' +
-      stats.correct + '</span><h2 id="homework-summary-title" tabindex="-1">本次作业结果</h2><p>' +
-      (stats.checked === stats.total ? "全部题目都已检查，记录已保存在这个浏览器中。" :
-      "还有 " + (stats.total - stats.checked) + " 道题没有检查。") +
-      '</p><div class="homework-summary-stats"><div class="homework-summary-stat"><strong>' + stats.total +
-      '</strong><span>总题数</span></div><div class="homework-summary-stat"><strong>' + stats.correct +
-      '</strong><span>正确</span></div><div class="homework-summary-stat"><strong>' + stats.near +
-      '</strong><span>' + (homeworkIsScenario(assignment) ? "意思正确，可优化" : "重音 / 拼写接近") +
-      '</span></div><div class="homework-summary-stat"><strong>' + stats.incorrect +
-      '</strong><span>暂时不对</span></div></div><div class="homework-summary-actions">' +
+      (gradedTotal ? stats.firstCorrect : stats.selfReviewed) +
+      '</span><h2 id="homework-summary-title" tabindex="-1">本次作业结果</h2><p>' + completionText + '</p>' +
+      (stats.correct > stats.firstCorrect ?
+        '<p class="homework-summary-note">按第一次作答统计；订正后已答对 ' + stats.correct + ' 题。</p>' : '') +
+      '<div class="homework-summary-stats">' + summaryStats + '</div><div class="homework-summary-actions">' +
       (retryCount ? '<button class="homework-button primary" data-homework-action="retry">重做未完全答对的 ' + retryCount + " 题</button>" : "") +
       '<button class="homework-button" data-homework-action="browse">查看题目</button>' +
       '<button class="homework-button" data-homework-action="back">返回作业列表</button>' +
@@ -4990,7 +5753,87 @@
       '<div class="vocab-review-head"><div class="vocab-review-title"><h2>今日复习</h2><span>' + done + " / " + total +
       '</span></div><div class="vocab-review-bar" aria-hidden="true"><span style="width:' + pct + '%"></span></div></div>' +
       (state.reviewHistoryNotice ? '<p class="review-history-notice" role="status">' + esc(state.reviewHistoryNotice) + "</p>" : "") +
-      reviewCardHtml() + '<div class="vocab-review-foot">回车检查答案 · 可直接看答案 · 1 没想起 · 2 其他 · 3 想起来了</div></aside>';
+      reviewCardHtml() + '<div class="vocab-review-foot">回车检查答案 · 可直接看答案 · 1 没想起 · 2 其他 · 3 想起来了</div>' +
+      homeworkMistakesHtml() + '</aside>';
+  }
+
+  function homeworkMistakesHtml() {
+    var entries = homeworkMistakeEntries();
+    var open = entries.filter(function (entry) { return !entry.resolved; });
+    var resolved = entries.filter(function (entry) { return entry.resolved; });
+    var h = '<section class="homework-mistakes" aria-label="错题复习"><div class="homework-mistakes-head"><h2>错题</h2><span>' +
+      open.length + ' 待订正</span></div>';
+    if (!entries.length) {
+      return h + '<p class="homework-mistakes-empty">还没有错题。第一次没答对的题会出现在这里。</p></section>';
+    }
+    if (state.mistakeNotice) {
+      h += '<p class="homework-mistakes-notice" role="status">' + esc(state.mistakeNotice) + "</p>";
+    }
+    h += '<ol class="homework-mistakes-list">';
+    open.forEach(function (candidate) {
+      var isOpen = state.mistakeOpenKey === candidate.key;
+      h += '<li class="homework-mistake' + (isOpen ? " is-open" : "") + '">' +
+        '<button class="homework-mistake-summary" data-mistake-open="' + esc(candidate.key) + '">' +
+        '<span class="homework-mistake-title">' + esc(candidate.assignment.title || candidate.assignment.id) + " · 第 " +
+        (candidate.entry.item.number || "?") + ' 题</span><span class="homework-mistake-prompt">' +
+        esc(candidate.entry.item.prompt) + "</span></button>";
+      if (isOpen) {
+        if (candidate.entry.type === "single_choice") {
+          var mistakeHasImages = Array.isArray(candidate.entry.item.imageOptions) &&
+            candidate.entry.item.imageOptions.length;
+          h += '<div class="homework-mistake-options' + (mistakeHasImages ? " is-image" : "") + '">';
+          (candidate.entry.item.options || []).forEach(function (option, optionIndex) {
+            h += '<button class="homework-mistake-option' + (mistakeHasImages ? " is-image" : "") +
+              '" data-mistake-option="' + esc(candidate.key) +
+              '" data-mistake-value="' + esc(option) + '">' +
+              homeworkChoiceOptionHtml(candidate.assignment, candidate.entry.item, option, optionIndex) + "</button>";
+          });
+          h += "</div>";
+        } else {
+          h += '<div class="homework-mistake-redo"><input class="homework-mistake-input" data-mistake-input="' +
+            esc(candidate.key) + '" value="' + esc(homeworkMistakeDrafts[candidate.key] || "") +
+            '" autocomplete="off" lang="' + esc(P.config.lang || "") + '">' +
+            '<button class="homework-mistake-check" data-mistake-check="' + esc(candidate.key) + '">检查</button></div>';
+        }
+      }
+      h += "</li>";
+    });
+    h += "</ol>";
+    if (resolved.length) {
+      h += '<button class="homework-mistakes-toggle" data-mistake-toggle-resolved>已订正 ' + resolved.length +
+        ' 题 ' + (state.mistakeShowResolved ? "收起" : "展开") + "</button>";
+      if (state.mistakeShowResolved) {
+        h += '<ol class="homework-mistakes-list is-resolved">';
+        resolved.forEach(function (candidate) {
+          h += '<li class="homework-mistake is-resolved"><span class="homework-mistake-prompt">' +
+            esc(candidate.entry.item.prompt) + "</span></li>";
+        });
+        h += "</ol>";
+      }
+    }
+    return h + "</section>";
+  }
+
+  function chatWidgetHtml() {
+    var h = '<div class="chat-widget">';
+    if (state.chatOpen) {
+      var messages = chatMessages();
+      h += '<section class="chat-panel" aria-label="需求对话"><header class="chat-panel-head"><h2>需求与反馈</h2>' +
+        '<button class="chat-close" data-chat-toggle aria-label="收起对话框">×</button></header>' +
+        '<div class="chat-log" role="log" aria-live="polite">';
+      if (!messages.length) {
+        h += '<p class="chat-empty">想调整作业、报告问题或提需求，直接发在这里。</p>';
+      }
+      messages.forEach(function (message) {
+        h += '<p class="chat-message is-' + message.role + '">' + esc(message.text) + "</p>";
+      });
+      h += '</div><form class="chat-compose" id="chat-form"><input class="chat-input" id="chat-input" ' +
+        'autocomplete="off" maxlength="' + CHAT_MAX_MESSAGE + '" placeholder="输入消息…" value="' + esc(state.chatDraft) + '">' +
+        '<button class="chat-send" type="submit" data-chat-send>发送</button></form>' +
+        '<p class="chat-note">消息仅保存在这个浏览器中；稍后会接入智能助手处理。</p></section>';
+    }
+    h += '<button class="chat-fab" data-chat-toggle aria-expanded="' + state.chatOpen + '" aria-label="打开需求对话框">💬</button></div>';
+    return h;
   }
 
   function dashboardNavButton(name, mark, label, count) {
@@ -5452,6 +6295,21 @@
     setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
   }
 
+  function dashboardImageCreditsHtml() {
+    var credits = {};
+    homeworkAssignments.forEach(function (assignment) {
+      Object.keys(assignment.images || {}).forEach(function (id) {
+        var image = assignment.images[id];
+        if (image && image.provider && typeof image.creditUrl === "string" &&
+            /^https:\/\/[^\s"'<>]+$/.test(image.creditUrl)) credits[image.provider] = image.creditUrl;
+      });
+    });
+    var links = Object.keys(credits).map(function (provider) {
+      return '<a href="' + esc(credits[provider]) + '" target="_blank" rel="noopener">' + esc(provider) + '</a>';
+    });
+    return links.length ? '<p class="vocab-image-credits">配图：' + links.join(' · ') + '</p>' : '';
+  }
+
   function dashboardHtml() {
     refreshReviewStore(false);
     var due = reviewDueCount(), mastered = reviewMasteredCount();
@@ -5469,7 +6327,7 @@
       '</nav><p class="vocab-local-note">' +
       esc(learningStorageLabel("复习进度、作业作答、逐次历史和 Q&A 问题仅保存在这个浏览器中。无需登录，也不会上传。",
         "登录后，复习进度、作业作答、逐次历史和 Q&A 问题会同步到你的云端账号。")) +
-      '</p></aside>' +
+      '</p>' + dashboardImageCreditsHtml() + '</aside>' +
       (state.dashboardNav === "homework" ? dashboardHomeworkHtml() :
       (state.dashboardNav === "qa" ? dashboardQaHtml(questions) : (state.dashboardNav === "progress" ? dashboardProgressHtml(events) :
       '<main class="vocab-main"><header class="vocab-topbar" id="dashboard-progress"><div class="vocab-topbar-copy">' +
@@ -5495,7 +6353,7 @@
     var app = document.getElementById("app");
     if (VOCAB_DASHBOARD) {
       app.className = "wrap vocab-dashboard-wrap";
-      app.innerHTML = dashboardHtml();
+      app.innerHTML = dashboardHtml() + chatWidgetHtml();
       return;
     }
     app.className = "wrap";
@@ -5744,7 +6602,7 @@
   function stopAll() {
     queue = [];
     utterSeq++; // invalidate onend callbacks of cancelled speech
-    if (synth) synth.cancel();
+    if (synth && (synth.speaking || synth.pending) && Date.now() >= wordSpeechUntil) synth.cancel();
     player.pause();
     clearPlayState();
     if (currentAllBtn) { currentAllBtn.textContent = t("playAll"); currentAllBtn = null; }
@@ -5813,6 +6671,12 @@
   // ── events (delegated; DOM is re-rendered on language switch) ──
   document.addEventListener("click", function (e) {
     var el;
+    if (e.target && e.target.name === "homework-answer" && e.target.type === "radio" && e.target.checked &&
+        Date.now() - homeworkOptionSpokenAt > 300) {
+      var respeakAssignment = homeworkById(state.homeworkId);
+      var respeakEntry = respeakAssignment ? homeworkActiveItems(respeakAssignment)[state.homeworkIndex] : null;
+      speakHomeworkOption(respeakAssignment, respeakEntry, e.target.value);
+    }
     if (P.self && (el = e.target.closest(".del-story"))) {
       var sid = el.dataset.del, pid = el.dataset.pid;
       if (delArmed !== sid) {
@@ -6052,7 +6916,8 @@
         var currentProgress = homeworkProgress(currentHomework);
         var currentResponse = currentEntry && currentProgress.responses[currentEntry.item.id];
         if (!currentResponse || !currentResponse.status) {
-          state.homeworkNotice = "请先检查当前答案。";
+          state.homeworkNotice = currentEntry && currentEntry.item.answerMode === "self_review" ?
+            "请先保存当前回答。" : "请先检查当前答案。";
         } else {
           var nextHomeworkTarget = homeworkNextTarget(currentHomework);
           if (nextHomeworkTarget.index < 0) {
@@ -6080,6 +6945,15 @@
         state.homeworkScenarioIntro = false;
         state.homeworkScenarioTeaching = false;
         state.homeworkTeachingWordKey = "";
+      } else if (currentHomework && homeworkAction === "toggle-history") {
+        var historyEntries = homeworkActiveItems(currentHomework);
+        var historyEntry = historyEntries[state.homeworkIndex];
+        state.homeworkHistoryOpenId = historyEntry && state.homeworkHistoryOpenId !== historyEntry.item.id ?
+          historyEntry.item.id : "";
+        state.homeworkAnalysisNotice = "";
+      } else if (currentHomework && homeworkAction === "analyze") {
+        requestHomeworkAnalysis(currentHomework);
+        return;
       } else if (currentHomework && homeworkAction === "issue") {
         reportHomeworkIssue();
         return;
@@ -6274,6 +7148,43 @@
       showPop(el, -1, el.dataset.key);
       return;
     }
+    if ((el = e.target.closest("[data-mistake-open]"))) {
+      var mistakeKey = el.getAttribute("data-mistake-open");
+      state.mistakeOpenKey = state.mistakeOpenKey === mistakeKey ? "" : mistakeKey;
+      state.mistakeNotice = "";
+      render();
+      return;
+    }
+    if ((el = e.target.closest("[data-mistake-check]"))) {
+      var checkKey = el.getAttribute("data-mistake-check");
+      resolveHomeworkMistake(checkKey, homeworkMistakeDrafts[checkKey] || "");
+      render();
+      return;
+    }
+    if ((el = e.target.closest("[data-mistake-option]"))) {
+      resolveHomeworkMistake(el.getAttribute("data-mistake-option"),
+        el.getAttribute("data-mistake-value") || "");
+      render();
+      return;
+    }
+    if (e.target.closest("[data-mistake-toggle-resolved]")) {
+      state.mistakeShowResolved = !state.mistakeShowResolved;
+      render();
+      return;
+    }
+    if (e.target.closest("[data-chat-send]")) {
+      e.preventDefault();
+      var chatInput = document.getElementById("chat-input");
+      if (chatInput) state.chatDraft = chatInput.value;
+      sendChatMessage(state.chatDraft);
+      render();
+      return;
+    }
+    if (e.target.closest("[data-chat-toggle]")) {
+      state.chatOpen = !state.chatOpen;
+      render();
+      return;
+    }
     if (!e.target.closest(".pop")) hidePop();
   });
 
@@ -6300,6 +7211,31 @@
     }
     if (e.target.id === "homework-answer-form") {
       e.preventDefault();
+      var homeworkMultiInputs = [].slice.call(e.target.querySelectorAll('input[name="homework-answer-multi"]'));
+      if (homeworkMultiInputs.length) {
+        var homeworkMultiAnswer = {};
+        var homeworkMultiMissing = null;
+        homeworkMultiInputs.forEach(function (input) {
+          homeworkMultiAnswer[input.dataset.homeworkBlank || ""] = input.value.trim();
+          if (!input.value.trim() && !homeworkMultiMissing) homeworkMultiMissing = input;
+        });
+        if (homeworkMultiMissing) {
+          state.homeworkNotice = "请把每个空都填上再检查。";
+          homeworkMultiMissing.setAttribute("aria-invalid", "true");
+          homeworkMultiMissing.focus();
+          render();
+          return;
+        }
+        if (state.homeworkScoringItemId) return;
+        checkHomeworkAnswerEnhanced(JSON.stringify(homeworkMultiAnswer)).then(function () {
+          render();
+          var homeworkMultiFeedback = document.querySelector(".homework-feedback");
+          if (homeworkMultiFeedback) {
+            homeworkMultiFeedback.scrollIntoView({ behavior: "smooth", block: "nearest" });
+          }
+        });
+        return;
+      }
       var homeworkTextInput = document.getElementById("homework-answer-input");
       var homeworkChoiceInput = e.target.querySelector('input[name="homework-answer"]:checked');
       var homeworkAnswer = homeworkTextInput ? homeworkTextInput.value.trim() :
@@ -6383,12 +7319,43 @@
       updateHomeworkStudyList();
       return;
     }
+    if (e.target.name === "homework-answer-multi") {
+      e.target.removeAttribute("aria-invalid");
+      var multiInputs = [].slice.call(document.querySelectorAll('input[name="homework-answer-multi"]'));
+      var multiPayload = {};
+      var multiAllFilled = multiInputs.length > 0;
+      multiInputs.forEach(function (input) {
+        multiPayload[input.dataset.homeworkBlank || ""] = input.value;
+        if (!input.value.trim()) multiAllFilled = false;
+      });
+      var multiSaveResult = saveHomeworkAnswer(JSON.stringify(multiPayload));
+      var multiCheckButton = document.querySelector("#homework-answer-form button[type=submit]");
+      if (multiCheckButton) multiCheckButton.disabled = !multiAllFilled;
+      var multiNotice = document.querySelector(".homework-sheet .qa-notice");
+      if (multiNotice) multiNotice.textContent = state.homeworkNotice;
+      if (multiSaveResult.cleared) {
+        var multiFocusId = e.target.id;
+        var multiCaret = e.target.selectionStart;
+        render();
+        var restoredMultiInput = document.getElementById(multiFocusId);
+        if (restoredMultiInput) {
+          restoredMultiInput.focus();
+          try { restoredMultiInput.setSelectionRange(multiCaret, multiCaret); } catch (err) {}
+        }
+      }
+      return;
+    }
     if (e.target.id === "homework-answer-input" ||
         (e.target.name === "homework-answer" && e.target.type === "radio")) {
       e.target.removeAttribute("aria-invalid");
       var answerValue = e.target.type === "radio" ? (e.target.checked ? e.target.value : "") : e.target.value;
       if (!answerValue && e.target.type === "radio") return;
       var homeworkSaveResult = saveHomeworkAnswer(answerValue);
+      if (e.target.type === "radio") {
+        var spokenAssignment = homeworkById(state.homeworkId);
+        var spokenEntry = spokenAssignment ? homeworkActiveItems(spokenAssignment)[state.homeworkIndex] : null;
+        speakHomeworkOption(spokenAssignment, spokenEntry, answerValue);
+      }
       var homeworkCheckButton = document.querySelector("#homework-answer-form button[type=submit]");
       if (homeworkCheckButton) homeworkCheckButton.disabled = !String(answerValue).trim();
       var homeworkNotice = document.querySelector(".homework-sheet .qa-notice");
@@ -6427,6 +7394,14 @@
       state.vocabSearch = e.target.value;
       updateDashboardVocabList();
     }
+    if (e.target && e.target.hasAttribute && e.target.hasAttribute("data-mistake-input")) {
+      homeworkMistakeDrafts[e.target.getAttribute("data-mistake-input")] = e.target.value;
+      return;
+    }
+    if (e.target && e.target.id === "chat-input") {
+      state.chatDraft = e.target.value;
+      return;
+    }
   });
 
   document.addEventListener("change", function (e) {
@@ -6438,6 +7413,13 @@
   });
 
   document.addEventListener("keydown", function (e) {
+    if (e.key === "Enter" && e.target && e.target.id === "chat-input") {
+      e.preventDefault();
+      state.chatDraft = e.target.value;
+      sendChatMessage(state.chatDraft);
+      render();
+      return;
+    }
     if (e.key === "Escape") {
       hidePop();
       if (state.dashboardNav === "qa" && state.qaDeleteArmed) {
@@ -6451,6 +7433,17 @@
       e.preventDefault();
       if (a.form && typeof a.form.requestSubmit === "function") a.form.requestSubmit();
       return;
+    }
+    if (VOCAB_DASHBOARD && state.dashboardNav === "homework" && state.homeworkId &&
+        /^[a-zA-Z]$/.test(e.key) && !e.metaKey && !e.ctrlKey && !e.altKey &&
+        !(a && /^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName || "") && a.type !== "radio") &&
+        document.getElementById("homework-answer-form")) {
+      if (selectHomeworkOptionByLetter(e.key)) {
+        e.preventDefault();
+        var chosenRadio = document.querySelector('input[name="homework-answer"]:checked');
+        if (chosenRadio) chosenRadio.focus();
+        return;
+      }
     }
     var reviewSurfaceVisible = !VOCAB_DASHBOARD || !!document.getElementById("dashboard-review-card");
     if (reviewSurfaceVisible && (state.view === "review" || state.view === "vocab") && !e.metaKey && !e.ctrlKey && !e.altKey) {
