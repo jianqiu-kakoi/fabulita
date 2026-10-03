@@ -72,6 +72,11 @@ compilation are not covered by this repository's Apache-2.0 license.
   sentences are standard textbook Spanish written for this list. Existing rows
   were not changed.
 
+- The homework `interrogativos-ser-estar-a1` (built by
+  `scripts/build_mi_espanol_interrogativos_homework.py`) practises the same
+  class notes: question words, por qué / porque / para qué, ser vs estar,
+  ser / estar conjugation and short translations. Standard grammar answer key.
+
 ## A0 visual vocabulary photos (public, CC0 / public domain)
 
 - Directory: `assets/vocab-images/` (`manifest.json` + `images/`).
