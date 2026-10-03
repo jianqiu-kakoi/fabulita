@@ -61,6 +61,17 @@ compilation are not covered by this repository's Apache-2.0 license.
   (`al`, `del`, `por`, `para`, `me`, `se`, ...). Personal names, city names and
   conjugated forms of `ser` / `estar` were left out.
 
+## Class notes: question words and ser / estar (2026-10-03)
+
+- 25 rows were appended to `vocab.csv` from the learner's own class notes:
+  example questions for each question word (`¿qué estudias?`,
+  `¿cómo te llamas?`, `¿dónde está el baño?`, `¿cuántos perros tienes?`, ...),
+  `¿cuántos? / ¿cuántas?`, and grammar notes (`ser vs estar`, the present-tense
+  conjugations of `ser` and `estar`, `¿por qué?` vs `porque`, `¿por qué?` vs
+  `¿para qué?`, `¿cómo es…?` vs `¿cómo está…?`, `¿cómo?` vs `como`). Example
+  sentences are standard textbook Spanish written for this list. Existing rows
+  were not changed.
+
 ## A0 visual vocabulary photos (public, CC0 / public domain)
 
 - Directory: `assets/vocab-images/` (`manifest.json` + `images/`).

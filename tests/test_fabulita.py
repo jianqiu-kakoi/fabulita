@@ -225,8 +225,8 @@ def test_mi_espanol_vocab_dashboard_build():
     project = Project(project_root)
     vocab.import_file(project, project_root / "vocab.csv")
     words = project.vocab
-    assert len(words) == 727
-    assert len({w["w"].casefold() for w in words}) == 727
+    assert len(words) == 752
+    assert len({w["w"].casefold() for w in words}) == 752
     headwords = {w["w"] for w in words}
     assert {
         "la llave", "el queso", "¿cómo estás?", "ser", "estar",
@@ -240,8 +240,8 @@ def test_mi_espanol_vocab_dashboard_build():
     assert by_word["inteligente"]["answers"] == "聪明|聪明的|intelligent|smart|clever"
     assert by_word["bien"]["answers"] == "好|好地|状态良好|well|good"
     assert "and" not in by_word["con"].get("answers", "").split("|")
-    assert sum(word.get("kind") == "grammar" for word in words) == 7
-    assert sum(word.get("review_mode") == "grammar" for word in words) == 5
+    assert sum(word.get("kind") == "grammar" for word in words) == 14
+    assert sum(word.get("review_mode") == "grammar" for word in words) == 12
     out, _, n_stories, _ = build.build(project)
     html = out.read_text(encoding="utf-8")
     assert n_stories == 0
