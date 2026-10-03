@@ -141,3 +141,22 @@ def test_frases_assignment_is_committed_and_well_formed():
         assert item["answerMode"] == "self_review" and item["answers"]
     ids = [item["id"] for section in assignment["sections"] for item in section["items"]]
     assert len(ids) == len(set(ids))
+
+
+regulares_builder = _load("build_mi_espanol_regulares_homework")
+
+
+def test_regular_verb_sentences_are_committed_and_correct():
+    assignment = regulares_builder.build_assignment()
+    assert _homework()["verbos-regulares-frases-a1-a2"] == assignment
+    assert regulares_builder.conjugate("recibir") == ["recibo", "recibes", "recibe", "recibimos", "recibís", "reciben"]
+    assert regulares_builder.conjugate("leer") == ["leo", "lees", "lee", "leemos", "leéis", "leen"]
+    items = [item for section in assignment["sections"] for item in section["items"]]
+    assert len(items) == 90 and [item["number"] for item in items] == list(range(1, 91))
+    expected = {"vr-01": "recibo", "vr-02": "cedéis", "vr-07": "visita", "vr-17": "beben",
+                "vr-51": "toséis", "vr-81": "abren", "vr-90": "viven"}
+    by_id = {item["id"]: item for item in items}
+    for item_id, form in expected.items():
+        assert by_id[item_id]["answers"] == [form]
+    for item in items:
+        assert item["prompt"].count("_______") == 1 and item["prompt"].endswith(f"({item['verb']})")

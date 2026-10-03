@@ -41607,6 +41607,2769 @@
           ]
         }
       ]
+    },
+    {
+      "id": "verbos-regulares-frases-a1-a2",
+      "title": "规则动词现在时 · 90 句填空 A1–A2",
+      "badge": "变位练习",
+      "sourceTitle": "Verbos regulares en presente: frases",
+      "level": "A1–A2",
+      "answerKeyBasis": "standard_conjugation",
+      "contentOrigin": "independently_rewritten_private_classroom_adaptation",
+      "source": {},
+      "referenceTables": [
+        {
+          "id": "vr-ar-reference",
+          "verb": "hablar",
+          "title": "-AR（hablar：说话）：-o · -as · -a · -amos · -áis · -an",
+          "rows": [
+            {
+              "person": "yo",
+              "form": "hablo"
+            },
+            {
+              "person": "tú",
+              "form": "hablas"
+            },
+            {
+              "person": "él / ella / usted",
+              "form": "habla"
+            },
+            {
+              "person": "nosotros / nosotras",
+              "form": "hablamos"
+            },
+            {
+              "person": "vosotros / vosotras",
+              "form": "habláis"
+            },
+            {
+              "person": "ellos / ellas / ustedes",
+              "form": "hablan"
+            }
+          ]
+        },
+        {
+          "id": "vr-er-reference",
+          "verb": "comer",
+          "title": "-ER（comer：吃）：-o · -es · -e · -emos · -éis · -en",
+          "rows": [
+            {
+              "person": "yo",
+              "form": "como"
+            },
+            {
+              "person": "tú",
+              "form": "comes"
+            },
+            {
+              "person": "él / ella / usted",
+              "form": "come"
+            },
+            {
+              "person": "nosotros / nosotras",
+              "form": "comemos"
+            },
+            {
+              "person": "vosotros / vosotras",
+              "form": "coméis"
+            },
+            {
+              "person": "ellos / ellas / ustedes",
+              "form": "comen"
+            }
+          ]
+        },
+        {
+          "id": "vr-ir-reference",
+          "verb": "vivir",
+          "title": "-IR（vivir：居住、生活）：-o · -es · -e · -imos · -ís · -en",
+          "rows": [
+            {
+              "person": "yo",
+              "form": "vivo"
+            },
+            {
+              "person": "tú",
+              "form": "vives"
+            },
+            {
+              "person": "él / ella / usted",
+              "form": "vive"
+            },
+            {
+              "person": "nosotros / nosotras",
+              "form": "vivimos"
+            },
+            {
+              "person": "vosotros / vosotras",
+              "form": "vivís"
+            },
+            {
+              "person": "ellos / ellas / ustedes",
+              "form": "viven"
+            }
+          ]
+        }
+      ],
+      "sentenceLexicon": [
+        {
+          "id": "vr-lx-recibir",
+          "word": "recibir",
+          "forms": [
+            "recibo"
+          ],
+          "gloss": "收到",
+          "english": "to receive"
+        },
+        {
+          "id": "vr-lx-ceder",
+          "word": "ceder",
+          "forms": [
+            "cedéis"
+          ],
+          "gloss": "让出",
+          "english": "to give up; to yield"
+        },
+        {
+          "id": "vr-lx-desayunar",
+          "word": "desayunar",
+          "forms": [
+            "desayuna"
+          ],
+          "gloss": "吃早餐",
+          "english": "to have breakfast"
+        },
+        {
+          "id": "vr-lx-correr",
+          "word": "correr",
+          "forms": [
+            "corres"
+          ],
+          "gloss": "跑",
+          "english": "to run"
+        },
+        {
+          "id": "vr-lx-unir",
+          "word": "unir",
+          "forms": [
+            "unimos"
+          ],
+          "gloss": "连接、合并",
+          "english": "to join"
+        },
+        {
+          "id": "vr-lx-cenar",
+          "word": "cenar",
+          "forms": [
+            "cenan"
+          ],
+          "gloss": "吃晚餐",
+          "english": "to have dinner"
+        },
+        {
+          "id": "vr-lx-visitar",
+          "word": "visitar",
+          "forms": [
+            "visita"
+          ],
+          "gloss": "拜访",
+          "english": "to visit"
+        },
+        {
+          "id": "vr-lx-comer",
+          "word": "comer",
+          "forms": [
+            "como",
+            "comemos"
+          ],
+          "gloss": "吃",
+          "english": "to eat"
+        },
+        {
+          "id": "vr-lx-omitir",
+          "word": "omitir",
+          "forms": [
+            "omitís"
+          ],
+          "gloss": "省略",
+          "english": "to omit"
+        },
+        {
+          "id": "vr-lx-viajar",
+          "word": "viajar",
+          "forms": [
+            "viaja"
+          ],
+          "gloss": "旅行",
+          "english": "to travel"
+        },
+        {
+          "id": "vr-lx-compartir",
+          "word": "compartir",
+          "forms": [
+            "compartes"
+          ],
+          "gloss": "分享",
+          "english": "to share"
+        },
+        {
+          "id": "vr-lx-vender",
+          "word": "vender",
+          "forms": [
+            "venden",
+            "vendo"
+          ],
+          "gloss": "卖",
+          "english": "to sell"
+        },
+        {
+          "id": "vr-lx-necesitar",
+          "word": "necesitar",
+          "forms": [
+            "necesitamos"
+          ],
+          "gloss": "需要",
+          "english": "to need"
+        },
+        {
+          "id": "vr-lx-temer",
+          "word": "temer",
+          "forms": [
+            "teme"
+          ],
+          "gloss": "害怕",
+          "english": "to fear"
+        },
+        {
+          "id": "vr-lx-escribir",
+          "word": "escribir",
+          "forms": [
+            "escribo",
+            "escribe"
+          ],
+          "gloss": "写",
+          "english": "to write"
+        },
+        {
+          "id": "vr-lx-mirar",
+          "word": "mirar",
+          "forms": [
+            "miras"
+          ],
+          "gloss": "看",
+          "english": "to watch; to look at"
+        },
+        {
+          "id": "vr-lx-beber",
+          "word": "beber",
+          "forms": [
+            "beben",
+            "bebo"
+          ],
+          "gloss": "喝",
+          "english": "to drink"
+        },
+        {
+          "id": "vr-lx-descubrir",
+          "word": "descubrir",
+          "forms": [
+            "descubre"
+          ],
+          "gloss": "发现",
+          "english": "to discover"
+        },
+        {
+          "id": "vr-lx-practicar",
+          "word": "practicar",
+          "forms": [
+            "practicáis"
+          ],
+          "gloss": "练习",
+          "english": "to practice"
+        },
+        {
+          "id": "vr-lx-leer",
+          "word": "leer",
+          "forms": [
+            "leo",
+            "leemos"
+          ],
+          "gloss": "读",
+          "english": "to read"
+        },
+        {
+          "id": "vr-lx-añadir",
+          "word": "añadir",
+          "forms": [
+            "añadimos"
+          ],
+          "gloss": "添加",
+          "english": "to add"
+        },
+        {
+          "id": "vr-lx-descansar",
+          "word": "descansar",
+          "forms": [
+            "descansan"
+          ],
+          "gloss": "休息",
+          "english": "to rest"
+        },
+        {
+          "id": "vr-lx-deber",
+          "word": "deber",
+          "forms": [
+            "debes"
+          ],
+          "gloss": "应该",
+          "english": "must; should"
+        },
+        {
+          "id": "vr-lx-caminar",
+          "word": "caminar",
+          "forms": [
+            "camino"
+          ],
+          "gloss": "走路",
+          "english": "to walk"
+        },
+        {
+          "id": "vr-lx-decidir",
+          "word": "decidir",
+          "forms": [
+            "decides"
+          ],
+          "gloss": "决定",
+          "english": "to decide"
+        },
+        {
+          "id": "vr-lx-entrar",
+          "word": "entrar",
+          "forms": [
+            "entran"
+          ],
+          "gloss": "进入",
+          "english": "to enter"
+        },
+        {
+          "id": "vr-lx-dividir",
+          "word": "dividir",
+          "forms": [
+            "divide"
+          ],
+          "gloss": "分开",
+          "english": "to divide"
+        },
+        {
+          "id": "vr-lx-romper",
+          "word": "romper",
+          "forms": [
+            "rompe"
+          ],
+          "gloss": "打破",
+          "english": "to break"
+        },
+        {
+          "id": "vr-lx-estudiar",
+          "word": "estudiar",
+          "forms": [
+            "estudio"
+          ],
+          "gloss": "学习",
+          "english": "to study"
+        },
+        {
+          "id": "vr-lx-repartir",
+          "word": "repartir",
+          "forms": [
+            "repartís"
+          ],
+          "gloss": "分发",
+          "english": "to hand out"
+        },
+        {
+          "id": "vr-lx-creer",
+          "word": "creer",
+          "forms": [
+            "crees"
+          ],
+          "gloss": "相信",
+          "english": "to believe"
+        },
+        {
+          "id": "vr-lx-ayudar",
+          "word": "ayudar",
+          "forms": [
+            "ayudamos"
+          ],
+          "gloss": "帮助",
+          "english": "to help"
+        },
+        {
+          "id": "vr-lx-acceder",
+          "word": "acceder",
+          "forms": [
+            "acceden",
+            "accedéis"
+          ],
+          "gloss": "进入",
+          "english": "to access"
+        },
+        {
+          "id": "vr-lx-abrir",
+          "word": "abrir",
+          "forms": [
+            "abro",
+            "abren"
+          ],
+          "gloss": "打开",
+          "english": "to open"
+        },
+        {
+          "id": "vr-lx-nadar",
+          "word": "nadar",
+          "forms": [
+            "nadáis"
+          ],
+          "gloss": "游泳",
+          "english": "to swim"
+        },
+        {
+          "id": "vr-lx-sufrir",
+          "word": "sufrir",
+          "forms": [
+            "sufre"
+          ],
+          "gloss": "受苦",
+          "english": "to suffer"
+        },
+        {
+          "id": "vr-lx-escuchar",
+          "word": "escuchar",
+          "forms": [
+            "escuchas"
+          ],
+          "gloss": "听",
+          "english": "to listen"
+        },
+        {
+          "id": "vr-lx-subir",
+          "word": "subir",
+          "forms": [
+            "suben",
+            "subo"
+          ],
+          "gloss": "上去；搬上去",
+          "english": "to go up; to carry up"
+        },
+        {
+          "id": "vr-lx-coser",
+          "word": "coser",
+          "forms": [
+            "cosemos"
+          ],
+          "gloss": "缝",
+          "english": "to sew"
+        },
+        {
+          "id": "vr-lx-lavar",
+          "word": "lavar",
+          "forms": [
+            "lava"
+          ],
+          "gloss": "洗",
+          "english": "to wash"
+        },
+        {
+          "id": "vr-lx-comprender",
+          "word": "comprender",
+          "forms": [
+            "comprendes"
+          ],
+          "gloss": "理解",
+          "english": "to understand"
+        },
+        {
+          "id": "vr-lx-admitir",
+          "word": "admitir",
+          "forms": [
+            "admitimos"
+          ],
+          "gloss": "承认",
+          "english": "to admit"
+        },
+        {
+          "id": "vr-lx-preguntar",
+          "word": "preguntar",
+          "forms": [
+            "preguntan"
+          ],
+          "gloss": "问",
+          "english": "to ask"
+        },
+        {
+          "id": "vr-lx-cubrir",
+          "word": "cubrir",
+          "forms": [
+            "cubrís"
+          ],
+          "gloss": "盖住",
+          "english": "to cover"
+        },
+        {
+          "id": "vr-lx-esperar",
+          "word": "esperar",
+          "forms": [
+            "esperamos"
+          ],
+          "gloss": "等待",
+          "english": "to wait"
+        },
+        {
+          "id": "vr-lx-describir",
+          "word": "describir",
+          "forms": [
+            "describe"
+          ],
+          "gloss": "描述",
+          "english": "to describe"
+        },
+        {
+          "id": "vr-lx-toser",
+          "word": "toser",
+          "forms": [
+            "toséis"
+          ],
+          "gloss": "咳嗽",
+          "english": "to cough"
+        },
+        {
+          "id": "vr-lx-cocinar",
+          "word": "cocinar",
+          "forms": [
+            "cocinas"
+          ],
+          "gloss": "做饭",
+          "english": "to cook"
+        },
+        {
+          "id": "vr-lx-depender",
+          "word": "depender",
+          "forms": [
+            "dependemos"
+          ],
+          "gloss": "依赖",
+          "english": "to depend"
+        },
+        {
+          "id": "vr-lx-aplaudir",
+          "word": "aplaudir",
+          "forms": [
+            "aplauden"
+          ],
+          "gloss": "鼓掌",
+          "english": "to applaud"
+        },
+        {
+          "id": "vr-lx-hablar",
+          "word": "hablar",
+          "forms": [
+            "hablo"
+          ],
+          "gloss": "说话",
+          "english": "to speak"
+        },
+        {
+          "id": "vr-lx-prometer",
+          "word": "prometer",
+          "forms": [
+            "promete"
+          ],
+          "gloss": "承诺",
+          "english": "to promise"
+        },
+        {
+          "id": "vr-lx-asistir",
+          "word": "asistir",
+          "forms": [
+            "asistes"
+          ],
+          "gloss": "参加",
+          "english": "to attend"
+        },
+        {
+          "id": "vr-lx-llevar",
+          "word": "llevar",
+          "forms": [
+            "lleváis"
+          ],
+          "gloss": "带、穿",
+          "english": "to carry; to wear"
+        },
+        {
+          "id": "vr-lx-sorprender",
+          "word": "sorprender",
+          "forms": [
+            "sorprendemos"
+          ],
+          "gloss": "使惊喜",
+          "english": "to surprise"
+        },
+        {
+          "id": "vr-lx-contestar",
+          "word": "contestar",
+          "forms": [
+            "contestan"
+          ],
+          "gloss": "回答",
+          "english": "to answer"
+        },
+        {
+          "id": "vr-lx-responder",
+          "word": "responder",
+          "forms": [
+            "respondes"
+          ],
+          "gloss": "回复",
+          "english": "to reply"
+        },
+        {
+          "id": "vr-lx-discutir",
+          "word": "discutir",
+          "forms": [
+            "discute"
+          ],
+          "gloss": "争吵",
+          "english": "to argue"
+        },
+        {
+          "id": "vr-lx-comprar",
+          "word": "comprar",
+          "forms": [
+            "compro"
+          ],
+          "gloss": "买",
+          "english": "to buy"
+        },
+        {
+          "id": "vr-lx-permitir",
+          "word": "permitir",
+          "forms": [
+            "permites"
+          ],
+          "gloss": "允许",
+          "english": "to allow"
+        },
+        {
+          "id": "vr-lx-preparar",
+          "word": "preparar",
+          "forms": [
+            "preparamos"
+          ],
+          "gloss": "准备",
+          "english": "to prepare"
+        },
+        {
+          "id": "vr-lx-aprender",
+          "word": "aprender",
+          "forms": [
+            "aprenden"
+          ],
+          "gloss": "学会",
+          "english": "to learn"
+        },
+        {
+          "id": "vr-lx-cumplir",
+          "word": "cumplir",
+          "forms": [
+            "cumple"
+          ],
+          "gloss": "满（岁）；履行",
+          "english": "to turn (an age); to fulfil"
+        },
+        {
+          "id": "vr-lx-dibujar",
+          "word": "dibujar",
+          "forms": [
+            "dibujáis"
+          ],
+          "gloss": "画画",
+          "english": "to draw"
+        },
+        {
+          "id": "vr-lx-poseer",
+          "word": "poseer",
+          "forms": [
+            "poseemos"
+          ],
+          "gloss": "拥有",
+          "english": "to own"
+        },
+        {
+          "id": "vr-lx-vivir",
+          "word": "vivir",
+          "forms": [
+            "vivo",
+            "viven"
+          ],
+          "gloss": "居住、生活",
+          "english": "to live"
+        },
+        {
+          "id": "vr-lx-bailar",
+          "word": "bailar",
+          "forms": [
+            "bailas"
+          ],
+          "gloss": "跳舞",
+          "english": "to dance"
+        },
+        {
+          "id": "vr-lx-cometer",
+          "word": "cometer",
+          "forms": [
+            "cometéis"
+          ],
+          "gloss": "犯（错）",
+          "english": "to commit; to make (a mistake)"
+        },
+        {
+          "id": "vr-lx-insistir",
+          "word": "insistir",
+          "forms": [
+            "insistimos"
+          ],
+          "gloss": "坚持",
+          "english": "to insist"
+        },
+        {
+          "id": "vr-lx-ordenar",
+          "word": "ordenar",
+          "forms": [
+            "ordena"
+          ],
+          "gloss": "整理",
+          "english": "to tidy"
+        },
+        {
+          "id": "vr-lx-recorrer",
+          "word": "recorrer",
+          "forms": [
+            "recorréis"
+          ],
+          "gloss": "走遍",
+          "english": "to go around"
+        },
+        {
+          "id": "vr-lx-consumir",
+          "word": "consumir",
+          "forms": [
+            "consumen"
+          ],
+          "gloss": "消耗",
+          "english": "to consume"
+        },
+        {
+          "id": "vr-lx-tomar",
+          "word": "tomar",
+          "forms": [
+            "tomáis"
+          ],
+          "gloss": "拿；晒（太阳）；喝",
+          "english": "to take"
+        },
+        {
+          "id": "vr-lx-esconder",
+          "word": "esconder",
+          "forms": [
+            "escondemos"
+          ],
+          "gloss": "藏",
+          "english": "to hide"
+        },
+        {
+          "id": "vr-lx-trabajar",
+          "word": "trabajar",
+          "forms": [
+            "trabajo"
+          ],
+          "gloss": "工作",
+          "english": "to work"
+        },
+        {
+          "id": "vr-lx-barrer",
+          "word": "barrer",
+          "forms": [
+            "barre"
+          ],
+          "gloss": "扫地",
+          "english": "to sweep"
+        },
+        {
+          "id": "vr-lx-partir",
+          "word": "partir",
+          "forms": [
+            "partís"
+          ],
+          "gloss": "切开",
+          "english": "to cut; to split"
+        },
+        {
+          "id": "vr-lx-cantar",
+          "word": "cantar",
+          "forms": [
+            "cantas"
+          ],
+          "gloss": "唱歌",
+          "english": "to sing"
+        },
+        {
+          "id": "vr-lx-meter",
+          "word": "meter",
+          "forms": [
+            "mete"
+          ],
+          "gloss": "放进",
+          "english": "to put in"
+        },
+        {
+          "id": "vr-lx-imprimir",
+          "word": "imprimir",
+          "forms": [
+            "imprimimos"
+          ],
+          "gloss": "打印",
+          "english": "to print"
+        },
+        {
+          "id": "vr-lx-usar",
+          "word": "usar",
+          "forms": [
+            "usamos"
+          ],
+          "gloss": "使用",
+          "english": "to use"
+        },
+        {
+          "id": "vr-lx-x-turno",
+          "word": "el turno",
+          "forms": [
+            "turno"
+          ],
+          "gloss": "轮次、顺序",
+          "english": "turn"
+        },
+        {
+          "id": "vr-lx-x-piezas",
+          "word": "la pieza",
+          "forms": [
+            "piezas"
+          ],
+          "gloss": "零件、块",
+          "english": "piece"
+        },
+        {
+          "id": "vr-lx-x-juego",
+          "word": "el juego",
+          "forms": [
+            "juego"
+          ],
+          "gloss": "游戏",
+          "english": "game"
+        },
+        {
+          "id": "vr-lx-x-pescado",
+          "word": "el pescado",
+          "forms": [
+            "pescado"
+          ],
+          "gloss": "鱼（食物）",
+          "english": "fish (food)"
+        },
+        {
+          "id": "vr-lx-x-palabra",
+          "word": "la palabra",
+          "forms": [
+            "palabra"
+          ],
+          "gloss": "词、单词",
+          "english": "word"
+        },
+        {
+          "id": "vr-lx-x-frase",
+          "word": "la frase",
+          "forms": [
+            "frase"
+          ],
+          "gloss": "句子",
+          "english": "sentence"
+        },
+        {
+          "id": "vr-lx-x-amigos",
+          "word": "el amigo / la amiga",
+          "forms": [
+            "amigos",
+            "amiga"
+          ],
+          "gloss": "朋友",
+          "english": "friend"
+        },
+        {
+          "id": "vr-lx-x-barrio",
+          "word": "el barrio",
+          "forms": [
+            "barrio"
+          ],
+          "gloss": "街区",
+          "english": "neighborhood"
+        },
+        {
+          "id": "vr-lx-x-periódico",
+          "word": "el periódico",
+          "forms": [
+            "periódico"
+          ],
+          "gloss": "报纸",
+          "english": "newspaper"
+        },
+        {
+          "id": "vr-lx-x-sal",
+          "word": "la sal",
+          "forms": [
+            "sal"
+          ],
+          "gloss": "盐",
+          "english": "salt"
+        },
+        {
+          "id": "vr-lx-x-cuento",
+          "word": "el cuento",
+          "forms": [
+            "cuento"
+          ],
+          "gloss": "故事",
+          "english": "story"
+        },
+        {
+          "id": "vr-lx-x-camisa",
+          "word": "la camisa",
+          "forms": [
+            "camisa"
+          ],
+          "gloss": "衬衫",
+          "english": "shirt"
+        },
+        {
+          "id": "vr-lx-x-trozos",
+          "word": "el trozo",
+          "forms": [
+            "trozos"
+          ],
+          "gloss": "块、片",
+          "english": "piece"
+        },
+        {
+          "id": "vr-lx-x-ocho",
+          "word": "ocho",
+          "forms": [
+            "ocho"
+          ],
+          "gloss": "八",
+          "english": "eight"
+        },
+        {
+          "id": "vr-lx-x-diez",
+          "word": "diez",
+          "forms": [
+            "diez"
+          ],
+          "gloss": "十",
+          "english": "ten"
+        },
+        {
+          "id": "vr-lx-x-tercer",
+          "word": "tercero / tercer",
+          "forms": [
+            "tercer"
+          ],
+          "gloss": "第三",
+          "english": "third"
+        },
+        {
+          "id": "vr-lx-x-páginaweb",
+          "word": "la página web",
+          "forms": [
+            "página web",
+            "página",
+            "web"
+          ],
+          "gloss": "网站、网页",
+          "english": "web page"
+        },
+        {
+          "id": "vr-lx-x-contraseña",
+          "word": "la contraseña",
+          "forms": [
+            "contraseña"
+          ],
+          "gloss": "密码",
+          "english": "password"
+        },
+        {
+          "id": "vr-lx-x-abuelos",
+          "word": "los abuelos",
+          "forms": [
+            "abuelos"
+          ],
+          "gloss": "祖父母",
+          "english": "grandparents"
+        },
+        {
+          "id": "vr-lx-x-radio",
+          "word": "la radio",
+          "forms": [
+            "radio"
+          ],
+          "gloss": "收音机、广播",
+          "english": "radio"
+        },
+        {
+          "id": "vr-lx-x-vestido",
+          "word": "el vestido",
+          "forms": [
+            "vestido"
+          ],
+          "gloss": "连衣裙",
+          "english": "dress"
+        },
+        {
+          "id": "vr-lx-x-platos",
+          "word": "el plato",
+          "forms": [
+            "platos"
+          ],
+          "gloss": "盘子；碗碟",
+          "english": "plate; dish"
+        },
+        {
+          "id": "vr-lx-x-precio",
+          "word": "el precio",
+          "forms": [
+            "precio"
+          ],
+          "gloss": "价格",
+          "english": "price"
+        },
+        {
+          "id": "vr-lx-x-manta",
+          "word": "la manta",
+          "forms": [
+            "manta"
+          ],
+          "gloss": "毯子",
+          "english": "blanket"
+        },
+        {
+          "id": "vr-lx-x-resfriados",
+          "word": "resfriado / resfriada",
+          "forms": [
+            "resfriados"
+          ],
+          "gloss": "感冒的",
+          "english": "having a cold"
+        },
+        {
+          "id": "vr-lx-x-volver",
+          "word": "volver",
+          "forms": [
+            "volver"
+          ],
+          "gloss": "回来",
+          "english": "to come back"
+        },
+        {
+          "id": "vr-lx-x-yoga",
+          "word": "el yoga",
+          "forms": [
+            "yoga"
+          ],
+          "gloss": "瑜伽",
+          "english": "yoga"
+        },
+        {
+          "id": "vr-lx-x-jefe",
+          "word": "el jefe / la jefa",
+          "forms": [
+            "jefe"
+          ],
+          "gloss": "老板、上司",
+          "english": "boss"
+        },
+        {
+          "id": "vr-lx-x-panadería",
+          "word": "la panadería",
+          "forms": [
+            "panadería"
+          ],
+          "gloss": "面包店",
+          "english": "bakery"
+        },
+        {
+          "id": "vr-lx-x-pizarra",
+          "word": "la pizarra",
+          "forms": [
+            "pizarra"
+          ],
+          "gloss": "黑板",
+          "english": "blackboard"
+        },
+        {
+          "id": "vr-lx-x-errores",
+          "word": "el error",
+          "forms": [
+            "errores"
+          ],
+          "gloss": "错误",
+          "english": "mistake"
+        },
+        {
+          "id": "vr-lx-x-pocos",
+          "word": "poco / poca",
+          "forms": [
+            "pocos"
+          ],
+          "gloss": "很少的",
+          "english": "few; little"
+        },
+        {
+          "id": "vr-lx-x-abuela",
+          "word": "la abuela",
+          "forms": [
+            "abuela"
+          ],
+          "gloss": "奶奶、外婆",
+          "english": "grandmother"
+        },
+        {
+          "id": "vr-lx-x-estantería",
+          "word": "la estantería",
+          "forms": [
+            "estantería"
+          ],
+          "gloss": "书架",
+          "english": "bookshelf"
+        },
+        {
+          "id": "vr-lx-x-mucha",
+          "word": "mucho / mucha",
+          "forms": [
+            "mucha",
+            "mucho"
+          ],
+          "gloss": "很多",
+          "english": "a lot of"
+        },
+        {
+          "id": "vr-lx-x-terraza",
+          "word": "la terraza",
+          "forms": [
+            "terraza"
+          ],
+          "gloss": "露台",
+          "english": "terrace"
+        },
+        {
+          "id": "vr-lx-x-pastel",
+          "word": "el pastel",
+          "forms": [
+            "pastel"
+          ],
+          "gloss": "蛋糕",
+          "english": "cake"
+        },
+        {
+          "id": "vr-lx-x-todos",
+          "word": "todos / todas",
+          "forms": [
+            "todos"
+          ],
+          "gloss": "所有人；大家",
+          "english": "everyone; all"
+        },
+        {
+          "id": "vr-lx-x-coro",
+          "word": "el coro",
+          "forms": [
+            "coro"
+          ],
+          "gloss": "合唱团",
+          "english": "choir"
+        },
+        {
+          "id": "vr-lx-x-maleta",
+          "word": "la maleta",
+          "forms": [
+            "maleta"
+          ],
+          "gloss": "行李箱",
+          "english": "suitcase"
+        },
+        {
+          "id": "vr-lx-x-hacerfotos",
+          "word": "hacer fotos",
+          "forms": [
+            "hacer fotos",
+            "hacer"
+          ],
+          "gloss": "拍照",
+          "english": "to take photos"
+        },
+        {
+          "id": "vr-lx-x-antesde",
+          "word": "antes de",
+          "forms": [
+            "antes de",
+            "antes"
+          ],
+          "gloss": "在……之前",
+          "english": "before"
+        },
+        {
+          "id": "vr-lx-x-despuésde",
+          "word": "después de",
+          "forms": [
+            "después de",
+            "después"
+          ],
+          "gloss": "在……之后",
+          "english": "after"
+        },
+        {
+          "id": "vr-lx-x-cercade",
+          "word": "cerca de",
+          "forms": [
+            "cerca de",
+            "cerca"
+          ],
+          "gloss": "在……附近",
+          "english": "near"
+        },
+        {
+          "id": "vr-lx-x-apie",
+          "word": "a pie",
+          "forms": [
+            "a pie",
+            "pie"
+          ],
+          "gloss": "步行",
+          "english": "on foot"
+        },
+        {
+          "id": "vr-lx-x-hermano",
+          "word": "el hermano",
+          "forms": [
+            "hermano"
+          ],
+          "gloss": "兄弟",
+          "english": "brother"
+        },
+        {
+          "id": "vr-lx-x-madre",
+          "word": "la madre / mamá",
+          "forms": [
+            "madre",
+            "mamá"
+          ],
+          "gloss": "妈妈",
+          "english": "mother; mom"
+        },
+        {
+          "id": "vr-lx-x-carta",
+          "word": "la carta",
+          "forms": [
+            "carta"
+          ],
+          "gloss": "信",
+          "english": "letter"
+        },
+        {
+          "id": "vr-lx-x-niños",
+          "word": "el niño / la niña",
+          "forms": [
+            "niños"
+          ],
+          "gloss": "孩子",
+          "english": "child"
+        },
+        {
+          "id": "vr-lx-x-verduras",
+          "word": "la verdura",
+          "forms": [
+            "verduras"
+          ],
+          "gloss": "蔬菜",
+          "english": "vegetable"
+        },
+        {
+          "id": "vr-lx-x-valencia",
+          "word": "Valencia",
+          "forms": [
+            "Valencia"
+          ],
+          "gloss": "瓦伦西亚（城市）",
+          "english": "Valencia"
+        },
+        {
+          "id": "vr-lx-x-grandes",
+          "word": "grande",
+          "forms": [
+            "grandes"
+          ],
+          "gloss": "大的",
+          "english": "big"
+        },
+        {
+          "id": "vr-lx-x-viaje",
+          "word": "el viaje",
+          "forms": [
+            "viaje"
+          ],
+          "gloss": "旅行",
+          "english": "trip"
+        },
+        {
+          "id": "vr-lx-x-piano",
+          "word": "el piano",
+          "forms": [
+            "piano"
+          ],
+          "gloss": "钢琴",
+          "english": "piano"
+        },
+        {
+          "id": "vr-lx-x-examen",
+          "word": "el examen",
+          "forms": [
+            "examen"
+          ],
+          "gloss": "考试",
+          "english": "exam"
+        },
+        {
+          "id": "vr-lx-x-mensaje",
+          "word": "el mensaje",
+          "forms": [
+            "mensaje"
+          ],
+          "gloss": "消息、短信",
+          "english": "message"
+        },
+        {
+          "id": "vr-lx-x-nueve",
+          "word": "nueve",
+          "forms": [
+            "nueve"
+          ],
+          "gloss": "九",
+          "english": "nine"
+        },
+        {
+          "id": "vr-lx-x-pizza",
+          "word": "la pizza",
+          "forms": [
+            "pizza"
+          ],
+          "gloss": "披萨",
+          "english": "pizza"
+        },
+        {
+          "id": "vr-lx-x-libros",
+          "word": "el libro",
+          "forms": [
+            "libros"
+          ],
+          "gloss": "书",
+          "english": "book"
+        },
+        {
+          "id": "vr-lx-x-pregunta",
+          "word": "la pregunta",
+          "forms": [
+            "pregunta",
+            "preguntas"
+          ],
+          "gloss": "问题",
+          "english": "question"
+        },
+        {
+          "id": "vr-lx-x-vieja",
+          "word": "viejo / vieja",
+          "forms": [
+            "vieja"
+          ],
+          "gloss": "旧的；老的",
+          "english": "old"
+        },
+        {
+          "id": "vr-lx-x-regalo",
+          "word": "el regalo",
+          "forms": [
+            "regalo"
+          ],
+          "gloss": "礼物",
+          "english": "gift"
+        },
+        {
+          "id": "vr-lx-x-inglés",
+          "word": "el inglés",
+          "forms": [
+            "inglés"
+          ],
+          "gloss": "英语",
+          "english": "English"
+        },
+        {
+          "id": "vr-lx-x-años",
+          "word": "el año",
+          "forms": [
+            "años"
+          ],
+          "gloss": "年；岁",
+          "english": "year"
+        },
+        {
+          "id": "vr-lx-x-campo",
+          "word": "el campo",
+          "forms": [
+            "campo"
+          ],
+          "gloss": "乡下；田野",
+          "english": "countryside"
+        },
+        {
+          "id": "vr-lx-x-madrid",
+          "word": "Madrid",
+          "forms": [
+            "Madrid"
+          ],
+          "gloss": "马德里（城市）",
+          "english": "Madrid"
+        },
+        {
+          "id": "vr-lx-x-fiestas",
+          "word": "la fiesta",
+          "forms": [
+            "fiestas"
+          ],
+          "gloss": "聚会",
+          "english": "party"
+        },
+        {
+          "id": "vr-lx-x-domingos",
+          "word": "domingo",
+          "forms": [
+            "domingos"
+          ],
+          "gloss": "星期日",
+          "english": "Sunday"
+        },
+        {
+          "id": "vr-lx-x-móvil",
+          "word": "el móvil",
+          "forms": [
+            "móvil"
+          ],
+          "gloss": "手机",
+          "english": "mobile phone"
+        }
+      ],
+      "sections": [
+        {
+          "id": "vr-part-1",
+          "title": "Parte 1 - Ejercicios 1–30",
+          "instructions": "用括号里动词的现在时填空。-AR、-ER、-IR 动词混在一起：先看主语是谁，再看动词以什么结尾。usted 和 él / ella 用同一个形式，ustedes 和 ellos / ellas 用同一个形式。",
+          "type": "text_input",
+          "items": [
+            {
+              "id": "vr-01",
+              "number": 1,
+              "person": "yo",
+              "verb": "recibir",
+              "prompt": "Yo _______ una carta de mi madre. (recibir)",
+              "answers": [
+                "recibo"
+              ],
+              "canonicalAnswer": "recibo",
+              "sentenceTranslations": {
+                "recibo": "我收到妈妈的一封信。"
+              }
+            },
+            {
+              "id": "vr-02",
+              "number": 2,
+              "person": "vosotras",
+              "verb": "ceder",
+              "prompt": "Vosotras _______ el turno a los niños. (ceder)",
+              "answers": [
+                "cedéis"
+              ],
+              "canonicalAnswer": "cedéis",
+              "sentenceTranslations": {
+                "cedéis": "你们把顺序让给孩子们。"
+              }
+            },
+            {
+              "id": "vr-03",
+              "number": 3,
+              "person": "él",
+              "verb": "desayunar",
+              "prompt": "Él _______ pan y fruta en la cocina. (desayunar)",
+              "answers": [
+                "desayuna"
+              ],
+              "canonicalAnswer": "desayuna",
+              "sentenceTranslations": {
+                "desayuna": "他在厨房吃面包和水果当早餐。"
+              }
+            },
+            {
+              "id": "vr-04",
+              "number": 4,
+              "person": "tú",
+              "verb": "correr",
+              "prompt": "Tú _______ en el parque por la mañana. (correr)",
+              "answers": [
+                "corres"
+              ],
+              "canonicalAnswer": "corres",
+              "sentenceTranslations": {
+                "corres": "你早上在公园跑步。"
+              }
+            },
+            {
+              "id": "vr-05",
+              "number": 5,
+              "person": "nosotros",
+              "verb": "unir",
+              "prompt": "Nosotros _______ las piezas del juego. (unir)",
+              "answers": [
+                "unimos"
+              ],
+              "canonicalAnswer": "unimos",
+              "sentenceTranslations": {
+                "unimos": "我们把游戏的零件拼在一起。"
+              }
+            },
+            {
+              "id": "vr-06",
+              "number": 6,
+              "person": "ellas",
+              "verb": "cenar",
+              "prompt": "Ellas _______ pescado los viernes. (cenar)",
+              "answers": [
+                "cenan"
+              ],
+              "canonicalAnswer": "cenan",
+              "sentenceTranslations": {
+                "cenan": "她们每周五晚饭吃鱼。"
+              }
+            },
+            {
+              "id": "vr-07",
+              "number": 7,
+              "person": "usted",
+              "verb": "visitar",
+              "prompt": "Usted _______ el museo con su familia. (visitar)",
+              "answers": [
+                "visita"
+              ],
+              "canonicalAnswer": "visita",
+              "sentenceTranslations": {
+                "visita": "您和家人参观博物馆。"
+              }
+            },
+            {
+              "id": "vr-08",
+              "number": 8,
+              "person": "yo",
+              "verb": "comer",
+              "prompt": "Yo _______ arroz con verduras. (comer)",
+              "answers": [
+                "como"
+              ],
+              "canonicalAnswer": "como",
+              "sentenceTranslations": {
+                "como": "我吃米饭配蔬菜。"
+              }
+            },
+            {
+              "id": "vr-09",
+              "number": 9,
+              "person": "vosotros",
+              "verb": "omitir",
+              "prompt": "Vosotros _______ una palabra en la frase. (omitir)",
+              "answers": [
+                "omitís"
+              ],
+              "canonicalAnswer": "omitís",
+              "sentenceTranslations": {
+                "omitís": "你们在句子里漏掉了一个词。"
+              }
+            },
+            {
+              "id": "vr-10",
+              "number": 10,
+              "person": "ella",
+              "verb": "viajar",
+              "prompt": "Ella _______ en tren a Valencia. (viajar)",
+              "answers": [
+                "viaja"
+              ],
+              "canonicalAnswer": "viaja",
+              "sentenceTranslations": {
+                "viaja": "她坐火车去瓦伦西亚。"
+              }
+            },
+            {
+              "id": "vr-11",
+              "number": 11,
+              "person": "tú",
+              "verb": "compartir",
+              "prompt": "Tú _______ el piso con dos amigos. (compartir)",
+              "answers": [
+                "compartes"
+              ],
+              "canonicalAnswer": "compartes",
+              "sentenceTranslations": {
+                "compartes": "你和两个朋友合住一套公寓。"
+              }
+            },
+            {
+              "id": "vr-12",
+              "number": 12,
+              "person": "ellos",
+              "verb": "vender",
+              "prompt": "Ellos _______ fruta en la calle. (vender)",
+              "answers": [
+                "venden"
+              ],
+              "canonicalAnswer": "venden",
+              "sentenceTranslations": {
+                "venden": "他们在街上卖水果。"
+              }
+            },
+            {
+              "id": "vr-13",
+              "number": 13,
+              "person": "nosotros",
+              "verb": "necesitar",
+              "prompt": "Nosotros _______ un mapa de la ciudad. (necesitar)",
+              "answers": [
+                "necesitamos"
+              ],
+              "canonicalAnswer": "necesitamos",
+              "sentenceTranslations": {
+                "necesitamos": "我们需要一张城市地图。"
+              }
+            },
+            {
+              "id": "vr-14",
+              "number": 14,
+              "person": "ella",
+              "verb": "temer",
+              "prompt": "Ella _______ a los perros grandes. (temer)",
+              "answers": [
+                "teme"
+              ],
+              "canonicalAnswer": "teme",
+              "sentenceTranslations": {
+                "teme": "她害怕大狗。"
+              }
+            },
+            {
+              "id": "vr-15",
+              "number": 15,
+              "person": "yo",
+              "verb": "escribir",
+              "prompt": "Yo _______ mi nombre en el cuaderno. (escribir)",
+              "answers": [
+                "escribo"
+              ],
+              "canonicalAnswer": "escribo",
+              "sentenceTranslations": {
+                "escribo": "我在本子上写我的名字。"
+              }
+            },
+            {
+              "id": "vr-16",
+              "number": 16,
+              "person": "tú",
+              "verb": "mirar",
+              "prompt": "Tú _______ las fotos del viaje. (mirar)",
+              "answers": [
+                "miras"
+              ],
+              "canonicalAnswer": "miras",
+              "sentenceTranslations": {
+                "miras": "你看旅行的照片。"
+              }
+            },
+            {
+              "id": "vr-17",
+              "number": 17,
+              "person": "ustedes",
+              "verb": "beber",
+              "prompt": "Ustedes _______ agua fría en verano. (beber)",
+              "answers": [
+                "beben"
+              ],
+              "canonicalAnswer": "beben",
+              "sentenceTranslations": {
+                "beben": "你们（您各位）夏天喝冰水。"
+              }
+            },
+            {
+              "id": "vr-18",
+              "number": 18,
+              "person": "ella",
+              "verb": "descubrir",
+              "prompt": "Ella _______ una tienda nueva en el barrio. (descubrir)",
+              "answers": [
+                "descubre"
+              ],
+              "canonicalAnswer": "descubre",
+              "sentenceTranslations": {
+                "descubre": "她在街区发现了一家新店。"
+              }
+            },
+            {
+              "id": "vr-19",
+              "number": 19,
+              "person": "vosotros",
+              "verb": "practicar",
+              "prompt": "Vosotros _______ el piano en casa. (practicar)",
+              "answers": [
+                "practicáis"
+              ],
+              "canonicalAnswer": "practicáis",
+              "sentenceTranslations": {
+                "practicáis": "你们在家练钢琴。"
+              }
+            },
+            {
+              "id": "vr-20",
+              "number": 20,
+              "person": "yo",
+              "verb": "leer",
+              "prompt": "Yo _______ el periódico en el tren. (leer)",
+              "answers": [
+                "leo"
+              ],
+              "canonicalAnswer": "leo",
+              "sentenceTranslations": {
+                "leo": "我在火车上看报纸。"
+              }
+            },
+            {
+              "id": "vr-21",
+              "number": 21,
+              "person": "nosotras",
+              "verb": "añadir",
+              "prompt": "Nosotras _______ sal a la sopa. (añadir)",
+              "answers": [
+                "añadimos"
+              ],
+              "canonicalAnswer": "añadimos",
+              "sentenceTranslations": {
+                "añadimos": "我们往汤里加盐。"
+              }
+            },
+            {
+              "id": "vr-22",
+              "number": 22,
+              "person": "ellos",
+              "verb": "descansar",
+              "prompt": "Ellos _______ en el sofá el domingo. (descansar)",
+              "answers": [
+                "descansan"
+              ],
+              "canonicalAnswer": "descansan",
+              "sentenceTranslations": {
+                "descansan": "他们星期天在沙发上休息。"
+              }
+            },
+            {
+              "id": "vr-23",
+              "number": 23,
+              "person": "tú",
+              "verb": "deber",
+              "prompt": "Tú _______ estudiar más para el examen. (deber)",
+              "answers": [
+                "debes"
+              ],
+              "canonicalAnswer": "debes",
+              "sentenceTranslations": {
+                "debes": "你应该为考试多学习。"
+              }
+            },
+            {
+              "id": "vr-24",
+              "number": 24,
+              "person": "ella",
+              "verb": "escribir",
+              "prompt": "Ella _______ un mensaje a su amiga. (escribir)",
+              "answers": [
+                "escribe"
+              ],
+              "canonicalAnswer": "escribe",
+              "sentenceTranslations": {
+                "escribe": "她给朋友写一条消息。"
+              }
+            },
+            {
+              "id": "vr-25",
+              "number": 25,
+              "person": "yo",
+              "verb": "caminar",
+              "prompt": "Yo _______ a la escuela con mi hermano. (caminar)",
+              "answers": [
+                "camino"
+              ],
+              "canonicalAnswer": "camino",
+              "sentenceTranslations": {
+                "camino": "我和哥哥（弟弟）走路去学校。"
+              }
+            },
+            {
+              "id": "vr-26",
+              "number": 26,
+              "person": "nosotros",
+              "verb": "leer",
+              "prompt": "Nosotros _______ un cuento a los niños. (leer)",
+              "answers": [
+                "leemos"
+              ],
+              "canonicalAnswer": "leemos",
+              "sentenceTranslations": {
+                "leemos": "我们给孩子们读一个故事。"
+              }
+            },
+            {
+              "id": "vr-27",
+              "number": 27,
+              "person": "tú",
+              "verb": "decidir",
+              "prompt": "Tú _______ el color de la camisa. (decidir)",
+              "answers": [
+                "decides"
+              ],
+              "canonicalAnswer": "decides",
+              "sentenceTranslations": {
+                "decides": "你决定衬衫的颜色。"
+              }
+            },
+            {
+              "id": "vr-28",
+              "number": 28,
+              "person": "ellas",
+              "verb": "entrar",
+              "prompt": "Ellas _______ en clase a las nueve. (entrar)",
+              "answers": [
+                "entran"
+              ],
+              "canonicalAnswer": "entran",
+              "sentenceTranslations": {
+                "entran": "她们九点进教室。"
+              }
+            },
+            {
+              "id": "vr-29",
+              "number": 29,
+              "person": "usted",
+              "verb": "dividir",
+              "prompt": "Usted _______ la pizza en ocho trozos. (dividir)",
+              "answers": [
+                "divide"
+              ],
+              "canonicalAnswer": "divide",
+              "sentenceTranslations": {
+                "divide": "您把披萨分成八块。"
+              }
+            },
+            {
+              "id": "vr-30",
+              "number": 30,
+              "person": "él",
+              "verb": "romper",
+              "prompt": "Él _______ un vaso en la cocina. (romper)",
+              "answers": [
+                "rompe"
+              ],
+              "canonicalAnswer": "rompe",
+              "sentenceTranslations": {
+                "rompe": "他在厨房打碎了一个杯子。"
+              }
+            }
+          ]
+        },
+        {
+          "id": "vr-part-2",
+          "title": "Parte 2 - Ejercicios 31–60",
+          "instructions": "用括号里动词的现在时填空。-AR、-ER、-IR 动词混在一起：先看主语是谁，再看动词以什么结尾。usted 和 él / ella 用同一个形式，ustedes 和 ellos / ellas 用同一个形式。",
+          "type": "text_input",
+          "items": [
+            {
+              "id": "vr-31",
+              "number": 31,
+              "person": "yo",
+              "verb": "estudiar",
+              "prompt": "Yo _______ español todos los días. (estudiar)",
+              "answers": [
+                "estudio"
+              ],
+              "canonicalAnswer": "estudio",
+              "sentenceTranslations": {
+                "estudio": "我每天学西班牙语。"
+              }
+            },
+            {
+              "id": "vr-32",
+              "number": 32,
+              "person": "vosotras",
+              "verb": "repartir",
+              "prompt": "Vosotras _______ los libros en la clase. (repartir)",
+              "answers": [
+                "repartís"
+              ],
+              "canonicalAnswer": "repartís",
+              "sentenceTranslations": {
+                "repartís": "你们在班上分发书。"
+              }
+            },
+            {
+              "id": "vr-33",
+              "number": 33,
+              "person": "tú",
+              "verb": "creer",
+              "prompt": "Tú _______ en tus amigos. (creer)",
+              "answers": [
+                "crees"
+              ],
+              "canonicalAnswer": "crees",
+              "sentenceTranslations": {
+                "crees": "你相信你的朋友们。"
+              }
+            },
+            {
+              "id": "vr-34",
+              "number": 34,
+              "person": "nosotros",
+              "verb": "ayudar",
+              "prompt": "Nosotros _______ a la profesora. (ayudar)",
+              "answers": [
+                "ayudamos"
+              ],
+              "canonicalAnswer": "ayudamos",
+              "sentenceTranslations": {
+                "ayudamos": "我们帮助老师。"
+              }
+            },
+            {
+              "id": "vr-35",
+              "number": 35,
+              "person": "ellos",
+              "verb": "acceder",
+              "prompt": "Ellos _______ a la página web con su contraseña. (acceder)",
+              "answers": [
+                "acceden"
+              ],
+              "canonicalAnswer": "acceden",
+              "sentenceTranslations": {
+                "acceden": "他们用密码登录网站。"
+              }
+            },
+            {
+              "id": "vr-36",
+              "number": 36,
+              "person": "yo",
+              "verb": "abrir",
+              "prompt": "Yo _______ la puerta de la casa. (abrir)",
+              "answers": [
+                "abro"
+              ],
+              "canonicalAnswer": "abro",
+              "sentenceTranslations": {
+                "abro": "我打开家门。"
+              }
+            },
+            {
+              "id": "vr-37",
+              "number": 37,
+              "person": "vosotras",
+              "verb": "nadar",
+              "prompt": "Vosotras _______ en el mar en verano. (nadar)",
+              "answers": [
+                "nadáis"
+              ],
+              "canonicalAnswer": "nadáis",
+              "sentenceTranslations": {
+                "nadáis": "你们夏天在海里游泳。"
+              }
+            },
+            {
+              "id": "vr-38",
+              "number": 38,
+              "person": "nosotros",
+              "verb": "comer",
+              "prompt": "Nosotros _______ en casa de mis abuelos. (comer)",
+              "answers": [
+                "comemos"
+              ],
+              "canonicalAnswer": "comemos",
+              "sentenceTranslations": {
+                "comemos": "我们在我祖父母家吃饭。"
+              }
+            },
+            {
+              "id": "vr-39",
+              "number": 39,
+              "person": "ella",
+              "verb": "sufrir",
+              "prompt": "Ella _______ mucho con el frío. (sufrir)",
+              "answers": [
+                "sufre"
+              ],
+              "canonicalAnswer": "sufre",
+              "sentenceTranslations": {
+                "sufre": "她很怕冷（冷的时候很难受）。"
+              }
+            },
+            {
+              "id": "vr-40",
+              "number": 40,
+              "person": "tú",
+              "verb": "escuchar",
+              "prompt": "Tú _______ la radio en el coche. (escuchar)",
+              "answers": [
+                "escuchas"
+              ],
+              "canonicalAnswer": "escuchas",
+              "sentenceTranslations": {
+                "escuchas": "你在车里听收音机。"
+              }
+            },
+            {
+              "id": "vr-41",
+              "number": 41,
+              "person": "ellos",
+              "verb": "subir",
+              "prompt": "Ellos _______ a la montaña en verano. (subir)",
+              "answers": [
+                "suben"
+              ],
+              "canonicalAnswer": "suben",
+              "sentenceTranslations": {
+                "suben": "他们夏天爬山。"
+              }
+            },
+            {
+              "id": "vr-42",
+              "number": 42,
+              "person": "nosotras",
+              "verb": "coser",
+              "prompt": "Nosotras _______ un vestido para la fiesta. (coser)",
+              "answers": [
+                "cosemos"
+              ],
+              "canonicalAnswer": "cosemos",
+              "sentenceTranslations": {
+                "cosemos": "我们为聚会缝一条裙子。"
+              }
+            },
+            {
+              "id": "vr-43",
+              "number": 43,
+              "person": "él",
+              "verb": "lavar",
+              "prompt": "Él _______ los platos después de cenar. (lavar)",
+              "answers": [
+                "lava"
+              ],
+              "canonicalAnswer": "lava",
+              "sentenceTranslations": {
+                "lava": "他晚饭后洗碗。"
+              }
+            },
+            {
+              "id": "vr-44",
+              "number": 44,
+              "person": "tú",
+              "verb": "comprender",
+              "prompt": "Tú _______ la pregunta del profesor. (comprender)",
+              "answers": [
+                "comprendes"
+              ],
+              "canonicalAnswer": "comprendes",
+              "sentenceTranslations": {
+                "comprendes": "你理解老师的问题。"
+              }
+            },
+            {
+              "id": "vr-45",
+              "number": 45,
+              "person": "nosotros",
+              "verb": "admitir",
+              "prompt": "Nosotros _______ que es un problema. (admitir)",
+              "answers": [
+                "admitimos"
+              ],
+              "canonicalAnswer": "admitimos",
+              "sentenceTranslations": {
+                "admitimos": "我们承认这是个问题。"
+              }
+            },
+            {
+              "id": "vr-46",
+              "number": 46,
+              "person": "ustedes",
+              "verb": "preguntar",
+              "prompt": "Ustedes _______ el precio en la tienda. (preguntar)",
+              "answers": [
+                "preguntan"
+              ],
+              "canonicalAnswer": "preguntan",
+              "sentenceTranslations": {
+                "preguntan": "你们（您各位）在店里问价格。"
+              }
+            },
+            {
+              "id": "vr-47",
+              "number": 47,
+              "person": "yo",
+              "verb": "vender",
+              "prompt": "Yo _______ mi bicicleta vieja. (vender)",
+              "answers": [
+                "vendo"
+              ],
+              "canonicalAnswer": "vendo",
+              "sentenceTranslations": {
+                "vendo": "我卖掉我的旧自行车。"
+              }
+            },
+            {
+              "id": "vr-48",
+              "number": 48,
+              "person": "vosotras",
+              "verb": "cubrir",
+              "prompt": "Vosotras _______ la cama con una manta. (cubrir)",
+              "answers": [
+                "cubrís"
+              ],
+              "canonicalAnswer": "cubrís",
+              "sentenceTranslations": {
+                "cubrís": "你们用毯子盖住床。"
+              }
+            },
+            {
+              "id": "vr-49",
+              "number": 49,
+              "person": "nosotros",
+              "verb": "esperar",
+              "prompt": "Nosotros _______ a nuestros amigos en la estación. (esperar)",
+              "answers": [
+                "esperamos"
+              ],
+              "canonicalAnswer": "esperamos",
+              "sentenceTranslations": {
+                "esperamos": "我们在车站等朋友。"
+              }
+            },
+            {
+              "id": "vr-50",
+              "number": 50,
+              "person": "él",
+              "verb": "describir",
+              "prompt": "Él _______ su ciudad en la clase. (describir)",
+              "answers": [
+                "describe"
+              ],
+              "canonicalAnswer": "describe",
+              "sentenceTranslations": {
+                "describe": "他在课上描述他的城市。"
+              }
+            },
+            {
+              "id": "vr-51",
+              "number": 51,
+              "person": "vosotros",
+              "verb": "toser",
+              "prompt": "Vosotros _______ porque estáis resfriados. (toser)",
+              "answers": [
+                "toséis"
+              ],
+              "canonicalAnswer": "toséis",
+              "sentenceTranslations": {
+                "toséis": "你们咳嗽，因为你们感冒了。"
+              }
+            },
+            {
+              "id": "vr-52",
+              "number": 52,
+              "person": "tú",
+              "verb": "cocinar",
+              "prompt": "Tú _______ la cena para tu familia. (cocinar)",
+              "answers": [
+                "cocinas"
+              ],
+              "canonicalAnswer": "cocinas",
+              "sentenceTranslations": {
+                "cocinas": "你为家人做晚饭。"
+              }
+            },
+            {
+              "id": "vr-53",
+              "number": 53,
+              "person": "nosotros",
+              "verb": "depender",
+              "prompt": "Nosotros _______ del autobús para ir al trabajo. (depender)",
+              "answers": [
+                "dependemos"
+              ],
+              "canonicalAnswer": "dependemos",
+              "sentenceTranslations": {
+                "dependemos": "我们上班要靠公交车。"
+              }
+            },
+            {
+              "id": "vr-54",
+              "number": 54,
+              "person": "ellas",
+              "verb": "aplaudir",
+              "prompt": "Ellas _______ en el teatro. (aplaudir)",
+              "answers": [
+                "aplauden"
+              ],
+              "canonicalAnswer": "aplauden",
+              "sentenceTranslations": {
+                "aplauden": "她们在剧院里鼓掌。"
+              }
+            },
+            {
+              "id": "vr-55",
+              "number": 55,
+              "person": "yo",
+              "verb": "hablar",
+              "prompt": "Yo _______ con mi madre por teléfono. (hablar)",
+              "answers": [
+                "hablo"
+              ],
+              "canonicalAnswer": "hablo",
+              "sentenceTranslations": {
+                "hablo": "我和妈妈打电话。"
+              }
+            },
+            {
+              "id": "vr-56",
+              "number": 56,
+              "person": "usted",
+              "verb": "prometer",
+              "prompt": "Usted _______ volver mañana. (prometer)",
+              "answers": [
+                "promete"
+              ],
+              "canonicalAnswer": "promete",
+              "sentenceTranslations": {
+                "promete": "您答应明天回来。"
+              }
+            },
+            {
+              "id": "vr-57",
+              "number": 57,
+              "person": "tú",
+              "verb": "asistir",
+              "prompt": "Tú _______ a la clase de yoga los lunes. (asistir)",
+              "answers": [
+                "asistes"
+              ],
+              "canonicalAnswer": "asistes",
+              "sentenceTranslations": {
+                "asistes": "你每周一去上瑜伽课。"
+              }
+            },
+            {
+              "id": "vr-58",
+              "number": 58,
+              "person": "vosotros",
+              "verb": "llevar",
+              "prompt": "Vosotros _______ la comida a la playa. (llevar)",
+              "answers": [
+                "lleváis"
+              ],
+              "canonicalAnswer": "lleváis",
+              "sentenceTranslations": {
+                "lleváis": "你们把吃的带到海滩。"
+              }
+            },
+            {
+              "id": "vr-59",
+              "number": 59,
+              "person": "nosotras",
+              "verb": "sorprender",
+              "prompt": "Nosotras _______ a mamá con un regalo. (sorprender)",
+              "answers": [
+                "sorprendemos"
+              ],
+              "canonicalAnswer": "sorprendemos",
+              "sentenceTranslations": {
+                "sorprendemos": "我们用一份礼物给妈妈惊喜。"
+              }
+            },
+            {
+              "id": "vr-60",
+              "number": 60,
+              "person": "yo",
+              "verb": "subir",
+              "prompt": "Yo _______ al tercer piso a pie. (subir)",
+              "answers": [
+                "subo"
+              ],
+              "canonicalAnswer": "subo",
+              "sentenceTranslations": {
+                "subo": "我走楼梯上三楼。"
+              }
+            }
+          ]
+        },
+        {
+          "id": "vr-part-3",
+          "title": "Parte 3 - Ejercicios 61–90",
+          "instructions": "用括号里动词的现在时填空。-AR、-ER、-IR 动词混在一起：先看主语是谁，再看动词以什么结尾。usted 和 él / ella 用同一个形式，ustedes 和 ellos / ellas 用同一个形式。",
+          "type": "text_input",
+          "items": [
+            {
+              "id": "vr-61",
+              "number": 61,
+              "person": "ellos",
+              "verb": "contestar",
+              "prompt": "Ellos _______ las preguntas del examen. (contestar)",
+              "answers": [
+                "contestan"
+              ],
+              "canonicalAnswer": "contestan",
+              "sentenceTranslations": {
+                "contestan": "他们回答考试的题目。"
+              }
+            },
+            {
+              "id": "vr-62",
+              "number": 62,
+              "person": "tú",
+              "verb": "responder",
+              "prompt": "Tú _______ al teléfono. (responder)",
+              "answers": [
+                "respondes"
+              ],
+              "canonicalAnswer": "respondes",
+              "sentenceTranslations": {
+                "respondes": "你接电话。"
+              }
+            },
+            {
+              "id": "vr-63",
+              "number": 63,
+              "person": "ella",
+              "verb": "discutir",
+              "prompt": "Ella _______ el problema con su jefe. (discutir)",
+              "answers": [
+                "discute"
+              ],
+              "canonicalAnswer": "discute",
+              "sentenceTranslations": {
+                "discute": "她和老板讨论这个问题。"
+              }
+            },
+            {
+              "id": "vr-64",
+              "number": 64,
+              "person": "yo",
+              "verb": "comprar",
+              "prompt": "Yo _______ pan en la panadería. (comprar)",
+              "answers": [
+                "compro"
+              ],
+              "canonicalAnswer": "compro",
+              "sentenceTranslations": {
+                "compro": "我在面包店买面包。"
+              }
+            },
+            {
+              "id": "vr-65",
+              "number": 65,
+              "person": "vosotros",
+              "verb": "acceder",
+              "prompt": "Vosotros _______ al parque por esta puerta. (acceder)",
+              "answers": [
+                "accedéis"
+              ],
+              "canonicalAnswer": "accedéis",
+              "sentenceTranslations": {
+                "accedéis": "你们从这扇门进入公园。"
+              }
+            },
+            {
+              "id": "vr-66",
+              "number": 66,
+              "person": "tú",
+              "verb": "permitir",
+              "prompt": "Tú _______ a tu perro dormir en el sofá. (permitir)",
+              "answers": [
+                "permites"
+              ],
+              "canonicalAnswer": "permites",
+              "sentenceTranslations": {
+                "permites": "你允许你的狗在沙发上睡觉。"
+              }
+            },
+            {
+              "id": "vr-67",
+              "number": 67,
+              "person": "nosotras",
+              "verb": "preparar",
+              "prompt": "Nosotras _______ la comida para la fiesta. (preparar)",
+              "answers": [
+                "preparamos"
+              ],
+              "canonicalAnswer": "preparamos",
+              "sentenceTranslations": {
+                "preparamos": "我们为聚会准备食物。"
+              }
+            },
+            {
+              "id": "vr-68",
+              "number": 68,
+              "person": "ellas",
+              "verb": "aprender",
+              "prompt": "Ellas _______ inglés en la universidad. (aprender)",
+              "answers": [
+                "aprenden"
+              ],
+              "canonicalAnswer": "aprenden",
+              "sentenceTranslations": {
+                "aprenden": "她们在大学学英语。"
+              }
+            },
+            {
+              "id": "vr-69",
+              "number": 69,
+              "person": "él",
+              "verb": "cumplir",
+              "prompt": "Él _______ diez años mañana. (cumplir)",
+              "answers": [
+                "cumple"
+              ],
+              "canonicalAnswer": "cumple",
+              "sentenceTranslations": {
+                "cumple": "他明天满十岁。"
+              }
+            },
+            {
+              "id": "vr-70",
+              "number": 70,
+              "person": "vosotros",
+              "verb": "dibujar",
+              "prompt": "Vosotros _______ un mapa en la pizarra. (dibujar)",
+              "answers": [
+                "dibujáis"
+              ],
+              "canonicalAnswer": "dibujáis",
+              "sentenceTranslations": {
+                "dibujáis": "你们在黑板上画一张地图。"
+              }
+            },
+            {
+              "id": "vr-71",
+              "number": 71,
+              "person": "nosotras",
+              "verb": "poseer",
+              "prompt": "Nosotras _______ una casa en el campo. (poseer)",
+              "answers": [
+                "poseemos"
+              ],
+              "canonicalAnswer": "poseemos",
+              "sentenceTranslations": {
+                "poseemos": "我们在乡下有一栋房子。"
+              }
+            },
+            {
+              "id": "vr-72",
+              "number": 72,
+              "person": "yo",
+              "verb": "vivir",
+              "prompt": "Yo _______ en Madrid con mi familia. (vivir)",
+              "answers": [
+                "vivo"
+              ],
+              "canonicalAnswer": "vivo",
+              "sentenceTranslations": {
+                "vivo": "我和家人住在马德里。"
+              }
+            },
+            {
+              "id": "vr-73",
+              "number": 73,
+              "person": "tú",
+              "verb": "bailar",
+              "prompt": "Tú _______ muy bien en las fiestas. (bailar)",
+              "answers": [
+                "bailas"
+              ],
+              "canonicalAnswer": "bailas",
+              "sentenceTranslations": {
+                "bailas": "你在聚会上跳舞跳得很好。"
+              }
+            },
+            {
+              "id": "vr-74",
+              "number": 74,
+              "person": "vosotros",
+              "verb": "cometer",
+              "prompt": "Vosotros _______ pocos errores en el examen. (cometer)",
+              "answers": [
+                "cometéis"
+              ],
+              "canonicalAnswer": "cometéis",
+              "sentenceTranslations": {
+                "cometéis": "你们考试中犯的错误很少。"
+              }
+            },
+            {
+              "id": "vr-75",
+              "number": 75,
+              "person": "nosotras",
+              "verb": "insistir",
+              "prompt": "Nosotras _______ en ayudar a la abuela. (insistir)",
+              "answers": [
+                "insistimos"
+              ],
+              "canonicalAnswer": "insistimos",
+              "sentenceTranslations": {
+                "insistimos": "我们坚持要帮奶奶。"
+              }
+            },
+            {
+              "id": "vr-76",
+              "number": 76,
+              "person": "ella",
+              "verb": "ordenar",
+              "prompt": "Ella _______ los libros en la estantería. (ordenar)",
+              "answers": [
+                "ordena"
+              ],
+              "canonicalAnswer": "ordena",
+              "sentenceTranslations": {
+                "ordena": "她把书在书架上整理好。"
+              }
+            },
+            {
+              "id": "vr-77",
+              "number": 77,
+              "person": "vosotras",
+              "verb": "recorrer",
+              "prompt": "Vosotras _______ la ciudad en bicicleta. (recorrer)",
+              "answers": [
+                "recorréis"
+              ],
+              "canonicalAnswer": "recorréis",
+              "sentenceTranslations": {
+                "recorréis": "你们骑自行车游览城市。"
+              }
+            },
+            {
+              "id": "vr-78",
+              "number": 78,
+              "person": "ellos",
+              "verb": "consumir",
+              "prompt": "Ellos _______ mucha agua en verano. (consumir)",
+              "answers": [
+                "consumen"
+              ],
+              "canonicalAnswer": "consumen",
+              "sentenceTranslations": {
+                "consumen": "他们夏天用很多水。"
+              }
+            },
+            {
+              "id": "vr-79",
+              "number": 79,
+              "person": "vosotras",
+              "verb": "tomar",
+              "prompt": "Vosotras _______ café con leche por la mañana. (tomar)",
+              "answers": [
+                "tomáis"
+              ],
+              "canonicalAnswer": "tomáis",
+              "sentenceTranslations": {
+                "tomáis": "你们早上喝牛奶咖啡。"
+              }
+            },
+            {
+              "id": "vr-80",
+              "number": 80,
+              "person": "nosotras",
+              "verb": "esconder",
+              "prompt": "Nosotras _______ el chocolate de los niños. (esconder)",
+              "answers": [
+                "escondemos"
+              ],
+              "canonicalAnswer": "escondemos",
+              "sentenceTranslations": {
+                "escondemos": "我们把孩子们的巧克力藏起来。"
+              }
+            },
+            {
+              "id": "vr-81",
+              "number": 81,
+              "person": "ustedes",
+              "verb": "abrir",
+              "prompt": "Ustedes _______ la tienda a las diez. (abrir)",
+              "answers": [
+                "abren"
+              ],
+              "canonicalAnswer": "abren",
+              "sentenceTranslations": {
+                "abren": "你们（您各位）十点开店。"
+              }
+            },
+            {
+              "id": "vr-82",
+              "number": 82,
+              "person": "yo",
+              "verb": "trabajar",
+              "prompt": "Yo _______ en un hospital. (trabajar)",
+              "answers": [
+                "trabajo"
+              ],
+              "canonicalAnswer": "trabajo",
+              "sentenceTranslations": {
+                "trabajo": "我在一家医院工作。"
+              }
+            },
+            {
+              "id": "vr-83",
+              "number": 83,
+              "person": "él",
+              "verb": "barrer",
+              "prompt": "Él _______ la terraza los domingos. (barrer)",
+              "answers": [
+                "barre"
+              ],
+              "canonicalAnswer": "barre",
+              "sentenceTranslations": {
+                "barre": "他每周日扫露台。"
+              }
+            },
+            {
+              "id": "vr-84",
+              "number": 84,
+              "person": "vosotros",
+              "verb": "partir",
+              "prompt": "Vosotros _______ el pastel para todos. (partir)",
+              "answers": [
+                "partís"
+              ],
+              "canonicalAnswer": "partís",
+              "sentenceTranslations": {
+                "partís": "你们把蛋糕切开分给大家。"
+              }
+            },
+            {
+              "id": "vr-85",
+              "number": 85,
+              "person": "tú",
+              "verb": "cantar",
+              "prompt": "Tú _______ en el coro de la escuela. (cantar)",
+              "answers": [
+                "cantas"
+              ],
+              "canonicalAnswer": "cantas",
+              "sentenceTranslations": {
+                "cantas": "你在学校合唱团唱歌。"
+              }
+            },
+            {
+              "id": "vr-86",
+              "number": 86,
+              "person": "ella",
+              "verb": "meter",
+              "prompt": "Ella _______ la ropa en la maleta. (meter)",
+              "answers": [
+                "mete"
+              ],
+              "canonicalAnswer": "mete",
+              "sentenceTranslations": {
+                "mete": "她把衣服放进行李箱。"
+              }
+            },
+            {
+              "id": "vr-87",
+              "number": 87,
+              "person": "nosotras",
+              "verb": "imprimir",
+              "prompt": "Nosotras _______ las fotos del viaje. (imprimir)",
+              "answers": [
+                "imprimimos"
+              ],
+              "canonicalAnswer": "imprimimos",
+              "sentenceTranslations": {
+                "imprimimos": "我们打印旅行的照片。"
+              }
+            },
+            {
+              "id": "vr-88",
+              "number": 88,
+              "person": "yo",
+              "verb": "beber",
+              "prompt": "Yo _______ un vaso de leche antes de dormir. (beber)",
+              "answers": [
+                "bebo"
+              ],
+              "canonicalAnswer": "bebo",
+              "sentenceTranslations": {
+                "bebo": "我睡前喝一杯牛奶。"
+              }
+            },
+            {
+              "id": "vr-89",
+              "number": 89,
+              "person": "nosotros",
+              "verb": "usar",
+              "prompt": "Nosotros _______ el móvil para hacer fotos. (usar)",
+              "answers": [
+                "usamos"
+              ],
+              "canonicalAnswer": "usamos",
+              "sentenceTranslations": {
+                "usamos": "我们用手机拍照。"
+              }
+            },
+            {
+              "id": "vr-90",
+              "number": 90,
+              "person": "ellos",
+              "verb": "vivir",
+              "prompt": "Ellos _______ cerca de la playa. (vivir)",
+              "answers": [
+                "viven"
+              ],
+              "canonicalAnswer": "viven",
+              "sentenceTranslations": {
+                "viven": "他们住在海滩附近。"
+              }
+            }
+          ]
+        }
+      ]
     }
   ]
 }

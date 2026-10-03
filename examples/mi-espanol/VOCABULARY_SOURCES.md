@@ -83,6 +83,17 @@ compilation are not covered by this repository's Apache-2.0 license.
   sentence translation, short dialogues and self-reviewed free writing. All
   sentences are written for this list from words already in `vocab.csv`.
 
+## Regular verbs in sentences (2026-10-03)
+
+- The homework `verbos-regulares-frases-a1-a2` (built by
+  `scripts/build_mi_espanol_regulares_homework.py`) keeps the verb + person of
+  each of the 90 items in the private `ejercicio_verbos_regulares_A1_A2`
+  worksheet. Every sentence was newly written for Mi Español; the worksheet's
+  sentences were not copied. Answer key: standard present-tense conjugation.
+- 43 rows were appended to `vocab.csv` for content words those new sentences
+  use (`la contraseña`, `el examen`, `la maleta`, ...). City names stay in the
+  assignment's `sentenceLexicon` only.
+
 ## A0 visual vocabulary photos (public, CC0 / public domain)
 
 - Directory: `assets/vocab-images/` (`manifest.json` + `images/`).
