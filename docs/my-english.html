@@ -731,6 +731,19 @@
     width: 100%; height: 3.1rem; margin: 0 0 1.25rem; padding: 0 0.95rem; border: 1px solid #d6d0c7;
     border-radius: 9px; background: rgba(255,255,255,0.82); color: var(--v-ink); font: 0.92rem var(--sans); outline: none;
   }
+  .homework-tile-answer {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 0.45rem; min-height: 3.4rem; margin: 0 0 0.8rem;
+    padding: 0.5rem; border: 1px dashed #d6d0c7; border-radius: 9px; background: rgba(255,255,255,0.82);
+  }
+  .homework-tile-placeholder { padding: 0 0.4rem; color: var(--v-muted); font-size: 0.8rem; }
+  .homework-tile-bank { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0 0 1.25rem; }
+  .homework-tile {
+    min-height: 2.6rem; padding: 0.4rem 0.9rem; border: 1px solid #d8d3cb; border-radius: 999px;
+    background: #fff; color: var(--v-ink); font: 1rem var(--sans); cursor: pointer;
+  }
+  .homework-tile:hover:not(:disabled) { border-color: var(--v-accent); }
+  .homework-tile.is-picked { border-color: var(--v-accent); background: var(--v-accent-soft); }
+  .homework-tile:disabled { opacity: 0.35; cursor: default; }
   .homework-text-answer.is-open-response {
     min-height: 7rem; height: auto; padding: 0.8rem 0.95rem; line-height: 1.55; resize: vertical;
   }
@@ -3277,6 +3290,32 @@
       .replace(/[-–—]+/g, " ")
       .trim().replace(/\s+/g, " ");
   }
+  // Word-tile items: the learner taps tiles instead of typing. The answer is
+  // stored as the plain sentence, so scoring and saved progress stay the same.
+  function homeworkHasTiles(item) {
+    return !!item && Array.isArray(item.wordTiles) && item.wordTiles.length > 0 &&
+      item.answerMode !== "self_review";
+  }
+  function homeworkTileSelection(item, answer) {
+    var tiles = item.wordTiles, rest = homeworkNormalize(answer), used = [], picked = [];
+    while (rest) {
+      var best = -1, bestLength = 0;
+      for (var i = 0; i < tiles.length; i++) {
+        var tile = homeworkNormalize(tiles[i]);
+        if (used[i] || !tile || tile.length <= bestLength) continue;
+        if (rest === tile || rest.indexOf(tile + " ") === 0) { best = i; bestLength = tile.length; }
+      }
+      if (best === -1) return [];
+      used[best] = true;
+      picked.push(best);
+      rest = rest.slice(bestLength).trim();
+    }
+    return picked;
+  }
+  function homeworkTileAnswer(item, picked) {
+    var text = picked.map(function (index) { return item.wordTiles[index]; }).join(" ");
+    return text ? text.charAt(0).toUpperCase() + text.slice(1) : "";
+  }
   function homeworkWithoutAccents(value) {
     return homeworkNormalize(value).normalize("NFD").replace(/[\u0300-\u036f]/g, "");
   }
@@ -5119,6 +5158,22 @@
           '" autocomplete="off" autocapitalize="none" spellcheck="false"' +
           (scoringPending ? " disabled" : "") + "></div>";
       }).join("") + "</div>";
+    } else if (homeworkHasTiles(entry.item)) {
+      var tilePicked = homeworkTileSelection(entry.item, displayedAnswer);
+      form += '<p class="qa-label" id="homework-tile-label">点词块，按顺序拼出句子；点上面已选的词块可以撤回</p>' +
+        '<div class="homework-tile-answer" aria-labelledby="homework-tile-label" aria-live="polite">' +
+        (tilePicked.length ? tilePicked.map(function (tileIndex, position) {
+          return '<button class="homework-tile is-picked" type="button" data-homework-tile-remove="' + position + '"' +
+            (scoringPending ? " disabled" : "") + ' aria-label="撤回 ' + esc(entry.item.wordTiles[tileIndex]) + '">' +
+            esc(entry.item.wordTiles[tileIndex]) + "</button>";
+        }).join("") : '<span class="homework-tile-placeholder">还没有选词</span>') + "</div>" +
+        '<div class="homework-tile-bank" role="group" aria-label="可选词块">' +
+        entry.item.wordTiles.map(function (tile, tileIndex) {
+          return '<button class="homework-tile" type="button" data-homework-tile="' + tileIndex + '"' +
+            (tilePicked.indexOf(tileIndex) !== -1 || scoringPending ? " disabled" : "") + ">" + esc(tile) + "</button>";
+        }).join("") + "</div>" +
+        '<input type="hidden" id="homework-answer-input" name="homework-answer" value="' +
+        esc(homeworkTileAnswer(entry.item, tilePicked)) + '">';
     } else {
       var answerLanguageLabel = entry.item.answerLanguageLabel || assignment.answerLanguageLabel || targetLanguageLabel();
       var answerLanguage = entry.item.answerLanguage || P.config.lang || "";
@@ -6864,6 +6919,24 @@
         else if (homeworkSummary) homeworkSummary.focus();
         else if (homeworkScenario) homeworkScenario.focus();
       }
+      return;
+    }
+    if ((el = e.target.closest("[data-homework-tile], [data-homework-tile-remove]"))) {
+      var tileAssignment = homeworkById(state.homeworkId);
+      var tileEntry = tileAssignment ? homeworkActiveItems(tileAssignment)[state.homeworkIndex] : null;
+      if (!VOCAB_DASHBOARD || !tileEntry || !homeworkHasTiles(tileEntry.item) || state.homeworkScoringItemId) return;
+      var tileInput = document.getElementById("homework-answer-input");
+      var tileSelection = homeworkTileSelection(tileEntry.item, tileInput ? tileInput.value : "");
+      if (el.hasAttribute("data-homework-tile")) {
+        var tileToAdd = Number(el.dataset.homeworkTile);
+        if (tileSelection.indexOf(tileToAdd) === -1) tileSelection.push(tileToAdd);
+      } else {
+        tileSelection.splice(Number(el.dataset.homeworkTileRemove), 1);
+      }
+      var tileScroll = window.scrollY;
+      saveHomeworkAnswer(homeworkTileAnswer(tileEntry.item, tileSelection));
+      render();
+      window.scrollTo(0, tileScroll);
       return;
     }
     if ((el = e.target.closest("[data-homework-action]"))) {

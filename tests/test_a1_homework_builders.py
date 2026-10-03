@@ -139,5 +139,35 @@ def test_frases_assignment_is_committed_and_well_formed():
             assert bare in item["answers"]
     for item in write["items"]:
         assert item["answerMode"] == "self_review" and item["answers"]
+    for item in order["items"]:
+        # Tapping every tile in the right order must rebuild an accepted answer.
+        assert item["id"].startswith("fr-order-") and len(item["wordTiles"]) >= 3
+        joined = " ".join(item["wordTiles"]).lower()
+        assert sorted(joined.split()) == sorted(item["canonicalAnswer"].lower().replace(",", "").replace(".", "").replace("¿", "").replace("?", "").split())
     ids = [item["id"] for section in assignment["sections"] for item in section["items"]]
     assert len(ids) == len(set(ids))
+
+
+regulares_builder = _load("build_mi_espanol_regulares_homework")
+
+
+def test_regular_verb_sentences_are_committed_and_correct():
+    assignment = regulares_builder.build_assignment()
+    assert _homework()["verbos-regulares-frases-a1-a2"] == assignment
+    assert regulares_builder.conjugate("recibir") == ["recibo", "recibes", "recibe", "recibimos", "recibís", "reciben"]
+    assert regulares_builder.conjugate("leer") == ["leo", "lees", "lee", "leemos", "leéis", "leen"]
+    items = [item for section in assignment["sections"] for item in section["items"]]
+    assert len(items) == 90 and [item["number"] for item in items] == list(range(1, 91))
+    expected = {"vr-01": "recibo", "vr-02": "cedéis", "vr-07": "visita", "vr-17": "beben",
+                "vr-51": "toséis", "vr-81": "abren", "vr-90": "viven"}
+    by_id = {item["id"]: item for item in items}
+    for item_id, form in expected.items():
+        assert by_id[item_id]["answers"] == [form]
+    assert {section["type"] for section in assignment["sections"]} == {"single_choice"}
+    for item in items:
+        assert item["prompt"].count("_______") == 1 and item["prompt"].endswith(f"({item['verb']})")
+        assert len(item["options"]) == len(set(item["options"])) == 4
+        assert item["answers"][0] in item["options"]
+        assert set(item["options"]) <= set(regulares_builder.conjugate(item["verb"]))
+    positions = [item["options"].index(item["answers"][0]) for item in items]
+    assert len(set(positions)) == 4
