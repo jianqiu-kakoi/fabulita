@@ -27,6 +27,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from my_japanese_lesson_notes import LESSON_NOTES  # noqa: E402
 from my_japanese_option_notes import OPTION_NOTES  # noqa: E402
+from my_japanese_rules import rule as conjugation_rule  # noqa: E402
 from my_japanese_furigana import F as FURIGANA, segments as furigana_segments  # noqa: E402
 
 
@@ -1492,9 +1493,53 @@ def build_assignments() -> list[dict]:
         if notes:
             item["lessonNotes"] = notes
             item["lessonNotesHeading"] = "先读笔记：" + item["title"].split(" ", 2)[-1]
+        _attach_rules(item)
         item["furigana"] = _furigana_for(item)
         _avoid_answer_leaks(item)
     return built
+
+
+FORM_BY_NAME = {"ない形": "nai", "ます形": "masu", "た形": "ta", "可能形": "pot", "て形": "te", "ば形": "ba", "意向形": "vol",
+                "～ていました": "teimashita", "～ていた": "teita", "～ました": "mashita", "～た": "ta"}
+TENSE_VERBS = {"nomu": "のむ", "miru": "みる", "benkyou": "べんきょうする", "iku": "いく", "taberu": "たべる",
+               "yomu": "よむ", "kau": "かう", "au": "あう"}
+
+
+def _rule_for(section_id: str, item: dict) -> str:
+    prompt = item["prompt"]
+    match = re.match(r"^(\S+?(?:（[^）]*）)?)\s*→\s*(\S+)$", prompt)
+    if section_id == "jp-te-ta":
+        return "た形＝把て形的 て 换成 た、で 换成 だ（音便和て形一样）"
+    if match and match[2] in FORM_BY_NAME:
+        return conjugation_rule(match[1], FORM_BY_NAME[match[2]])
+    match = re.match(r"^(\S+?)（[^）]*）的(\S+?)是？$", prompt)
+    if match and match[2] in FORM_BY_NAME:
+        return conjugation_rule(match[1], FORM_BY_NAME[match[2]])
+    match = re.match(r"^(\S+?(?:（[^）]*）)?) 的(礼貌体|随意体)过去是？$", prompt)
+    if match:
+        return conjugation_rule(match[1], "mashita" if match[2] == "礼貌体" else "ta")
+    if section_id == "jp-te-sent":
+        verb = re.search(r"（([^（）]+)）$", prompt)[1]
+        return conjugation_rule(verb, "te")
+    if section_id in ("jp-nai-pic", "jp-masu-pic"):
+        form = "nai" if section_id == "jp-nai-pic" else "masu"
+        index = 4 if form == "nai" else 3
+        verb = next(row[1] for row in ACTION_VERBS if row[index] == item["answers"][0])
+        return conjugation_rule(verb, form)
+    if section_id.startswith("jp-tense-"):
+        slug = section_id[len("jp-tense-"):]
+        tense = next(t for s_, _a, _f, _o, variants in TENSE_SENTENCES if s_ == slug
+                     for n, (t, _e, _c) in enumerate(variants, start=1) if item["id"].endswith(f"-{n:02d}"))
+        return conjugation_rule(TENSE_VERBS[slug], tense)
+    return ""
+
+
+def _attach_rules(assignment: dict) -> None:
+    for sec in assignment["sections"]:
+        for it in sec["items"]:
+            text = _rule_for(sec["id"], it)
+            if text:
+                it["ruleNote"] = text
 
 
 def _avoid_answer_leaks(assignment: dict) -> None:

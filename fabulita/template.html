@@ -628,6 +628,8 @@
   .homework-sheet ruby rt, .homework-notes ruby rt, .homework-reference ruby rt, .homework-feedback ruby rt,
   .homework-option-meanings ruby rt { font-size: 0.5em; font-weight: 500; letter-spacing: 0; }
   .homework-prompt, .homework-option span, .homework-tile { line-height: 1.9; }
+  .homework-rule { display: block; margin-top: 0.35rem; padding-top: 0.35rem; border-top: 1px dashed currentColor; }
+  .homework-rule b { margin-right: 0.4rem; padding: 0.05rem 0.4rem; border-radius: 4px; background: rgba(0,0,0,0.07); font-size: 0.72em; }
   .homework-notes {
     margin: 0 0 1rem; border: 1px solid #e6d9bf; border-radius: 11px; background: #fbf6ea;
   }
@@ -4746,6 +4748,8 @@
     return '<div class="homework-feedback is-' + response.status + '" role="status" aria-live="polite"><strong>' +
       esc(title) + '</strong><span>' + homeworkRubyHtml(assignment, detail) + '</span>' +
       (entry.item.ambiguityNote ? '<span class="homework-ambiguity">' + homeworkRubyHtml(assignment, entry.item.ambiguityNote) + "</span>" : "") +
+      (entry.item.ruleNote ? '<span class="homework-rule"><b>怎么变</b>' +
+        esc(entry.item.ruleNote).replace(/\n/g, "<br>") + "</span>" : "") +
       '</div>' + homeworkDialogueAnswerHtml(assignment, entry.item, response) +
       homeworkAnswerVocabularyHtml(assignment, entry.item, response) +
       homeworkSentenceFeedbackHtml(assignment, entry.item, response) +
