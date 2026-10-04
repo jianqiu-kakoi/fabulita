@@ -259,8 +259,8 @@ def test_public_japanese_practice_is_committed_and_well_formed():
     committed = Project(MY_JAPANESE).homeworks
     assert committed == built
     items = [item for assignment in built for item in _items(assignment)]
-    assert len(items) == len({item["id"] for item in items}) == 298
-    assert [a["id"] for a in built[:3]] == ["jp-practice-te", "jp-practice-nai", "jp-practice-pictures"]
+    assert len(items) == len({item["id"] for item in items}) == 338
+    assert [a["id"] for a in built[:4]] == ["jp-practice-te", "jp-practice-nai", "jp-practice-masu", "jp-practice-pictures"]
     # Picture questions only use reviewed images copied into this project.
     for assignment in built:
         for image in assignment.get("images", {}).values():
