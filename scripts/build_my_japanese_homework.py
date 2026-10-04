@@ -20,6 +20,7 @@ import argparse
 import hashlib
 import json
 import random
+import re
 import sys
 from pathlib import Path
 
@@ -62,6 +63,42 @@ def choice(item_id: str, number: int, prompt: str, answer: str, distractors: lis
     if translation:
         item["answerTranslation"] = translation
     notes = [text for text in (("中文：" + translation) if translation else "", ("提示：" + note) if note else "") if text]
+    if notes:
+        item["ambiguityNote"] = "　".join(notes)
+    return item
+
+
+def _chunks(sentence: str) -> list[str]:
+    return [part for part in re.split(r"[\s、]+", sentence) if part]
+
+
+def sentence_tiles(item_id: str, number: int, prompt: str, answer: str, wrong: list[str],
+                   translation: str = "", note: str = "") -> dict:
+    """Build the right sentence from shuffled tiles; look-alike tiles come from the wrong options."""
+    right = _chunks(answer)
+    decoys: list[str] = []
+    for option in wrong:
+        for part in _chunks(option):
+            if part not in right and part not in decoys:
+                decoys.append(part)
+    decoys = decoys[:3]
+    tile_list = right + decoys
+    _rng(item_id, "tiles").shuffle(tile_list)
+    if tile_list[:len(right)] == right:
+        tile_list = tile_list[1:] + tile_list[:1]
+    compact = "".join(right)
+    item = {
+        "id": item_id,
+        "number": number,
+        "prompt": prompt,
+        "wordTiles": tile_list,
+        "tileJoiner": "",
+        "answers": [compact, answer],
+        "canonicalAnswer": answer,
+    }
+    notes = [text for text in (("中文：" + translation) if translation else "", ("提示：" + note) if note else "") if text]
+    if translation:
+        item["answerTranslation"] = translation
     if notes:
         item["ambiguityNote"] = "　".join(notes)
     return item
@@ -364,7 +401,8 @@ def lesson_plans() -> dict:
          ["しゃしんを とって おきました", "しゃしんを とる らしいです"], "要是拍了照片就好了。"),
     ]
     regret_items = [
-        choice(f"{p}-regret-{n:02d}", n, f"{situation}→ 你会说：", answer, wrong, zh)
+        sentence_tiles(f"{p}-regret-{n:02d}", n, f"{situation}→ 你会说：", answer, wrong, zh,
+                       "后悔 → 动词ば形＋よかった。")
         for n, (situation, answer, wrong, zh) in enumerate(regrets, start=1)
     ]
     tile_items = [
@@ -391,8 +429,8 @@ def lesson_plans() -> dict:
         "練習：らしい・ればよかった・ておく・ために・つもり",
         [
             section(f"{p}-pick", "① 选语法", "选出放进句子里最合适的一项。", "single_choice", grammar_items),
-            section(f"{p}-regret", "② ～ればよかった", "看情况，选出“要是……就好了”的正确说法。",
-                    "single_choice", regret_items),
+            section(f"{p}-regret", "② ～ればよかった", "看情况，点词块拼出“要是……就好了”的句子。里面混了干扰词块。",
+                    "text_input", regret_items),
             section(f"{p}-tiles", "③ 连词成句", "看中文意思，按顺序点词块拼成句子。", "text_input", tile_items),
             section(f"{p}-write", "④ 小故事", "自由写作，不自动判分，写完对照参考作答。", "open_response", write_items),
         ],
@@ -415,7 +453,8 @@ def lesson_keep() -> dict:
          ["よる おそくまで ともだちと はなしてつづけていました", "よる おそくまで ともだちと はなすつづけていました"]),
     ]
     keep_items = [
-        choice(f"{p}-keep-{n:02d}", n, f"{base}→ 用 ～つづける：", answer, wrong, note="ます形去掉 ます＋つづける。")
+        sentence_tiles(f"{p}-keep-{n:02d}", n, f"{base}→ 用 ～つづける：", answer, wrong,
+                       note="ます形去掉 ます＋つづける。")
         for n, (base, answer, wrong) in enumerate(keep, start=1)
     ]
     adverbs = [("はやい", "おきる", "早起"), ("おおきい", "かく", "写大一点"), ("やすい", "かう", "便宜地买"),
@@ -462,11 +501,12 @@ def lesson_keep() -> dict:
         "keep", "日语 ④ ～つづける · い形容词＋动词 · だからこそ · 词汇",
         "練習：続ける・〜く・だからこそ",
         [
-            section(f"{p}-keep", "① ～つづける", "选出用「～つづける」改写后的正确句子。", "single_choice", keep_items),
-            section(f"{p}-adv", "② い形容词 → ～く", "选出 い形容词修饰动词的正确形式。", "single_choice", adverb_items),
-            section(f"{p}-because", "③ だからこそ", "选出放进句子里最合适的一项。", "single_choice", because_items),
-            section(f"{p}-word", "④ 这课的词", "选出放进句子里最合适的词。", "single_choice", word_items),
-            section(f"{p}-tiles", "⑤ 连词成句", "看中文意思，按顺序点词块拼成句子。", "text_input", tile_items),
+            section(f"{p}-keep", "① ～つづける", "用「～つづける」改写：按顺序点词块拼出句子。里面混了几个错误形式，别选。",
+                    "text_input", keep_items),
+            section(f"{p}-tiles", "② 连词成句", "看中文意思，按顺序点词块拼成句子。", "text_input", tile_items),
+            section(f"{p}-adv", "③ い形容词 → ～く", "选出 い形容词修饰动词的正确形式。", "single_choice", adverb_items),
+            section(f"{p}-because", "④ だからこそ", "选出放进句子里最合适的一项。", "single_choice", because_items),
+            section(f"{p}-word", "⑤ 这课的词", "选出放进句子里最合适的词。", "single_choice", word_items),
         ],
     )
 
@@ -552,7 +592,8 @@ def lesson_easy() -> dict:
          ["やすみの ひは そうじを せんたくや します", "やすみの ひは そうじや を せんたく します"]),
     ]
     ya_items = [
-        choice(f"{p}-ya-{n:02d}", n, f"{base}→ 用「や」合成一句：", answer, wrong, note="AやB＝A、B 等等（举例）。")
+        sentence_tiles(f"{p}-ya-{n:02d}", n, f"{base}→ 用「や」合成一句：", answer, wrong,
+                       note="AやB＝A、B 等等（举例）；最后一个名词后面接助词。")
         for n, (base, answer, wrong) in enumerate(ya, start=1)
     ]
     adverb_words = ["はやく", "おおきく", "やすく", "わかく"]
@@ -619,13 +660,13 @@ def lesson_easy() -> dict:
         "easy", "日语 ⑥ や · ～く＋动词 · ～やすい／～にくい · すぐ · 阅读",
         "練習：や・やすい・にくい・すぐ",
         [
-            section(f"{p}-ya", "① や", "选出用「や」把两句合成一句的正确说法。", "single_choice", ya_items),
-            section(f"{p}-adv", "② ～く＋动词", "看情况，选出合适的词：はやく / おおきく / やすく / わかく。",
+            section(f"{p}-ya", "① や", "用「や」把两句合成一句：按顺序点词块，里面混了干扰词块。", "text_input", ya_items),
+            section(f"{p}-tiles", "② 连词成句", "看中文意思，按顺序点词块拼成句子。", "text_input", tile_items),
+            section(f"{p}-adv", "③ ～く＋动词", "看情况，选出合适的词：はやく / おおきく / やすく / わかく。",
                     "single_choice", adverb_items),
-            section(f"{p}-easy", "③ ～やすい？～にくい？", "选出最合适的一项。", "single_choice", easy_items),
-            section(f"{p}-soon", "④ すぐ", "看情况，选出用「すぐ」的回答。", "single_choice", soon_items),
-            section(f"{p}-read", "⑤ よみもの", "先读短文，再选答案。" + STORY, "single_choice", reading_items),
-            section(f"{p}-tiles", "⑥ 连词成句", "看中文意思，按顺序点词块拼成句子。", "text_input", tile_items),
+            section(f"{p}-easy", "④ ～やすい？～にくい？", "选出最合适的一项。", "single_choice", easy_items),
+            section(f"{p}-soon", "⑤ すぐ", "看情况，选出用「すぐ」的回答。", "single_choice", soon_items),
+            section(f"{p}-read", "⑥ よみもの", "先读短文，再选答案。" + STORY, "single_choice", reading_items),
         ],
     )
 
@@ -665,7 +706,8 @@ def lesson_warini() -> dict:
          "每次来这个城市都去同一家咖啡馆。"),
     ]
     combine_items = [
-        choice(f"{p}-combine-{n:02d}", n, f"{base}→", answer, wrong, zh)
+        sentence_tiles(f"{p}-combine-{n:02d}", n, f"{base}→", answer, wrong, zh,
+                       "虽然……却 → わりに；每次……都 → たびに。")
         for n, (base, answer, wrong, zh) in enumerate(combine, start=1)
     ]
     could = [
@@ -675,7 +717,7 @@ def lesson_warini() -> dict:
          ["できる ことも ないです", "できない わりに ふべんです"], "也不是不能，但我想会很不方便。"),
     ]
     could_items = [
-        choice(f"{p}-could-{n:02d}", n, question, answer, wrong, zh, "～ないこともない＝也不是不能（但……）。")
+        sentence_tiles(f"{p}-could-{n:02d}", n, question, answer, wrong, zh, "～ないこともない＝也不是不能（但……）。")
         for n, (question, answer, wrong, zh) in enumerate(could, start=1)
     ]
     tile_items = [
@@ -701,9 +743,10 @@ def lesson_warini() -> dict:
         "練習：わりに・たびに・ないこともない・っぽい・づらい",
         [
             section(f"{p}-which", "① 哪个语法？", "选出放进句子里最自然的语法。", "single_choice", which_items),
-            section(f"{p}-combine", "② 合成一句", "选出用「わりに」或「たびに」把两句合成一句的正确说法。",
-                    "single_choice", combine_items),
-            section(f"{p}-could", "③ ～ないこともない", "选出用「～ないこともない」的正确回答。", "single_choice", could_items),
+            section(f"{p}-combine", "② 合成一句", "用「わりに」或「たびに」把两句合成一句：按顺序点词块，里面混了干扰词块。",
+                    "text_input", combine_items),
+            section(f"{p}-could", "③ ～ないこともない", "用「～ないこともない」回答：按顺序点词块，里面混了干扰词块。",
+                    "text_input", could_items),
             section(f"{p}-tiles", "④ 连词成句", "看中文意思，按顺序点词块拼成句子。", "text_input", tile_items),
             section(f"{p}-write", "⑤ 写自己", "自由写作，不自动判分，写完对照参考作答。", "open_response", write_items),
         ],

@@ -283,7 +283,13 @@ def test_public_japanese_practice_is_committed_and_well_formed():
                     assert len(set(item["options"])) == len(item["options"]) >= 3
                 elif item.get("wordTiles"):
                     assert item["tileJoiner"] == ""
-                    assert sorted(item["canonicalAnswer"]) == sorted("".join(item["wordTiles"]))
+                    # The answer can be built from the tiles (extra tiles are decoys).
+                    target = "".join(item["canonicalAnswer"].replace("、", "").split())
+                    remaining = list(item["wordTiles"])
+                    while target:
+                        tile = max((t for t in remaining if target.startswith(t)), key=len)
+                        remaining.remove(tile)
+                        target = target[len(tile):]
                 else:
                     assert section["type"] == "open_response"
                     assert item["answerMode"] == "self_review" and item["answers"]
@@ -296,3 +302,14 @@ def test_option_notes_have_no_duplicate_keys():
     tree = ast.parse((REPO / "scripts" / "my_japanese_option_notes.py").read_text(encoding="utf-8"))
     keys = [key.value for node in ast.walk(tree) if isinstance(node, ast.Dict) for key in node.keys if key is not None]
     assert [key for key, count in collections.Counter(keys).items() if count > 1] == []
+
+
+def test_sections_of_one_type_are_contiguous():
+    # The page groups questions by type, so mixed orders would scramble parts.
+    for assignment in japanese_builder.build_assignments():
+        kinds = [section["type"] for section in assignment["sections"]]
+        seen = []
+        for kind in kinds:
+            if not seen or seen[-1] != kind:
+                assert kind not in seen, (assignment["id"], kinds)
+                seen.append(kind)
