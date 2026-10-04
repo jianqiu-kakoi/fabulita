@@ -388,3 +388,21 @@ def test_furigana_never_singles_out_one_option():
                     looks = {any(m for _s, m in furigana.segments(text)) for text in group}
                     if len(looks) > 1:
                         assert item.get("plainOptions") is True, item["id"]
+
+
+def test_rule_labels_agree_with_the_answers():
+    # The rule shown after answering must produce exactly the accepted answer.
+    import re
+
+    checked = 0
+    for assignment in japanese_builder.build_assignments():
+        for section in assignment["sections"]:
+            for item in section["items"]:
+                rule = item.get("ruleNote", "")
+                found = (re.findall(r"→ ([ぁ-ゖ]+)$", rule) or re.findall(r"→ ([ぁ-ゖ]+)）", rule)
+                         or re.findall(r"→ ([ぁ-ゖ]+)", rule))
+                if not rule or section["id"] == "jp-te-ta" or not found:
+                    continue
+                assert item["answers"][0].replace(" ", "").endswith(found[-1]), (item["id"], rule)
+                checked += 1
+    assert checked > 150
