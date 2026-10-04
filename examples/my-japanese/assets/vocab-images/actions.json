@@ -1,0 +1,424 @@
+{
+  "version": 1,
+  "note": "Action pictures reused from examples/mi-espanol/assets/vocab-images (reviewed Icons8 icons); provenance and license kept per image.",
+  "images": {
+    "correr": {
+      "english": "to run",
+      "image": {
+        "file": "assets/vocab-images/actions/a1-acciones-correr-cbff107d.png",
+        "sha256": "cbff107d16995263dcf42b7bc3e29032e6bb0c10ba29b80a8c04326c70f8d2f2",
+        "bytes": 2477,
+        "license": "Icons8 free with link attribution",
+        "licenseUrl": "https://icons8.com/license",
+        "creator": "Icons8",
+        "sourceUrl": "https://img.icons8.com/color/100/running.png",
+        "landing": "https://icons8.com/icons/set/running--style-color",
+        "provider": "Icons8",
+        "creditUrl": "https://icons8.com/",
+        "presentation": "icon",
+        "reviewed": true,
+        "reviewedBy": "assistant",
+        "reviewedAt": "2026-10-03"
+      }
+    },
+    "nadar": {
+      "english": "to swim",
+      "image": {
+        "file": "assets/vocab-images/actions/a1-acciones-nadar-27829024.png",
+        "sha256": "278290246511c310afad05c4428a049132aae67688dd22c751aa992d27b16bba",
+        "bytes": 1891,
+        "license": "Icons8 free with link attribution",
+        "licenseUrl": "https://icons8.com/license",
+        "creator": "Icons8",
+        "sourceUrl": "https://img.icons8.com/color/100/swimming.png",
+        "landing": "https://icons8.com/icons/set/swimming--style-color",
+        "provider": "Icons8",
+        "creditUrl": "https://icons8.com/",
+        "presentation": "icon",
+        "reviewed": true,
+        "reviewedBy": "assistant",
+        "reviewedAt": "2026-10-03"
+      }
+    },
+    "bailar": {
+      "english": "to dance",
+      "image": {
+        "file": "assets/vocab-images/actions/a1-acciones-bailar-43f4e458.png",
+        "sha256": "43f4e458ab0d9ed5a359f2b04fa480620ced94dd52137a4fc3a47d8d91a78ce7",
+        "bytes": 2572,
+        "license": "Icons8 free with link attribution",
+        "licenseUrl": "https://icons8.com/license",
+        "creator": "Icons8",
+        "sourceUrl": "https://img.icons8.com/color/100/dancing.png",
+        "landing": "https://icons8.com/icons/set/dancing--style-color",
+        "provider": "Icons8",
+        "creditUrl": "https://icons8.com/",
+        "presentation": "icon",
+        "reviewed": true,
+        "reviewedBy": "assistant",
+        "reviewedAt": "2026-10-03"
+      }
+    },
+    "cantar": {
+      "english": "to sing",
+      "image": {
+        "file": "assets/vocab-images/actions/a1-acciones-cantar-d53bb661.png",
+        "sha256": "d53bb6616b25b45c35f1fd5042a3af8ba04a5be153c5c25be594c325d1f21dd3",
+        "bytes": 3609,
+        "license": "Icons8 free with link attribution",
+        "licenseUrl": "https://icons8.com/license",
+        "creator": "Icons8",
+        "sourceUrl": "https://img.icons8.com/color/100/concert.png",
+        "landing": "https://icons8.com/icons/set/concert--style-color",
+        "provider": "Icons8",
+        "creditUrl": "https://icons8.com/",
+        "presentation": "icon",
+        "reviewed": true,
+        "reviewedBy": "assistant",
+        "reviewedAt": "2026-10-03"
+      }
+    },
+    "comer": {
+      "english": "to eat",
+      "image": {
+        "file": "assets/vocab-images/actions/a1-acciones-comer-18badf82.png",
+        "sha256": "18badf823d70c6dbad4a18b632fe7271019b991f6eeb38dd4e24ce4f6c8dd2d0",
+        "bytes": 1858,
+        "license": "Icons8 free with link attribution",
+        "licenseUrl": "https://icons8.com/license",
+        "creator": "Icons8",
+        "sourceUrl": "https://img.icons8.com/color/100/cutlery.png",
+        "landing": "https://icons8.com/icons/set/cutlery--style-color",
+        "provider": "Icons8",
+        "creditUrl": "https://icons8.com/",
+        "presentation": "icon",
+        "reviewed": true,
+        "reviewedBy": "assistant",
+        "reviewedAt": "2026-10-03"
+      }
+    },
+    "beber": {
+      "english": "to drink",
+      "image": {
+        "file": "assets/vocab-images/actions/a1-acciones-beber-4e09ef6a.png",
+        "sha256": "4e09ef6af3909e8eb07afefdcbd4831335422ff37fc5e7a6efcac99c10d3da40",
+        "bytes": 1696,
+        "license": "Icons8 free with link attribution",
+        "licenseUrl": "https://icons8.com/license",
+        "creator": "Icons8",
+        "sourceUrl": "https://img.icons8.com/color/100/sip.png",
+        "landing": "https://icons8.com/icons/set/sip--style-color",
+        "provider": "Icons8",
+        "creditUrl": "https://icons8.com/",
+        "presentation": "icon",
+        "reviewed": true,
+        "reviewedBy": "assistant",
+        "reviewedAt": "2026-10-03"
+      }
+    },
+    "leer": {
+      "english": "to read",
+      "image": {
+        "file": "assets/vocab-images/actions/a1-acciones-leer-ae60e173.png",
+        "sha256": "ae60e173969a78e7c7f3c7387f0de4399d9a9ed2915e8812f9cfbf00a0705086",
+        "bytes": 2045,
+        "license": "Icons8 free with link attribution",
+        "licenseUrl": "https://icons8.com/license",
+        "creator": "Icons8",
+        "sourceUrl": "https://img.icons8.com/color/100/reading.png",
+        "landing": "https://icons8.com/icons/set/reading--style-color",
+        "provider": "Icons8",
+        "creditUrl": "https://icons8.com/",
+        "presentation": "icon",
+        "reviewed": true,
+        "reviewedBy": "assistant",
+        "reviewedAt": "2026-10-03"
+      }
+    },
+    "escribir": {
+      "english": "to write",
+      "image": {
+        "file": "assets/vocab-images/actions/a1-acciones-escribir-4aca9bee.png",
+        "sha256": "4aca9bee7850d0ad42819178b0d4f71c2db134ab7e79df4f8980033ae60f0598",
+        "bytes": 2946,
+        "license": "Icons8 free with link attribution",
+        "licenseUrl": "https://icons8.com/license",
+        "creator": "Icons8",
+        "sourceUrl": "https://img.icons8.com/color/100/hand-with-pen.png",
+        "landing": "https://icons8.com/icons/set/hand-with-pen--style-color",
+        "provider": "Icons8",
+        "creditUrl": "https://icons8.com/",
+        "presentation": "icon",
+        "reviewed": true,
+        "reviewedBy": "assistant",
+        "reviewedAt": "2026-10-03"
+      }
+    },
+    "cocinar": {
+      "english": "to cook",
+      "image": {
+        "file": "assets/vocab-images/actions/a1-acciones-cocinar-75bc75ff.png",
+        "sha256": "75bc75ffb67f58e2b925e97ff5e4a3ddc507c510c685b49d47c95f25b7ebbcfc",
+        "bytes": 2007,
+        "license": "Icons8 free with link attribution",
+        "licenseUrl": "https://icons8.com/license",
+        "creator": "Icons8",
+        "sourceUrl": "https://img.icons8.com/color/100/cooking.png",
+        "landing": "https://icons8.com/icons/set/cooking--style-color",
+        "provider": "Icons8",
+        "creditUrl": "https://icons8.com/",
+        "presentation": "icon",
+        "reviewed": true,
+        "reviewedBy": "assistant",
+        "reviewedAt": "2026-10-03"
+      }
+    },
+    "caminar": {
+      "english": "to walk",
+      "image": {
+        "file": "assets/vocab-images/actions/a1-acciones-caminar-9a12b1c8.png",
+        "sha256": "9a12b1c8f08556a71cc058910b36dd95c62b02679808270ad18fe11b7392ab54",
+        "bytes": 2558,
+        "license": "Icons8 free with link attribution",
+        "licenseUrl": "https://icons8.com/license",
+        "creator": "Icons8",
+        "sourceUrl": "https://img.icons8.com/color/100/walking.png",
+        "landing": "https://icons8.com/icons/set/walking--style-color",
+        "provider": "Icons8",
+        "creditUrl": "https://icons8.com/",
+        "presentation": "icon",
+        "reviewed": true,
+        "reviewedBy": "assistant",
+        "reviewedAt": "2026-10-03"
+      }
+    },
+    "dormir": {
+      "english": "to sleep",
+      "image": {
+        "file": "assets/vocab-images/actions/a1-acciones-dormir-2770df74.png",
+        "sha256": "2770df741d8216d0c6307f0dca16c9b860c48bcca6e757917f01c1c2672cd9d2",
+        "bytes": 1116,
+        "license": "Icons8 free with link attribution",
+        "licenseUrl": "https://icons8.com/license",
+        "creator": "Icons8",
+        "sourceUrl": "https://img.icons8.com/color/100/sleeping-in-bed.png",
+        "landing": "https://icons8.com/icons/set/sleeping-in-bed--style-color",
+        "provider": "Icons8",
+        "creditUrl": "https://icons8.com/",
+        "presentation": "icon",
+        "reviewed": true,
+        "reviewedBy": "assistant",
+        "reviewedAt": "2026-10-03"
+      }
+    },
+    "estudiar": {
+      "english": "to study",
+      "image": {
+        "file": "assets/vocab-images/actions/a1-acciones-estudiar-aa7f8025.png",
+        "sha256": "aa7f802549b90b5ddfec253dee849bb815f954ae9bfaa04242963d9e40d5a58b",
+        "bytes": 2693,
+        "license": "Icons8 free with link attribution",
+        "licenseUrl": "https://icons8.com/license",
+        "creator": "Icons8",
+        "sourceUrl": "https://img.icons8.com/color/100/studying.png",
+        "landing": "https://icons8.com/icons/set/studying--style-color",
+        "provider": "Icons8",
+        "creditUrl": "https://icons8.com/",
+        "presentation": "icon",
+        "reviewed": true,
+        "reviewedBy": "assistant",
+        "reviewedAt": "2026-10-03"
+      }
+    },
+    "trabajar": {
+      "english": "to work",
+      "image": {
+        "file": "assets/vocab-images/actions/a1-acciones-trabajar-10d5dbc1.png",
+        "sha256": "10d5dbc1c86e127bebb4816824270bf474746b86cd634d27e8c6d3126cee74af",
+        "bytes": 1505,
+        "license": "Icons8 free with link attribution",
+        "licenseUrl": "https://icons8.com/license",
+        "creator": "Icons8",
+        "sourceUrl": "https://img.icons8.com/color/100/working-with-a-laptop.png",
+        "landing": "https://icons8.com/icons/set/working-with-a-laptop--style-color",
+        "provider": "Icons8",
+        "creditUrl": "https://icons8.com/",
+        "presentation": "icon",
+        "reviewed": true,
+        "reviewedBy": "assistant",
+        "reviewedAt": "2026-10-03"
+      }
+    },
+    "hablar": {
+      "english": "to speak",
+      "image": {
+        "file": "assets/vocab-images/actions/a1-acciones-hablar-000d85c6.png",
+        "sha256": "000d85c68a9f16b496459ca82a32db614e1d1461ddc951ded5f64898b2ecaf30",
+        "bytes": 870,
+        "license": "Icons8 free with link attribution",
+        "licenseUrl": "https://icons8.com/license",
+        "creator": "Icons8",
+        "sourceUrl": "https://img.icons8.com/color/100/chat.png",
+        "landing": "https://icons8.com/icons/set/chat--style-color",
+        "provider": "Icons8",
+        "creditUrl": "https://icons8.com/",
+        "presentation": "icon",
+        "reviewed": true,
+        "reviewedBy": "assistant",
+        "reviewedAt": "2026-10-03"
+      }
+    },
+    "escuchar": {
+      "english": "to listen",
+      "image": {
+        "file": "assets/vocab-images/actions/a1-acciones-escuchar-ccd96340.png",
+        "sha256": "ccd96340751ebba4287a7ba4bb2b15e01cf9225c4948c43192d0753833ed12e3",
+        "bytes": 3092,
+        "license": "Icons8 free with link attribution",
+        "licenseUrl": "https://icons8.com/license",
+        "creator": "Icons8",
+        "sourceUrl": "https://img.icons8.com/color/100/listening.png",
+        "landing": "https://icons8.com/icons/set/listening--style-color",
+        "provider": "Icons8",
+        "creditUrl": "https://icons8.com/",
+        "presentation": "icon",
+        "reviewed": true,
+        "reviewedBy": "assistant",
+        "reviewedAt": "2026-10-03"
+      }
+    },
+    "mirar": {
+      "english": "to watch; to look at",
+      "image": {
+        "file": "assets/vocab-images/actions/a1-acciones-mirar-48fa9f08.png",
+        "sha256": "48fa9f08f975f802c072dcf3b8e29e88e16d3e088dfe5723d0d09dfe8db7ee1c",
+        "bytes": 1629,
+        "license": "Icons8 free with link attribution",
+        "licenseUrl": "https://icons8.com/license",
+        "creator": "Icons8",
+        "sourceUrl": "https://img.icons8.com/color/100/watch-tv.png",
+        "landing": "https://icons8.com/icons/set/watch-tv--style-color",
+        "provider": "Icons8",
+        "creditUrl": "https://icons8.com/",
+        "presentation": "icon",
+        "reviewed": true,
+        "reviewedBy": "assistant",
+        "reviewedAt": "2026-10-03"
+      }
+    },
+    "comprar": {
+      "english": "to buy",
+      "image": {
+        "file": "assets/vocab-images/actions/a1-acciones-comprar-8cb597c6.png",
+        "sha256": "8cb597c6aa6eeec3ed782b442a3b94d5a68aa99a5e2bce2f873048f216dca512",
+        "bytes": 1604,
+        "license": "Icons8 free with link attribution",
+        "licenseUrl": "https://icons8.com/license",
+        "creator": "Icons8",
+        "sourceUrl": "https://img.icons8.com/color/100/shopping-cart.png",
+        "landing": "https://icons8.com/icons/set/shopping-cart--style-color",
+        "provider": "Icons8",
+        "creditUrl": "https://icons8.com/",
+        "presentation": "icon",
+        "reviewed": true,
+        "reviewedBy": "assistant",
+        "reviewedAt": "2026-10-03"
+      }
+    },
+    "lavar": {
+      "english": "to wash",
+      "image": {
+        "file": "assets/vocab-images/actions/a1-acciones-lavar-16afffa9.png",
+        "sha256": "16afffa9706d3a55df2ff7de42e438e52256d2a089145dfd530b2aa9dd1b3982",
+        "bytes": 2289,
+        "license": "Icons8 free with link attribution",
+        "licenseUrl": "https://icons8.com/license",
+        "creator": "Icons8",
+        "sourceUrl": "https://img.icons8.com/color/100/wash-your-hands.png",
+        "landing": "https://icons8.com/icons/set/wash-your-hands--style-color",
+        "provider": "Icons8",
+        "creditUrl": "https://icons8.com/",
+        "presentation": "icon",
+        "reviewed": true,
+        "reviewedBy": "assistant",
+        "reviewedAt": "2026-10-03"
+      }
+    },
+    "viajar": {
+      "english": "to travel",
+      "image": {
+        "file": "assets/vocab-images/actions/a1-acciones-viajar-60a1717a.png",
+        "sha256": "60a1717a56f285c439fd44e9b46ba8b532cffbca17fd7deaab6085f9160ca8b4",
+        "bytes": 4144,
+        "license": "Icons8 free with link attribution",
+        "licenseUrl": "https://icons8.com/license",
+        "creator": "Icons8",
+        "sourceUrl": "https://img.icons8.com/color/100/around-the-globe.png",
+        "landing": "https://icons8.com/icons/set/around-the-globe--style-color",
+        "provider": "Icons8",
+        "creditUrl": "https://icons8.com/",
+        "presentation": "icon",
+        "reviewed": true,
+        "reviewedBy": "assistant",
+        "reviewedAt": "2026-10-03"
+      }
+    },
+    "abrir": {
+      "english": "to open",
+      "image": {
+        "file": "assets/vocab-images/actions/a1-acciones-abrir-c3c2e3a5.png",
+        "sha256": "c3c2e3a5b1bcc8e1ba9f1aa1d0751f7afb25ff3f081c0200bb038f625205ae93",
+        "bytes": 1309,
+        "license": "Icons8 free with link attribution",
+        "licenseUrl": "https://icons8.com/license",
+        "creator": "Icons8",
+        "sourceUrl": "https://img.icons8.com/color/100/unlock.png",
+        "landing": "https://icons8.com/icons/set/unlock--style-color",
+        "provider": "Icons8",
+        "creditUrl": "https://icons8.com/",
+        "presentation": "icon",
+        "reviewed": true,
+        "reviewedBy": "assistant",
+        "reviewedAt": "2026-10-03"
+      }
+    },
+    "esperar": {
+      "english": "to wait",
+      "image": {
+        "file": "assets/vocab-images/actions/a1-acciones-esperar-05c8faac.png",
+        "sha256": "05c8faacff8a5c523bbcfda278c6e110cd8aa47b496e4b0cbff1c4a978e67eda",
+        "bytes": 3005,
+        "license": "Icons8 free with link attribution",
+        "licenseUrl": "https://icons8.com/license",
+        "creator": "Icons8",
+        "sourceUrl": "https://img.icons8.com/color/100/waiting-room.png",
+        "landing": "https://icons8.com/icons/set/waiting-room--style-color",
+        "provider": "Icons8",
+        "creditUrl": "https://icons8.com/",
+        "presentation": "icon",
+        "reviewed": true,
+        "reviewedBy": "assistant",
+        "reviewedAt": "2026-10-03"
+      }
+    },
+    "descansar": {
+      "english": "to rest",
+      "image": {
+        "file": "assets/vocab-images/actions/a1-acciones-descansar-3b66f340.png",
+        "sha256": "3b66f340192a0bf8774df9ec9dad7c0a48b42246a1c400e6f64403ff5dc1f3eb",
+        "bytes": 2883,
+        "license": "Icons8 free with link attribution",
+        "licenseUrl": "https://icons8.com/license",
+        "creator": "Icons8",
+        "sourceUrl": "https://img.icons8.com/color/100/relax.png",
+        "landing": "https://icons8.com/icons/set/relax--style-color",
+        "provider": "Icons8",
+        "creditUrl": "https://icons8.com/",
+        "presentation": "icon",
+        "reviewed": true,
+        "reviewedBy": "assistant",
+        "reviewedAt": "2026-10-03"
+      }
+    }
+  }
+}

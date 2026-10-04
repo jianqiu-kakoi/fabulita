@@ -259,8 +259,13 @@ def test_public_japanese_practice_is_committed_and_well_formed():
     committed = Project(MY_JAPANESE).homeworks
     assert committed == built
     items = [item for assignment in built for item in _items(assignment)]
-    assert len(items) == len({item["id"] for item in items}) == 220
-    assert built[0]["id"] == "jp-practice-te"
+    assert len(items) == len({item["id"] for item in items}) == 298
+    assert [a["id"] for a in built[:3]] == ["jp-practice-te", "jp-practice-nai", "jp-practice-pictures"]
+    # Picture questions only use reviewed images copied into this project.
+    for assignment in built:
+        for image in assignment.get("images", {}).values():
+            assert image["reviewed"] is True and image["deliver"] == "file"
+            assert (MY_JAPANESE / image["file"]).is_file()
     for assignment in built:
         # Every lesson opens with its own notes box.
         assert assignment["lessonNotes"]
