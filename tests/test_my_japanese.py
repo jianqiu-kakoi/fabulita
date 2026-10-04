@@ -313,3 +313,71 @@ def test_sections_of_one_type_are_contiguous():
             if not seen or seen[-1] != kind:
                 assert kind not in seen, (assignment["id"], kinds)
                 seen.append(kind)
+
+
+def _furigana_module():
+    spec = importlib.util.spec_from_file_location(
+        "my_japanese_furigana", REPO / "scripts" / "my_japanese_furigana.py"
+    )
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+def test_page_furigana_matches_the_reviewed_python_rendering(tmp_path):
+    # The page re-implements scripts/my_japanese_furigana.py; both must split
+    # every Japanese string of the practice the same way.
+    import html
+    import re
+    import shutil
+
+    node = shutil.which("node")
+    if not node:
+        pytest.skip("Node.js is required")
+    furigana = _furigana_module()
+    template = (REPO / "fabulita" / "template.html").read_text(encoding="utf-8")
+    start = template.index("  var HOMEWORK_RUBY_PARTICLES")
+    end = template.index("  function homeworkChoiceOptionHtml")
+    cases, expected = [], []
+    for assignment in japanese_builder.build_assignments():
+        for text in japanese_builder._display_texts(assignment):
+            if not text:
+                continue
+            cases.append({"furigana": assignment["furigana"], "text": text})
+            parts = []
+            for surface, markup in furigana.segments(text):
+                if not markup:
+                    parts.append(html.escape(surface, quote=True))
+                    continue
+                for piece in re.split(r"(\{[^|}]+\|[^}]+\})", markup):
+                    match = re.fullmatch(r"\{([^|}]+)\|([^}]+)\}", piece)
+                    parts.append(f"<ruby>{html.escape(match[1])}<rt>{html.escape(match[2])}</rt></ruby>"
+                                 if match else html.escape(piece, quote=True))
+            expected.append("".join(parts))
+    data = tmp_path / "cases.json"
+    data.write_text(json.dumps(cases, ensure_ascii=False), encoding="utf-8")
+    script = (
+        "const fs=require('fs');"
+        "function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')"
+        ".replace(/\"/g,'&quot;').replace(/'/g,'&#x27;');}"
+        + template[start:end]
+        + "const cases=JSON.parse(fs.readFileSync(process.argv[1],'utf8'));"
+        "process.stdout.write(JSON.stringify(cases.map(c=>homeworkRubyHtml({furigana:c.furigana},c.text))));"
+    )
+    result = subprocess.run([node, "-e", script, str(data)], capture_output=True, text=True, timeout=60)
+    assert result.returncode == 0, result.stderr
+    actual = json.loads(result.stdout)
+    mismatches = [(c["text"], a, e) for c, a, e in zip(cases, actual, expected) if a != e]
+    assert len(cases) > 1000 and mismatches == []
+
+
+def test_furigana_never_singles_out_one_option():
+    # If only some options of a question would get kanji, they are all shown in kana.
+    furigana = _furigana_module()
+    for assignment in japanese_builder.build_assignments():
+        for section in assignment["sections"]:
+            for item in section["items"]:
+                group = item.get("wordTiles") or item.get("options") or []
+                looks = {any(m for _s, m in furigana.segments(text)) for text in group}
+                if len(looks) > 1:
+                    assert item.get("plainOptions") is True, item["id"]

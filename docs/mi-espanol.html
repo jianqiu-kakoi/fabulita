@@ -624,6 +624,10 @@
   .homework-reference {
     margin: 0 0 1rem; border: 1px solid #d8e4d1; border-radius: 11px; background: #f2f8ef;
   }
+  .homework-instructions { line-height: 1.9; }
+  .homework-sheet ruby rt, .homework-notes ruby rt, .homework-reference ruby rt, .homework-feedback ruby rt,
+  .homework-option-meanings ruby rt { font-size: 0.5em; font-weight: 500; letter-spacing: 0; }
+  .homework-prompt, .homework-option span, .homework-tile { line-height: 1.9; }
   .homework-notes {
     margin: 0 0 1rem; border: 1px solid #e6d9bf; border-radius: 11px; background: #fbf6ea;
   }
@@ -3690,7 +3694,7 @@
             return '<li>' + esc(point) + '</li>';
           }).join("") + '</ul>' : "") +
           (examples.length ? '<ul class="homework-note-examples">' + examples.map(function (example) {
-            return '<li><span lang="' + lang + '">' + esc(example.text || "") + '</span>' +
+            return '<li><span lang="' + lang + '">' + homeworkRubyHtml(assignment, example.text || "") + '</span>' +
               (example.translation ? '<small>' + esc(example.translation) + '</small>' : "") + '</li>';
           }).join("") + '</ul>' : "") + '</section>';
       }).join("") + '</div></details>';
@@ -3713,8 +3717,8 @@
           '</strong><span>' + esc(table.meaning || "") + '</span></div><div>' +
           table.rows.map(function (row) {
             return '<div class="homework-reference-row"><span lang="' + esc(P.config.lang || "") + '">' +
-              esc(row.pronoun || row.person || "") + '</span><strong lang="' +
-              esc(P.config.lang || "") + '">' + esc(row.form || "") +
+              homeworkRubyHtml(assignment, row.pronoun || row.person || "") + '</span><strong lang="' +
+              esc(P.config.lang || "") + '">' + homeworkRubyHtml(assignment, row.form || "") +
               "</strong></div>";
           }).join("") + "</div></section>";
       }).join("") + "</div></details>";
@@ -4288,9 +4292,47 @@
     }
     return null;
   }
+  // Furigana: assignment.furigana maps a kana word to display markup
+  // "{漢字|かな}"; stored answers stay kana. Same rules as
+  // scripts/my_japanese_furigana.py: match at word starts, longest first,
+  // and a value equal to its key keeps the kana as is.
+  var HOMEWORK_RUBY_PARTICLES = "をがはにでともへのやかよね";
+  var homeworkRubyKeyCache = { table: null, keys: [] };
+  function homeworkRubyHtml(assignment, text) {
+    var value = String(text == null ? "" : text);
+    var table = assignment && assignment.furigana && typeof assignment.furigana === "object" ? assignment.furigana : null;
+    if (!table || !/[\u3040-\u309f]/.test(value)) return esc(value);
+    if (homeworkRubyKeyCache.table !== table) {
+      homeworkRubyKeyCache = { table: table, keys: Object.keys(table).sort(function (a, b) { return b.length - a.length; }) };
+    }
+    var keys = homeworkRubyKeyCache.keys, out = "", i = 0, boundary = true;
+    while (i < value.length) {
+      var ch = value.charAt(i);
+      var kana = ch >= "\u3040" && ch <= "\u30ff" && ch !== "・";
+      if (!kana) { out += esc(ch); i += 1; boundary = true; continue; }
+      if (boundary) {
+        var hit = "";
+        for (var k = 0; k < keys.length; k++) {
+          if (value.substr(i, keys[k].length) === keys[k]) { hit = keys[k]; break; }
+        }
+        if (hit) {
+          var markup = table[hit];
+          out += markup === hit ? esc(hit) : String(markup).split(/(\{[^|}]+\|[^}]+\})/).map(function (part) {
+            var m = /^\{([^|}]+)\|([^}]+)\}$/.exec(part);
+            return m ? "<ruby>" + esc(m[1]) + "<rt>" + esc(m[2]) + "</rt></ruby>" : esc(part);
+          }).join("");
+          i += hit.length;
+          continue;
+        }
+        if (HOMEWORK_RUBY_PARTICLES.indexOf(ch) !== -1) { out += esc(ch); i += 1; continue; }
+      }
+      out += esc(ch); i += 1; boundary = false;
+    }
+    return out;
+  }
   function homeworkChoiceOptionHtml(assignment, item, option, optionIndex) {
     var meta = homeworkImageOptionMeta(item, option);
-    if (!meta) return '<span>' + esc(option) + "</span>";
+    if (!meta) return '<span>' + (item && item.plainOptions ? esc(option) : homeworkRubyHtml(assignment, option)) + "</span>";
     var url = safeHomeworkImageUrl(assignment, meta.imageId);
     if (!url) return '<span class="homework-option-image">图片不可用</span>';
     var imageClass = assignment.images[meta.imageId].presentation === "icon" ? "homework-library-icon" : "";
@@ -4444,7 +4486,7 @@
     return '<section class="homework-option-meanings" aria-label="选项意思"><h3>' + rows.length + ' 个选项的意思</h3>' +
       rows.map(function (row) {
         return '<div class="homework-option-meaning"><span class="homework-option-word" lang="' +
-          esc(P.config.lang || "es") + '">' + esc(row.option) + '</span><span class="homework-option-gloss">' +
+          esc(P.config.lang || "es") + '">' + homeworkRubyHtml(assignment, row.option) + '</span><span class="homework-option-gloss">' +
           esc(row.gloss) + '</span><span class="homework-option-english" lang="en">' + esc(row.english) +
           '</span><span class="homework-option-tags">' +
           (row.selected ? '<span class="homework-option-tag is-selected">你的选择</span>' : "") +
@@ -4469,7 +4511,7 @@
     if (!word) return "";
     return '<section class="homework-option-meanings homework-answer-vocabulary" aria-label="答案词汇">' +
       '<h3>答案词汇</h3><div class="homework-option-meaning"><span class="homework-option-word" lang="' +
-      esc(P.config.lang || "es") + '">' + esc(word.word) + '</span><span class="homework-option-gloss">' +
+      esc(P.config.lang || "es") + '">' + homeworkRubyHtml(assignment, word.word) + '</span><span class="homework-option-gloss">' +
       esc(word.gloss) + '</span><span class="homework-option-english" lang="en">' + esc(word.english) +
       '</span><button class="homework-sentence-speak" type="button" data-homework-answer-speak="' +
       esc(word.word) + '" aria-label="朗读 ' + esc(word.word) + '">🔊 朗读</button></div></section>';
@@ -4659,7 +4701,7 @@
     var expected = homeworkExpectedAnswer(entry.item);
     if (response.status === "self_reviewed") {
       return '<div class="homework-feedback is-self_reviewed" role="status" aria-live="polite"><strong>' +
-        '已保存，请自行对照</strong><span>这道开放题不自动判分。参考作答：' + esc(expected) + '</span>' +
+        '已保存，请自行对照</strong><span>这道开放题不自动判分。参考作答：' + homeworkRubyHtml(assignment, expected) + '</span>' +
         (entry.item.answerTranslation ? '<span class="homework-ambiguity">参考翻译：' +
           esc(entry.item.answerTranslation) + '</span>' : '') +
         '</div><div class="homework-feedback-actions"><button class="homework-button" type="button" ' +
@@ -4702,8 +4744,8 @@
       detail += " 建议表达：" + response.suggestedAnswer;
     }
     return '<div class="homework-feedback is-' + response.status + '" role="status" aria-live="polite"><strong>' +
-      esc(title) + '</strong><span>' + esc(detail) + '</span>' +
-      (entry.item.ambiguityNote ? '<span class="homework-ambiguity">' + esc(entry.item.ambiguityNote) + "</span>" : "") +
+      esc(title) + '</strong><span>' + homeworkRubyHtml(assignment, detail) + '</span>' +
+      (entry.item.ambiguityNote ? '<span class="homework-ambiguity">' + homeworkRubyHtml(assignment, entry.item.ambiguityNote) + "</span>" : "") +
       '</div>' + homeworkDialogueAnswerHtml(assignment, entry.item, response) +
       homeworkAnswerVocabularyHtml(assignment, entry.item, response) +
       homeworkSentenceFeedbackHtml(assignment, entry.item, response) +
@@ -5226,12 +5268,14 @@
         (tilePicked.length ? tilePicked.map(function (tileIndex, position) {
           return '<button class="homework-tile is-picked" type="button" data-homework-tile-remove="' + position + '"' +
             (scoringPending ? " disabled" : "") + ' aria-label="撤回 ' + esc(entry.item.wordTiles[tileIndex]) + '">' +
-            esc(entry.item.wordTiles[tileIndex]) + "</button>";
+            (entry.item.plainOptions ? esc(entry.item.wordTiles[tileIndex]) :
+              homeworkRubyHtml(assignment, entry.item.wordTiles[tileIndex])) + "</button>";
         }).join("") : '<span class="homework-tile-placeholder">还没有选词</span>') + "</div>" +
         '<div class="homework-tile-bank" role="group" aria-label="可选词块">' +
         entry.item.wordTiles.map(function (tile, tileIndex) {
           return '<button class="homework-tile" type="button" data-homework-tile="' + tileIndex + '"' +
-            (tilePicked.indexOf(tileIndex) !== -1 || scoringPending ? " disabled" : "") + ">" + esc(tile) + "</button>";
+            (tilePicked.indexOf(tileIndex) !== -1 || scoringPending ? " disabled" : "") + ">" +
+            (entry.item.plainOptions ? esc(tile) : homeworkRubyHtml(assignment, tile)) + "</button>";
         }).join("") + "</div>" +
         '<input type="hidden" id="homework-answer-input" name="homework-answer" value="' +
         esc(homeworkTileAnswer(entry.item, tilePicked)) + '">';
@@ -5282,14 +5326,15 @@
     var questionHtml = speechStuckHtml + (homeworkIsScenario(assignment) ?
       homeworkDialogueCueHtml(entry.item) :
       homeworkVisualPromptHtml(assignment, entry.item) +
-      '<h2 class="homework-prompt" id="homework-question-title" tabindex="-1">' + esc(entry.item.prompt) + "</h2>");
+      '<h2 class="homework-prompt" id="homework-question-title" tabindex="-1">' +
+      homeworkRubyHtml(assignment, entry.item.prompt) + "</h2>");
     return (homeworkIsScenario(assignment) ? "" : homeworkStudyCalloutHtml(assignment)) +
       homeworkLessonNotesHtml(assignment) + homeworkReferenceTablesHtml(assignment) +
       dashboardHomeworkTypeProgressHtml(assignment) +
       '<section class="homework-sheet' + (homeworkIsScenario(assignment) ? " is-dialogue" : "") +
       '" aria-labelledby="homework-question-title">' +
       '<p class="homework-section-label">' + esc(entry.section.title || "") + '</p><p class="homework-instructions">' +
-      esc(entry.section.instructions || "") + '</p><p class="homework-question-number">' +
+      homeworkRubyHtml(assignment, entry.section.instructions || "") + '</p><p class="homework-question-number">' +
       esc(positionLabel) + "</p>" + questionHtml + form +
       homeworkFeedbackHtml(assignment, entry, response) + homeworkHistoryHtml(assignment, entry) +
       '<p class="qa-notice" role="status" aria-live="polite">' +
