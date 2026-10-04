@@ -9616,128 +9616,92 @@
         {
           "id": "jp-plans-regret",
           "title": "② ～ればよかった",
-          "instructions": "看情况，选出“要是……就好了”的正确说法。",
-          "type": "single_choice",
+          "instructions": "看情况，点词块拼出“要是……就好了”的句子。里面混了干扰词块。",
+          "type": "text_input",
           "items": [
             {
               "id": "jp-plans-regret-01",
               "number": 1,
               "prompt": "かさを わすれて、あめに ぬれました。→ 你会说：",
-              "options": [
-                "かさを もってきて よかったです",
-                "かさを もってくる つもりです",
-                "かさを もってくれば よかったです"
+              "wordTiles": [
+                "かさを",
+                "よかったです",
+                "もってくる",
+                "もってきて",
+                "もってくれば",
+                "つもりです"
               ],
+              "tileJoiner": "",
               "answers": [
+                "かさをもってくればよかったです",
                 "かさを もってくれば よかったです"
               ],
               "canonicalAnswer": "かさを もってくれば よかったです",
-              "optionNotes": {
-                "かさを もってくれば よかったです": {
-                  "gloss": "要是带伞来就好了",
-                  "english": "I wish I had brought an umbrella"
-                },
-                "かさを もってきて よかったです": {
-                  "gloss": "幸好带了伞（意思相反）",
-                  "english": "glad I brought an umbrella (opposite)"
-                },
-                "かさを もってくる つもりです": {
-                  "gloss": "我打算带伞",
-                  "english": "I plan to bring an umbrella"
-                }
-              },
               "answerTranslation": "要是带了伞就好了。",
-              "ambiguityNote": "中文：要是带了伞就好了。"
+              "ambiguityNote": "中文：要是带了伞就好了。　提示：后悔 → 动词ば形＋よかった。"
             },
             {
               "id": "jp-plans-regret-02",
               "number": 2,
               "prompt": "よふかしして、きょうは とても ねむいです。→ 你会说：",
-              "options": [
-                "はやく ねれば よかったです",
-                "はやく ねて おきます",
-                "はやく ねる らしいです"
+              "wordTiles": [
+                "おきます",
+                "よかったです",
+                "ねれば",
+                "ねて",
+                "ねる",
+                "はやく"
               ],
+              "tileJoiner": "",
               "answers": [
+                "はやくねればよかったです",
                 "はやく ねれば よかったです"
               ],
               "canonicalAnswer": "はやく ねれば よかったです",
-              "optionNotes": {
-                "はやく ねれば よかったです": {
-                  "gloss": "要是早点睡就好了",
-                  "english": "I wish I had gone to bed early"
-                },
-                "はやく ねて おきます": {
-                  "gloss": "我会提前早睡",
-                  "english": "I'll go to bed early in advance"
-                },
-                "はやく ねる らしいです": {
-                  "gloss": "听说（他）早睡",
-                  "english": "apparently (he) goes to bed early"
-                }
-              },
               "answerTranslation": "要是早点睡就好了。",
-              "ambiguityNote": "中文：要是早点睡就好了。"
+              "ambiguityNote": "中文：要是早点睡就好了。　提示：后悔 → 动词ば形＋よかった。"
             },
             {
               "id": "jp-plans-regret-03",
               "number": 3,
               "prompt": "コンサートの チケットが うりきれでした。→ 你会说：",
-              "options": [
-                "はやく かって ください",
-                "はやく かえば よかったです",
-                "はやく かう ために"
+              "wordTiles": [
+                "ください",
+                "はやく",
+                "かう",
+                "かえば",
+                "かって",
+                "よかったです"
               ],
+              "tileJoiner": "",
               "answers": [
+                "はやくかえばよかったです",
                 "はやく かえば よかったです"
               ],
               "canonicalAnswer": "はやく かえば よかったです",
-              "optionNotes": {
-                "はやく かえば よかったです": {
-                  "gloss": "要是早点买就好了",
-                  "english": "I wish I had bought it earlier"
-                },
-                "はやく かって ください": {
-                  "gloss": "请早点买",
-                  "english": "please buy it early"
-                },
-                "はやく かう ために": {
-                  "gloss": "为了早点买",
-                  "english": "in order to buy early"
-                }
-              },
               "answerTranslation": "要是早点买就好了。",
-              "ambiguityNote": "中文：要是早点买就好了。"
+              "ambiguityNote": "中文：要是早点买就好了。　提示：后悔 → 动词ば形＋よかった。"
             },
             {
               "id": "jp-plans-regret-04",
               "number": 4,
               "prompt": "りょこうで しゃしんを 1まいも とりませんでした。→ 你会说：",
-              "options": [
-                "しゃしんを とって おきました",
-                "しゃしんを とる らしいです",
-                "しゃしんを とれば よかったです"
+              "wordTiles": [
+                "よかったです",
+                "しゃしんを",
+                "おきました",
+                "とって",
+                "とる",
+                "とれば"
               ],
+              "tileJoiner": "",
               "answers": [
+                "しゃしんをとればよかったです",
                 "しゃしんを とれば よかったです"
               ],
               "canonicalAnswer": "しゃしんを とれば よかったです",
-              "optionNotes": {
-                "しゃしんを とれば よかったです": {
-                  "gloss": "要是拍了照片就好了",
-                  "english": "I wish I had taken photos"
-                },
-                "しゃしんを とって おきました": {
-                  "gloss": "我提前拍好了照片",
-                  "english": "I took photos in advance"
-                },
-                "しゃしんを とる らしいです": {
-                  "gloss": "听说要拍照",
-                  "english": "apparently they'll take photos"
-                }
-              },
               "answerTranslation": "要是拍了照片就好了。",
-              "ambiguityNote": "中文：要是拍了照片就好了。"
+              "ambiguityNote": "中文：要是拍了照片就好了。　提示：后悔 → 动词ば形＋よかった。"
             }
           ]
         },
@@ -9931,159 +9895,169 @@
         {
           "id": "jp-keep-keep",
           "title": "① ～つづける",
-          "instructions": "选出用「～つづける」改写后的正确句子。",
-          "type": "single_choice",
+          "instructions": "用「～つづける」改写：按顺序点词块拼出句子。里面混了几个错误形式，别选。",
+          "type": "text_input",
           "items": [
             {
               "id": "jp-keep-keep-01",
               "number": 1,
               "prompt": "3じかん ゲームを しています。→ 用 ～つづける：",
-              "options": [
-                "3じかん ゲームを するつづけています",
-                "3じかん ゲームを してつづけています",
-                "3じかん ゲームを しつづけています"
+              "wordTiles": [
+                "ゲームを",
+                "するつづけています",
+                "してつづけています",
+                "3じかん",
+                "しつづけています"
               ],
+              "tileJoiner": "",
               "answers": [
+                "3じかんゲームをしつづけています",
                 "3じかん ゲームを しつづけています"
               ],
               "canonicalAnswer": "3じかん ゲームを しつづけています",
-              "optionNotes": {
-                "3じかん ゲームを しつづけています": {
-                  "gloss": "一直玩了三个小时游戏",
-                  "english": "have been playing games for 3 hours"
-                },
-                "3じかん ゲームを してつづけています": {
-                  "gloss": "✗ 错误形式：ます形去ます＋つづける：しつづける",
-                  "english": "not a real form"
-                },
-                "3じかん ゲームを するつづけています": {
-                  "gloss": "✗ 错误形式：ます形去ます＋つづける：しつづける",
-                  "english": "not a real form"
-                }
-              },
               "ambiguityNote": "提示：ます形去掉 ます＋つづける。"
             },
             {
               "id": "jp-keep-keep-02",
               "number": 2,
               "prompt": "あめが ずっと ふっています。→ 用 ～つづける：",
-              "options": [
-                "あめが ふるつづけています",
-                "あめが ふってつづけています",
-                "あめが ふりつづけています"
+              "wordTiles": [
+                "ふりつづけています",
+                "ふるつづけています",
+                "ふってつづけています",
+                "あめが"
               ],
+              "tileJoiner": "",
               "answers": [
+                "あめがふりつづけています",
                 "あめが ふりつづけています"
               ],
               "canonicalAnswer": "あめが ふりつづけています",
-              "optionNotes": {
-                "あめが ふりつづけています": {
-                  "gloss": "雨一直在下",
-                  "english": "it keeps raining"
-                },
-                "あめが ふってつづけています": {
-                  "gloss": "✗ 错误形式：ふります → ふりつづける",
-                  "english": "not a real form"
-                },
-                "あめが ふるつづけています": {
-                  "gloss": "✗ 错误形式：ふります → ふりつづける",
-                  "english": "not a real form"
-                }
-              },
               "ambiguityNote": "提示：ます形去掉 ます＋つづける。"
             },
             {
               "id": "jp-keep-keep-03",
               "number": 3,
               "prompt": "かれは 10ねん おなじ かいしゃで はたらいています。→ 用 ～つづける：",
-              "options": [
-                "かれは 10ねん おなじ かいしゃで はたらきつづけています",
-                "かれは 10ねん おなじ かいしゃで はたらいてつづけています",
-                "かれは 10ねん おなじ かいしゃで はたらくつづけています"
+              "wordTiles": [
+                "はたらきつづけています",
+                "おなじ",
+                "10ねん",
+                "はたらいてつづけています",
+                "はたらくつづけています",
+                "かいしゃで",
+                "かれは"
               ],
+              "tileJoiner": "",
               "answers": [
+                "かれは10ねんおなじかいしゃではたらきつづけています",
                 "かれは 10ねん おなじ かいしゃで はたらきつづけています"
               ],
               "canonicalAnswer": "かれは 10ねん おなじ かいしゃで はたらきつづけています",
-              "optionNotes": {
-                "かれは 10ねん おなじ かいしゃで はたらきつづけています": {
-                  "gloss": "他在同一家公司持续工作了十年",
-                  "english": "he has kept working at the same company for 10 years"
-                },
-                "かれは 10ねん おなじ かいしゃで はたらいてつづけています": {
-                  "gloss": "✗ 错误形式：はたらきます → はたらきつづける",
-                  "english": "not a real form"
-                },
-                "かれは 10ねん おなじ かいしゃで はたらくつづけています": {
-                  "gloss": "✗ 错误形式：はたらきます → はたらきつづける",
-                  "english": "not a real form"
-                }
-              },
               "ambiguityNote": "提示：ます形去掉 ます＋つづける。"
             },
             {
               "id": "jp-keep-keep-04",
               "number": 4,
               "prompt": "ゆめを あきらめないで、おいかけます。→ 用 ～つづける：",
-              "options": [
-                "ゆめを おってつづけます",
-                "ゆめを おうつづけます",
-                "ゆめを おいつづけます"
+              "wordTiles": [
+                "おいつづけます",
+                "おってつづけます",
+                "おうつづけます",
+                "ゆめを"
               ],
+              "tileJoiner": "",
               "answers": [
+                "ゆめをおいつづけます",
                 "ゆめを おいつづけます"
               ],
               "canonicalAnswer": "ゆめを おいつづけます",
-              "optionNotes": {
-                "ゆめを おいつづけます": {
-                  "gloss": "继续追梦",
-                  "english": "I keep chasing my dream"
-                },
-                "ゆめを おってつづけます": {
-                  "gloss": "✗ 错误形式：おいます → おいつづける",
-                  "english": "not a real form"
-                },
-                "ゆめを おうつづけます": {
-                  "gloss": "✗ 错误形式：おいます → おいつづける",
-                  "english": "not a real form"
-                }
-              },
               "ambiguityNote": "提示：ます形去掉 ます＋つづける。"
             },
             {
               "id": "jp-keep-keep-05",
               "number": 5,
               "prompt": "よる おそくまで ともだちと はなしていました。→ 用 ～つづける：",
-              "options": [
-                "よる おそくまで ともだちと はなしつづけていました",
-                "よる おそくまで ともだちと はなすつづけていました",
-                "よる おそくまで ともだちと はなしてつづけていました"
+              "wordTiles": [
+                "よる",
+                "はなすつづけていました",
+                "はなしてつづけていました",
+                "はなしつづけていました",
+                "ともだちと",
+                "おそくまで"
               ],
+              "tileJoiner": "",
               "answers": [
+                "よるおそくまでともだちとはなしつづけていました",
                 "よる おそくまで ともだちと はなしつづけていました"
               ],
               "canonicalAnswer": "よる おそくまで ともだちと はなしつづけていました",
-              "optionNotes": {
-                "よる おそくまで ともだちと はなしつづけていました": {
-                  "gloss": "和朋友一直聊到深夜",
-                  "english": "kept talking with a friend until late"
-                },
-                "よる おそくまで ともだちと はなしてつづけていました": {
-                  "gloss": "✗ 错误形式：はなします → はなしつづける",
-                  "english": "not a real form"
-                },
-                "よる おそくまで ともだちと はなすつづけていました": {
-                  "gloss": "✗ 错误形式：はなします → はなしつづける",
-                  "english": "not a real form"
-                }
-              },
               "ambiguityNote": "提示：ます形去掉 ます＋つづける。"
             }
           ]
         },
         {
+          "id": "jp-keep-tiles",
+          "title": "② 连词成句",
+          "instructions": "看中文意思，按顺序点词块拼成句子。",
+          "type": "text_input",
+          "items": [
+            {
+              "id": "jp-keep-tiles-01",
+              "number": 1,
+              "prompt": "排成句子：我每天都在坚持学日语。",
+              "wordTiles": [
+                "べんきょうしつづけています",
+                "にほんごを",
+                "まいにち"
+              ],
+              "tileJoiner": "",
+              "answers": [
+                "まいにちにほんごをべんきょうしつづけています"
+              ],
+              "canonicalAnswer": "まいにちにほんごをべんきょうしつづけています",
+              "answerTranslation": "我每天都在坚持学日语。",
+              "ambiguityNote": "中文：我每天都在坚持学日语。"
+            },
+            {
+              "id": "jp-keep-tiles-02",
+              "number": 2,
+              "prompt": "排成句子：请把名字写大一点。",
+              "wordTiles": [
+                "なまえを",
+                "かいてください",
+                "おおきく"
+              ],
+              "tileJoiner": "",
+              "answers": [
+                "なまえをおおきくかいてください"
+              ],
+              "canonicalAnswer": "なまえをおおきくかいてください",
+              "answerTranslation": "请把名字写大一点。",
+              "ambiguityNote": "中文：请把名字写大一点。"
+            },
+            {
+              "id": "jp-keep-tiles-03",
+              "number": 3,
+              "prompt": "排成句子：正因为难，才有意思。",
+              "wordTiles": [
+                "むずかしい",
+                "おもしろいです",
+                "からこそ"
+              ],
+              "tileJoiner": "",
+              "answers": [
+                "むずかしいからこそおもしろいです"
+              ],
+              "canonicalAnswer": "むずかしいからこそおもしろいです",
+              "answerTranslation": "正因为难，才有意思。",
+              "ambiguityNote": "中文：正因为难，才有意思。"
+            }
+          ]
+        },
+        {
           "id": "jp-keep-adv",
-          "title": "② い形容词 → ～く",
+          "title": "③ い形容词 → ～く",
           "instructions": "选出 い形容词修饰动词的正确形式。",
           "type": "single_choice",
           "items": [
@@ -10271,7 +10245,7 @@
         },
         {
           "id": "jp-keep-because",
-          "title": "③ だからこそ",
+          "title": "④ だからこそ",
           "instructions": "选出放进句子里最合适的一项。",
           "type": "single_choice",
           "items": [
@@ -10369,7 +10343,7 @@
         },
         {
           "id": "jp-keep-word",
-          "title": "④ 这课的词",
+          "title": "⑤ 这课的词",
           "instructions": "选出放进句子里最合适的词。",
           "type": "single_choice",
           "items": [
@@ -10582,65 +10556,6 @@
               },
               "answerTranslation": "我对未来怀有大大的梦想。",
               "ambiguityNote": "中文：我对未来怀有大大的梦想。"
-            }
-          ]
-        },
-        {
-          "id": "jp-keep-tiles",
-          "title": "⑤ 连词成句",
-          "instructions": "看中文意思，按顺序点词块拼成句子。",
-          "type": "text_input",
-          "items": [
-            {
-              "id": "jp-keep-tiles-01",
-              "number": 1,
-              "prompt": "排成句子：我每天都在坚持学日语。",
-              "wordTiles": [
-                "べんきょうしつづけています",
-                "にほんごを",
-                "まいにち"
-              ],
-              "tileJoiner": "",
-              "answers": [
-                "まいにちにほんごをべんきょうしつづけています"
-              ],
-              "canonicalAnswer": "まいにちにほんごをべんきょうしつづけています",
-              "answerTranslation": "我每天都在坚持学日语。",
-              "ambiguityNote": "中文：我每天都在坚持学日语。"
-            },
-            {
-              "id": "jp-keep-tiles-02",
-              "number": 2,
-              "prompt": "排成句子：请把名字写大一点。",
-              "wordTiles": [
-                "なまえを",
-                "かいてください",
-                "おおきく"
-              ],
-              "tileJoiner": "",
-              "answers": [
-                "なまえをおおきくかいてください"
-              ],
-              "canonicalAnswer": "なまえをおおきくかいてください",
-              "answerTranslation": "请把名字写大一点。",
-              "ambiguityNote": "中文：请把名字写大一点。"
-            },
-            {
-              "id": "jp-keep-tiles-03",
-              "number": 3,
-              "prompt": "排成句子：正因为难，才有意思。",
-              "wordTiles": [
-                "むずかしい",
-                "おもしろいです",
-                "からこそ"
-              ],
-              "tileJoiner": "",
-              "answers": [
-                "むずかしいからこそおもしろいです"
-              ],
-              "canonicalAnswer": "むずかしいからこそおもしろいです",
-              "answerTranslation": "正因为难，才有意思。",
-              "ambiguityNote": "中文：正因为难，才有意思。"
             }
           ]
         }
@@ -11136,101 +11051,155 @@
         {
           "id": "jp-easy-ya",
           "title": "① や",
-          "instructions": "选出用「や」把两句合成一句的正确说法。",
-          "type": "single_choice",
+          "instructions": "用「や」把两句合成一句：按顺序点词块，里面混了干扰词块。",
+          "type": "text_input",
           "items": [
             {
               "id": "jp-easy-ya-01",
               "number": 1,
               "prompt": "スーパーで りんごを かいます。みかんも かいます。→ 用「や」合成一句：",
-              "options": [
-                "スーパーで りんごや みかんを かいます",
-                "スーパーで りんごを みかんや かいます",
-                "スーパーで りんごや みかんや を かいます"
+              "wordTiles": [
+                "スーパーで",
+                "を",
+                "りんごや",
+                "みかんを",
+                "りんごを",
+                "かいます",
+                "みかんや"
               ],
+              "tileJoiner": "",
               "answers": [
+                "スーパーでりんごやみかんをかいます",
                 "スーパーで りんごや みかんを かいます"
               ],
               "canonicalAnswer": "スーパーで りんごや みかんを かいます",
-              "optionNotes": {
-                "スーパーで りんごや みかんを かいます": {
-                  "gloss": "在超市买苹果、橘子等",
-                  "english": "I buy apples, mandarins, etc. at the supermarket"
-                },
-                "スーパーで りんごを みかんや かいます": {
-                  "gloss": "✗ 错误形式：や 放在两个名词之间：りんごや みかんを",
-                  "english": "not a real form"
-                },
-                "スーパーで りんごや みかんや を かいます": {
-                  "gloss": "✗ 错误形式：最后一个名词后面直接接 を",
-                  "english": "not a real form"
-                }
-              },
-              "ambiguityNote": "提示：AやB＝A、B 等等（举例）。"
+              "ambiguityNote": "提示：AやB＝A、B 等等（举例）；最后一个名词后面接助词。"
             },
             {
               "id": "jp-easy-ya-02",
               "number": 2,
               "prompt": "へやに ソファが あります。テレビも あります。→ 用「や」合成一句：",
-              "options": [
-                "へやに ソファや テレビが あります",
-                "へやに ソファや が テレビ あります",
-                "へやに ソファが テレビや あります"
+              "wordTiles": [
+                "へやに",
+                "ソファや",
+                "テレビや",
+                "が",
+                "テレビが",
+                "あります",
+                "ソファが"
               ],
+              "tileJoiner": "",
               "answers": [
+                "へやにソファやテレビがあります",
                 "へやに ソファや テレビが あります"
               ],
               "canonicalAnswer": "へやに ソファや テレビが あります",
-              "optionNotes": {
-                "へやに ソファや テレビが あります": {
-                  "gloss": "房间里有沙发、电视等",
-                  "english": "there's a sofa, a TV, etc. in the room"
-                },
-                "へやに ソファが テレビや あります": {
-                  "gloss": "✗ 错误形式：や 放在两个名词之间：ソファや テレビが",
-                  "english": "not a real form"
-                },
-                "へやに ソファや が テレビ あります": {
-                  "gloss": "✗ 错误形式：助词顺序不对",
-                  "english": "not a real form"
-                }
-              },
-              "ambiguityNote": "提示：AやB＝A、B 等等（举例）。"
+              "ambiguityNote": "提示：AやB＝A、B 等等（举例）；最后一个名词后面接助词。"
             },
             {
               "id": "jp-easy-ya-03",
               "number": 3,
               "prompt": "やすみの ひは そうじを します。せんたくも します。→ 用「や」合成一句：",
-              "options": [
-                "やすみの ひは そうじや を せんたく します",
-                "やすみの ひは そうじを せんたくや します",
-                "やすみの ひは そうじや せんたくを します"
+              "wordTiles": [
+                "せんたくを",
+                "せんたくや",
+                "します",
+                "そうじを",
+                "そうじや",
+                "やすみの",
+                "を",
+                "ひは"
               ],
+              "tileJoiner": "",
               "answers": [
+                "やすみのひはそうじやせんたくをします",
                 "やすみの ひは そうじや せんたくを します"
               ],
               "canonicalAnswer": "やすみの ひは そうじや せんたくを します",
-              "optionNotes": {
-                "やすみの ひは そうじや せんたくを します": {
-                  "gloss": "休息日打扫、洗衣服等",
-                  "english": "on days off I clean, do laundry, etc."
-                },
-                "やすみの ひは そうじを せんたくや します": {
-                  "gloss": "✗ 错误形式：や 放在两个名词之间：そうじや せんたくを",
-                  "english": "not a real form"
-                },
-                "やすみの ひは そうじや を せんたく します": {
-                  "gloss": "✗ 错误形式：助词顺序不对",
-                  "english": "not a real form"
-                }
-              },
-              "ambiguityNote": "提示：AやB＝A、B 等等（举例）。"
+              "ambiguityNote": "提示：AやB＝A、B 等等（举例）；最后一个名词后面接助词。"
+            }
+          ]
+        },
+        {
+          "id": "jp-easy-tiles",
+          "title": "② 连词成句",
+          "instructions": "看中文意思，按顺序点词块拼成句子。",
+          "type": "text_input",
+          "items": [
+            {
+              "id": "jp-easy-tiles-01",
+              "number": 1,
+              "prompt": "排成句子：这个手机很好用。",
+              "wordTiles": [
+                "スマホは",
+                "この",
+                "つかいやすいです"
+              ],
+              "tileJoiner": "",
+              "answers": [
+                "このスマホはつかいやすいです"
+              ],
+              "canonicalAnswer": "このスマホはつかいやすいです",
+              "answerTranslation": "这个手机很好用。",
+              "ambiguityNote": "中文：这个手机很好用。"
+            },
+            {
+              "id": "jp-easy-tiles-02",
+              "number": 2,
+              "prompt": "排成句子：他看起来很年轻。",
+              "wordTiles": [
+                "わかく",
+                "かれは",
+                "みえます"
+              ],
+              "tileJoiner": "",
+              "answers": [
+                "かれはわかくみえます"
+              ],
+              "canonicalAnswer": "かれはわかくみえます",
+              "answerTranslation": "他看起来很年轻。",
+              "ambiguityNote": "中文：他看起来很年轻。"
+            },
+            {
+              "id": "jp-easy-tiles-03",
+              "number": 3,
+              "prompt": "排成句子：我马上回家。",
+              "wordTiles": [
+                "かえります",
+                "すぐ",
+                "いえに"
+              ],
+              "tileJoiner": "",
+              "answers": [
+                "すぐいえにかえります",
+                "いえにすぐかえります"
+              ],
+              "canonicalAnswer": "すぐいえにかえります",
+              "answerTranslation": "我马上回家。",
+              "ambiguityNote": "中文：我马上回家。"
+            },
+            {
+              "id": "jp-easy-tiles-04",
+              "number": 4,
+              "prompt": "排成句子：我买了衣服和食物等。",
+              "wordTiles": [
+                "ふくや",
+                "かいました",
+                "たべものを"
+              ],
+              "tileJoiner": "",
+              "answers": [
+                "ふくやたべものをかいました"
+              ],
+              "canonicalAnswer": "ふくやたべものをかいました",
+              "answerTranslation": "我买了衣服和食物等。",
+              "ambiguityNote": "中文：我买了衣服和食物等。"
             }
           ]
         },
         {
           "id": "jp-easy-adv",
-          "title": "② ～く＋动词",
+          "title": "③ ～く＋动词",
           "instructions": "看情况，选出合适的词：はやく / おおきく / やすく / わかく。",
           "type": "single_choice",
           "items": [
@@ -11378,7 +11347,7 @@
         },
         {
           "id": "jp-easy-easy",
-          "title": "③ ～やすい？～にくい？",
+          "title": "④ ～やすい？～にくい？",
           "instructions": "选出最合适的一项。",
           "type": "single_choice",
           "items": [
@@ -11536,7 +11505,7 @@
         },
         {
           "id": "jp-easy-soon",
-          "title": "④ すぐ",
+          "title": "⑤ すぐ",
           "instructions": "看情况，选出用「すぐ」的回答。",
           "type": "single_choice",
           "items": [
@@ -11634,7 +11603,7 @@
         },
         {
           "id": "jp-easy-read",
-          "title": "⑤ よみもの",
+          "title": "⑥ よみもの",
           "instructions": "先读短文，再选答案。「あたらしい がっこう」　ユキは こんげつから あたらしい がっこうに かよって います。がっこうは えきから ちかいです。でんしゃや バスで いく ことが できます。でも、ユキは いつも あるいて いきます。あるくのは からだに いいからです。あたらしい がっこうの じゅぎょうは まえの がっこうより わかりやすいです。クラスの ともだちも やさしいです。でも、あさ 7じに おきるのは たいへんです。ユキは よる おそく ねると、あさ はやく おきにくいです。きのうは とても つかれていたので、いえに かえって すぐ ねました。",
           "type": "single_choice",
           "items": [
@@ -11817,83 +11786,6 @@
               },
               "answerTranslation": "马上睡觉了。",
               "ambiguityNote": "中文：马上睡觉了。"
-            }
-          ]
-        },
-        {
-          "id": "jp-easy-tiles",
-          "title": "⑥ 连词成句",
-          "instructions": "看中文意思，按顺序点词块拼成句子。",
-          "type": "text_input",
-          "items": [
-            {
-              "id": "jp-easy-tiles-01",
-              "number": 1,
-              "prompt": "排成句子：这个手机很好用。",
-              "wordTiles": [
-                "スマホは",
-                "この",
-                "つかいやすいです"
-              ],
-              "tileJoiner": "",
-              "answers": [
-                "このスマホはつかいやすいです"
-              ],
-              "canonicalAnswer": "このスマホはつかいやすいです",
-              "answerTranslation": "这个手机很好用。",
-              "ambiguityNote": "中文：这个手机很好用。"
-            },
-            {
-              "id": "jp-easy-tiles-02",
-              "number": 2,
-              "prompt": "排成句子：他看起来很年轻。",
-              "wordTiles": [
-                "わかく",
-                "かれは",
-                "みえます"
-              ],
-              "tileJoiner": "",
-              "answers": [
-                "かれはわかくみえます"
-              ],
-              "canonicalAnswer": "かれはわかくみえます",
-              "answerTranslation": "他看起来很年轻。",
-              "ambiguityNote": "中文：他看起来很年轻。"
-            },
-            {
-              "id": "jp-easy-tiles-03",
-              "number": 3,
-              "prompt": "排成句子：我马上回家。",
-              "wordTiles": [
-                "かえります",
-                "すぐ",
-                "いえに"
-              ],
-              "tileJoiner": "",
-              "answers": [
-                "すぐいえにかえります",
-                "いえにすぐかえります"
-              ],
-              "canonicalAnswer": "すぐいえにかえります",
-              "answerTranslation": "我马上回家。",
-              "ambiguityNote": "中文：我马上回家。"
-            },
-            {
-              "id": "jp-easy-tiles-04",
-              "number": 4,
-              "prompt": "排成句子：我买了衣服和食物等。",
-              "wordTiles": [
-                "ふくや",
-                "かいました",
-                "たべものを"
-              ],
-              "tileJoiner": "",
-              "answers": [
-                "ふくやたべものをかいました"
-              ],
-              "canonicalAnswer": "ふくやたべものをかいました",
-              "answerTranslation": "我买了衣服和食物等。",
-              "ambiguityNote": "中文：我买了衣服和食物等。"
             }
           ]
         }
@@ -12304,164 +12196,127 @@
         {
           "id": "jp-warini-combine",
           "title": "② 合成一句",
-          "instructions": "选出用「わりに」或「たびに」把两句合成一句的正确说法。",
-          "type": "single_choice",
+          "instructions": "用「わりに」或「たびに」把两句合成一句：按顺序点词块，里面混了干扰词块。",
+          "type": "text_input",
           "items": [
             {
               "id": "jp-warini-combine-01",
               "number": 1,
               "prompt": "この みせは ちいさいです。でも、いつも こんでいます。→",
-              "options": [
-                "この みせは ちいさい たびに、いつも こんでいます",
-                "この みせは ちいさいっぽい、いつも こんでいます",
-                "この みせは ちいさい わりに、いつも こんでいます"
+              "wordTiles": [
+                "ちいさい",
+                "たびに",
+                "この",
+                "こんでいます",
+                "わりに",
+                "ちいさいっぽい",
+                "いつも",
+                "みせは"
               ],
+              "tileJoiner": "",
               "answers": [
+                "このみせはちいさいわりにいつもこんでいます",
                 "この みせは ちいさい わりに、いつも こんでいます"
               ],
               "canonicalAnswer": "この みせは ちいさい わりに、いつも こんでいます",
-              "optionNotes": {
-                "この みせは ちいさい わりに、いつも こんでいます": {
-                  "gloss": "这家店虽然小，却总是很挤",
-                  "english": "the shop is small but always crowded"
-                },
-                "この みせは ちいさい たびに、いつも こんでいます": {
-                  "gloss": "✗ 意思不通：たびに 要接动作",
-                  "english": "doesn't make sense: たびに needs an action"
-                },
-                "この みせは ちいさいっぽい、いつも こんでいます": {
-                  "gloss": "✗ 错误形式：っぽい 不能这样连接后句",
-                  "english": "not a real form"
-                }
-              },
               "answerTranslation": "这家店虽然小，却总是很挤。",
-              "ambiguityNote": "中文：这家店虽然小，却总是很挤。"
+              "ambiguityNote": "中文：这家店虽然小，却总是很挤。　提示：虽然……却 → わりに；每次……都 → たびに。"
             },
             {
               "id": "jp-warini-combine-02",
               "number": 2,
               "prompt": "ひこうきに のります。そのとき いつも すこし きんちょうします。→",
-              "options": [
-                "ひこうきに のりづらい、すこし きんちょうします",
-                "ひこうきに のる わりに、すこし きんちょうします",
-                "ひこうきに のる たびに、すこし きんちょうします"
+              "wordTiles": [
+                "すこし",
+                "ひこうきに",
+                "のる",
+                "のりづらい",
+                "たびに",
+                "わりに",
+                "きんちょうします"
               ],
+              "tileJoiner": "",
               "answers": [
+                "ひこうきにのるたびにすこしきんちょうします",
                 "ひこうきに のる たびに、すこし きんちょうします"
               ],
               "canonicalAnswer": "ひこうきに のる たびに、すこし きんちょうします",
-              "optionNotes": {
-                "ひこうきに のる たびに、すこし きんちょうします": {
-                  "gloss": "每次坐飞机都有点紧张",
-                  "english": "every time I fly, I get a little nervous"
-                },
-                "ひこうきに のる わりに、すこし きんちょうします": {
-                  "gloss": "✗ 意思不通：这里不是“虽然……却”",
-                  "english": "doesn't fit: not a contrast"
-                },
-                "ひこうきに のりづらい、すこし きんちょうします": {
-                  "gloss": "✗ 错误形式：づらい 不能这样连接后句",
-                  "english": "not a real form"
-                }
-              },
               "answerTranslation": "每次坐飞机都会有点紧张。",
-              "ambiguityNote": "中文：每次坐飞机都会有点紧张。"
+              "ambiguityNote": "中文：每次坐飞机都会有点紧张。　提示：虽然……却 → わりに；每次……都 → たびに。"
             },
             {
               "id": "jp-warini-combine-03",
               "number": 3,
               "prompt": "たくさん れんしゅうしました。でも、じょうずに なりませんでした。→",
-              "options": [
-                "たくさん れんしゅうした わりに、じょうずに なりませんでした",
-                "たくさん れんしゅうした たびに、じょうずに なりませんでした",
-                "たくさん れんしゅうしたっぽい、じょうずに なりませんでした"
+              "wordTiles": [
+                "じょうずに",
+                "なりませんでした",
+                "たびに",
+                "れんしゅうした",
+                "れんしゅうしたっぽい",
+                "わりに",
+                "たくさん"
               ],
+              "tileJoiner": "",
               "answers": [
+                "たくさんれんしゅうしたわりにじょうずになりませんでした",
                 "たくさん れんしゅうした わりに、じょうずに なりませんでした"
               ],
               "canonicalAnswer": "たくさん れんしゅうした わりに、じょうずに なりませんでした",
-              "optionNotes": {
-                "たくさん れんしゅうした わりに、じょうずに なりませんでした": {
-                  "gloss": "练了很多，却没有变好",
-                  "english": "practised a lot but didn't improve"
-                },
-                "たくさん れんしゅうした たびに、じょうずに なりませんでした": {
-                  "gloss": "✗ 意思不通：这里是“虽然……却”",
-                  "english": "doesn't fit: this is a contrast"
-                },
-                "たくさん れんしゅうしたっぽい、じょうずに なりませんでした": {
-                  "gloss": "✗ 错误形式：っぽい 不能这样连接后句",
-                  "english": "not a real form"
-                }
-              },
               "answerTranslation": "练了很多，却没有变好。",
-              "ambiguityNote": "中文：练了很多，却没有变好。"
+              "ambiguityNote": "中文：练了很多，却没有变好。　提示：虽然……却 → わりに；每次……都 → たびに。"
             },
             {
               "id": "jp-warini-combine-04",
               "number": 4,
               "prompt": "この まちに きます。そのとき いつも おなじ カフェに いきます。→",
-              "options": [
-                "この まちに きづらい、おなじ カフェに いきます",
-                "この まちに くる わりに、おなじ カフェに いきます",
-                "この まちに くる たびに、おなじ カフェに いきます"
+              "wordTiles": [
+                "おなじ",
+                "わりに",
+                "この",
+                "カフェに",
+                "まちに",
+                "くる",
+                "いきます",
+                "きづらい",
+                "たびに"
               ],
+              "tileJoiner": "",
               "answers": [
+                "このまちにくるたびにおなじカフェにいきます",
                 "この まちに くる たびに、おなじ カフェに いきます"
               ],
               "canonicalAnswer": "この まちに くる たびに、おなじ カフェに いきます",
-              "optionNotes": {
-                "この まちに くる たびに、おなじ カフェに いきます": {
-                  "gloss": "每次来这个城市都去同一家咖啡馆",
-                  "english": "every time I come here I go to the same café"
-                },
-                "この まちに くる わりに、おなじ カフェに いきます": {
-                  "gloss": "✗ 意思不通：这里不是“虽然……却”",
-                  "english": "doesn't fit: not a contrast"
-                },
-                "この まちに きづらい、おなじ カフェに いきます": {
-                  "gloss": "✗ 错误形式：づらい 不能这样连接后句",
-                  "english": "not a real form"
-                }
-              },
               "answerTranslation": "每次来这个城市都去同一家咖啡馆。",
-              "ambiguityNote": "中文：每次来这个城市都去同一家咖啡馆。"
+              "ambiguityNote": "中文：每次来这个城市都去同一家咖啡馆。　提示：虽然……却 → わりに；每次……都 → たびに。"
             }
           ]
         },
         {
           "id": "jp-warini-could",
           "title": "③ ～ないこともない",
-          "instructions": "选出用「～ないこともない」的正确回答。",
-          "type": "single_choice",
+          "instructions": "用「～ないこともない」回答：按顺序点词块，里面混了干扰词块。",
+          "type": "text_input",
           "items": [
             {
               "id": "jp-warini-could-01",
               "number": 1,
               "prompt": "まいにち 5じに おきられますか。",
-              "options": [
-                "おきられる ことも ないです",
-                "おきられない ことも ないですが、たいへんです",
-                "おきない たびに たいへんです"
+              "wordTiles": [
+                "たいへんです",
+                "ないです",
+                "おきない",
+                "おきられる",
+                "おきられない",
+                "ないですが",
+                "ことも"
               ],
+              "tileJoiner": "",
               "answers": [
+                "おきられないこともないですがたいへんです",
                 "おきられない ことも ないですが、たいへんです"
               ],
               "canonicalAnswer": "おきられない ことも ないですが、たいへんです",
-              "optionNotes": {
-                "おきられない ことも ないですが、たいへんです": {
-                  "gloss": "也不是起不来，但很辛苦",
-                  "english": "it's not impossible to get up, but it's hard"
-                },
-                "おきられる ことも ないです": {
-                  "gloss": "✗ 意思不对：要用否定形 ～ない ことも ない",
-                  "english": "wrong: needs the negative ～ない"
-                },
-                "おきない たびに たいへんです": {
-                  "gloss": "✗ 意思不通",
-                  "english": "doesn't make sense"
-                }
-              },
               "answerTranslation": "也不是起不来，但很辛苦。",
               "ambiguityNote": "中文：也不是起不来，但很辛苦。　提示：～ないこともない＝也不是不能（但……）。"
             },
@@ -12469,29 +12324,22 @@
               "id": "jp-warini-could-02",
               "number": 2,
               "prompt": "いっしゅうかん ネットなしで せいかつできますか。",
-              "options": [
-                "できない わりに ふべんです",
-                "できる ことも ないです",
-                "できない ことも ないですが、ふべんだと おもいます"
+              "wordTiles": [
+                "ないです",
+                "ないですが",
+                "ふべんだと",
+                "わりに",
+                "ことも",
+                "できない",
+                "おもいます",
+                "できる"
               ],
+              "tileJoiner": "",
               "answers": [
+                "できないこともないですがふべんだとおもいます",
                 "できない ことも ないですが、ふべんだと おもいます"
               ],
               "canonicalAnswer": "できない ことも ないですが、ふべんだと おもいます",
-              "optionNotes": {
-                "できない ことも ないですが、ふべんだと おもいます": {
-                  "gloss": "也不是不行，但我想会不方便",
-                  "english": "it's not impossible, but inconvenient"
-                },
-                "できる ことも ないです": {
-                  "gloss": "✗ 意思不对：要用否定形 ～ない ことも ない",
-                  "english": "wrong: needs the negative ～ない"
-                },
-                "できない わりに ふべんです": {
-                  "gloss": "✗ 意思不通",
-                  "english": "doesn't make sense"
-                }
-              },
               "answerTranslation": "也不是不能，但我想会很不方便。",
               "ambiguityNote": "中文：也不是不能，但我想会很不方便。　提示：～ないこともない＝也不是不能（但……）。"
             }

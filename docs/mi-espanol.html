@@ -3322,10 +3322,14 @@
   function homeworkTileSelection(item, answer) {
     var tiles = item.wordTiles, rest = homeworkNormalize(answer), used = [], picked = [];
     var spaced = homeworkTileJoiner(item) !== "";
+    // Without a joiner, spaces carry no meaning (an answer saved from an older
+    // spaced choice option still maps back onto the tiles).
+    if (!spaced) rest = rest.replace(/\s+/g, "");
     while (rest) {
       var best = -1, bestLength = 0;
       for (var i = 0; i < tiles.length; i++) {
         var tile = homeworkNormalize(tiles[i]);
+        if (!spaced) tile = tile.replace(/\s+/g, "");
         if (used[i] || !tile || tile.length <= bestLength) continue;
         if (rest === tile || rest.indexOf(spaced ? tile + " " : tile) === 0) { best = i; bestLength = tile.length; }
       }
