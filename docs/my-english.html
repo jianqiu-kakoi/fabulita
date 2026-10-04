@@ -3658,8 +3658,10 @@
       }) : [];
     if (!tables.length) return "";
     return '<details class="homework-reference"' + (state.homeworkReferenceOpen ? " open" : "") +
-      '><summary data-homework-reference-toggle>先看变位表：人称对应哪个形式？</summary>' +
-      '<p class="homework-reference-intro">可以一边看表一边练习；熟悉以后再把表收起来测试自己。</p>' +
+      '><summary data-homework-reference-toggle>' +
+      esc(assignment.referenceHeading || "先看变位表：人称对应哪个形式？") + '</summary>' +
+      '<p class="homework-reference-intro">' +
+      esc(assignment.referenceIntro || "可以一边看表一边练习；熟悉以后再把表收起来测试自己。") + '</p>' +
       '<div class="homework-reference-grid">' + tables.map(function (table) {
         return '<section class="homework-reference-card" aria-label="' + esc(table.title) +
           ' 变位表"><div class="homework-reference-head"><strong lang="' + esc(P.config.lang || "") + '">' +
