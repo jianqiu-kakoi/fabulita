@@ -259,7 +259,13 @@ def test_public_japanese_practice_is_committed_and_well_formed():
     committed = Project(MY_JAPANESE).homeworks
     assert committed == built
     items = [item for assignment in built for item in _items(assignment)]
-    assert len(items) == len({item["id"] for item in items}) == 162
+    assert len(items) == len({item["id"] for item in items}) == 204
+    assert built[0]["id"] == "jp-practice-te"
+    for assignment in built:
+        # Every lesson opens with its own notes box.
+        assert assignment["lessonNotes"]
+        assert all(note["title"] and (note.get("points") or note.get("examples"))
+                   for note in assignment["lessonNotes"])
     for assignment in built:
         for section in assignment["sections"]:
             for item in section["items"]:
@@ -276,3 +282,12 @@ def test_public_japanese_practice_is_committed_and_well_formed():
                 else:
                     assert section["type"] == "open_response"
                     assert item["answerMode"] == "self_review" and item["answers"]
+
+
+def test_option_notes_have_no_duplicate_keys():
+    # A repeated key in a dict literal silently replaces the earlier meaning.
+    import ast
+    import collections
+    tree = ast.parse((REPO / "scripts" / "my_japanese_option_notes.py").read_text(encoding="utf-8"))
+    keys = [key.value for node in ast.walk(tree) if isinstance(node, ast.Dict) for key in node.keys if key is not None]
+    assert [key for key, count in collections.Counter(keys).items() if count > 1] == []

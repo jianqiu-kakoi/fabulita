@@ -2,6 +2,1425 @@
   "version": 1,
   "assignments": [
     {
+      "id": "jp-practice-te",
+      "title": "日语 ⓪ て形：怎么变、怎么认（先学这个）",
+      "badge": "日语练习",
+      "sourceTitle": "練習：て形",
+      "level": "N5–N4",
+      "answerKeyBasis": "standard_japanese_grammar",
+      "contentOrigin": "independently_written_public_practice",
+      "source": {},
+      "answerLanguageLabel": "日语",
+      "sections": [
+        {
+          "id": "jp-te-group",
+          "title": "① 判断动词类别",
+          "instructions": "先判断动词是一段、五段还是不规则动词。",
+          "type": "single_choice",
+          "items": [
+            {
+              "id": "jp-te-group-01",
+              "number": 1,
+              "prompt": "たべる 是哪一类动词？",
+              "options": [
+                "不规则动词",
+                "五段动词",
+                "一段动词"
+              ],
+              "answers": [
+                "一段动词"
+              ],
+              "canonicalAnswer": "一段动词",
+              "optionNotes": {
+                "一段动词": {
+                  "gloss": "る 前面是 i 段 / e 段的动词（たべる、みる）",
+                  "english": "ichidan (ru-verb)"
+                },
+                "五段动词": {
+                  "gloss": "结尾 う・く・ぐ・す・つ・ぬ・ぶ・む・る 的动词",
+                  "english": "godan (u-verb)"
+                },
+                "不规则动词": {
+                  "gloss": "只有 する 和 くる",
+                  "english": "irregular (する・くる)"
+                }
+              },
+              "ambiguityNote": "提示：た-べ-る：る 前面是 e 段。"
+            },
+            {
+              "id": "jp-te-group-02",
+              "number": 2,
+              "prompt": "みる 是哪一类动词？",
+              "options": [
+                "不规则动词",
+                "五段动词",
+                "一段动词"
+              ],
+              "answers": [
+                "一段动词"
+              ],
+              "canonicalAnswer": "一段动词",
+              "optionNotes": {
+                "一段动词": {
+                  "gloss": "る 前面是 i 段 / e 段的动词（たべる、みる）",
+                  "english": "ichidan (ru-verb)"
+                },
+                "五段动词": {
+                  "gloss": "结尾 う・く・ぐ・す・つ・ぬ・ぶ・む・る 的动词",
+                  "english": "godan (u-verb)"
+                },
+                "不规则动词": {
+                  "gloss": "只有 する 和 くる",
+                  "english": "irregular (する・くる)"
+                }
+              },
+              "ambiguityNote": "提示：み-る：る 前面是 i 段。"
+            },
+            {
+              "id": "jp-te-group-03",
+              "number": 3,
+              "prompt": "かう 是哪一类动词？",
+              "options": [
+                "不规则动词",
+                "五段动词",
+                "一段动词"
+              ],
+              "answers": [
+                "五段动词"
+              ],
+              "canonicalAnswer": "五段动词",
+              "optionNotes": {
+                "五段动词": {
+                  "gloss": "结尾 う・く・ぐ・す・つ・ぬ・ぶ・む・る 的动词",
+                  "english": "godan (u-verb)"
+                },
+                "一段动词": {
+                  "gloss": "る 前面是 i 段 / e 段的动词（たべる、みる）",
+                  "english": "ichidan (ru-verb)"
+                },
+                "不规则动词": {
+                  "gloss": "只有 する 和 くる",
+                  "english": "irregular (する・くる)"
+                }
+              },
+              "ambiguityNote": "提示：不以 る 结尾。"
+            },
+            {
+              "id": "jp-te-group-04",
+              "number": 4,
+              "prompt": "よむ 是哪一类动词？",
+              "options": [
+                "不规则动词",
+                "五段动词",
+                "一段动词"
+              ],
+              "answers": [
+                "五段动词"
+              ],
+              "canonicalAnswer": "五段动词",
+              "optionNotes": {
+                "五段动词": {
+                  "gloss": "结尾 う・く・ぐ・す・つ・ぬ・ぶ・む・る 的动词",
+                  "english": "godan (u-verb)"
+                },
+                "一段动词": {
+                  "gloss": "る 前面是 i 段 / e 段的动词（たべる、みる）",
+                  "english": "ichidan (ru-verb)"
+                },
+                "不规则动词": {
+                  "gloss": "只有 する 和 くる",
+                  "english": "irregular (する・くる)"
+                }
+              },
+              "ambiguityNote": "提示：不以 る 结尾。"
+            },
+            {
+              "id": "jp-te-group-05",
+              "number": 5,
+              "prompt": "つくる 是哪一类动词？",
+              "options": [
+                "不规则动词",
+                "五段动词",
+                "一段动词"
+              ],
+              "answers": [
+                "五段动词"
+              ],
+              "canonicalAnswer": "五段动词",
+              "optionNotes": {
+                "五段动词": {
+                  "gloss": "结尾 う・く・ぐ・す・つ・ぬ・ぶ・む・る 的动词",
+                  "english": "godan (u-verb)"
+                },
+                "一段动词": {
+                  "gloss": "る 前面是 i 段 / e 段的动词（たべる、みる）",
+                  "english": "ichidan (ru-verb)"
+                },
+                "不规则动词": {
+                  "gloss": "只有 する 和 くる",
+                  "english": "irregular (する・くる)"
+                }
+              },
+              "ambiguityNote": "提示：つく-る：る 前面是 u 段，所以是五段。"
+            },
+            {
+              "id": "jp-te-group-06",
+              "number": 6,
+              "prompt": "かえる（回家） 是哪一类动词？",
+              "options": [
+                "一段动词",
+                "不规则动词",
+                "五段动词"
+              ],
+              "answers": [
+                "五段动词"
+              ],
+              "canonicalAnswer": "五段动词",
+              "optionNotes": {
+                "五段动词": {
+                  "gloss": "结尾 う・く・ぐ・す・つ・ぬ・ぶ・む・る 的动词",
+                  "english": "godan (u-verb)"
+                },
+                "一段动词": {
+                  "gloss": "る 前面是 i 段 / e 段的动词（たべる、みる）",
+                  "english": "ichidan (ru-verb)"
+                },
+                "不规则动词": {
+                  "gloss": "只有 する 和 くる",
+                  "english": "irregular (する・くる)"
+                }
+              },
+              "ambiguityNote": "提示：例外：看起来像一段，其实是五段（かえって）。"
+            },
+            {
+              "id": "jp-te-group-07",
+              "number": 7,
+              "prompt": "はいる 是哪一类动词？",
+              "options": [
+                "不规则动词",
+                "五段动词",
+                "一段动词"
+              ],
+              "answers": [
+                "五段动词"
+              ],
+              "canonicalAnswer": "五段动词",
+              "optionNotes": {
+                "五段动词": {
+                  "gloss": "结尾 う・く・ぐ・す・つ・ぬ・ぶ・む・る 的动词",
+                  "english": "godan (u-verb)"
+                },
+                "一段动词": {
+                  "gloss": "る 前面是 i 段 / e 段的动词（たべる、みる）",
+                  "english": "ichidan (ru-verb)"
+                },
+                "不规则动词": {
+                  "gloss": "只有 する 和 くる",
+                  "english": "irregular (する・くる)"
+                }
+              },
+              "ambiguityNote": "提示：例外：看起来像一段，其实是五段（はいって）。"
+            },
+            {
+              "id": "jp-te-group-08",
+              "number": 8,
+              "prompt": "おきる 是哪一类动词？",
+              "options": [
+                "不规则动词",
+                "五段动词",
+                "一段动词"
+              ],
+              "answers": [
+                "一段动词"
+              ],
+              "canonicalAnswer": "一段动词",
+              "optionNotes": {
+                "一段动词": {
+                  "gloss": "る 前面是 i 段 / e 段的动词（たべる、みる）",
+                  "english": "ichidan (ru-verb)"
+                },
+                "五段动词": {
+                  "gloss": "结尾 う・く・ぐ・す・つ・ぬ・ぶ・む・る 的动词",
+                  "english": "godan (u-verb)"
+                },
+                "不规则动词": {
+                  "gloss": "只有 する 和 くる",
+                  "english": "irregular (する・くる)"
+                }
+              },
+              "ambiguityNote": "提示：お-き-る：る 前面是 i 段。"
+            },
+            {
+              "id": "jp-te-group-09",
+              "number": 9,
+              "prompt": "ねる 是哪一类动词？",
+              "options": [
+                "一段动词",
+                "不规则动词",
+                "五段动词"
+              ],
+              "answers": [
+                "一段动词"
+              ],
+              "canonicalAnswer": "一段动词",
+              "optionNotes": {
+                "一段动词": {
+                  "gloss": "る 前面是 i 段 / e 段的动词（たべる、みる）",
+                  "english": "ichidan (ru-verb)"
+                },
+                "五段动词": {
+                  "gloss": "结尾 う・く・ぐ・す・つ・ぬ・ぶ・む・る 的动词",
+                  "english": "godan (u-verb)"
+                },
+                "不规则动词": {
+                  "gloss": "只有 する 和 くる",
+                  "english": "irregular (する・くる)"
+                }
+              },
+              "ambiguityNote": "提示：ね-る：る 前面是 e 段。"
+            },
+            {
+              "id": "jp-te-group-10",
+              "number": 10,
+              "prompt": "はしる 是哪一类动词？",
+              "options": [
+                "一段动词",
+                "不规则动词",
+                "五段动词"
+              ],
+              "answers": [
+                "五段动词"
+              ],
+              "canonicalAnswer": "五段动词",
+              "optionNotes": {
+                "五段动词": {
+                  "gloss": "结尾 う・く・ぐ・す・つ・ぬ・ぶ・む・る 的动词",
+                  "english": "godan (u-verb)"
+                },
+                "一段动词": {
+                  "gloss": "る 前面是 i 段 / e 段的动词（たべる、みる）",
+                  "english": "ichidan (ru-verb)"
+                },
+                "不规则动词": {
+                  "gloss": "只有 する 和 くる",
+                  "english": "irregular (する・くる)"
+                }
+              },
+              "ambiguityNote": "提示：例外：看起来像一段，其实是五段（はしって）。"
+            },
+            {
+              "id": "jp-te-group-11",
+              "number": 11,
+              "prompt": "する 是哪一类动词？",
+              "options": [
+                "五段动词",
+                "不规则动词",
+                "一段动词"
+              ],
+              "answers": [
+                "不规则动词"
+              ],
+              "canonicalAnswer": "不规则动词",
+              "optionNotes": {
+                "不规则动词": {
+                  "gloss": "只有 する 和 くる",
+                  "english": "irregular (する・くる)"
+                },
+                "一段动词": {
+                  "gloss": "る 前面是 i 段 / e 段的动词（たべる、みる）",
+                  "english": "ichidan (ru-verb)"
+                },
+                "五段动词": {
+                  "gloss": "结尾 う・く・ぐ・す・つ・ぬ・ぶ・む・る 的动词",
+                  "english": "godan (u-verb)"
+                }
+              },
+              "ambiguityNote": "提示：只有 する 和 くる 是不规则动词。"
+            },
+            {
+              "id": "jp-te-group-12",
+              "number": 12,
+              "prompt": "くる 是哪一类动词？",
+              "options": [
+                "不规则动词",
+                "一段动词",
+                "五段动词"
+              ],
+              "answers": [
+                "不规则动词"
+              ],
+              "canonicalAnswer": "不规则动词",
+              "optionNotes": {
+                "不规则动词": {
+                  "gloss": "只有 する 和 くる",
+                  "english": "irregular (する・くる)"
+                },
+                "一段动词": {
+                  "gloss": "る 前面是 i 段 / e 段的动词（たべる、みる）",
+                  "english": "ichidan (ru-verb)"
+                },
+                "五段动词": {
+                  "gloss": "结尾 う・く・ぐ・す・つ・ぬ・ぶ・む・る 的动词",
+                  "english": "godan (u-verb)"
+                }
+              },
+              "ambiguityNote": "提示：只有 する 和 くる 是不规则动词。"
+            }
+          ]
+        },
+        {
+          "id": "jp-te-form",
+          "title": "② 变成て形",
+          "instructions": "按类别和最后一个字变成て形。",
+          "type": "single_choice",
+          "items": [
+            {
+              "id": "jp-te-form-01",
+              "number": 1,
+              "prompt": "かう → て形",
+              "options": [
+                "かうて",
+                "かんで",
+                "かって",
+                "かいて"
+              ],
+              "answers": [
+                "かって"
+              ],
+              "canonicalAnswer": "かって",
+              "optionNotes": {
+                "かって": {
+                  "gloss": "かう / かる 的て形",
+                  "english": "て-form of かう"
+                },
+                "かいて": {
+                  "gloss": "かく 的て形：写",
+                  "english": "て-form of かく (write)"
+                },
+                "かうて": {
+                  "gloss": "✗ 错误形式：う → って：かって",
+                  "english": "not a real form"
+                },
+                "かんで": {
+                  "gloss": "かむ（咬）的て形，不是 かう",
+                  "english": "て-form of かむ (bite)"
+                }
+              },
+              "ambiguityNote": "提示：う → って"
+            },
+            {
+              "id": "jp-te-form-02",
+              "number": 2,
+              "prompt": "まつ → て形",
+              "options": [
+                "まんで",
+                "まって",
+                "まつて",
+                "まちて"
+              ],
+              "answers": [
+                "まって"
+              ],
+              "canonicalAnswer": "まって",
+              "optionNotes": {
+                "まって": {
+                  "gloss": "まつ 的て形：等",
+                  "english": "て-form of まつ (wait)"
+                },
+                "まちて": {
+                  "gloss": "✗ 错误形式：つ → って：まって",
+                  "english": "not a real form"
+                },
+                "まつて": {
+                  "gloss": "✗ 错误形式：つ → って：まって",
+                  "english": "not a real form"
+                },
+                "まんで": {
+                  "gloss": "✗ 错误形式：つ → って：まって",
+                  "english": "not a real form"
+                }
+              },
+              "ambiguityNote": "提示：つ → って"
+            },
+            {
+              "id": "jp-te-form-03",
+              "number": 3,
+              "prompt": "つくる → て形",
+              "options": [
+                "つくて",
+                "つくりて",
+                "つくんで",
+                "つくって"
+              ],
+              "answers": [
+                "つくって"
+              ],
+              "canonicalAnswer": "つくって",
+              "optionNotes": {
+                "つくって": {
+                  "gloss": "つくる 的て形：做",
+                  "english": "て-form of つくる (make)"
+                },
+                "つくて": {
+                  "gloss": "✗ 错误形式：五段 る → って：つくって",
+                  "english": "not a real form"
+                },
+                "つくりて": {
+                  "gloss": "✗ 错误形式：五段 る → って：つくって",
+                  "english": "not a real form"
+                },
+                "つくんで": {
+                  "gloss": "✗ 错误形式：五段 る → って：つくって",
+                  "english": "not a real form"
+                }
+              },
+              "ambiguityNote": "提示：五段 る → って"
+            },
+            {
+              "id": "jp-te-form-04",
+              "number": 4,
+              "prompt": "よむ → て形",
+              "options": [
+                "よみて",
+                "よんで",
+                "よむで",
+                "よって"
+              ],
+              "answers": [
+                "よんで"
+              ],
+              "canonicalAnswer": "よんで",
+              "optionNotes": {
+                "よんで": {
+                  "gloss": "よむ 的て形：读",
+                  "english": "て-form of よむ (read)"
+                },
+                "よみて": {
+                  "gloss": "✗ 错误形式：む → んで：よんで",
+                  "english": "not a real form"
+                },
+                "よって": {
+                  "gloss": "よる（顺路去）的て形，不是 よむ",
+                  "english": "て-form of よる (drop by)"
+                },
+                "よむで": {
+                  "gloss": "✗ 错误形式：む → んで：よんで",
+                  "english": "not a real form"
+                }
+              },
+              "ambiguityNote": "提示：む → んで"
+            },
+            {
+              "id": "jp-te-form-05",
+              "number": 5,
+              "prompt": "あそぶ → て形",
+              "options": [
+                "あそって",
+                "あそびて",
+                "あそぶて",
+                "あそんで"
+              ],
+              "answers": [
+                "あそんで"
+              ],
+              "canonicalAnswer": "あそんで",
+              "optionNotes": {
+                "あそんで": {
+                  "gloss": "あそぶ 的て形：玩",
+                  "english": "て-form of あそぶ (play)"
+                },
+                "あそびて": {
+                  "gloss": "✗ 错误形式：ぶ → んで：あそんで",
+                  "english": "not a real form"
+                },
+                "あそって": {
+                  "gloss": "✗ 错误形式：ぶ → んで：あそんで",
+                  "english": "not a real form"
+                },
+                "あそぶて": {
+                  "gloss": "✗ 错误形式：ぶ → んで：あそんで",
+                  "english": "not a real form"
+                }
+              },
+              "ambiguityNote": "提示：ぶ → んで"
+            },
+            {
+              "id": "jp-te-form-06",
+              "number": 6,
+              "prompt": "しぬ → て形",
+              "options": [
+                "しんで",
+                "しぬて",
+                "しって",
+                "しにて"
+              ],
+              "answers": [
+                "しんで"
+              ],
+              "canonicalAnswer": "しんで",
+              "optionNotes": {
+                "しんで": {
+                  "gloss": "しぬ 的て形：死",
+                  "english": "て-form of しぬ (die)"
+                },
+                "しにて": {
+                  "gloss": "✗ 错误形式：ぬ → んで：しんで",
+                  "english": "not a real form"
+                },
+                "しって": {
+                  "gloss": "しる（知道）的て形，不是 しぬ / する",
+                  "english": "て-form of しる (know)"
+                },
+                "しぬて": {
+                  "gloss": "✗ 错误形式：ぬ → んで：しんで",
+                  "english": "not a real form"
+                }
+              },
+              "ambiguityNote": "提示：ぬ → んで"
+            },
+            {
+              "id": "jp-te-form-07",
+              "number": 7,
+              "prompt": "かく → て形",
+              "options": [
+                "かって",
+                "かいて",
+                "かきて",
+                "かいで"
+              ],
+              "answers": [
+                "かいて"
+              ],
+              "canonicalAnswer": "かいて",
+              "optionNotes": {
+                "かいて": {
+                  "gloss": "かく 的て形：写",
+                  "english": "て-form of かく (write)"
+                },
+                "かきて": {
+                  "gloss": "✗ 错误形式：く → いて：かいて",
+                  "english": "not a real form"
+                },
+                "かって": {
+                  "gloss": "かう / かる 的て形",
+                  "english": "て-form of かう"
+                },
+                "かいで": {
+                  "gloss": "かぐ（闻）的て形，不是 かく",
+                  "english": "て-form of かぐ (smell)"
+                }
+              },
+              "ambiguityNote": "提示：く → いて"
+            },
+            {
+              "id": "jp-te-form-08",
+              "number": 8,
+              "prompt": "きく → て形",
+              "options": [
+                "ききて",
+                "きって",
+                "きいて",
+                "きいで"
+              ],
+              "answers": [
+                "きいて"
+              ],
+              "canonicalAnswer": "きいて",
+              "optionNotes": {
+                "きいて": {
+                  "gloss": "きく 的て形：听",
+                  "english": "て-form of きく (listen)"
+                },
+                "ききて": {
+                  "gloss": "✗ 错误形式：く → いて：きいて",
+                  "english": "not a real form"
+                },
+                "きって": {
+                  "gloss": "きる（剪）的て形，不是 きく / くる",
+                  "english": "て-form of きる (cut)"
+                },
+                "きいで": {
+                  "gloss": "✗ 错误形式：く → いて：きいて",
+                  "english": "not a real form"
+                }
+              },
+              "ambiguityNote": "提示：く → いて"
+            },
+            {
+              "id": "jp-te-form-09",
+              "number": 9,
+              "prompt": "およぐ → て形",
+              "options": [
+                "およって",
+                "およぎて",
+                "およいで",
+                "およいて"
+              ],
+              "answers": [
+                "およいで"
+              ],
+              "canonicalAnswer": "およいで",
+              "optionNotes": {
+                "およいで": {
+                  "gloss": "およぐ 的て形：游泳",
+                  "english": "て-form of およぐ (swim)"
+                },
+                "およぎて": {
+                  "gloss": "✗ 错误形式：ぐ → いで：およいで",
+                  "english": "not a real form"
+                },
+                "およいて": {
+                  "gloss": "✗ 错误形式：ぐ → いで：およいで",
+                  "english": "not a real form"
+                },
+                "およって": {
+                  "gloss": "✗ 错误形式：ぐ → いで：およいで",
+                  "english": "not a real form"
+                }
+              },
+              "ambiguityNote": "提示：ぐ → いで"
+            },
+            {
+              "id": "jp-te-form-10",
+              "number": 10,
+              "prompt": "はなす → て形",
+              "options": [
+                "はなすて",
+                "はなして",
+                "はないて",
+                "はなって"
+              ],
+              "answers": [
+                "はなして"
+              ],
+              "canonicalAnswer": "はなして",
+              "optionNotes": {
+                "はなして": {
+                  "gloss": "はなす 的て形：说",
+                  "english": "て-form of はなす (speak)"
+                },
+                "はなって": {
+                  "gloss": "✗ 错误形式：す → して：はなして",
+                  "english": "not a real form"
+                },
+                "はなすて": {
+                  "gloss": "✗ 错误形式：す → して：はなして",
+                  "english": "not a real form"
+                },
+                "はないて": {
+                  "gloss": "✗ 错误形式：す → して：はなして",
+                  "english": "not a real form"
+                }
+              },
+              "ambiguityNote": "提示：す → して"
+            },
+            {
+              "id": "jp-te-form-11",
+              "number": 11,
+              "prompt": "たべる → て形",
+              "options": [
+                "たべって",
+                "たべりて",
+                "たべんで",
+                "たべて"
+              ],
+              "answers": [
+                "たべて"
+              ],
+              "canonicalAnswer": "たべて",
+              "optionNotes": {
+                "たべて": {
+                  "gloss": "たべる 的て形：吃",
+                  "english": "て-form of たべる (eat)"
+                },
+                "たべって": {
+                  "gloss": "✗ 错误形式：一段：去 る＋て：たべて",
+                  "english": "not a real form"
+                },
+                "たべりて": {
+                  "gloss": "✗ 错误形式：一段：去 る＋て：たべて",
+                  "english": "not a real form"
+                },
+                "たべんで": {
+                  "gloss": "✗ 错误形式：一段：去 る＋て：たべて",
+                  "english": "not a real form"
+                }
+              },
+              "ambiguityNote": "提示：一段：去 る＋て"
+            },
+            {
+              "id": "jp-te-form-12",
+              "number": 12,
+              "prompt": "みる → て形",
+              "options": [
+                "みて",
+                "みって",
+                "みんで",
+                "みりて"
+              ],
+              "answers": [
+                "みて"
+              ],
+              "canonicalAnswer": "みて",
+              "optionNotes": {
+                "みて": {
+                  "gloss": "みる 的て形：看",
+                  "english": "て-form of みる (see)"
+                },
+                "みって": {
+                  "gloss": "✗ 错误形式：一段：去 る＋て：みて",
+                  "english": "not a real form"
+                },
+                "みりて": {
+                  "gloss": "✗ 错误形式：一段：去 る＋て：みて",
+                  "english": "not a real form"
+                },
+                "みんで": {
+                  "gloss": "✗ 错误形式：一段：去 る＋て：みて",
+                  "english": "not a real form"
+                }
+              },
+              "ambiguityNote": "提示：一段：去 る＋て"
+            },
+            {
+              "id": "jp-te-form-13",
+              "number": 13,
+              "prompt": "いく → て形",
+              "options": [
+                "いきて",
+                "いいて",
+                "いくて",
+                "いって"
+              ],
+              "answers": [
+                "いって"
+              ],
+              "canonicalAnswer": "いって",
+              "optionNotes": {
+                "いって": {
+                  "gloss": "いく 的て形：去（例外）",
+                  "english": "て-form of いく (go)"
+                },
+                "いいて": {
+                  "gloss": "✗ 错误形式：例外：いく → いって",
+                  "english": "not a real form"
+                },
+                "いきて": {
+                  "gloss": "✗ 错误形式：例外：いく → いって",
+                  "english": "not a real form"
+                },
+                "いくて": {
+                  "gloss": "✗ 错误形式：例外：いく → いって",
+                  "english": "not a real form"
+                }
+              },
+              "ambiguityNote": "提示：例外：いく → いって"
+            },
+            {
+              "id": "jp-te-form-14",
+              "number": 14,
+              "prompt": "する → て形",
+              "options": [
+                "しって",
+                "すって",
+                "すて",
+                "して"
+              ],
+              "answers": [
+                "して"
+              ],
+              "canonicalAnswer": "して",
+              "optionNotes": {
+                "して": {
+                  "gloss": "做（て形）",
+                  "english": "do (て-form)"
+                },
+                "すて": {
+                  "gloss": "✗ 错误形式：する → して",
+                  "english": "not a real form"
+                },
+                "しって": {
+                  "gloss": "しる（知道）的て形，不是 しぬ / する",
+                  "english": "て-form of しる (know)"
+                },
+                "すって": {
+                  "gloss": "すう（吸）的て形，不是 する",
+                  "english": "て-form of すう (inhale)"
+                }
+              },
+              "ambiguityNote": "提示：不规则：する → して"
+            },
+            {
+              "id": "jp-te-form-15",
+              "number": 15,
+              "prompt": "くる → て形",
+              "options": [
+                "きて",
+                "きって",
+                "こって",
+                "くて"
+              ],
+              "answers": [
+                "きて"
+              ],
+              "canonicalAnswer": "きて",
+              "optionNotes": {
+                "きて": {
+                  "gloss": "くる 的て形：来",
+                  "english": "て-form of くる (come)"
+                },
+                "くて": {
+                  "gloss": "✗ 错误形式：くる → きて",
+                  "english": "not a real form"
+                },
+                "こって": {
+                  "gloss": "✗ 错误形式：くる → きて",
+                  "english": "not a real form"
+                },
+                "きって": {
+                  "gloss": "きる（剪）的て形，不是 きく / くる",
+                  "english": "て-form of きる (cut)"
+                }
+              },
+              "ambiguityNote": "提示：不规则：くる → きて"
+            },
+            {
+              "id": "jp-te-form-16",
+              "number": 16,
+              "prompt": "かえる（回家） → て形",
+              "options": [
+                "かえんで",
+                "かえりて",
+                "かえて",
+                "かえって"
+              ],
+              "answers": [
+                "かえって"
+              ],
+              "canonicalAnswer": "かえって",
+              "optionNotes": {
+                "かえって": {
+                  "gloss": "かえる（回家）的て形",
+                  "english": "て-form of かえる (go home)"
+                },
+                "かえて": {
+                  "gloss": "かえる（换，一段）的て形；回家是 かえって",
+                  "english": "て-form of 変える (change)"
+                },
+                "かえりて": {
+                  "gloss": "✗ 错误形式：五段 る → って：かえって",
+                  "english": "not a real form"
+                },
+                "かえんで": {
+                  "gloss": "✗ 错误形式：五段 る → って：かえって",
+                  "english": "not a real form"
+                }
+              },
+              "ambiguityNote": "提示：かえる 是五段：る → って"
+            },
+            {
+              "id": "jp-te-form-17",
+              "number": 17,
+              "prompt": "はいる → て形",
+              "options": [
+                "はいて",
+                "はいって",
+                "はいんで",
+                "はいりて"
+              ],
+              "answers": [
+                "はいって"
+              ],
+              "canonicalAnswer": "はいって",
+              "optionNotes": {
+                "はいって": {
+                  "gloss": "はいる 的て形：进入",
+                  "english": "て-form of はいる (enter)"
+                },
+                "はいて": {
+                  "gloss": "はく（穿鞋 / 吐）的て形，不是 はいる",
+                  "english": "て-form of はく (wear shoes)"
+                },
+                "はいりて": {
+                  "gloss": "✗ 错误形式：五段 る → って：はいって",
+                  "english": "not a real form"
+                },
+                "はいんで": {
+                  "gloss": "✗ 错误形式：五段 る → って：はいって",
+                  "english": "not a real form"
+                }
+              },
+              "ambiguityNote": "提示：はいる 是五段：る → って"
+            },
+            {
+              "id": "jp-te-form-18",
+              "number": 18,
+              "prompt": "のむ → て形",
+              "options": [
+                "のんで",
+                "のって",
+                "のみて",
+                "のむで"
+              ],
+              "answers": [
+                "のんで"
+              ],
+              "canonicalAnswer": "のんで",
+              "optionNotes": {
+                "のんで": {
+                  "gloss": "のむ 的て形：喝",
+                  "english": "て-form of のむ (drink)"
+                },
+                "のみて": {
+                  "gloss": "✗ 错误形式：む → んで：のんで",
+                  "english": "not a real form"
+                },
+                "のって": {
+                  "gloss": "のる 的て形：乘坐",
+                  "english": "て-form of のる (ride)"
+                },
+                "のむで": {
+                  "gloss": "✗ 错误形式：む → んで：のんで",
+                  "english": "not a real form"
+                }
+              },
+              "ambiguityNote": "提示：む → んで"
+            }
+          ]
+        },
+        {
+          "id": "jp-te-ta",
+          "title": "③ て形 → た形",
+          "instructions": "把 て 换成 た、で 换成 だ。",
+          "type": "single_choice",
+          "items": [
+            {
+              "id": "jp-te-ta-01",
+              "number": 1,
+              "prompt": "よんで → た形（过去式）",
+              "options": [
+                "よんた",
+                "よみた",
+                "よんだ"
+              ],
+              "answers": [
+                "よんだ"
+              ],
+              "canonicalAnswer": "よんだ",
+              "optionNotes": {
+                "よんだ": {
+                  "gloss": "读了（随意体）",
+                  "english": "read (casual, past)"
+                },
+                "よんた": {
+                  "gloss": "✗ 错误形式：で → だ：よんだ",
+                  "english": "not a real form"
+                },
+                "よみた": {
+                  "gloss": "✗ 错误形式：む → んだ：よんだ",
+                  "english": "not a real form"
+                }
+              },
+              "ambiguityNote": "提示：て→た，で→だ。"
+            },
+            {
+              "id": "jp-te-ta-02",
+              "number": 2,
+              "prompt": "かいて → た形（过去式）",
+              "options": [
+                "かきた",
+                "かいだ",
+                "かいた"
+              ],
+              "answers": [
+                "かいた"
+              ],
+              "canonicalAnswer": "かいた",
+              "optionNotes": {
+                "かいた": {
+                  "gloss": "写了（随意体）",
+                  "english": "wrote (casual)"
+                },
+                "かいだ": {
+                  "gloss": "かぐ（闻）的过去式，不是 かく",
+                  "english": "past of かぐ (smell)"
+                },
+                "かきた": {
+                  "gloss": "✗ 错误形式：く → いた：かいた",
+                  "english": "not a real form"
+                }
+              },
+              "ambiguityNote": "提示：て→た，で→だ。"
+            },
+            {
+              "id": "jp-te-ta-03",
+              "number": 3,
+              "prompt": "はなして → た形（过去式）",
+              "options": [
+                "はなした",
+                "はなった",
+                "はなしだ"
+              ],
+              "answers": [
+                "はなした"
+              ],
+              "canonicalAnswer": "はなした",
+              "optionNotes": {
+                "はなした": {
+                  "gloss": "说了（随意体）",
+                  "english": "spoke (casual)"
+                },
+                "はなしだ": {
+                  "gloss": "✗ 错误形式：て → た：はなした",
+                  "english": "not a real form"
+                },
+                "はなった": {
+                  "gloss": "はなつ（放）的过去式，不是 はなす",
+                  "english": "past of はなつ (release)"
+                }
+              },
+              "ambiguityNote": "提示：て→た，で→だ。"
+            },
+            {
+              "id": "jp-te-ta-04",
+              "number": 4,
+              "prompt": "いって → た形（过去式）",
+              "options": [
+                "いいた",
+                "いきた",
+                "いった"
+              ],
+              "answers": [
+                "いった"
+              ],
+              "canonicalAnswer": "いった",
+              "optionNotes": {
+                "いった": {
+                  "gloss": "去了（随意体）",
+                  "english": "went (casual)"
+                },
+                "いきた": {
+                  "gloss": "✗ 错误形式：例外：いく → いった",
+                  "english": "not a real form"
+                },
+                "いいた": {
+                  "gloss": "✗ 错误形式：例外：いく → いった",
+                  "english": "not a real form"
+                }
+              },
+              "ambiguityNote": "提示：て→た，で→だ。"
+            },
+            {
+              "id": "jp-te-ta-05",
+              "number": 5,
+              "prompt": "およいで → た形（过去式）",
+              "options": [
+                "およぎた",
+                "およいた",
+                "およいだ"
+              ],
+              "answers": [
+                "およいだ"
+              ],
+              "canonicalAnswer": "およいだ",
+              "optionNotes": {
+                "およいだ": {
+                  "gloss": "游了（随意体）",
+                  "english": "swam (casual)"
+                },
+                "およいた": {
+                  "gloss": "✗ 错误形式：で → だ：およいだ",
+                  "english": "not a real form"
+                },
+                "およぎた": {
+                  "gloss": "✗ 错误形式：ぐ → いだ：およいだ",
+                  "english": "not a real form"
+                }
+              },
+              "ambiguityNote": "提示：て→た，で→だ。"
+            },
+            {
+              "id": "jp-te-ta-06",
+              "number": 6,
+              "prompt": "たべて → た形（过去式）",
+              "options": [
+                "たべった",
+                "たべた",
+                "たべだ"
+              ],
+              "answers": [
+                "たべた"
+              ],
+              "canonicalAnswer": "たべた",
+              "optionNotes": {
+                "たべた": {
+                  "gloss": "吃了（随意体）",
+                  "english": "ate (casual)"
+                },
+                "たべだ": {
+                  "gloss": "✗ 错误形式：て → た：たべた",
+                  "english": "not a real form"
+                },
+                "たべった": {
+                  "gloss": "✗ 错误形式：一段：去 る＋た：たべた",
+                  "english": "not a real form"
+                }
+              },
+              "ambiguityNote": "提示：て→た，で→だ。"
+            }
+          ]
+        },
+        {
+          "id": "jp-te-sent",
+          "title": "④ 句子里用て形",
+          "instructions": "看括号里的动词，选出正确的て形。",
+          "type": "single_choice",
+          "items": [
+            {
+              "id": "jp-te-sent-01",
+              "number": 1,
+              "prompt": "ちょっと ＿＿＿ ください。（まつ）",
+              "options": [
+                "まって",
+                "まちて",
+                "まつて"
+              ],
+              "answers": [
+                "まって"
+              ],
+              "canonicalAnswer": "まって",
+              "optionNotes": {
+                "まって": {
+                  "gloss": "まつ 的て形：等",
+                  "english": "て-form of まつ (wait)"
+                },
+                "まちて": {
+                  "gloss": "✗ 错误形式：つ → って：まって",
+                  "english": "not a real form"
+                },
+                "まつて": {
+                  "gloss": "✗ 错误形式：つ → って：まって",
+                  "english": "not a real form"
+                }
+              },
+              "answerTranslation": "请稍等一下。",
+              "ambiguityNote": "中文：请稍等一下。"
+            },
+            {
+              "id": "jp-te-sent-02",
+              "number": 2,
+              "prompt": "ここで くつを ＿＿＿ ください。（ぬぐ）",
+              "options": [
+                "ぬいで",
+                "ぬいて",
+                "ぬぎて"
+              ],
+              "answers": [
+                "ぬいで"
+              ],
+              "canonicalAnswer": "ぬいで",
+              "optionNotes": {
+                "ぬいで": {
+                  "gloss": "ぬぐ 的て形：脱",
+                  "english": "て-form of ぬぐ (take off)"
+                },
+                "ぬいて": {
+                  "gloss": "ぬく（拔）的て形，不是 ぬぐ",
+                  "english": "て-form of ぬく (pull out)"
+                },
+                "ぬぎて": {
+                  "gloss": "✗ 错误形式：ぐ → いで：ぬいで",
+                  "english": "not a real form"
+                }
+              },
+              "answerTranslation": "请在这里脱鞋。",
+              "ambiguityNote": "中文：请在这里脱鞋。"
+            },
+            {
+              "id": "jp-te-sent-03",
+              "number": 3,
+              "prompt": "しゅくだいを ＿＿＿ おきます。（する）",
+              "options": [
+                "すて",
+                "して",
+                "しって"
+              ],
+              "answers": [
+                "して"
+              ],
+              "canonicalAnswer": "して",
+              "optionNotes": {
+                "して": {
+                  "gloss": "做（て形）",
+                  "english": "do (て-form)"
+                },
+                "すて": {
+                  "gloss": "✗ 错误形式：する → して",
+                  "english": "not a real form"
+                },
+                "しって": {
+                  "gloss": "しる（知道）的て形，不是 しぬ / する",
+                  "english": "て-form of しる (know)"
+                }
+              },
+              "answerTranslation": "我先把作业做好。",
+              "ambiguityNote": "中文：我先把作业做好。"
+            },
+            {
+              "id": "jp-te-sent-04",
+              "number": 4,
+              "prompt": "あさごはんを ＿＿＿、がっこうへ いきます。（たべる）",
+              "options": [
+                "たべりて",
+                "たべって",
+                "たべて"
+              ],
+              "answers": [
+                "たべて"
+              ],
+              "canonicalAnswer": "たべて",
+              "optionNotes": {
+                "たべて": {
+                  "gloss": "たべる 的て形：吃",
+                  "english": "て-form of たべる (eat)"
+                },
+                "たべって": {
+                  "gloss": "✗ 错误形式：一段：去 る＋て：たべて",
+                  "english": "not a real form"
+                },
+                "たべりて": {
+                  "gloss": "✗ 错误形式：一段：去 る＋て：たべて",
+                  "english": "not a real form"
+                }
+              },
+              "answerTranslation": "吃完早饭去学校。",
+              "ambiguityNote": "中文：吃完早饭去学校。"
+            },
+            {
+              "id": "jp-te-sent-05",
+              "number": 5,
+              "prompt": "でんしゃに ＿＿＿ いきます。（のる）",
+              "options": [
+                "のりて",
+                "のって",
+                "のんで"
+              ],
+              "answers": [
+                "のって"
+              ],
+              "canonicalAnswer": "のって",
+              "optionNotes": {
+                "のって": {
+                  "gloss": "のる 的て形：乘坐",
+                  "english": "て-form of のる (ride)"
+                },
+                "のりて": {
+                  "gloss": "✗ 错误形式：五段 る → って：のって",
+                  "english": "not a real form"
+                },
+                "のんで": {
+                  "gloss": "のむ 的て形：喝",
+                  "english": "て-form of のむ (drink)"
+                }
+              },
+              "answerTranslation": "坐电车去。",
+              "ambiguityNote": "中文：坐电车去。"
+            },
+            {
+              "id": "jp-te-sent-06",
+              "number": 6,
+              "prompt": "きのうの よる、おんがくを ＿＿＿ いました。（きく）",
+              "options": [
+                "きって",
+                "きいて",
+                "ききて"
+              ],
+              "answers": [
+                "きいて"
+              ],
+              "canonicalAnswer": "きいて",
+              "optionNotes": {
+                "きいて": {
+                  "gloss": "きく 的て形：听",
+                  "english": "て-form of きく (listen)"
+                },
+                "きって": {
+                  "gloss": "きる（剪）的て形，不是 きく / くる",
+                  "english": "て-form of きる (cut)"
+                },
+                "ききて": {
+                  "gloss": "✗ 错误形式：く → いて：きいて",
+                  "english": "not a real form"
+                }
+              },
+              "answerTranslation": "昨晚我在听音乐。",
+              "ambiguityNote": "中文：昨晚我在听音乐。"
+            }
+          ]
+        }
+      ],
+      "lessonNotes": [
+        {
+          "title": "怎么认出て形",
+          "points": [
+            "て形一定以「て」或「で」结尾，后面通常还接别的成分，不单独结句。",
+            "常见搭配：～ている（正在）、～ていた（当时正在）、～てください（请）、～てみる（试试）、～ておく（提前做好）。"
+          ],
+          "examples": [
+            {
+              "text": "よんでいた",
+              "translation": "よんで＋いた：当时正在读"
+            },
+            {
+              "text": "たべてください",
+              "translation": "たべて＋ください：请吃"
+            }
+          ]
+        },
+        {
+          "title": "第 1 步：判断动词属于哪一类",
+          "points": [
+            "一段动词：以 る 结尾，る 前面是 i 段或 e 段的音（たべる ta-be-ru、みる mi-ru、ねる、おきる）。",
+            "不规则动词：只有 する 和 くる。",
+            "其余都是五段动词：结尾是 う・く・ぐ・す・つ・ぬ・ぶ・む・る。",
+            "要死记的例外：かえる（回家）、はいる（进入）、はしる（跑）、しる（知道）看起来像一段，其实是五段。"
+          ]
+        },
+        {
+          "title": "第 2 步：按类别变成て形",
+          "points": [
+            "一段：去掉 る＋て　→ たべる→たべて、みる→みて",
+            "五段 う・つ・る → って　→ かう→かって、まつ→まって、つくる→つくって",
+            "五段 む・ぶ・ぬ → んで　→ よむ→よんで、あそぶ→あそんで、しぬ→しんで",
+            "五段 く → いて　→ かく→かいて；ぐ → いで　→ およぐ→およいで",
+            "五段 す → して　→ はなす→はなして",
+            "例外：いく→いって、する→して、くる→きて"
+          ]
+        },
+        {
+          "title": "顺便学会：た形（过去式）",
+          "points": [
+            "把て形的 て 换成 た、で 换成 だ，就是随意体过去式。"
+          ],
+          "examples": [
+            {
+              "text": "よんで → よんだ",
+              "translation": "读了"
+            },
+            {
+              "text": "かいて → かいた",
+              "translation": "写了"
+            },
+            {
+              "text": "いって → いった",
+              "translation": "去了"
+            }
+          ]
+        }
+      ],
+      "lessonNotesHeading": "先读笔记：て形：怎么变、怎么认（先学这个）"
+    },
+    {
       "id": "jp-practice-past",
       "title": "日语 ① 过去式 ～た／～ました · ～ていた／～ていました · どのくらい",
       "badge": "日语练习",
@@ -927,7 +2346,51 @@
             }
           ]
         }
-      ]
+      ],
+      "lessonNotes": [
+        {
+          "title": "～た／～ました：做完了的事",
+          "points": [
+            "随意体：て形的 て→た（よんだ）；礼貌体：ます→ました（よみました）。"
+          ],
+          "examples": [
+            {
+              "text": "せんしゅうまつ、えいがを みました。",
+              "translation": "上周末我看了电影。"
+            }
+          ]
+        },
+        {
+          "title": "～ていた／～ていました：当时正在做",
+          "points": [
+            "て形＋いた（随意）／いました（礼貌）。",
+            "表示过去某个时刻正在进行，或过去一段时间里一直 / 反复在做的事。"
+          ],
+          "examples": [
+            {
+              "text": "でんわが きたとき、ほんを よんでいました。",
+              "translation": "电话来的时候，我正在看书。"
+            },
+            {
+              "text": "こどものとき、まいにち こうえんで あそんでいました。",
+              "translation": "小时候我每天都在公园玩。"
+            }
+          ]
+        },
+        {
+          "title": "どのくらい：多久 / 多少",
+          "points": [
+            "问时间长短、数量多少。回答常用 ～ぐらい（大约）、～に なります（已经……了）。"
+          ],
+          "examples": [
+            {
+              "text": "にほんごを べんきょうして、どのくらいですか。—— はんとしぐらいです。",
+              "translation": "学日语多久了？——大约半年。"
+            }
+          ]
+        }
+      ],
+      "lessonNotesHeading": "先读笔记：过去式 ～た／～ました · ～ていた／～ていました · どのくらい"
     },
     {
       "id": "jp-practice-potential",
@@ -1864,7 +3327,38 @@
             }
           ]
         }
-      ]
+      ],
+      "lessonNotes": [
+        {
+          "title": "可能形：能 / 会",
+          "points": [
+            "一段动词：去 る＋られる（たべられる、みられる）。口语里常说 たべれる（ら抜き），考试写 られる。",
+            "五段动词：最后的 う段音 → え段＋る（のむ→のめる、かく→かける、はなす→はなせる）。",
+            "する → できる；くる → こられる。",
+            "可能形前面的宾语常用 が：にほんごが はなせます。"
+          ],
+          "examples": [
+            {
+              "text": "わたしは すこし えいごが はなせます。",
+              "translation": "我会说一点英语。"
+            },
+            {
+              "text": "あしが いたくて、はやく はしれません。",
+              "translation": "脚疼，跑不快。"
+            }
+          ]
+        },
+        {
+          "title": "～ように なりたい：想变得能……",
+          "examples": [
+            {
+              "text": "かんじが かけるように なりたいです。",
+              "translation": "我想变得会写汉字。"
+            }
+          ]
+        }
+      ],
+      "lessonNotesHeading": "先读笔记：可能形 ～られる／～える／できる"
     },
     {
       "id": "jp-practice-plans",
@@ -2366,7 +3860,68 @@
             }
           ]
         }
-      ]
+      ],
+      "lessonNotes": [
+        {
+          "title": "らしい",
+          "points": [
+            "① 好像 / 听说（根据听到的信息）：普通形＋らしい。",
+            "② 很有……的样子：名词＋らしい（かのじょらしい＝很像她的风格）。"
+          ],
+          "examples": [
+            {
+              "text": "あしたは ゆきが ふるらしいです。",
+              "translation": "听说明天会下雪。"
+            }
+          ]
+        },
+        {
+          "title": "～ば よかった：要是……就好了（后悔）",
+          "points": [
+            "动词ば形＋よかった：する→すれば、ねる→ねれば、かう→かえば、もってくる→もってくれば。"
+          ],
+          "examples": [
+            {
+              "text": "もっと はやく ねれば よかったです。",
+              "translation": "要是早点睡就好了。"
+            }
+          ]
+        },
+        {
+          "title": "～て おく：提前做好",
+          "examples": [
+            {
+              "text": "りょこうの まえに ホテルを よやくして おきます。",
+              "translation": "旅行前先把酒店订好。"
+            }
+          ]
+        },
+        {
+          "title": "～ために：为了",
+          "points": [
+            "动词辞书形＋ために；名词＋の＋ために。"
+          ],
+          "examples": [
+            {
+              "text": "けんこうの ために、まいあさ あるいています。",
+              "translation": "为了健康，我每天早上走路。"
+            }
+          ]
+        },
+        {
+          "title": "～つもり：打算",
+          "points": [
+            "动词辞书形＋つもりです。"
+          ],
+          "examples": [
+            {
+              "text": "らいげつ りょこうする つもりです。",
+              "translation": "下个月我打算去旅行。"
+            }
+          ]
+        }
+      ],
+      "lessonNotesHeading": "先读笔记：らしい · ～ればよかった · ～ておく · ～ために · ～つもり"
     },
     {
       "id": "jp-practice-keep",
@@ -3095,7 +4650,43 @@
             }
           ]
         }
-      ]
+      ],
+      "lessonNotes": [
+        {
+          "title": "～つづける：一直 / 持续做",
+          "points": [
+            "ます形去掉 ます＋つづける：はなします → はなしつづける。"
+          ],
+          "examples": [
+            {
+              "text": "あめが ふりつづけています。",
+              "translation": "雨一直在下。"
+            }
+          ]
+        },
+        {
+          "title": "い形容词 → ～く：修饰动词",
+          "points": [
+            "去掉 い＋く：はやい→はやく、おおきい→おおきく。"
+          ],
+          "examples": [
+            {
+              "text": "なまえを おおきく かいてください。",
+              "translation": "请把名字写大一点。"
+            }
+          ]
+        },
+        {
+          "title": "だからこそ／からこそ：正因为……才",
+          "examples": [
+            {
+              "text": "むずかしいからこそ、おもしろいです。",
+              "translation": "正因为难，才有意思。"
+            }
+          ]
+        }
+      ],
+      "lessonNotesHeading": "先读笔记：～つづける · い形容词＋动词 · だからこそ · 词汇"
     },
     {
       "id": "jp-practice-looks",
@@ -3506,7 +5097,36 @@
             }
           ]
         }
-      ]
+      ],
+      "lessonNotes": [
+        {
+          "title": "～そうです（看起来）",
+          "points": [
+            "い形容词去 い＋そう（おいしそう）；な形容词去 な＋そう；动词ます形去 ます＋そう（ふりそう）。",
+            "例外：いい → よさそう。",
+            "注意：普通形＋そうです 是“听说”（ふるそうです＝听说会下雨）。"
+          ],
+          "examples": [
+            {
+              "text": "あめが ふりそうです。",
+              "translation": "看起来要下雨了。"
+            }
+          ]
+        },
+        {
+          "title": "～すぎる：太……了",
+          "points": [
+            "い形容词去 い／な形容词去 な／动词ます形去 ます，再接 すぎる。"
+          ],
+          "examples": [
+            {
+              "text": "きのう たべすぎました。",
+              "translation": "昨天吃太多了。"
+            }
+          ]
+        }
+      ],
+      "lessonNotesHeading": "先读笔记：～そうです（看起来）· ～すぎる · あなたなら どうする"
     },
     {
       "id": "jp-practice-easy",
@@ -4283,7 +5903,40 @@
             }
           ]
         }
-      ]
+      ],
+      "lessonNotes": [
+        {
+          "title": "A や B：A、B 等等（举例，不全列）",
+          "examples": [
+            {
+              "text": "スーパーで りんごや みかんを かいます。",
+              "translation": "在超市买苹果、橘子等。"
+            }
+          ]
+        },
+        {
+          "title": "～やすい／～にくい：容易 / 难",
+          "points": [
+            "ます形去掉 ます＋やすい／にくい：よみます → よみやすい、よみにくい。"
+          ],
+          "examples": [
+            {
+              "text": "この ほんは かんじが おおくて、よみにくいです。",
+              "translation": "这本书汉字多，难读。"
+            }
+          ]
+        },
+        {
+          "title": "すぐ：马上",
+          "examples": [
+            {
+              "text": "いえに かえって、すぐ ねます。",
+              "translation": "回家马上睡觉。"
+            }
+          ]
+        }
+      ],
+      "lessonNotesHeading": "先读笔记：や · ～く＋动词 · ～やすい／～にくい · すぐ · 阅读"
     },
     {
       "id": "jp-practice-warini",
@@ -4968,7 +6621,64 @@
             }
           ]
         }
-      ]
+      ],
+      "lessonNotes": [
+        {
+          "title": "～わりに：虽然……却 / 与……相比",
+          "points": [
+            "名词＋の＋わりに；い形容词・动词普通形＋わりに；な形容词＋な＋わりに。"
+          ],
+          "examples": [
+            {
+              "text": "この みせは ちいさい わりに、いつも こんでいます。",
+              "translation": "这家店虽然小，却总是很挤。"
+            }
+          ]
+        },
+        {
+          "title": "～たびに：每次……都",
+          "points": [
+            "动词辞书形＋たびに；名词＋の＋たびに。"
+          ],
+          "examples": [
+            {
+              "text": "ひこうきに のる たびに、すこし きんちょうします。",
+              "translation": "每次坐飞机都有点紧张。"
+            }
+          ]
+        },
+        {
+          "title": "～ない ことも ない：也不是不……（但……）",
+          "examples": [
+            {
+              "text": "おきられない ことも ないですが、たいへんです。",
+              "translation": "也不是起不来，但很辛苦。"
+            }
+          ]
+        },
+        {
+          "title": "～っぽい：像……的；有点……",
+          "examples": [
+            {
+              "text": "この デザインは すこし こどもっぽいです。",
+              "translation": "这个设计有点孩子气。"
+            }
+          ]
+        },
+        {
+          "title": "～づらい：难以……（做起来不舒服）",
+          "points": [
+            "ます形去掉 ます＋づらい：あるきます → あるきづらい。"
+          ],
+          "examples": [
+            {
+              "text": "この くつは あるきづらいです。",
+              "translation": "这双鞋很难走路。"
+            }
+          ]
+        }
+      ],
+      "lessonNotesHeading": "先读笔记：～わりに · ～たびに · ～ないこともない · ～っぽい · ～づらい"
     }
   ]
 }
