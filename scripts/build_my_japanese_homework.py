@@ -27,6 +27,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from my_japanese_lesson_notes import LESSON_NOTES  # noqa: E402
 from my_japanese_option_notes import OPTION_NOTES  # noqa: E402
+from my_japanese_furigana import F as FURIGANA, segments as furigana_segments  # noqa: E402
 
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -1378,7 +1379,48 @@ def build_assignments() -> list[dict]:
         if notes:
             item["lessonNotes"] = notes
             item["lessonNotesHeading"] = "先读笔记：" + item["title"].split(" ", 2)[-1]
+        item["furigana"] = _furigana_for(item)
+        _avoid_answer_leaks(item)
     return built
+
+
+def _avoid_answer_leaks(assignment: dict) -> None:
+    """Show an item's options / tiles in plain kana when furigana would mark only some of them.
+
+    Only real words are in the furigana table, so in a form drill the right
+    answer would be the one with kanji; plain kana keeps the choice fair.
+    """
+    for sec in assignment["sections"]:
+        for it in sec["items"]:
+            group = it.get("wordTiles") or it.get("options") or []
+            looks = {any(markup for _surface, markup in furigana_segments(text)) for text in group}
+            if len(looks) > 1:
+                it["plainOptions"] = True
+
+
+def _display_texts(assignment: dict) -> list[str]:
+    texts = []
+    for ref in assignment.get("referenceTables", []):
+        for row in ref["rows"]:
+            texts += [row["person"], row["form"]]
+    for note in assignment.get("lessonNotes", []):
+        texts += [example.get("text", "") for example in note.get("examples", [])]
+    for sec in assignment["sections"]:
+        texts.append(sec.get("instructions", ""))
+        for it in sec["items"]:
+            texts += [it["prompt"], it.get("canonicalAnswer", ""), it.get("ambiguityNote", "")]
+            texts += it.get("options", []) + it.get("wordTiles", [])
+    return texts
+
+
+def _furigana_for(assignment: dict) -> dict[str, str]:
+    """Only the display entries this assignment uses (blockers included, so the page splits words the same way)."""
+    used: dict[str, str] = {}
+    for text in _display_texts(assignment):
+        for surface, _markup in furigana_segments(text):
+            if surface in FURIGANA:
+                used[surface] = FURIGANA[surface]
+    return dict(sorted(used.items()))
 
 
 def upsert(homework_path: Path, new_assignments: list[dict]) -> None:
