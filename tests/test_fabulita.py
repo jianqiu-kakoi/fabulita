@@ -225,8 +225,8 @@ def test_mi_espanol_vocab_dashboard_build():
     project = Project(project_root)
     vocab.import_file(project, project_root / "vocab.csv")
     words = project.vocab
-    assert len(words) == 795
-    assert len({w["w"].casefold() for w in words}) == 795
+    assert len(words) == 805
+    assert len({w["w"].casefold() for w in words}) == 805
     headwords = {w["w"] for w in words}
     assert {
         "la llave", "el queso", "¿cómo estás?", "ser", "estar",
@@ -312,7 +312,7 @@ def test_mi_espanol_vocab_dashboard_build():
     assert "function reviewHistoryCsv" in html and "function csvSafeValue" in html
     assert "typedAnswer" in html and "answerCorrect" in html and "ratingInput" in html
     assignments = project.homeworks
-    assert len(assignments) == 19
+    assert len(assignments) == 25
     assignment = next(
         item for item in assignments
         if item["id"] == "ejercicios-vocabulario-a1-1"

@@ -72,13 +72,13 @@ ANSWER = [
      "我的狗又小又白。", {"all": ["pequeño", "blanco"], "none": ["está"]}, "特征用 ser：es pequeño。"),
     ("¿Cuándo vienes a casa?", "星期一",
      ["Vengo a casa el lunes.", "Vengo el lunes.", "El lunes vengo a casa.", "Voy a casa el lunes."],
-     "我星期一来家里。", ["lunes"], "只回答 El lunes 也能听懂；这里练习说整句：Vengo a casa el lunes."),
+     "我星期一回家。", ["lunes"], "只回答 El lunes 也能听懂；这里练习说整句：Vengo a casa el lunes."),
     ("¿Por qué estudias español?", "因为我喜欢",
      ["Estudio español porque me gusta.", "Porque me gusta."],
-     "因为我喜欢。", ["gusta"], "回答原因用 porque。"),
+     "我学西班牙语，因为我喜欢。", ["gusta"], "回答原因用 porque。"),
     ("¿Para qué estudias español?", "为了去西班牙旅行",
      ["Estudio español para viajar a España.", "Para viajar a España."],
-     "为了去西班牙旅行。", ["viajar"], "回答目的用 para + 动词原形。"),
+     "我学西班牙语是为了去西班牙旅行。", ["viajar"], "回答目的用 para + 动词原形。"),
     ("¿Cuántos perros tienes?", "两只",
      ["Tengo dos perros.", "Yo tengo dos perros."],
      "我有两只狗。", ["dos"], ""),
@@ -86,6 +86,20 @@ ANSWER = [
      ["Soy de China.", "Yo soy de China."],
      "我来自中国。", {"all": ["china"], "none": ["estoy"]}, "来源、国籍用 ser：soy de…"),
 ]
+
+# Chinese meaning of each Parte 2 question, shown in the prompt and the feedback.
+QUESTION_TRANSLATIONS = {
+    "¿Cómo te llamas?": "你叫什么名字？",
+    "¿Qué estudias?": "你学什么？",
+    "¿Dónde estás?": "你在哪儿？",
+    "¿Cómo estás?": "你好吗？",
+    "¿Cómo es tu perro?": "你的狗是什么样的？",
+    "¿Cuándo vienes a casa?": "你什么时候回家？",
+    "¿Por qué estudias español?": "你为什么学西班牙语？",
+    "¿Para qué estudias español?": "你学西班牙语是为了什么？",
+    "¿Cuántos perros tienes?": "你有几只狗？",
+    "¿De dónde eres?": "你是哪里人？",
+}
 
 # (dialogue with GAP markers, [(label, accepted, canonical)], translation)
 DIALOGUE = [
@@ -211,15 +225,16 @@ def build_assignment() -> dict:
         item = {
             "id": f"fr-answer-{number:02d}",
             "number": number,
-            "prompt": f"{question}（{cue}，写完整句子）",
+            "prompt": f"{question}（{QUESTION_TRANSLATIONS[question]}用“{cue}”回答，写完整句子）",
             "answers": _with_bare_variants(answers),
             "canonicalAnswer": answers[0],
             "answerTranslation": translation,
             "meaningPatterns": _meaning(terms),
             "polishNote": "意思对了；练习说完整句子：" + answers[0],
         }
+        item["ambiguityNote"] = f"翻译：问“{QUESTION_TRANSLATIONS[question]}” 答“{translation}”"
         if note:
-            item["ambiguityNote"] = "提示：" + note
+            item["ambiguityNote"] += " 提示：" + note
         answer_items.append(item)
     dialogue_items = []
     for number, (prompt, blanks, translation) in enumerate(DIALOGUE, start=1):
