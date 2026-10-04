@@ -23,6 +23,9 @@ import random
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from my_japanese_option_notes import OPTION_NOTES  # noqa: E402
+
 
 ROOT = Path(__file__).resolve().parent.parent
 HOMEWORK = ROOT / "examples" / "my-japanese" / "homework.json"
@@ -48,6 +51,10 @@ def choice(item_id: str, number: int, prompt: str, answer: str, distractors: lis
         "options": _shuffled(options, item_id),
         "answers": [answer],
         "canonicalAnswer": answer,
+        "optionNotes": {
+            option: {"gloss": OPTION_NOTES[option][0], "english": OPTION_NOTES[option][1]}
+            for option in options
+        },
     }
     if translation:
         item["answerTranslation"] = translation

@@ -116,7 +116,25 @@
               "answers": [
                 "みていました"
               ],
-              "canonicalAnswer": "みていました"
+              "canonicalAnswer": "みていました",
+              "optionNotes": {
+                "みていました": {
+                  "gloss": "（当时）正在看（礼貌体）",
+                  "english": "was watching (polite)"
+                },
+                "みていた": {
+                  "gloss": "（当时）正在看（随意体）",
+                  "english": "was watching (casual)"
+                },
+                "みました": {
+                  "gloss": "看了（礼貌体）",
+                  "english": "watched (polite)"
+                },
+                "みるていました": {
+                  "gloss": "✗ 错误形式：て形是 みて，不是 みるて",
+                  "english": "not a real form"
+                }
+              }
             },
             {
               "id": "jp-past-form-02",
@@ -131,7 +149,25 @@
               "answers": [
                 "よんでいた"
               ],
-              "canonicalAnswer": "よんでいた"
+              "canonicalAnswer": "よんでいた",
+              "optionNotes": {
+                "よんでいた": {
+                  "gloss": "（当时）正在读（随意体）",
+                  "english": "was reading (casual)"
+                },
+                "よんでいました": {
+                  "gloss": "（当时）正在读（礼貌体）",
+                  "english": "was reading (polite)"
+                },
+                "よみていた": {
+                  "gloss": "✗ 错误形式：よむ 的て形是 よんで",
+                  "english": "not a real form"
+                },
+                "よむでいた": {
+                  "gloss": "✗ 错误形式：よむ 的て形是 よんで",
+                  "english": "not a real form"
+                }
+              }
             },
             {
               "id": "jp-past-form-03",
@@ -146,7 +182,25 @@
               "answers": [
                 "かいていました"
               ],
-              "canonicalAnswer": "かいていました"
+              "canonicalAnswer": "かいていました",
+              "optionNotes": {
+                "かいていました": {
+                  "gloss": "（当时）正在写（礼貌体）",
+                  "english": "was writing (polite)"
+                },
+                "かきていました": {
+                  "gloss": "✗ 错误形式：かく 的て形是 かいて",
+                  "english": "not a real form"
+                },
+                "かいていた": {
+                  "gloss": "（当时）正在写（随意体）",
+                  "english": "was writing (casual)"
+                },
+                "かっていました": {
+                  "gloss": "（当时）在买 / 养（かう 的形式，不是 かく）",
+                  "english": "was buying / keeping (from かう)"
+                }
+              }
             },
             {
               "id": "jp-past-form-04",
@@ -161,7 +215,25 @@
               "answers": [
                 "きいていた"
               ],
-              "canonicalAnswer": "きいていた"
+              "canonicalAnswer": "きいていた",
+              "optionNotes": {
+                "きいていた": {
+                  "gloss": "（当时）正在听（随意体）",
+                  "english": "was listening (casual)"
+                },
+                "きいていました": {
+                  "gloss": "（当时）正在听（礼貌体）",
+                  "english": "was listening (polite)"
+                },
+                "きくていた": {
+                  "gloss": "✗ 错误形式：きく 的て形是 きいて",
+                  "english": "not a real form"
+                },
+                "きっていた": {
+                  "gloss": "（当时）在切（きる 的形式，不是 きく）",
+                  "english": "was cutting (from きる)"
+                }
+              }
             },
             {
               "id": "jp-past-form-05",
@@ -176,7 +248,25 @@
               "answers": [
                 "はなしていました"
               ],
-              "canonicalAnswer": "はなしていました"
+              "canonicalAnswer": "はなしていました",
+              "optionNotes": {
+                "はなしていました": {
+                  "gloss": "（当时）正在说话（礼貌体）",
+                  "english": "was talking (polite)"
+                },
+                "はなしていた": {
+                  "gloss": "（当时）正在说话（随意体）",
+                  "english": "was talking (casual)"
+                },
+                "はなすていました": {
+                  "gloss": "✗ 错误形式：はなす 的て形是 はなして",
+                  "english": "not a real form"
+                },
+                "はなっていました": {
+                  "gloss": "✗ 错误形式：はなす 的て形是 はなして",
+                  "english": "not a real form"
+                }
+              }
             },
             {
               "id": "jp-past-form-06",
@@ -191,7 +281,25 @@
               "answers": [
                 "いっていた"
               ],
-              "canonicalAnswer": "いっていた"
+              "canonicalAnswer": "いっていた",
+              "optionNotes": {
+                "いっていた": {
+                  "gloss": "（当时）去着 / 一直在去（随意体）",
+                  "english": "had gone / was going (casual)"
+                },
+                "いいていた": {
+                  "gloss": "✗ 错误形式：いく 是例外，て形是 いって",
+                  "english": "not a real form"
+                },
+                "いっていました": {
+                  "gloss": "（当时）去着 / 一直在去（礼貌体）",
+                  "english": "had gone / was going (polite)"
+                },
+                "いくていた": {
+                  "gloss": "✗ 错误形式：いく 的て形是 いって",
+                  "english": "not a real form"
+                }
+              }
             },
             {
               "id": "jp-past-form-07",
@@ -206,7 +314,25 @@
               "answers": [
                 "かいました"
               ],
-              "canonicalAnswer": "かいました"
+              "canonicalAnswer": "かいました",
+              "optionNotes": {
+                "かいました": {
+                  "gloss": "买了（礼貌体）",
+                  "english": "bought (polite)"
+                },
+                "かった": {
+                  "gloss": "买了（随意体）",
+                  "english": "bought (casual)"
+                },
+                "かいていました": {
+                  "gloss": "（当时）正在写（礼貌体）",
+                  "english": "was writing (polite)"
+                },
+                "かうました": {
+                  "gloss": "✗ 错误形式：ます形是 かいます → かいました",
+                  "english": "not a real form"
+                }
+              }
             },
             {
               "id": "jp-past-form-08",
@@ -221,7 +347,25 @@
               "answers": [
                 "つくった"
               ],
-              "canonicalAnswer": "つくった"
+              "canonicalAnswer": "つくった",
+              "optionNotes": {
+                "つくった": {
+                  "gloss": "做了（随意体）",
+                  "english": "made (casual)"
+                },
+                "つくりました": {
+                  "gloss": "做了（礼貌体）",
+                  "english": "made (polite)"
+                },
+                "つくていた": {
+                  "gloss": "✗ 错误形式：て形是 つくって",
+                  "english": "not a real form"
+                },
+                "つくた": {
+                  "gloss": "✗ 错误形式：つくる 的た形是 つくった",
+                  "english": "not a real form"
+                }
+              }
             },
             {
               "id": "jp-past-form-09",
@@ -236,7 +380,25 @@
               "answers": [
                 "りょうりしました"
               ],
-              "canonicalAnswer": "りょうりしました"
+              "canonicalAnswer": "りょうりしました",
+              "optionNotes": {
+                "りょうりしました": {
+                  "gloss": "做了饭（礼貌体）",
+                  "english": "cooked (polite)"
+                },
+                "りょうりした": {
+                  "gloss": "做了饭（随意体）",
+                  "english": "cooked (casual)"
+                },
+                "りょうりしていました": {
+                  "gloss": "（当时）正在做饭（礼貌体）",
+                  "english": "was cooking (polite)"
+                },
+                "りょうりするました": {
+                  "gloss": "✗ 错误形式：する → しました",
+                  "english": "not a real form"
+                }
+              }
             },
             {
               "id": "jp-past-form-10",
@@ -251,7 +413,25 @@
               "answers": [
                 "のんだ"
               ],
-              "canonicalAnswer": "のんだ"
+              "canonicalAnswer": "のんだ",
+              "optionNotes": {
+                "のんだ": {
+                  "gloss": "喝了（随意体）",
+                  "english": "drank (casual)"
+                },
+                "のみた": {
+                  "gloss": "✗ 错误形式：のむ 的た形是 のんだ",
+                  "english": "not a real form"
+                },
+                "のんでいた": {
+                  "gloss": "（当时）正在喝（随意体）",
+                  "english": "was drinking (casual)"
+                },
+                "のみました": {
+                  "gloss": "喝了（礼貌体）",
+                  "english": "drank (polite)"
+                }
+              }
             },
             {
               "id": "jp-past-form-11",
@@ -266,7 +446,25 @@
               "answers": [
                 "たべていました"
               ],
-              "canonicalAnswer": "たべていました"
+              "canonicalAnswer": "たべていました",
+              "optionNotes": {
+                "たべていました": {
+                  "gloss": "（当时）正在吃（礼貌体）",
+                  "english": "was eating (polite)"
+                },
+                "たべていた": {
+                  "gloss": "（当时）正在吃（随意体）",
+                  "english": "was eating (casual)"
+                },
+                "たべました": {
+                  "gloss": "吃了（礼貌体）",
+                  "english": "ate (polite)"
+                },
+                "たべっていました": {
+                  "gloss": "✗ 错误形式：たべる 的て形是 たべて",
+                  "english": "not a real form"
+                }
+              }
             },
             {
               "id": "jp-past-form-12",
@@ -281,7 +479,25 @@
               "answers": [
                 "よみました"
               ],
-              "canonicalAnswer": "よみました"
+              "canonicalAnswer": "よみました",
+              "optionNotes": {
+                "よみました": {
+                  "gloss": "读了（礼貌体）",
+                  "english": "read (polite, past)"
+                },
+                "よんだ": {
+                  "gloss": "读了（随意体）",
+                  "english": "read (casual, past)"
+                },
+                "よんでいました": {
+                  "gloss": "（当时）正在读（礼貌体）",
+                  "english": "was reading (polite)"
+                },
+                "よむました": {
+                  "gloss": "✗ 错误形式：ます形是 よみます → よみました",
+                  "english": "not a real form"
+                }
+              }
             }
           ]
         },
@@ -304,6 +520,20 @@
                 "していました"
               ],
               "canonicalAnswer": "していました",
+              "optionNotes": {
+                "していました": {
+                  "gloss": "（当时）正在做（礼貌体）",
+                  "english": "was doing (polite)"
+                },
+                "します": {
+                  "gloss": "做（现在 / 将来）",
+                  "english": "do / will do"
+                },
+                "してください": {
+                  "gloss": "请做",
+                  "english": "please do"
+                }
+              },
               "answerTranslation": "昨天晚上九点左右你在做什么？——我在泡澡。",
               "ambiguityNote": "中文：昨天晚上九点左右你在做什么？——我在泡澡。　提示：问“当时正在做什么”用 ～ていました。"
             },
@@ -320,6 +550,20 @@
                 "あそんでいました"
               ],
               "canonicalAnswer": "あそんでいました",
+              "optionNotes": {
+                "あそんでいました": {
+                  "gloss": "（当时）一直在玩（礼貌体）",
+                  "english": "was playing (polite)"
+                },
+                "あそびます": {
+                  "gloss": "玩（现在 / 将来）",
+                  "english": "play / will play"
+                },
+                "あそびたいです": {
+                  "gloss": "想玩",
+                  "english": "want to play"
+                }
+              },
               "answerTranslation": "小时候，我每天都在公园玩。",
               "ambiguityNote": "中文：小时候，我每天都在公园玩。　提示：过去一段时间里反复做的事，用 ～ていました。"
             },
@@ -336,6 +580,20 @@
                 "みました"
               ],
               "canonicalAnswer": "みました",
+              "optionNotes": {
+                "みました": {
+                  "gloss": "看了（礼貌体）",
+                  "english": "watched (polite)"
+                },
+                "みます": {
+                  "gloss": "看（现在 / 将来）",
+                  "english": "watch / will watch"
+                },
+                "みてください": {
+                  "gloss": "请看",
+                  "english": "please watch"
+                }
+              },
               "answerTranslation": "上周末我和朋友看了电影。",
               "ambiguityNote": "中文：上周末我和朋友看了电影。　提示：已经做完的一件事，用 ～ました。"
             },
@@ -352,6 +610,20 @@
                 "よんでいました"
               ],
               "canonicalAnswer": "よんでいました",
+              "optionNotes": {
+                "よんでいました": {
+                  "gloss": "（当时）正在读（礼貌体）",
+                  "english": "was reading (polite)"
+                },
+                "よみます": {
+                  "gloss": "读（现在 / 将来）",
+                  "english": "read / will read"
+                },
+                "よんでください": {
+                  "gloss": "请读",
+                  "english": "please read"
+                }
+              },
               "answerTranslation": "电话来的时候，我正在看书。",
               "ambiguityNote": "中文：电话来的时候，我正在看书。"
             },
@@ -368,6 +640,20 @@
                 "きのう"
               ],
               "canonicalAnswer": "きのう",
+              "optionNotes": {
+                "きのう": {
+                  "gloss": "昨天",
+                  "english": "yesterday"
+                },
+                "あした": {
+                  "gloss": "明天",
+                  "english": "tomorrow"
+                },
+                "らいしゅう": {
+                  "gloss": "下周",
+                  "english": "next week"
+                }
+              },
               "answerTranslation": "昨天我在附近的超市买了蔬菜。",
               "ambiguityNote": "中文：昨天我在附近的超市买了蔬菜。　提示：かいました 是过去时，所以选过去的时间。"
             },
@@ -384,6 +670,20 @@
                 "たべました"
               ],
               "canonicalAnswer": "たべました",
+              "optionNotes": {
+                "たべました": {
+                  "gloss": "吃了（礼貌体）",
+                  "english": "ate (polite)"
+                },
+                "たべます": {
+                  "gloss": "吃（现在 / 将来）",
+                  "english": "eat / will eat"
+                },
+                "たべたいです": {
+                  "gloss": "想吃",
+                  "english": "want to eat"
+                }
+              },
               "answerTranslation": "今天早上我吃了面包和鸡蛋。",
               "ambiguityNote": "中文：今天早上我吃了面包和鸡蛋。"
             }
@@ -408,6 +708,20 @@
                 "どのくらい"
               ],
               "canonicalAnswer": "どのくらい",
+              "optionNotes": {
+                "どのくらい": {
+                  "gloss": "多久；多少",
+                  "english": "how long; how much"
+                },
+                "どこ": {
+                  "gloss": "哪里",
+                  "english": "where"
+                },
+                "だれ": {
+                  "gloss": "谁",
+                  "english": "who"
+                }
+              },
               "answerTranslation": "你学日语多久了？——大约半年。",
               "ambiguityNote": "中文：你学日语多久了？——大约半年。"
             },
@@ -424,6 +738,20 @@
                 "どのくらい"
               ],
               "canonicalAnswer": "どのくらい",
+              "optionNotes": {
+                "どのくらい": {
+                  "gloss": "多久；多少",
+                  "english": "how long; how much"
+                },
+                "なにを": {
+                  "gloss": "（把）什么",
+                  "english": "what (object)"
+                },
+                "どれ": {
+                  "gloss": "哪个",
+                  "english": "which one"
+                }
+              },
               "answerTranslation": "从家到车站要多久？——走路十分钟。",
               "ambiguityNote": "中文：从家到车站要多久？——走路十分钟。"
             },
@@ -440,6 +768,20 @@
                 "どのくらい"
               ],
               "canonicalAnswer": "どのくらい",
+              "optionNotes": {
+                "どのくらい": {
+                  "gloss": "多久；多少",
+                  "english": "how long; how much"
+                },
+                "どうして": {
+                  "gloss": "为什么",
+                  "english": "why"
+                },
+                "どこで": {
+                  "gloss": "在哪里",
+                  "english": "where (place of action)"
+                }
+              },
               "answerTranslation": "昨天你睡了多久？——睡了七个小时。",
               "ambiguityNote": "中文：昨天你睡了多久？——睡了七个小时。"
             },
@@ -456,6 +798,20 @@
                 "5じかんぐらい つかいます"
               ],
               "canonicalAnswer": "5じかんぐらい つかいます",
+              "optionNotes": {
+                "5じかんぐらい つかいます": {
+                  "gloss": "大约花五个小时",
+                  "english": "I spend about five hours"
+                },
+                "テニスを します": {
+                  "gloss": "打网球",
+                  "english": "I play tennis"
+                },
+                "こうえんで します": {
+                  "gloss": "在公园做",
+                  "english": "I do it in the park"
+                }
+              },
               "answerTranslation": "你每周在爱好上花多少时间？——大约五个小时。",
               "ambiguityNote": "中文：你每周在爱好上花多少时间？——大约五个小时。"
             },
@@ -472,6 +828,20 @@
                 "2ねんに なります"
               ],
               "canonicalAnswer": "2ねんに なります",
+              "optionNotes": {
+                "2ねんに なります": {
+                  "gloss": "已经两年了",
+                  "english": "it has been two years"
+                },
+                "とうきょうです": {
+                  "gloss": "是东京",
+                  "english": "it is Tokyo"
+                },
+                "たのしいです": {
+                  "gloss": "很开心",
+                  "english": "it is fun"
+                }
+              },
               "answerTranslation": "你在现在的城市住多久了？——两年了。",
               "ambiguityNote": "中文：你在现在的城市住多久了？——两年了。"
             }
@@ -624,7 +994,25 @@
               "answers": [
                 "のめる"
               ],
-              "canonicalAnswer": "のめる"
+              "canonicalAnswer": "のめる",
+              "optionNotes": {
+                "のめる": {
+                  "gloss": "能喝",
+                  "english": "can drink"
+                },
+                "のまれる": {
+                  "gloss": "被喝（被动形，不是可能形）",
+                  "english": "is drunk (passive)"
+                },
+                "のめれる": {
+                  "gloss": "✗ 错误形式：五段：む→め＋る＝のめる",
+                  "english": "not a real form"
+                },
+                "のみる": {
+                  "gloss": "✗ 错误形式：五段：む→め＋る＝のめる",
+                  "english": "not a real form"
+                }
+              }
             },
             {
               "id": "jp-potential-form-02",
@@ -639,7 +1027,25 @@
               "answers": [
                 "いける"
               ],
-              "canonicalAnswer": "いける"
+              "canonicalAnswer": "いける",
+              "optionNotes": {
+                "いける": {
+                  "gloss": "能去",
+                  "english": "can go"
+                },
+                "いかれる": {
+                  "gloss": "被去（被动形），不是可能形",
+                  "english": "passive of いく"
+                },
+                "いきれる": {
+                  "gloss": "✗ 错误形式：五段：く→け＋る＝いける",
+                  "english": "not a real form"
+                },
+                "いけれる": {
+                  "gloss": "✗ 错误形式：五段：く→け＋る＝いける",
+                  "english": "not a real form"
+                }
+              }
             },
             {
               "id": "jp-potential-form-03",
@@ -654,7 +1060,25 @@
               "answers": [
                 "みられる"
               ],
-              "canonicalAnswer": "みられる"
+              "canonicalAnswer": "みられる",
+              "optionNotes": {
+                "みられる": {
+                  "gloss": "能看",
+                  "english": "can see / watch"
+                },
+                "みるれる": {
+                  "gloss": "✗ 错误形式：一段：去る＋られる＝みられる",
+                  "english": "not a real form"
+                },
+                "みれられる": {
+                  "gloss": "✗ 错误形式：一段：去る＋られる＝みられる",
+                  "english": "not a real form"
+                },
+                "みらる": {
+                  "gloss": "✗ 错误形式：一段：去る＋られる＝みられる",
+                  "english": "not a real form"
+                }
+              }
             },
             {
               "id": "jp-potential-form-04",
@@ -669,7 +1093,25 @@
               "answers": [
                 "こられる"
               ],
-              "canonicalAnswer": "こられる"
+              "canonicalAnswer": "こられる",
+              "optionNotes": {
+                "こられる": {
+                  "gloss": "能来",
+                  "english": "can come"
+                },
+                "くれる": {
+                  "gloss": "（别人）给我（另一个动词）",
+                  "english": "to give (to me) — a different verb"
+                },
+                "きられる": {
+                  "gloss": "能穿 / 能切（不是 くる）",
+                  "english": "can wear / cut — not from くる"
+                },
+                "こる": {
+                  "gloss": "✗ 错误形式：くる 的可能形是 こられる",
+                  "english": "not a real form"
+                }
+              }
             },
             {
               "id": "jp-potential-form-05",
@@ -684,7 +1126,25 @@
               "answers": [
                 "できる"
               ],
-              "canonicalAnswer": "できる"
+              "canonicalAnswer": "できる",
+              "optionNotes": {
+                "できる": {
+                  "gloss": "能做；会",
+                  "english": "can do"
+                },
+                "される": {
+                  "gloss": "被做（被动形）",
+                  "english": "is done (passive)"
+                },
+                "しれる": {
+                  "gloss": "✗ 错误形式：する 的可能形是 できる",
+                  "english": "not a real form"
+                },
+                "すれる": {
+                  "gloss": "✗ 错误形式：する 的可能形是 できる",
+                  "english": "not a real form"
+                }
+              }
             },
             {
               "id": "jp-potential-form-06",
@@ -699,7 +1159,25 @@
               "answers": [
                 "はなせる"
               ],
-              "canonicalAnswer": "はなせる"
+              "canonicalAnswer": "はなせる",
+              "optionNotes": {
+                "はなせる": {
+                  "gloss": "能说；会说",
+                  "english": "can speak"
+                },
+                "はなされる": {
+                  "gloss": "被说（被动形）",
+                  "english": "is spoken (passive)"
+                },
+                "はなしれる": {
+                  "gloss": "✗ 错误形式：五段：す→せ＋る＝はなせる",
+                  "english": "not a real form"
+                },
+                "はなすれる": {
+                  "gloss": "✗ 错误形式：五段：す→せ＋る＝はなせる",
+                  "english": "not a real form"
+                }
+              }
             },
             {
               "id": "jp-potential-form-07",
@@ -714,7 +1192,25 @@
               "answers": [
                 "よめる"
               ],
-              "canonicalAnswer": "よめる"
+              "canonicalAnswer": "よめる",
+              "optionNotes": {
+                "よめる": {
+                  "gloss": "能读",
+                  "english": "can read"
+                },
+                "よまれる": {
+                  "gloss": "被读（被动形）",
+                  "english": "is read (passive)"
+                },
+                "よみれる": {
+                  "gloss": "✗ 错误形式：五段：む→め＋る＝よめる",
+                  "english": "not a real form"
+                },
+                "よむれる": {
+                  "gloss": "✗ 错误形式：五段：む→め＋る＝よめる",
+                  "english": "not a real form"
+                }
+              }
             },
             {
               "id": "jp-potential-form-08",
@@ -729,7 +1225,25 @@
               "answers": [
                 "かける"
               ],
-              "canonicalAnswer": "かける"
+              "canonicalAnswer": "かける",
+              "optionNotes": {
+                "かける": {
+                  "gloss": "能写",
+                  "english": "can write"
+                },
+                "かかれる": {
+                  "gloss": "被写（被动形）",
+                  "english": "is written (passive)"
+                },
+                "かきれる": {
+                  "gloss": "✗ 错误形式：五段：く→け＋る＝かける",
+                  "english": "not a real form"
+                },
+                "かくれる": {
+                  "gloss": "躲藏（隠れる，另一个动词）",
+                  "english": "to hide — a different verb"
+                }
+              }
             },
             {
               "id": "jp-potential-form-09",
@@ -744,7 +1258,25 @@
               "answers": [
                 "およげる"
               ],
-              "canonicalAnswer": "およげる"
+              "canonicalAnswer": "およげる",
+              "optionNotes": {
+                "およげる": {
+                  "gloss": "能游泳",
+                  "english": "can swim"
+                },
+                "およがれる": {
+                  "gloss": "被游（被动形）",
+                  "english": "passive of およぐ"
+                },
+                "およぎれる": {
+                  "gloss": "✗ 错误形式：五段：ぐ→げ＋る＝およげる",
+                  "english": "not a real form"
+                },
+                "およぐれる": {
+                  "gloss": "✗ 错误形式：五段：ぐ→げ＋る＝およげる",
+                  "english": "not a real form"
+                }
+              }
             },
             {
               "id": "jp-potential-form-10",
@@ -759,7 +1291,25 @@
               "answers": [
                 "あえる"
               ],
-              "canonicalAnswer": "あえる"
+              "canonicalAnswer": "あえる",
+              "optionNotes": {
+                "あえる": {
+                  "gloss": "能见面",
+                  "english": "can meet"
+                },
+                "あわれる": {
+                  "gloss": "被见（被动形）",
+                  "english": "passive of あう"
+                },
+                "あいれる": {
+                  "gloss": "✗ 错误形式：五段：う→え＋る＝あえる",
+                  "english": "not a real form"
+                },
+                "あうれる": {
+                  "gloss": "✗ 错误形式：五段：う→え＋る＝あえる",
+                  "english": "not a real form"
+                }
+              }
             },
             {
               "id": "jp-potential-form-11",
@@ -774,7 +1324,25 @@
               "answers": [
                 "あそべる"
               ],
-              "canonicalAnswer": "あそべる"
+              "canonicalAnswer": "あそべる",
+              "optionNotes": {
+                "あそべる": {
+                  "gloss": "能玩",
+                  "english": "can play"
+                },
+                "あそばれる": {
+                  "gloss": "被玩弄（被动形）",
+                  "english": "passive of あそぶ"
+                },
+                "あそびれる": {
+                  "gloss": "✗ 错误形式：五段：ぶ→べ＋る＝あそべる",
+                  "english": "not a real form"
+                },
+                "あそぶれる": {
+                  "gloss": "✗ 错误形式：五段：ぶ→べ＋る＝あそべる",
+                  "english": "not a real form"
+                }
+              }
             },
             {
               "id": "jp-potential-form-12",
@@ -789,7 +1357,25 @@
               "answers": [
                 "おきられる"
               ],
-              "canonicalAnswer": "おきられる"
+              "canonicalAnswer": "おきられる",
+              "optionNotes": {
+                "おきられる": {
+                  "gloss": "能起床",
+                  "english": "can get up"
+                },
+                "おかれる": {
+                  "gloss": "被放置（おく 的被动形）",
+                  "english": "is placed (passive of おく)"
+                },
+                "おきらる": {
+                  "gloss": "✗ 错误形式：一段：去る＋られる＝おきられる",
+                  "english": "not a real form"
+                },
+                "おけられる": {
+                  "gloss": "✗ 错误形式：一段：去る＋られる＝おきられる",
+                  "english": "not a real form"
+                }
+              }
             },
             {
               "id": "jp-potential-form-13",
@@ -804,7 +1390,25 @@
               "answers": [
                 "りょうりできる"
               ],
-              "canonicalAnswer": "りょうりできる"
+              "canonicalAnswer": "りょうりできる",
+              "optionNotes": {
+                "りょうりできる": {
+                  "gloss": "会做饭",
+                  "english": "can cook"
+                },
+                "りょうりされる": {
+                  "gloss": "被烹调（被动形）",
+                  "english": "is cooked (passive)"
+                },
+                "りょうりしれる": {
+                  "gloss": "✗ 错误形式：する → できる",
+                  "english": "not a real form"
+                },
+                "りょうりすれる": {
+                  "gloss": "✗ 错误形式：する → できる",
+                  "english": "not a real form"
+                }
+              }
             }
           ]
         },
@@ -827,6 +1431,20 @@
                 "はなせます"
               ],
               "canonicalAnswer": "はなせます",
+              "optionNotes": {
+                "はなせます": {
+                  "gloss": "会说（礼貌体）",
+                  "english": "can speak (polite)"
+                },
+                "はなします": {
+                  "gloss": "说（现在 / 将来）",
+                  "english": "speak / will speak"
+                },
+                "はなしたいです": {
+                  "gloss": "想说",
+                  "english": "want to speak"
+                }
+              },
               "answerTranslation": "我会说一点英语。",
               "ambiguityNote": "中文：我会说一点英语。　提示：“能力”用可能形，前面用 が。"
             },
@@ -843,6 +1461,20 @@
                 "のめません"
               ],
               "canonicalAnswer": "のめません",
+              "optionNotes": {
+                "のめません": {
+                  "gloss": "不能喝",
+                  "english": "cannot drink"
+                },
+                "のみます": {
+                  "gloss": "喝（现在 / 将来）",
+                  "english": "drink / will drink"
+                },
+                "のみたいです": {
+                  "gloss": "想喝",
+                  "english": "want to drink"
+                }
+              },
               "answerTranslation": "这水不干净，不能喝。",
               "ambiguityNote": "中文：这水不干净，不能喝。"
             },
@@ -859,6 +1491,20 @@
                 "いけません"
               ],
               "canonicalAnswer": "いけません",
+              "optionNotes": {
+                "いけません": {
+                  "gloss": "去不了",
+                  "english": "cannot go"
+                },
+                "いきます": {
+                  "gloss": "去",
+                  "english": "go / will go"
+                },
+                "いってください": {
+                  "gloss": "请去",
+                  "english": "please go"
+                }
+              },
               "answerTranslation": "作业很多，今晚去不了聚会。",
               "ambiguityNote": "中文：作业很多，今晚去不了聚会。"
             },
@@ -875,6 +1521,20 @@
                 "よめます"
               ],
               "canonicalAnswer": "よめます",
+              "optionNotes": {
+                "よめます": {
+                  "gloss": "能读",
+                  "english": "can read (polite)"
+                },
+                "よみたいです": {
+                  "gloss": "想读",
+                  "english": "want to read"
+                },
+                "よんでください": {
+                  "gloss": "请读",
+                  "english": "please read"
+                }
+              },
               "answerTranslation": "那本漫画在哪里能看？——在 App 上能看。",
               "ambiguityNote": "中文：那本漫画在哪里能看？——在 App 上能看。"
             },
@@ -891,6 +1551,20 @@
                 "ひけます"
               ],
               "canonicalAnswer": "ひけます",
+              "optionNotes": {
+                "ひけます": {
+                  "gloss": "会弹",
+                  "english": "can play (an instrument)"
+                },
+                "ひいて": {
+                  "gloss": "弹（て形）",
+                  "english": "play (て-form)"
+                },
+                "ひきたい": {
+                  "gloss": "想弹",
+                  "english": "want to play"
+                }
+              },
               "answerTranslation": "你会弹吉他吗？——会，弹一点。",
               "ambiguityNote": "中文：你会弹吉他吗？——会，弹一点。"
             },
@@ -907,6 +1581,20 @@
                 "はしれません"
               ],
               "canonicalAnswer": "はしれません",
+              "optionNotes": {
+                "はしれません": {
+                  "gloss": "跑不了",
+                  "english": "cannot run"
+                },
+                "はしりたいです": {
+                  "gloss": "想跑",
+                  "english": "want to run"
+                },
+                "はしってください": {
+                  "gloss": "请跑",
+                  "english": "please run"
+                }
+              },
               "answerTranslation": "脚疼，跑不快。",
               "ambiguityNote": "中文：脚疼，跑不快。"
             },
@@ -923,6 +1611,20 @@
                 "たべられません"
               ],
               "canonicalAnswer": "たべられません",
+              "optionNotes": {
+                "たべられません": {
+                  "gloss": "不能吃",
+                  "english": "cannot eat"
+                },
+                "たべたいです": {
+                  "gloss": "想吃",
+                  "english": "want to eat"
+                },
+                "たべてください": {
+                  "gloss": "请吃",
+                  "english": "please eat"
+                }
+              },
               "answerTranslation": "这条鱼刺多，小孩吃不了。",
               "ambiguityNote": "中文：这条鱼刺多，小孩吃不了。"
             }
@@ -947,6 +1649,20 @@
                 "おいしい すしが たべられます"
               ],
               "canonicalAnswer": "おいしい すしが たべられます",
+              "optionNotes": {
+                "おいしい すしが たべられます": {
+                  "gloss": "能吃到好吃的寿司",
+                  "english": "you can eat delicious sushi"
+                },
+                "すしを たべてください": {
+                  "gloss": "请吃寿司",
+                  "english": "please eat sushi"
+                },
+                "すしが たべたいですか": {
+                  "gloss": "你想吃寿司吗？",
+                  "english": "do you want to eat sushi?"
+                }
+              },
               "answerTranslation": "在日本能做什么？——能吃到好吃的寿司。",
               "ambiguityNote": "中文：在日本能做什么？——能吃到好吃的寿司。"
             },
@@ -963,6 +1679,20 @@
                 "テニスが できます"
               ],
               "canonicalAnswer": "テニスが できます",
+              "optionNotes": {
+                "テニスが できます": {
+                  "gloss": "会打网球",
+                  "english": "I can play tennis"
+                },
+                "テニスを してください": {
+                  "gloss": "请打网球",
+                  "english": "please play tennis"
+                },
+                "テニスが すきでしたか": {
+                  "gloss": "你以前喜欢网球吗？",
+                  "english": "did you like tennis?"
+                }
+              },
               "answerTranslation": "你会什么运动？——我会打网球。",
               "ambiguityNote": "中文：你会什么运动？——我会打网球。"
             },
@@ -979,6 +1709,20 @@
                 "ちかくの まちへ ひとりで いけます"
               ],
               "canonicalAnswer": "ちかくの まちへ ひとりで いけます",
+              "optionNotes": {
+                "ちかくの まちへ ひとりで いけます": {
+                  "gloss": "能一个人去附近的城市",
+                  "english": "I can go to a nearby town alone"
+                },
+                "ひとりで いってください": {
+                  "gloss": "请一个人去",
+                  "english": "please go alone"
+                },
+                "どこへ いきましたか": {
+                  "gloss": "你去了哪里？",
+                  "english": "where did you go?"
+                }
+              },
               "answerTranslation": "你一个人能去哪里？——我能一个人去附近的城市。",
               "ambiguityNote": "中文：你一个人能去哪里？——我能一个人去附近的城市。"
             },
@@ -995,6 +1739,20 @@
                 "いいえ、ひけません"
               ],
               "canonicalAnswer": "いいえ、ひけません",
+              "optionNotes": {
+                "いいえ、ひけません": {
+                  "gloss": "不，不会弹",
+                  "english": "no, I can't play"
+                },
+                "いいえ、ひいてください": {
+                  "gloss": "不，请弹（答非所问）",
+                  "english": "no, please play (doesn't answer)"
+                },
+                "はい、ひきたいですか": {
+                  "gloss": "是，你想弹吗？（答非所问）",
+                  "english": "yes, do you want to play? (doesn't answer)"
+                }
+              },
               "answerTranslation": "你会弹钢琴吗？——不，不会。",
               "ambiguityNote": "中文：你会弹钢琴吗？——不，不会。"
             }
@@ -1138,6 +1896,20 @@
                 "らしいです"
               ],
               "canonicalAnswer": "らしいです",
+              "optionNotes": {
+                "らしいです": {
+                  "gloss": "好像…… / 听说……",
+                  "english": "apparently; I hear"
+                },
+                "つもりです": {
+                  "gloss": "打算……",
+                  "english": "I plan to"
+                },
+                "ておきます": {
+                  "gloss": "提前做好",
+                  "english": "do in advance"
+                }
+              },
               "answerTranslation": "据天气预报说，明天好像会下雪。",
               "ambiguityNote": "中文：据天气预报说，明天好像会下雪。　提示：听说 / 好像 → らしい。"
             },
@@ -1154,6 +1926,20 @@
                 "つもり"
               ],
               "canonicalAnswer": "つもり",
+              "optionNotes": {
+                "つもり": {
+                  "gloss": "打算",
+                  "english": "plan; intention"
+                },
+                "らしい": {
+                  "gloss": "像……的样子 / 好像……",
+                  "english": "typical of; apparently"
+                },
+                "ために": {
+                  "gloss": "为了……",
+                  "english": "in order to; for"
+                }
+              },
               "answerTranslation": "暑假我打算去北海道。",
               "ambiguityNote": "中文：暑假我打算去北海道。　提示：打算 → 辞书形＋つもり。"
             },
@@ -1170,6 +1956,20 @@
                 "おきます"
               ],
               "canonicalAnswer": "おきます",
+              "optionNotes": {
+                "おきます": {
+                  "gloss": "（～て）おきます＝提前做好",
+                  "english": "(～て) おきます: do in advance"
+                },
+                "らしいです": {
+                  "gloss": "好像…… / 听说……",
+                  "english": "apparently; I hear"
+                },
+                "つもりです": {
+                  "gloss": "打算……",
+                  "english": "I plan to"
+                }
+              },
               "answerTranslation": "聚会前我先把饮料买好。",
               "ambiguityNote": "中文：聚会前我先把饮料买好。　提示：提前做好 → ～ておく。"
             },
@@ -1186,6 +1986,20 @@
                 "ために"
               ],
               "canonicalAnswer": "ために",
+              "optionNotes": {
+                "ために": {
+                  "gloss": "为了……",
+                  "english": "in order to; for"
+                },
+                "らしい": {
+                  "gloss": "像……的样子 / 好像……",
+                  "english": "typical of; apparently"
+                },
+                "つもり": {
+                  "gloss": "打算",
+                  "english": "plan; intention"
+                }
+              },
               "answerTranslation": "为了健康，我每天早上走路。",
               "ambiguityNote": "中文：为了健康，我每天早上走路。　提示：名词＋の＋ために＝为了……"
             },
@@ -1202,6 +2016,20 @@
                 "よかったです"
               ],
               "canonicalAnswer": "よかったです",
+              "optionNotes": {
+                "よかったです": {
+                  "gloss": "（～ば）よかった＝要是……就好了",
+                  "english": "(～ば) よかった: I wish I had"
+                },
+                "おきます": {
+                  "gloss": "（～て）おきます＝提前做好",
+                  "english": "(～て) おきます: do in advance"
+                },
+                "つもりです": {
+                  "gloss": "打算……",
+                  "english": "I plan to"
+                }
+              },
               "answerTranslation": "要是带伞来就好了。",
               "ambiguityNote": "中文：要是带伞来就好了。　提示：后悔 → ～ば よかった。"
             },
@@ -1218,6 +2046,20 @@
                 "らしい"
               ],
               "canonicalAnswer": "らしい",
+              "optionNotes": {
+                "らしい": {
+                  "gloss": "像……的样子 / 好像……",
+                  "english": "typical of; apparently"
+                },
+                "ために": {
+                  "gloss": "为了……",
+                  "english": "in order to; for"
+                },
+                "つもり": {
+                  "gloss": "打算",
+                  "english": "plan; intention"
+                }
+              },
               "answerTranslation": "笑着打招呼，真像她的风格。",
               "ambiguityNote": "中文：笑着打招呼，真像她的风格。　提示：名词＋らしい＝很有……的样子。"
             },
@@ -1234,6 +2076,20 @@
                 "ために"
               ],
               "canonicalAnswer": "ために",
+              "optionNotes": {
+                "ために": {
+                  "gloss": "为了……",
+                  "english": "in order to; for"
+                },
+                "らしい": {
+                  "gloss": "像……的样子 / 好像……",
+                  "english": "typical of; apparently"
+                },
+                "ておく": {
+                  "gloss": "提前做好",
+                  "english": "do in advance"
+                }
+              },
               "answerTranslation": "为了留学，我在存钱。",
               "ambiguityNote": "中文：为了留学，我在存钱。　提示：动词辞书形＋ために。"
             },
@@ -1250,6 +2106,20 @@
                 "すれば"
               ],
               "canonicalAnswer": "すれば",
+              "optionNotes": {
+                "すれば": {
+                  "gloss": "如果做（する 的ば形）",
+                  "english": "if (I) do"
+                },
+                "して": {
+                  "gloss": "做（て形）",
+                  "english": "do (て-form)"
+                },
+                "する": {
+                  "gloss": "做（辞书形）",
+                  "english": "do (dictionary form)"
+                }
+              },
               "answerTranslation": "考试前要是再多学点就好了。",
               "ambiguityNote": "中文：考试前要是再多学点就好了。　提示：する → すれば。"
             }
@@ -1274,6 +2144,20 @@
                 "かさを もってくれば よかったです"
               ],
               "canonicalAnswer": "かさを もってくれば よかったです",
+              "optionNotes": {
+                "かさを もってくれば よかったです": {
+                  "gloss": "要是带伞来就好了",
+                  "english": "I wish I had brought an umbrella"
+                },
+                "かさを もってきて よかったです": {
+                  "gloss": "幸好带了伞（意思相反）",
+                  "english": "glad I brought an umbrella (opposite)"
+                },
+                "かさを もってくる つもりです": {
+                  "gloss": "我打算带伞",
+                  "english": "I plan to bring an umbrella"
+                }
+              },
               "answerTranslation": "要是带了伞就好了。",
               "ambiguityNote": "中文：要是带了伞就好了。"
             },
@@ -1290,6 +2174,20 @@
                 "はやく ねれば よかったです"
               ],
               "canonicalAnswer": "はやく ねれば よかったです",
+              "optionNotes": {
+                "はやく ねれば よかったです": {
+                  "gloss": "要是早点睡就好了",
+                  "english": "I wish I had gone to bed early"
+                },
+                "はやく ねて おきます": {
+                  "gloss": "我会提前早睡",
+                  "english": "I'll go to bed early in advance"
+                },
+                "はやく ねる らしいです": {
+                  "gloss": "听说（他）早睡",
+                  "english": "apparently (he) goes to bed early"
+                }
+              },
               "answerTranslation": "要是早点睡就好了。",
               "ambiguityNote": "中文：要是早点睡就好了。"
             },
@@ -1306,6 +2204,20 @@
                 "はやく かえば よかったです"
               ],
               "canonicalAnswer": "はやく かえば よかったです",
+              "optionNotes": {
+                "はやく かえば よかったです": {
+                  "gloss": "要是早点买就好了",
+                  "english": "I wish I had bought it earlier"
+                },
+                "はやく かって ください": {
+                  "gloss": "请早点买",
+                  "english": "please buy it early"
+                },
+                "はやく かう ために": {
+                  "gloss": "为了早点买",
+                  "english": "in order to buy early"
+                }
+              },
               "answerTranslation": "要是早点买就好了。",
               "ambiguityNote": "中文：要是早点买就好了。"
             },
@@ -1322,6 +2234,20 @@
                 "しゃしんを とれば よかったです"
               ],
               "canonicalAnswer": "しゃしんを とれば よかったです",
+              "optionNotes": {
+                "しゃしんを とれば よかったです": {
+                  "gloss": "要是拍了照片就好了",
+                  "english": "I wish I had taken photos"
+                },
+                "しゃしんを とって おきました": {
+                  "gloss": "我提前拍好了照片",
+                  "english": "I took photos in advance"
+                },
+                "しゃしんを とる らしいです": {
+                  "gloss": "听说要拍照",
+                  "english": "apparently they'll take photos"
+                }
+              },
               "answerTranslation": "要是拍了照片就好了。",
               "ambiguityNote": "中文：要是拍了照片就好了。"
             }
@@ -1472,6 +2398,20 @@
                 "3じかん ゲームを しつづけています"
               ],
               "canonicalAnswer": "3じかん ゲームを しつづけています",
+              "optionNotes": {
+                "3じかん ゲームを しつづけています": {
+                  "gloss": "一直玩了三个小时游戏",
+                  "english": "have been playing games for 3 hours"
+                },
+                "3じかん ゲームを してつづけています": {
+                  "gloss": "✗ 错误形式：ます形去ます＋つづける：しつづける",
+                  "english": "not a real form"
+                },
+                "3じかん ゲームを するつづけています": {
+                  "gloss": "✗ 错误形式：ます形去ます＋つづける：しつづける",
+                  "english": "not a real form"
+                }
+              },
               "ambiguityNote": "提示：ます形去掉 ます＋つづける。"
             },
             {
@@ -1487,6 +2427,20 @@
                 "あめが ふりつづけています"
               ],
               "canonicalAnswer": "あめが ふりつづけています",
+              "optionNotes": {
+                "あめが ふりつづけています": {
+                  "gloss": "雨一直在下",
+                  "english": "it keeps raining"
+                },
+                "あめが ふってつづけています": {
+                  "gloss": "✗ 错误形式：ふります → ふりつづける",
+                  "english": "not a real form"
+                },
+                "あめが ふるつづけています": {
+                  "gloss": "✗ 错误形式：ふります → ふりつづける",
+                  "english": "not a real form"
+                }
+              },
               "ambiguityNote": "提示：ます形去掉 ます＋つづける。"
             },
             {
@@ -1502,6 +2456,20 @@
                 "かれは 10ねん おなじ かいしゃで はたらきつづけています"
               ],
               "canonicalAnswer": "かれは 10ねん おなじ かいしゃで はたらきつづけています",
+              "optionNotes": {
+                "かれは 10ねん おなじ かいしゃで はたらきつづけています": {
+                  "gloss": "他在同一家公司持续工作了十年",
+                  "english": "he has kept working at the same company for 10 years"
+                },
+                "かれは 10ねん おなじ かいしゃで はたらいてつづけています": {
+                  "gloss": "✗ 错误形式：はたらきます → はたらきつづける",
+                  "english": "not a real form"
+                },
+                "かれは 10ねん おなじ かいしゃで はたらくつづけています": {
+                  "gloss": "✗ 错误形式：はたらきます → はたらきつづける",
+                  "english": "not a real form"
+                }
+              },
               "ambiguityNote": "提示：ます形去掉 ます＋つづける。"
             },
             {
@@ -1517,6 +2485,20 @@
                 "ゆめを おいつづけます"
               ],
               "canonicalAnswer": "ゆめを おいつづけます",
+              "optionNotes": {
+                "ゆめを おいつづけます": {
+                  "gloss": "继续追梦",
+                  "english": "I keep chasing my dream"
+                },
+                "ゆめを おってつづけます": {
+                  "gloss": "✗ 错误形式：おいます → おいつづける",
+                  "english": "not a real form"
+                },
+                "ゆめを おうつづけます": {
+                  "gloss": "✗ 错误形式：おいます → おいつづける",
+                  "english": "not a real form"
+                }
+              },
               "ambiguityNote": "提示：ます形去掉 ます＋つづける。"
             },
             {
@@ -1532,6 +2514,20 @@
                 "よる おそくまで ともだちと はなしつづけていました"
               ],
               "canonicalAnswer": "よる おそくまで ともだちと はなしつづけていました",
+              "optionNotes": {
+                "よる おそくまで ともだちと はなしつづけていました": {
+                  "gloss": "和朋友一直聊到深夜",
+                  "english": "kept talking with a friend until late"
+                },
+                "よる おそくまで ともだちと はなしてつづけていました": {
+                  "gloss": "✗ 错误形式：はなします → はなしつづける",
+                  "english": "not a real form"
+                },
+                "よる おそくまで ともだちと はなすつづけていました": {
+                  "gloss": "✗ 错误形式：はなします → はなしつづける",
+                  "english": "not a real form"
+                }
+              },
               "ambiguityNote": "提示：ます形去掉 ます＋つづける。"
             }
           ]
@@ -1555,6 +2551,20 @@
                 "はやく おきる"
               ],
               "canonicalAnswer": "はやく おきる",
+              "optionNotes": {
+                "はやく おきる": {
+                  "gloss": "早起",
+                  "english": "get up early"
+                },
+                "はやいに おきる": {
+                  "gloss": "✗ 错误形式：い形容词修饰动词要变成 ～く",
+                  "english": "not a real form"
+                },
+                "はやくて おきる": {
+                  "gloss": "✗ 错误形式：～くて 是“又……又”，这里用 ～く",
+                  "english": "not a real form"
+                }
+              },
               "answerTranslation": "早起",
               "ambiguityNote": "中文：早起　提示：い形容词修饰动词：い → く。"
             },
@@ -1571,6 +2581,20 @@
                 "おおきく かく"
               ],
               "canonicalAnswer": "おおきく かく",
+              "optionNotes": {
+                "おおきく かく": {
+                  "gloss": "写得大",
+                  "english": "write big"
+                },
+                "おおきいに かく": {
+                  "gloss": "✗ 错误形式：い → く：おおきく",
+                  "english": "not a real form"
+                },
+                "おおきくて かく": {
+                  "gloss": "✗ 错误形式：这里用 ～く",
+                  "english": "not a real form"
+                }
+              },
               "answerTranslation": "写大一点",
               "ambiguityNote": "中文：写大一点　提示：い形容词修饰动词：い → く。"
             },
@@ -1587,6 +2611,20 @@
                 "やすく かう"
               ],
               "canonicalAnswer": "やすく かう",
+              "optionNotes": {
+                "やすく かう": {
+                  "gloss": "便宜地买",
+                  "english": "buy cheaply"
+                },
+                "やすいに かう": {
+                  "gloss": "✗ 错误形式：い → く：やすく",
+                  "english": "not a real form"
+                },
+                "やすくて かう": {
+                  "gloss": "✗ 错误形式：这里用 ～く",
+                  "english": "not a real form"
+                }
+              },
               "answerTranslation": "便宜地买",
               "ambiguityNote": "中文：便宜地买　提示：い形容词修饰动词：い → く。"
             },
@@ -1603,6 +2641,20 @@
                 "たかく とぶ"
               ],
               "canonicalAnswer": "たかく とぶ",
+              "optionNotes": {
+                "たかく とぶ": {
+                  "gloss": "跳得高",
+                  "english": "jump high"
+                },
+                "たかいに とぶ": {
+                  "gloss": "✗ 错误形式：い → く：たかく",
+                  "english": "not a real form"
+                },
+                "たかくて とぶ": {
+                  "gloss": "✗ 错误形式：这里用 ～く",
+                  "english": "not a real form"
+                }
+              },
               "answerTranslation": "跳得高",
               "ambiguityNote": "中文：跳得高　提示：い形容词修饰动词：い → く。"
             },
@@ -1619,6 +2671,20 @@
                 "わかく みえる"
               ],
               "canonicalAnswer": "わかく みえる",
+              "optionNotes": {
+                "わかく みえる": {
+                  "gloss": "看起来年轻",
+                  "english": "look young"
+                },
+                "わかいに みえる": {
+                  "gloss": "✗ 错误形式：い → く：わかく",
+                  "english": "not a real form"
+                },
+                "わかくて みえる": {
+                  "gloss": "✗ 错误形式：这里用 ～く",
+                  "english": "not a real form"
+                }
+              },
               "answerTranslation": "看起来年轻",
               "ambiguityNote": "中文：看起来年轻　提示：い形容词修饰动词：い → く。"
             },
@@ -1635,6 +2701,20 @@
                 "おそく ねる"
               ],
               "canonicalAnswer": "おそく ねる",
+              "optionNotes": {
+                "おそく ねる": {
+                  "gloss": "晚睡",
+                  "english": "go to bed late"
+                },
+                "おそいに ねる": {
+                  "gloss": "✗ 错误形式：い → く：おそく",
+                  "english": "not a real form"
+                },
+                "おそくて ねる": {
+                  "gloss": "✗ 错误形式：这里用 ～く",
+                  "english": "not a real form"
+                }
+              },
               "answerTranslation": "晚睡",
               "ambiguityNote": "中文：晚睡　提示：い形容词修饰动词：い → く。"
             }
@@ -1659,6 +2739,20 @@
                 "だからこそ"
               ],
               "canonicalAnswer": "だからこそ",
+              "optionNotes": {
+                "だからこそ": {
+                  "gloss": "正因为如此，才……",
+                  "english": "precisely because of that"
+                },
+                "なのに": {
+                  "gloss": "明明……却",
+                  "english": "even though"
+                },
+                "だけど": {
+                  "gloss": "但是",
+                  "english": "but"
+                }
+              },
               "answerTranslation": "正因为家人重要，我想珍惜在一起的时间。",
               "ambiguityNote": "中文：正因为家人重要，我想珍惜在一起的时间。　提示：だからこそ＝正因为……才。"
             },
@@ -1675,6 +2769,20 @@
                 "からこそ"
               ],
               "canonicalAnswer": "からこそ",
+              "optionNotes": {
+                "からこそ": {
+                  "gloss": "正因为……才",
+                  "english": "precisely because"
+                },
+                "のに": {
+                  "gloss": "明明……却",
+                  "english": "even though"
+                },
+                "けど": {
+                  "gloss": "但是",
+                  "english": "but"
+                }
+              },
               "answerTranslation": "正因为会失败，坚持才重要。",
               "ambiguityNote": "中文：正因为会失败，坚持才重要。　提示：だからこそ＝正因为……才。"
             },
@@ -1691,6 +2799,20 @@
                 "だからこそ"
               ],
               "canonicalAnswer": "だからこそ",
+              "optionNotes": {
+                "だからこそ": {
+                  "gloss": "正因为如此，才……",
+                  "english": "precisely because of that"
+                },
+                "なのに": {
+                  "gloss": "明明……却",
+                  "english": "even though"
+                },
+                "でも": {
+                  "gloss": "但是",
+                  "english": "but"
+                }
+              },
               "answerTranslation": "正因为是自己的梦想，才不想放弃。",
               "ambiguityNote": "中文：正因为是自己的梦想，才不想放弃。　提示：だからこそ＝正因为……才。"
             }
@@ -1715,6 +2837,20 @@
                 "あしもと"
               ],
               "canonicalAnswer": "あしもと",
+              "optionNotes": {
+                "あしもと": {
+                  "gloss": "脚下",
+                  "english": "one's footing"
+                },
+                "ほどう": {
+                  "gloss": "人行道",
+                  "english": "sidewalk"
+                },
+                "みらい": {
+                  "gloss": "未来",
+                  "english": "future"
+                }
+              },
               "answerTranslation": "下雨天请注意脚下。",
               "ambiguityNote": "中文：下雨天请注意脚下。"
             },
@@ -1731,6 +2867,20 @@
                 "ほどう"
               ],
               "canonicalAnswer": "ほどう",
+              "optionNotes": {
+                "ほどう": {
+                  "gloss": "人行道",
+                  "english": "sidewalk"
+                },
+                "あしもと": {
+                  "gloss": "脚下",
+                  "english": "one's footing"
+                },
+                "みらい": {
+                  "gloss": "未来",
+                  "english": "future"
+                }
+              },
               "answerTranslation": "车很多，我们走人行道吧。",
               "ambiguityNote": "中文：车很多，我们走人行道吧。"
             },
@@ -1747,6 +2897,20 @@
                 "はげまして"
               ],
               "canonicalAnswer": "はげまして",
+              "optionNotes": {
+                "はげまして": {
+                  "gloss": "鼓励（て形）",
+                  "english": "encourage (て-form)"
+                },
+                "くりかえして": {
+                  "gloss": "重复（て形）",
+                  "english": "repeat (て-form)"
+                },
+                "いだいて": {
+                  "gloss": "怀有（て形）",
+                  "english": "hold / embrace (て-form)"
+                }
+              },
               "answerTranslation": "考试前朋友鼓励了我。",
               "ambiguityNote": "中文：考试前朋友鼓励了我。"
             },
@@ -1763,6 +2927,20 @@
                 "くりかえさ"
               ],
               "canonicalAnswer": "くりかえさ",
+              "optionNotes": {
+                "くりかえさ": {
+                  "gloss": "重复（ない形词干：くりかえさない）",
+                  "english": "repeat (stem of くりかえさない)"
+                },
+                "はげまさ": {
+                  "gloss": "鼓励（ない形词干）",
+                  "english": "encourage (stem of はげまさない)"
+                },
+                "あゆま": {
+                  "gloss": "前行（ない形词干）",
+                  "english": "walk (stem of あゆまない)"
+                }
+              },
               "answerTranslation": "我会注意不再犯同样的错误。",
               "ambiguityNote": "中文：我会注意不再犯同样的错误。"
             },
@@ -1779,6 +2957,20 @@
                 "おさない"
               ],
               "canonicalAnswer": "おさない",
+              "optionNotes": {
+                "おさない": {
+                  "gloss": "年幼的",
+                  "english": "young; little"
+                },
+                "すなおな": {
+                  "gloss": "坦率的（な形容词＋名词）",
+                  "english": "honest (before a noun)"
+                },
+                "からい": {
+                  "gloss": "辣的",
+                  "english": "spicy"
+                }
+              },
               "answerTranslation": "小时候我常在公园玩。",
               "ambiguityNote": "中文：小时候我常在公园玩。"
             },
@@ -1795,6 +2987,20 @@
                 "すなお"
               ],
               "canonicalAnswer": "すなお",
+              "optionNotes": {
+                "すなお": {
+                  "gloss": "坦率、听话",
+                  "english": "honest; obedient"
+                },
+                "おさない": {
+                  "gloss": "年幼的",
+                  "english": "young; little"
+                },
+                "からい": {
+                  "gloss": "辣的",
+                  "english": "spicy"
+                }
+              },
               "answerTranslation": "我坦率地听老师的建议。",
               "ambiguityNote": "中文：我坦率地听老师的建议。"
             },
@@ -1811,6 +3017,20 @@
                 "いだいて"
               ],
               "canonicalAnswer": "いだいて",
+              "optionNotes": {
+                "いだいて": {
+                  "gloss": "怀有（て形）",
+                  "english": "hold / embrace (て-form)"
+                },
+                "はげまして": {
+                  "gloss": "鼓励（て形）",
+                  "english": "encourage (て-form)"
+                },
+                "くりかえして": {
+                  "gloss": "重复（て形）",
+                  "english": "repeat (て-form)"
+                }
+              },
               "answerTranslation": "我对未来怀有大大的梦想。",
               "ambiguityNote": "中文：我对未来怀有大大的梦想。"
             }
@@ -1907,6 +3127,20 @@
                 "あめが ふりそうです"
               ],
               "canonicalAnswer": "あめが ふりそうです",
+              "optionNotes": {
+                "あめが ふりそうです": {
+                  "gloss": "看起来要下雨",
+                  "english": "it looks like it will rain"
+                },
+                "あめが ふるそうです": {
+                  "gloss": "听说会下雨（传闻）",
+                  "english": "I hear it will rain (hearsay)"
+                },
+                "あめが ふりすぎます": {
+                  "gloss": "雨下得太多",
+                  "english": "it rains too much"
+                }
+              },
               "answerTranslation": "好像要下雨了。",
               "ambiguityNote": "中文：好像要下雨了。　提示：看起来 → ます形＋そう；ふるそうです 是“听说会下雨”。"
             },
@@ -1923,6 +3157,20 @@
                 "おいしそうです"
               ],
               "canonicalAnswer": "おいしそうです",
+              "optionNotes": {
+                "おいしそうです": {
+                  "gloss": "看起来很好吃",
+                  "english": "looks delicious"
+                },
+                "おいしいそうです": {
+                  "gloss": "听说很好吃（传闻）",
+                  "english": "I hear it's delicious (hearsay)"
+                },
+                "おいしすぎます": {
+                  "gloss": "太好吃了",
+                  "english": "too delicious"
+                }
+              },
               "answerTranslation": "看起来很好吃。",
               "ambiguityNote": "中文：看起来很好吃。　提示：い形容词：去掉 い＋そう。"
             },
@@ -1939,6 +3187,20 @@
                 "ねむそうです"
               ],
               "canonicalAnswer": "ねむそうです",
+              "optionNotes": {
+                "ねむそうです": {
+                  "gloss": "看起来很困",
+                  "english": "looks sleepy"
+                },
+                "ねむいそうです": {
+                  "gloss": "听说很困（传闻）",
+                  "english": "I hear (he) is sleepy (hearsay)"
+                },
+                "ねむすぎます": {
+                  "gloss": "太困了",
+                  "english": "too sleepy"
+                }
+              },
               "answerTranslation": "朋友看起来很困。",
               "ambiguityNote": "中文：朋友看起来很困。"
             },
@@ -1955,6 +3217,20 @@
                 "こわそうです"
               ],
               "canonicalAnswer": "こわそうです",
+              "optionNotes": {
+                "こわそうです": {
+                  "gloss": "看起来很可怕",
+                  "english": "looks scary"
+                },
+                "こわいそうです": {
+                  "gloss": "听说很可怕（传闻）",
+                  "english": "I hear it's scary (hearsay)"
+                },
+                "こわくそうです": {
+                  "gloss": "✗ 错误形式：去掉 い＋そう：こわそう",
+                  "english": "not a real form"
+                }
+              },
               "answerTranslation": "看起来很可怕。",
               "ambiguityNote": "中文：看起来很可怕。"
             },
@@ -1971,6 +3247,20 @@
                 "からそうです"
               ],
               "canonicalAnswer": "からそうです",
+              "optionNotes": {
+                "からそうです": {
+                  "gloss": "看起来很辣",
+                  "english": "looks spicy"
+                },
+                "からいそうです": {
+                  "gloss": "听说很辣（传闻）",
+                  "english": "I hear it's spicy (hearsay)"
+                },
+                "からくそうです": {
+                  "gloss": "✗ 错误形式：去掉 い＋そう：からそう",
+                  "english": "not a real form"
+                }
+              },
               "answerTranslation": "看起来很辣。",
               "ambiguityNote": "中文：看起来很辣。"
             },
@@ -1987,6 +3277,20 @@
                 "よさそうです"
               ],
               "canonicalAnswer": "よさそうです",
+              "optionNotes": {
+                "よさそうです": {
+                  "gloss": "看起来不错",
+                  "english": "looks good"
+                },
+                "いいそうです": {
+                  "gloss": "听说不错（传闻）",
+                  "english": "I hear it's good (hearsay)"
+                },
+                "よそうです": {
+                  "gloss": "✗ 错误形式：いい 的“看起来”是 よさそう",
+                  "english": "not a real form"
+                }
+              },
               "answerTranslation": "看起来不错。",
               "ambiguityNote": "中文：看起来不错。　提示：いい → よさそう（特殊）。"
             }
@@ -2011,6 +3315,20 @@
                 "たかすぎます"
               ],
               "canonicalAnswer": "たかすぎます",
+              "optionNotes": {
+                "たかすぎます": {
+                  "gloss": "太贵了 / 太高了",
+                  "english": "too expensive / too high"
+                },
+                "たかいすぎます": {
+                  "gloss": "✗ 错误形式：去掉 い＋すぎる：たかすぎる",
+                  "english": "not a real form"
+                },
+                "たかくすぎます": {
+                  "gloss": "✗ 错误形式：去掉 い＋すぎる：たかすぎる",
+                  "english": "not a real form"
+                }
+              },
               "answerTranslation": "这个包太贵了。",
               "ambiguityNote": "中文：这个包太贵了。　提示：い形容词去 い / な形容词去 な / 动词ます形去 ます，再接 すぎる。"
             },
@@ -2027,6 +3345,20 @@
                 "たべすぎました"
               ],
               "canonicalAnswer": "たべすぎました",
+              "optionNotes": {
+                "たべすぎました": {
+                  "gloss": "吃太多了",
+                  "english": "ate too much"
+                },
+                "たべるすぎました": {
+                  "gloss": "✗ 错误形式：ます形去ます＋すぎる：たべすぎる",
+                  "english": "not a real form"
+                },
+                "たべてすぎました": {
+                  "gloss": "✗ 错误形式：ます形去ます＋すぎる：たべすぎる",
+                  "english": "not a real form"
+                }
+              },
               "answerTranslation": "昨天吃太多了。",
               "ambiguityNote": "中文：昨天吃太多了。　提示：い形容词去 い / な形容词去 な / 动词ます形去 ます，再接 すぎる。"
             },
@@ -2043,6 +3375,20 @@
                 "しずかすぎます"
               ],
               "canonicalAnswer": "しずかすぎます",
+              "optionNotes": {
+                "しずかすぎます": {
+                  "gloss": "太安静了",
+                  "english": "too quiet"
+                },
+                "しずかなすぎます": {
+                  "gloss": "✗ 错误形式：な形容词去 な＋すぎる",
+                  "english": "not a real form"
+                },
+                "しずかにすぎます": {
+                  "gloss": "✗ 错误形式：な形容词去 な＋すぎる",
+                  "english": "not a real form"
+                }
+              },
               "answerTranslation": "这个房间太安静了。",
               "ambiguityNote": "中文：这个房间太安静了。　提示：い形容词去 い / な形容词去 な / 动词ます形去 ます，再接 すぎる。"
             },
@@ -2059,6 +3405,20 @@
                 "ゲームを しすぎました"
               ],
               "canonicalAnswer": "ゲームを しすぎました",
+              "optionNotes": {
+                "ゲームを しすぎました": {
+                  "gloss": "游戏玩太多了",
+                  "english": "played games too much"
+                },
+                "ゲームを するすぎました": {
+                  "gloss": "✗ 错误形式：する → しすぎる",
+                  "english": "not a real form"
+                },
+                "ゲームを してすぎました": {
+                  "gloss": "✗ 错误形式：する → しすぎる",
+                  "english": "not a real form"
+                }
+              },
               "answerTranslation": "昨天游戏玩太多了。",
               "ambiguityNote": "中文：昨天游戏玩太多了。　提示：い形容词去 い / な形容词去 な / 动词ます形去 ます，再接 すぎる。"
             },
@@ -2075,6 +3435,20 @@
                 "あつすぎます"
               ],
               "canonicalAnswer": "あつすぎます",
+              "optionNotes": {
+                "あつすぎます": {
+                  "gloss": "太烫了 / 太热了",
+                  "english": "too hot"
+                },
+                "あついすぎます": {
+                  "gloss": "✗ 错误形式：去掉 い＋すぎる：あつすぎる",
+                  "english": "not a real form"
+                },
+                "あつくすぎます": {
+                  "gloss": "✗ 错误形式：去掉 い＋すぎる：あつすぎる",
+                  "english": "not a real form"
+                }
+              },
               "answerTranslation": "这杯咖啡太烫了。",
               "ambiguityNote": "中文：这杯咖啡太烫了。　提示：い形容词去 い / な形容词去 な / 动词ます形去 ます，再接 すぎる。"
             }
@@ -2164,6 +3538,20 @@
                 "スーパーで りんごや みかんを かいます"
               ],
               "canonicalAnswer": "スーパーで りんごや みかんを かいます",
+              "optionNotes": {
+                "スーパーで りんごや みかんを かいます": {
+                  "gloss": "在超市买苹果、橘子等",
+                  "english": "I buy apples, mandarins, etc. at the supermarket"
+                },
+                "スーパーで りんごを みかんや かいます": {
+                  "gloss": "✗ 错误形式：や 放在两个名词之间：りんごや みかんを",
+                  "english": "not a real form"
+                },
+                "スーパーで りんごや みかんや を かいます": {
+                  "gloss": "✗ 错误形式：最后一个名词后面直接接 を",
+                  "english": "not a real form"
+                }
+              },
               "ambiguityNote": "提示：AやB＝A、B 等等（举例）。"
             },
             {
@@ -2179,6 +3567,20 @@
                 "へやに ソファや テレビが あります"
               ],
               "canonicalAnswer": "へやに ソファや テレビが あります",
+              "optionNotes": {
+                "へやに ソファや テレビが あります": {
+                  "gloss": "房间里有沙发、电视等",
+                  "english": "there's a sofa, a TV, etc. in the room"
+                },
+                "へやに ソファが テレビや あります": {
+                  "gloss": "✗ 错误形式：や 放在两个名词之间：ソファや テレビが",
+                  "english": "not a real form"
+                },
+                "へやに ソファや が テレビ あります": {
+                  "gloss": "✗ 错误形式：助词顺序不对",
+                  "english": "not a real form"
+                }
+              },
               "ambiguityNote": "提示：AやB＝A、B 等等（举例）。"
             },
             {
@@ -2194,6 +3596,20 @@
                 "やすみの ひは そうじや せんたくを します"
               ],
               "canonicalAnswer": "やすみの ひは そうじや せんたくを します",
+              "optionNotes": {
+                "やすみの ひは そうじや せんたくを します": {
+                  "gloss": "休息日打扫、洗衣服等",
+                  "english": "on days off I clean, do laundry, etc."
+                },
+                "やすみの ひは そうじを せんたくや します": {
+                  "gloss": "✗ 错误形式：や 放在两个名词之间：そうじや せんたくを",
+                  "english": "not a real form"
+                },
+                "やすみの ひは そうじや を せんたく します": {
+                  "gloss": "✗ 错误形式：助词顺序不对",
+                  "english": "not a real form"
+                }
+              },
               "ambiguityNote": "提示：AやB＝A、B 等等（举例）。"
             }
           ]
@@ -2218,6 +3634,24 @@
                 "はやく"
               ],
               "canonicalAnswer": "はやく",
+              "optionNotes": {
+                "はやく": {
+                  "gloss": "快地；早地",
+                  "english": "quickly; early"
+                },
+                "おおきく": {
+                  "gloss": "大大地",
+                  "english": "big; large (adverb)"
+                },
+                "やすく": {
+                  "gloss": "便宜地",
+                  "english": "cheaply"
+                },
+                "わかく": {
+                  "gloss": "年轻地（～く みえる＝看起来年轻）",
+                  "english": "young (adverb)"
+                }
+              },
               "answerTranslation": "还有三分钟车就开了，快点走去车站。",
               "ambiguityNote": "中文：还有三分钟车就开了，快点走去车站。"
             },
@@ -2235,6 +3669,24 @@
                 "おおきく"
               ],
               "canonicalAnswer": "おおきく",
+              "optionNotes": {
+                "おおきく": {
+                  "gloss": "大大地",
+                  "english": "big; large (adverb)"
+                },
+                "はやく": {
+                  "gloss": "快地；早地",
+                  "english": "quickly; early"
+                },
+                "やすく": {
+                  "gloss": "便宜地",
+                  "english": "cheaply"
+                },
+                "わかく": {
+                  "gloss": "年轻地（～く みえる＝看起来年轻）",
+                  "english": "young (adverb)"
+                }
+              },
               "answerTranslation": "字太小看不清，请写大一点。",
               "ambiguityNote": "中文：字太小看不清，请写大一点。"
             },
@@ -2252,6 +3704,24 @@
                 "やすく"
               ],
               "canonicalAnswer": "やすく",
+              "optionNotes": {
+                "やすく": {
+                  "gloss": "便宜地",
+                  "english": "cheaply"
+                },
+                "はやく": {
+                  "gloss": "快地；早地",
+                  "english": "quickly; early"
+                },
+                "おおきく": {
+                  "gloss": "大大地",
+                  "english": "big; large (adverb)"
+                },
+                "わかく": {
+                  "gloss": "年轻地（～く みえる＝看起来年轻）",
+                  "english": "young (adverb)"
+                }
+              },
               "answerTranslation": "打折时半价买了衣服。",
               "ambiguityNote": "中文：打折时半价买了衣服。"
             },
@@ -2269,6 +3739,24 @@
                 "わかく"
               ],
               "canonicalAnswer": "わかく",
+              "optionNotes": {
+                "わかく": {
+                  "gloss": "年轻地（～く みえる＝看起来年轻）",
+                  "english": "young (adverb)"
+                },
+                "はやく": {
+                  "gloss": "快地；早地",
+                  "english": "quickly; early"
+                },
+                "おおきく": {
+                  "gloss": "大大地",
+                  "english": "big; large (adverb)"
+                },
+                "やすく": {
+                  "gloss": "便宜地",
+                  "english": "cheaply"
+                }
+              },
               "answerTranslation": "爷爷看起来很年轻。",
               "ambiguityNote": "中文：爷爷看起来很年轻。"
             }
@@ -2293,6 +3781,20 @@
                 "かきやすい"
               ],
               "canonicalAnswer": "かきやすい",
+              "optionNotes": {
+                "かきやすい": {
+                  "gloss": "好写",
+                  "english": "easy to write"
+                },
+                "かきにくい": {
+                  "gloss": "难写",
+                  "english": "hard to write"
+                },
+                "かくやすい": {
+                  "gloss": "✗ 错误形式：ます形去ます＋やすい：かきやすい",
+                  "english": "not a real form"
+                }
+              },
               "answerTranslation": "这支笔很轻，好写。",
               "ambiguityNote": "中文：这支笔很轻，好写。　提示：ます形去掉 ます＋やすい（容易）／にくい（难）。"
             },
@@ -2309,6 +3811,20 @@
                 "よみにくい"
               ],
               "canonicalAnswer": "よみにくい",
+              "optionNotes": {
+                "よみにくい": {
+                  "gloss": "难读",
+                  "english": "hard to read"
+                },
+                "よみやすい": {
+                  "gloss": "好读",
+                  "english": "easy to read"
+                },
+                "よむにくい": {
+                  "gloss": "✗ 错误形式：ます形去ます＋にくい：よみにくい",
+                  "english": "not a real form"
+                }
+              },
               "answerTranslation": "这本书汉字多，难读。",
               "ambiguityNote": "中文：这本书汉字多，难读。　提示：ます形去掉 ます＋やすい（容易）／にくい（难）。"
             },
@@ -2325,6 +3841,20 @@
                 "あるきやすい"
               ],
               "canonicalAnswer": "あるきやすい",
+              "optionNotes": {
+                "あるきやすい": {
+                  "gloss": "好走",
+                  "english": "easy to walk in"
+                },
+                "あるきにくい": {
+                  "gloss": "难走",
+                  "english": "hard to walk in"
+                },
+                "あるくやすい": {
+                  "gloss": "✗ 错误形式：ます形去ます＋やすい：あるきやすい",
+                  "english": "not a real form"
+                }
+              },
               "answerTranslation": "这双鞋很轻，好走。",
               "ambiguityNote": "中文：这双鞋很轻，好走。　提示：ます形去掉 ます＋やすい（容易）／にくい（难）。"
             },
@@ -2341,6 +3871,20 @@
                 "のみにくい"
               ],
               "canonicalAnswer": "のみにくい",
+              "optionNotes": {
+                "のみにくい": {
+                  "gloss": "难咽、难喝",
+                  "english": "hard to swallow / drink"
+                },
+                "のみやすい": {
+                  "gloss": "好喝、好咽",
+                  "english": "easy to drink"
+                },
+                "のむにくい": {
+                  "gloss": "✗ 错误形式：ます形去ます＋にくい：のみにくい",
+                  "english": "not a real form"
+                }
+              },
               "answerTranslation": "这药片太大，难咽。",
               "ambiguityNote": "中文：这药片太大，难咽。　提示：ます形去掉 ます＋やすい（容易）／にくい（难）。"
             },
@@ -2357,6 +3901,20 @@
                 "わかりやすい"
               ],
               "canonicalAnswer": "わかりやすい",
+              "optionNotes": {
+                "わかりやすい": {
+                  "gloss": "好懂",
+                  "english": "easy to understand"
+                },
+                "わかりにくい": {
+                  "gloss": "难懂",
+                  "english": "hard to understand"
+                },
+                "わかるやすい": {
+                  "gloss": "✗ 错误形式：ます形去ます＋やすい：わかりやすい",
+                  "english": "not a real form"
+                }
+              },
               "answerTranslation": "老师的说明很好懂。",
               "ambiguityNote": "中文：老师的说明很好懂。　提示：ます形去掉 ます＋やすい（容易）／にくい（难）。"
             }
@@ -2381,6 +3939,20 @@
                 "すぐ いきます！"
               ],
               "canonicalAnswer": "すぐ いきます！",
+              "optionNotes": {
+                "すぐ いきます！": {
+                  "gloss": "马上去！",
+                  "english": "I'm coming right away!"
+                },
+                "あとで いきます": {
+                  "gloss": "待会儿去",
+                  "english": "I'll go later"
+                },
+                "ゆっくり いきます": {
+                  "gloss": "慢慢去",
+                  "english": "I'll go slowly"
+                }
+              },
               "answerTranslation": "马上来！",
               "ambiguityNote": "中文：马上来！"
             },
@@ -2397,6 +3969,20 @@
                 "すぐ たべに いきます！"
               ],
               "canonicalAnswer": "すぐ たべに いきます！",
+              "optionNotes": {
+                "すぐ たべに いきます！": {
+                  "gloss": "马上去吃！",
+                  "english": "I'll come eat right away!"
+                },
+                "あとで たべます": {
+                  "gloss": "待会儿吃",
+                  "english": "I'll eat later"
+                },
+                "たべたくないです": {
+                  "gloss": "不想吃",
+                  "english": "I don't want to eat"
+                }
+              },
               "answerTranslation": "马上去吃！",
               "ambiguityNote": "中文：马上去吃！"
             },
@@ -2413,6 +3999,20 @@
                 "いえに かえって、すぐ ねます"
               ],
               "canonicalAnswer": "いえに かえって、すぐ ねます",
+              "optionNotes": {
+                "いえに かえって、すぐ ねます": {
+                  "gloss": "回家马上睡",
+                  "english": "go home and sleep right away"
+                },
+                "ゆっくり しごとを します": {
+                  "gloss": "慢慢工作",
+                  "english": "work slowly"
+                },
+                "もっと はたらきます": {
+                  "gloss": "再多干点活",
+                  "english": "work more"
+                }
+              },
               "answerTranslation": "回家马上睡觉。",
               "ambiguityNote": "中文：回家马上睡觉。"
             }
@@ -2437,6 +4037,20 @@
                 "こんげつから"
               ],
               "canonicalAnswer": "こんげつから",
+              "optionNotes": {
+                "こんげつから": {
+                  "gloss": "从这个月开始",
+                  "english": "since this month"
+                },
+                "せんげつから": {
+                  "gloss": "从上个月开始",
+                  "english": "since last month"
+                },
+                "らいげつから": {
+                  "gloss": "从下个月开始",
+                  "english": "from next month"
+                }
+              },
               "answerTranslation": "这个月开始。",
               "ambiguityNote": "中文：这个月开始。"
             },
@@ -2453,6 +4067,20 @@
                 "でんしゃや バスで いけます"
               ],
               "canonicalAnswer": "でんしゃや バスで いけます",
+              "optionNotes": {
+                "でんしゃや バスで いけます": {
+                  "gloss": "坐电车或公交可以去",
+                  "english": "can go by train or bus"
+                },
+                "ひこうきで いけます": {
+                  "gloss": "坐飞机可以去",
+                  "english": "can go by plane"
+                },
+                "ふねで いけます": {
+                  "gloss": "坐船可以去",
+                  "english": "can go by boat"
+                }
+              },
               "answerTranslation": "坐电车或公交可以到。",
               "ambiguityNote": "中文：坐电车或公交可以到。"
             },
@@ -2469,6 +4097,20 @@
                 "あるくのは からだに いいからです"
               ],
               "canonicalAnswer": "あるくのは からだに いいからです",
+              "optionNotes": {
+                "あるくのは からだに いいからです": {
+                  "gloss": "因为走路对身体好",
+                  "english": "because walking is good for the body"
+                },
+                "でんしゃが たかいからです": {
+                  "gloss": "因为电车贵",
+                  "english": "because the train is expensive"
+                },
+                "がっこうが とおいからです": {
+                  "gloss": "因为学校远",
+                  "english": "because the school is far"
+                }
+              },
               "answerTranslation": "因为走路对身体好。",
               "ambiguityNote": "中文：因为走路对身体好。"
             },
@@ -2485,6 +4127,20 @@
                 "まえの がっこうより わかりやすいです"
               ],
               "canonicalAnswer": "まえの がっこうより わかりやすいです",
+              "optionNotes": {
+                "まえの がっこうより わかりやすいです": {
+                  "gloss": "比以前的学校好懂",
+                  "english": "easier to understand than the old school"
+                },
+                "まえの がっこうより むずかしいです": {
+                  "gloss": "比以前的学校难",
+                  "english": "harder than the old school"
+                },
+                "とても つまらないです": {
+                  "gloss": "很无聊",
+                  "english": "very boring"
+                }
+              },
               "answerTranslation": "比以前的学校好懂。",
               "ambiguityNote": "中文：比以前的学校好懂。"
             },
@@ -2501,6 +4157,20 @@
                 "あさ 7じに おきることです"
               ],
               "canonicalAnswer": "あさ 7じに おきることです",
+              "optionNotes": {
+                "あさ 7じに おきることです": {
+                  "gloss": "早上七点起床",
+                  "english": "getting up at 7 a.m."
+                },
+                "あるくことです": {
+                  "gloss": "走路",
+                  "english": "walking"
+                },
+                "ともだちを つくることです": {
+                  "gloss": "交朋友",
+                  "english": "making friends"
+                }
+              },
               "answerTranslation": "早上七点起床很辛苦。",
               "ambiguityNote": "中文：早上七点起床很辛苦。"
             },
@@ -2517,6 +4187,20 @@
                 "すぐ ねました"
               ],
               "canonicalAnswer": "すぐ ねました",
+              "optionNotes": {
+                "すぐ ねました": {
+                  "gloss": "马上睡了",
+                  "english": "went to sleep right away"
+                },
+                "すぐ べんきょうしました": {
+                  "gloss": "马上学习了",
+                  "english": "studied right away"
+                },
+                "すぐ でかけました": {
+                  "gloss": "马上出门了",
+                  "english": "went out right away"
+                }
+              },
               "answerTranslation": "马上睡觉了。",
               "ambiguityNote": "中文：马上睡觉了。"
             }
@@ -2632,6 +4316,24 @@
                 "わりに"
               ],
               "canonicalAnswer": "わりに",
+              "optionNotes": {
+                "わりに": {
+                  "gloss": "虽然……却 / 与……相比",
+                  "english": "considering; for"
+                },
+                "たびに": {
+                  "gloss": "每次……都",
+                  "english": "every time"
+                },
+                "っぽい": {
+                  "gloss": "像……的；有点……",
+                  "english": "-ish; like"
+                },
+                "づらい": {
+                  "gloss": "难以……（心理上 / 身体上难受）",
+                  "english": "hard to (do)"
+                }
+              },
               "answerTranslation": "这辆车虽然旧，却跑得很好。",
               "ambiguityNote": "中文：这辆车虽然旧，却跑得很好。"
             },
@@ -2649,6 +4351,24 @@
                 "たびに"
               ],
               "canonicalAnswer": "たびに",
+              "optionNotes": {
+                "たびに": {
+                  "gloss": "每次……都",
+                  "english": "every time"
+                },
+                "わりに": {
+                  "gloss": "虽然……却 / 与……相比",
+                  "english": "considering; for"
+                },
+                "っぽい": {
+                  "gloss": "像……的；有点……",
+                  "english": "-ish; like"
+                },
+                "づらい": {
+                  "gloss": "难以……（心理上 / 身体上难受）",
+                  "english": "hard to (do)"
+                }
+              },
               "answerTranslation": "每次听这首歌，都会想起高中时代。",
               "ambiguityNote": "中文：每次听这首歌，都会想起高中时代。"
             },
@@ -2666,6 +4386,24 @@
                 "づらい"
               ],
               "canonicalAnswer": "づらい",
+              "optionNotes": {
+                "づらい": {
+                  "gloss": "难以……（心理上 / 身体上难受）",
+                  "english": "hard to (do)"
+                },
+                "わりに": {
+                  "gloss": "虽然……却 / 与……相比",
+                  "english": "considering; for"
+                },
+                "たびに": {
+                  "gloss": "每次……都",
+                  "english": "every time"
+                },
+                "っぽい": {
+                  "gloss": "像……的；有点……",
+                  "english": "-ish; like"
+                }
+              },
               "answerTranslation": "这把椅子太硬，坐着难受。",
               "ambiguityNote": "中文：这把椅子太硬，坐着难受。"
             },
@@ -2683,6 +4421,24 @@
                 "っぽい"
               ],
               "canonicalAnswer": "っぽい",
+              "optionNotes": {
+                "っぽい": {
+                  "gloss": "像……的；有点……",
+                  "english": "-ish; like"
+                },
+                "わりに": {
+                  "gloss": "虽然……却 / 与……相比",
+                  "english": "considering; for"
+                },
+                "たびに": {
+                  "gloss": "每次……都",
+                  "english": "every time"
+                },
+                "づらい": {
+                  "gloss": "难以……（心理上 / 身体上难受）",
+                  "english": "hard to (do)"
+                }
+              },
               "answerTranslation": "他四十岁了，穿着却像年轻人。",
               "ambiguityNote": "中文：他四十岁了，穿着却像年轻人。"
             },
@@ -2700,6 +4456,24 @@
                 "こともない"
               ],
               "canonicalAnswer": "こともない",
+              "optionNotes": {
+                "こともない": {
+                  "gloss": "（ない）こともない＝也不是不……",
+                  "english": "(not) impossible"
+                },
+                "わりに": {
+                  "gloss": "虽然……却 / 与……相比",
+                  "english": "considering; for"
+                },
+                "たびに": {
+                  "gloss": "每次……都",
+                  "english": "every time"
+                },
+                "っぽい": {
+                  "gloss": "像……的；有点……",
+                  "english": "-ish; like"
+                }
+              },
               "answerTranslation": "现在跑的话，也不是赶不上……",
               "ambiguityNote": "中文：现在跑的话，也不是赶不上……"
             },
@@ -2717,6 +4491,24 @@
                 "たびに"
               ],
               "canonicalAnswer": "たびに",
+              "optionNotes": {
+                "たびに": {
+                  "gloss": "每次……都",
+                  "english": "every time"
+                },
+                "わりに": {
+                  "gloss": "虽然……却 / 与……相比",
+                  "english": "considering; for"
+                },
+                "っぽい": {
+                  "gloss": "像……的；有点……",
+                  "english": "-ish; like"
+                },
+                "づらい": {
+                  "gloss": "难以……（心理上 / 身体上难受）",
+                  "english": "hard to (do)"
+                }
+              },
               "answerTranslation": "每次出差都住不同的酒店。",
               "ambiguityNote": "中文：每次出差都住不同的酒店。"
             },
@@ -2734,6 +4526,24 @@
                 "っぽい"
               ],
               "canonicalAnswer": "っぽい",
+              "optionNotes": {
+                "っぽい": {
+                  "gloss": "像……的；有点……",
+                  "english": "-ish; like"
+                },
+                "わりに": {
+                  "gloss": "虽然……却 / 与……相比",
+                  "english": "considering; for"
+                },
+                "たびに": {
+                  "gloss": "每次……都",
+                  "english": "every time"
+                },
+                "づらい": {
+                  "gloss": "难以……（心理上 / 身体上难受）",
+                  "english": "hard to (do)"
+                }
+              },
               "answerTranslation": "这汤水水的（太淡）。",
               "ambiguityNote": "中文：这汤水水的（太淡）。"
             },
@@ -2751,6 +4561,24 @@
                 "わりに"
               ],
               "canonicalAnswer": "わりに",
+              "optionNotes": {
+                "わりに": {
+                  "gloss": "虽然……却 / 与……相比",
+                  "english": "considering; for"
+                },
+                "たびに": {
+                  "gloss": "每次……都",
+                  "english": "every time"
+                },
+                "っぽい": {
+                  "gloss": "像……的；有点……",
+                  "english": "-ish; like"
+                },
+                "づらい": {
+                  "gloss": "难以……（心理上 / 身体上难受）",
+                  "english": "hard to (do)"
+                }
+              },
               "answerTranslation": "她虽然年轻，却很稳重。",
               "ambiguityNote": "中文：她虽然年轻，却很稳重。"
             },
@@ -2768,6 +4596,24 @@
                 "づらい"
               ],
               "canonicalAnswer": "づらい",
+              "optionNotes": {
+                "づらい": {
+                  "gloss": "难以……（心理上 / 身体上难受）",
+                  "english": "hard to (do)"
+                },
+                "わりに": {
+                  "gloss": "虽然……却 / 与……相比",
+                  "english": "considering; for"
+                },
+                "たびに": {
+                  "gloss": "每次……都",
+                  "english": "every time"
+                },
+                "っぽい": {
+                  "gloss": "像……的；有点……",
+                  "english": "-ish; like"
+                }
+              },
               "answerTranslation": "这字太小，难读。",
               "ambiguityNote": "中文：这字太小，难读。"
             },
@@ -2785,6 +4631,24 @@
                 "こともない"
               ],
               "canonicalAnswer": "こともない",
+              "optionNotes": {
+                "こともない": {
+                  "gloss": "（ない）こともない＝也不是不……",
+                  "english": "(not) impossible"
+                },
+                "わりに": {
+                  "gloss": "虽然……却 / 与……相比",
+                  "english": "considering; for"
+                },
+                "たびに": {
+                  "gloss": "每次……都",
+                  "english": "every time"
+                },
+                "っぽい": {
+                  "gloss": "像……的；有点……",
+                  "english": "-ish; like"
+                }
+              },
               "answerTranslation": "也不是走不了一小时，但我想会累。",
               "ambiguityNote": "中文：也不是走不了一小时，但我想会累。"
             }
@@ -2809,6 +4673,20 @@
                 "この みせは ちいさい わりに、いつも こんでいます"
               ],
               "canonicalAnswer": "この みせは ちいさい わりに、いつも こんでいます",
+              "optionNotes": {
+                "この みせは ちいさい わりに、いつも こんでいます": {
+                  "gloss": "这家店虽然小，却总是很挤",
+                  "english": "the shop is small but always crowded"
+                },
+                "この みせは ちいさい たびに、いつも こんでいます": {
+                  "gloss": "✗ 意思不通：たびに 要接动作",
+                  "english": "doesn't make sense: たびに needs an action"
+                },
+                "この みせは ちいさいっぽい、いつも こんでいます": {
+                  "gloss": "✗ 错误形式：っぽい 不能这样连接后句",
+                  "english": "not a real form"
+                }
+              },
               "answerTranslation": "这家店虽然小，却总是很挤。",
               "ambiguityNote": "中文：这家店虽然小，却总是很挤。"
             },
@@ -2825,6 +4703,20 @@
                 "ひこうきに のる たびに、すこし きんちょうします"
               ],
               "canonicalAnswer": "ひこうきに のる たびに、すこし きんちょうします",
+              "optionNotes": {
+                "ひこうきに のる たびに、すこし きんちょうします": {
+                  "gloss": "每次坐飞机都有点紧张",
+                  "english": "every time I fly, I get a little nervous"
+                },
+                "ひこうきに のる わりに、すこし きんちょうします": {
+                  "gloss": "✗ 意思不通：这里不是“虽然……却”",
+                  "english": "doesn't fit: not a contrast"
+                },
+                "ひこうきに のりづらい、すこし きんちょうします": {
+                  "gloss": "✗ 错误形式：づらい 不能这样连接后句",
+                  "english": "not a real form"
+                }
+              },
               "answerTranslation": "每次坐飞机都会有点紧张。",
               "ambiguityNote": "中文：每次坐飞机都会有点紧张。"
             },
@@ -2841,6 +4733,20 @@
                 "たくさん れんしゅうした わりに、じょうずに なりませんでした"
               ],
               "canonicalAnswer": "たくさん れんしゅうした わりに、じょうずに なりませんでした",
+              "optionNotes": {
+                "たくさん れんしゅうした わりに、じょうずに なりませんでした": {
+                  "gloss": "练了很多，却没有变好",
+                  "english": "practised a lot but didn't improve"
+                },
+                "たくさん れんしゅうした たびに、じょうずに なりませんでした": {
+                  "gloss": "✗ 意思不通：这里是“虽然……却”",
+                  "english": "doesn't fit: this is a contrast"
+                },
+                "たくさん れんしゅうしたっぽい、じょうずに なりませんでした": {
+                  "gloss": "✗ 错误形式：っぽい 不能这样连接后句",
+                  "english": "not a real form"
+                }
+              },
               "answerTranslation": "练了很多，却没有变好。",
               "ambiguityNote": "中文：练了很多，却没有变好。"
             },
@@ -2857,6 +4763,20 @@
                 "この まちに くる たびに、おなじ カフェに いきます"
               ],
               "canonicalAnswer": "この まちに くる たびに、おなじ カフェに いきます",
+              "optionNotes": {
+                "この まちに くる たびに、おなじ カフェに いきます": {
+                  "gloss": "每次来这个城市都去同一家咖啡馆",
+                  "english": "every time I come here I go to the same café"
+                },
+                "この まちに くる わりに、おなじ カフェに いきます": {
+                  "gloss": "✗ 意思不通：这里不是“虽然……却”",
+                  "english": "doesn't fit: not a contrast"
+                },
+                "この まちに きづらい、おなじ カフェに いきます": {
+                  "gloss": "✗ 错误形式：づらい 不能这样连接后句",
+                  "english": "not a real form"
+                }
+              },
               "answerTranslation": "每次来这个城市都去同一家咖啡馆。",
               "ambiguityNote": "中文：每次来这个城市都去同一家咖啡馆。"
             }
@@ -2881,6 +4801,20 @@
                 "おきられない ことも ないですが、たいへんです"
               ],
               "canonicalAnswer": "おきられない ことも ないですが、たいへんです",
+              "optionNotes": {
+                "おきられない ことも ないですが、たいへんです": {
+                  "gloss": "也不是起不来，但很辛苦",
+                  "english": "it's not impossible to get up, but it's hard"
+                },
+                "おきられる ことも ないです": {
+                  "gloss": "✗ 意思不对：要用否定形 ～ない ことも ない",
+                  "english": "wrong: needs the negative ～ない"
+                },
+                "おきない たびに たいへんです": {
+                  "gloss": "✗ 意思不通",
+                  "english": "doesn't make sense"
+                }
+              },
               "answerTranslation": "也不是起不来，但很辛苦。",
               "ambiguityNote": "中文：也不是起不来，但很辛苦。　提示：～ないこともない＝也不是不能（但……）。"
             },
@@ -2897,6 +4831,20 @@
                 "できない ことも ないですが、ふべんだと おもいます"
               ],
               "canonicalAnswer": "できない ことも ないですが、ふべんだと おもいます",
+              "optionNotes": {
+                "できない ことも ないですが、ふべんだと おもいます": {
+                  "gloss": "也不是不行，但我想会不方便",
+                  "english": "it's not impossible, but inconvenient"
+                },
+                "できる ことも ないです": {
+                  "gloss": "✗ 意思不对：要用否定形 ～ない ことも ない",
+                  "english": "wrong: needs the negative ～ない"
+                },
+                "できない わりに ふべんです": {
+                  "gloss": "✗ 意思不通",
+                  "english": "doesn't make sense"
+                }
+              },
               "answerTranslation": "也不是不能，但我想会很不方便。",
               "ambiguityNote": "中文：也不是不能，但我想会很不方便。　提示：～ないこともない＝也不是不能（但……）。"
             }

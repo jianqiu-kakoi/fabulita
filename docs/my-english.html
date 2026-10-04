@@ -4368,13 +4368,21 @@
         "</div></article>";
     }).join("") + "</div>";
   }
+  // Item-level meanings (optionNotes) win over the vocabulary lookup, so
+  // conjugated forms and whole-phrase options can still be explained.
+  function homeworkOptionNote(item, option) {
+    var notes = item && item.optionNotes && typeof item.optionNotes === "object" ? item.optionNotes : null;
+    var note = notes && Object.prototype.hasOwnProperty.call(notes, option) ? notes[option] : null;
+    if (!note || typeof note.gloss !== "string") return null;
+    return { gloss: note.gloss, english: typeof note.english === "string" ? note.english : "" };
+  }
   function homeworkOptionMeaningRows(assignment, item, response) {
     if (!response || !response.status || !item || !Array.isArray(item.options)) return [];
     if (Array.isArray(item.imageOptions) && item.imageOptions.length) return [];
     var accepted = (Array.isArray(item.answers) ? item.answers : []).map(homeworkNormalize);
     var selected = homeworkNormalize(response.answer || "");
     return item.options.map(function (option) {
-      var word = homeworkFeedbackWordByText(assignment, option);
+      var word = homeworkOptionNote(item, option) || homeworkFeedbackWordByText(assignment, option);
       return {
         option: option,
         gloss: word ? word.gloss : "—",
@@ -4405,7 +4413,7 @@
       return homeworkNormalize(answer) === submitted;
     });
     if (!accepted) return null;
-    var word = homeworkFeedbackWordByText(assignment, accepted) ||
+    var word = homeworkOptionNote(item, accepted) || homeworkFeedbackWordByText(assignment, accepted) ||
       homeworkFeedbackWordByText(assignment, item.canonicalAnswer || "");
     if (!word) return null;
     return { word: accepted, gloss: word.gloss, english: word.english };
