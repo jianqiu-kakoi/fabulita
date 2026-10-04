@@ -763,12 +763,12 @@ def lesson_te() -> dict:
         ("みる", "一段动词", "み-る：る 前面是 i 段。"),
         ("かう", "五段动词", "不以 る 结尾。"),
         ("よむ", "五段动词", "不以 る 结尾。"),
-        ("つくる", "五段动词", "つく-る：る 前面是 u 段，所以是五段。"),
-        ("かえる（回家）", "五段动词", "例外：看起来像一段，其实是五段（かえって）。"),
-        ("はいる", "五段动词", "例外：看起来像一段，其实是五段（はいって）。"),
+        ("つくる", "五段动词", "つ-く-る：る 前面的 く 是 u 段。る 前面是 a・u・o 段的一定是五段。"),
+        ("かえる（回家）", "五段动词", "例外：え 是 e 段，看起来像一段，其实是五段：かえらない・かえります・かえって。（かえる＝改变 才是一段：かえない・かえます）"),
+        ("はいる", "五段动词", "例外：い 是 i 段，看起来像一段，其实是五段：はいらない・はいります・はいって。"),
         ("おきる", "一段动词", "お-き-る：る 前面是 i 段。"),
         ("ねる", "一段动词", "ね-る：る 前面是 e 段。"),
-        ("はしる", "五段动词", "例外：看起来像一段，其实是五段（はしって）。"),
+        ("はしる", "五段动词", "例外：し 是 i 段，看起来像一段，其实是五段：はしらない・はしります・はしって。"),
         ("する", "不规则动词", "只有 する 和 くる 是不规则动词。"),
         ("くる", "不规则动词", "只有 する 和 くる 是不规则动词。"),
     ]
@@ -1371,8 +1371,121 @@ def lesson_masu() -> dict:
     }
 
 
+# ── 中译日：同一句换时态 ────────────────────────────────────────────────
+TENSE_LABELS = {
+    "masu": ("礼貌体 · 现在 / 习惯 / 将来", "ます"),
+    "mashita": ("礼貌体 · 过去", "ました"),
+    "masen": ("礼貌体 · 否定", "ません"),
+    "masendeshita": ("礼貌体 · 过去否定", "ませんでした"),
+    "teimasu": ("正在 / 一直在（て形＋います）", "ています"),
+    "teimashita": ("当时正在（て形＋いました）", "ていました"),
+    "ta": ("随意体 · 过去", "た"),
+    "nai": ("随意体 · 否定", "ない"),
+    "tai": ("想……（ます形去ます＋たいです）", "たいです"),
+}
+# (slug, 中文动作, verb forms, [(tense, time/extra chunks, 中文句子)])
+TENSE_SENTENCES = [
+    ("nomu", "喝咖啡", {"masu": "のみます", "mashita": "のみました", "masen": "のみません",
+                        "masendeshita": "のみませんでした", "teimasu": "のんでいます", "ta": "のんだ",
+                        "tai": "のみたいです"},
+     ["コーヒーを"],
+     [("masu", ["まいにち"], "我每天喝咖啡。"), ("mashita", ["きのう"], "我昨天喝了咖啡。"),
+      ("masendeshita", ["きのう"], "我昨天没喝咖啡。"), ("teimasu", ["いま"], "我现在正在喝咖啡。"),
+      ("tai", ["いま"], "我现在想喝咖啡。")]),
+    ("miru", "看电影", {"masu": "みます", "mashita": "みました", "masen": "みません",
+                       "masendeshita": "みませんでした", "teimasu": "みています", "ta": "みた", "tai": "みたいです"},
+     ["えいがを"],
+     [("masu", ["しゅうまつ"], "我周末看电影。"), ("mashita", ["せんしゅう"], "我上周看了电影。"),
+      ("masen", ["あまり"], "我不怎么看电影。"), ("ta", ["きのう"], "我昨天看了电影。（随意体）"),
+      ("tai", ["あした"], "我明天想看电影。")]),
+    ("benkyou", "学日语", {"masu": "べんきょうします", "mashita": "べんきょうしました",
+                          "masen": "べんきょうしません", "masendeshita": "べんきょうしませんでした",
+                          "teimasu": "べんきょうしています", "teimashita": "べんきょうしていました",
+                          "ta": "べんきょうした"},
+     ["にほんごを"],
+     [("masu", ["まいにち"], "我每天学日语。"), ("teimasu", ["いま"], "我现在正在学日语。"),
+      ("teimashita", ["きのうの よる"], "昨天晚上我一直在学日语。"),
+      ("masendeshita", ["せんしゅう"], "上周我没学日语。"), ("ta", ["きのう"], "我昨天学了日语。（随意体）")]),
+    ("iku", "去学校", {"masu": "いきます", "mashita": "いきました", "masen": "いきません",
+                      "masendeshita": "いきませんでした", "nai": "いかない", "ta": "いった", "tai": "いきたいです"},
+     ["がっこうへ"],
+     [("masu", ["あした"], "我明天去学校。"), ("masen", ["あした"], "我明天不去学校。"),
+      ("mashita", ["きのう"], "我昨天去了学校。"), ("nai", ["あした"], "我明天不去学校。（随意体）"),
+      ("ta", ["きのう"], "我昨天去了学校。（随意体）")]),
+    ("taberu", "吃早饭", {"masu": "たべます", "mashita": "たべました", "masen": "たべません",
+                         "masendeshita": "たべませんでした", "teimasu": "たべています", "nai": "たべない",
+                         "ta": "たべた"},
+     ["あさごはんを"],
+     [("masu", ["まいあさ"], "我每天早上吃早饭。"), ("masendeshita", ["けさ"], "今天早上我没吃早饭。"),
+      ("teimasu", ["いま"], "我现在正在吃早饭。"), ("nai", ["けさは"], "今天早上我不吃早饭。（随意体）"),
+      ("mashita", ["けさ"], "今天早上我吃了早饭。")]),
+    ("yomu", "看书", {"masu": "よみます", "mashita": "よみました", "masen": "よみません",
+                     "masendeshita": "よみませんでした", "teimasu": "よんでいます", "teimashita": "よんでいました",
+                     "ta": "よんだ"},
+     ["ほんを"],
+     [("masu", ["よる"], "我晚上看书。"), ("teimashita", ["でんわが きたとき"], "电话来的时候，我正在看书。"),
+      ("teimasu", ["いま"], "我现在正在看书。"), ("mashita", ["せんしゅうまつ"], "上周末我看了书。"),
+      ("ta", ["せんしゅうまつ"], "上周末我看了书。（随意体）")]),
+    ("kau", "买衣服", {"masu": "かいます", "mashita": "かいました", "masen": "かいません",
+                      "masendeshita": "かいませんでした", "nai": "かわない", "ta": "かった", "tai": "かいたいです"},
+     ["ふくを"],
+     [("mashita", ["きのう"], "我昨天买了衣服。"), ("masendeshita", ["きのう"], "我昨天没买衣服。"),
+      ("tai", ["あたらしい"], "我想买新衣服。"), ("ta", ["きのう"], "我昨天买了衣服。（随意体）"),
+      ("nai", ["もう"], "我不再买衣服了。（随意体）")]),
+    ("au", "见朋友", {"masu": "あいます", "mashita": "あいました", "masen": "あいません",
+                     "masendeshita": "あいませんでした", "teimasu": "あっています", "nai": "あわない", "ta": "あった",
+                     "tai": "あいたいです"},
+     ["ともだちに"],
+     [("masu", ["あした"], "我明天见朋友。"), ("mashita", ["せんしゅう"], "我上周见了朋友。"),
+      ("masendeshita", ["せんしゅう"], "我上周没见朋友。"), ("tai", ["はやく"], "我想早点见到朋友。"),
+      ("ta", ["きのう"], "我昨天见了朋友。（随意体）")]),
+]
+
+
+def lesson_tense() -> dict:
+    p = "jp-tense"
+    sections = []
+    for part, (slug, action, forms, objects, variants) in enumerate(TENSE_SENTENCES, start=1):
+        items = []
+        for n, (tense, extras, chinese) in enumerate(variants, start=1):
+            right = [*extras, *objects, forms[tense]]
+            chunks = [part_ for chunk in right for part_ in chunk.split()]
+            others = [form for key, form in forms.items() if key != tense]
+            decoys = _rng(p, slug, n).sample(others, 3)
+            tile_list = chunks + decoys
+            _rng(p, slug, n, "order").shuffle(tile_list)
+            answer = " ".join(chunks)
+            label = TENSE_LABELS[tense][0]
+            items.append({
+                "id": f"{p}-{slug}-{n:02d}",
+                "number": n,
+                "prompt": "中译日：" + chinese,
+                "wordTiles": tile_list,
+                "tileJoiner": "",
+                "answers": ["".join(chunks), answer],
+                "canonicalAnswer": answer,
+                "answerTranslation": chinese,
+                "ambiguityNote": f"提示：{label} → ～{TENSE_LABELS[tense][1]}",
+            })
+        sections.append(section(f"{p}-{slug}", f"{'①②③④⑤⑥⑦⑧'[part - 1]} {action}",
+                                "看中文，点词块拼出日语。动词的几种时态混在一起，选对那一个。", "text_input", items))
+    return assignment(
+        "tense", "日语 中译日：同一句换时态（ます · ました · ません · ています · た）",
+        "練習：中国語から日本語へ・時制",
+        sections,
+        tables=[table(f"{p}-ref", "时态", "动词时态一览（以 のむ＝喝 为例）", [
+            ("礼貌体 · 现在 / 习惯 / 将来", "のみます"), ("礼貌体 · 过去", "のみました"),
+            ("礼貌体 · 否定", "のみません"), ("礼貌体 · 过去否定", "のみませんでした"),
+            ("正在 / 一直在", "のんでいます"), ("当时正在", "のんでいました"),
+            ("随意体 · 过去", "のんだ"), ("随意体 · 否定", "のまない"), ("想……", "のみたいです"),
+        ])],
+        heading="先看时态表：同一个动词怎么变",
+        intro="日语的现在和将来用同一个形式（のみます），靠时间词区分：まいにち（习惯）、あした（将来）、きのう（过去）。",
+    )
+
+
 def build_assignments() -> list[dict]:
-    built = [lesson_te(), lesson_nai(), lesson_masu(), lesson_pictures(), lesson_past(), lesson_potential(), lesson_plans(), lesson_keep(),
+    built = [lesson_te(), lesson_nai(), lesson_masu(), lesson_pictures(), lesson_tense(), lesson_past(), lesson_potential(), lesson_plans(), lesson_keep(),
              lesson_looks(), lesson_easy(), lesson_warini()]
     for item in built:
         notes = LESSON_NOTES.get(item["id"][len(PREFIX):])
@@ -1390,11 +1503,20 @@ def _avoid_answer_leaks(assignment: dict) -> None:
     Only real words are in the furigana table, so in a form drill the right
     answer would be the one with kanji; plain kana keeps the choice fair.
     """
+    def marked(text: str) -> bool:
+        return any(markup for _surface, markup in furigana_segments(text))
+
     for sec in assignment["sections"]:
         for it in sec["items"]:
-            group = it.get("wordTiles") or it.get("options") or []
-            looks = {any(markup for _surface, markup in furigana_segments(text)) for text in group}
-            if len(looks) > 1:
+            if it.get("options"):
+                groups = [it["options"]]
+            else:
+                # Tiles compete only with look-alikes (same first kana): 食べます vs 食べました.
+                by_start: dict[str, list[str]] = {}
+                for tile in it.get("wordTiles", []):
+                    by_start.setdefault(tile[:1], []).append(tile)
+                groups = list(by_start.values())
+            if any(len({marked(text) for text in group}) > 1 for group in groups):
                 it["plainOptions"] = True
 
 

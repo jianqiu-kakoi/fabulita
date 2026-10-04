@@ -259,7 +259,7 @@ def test_public_japanese_practice_is_committed_and_well_formed():
     committed = Project(MY_JAPANESE).homeworks
     assert committed == built
     items = [item for assignment in built for item in _items(assignment)]
-    assert len(items) == len({item["id"] for item in items}) == 338
+    assert len(items) == len({item["id"] for item in items}) == 378
     assert [a["id"] for a in built[:4]] == ["jp-practice-te", "jp-practice-nai", "jp-practice-masu", "jp-practice-pictures"]
     # Picture questions only use reviewed images copied into this project.
     for assignment in built:
@@ -377,7 +377,14 @@ def test_furigana_never_singles_out_one_option():
     for assignment in japanese_builder.build_assignments():
         for section in assignment["sections"]:
             for item in section["items"]:
-                group = item.get("wordTiles") or item.get("options") or []
-                looks = {any(m for _s, m in furigana.segments(text)) for text in group}
-                if len(looks) > 1:
-                    assert item.get("plainOptions") is True, item["id"]
+                if item.get("options"):
+                    groups = [item["options"]]
+                else:
+                    by_start = {}
+                    for tile in item.get("wordTiles", []):
+                        by_start.setdefault(tile[:1], []).append(tile)
+                    groups = list(by_start.values())
+                for group in groups:
+                    looks = {any(m for _s, m in furigana.segments(text)) for text in group}
+                    if len(looks) > 1:
+                        assert item.get("plainOptions") is True, item["id"]
