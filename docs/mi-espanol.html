@@ -624,6 +624,24 @@
   .homework-reference {
     margin: 0 0 1rem; border: 1px solid #d8e4d1; border-radius: 11px; background: #f2f8ef;
   }
+  .homework-notes {
+    margin: 0 0 1rem; border: 1px solid #e6d9bf; border-radius: 11px; background: #fbf6ea;
+  }
+  .homework-notes > summary {
+    padding: 0.85rem 1rem; color: #6b4f16; font-size: 0.78rem; font-weight: 850; cursor: pointer;
+  }
+  .homework-notes-body { display: grid; gap: 0.75rem; padding: 0 1rem 1rem; }
+  .homework-note-card {
+    min-width: 0; padding: 0.75rem 0.85rem; border: 1px solid rgba(107,79,22,0.16); border-radius: 9px; background: #fff;
+  }
+  .homework-note-card h3 { margin: 0 0 0.4rem; color: #6b4f16; font-size: 0.86rem; }
+  .homework-note-card ul { margin: 0; padding-left: 1.1rem; font-size: 0.76rem; line-height: 1.65; }
+  .homework-note-examples { margin: 0.5rem 0 0; padding: 0; list-style: none; }
+  .homework-note-examples li {
+    padding: 0.35rem 0; border-top: 1px dashed rgba(107,79,22,0.18); font-size: 0.8rem; line-height: 1.5;
+  }
+  .homework-note-examples li:first-child { border-top: 0; }
+  .homework-note-examples small { display: block; color: var(--v-muted); font-size: 0.7rem; }
   .homework-reference > summary {
     padding: 0.85rem 1rem; color: #315f3c; font-size: 0.78rem; font-weight: 850; cursor: pointer;
   }
@@ -1597,6 +1615,7 @@
     homeworkStudyNotice: "",
     homeworkSentenceWordId: "",
     homeworkReferenceOpen: true,
+    homeworkNotesOpen: false,
     homeworkScenarioIntro: false,
     homeworkScenarioTeaching: false,
     homeworkTeachingWordKey: "",
@@ -3651,6 +3670,27 @@
           pct + '%"></span></span><small>' + esc(hint) + "</small></button>";
       }).join("") + "</nav>";
   }
+  // Optional lesson notes: [{title, points: [..], examples: [{text, translation}]}].
+  function homeworkLessonNotesHtml(assignment) {
+    var notes = assignment && Array.isArray(assignment.lessonNotes) ?
+      assignment.lessonNotes.filter(function (note) { return note && typeof note.title === "string"; }) : [];
+    if (!notes.length) return "";
+    var lang = esc(P.config.lang || "");
+    return '<details class="homework-notes"' + (state.homeworkNotesOpen ? " open" : "") +
+      '><summary data-homework-notes-toggle>' + esc(assignment.lessonNotesHeading || "先读笔记") + '</summary>' +
+      '<div class="homework-notes-body">' + notes.map(function (note) {
+        var points = Array.isArray(note.points) ? note.points : [];
+        var examples = Array.isArray(note.examples) ? note.examples : [];
+        return '<section class="homework-note-card"><h3>' + esc(note.title) + '</h3>' +
+          (points.length ? '<ul>' + points.map(function (point) {
+            return '<li>' + esc(point) + '</li>';
+          }).join("") + '</ul>' : "") +
+          (examples.length ? '<ul class="homework-note-examples">' + examples.map(function (example) {
+            return '<li><span lang="' + lang + '">' + esc(example.text || "") + '</span>' +
+              (example.translation ? '<small>' + esc(example.translation) + '</small>' : "") + '</li>';
+          }).join("") + '</ul>' : "") + '</section>';
+      }).join("") + '</div></details>';
+  }
   function homeworkReferenceTablesHtml(assignment) {
     var tables = assignment && Array.isArray(assignment.referenceTables) ?
       assignment.referenceTables.filter(function (table) {
@@ -3698,6 +3738,8 @@
     state.homeworkSentenceWordId = "";
     state.homeworkTeachingWordKey = "";
     state.homeworkReferenceOpen = true;
+    // Notes start open on a fresh assignment and folded once work has begun.
+    state.homeworkNotesOpen = !progress.currentItemId && !progress.completedAt;
     state.homeworkScenarioIntro = homeworkIsScenario(assignment) && !skipScenarioIntro &&
       !progress.completedAt && !progress.currentItemId && !rememberedTab;
     state.homeworkScenarioTeaching = homeworkIsScenario(assignment) && !skipScenarioIntro &&
@@ -5238,7 +5280,7 @@
       homeworkVisualPromptHtml(assignment, entry.item) +
       '<h2 class="homework-prompt" id="homework-question-title" tabindex="-1">' + esc(entry.item.prompt) + "</h2>");
     return (homeworkIsScenario(assignment) ? "" : homeworkStudyCalloutHtml(assignment)) +
-      homeworkReferenceTablesHtml(assignment) +
+      homeworkLessonNotesHtml(assignment) + homeworkReferenceTablesHtml(assignment) +
       dashboardHomeworkTypeProgressHtml(assignment) +
       '<section class="homework-sheet' + (homeworkIsScenario(assignment) ? " is-dialogue" : "") +
       '" aria-labelledby="homework-question-title">' +
@@ -5278,7 +5320,8 @@
       summaryStats += '<div class="homework-summary-stat"><strong>' + stats.selfReviewed +
         '</strong><span>开放题已保存</span></div>';
     }
-    return homeworkReferenceTablesHtml(assignment) + dashboardHomeworkTypeProgressHtml(assignment) +
+    return homeworkLessonNotesHtml(assignment) + homeworkReferenceTablesHtml(assignment) +
+      dashboardHomeworkTypeProgressHtml(assignment) +
       '<section class="homework-summary" aria-labelledby="homework-summary-title"><span class="homework-summary-mark" aria-hidden="true">' +
       (gradedTotal ? stats.firstCorrect : stats.selfReviewed) +
       '</span><h2 id="homework-summary-title" tabindex="-1">本次作业结果</h2><p>' + completionText + '</p>' +
@@ -6789,6 +6832,11 @@
       return;
     }
     disarmDelete();
+    if ((el = e.target.closest("[data-homework-notes-toggle]"))) {
+      var notesDetails = el.closest("details");
+      state.homeworkNotesOpen = !(notesDetails && notesDetails.open);
+      return;
+    }
     if ((el = e.target.closest("[data-homework-reference-toggle]"))) {
       var referenceDetails = el.closest("details");
       state.homeworkReferenceOpen = !(referenceDetails && referenceDetails.open);

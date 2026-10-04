@@ -24,6 +24,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+from my_japanese_lesson_notes import LESSON_NOTES  # noqa: E402
 from my_japanese_option_notes import OPTION_NOTES  # noqa: E402
 
 
@@ -707,18 +708,108 @@ def lesson_warini() -> dict:
     )
 
 
+# ── 0. て形 ──────────────────────────────────────────────────────────
+def lesson_te() -> dict:
+    p = "jp-te"
+    groups = ["一段动词", "五段动词", "不规则动词"]
+    group_items = [
+        ("たべる", "一段动词", "た-べ-る：る 前面是 e 段。"),
+        ("みる", "一段动词", "み-る：る 前面是 i 段。"),
+        ("かう", "五段动词", "不以 る 结尾。"),
+        ("よむ", "五段动词", "不以 る 结尾。"),
+        ("つくる", "五段动词", "つく-る：る 前面是 u 段，所以是五段。"),
+        ("かえる（回家）", "五段动词", "例外：看起来像一段，其实是五段（かえって）。"),
+        ("はいる", "五段动词", "例外：看起来像一段，其实是五段（はいって）。"),
+        ("おきる", "一段动词", "お-き-る：る 前面是 i 段。"),
+        ("ねる", "一段动词", "ね-る：る 前面是 e 段。"),
+        ("はしる", "五段动词", "例外：看起来像一段，其实是五段（はしって）。"),
+        ("する", "不规则动词", "只有 する 和 くる 是不规则动词。"),
+        ("くる", "不规则动词", "只有 する 和 くる 是不规则动词。"),
+    ]
+    group_choices = [
+        choice(f"{p}-group-{n:02d}", n, f"{verb} 是哪一类动词？", answer,
+               [g for g in groups if g != answer], note=note)
+        for n, (verb, answer, note) in enumerate(group_items, start=1)
+    ]
+    forms = [
+        ("かう", "かって", ["かいて", "かうて", "かんで"], "う → って"),
+        ("まつ", "まって", ["まちて", "まつて", "まんで"], "つ → って"),
+        ("つくる", "つくって", ["つくて", "つくりて", "つくんで"], "五段 る → って"),
+        ("よむ", "よんで", ["よみて", "よって", "よむで"], "む → んで"),
+        ("あそぶ", "あそんで", ["あそびて", "あそって", "あそぶて"], "ぶ → んで"),
+        ("しぬ", "しんで", ["しにて", "しって", "しぬて"], "ぬ → んで"),
+        ("かく", "かいて", ["かきて", "かって", "かいで"], "く → いて"),
+        ("きく", "きいて", ["ききて", "きって", "きいで"], "く → いて"),
+        ("およぐ", "およいで", ["およぎて", "およいて", "およって"], "ぐ → いで"),
+        ("はなす", "はなして", ["はなって", "はなすて", "はないて"], "す → して"),
+        ("たべる", "たべて", ["たべって", "たべりて", "たべんで"], "一段：去 る＋て"),
+        ("みる", "みて", ["みって", "みりて", "みんで"], "一段：去 る＋て"),
+        ("いく", "いって", ["いいて", "いきて", "いくて"], "例外：いく → いって"),
+        ("する", "して", ["すて", "しって", "すって"], "不规则：する → して"),
+        ("くる", "きて", ["くて", "こって", "きって"], "不规则：くる → きて"),
+        ("かえる（回家）", "かえって", ["かえて", "かえりて", "かえんで"], "かえる 是五段：る → って"),
+        ("はいる", "はいって", ["はいて", "はいりて", "はいんで"], "はいる 是五段：る → って"),
+        ("のむ", "のんで", ["のみて", "のって", "のむで"], "む → んで"),
+    ]
+    form_choices = [
+        choice(f"{p}-form-{n:02d}", n, f"{verb} → て形", answer, wrong, note=note)
+        for n, (verb, answer, wrong, note) in enumerate(forms, start=1)
+    ]
+    past = [
+        ("よんで", "よんだ", ["よんた", "よみた"]),
+        ("かいて", "かいた", ["かいだ", "かきた"]),
+        ("はなして", "はなした", ["はなしだ", "はなった"]),
+        ("いって", "いった", ["いきた", "いいた"]),
+        ("およいで", "およいだ", ["およいた", "およぎた"]),
+        ("たべて", "たべた", ["たべだ", "たべった"]),
+    ]
+    past_choices = [
+        choice(f"{p}-ta-{n:02d}", n, f"{te} → た形（过去式）", answer, wrong, note="て→た，で→だ。")
+        for n, (te, answer, wrong) in enumerate(past, start=1)
+    ]
+    sentences = [
+        (f"ちょっと {GAP} ください。（まつ）", "まって", ["まちて", "まつて"], "请稍等一下。"),
+        (f"ここで くつを {GAP} ください。（ぬぐ）", "ぬいで", ["ぬいて", "ぬぎて"], "请在这里脱鞋。"),
+        (f"しゅくだいを {GAP} おきます。（する）", "して", ["すて", "しって"], "我先把作业做好。"),
+        (f"あさごはんを {GAP}、がっこうへ いきます。（たべる）", "たべて", ["たべって", "たべりて"],
+         "吃完早饭去学校。"),
+        (f"でんしゃに {GAP} いきます。（のる）", "のって", ["のりて", "のんで"], "坐电车去。"),
+        (f"きのうの よる、おんがくを {GAP} いました。（きく）", "きいて", ["きって", "ききて"], "昨晚我在听音乐。"),
+    ]
+    sentence_choices = [
+        choice(f"{p}-sent-{n:02d}", n, prompt, answer, wrong, zh)
+        for n, (prompt, answer, wrong, zh) in enumerate(sentences, start=1)
+    ]
+    return assignment(
+        "te", "日语 ⓪ て形：怎么变、怎么认（先学这个）",
+        "練習：て形",
+        [
+            section(f"{p}-group", "① 判断动词类别", "先判断动词是一段、五段还是不规则动词。", "single_choice", group_choices),
+            section(f"{p}-form", "② 变成て形", "按类别和最后一个字变成て形。", "single_choice", form_choices),
+            section(f"{p}-ta", "③ て形 → た形", "把 て 换成 た、で 换成 だ。", "single_choice", past_choices),
+            section(f"{p}-sent", "④ 句子里用て形", "看括号里的动词，选出正确的て形。", "single_choice", sentence_choices),
+        ],
+    )
+
+
 def build_assignments() -> list[dict]:
-    return [lesson_past(), lesson_potential(), lesson_plans(), lesson_keep(),
-            lesson_looks(), lesson_easy(), lesson_warini()]
+    built = [lesson_te(), lesson_past(), lesson_potential(), lesson_plans(), lesson_keep(),
+             lesson_looks(), lesson_easy(), lesson_warini()]
+    for item in built:
+        notes = LESSON_NOTES.get(item["id"][len(PREFIX):])
+        if notes:
+            item["lessonNotes"] = notes
+            item["lessonNotesHeading"] = "先读笔记：" + item["title"].split(" ", 2)[-1]
+    return built
 
 
 def upsert(homework_path: Path, new_assignments: list[dict]) -> None:
     data = json.loads(homework_path.read_text(encoding="utf-8"))
-    by_id = {assignment["id"]: assignment for assignment in new_assignments}
-    kept = []
-    for existing in data.get("assignments", []):
-        kept.append(by_id.pop(existing.get("id"), existing))
-    data["assignments"] = kept + [a for a in new_assignments if a["id"] in by_id]
+    # Generated assignments follow the builder's lesson order; progress is
+    # stored per assignment id, so reordering never touches saved answers.
+    generated = {assignment["id"] for assignment in new_assignments}
+    others = [a for a in data.get("assignments", []) if a.get("id") not in generated]
+    data["assignments"] = others + list(new_assignments)
     homework_path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
