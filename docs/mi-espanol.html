@@ -3296,14 +3296,19 @@
     return !!item && Array.isArray(item.wordTiles) && item.wordTiles.length > 0 &&
       item.answerMode !== "self_review";
   }
+  // tileJoiner "" suits languages written without spaces (Japanese).
+  function homeworkTileJoiner(item) {
+    return typeof item.tileJoiner === "string" ? item.tileJoiner : " ";
+  }
   function homeworkTileSelection(item, answer) {
     var tiles = item.wordTiles, rest = homeworkNormalize(answer), used = [], picked = [];
+    var spaced = homeworkTileJoiner(item) !== "";
     while (rest) {
       var best = -1, bestLength = 0;
       for (var i = 0; i < tiles.length; i++) {
         var tile = homeworkNormalize(tiles[i]);
         if (used[i] || !tile || tile.length <= bestLength) continue;
-        if (rest === tile || rest.indexOf(tile + " ") === 0) { best = i; bestLength = tile.length; }
+        if (rest === tile || rest.indexOf(spaced ? tile + " " : tile) === 0) { best = i; bestLength = tile.length; }
       }
       if (best === -1) return [];
       used[best] = true;
@@ -3313,7 +3318,7 @@
     return picked;
   }
   function homeworkTileAnswer(item, picked) {
-    var text = picked.map(function (index) { return item.wordTiles[index]; }).join(" ");
+    var text = picked.map(function (index) { return item.wordTiles[index]; }).join(homeworkTileJoiner(item));
     return text ? text.charAt(0).toUpperCase() + text.slice(1) : "";
   }
   function homeworkWithoutAccents(value) {
