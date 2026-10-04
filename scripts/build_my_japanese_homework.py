@@ -854,8 +854,285 @@ def verb_form_mix() -> list[dict]:
     return items
 
 
+# ── 图片动词：22 个动作，配已审核的 Icons8 图 ─────────────────────────────
+ACTIONS_FILE = ROOT / "examples" / "my-japanese" / "assets" / "vocab-images" / "actions.json"
+# (picture key, dictionary form, 中文, masu, nai, te, ta)
+ACTION_VERBS = [
+    ("correr", "はしる", "跑", "はしります", "はしらない", "はしって", "はしった"),
+    ("nadar", "およぐ", "游泳", "およぎます", "およがない", "およいで", "およいだ"),
+    ("bailar", "おどる", "跳舞", "おどります", "おどらない", "おどって", "おどった"),
+    ("cantar", "うたう", "唱歌", "うたいます", "うたわない", "うたって", "うたった"),
+    ("comer", "たべる", "吃", "たべます", "たべない", "たべて", "たべた"),
+    ("beber", "のむ", "喝", "のみます", "のまない", "のんで", "のんだ"),
+    ("leer", "よむ", "读", "よみます", "よまない", "よんで", "よんだ"),
+    ("escribir", "かく", "写", "かきます", "かかない", "かいて", "かいた"),
+    ("cocinar", "りょうりする", "做饭", "りょうりします", "りょうりしない", "りょうりして", "りょうりした"),
+    ("caminar", "あるく", "走路", "あるきます", "あるかない", "あるいて", "あるいた"),
+    ("dormir", "ねる", "睡觉", "ねます", "ねない", "ねて", "ねた"),
+    ("estudiar", "べんきょうする", "学习", "べんきょうします", "べんきょうしない", "べんきょうして", "べんきょうした"),
+    ("trabajar", "はたらく", "工作", "はたらきます", "はたらかない", "はたらいて", "はたらいた"),
+    ("hablar", "はなす", "说话", "はなします", "はなさない", "はなして", "はなした"),
+    ("escuchar", "きく", "听", "ききます", "きかない", "きいて", "きいた"),
+    ("mirar", "みる", "看", "みます", "みない", "みて", "みた"),
+    ("comprar", "かう", "买", "かいます", "かわない", "かって", "かった"),
+    ("lavar", "あらう", "洗", "あらいます", "あらわない", "あらって", "あらった"),
+    ("viajar", "りょこうする", "旅行", "りょこうします", "りょこうしない", "りょこうして", "りょこうした"),
+    ("abrir", "あける", "打开", "あけます", "あけない", "あけて", "あけた"),
+    ("esperar", "まつ", "等", "まちます", "またない", "まって", "まった"),
+    ("descansar", "やすむ", "休息", "やすみます", "やすまない", "やすんで", "やすんだ"),
+]
+ACTION_FORM_NAMES = {"dict": "辞书形", "masu": "ます形", "nai": "ない形", "te": "て形", "ta": "た形"}
+
+
+def _action_images() -> tuple[dict, dict]:
+    data = json.loads(ACTIONS_FILE.read_text(encoding="utf-8"))["images"]
+    images, ids = {}, {}
+    for key, *_ in ACTION_VERBS:
+        image = data[key]["image"]
+        assert image.get("reviewed") is True, key
+        image_id = f"jp-action-{key}"
+        images[image_id] = {**image, "deliver": "file"}
+        ids[key] = image_id
+    return images, ids
+
+
+def _verb_forms(row: tuple) -> dict:
+    key, dictionary, zh, masu, nai, te, ta = row
+    return {"dict": dictionary, "masu": masu, "nai": nai, "te": te, "ta": ta}
+
+
+def _rng(*seed: object) -> random.Random:
+    return random.Random(int(hashlib.sha256(":".join(map(str, seed)).encode()).hexdigest(), 16))
+
+
+def picture_choice(item_id: str, number: int, prompt: str, image_id: str, answer: str,
+                   distractors: list[str], notes: dict[str, tuple[str, str]], note: str = "") -> dict:
+    item = choice(item_id, number, prompt, answer, distractors, note=note, option_notes=notes)
+    item["imageId"] = image_id
+    return item
+
+
+def lesson_pictures() -> dict:
+    p = "jp-pic"
+    images, ids = _action_images()
+    verbs = {row[1]: row for row in ACTION_VERBS}
+    names = list(verbs)
+    meaning = {row[1]: (row[2], row[0]) for row in ACTION_VERBS}
+    word_notes = {v: (f"{meaning[v][0]}（辞书形）", "dictionary form") for v in names}
+
+    pick_items = []
+    for n, row in enumerate(ACTION_VERBS, start=1):
+        verb = row[1]
+        wrong = _rng(p, "pick", verb).sample([v for v in names if v != verb], 3)
+        pick_items.append(picture_choice(f"{p}-pick-{n:02d}", n, "看图，选出对应的日语动词。", ids[row[0]],
+                                         verb, wrong, word_notes))
+
+    image_items = []
+    for n, row in enumerate(ACTION_VERBS[:12], start=1):
+        verb = row[1]
+        others = _rng(p, "img", verb).sample([r for r in ACTION_VERBS if r[1] != verb], 2)
+        options = [row, *others]
+        _rng(p, "img-order", verb).shuffle(options)
+        image_items.append({
+            "id": f"{p}-image-{n:02d}",
+            "number": n,
+            "prompt": f"选择与日语 “{verb}” 对应的图片。",
+            "options": [o[1] for o in options],
+            "answers": [verb],
+            "canonicalAnswer": verb,
+            "answerTranslation": row[2],
+            "ambiguityNote": f"中文：{verb}＝{row[2]}",
+            "imageOptions": [{"value": o[1], "imageId": ids[o[0]]} for o in options],
+            "optionNotes": {o[1]: {"gloss": f"{o[2]}（辞书形）", "english": "dictionary form"} for o in options},
+        })
+
+    doing_items = []
+    for n, row in enumerate(ACTION_VERBS[::2], start=1):
+        forms = _verb_forms(row)
+        answer = forms["te"] + "います"
+        wrong = [forms["masu"], forms["nai"], forms["ta"]]
+        notes = {
+            answer: (f"正在{row[2]}（て形＋います）", "is doing (ている)"),
+            forms["masu"]: (f"{row[2]}（ます形：习惯 / 将来）", "does / will do"),
+            forms["nai"]: (f"不{row[2]}（ない形）", "does not"),
+            forms["ta"]: (f"{row[2]}了（た形：过去）", "did"),
+        }
+        doing_items.append(picture_choice(f"{p}-doing-{n:02d}", n, "图里的人现在正在做什么？", ids[row[0]],
+                                          answer, wrong, notes, "正在做 → て形＋います。"))
+
+    return {
+        **assignment(
+            "pictures", "日语 图片动词：看图选词 · 看图选形式",
+            "練習：絵で覚える動詞",
+            [
+                section(f"{p}-pick", "① 看图选动词", "观察图片，从四个动词里选出正确的一个。", "single_choice", pick_items),
+                section(f"{p}-image", "② 日语选图", "读日语动词，从三张图里选出正确的一张。", "single_choice", image_items),
+                section(f"{p}-doing", "③ 正在做什么？", "看图，选出“正在……”的说法：て形＋います。", "single_choice", doing_items),
+            ],
+        ),
+        "images": images,
+        "source": {
+            "title": "Action pictures",
+            "license": "配图按各图库许可使用",
+            "attribution": "插画来自 Icons8，作者、来源和许可随每张配图保留。",
+        },
+    }
+
+
+# ── ⓪-2 ない形 ───────────────────────────────────────────────────────
+def lesson_nai() -> dict:
+    p = "jp-nai"
+    images, ids = _action_images()
+    forms = [
+        ("たべる", "たべない", ["たべらない", "たべわない", "たばない"], "一段：去 る＋ない"),
+        ("みる", "みない", ["みらない", "まない", "みわない"], "一段：去 る＋ない"),
+        ("よむ", "よまない", ["よみない", "よむない", "よめない"], "む → ま＋ない"),
+        ("かく", "かかない", ["かきない", "かけない", "かくない"], "く → か＋ない"),
+        ("はなす", "はなさない", ["はなしない", "はなすない", "はなせない"], "す → さ＋ない"),
+        ("まつ", "またない", ["まちない", "まつない", "まてない"], "つ → た＋ない"),
+        ("あそぶ", "あそばない", ["あそびない", "あそぶない", "あそべない"], "ぶ → ば＋ない"),
+        ("かう", "かわない", ["かあない", "かいない", "かえない"], "う 结尾：う → わ＋ない（不是 あ）"),
+        ("あう", "あわない", ["ああない", "あいない", "あえない"], "う 结尾：う → わ＋ない"),
+        ("いく", "いかない", ["いきない", "いくない", "いけない"], "く → か＋ない"),
+        ("かえる（回家）", "かえらない", ["かえない", "かえりない", "かえれない"], "かえる 是五段：る → ら＋ない"),
+        ("する", "しない", ["すない", "さない", "できない"], "不规则：する → しない"),
+        ("くる", "こない", ["きない", "くない", "こられない"], "不规则：くる → こない"),
+        ("ある", "ない", ["あらない", "ありない", "あない"], "特殊：ある 的否定就是 ない"),
+    ]
+    nai_notes_common = {
+        "たべらない": "一段动词直接去 る＋ない", "たべわない": "一段动词直接去 る＋ない", "たばない": "一段动词直接去 る＋ない",
+        "みらない": "一段动词直接去 る＋ない", "まない": "一段动词直接去 る＋ない", "みわない": "一段动词直接去 る＋ない",
+        "よみない": "五段：う段 → あ段（よま）", "よむない": "五段：う段 → あ段（よま）",
+        "かきない": "五段：う段 → あ段（かか）", "かくない": "五段：う段 → あ段（かか）",
+        "はなしない": "五段：う段 → あ段（はなさ）", "はなすない": "五段：う段 → あ段（はなさ）",
+        "まちない": "五段：う段 → あ段（また）", "まつない": "五段：う段 → あ段（また）",
+        "あそびない": "五段：う段 → あ段（あそば）", "あそぶない": "五段：う段 → あ段（あそば）",
+        "かあない": "う 结尾要变 わ：かわない", "かいない": "う 结尾要变 わ：かわない",
+        "ああない": "う 结尾要变 わ：あわない", "あいない": "う 结尾要变 わ：あわない",
+        "いきない": "五段：く → か（いかない）", "いくない": "五段：く → か（いかない）",
+        "かえない": "かえる（回家）是五段：かえらない", "かえりない": "かえる（回家）是五段：かえらない",
+        "すない": "する → しない", "さない": "する → しない",
+        "きない": "くる → こない", "くない": "くる → こない",
+        "あらない": "ある 的否定是 ない", "ありない": "ある 的否定是 ない", "あない": "ある 的否定是 ない",
+    }
+    real = {
+        "よめない": ("读不了（可能形的否定）", "cannot read"), "かけない": ("写不了（可能形的否定）", "cannot write"),
+        "はなせない": ("说不了（可能形的否定）", "cannot speak"), "まてない": ("等不了（可能形的否定）", "cannot wait"),
+        "あそべない": ("玩不了（可能形的否定）", "cannot play"), "かえない": ("买不了（可能形否定）；回家是 かえらない", "cannot buy"),
+        "あえない": ("见不了（可能形的否定）", "cannot meet"), "いけない": ("去不了；不可以", "cannot go; must not"),
+        "かえれない": ("回不了家（可能形的否定）", "cannot go home"), "できない": ("做不了（可能形的否定）", "cannot do"),
+        "こられない": ("来不了（可能形的否定）", "cannot come"),
+    }
+    form_items = []
+    for n, (verb, answer, wrong, note) in enumerate(forms, start=1):
+        notes = {answer: (f"{verb} 的ない形：不……", "negative (ない)")}
+        for option in wrong:
+            notes[option] = real.get(option) or ("✗ 错误形式：" + nai_notes_common[option], "not a real form")
+        form_items.append(choice(f"{p}-form-{n:02d}", n, f"{verb} → ない形", answer, wrong, note=note,
+                                 option_notes=notes))
+
+    polite = [
+        (f"わたしは おさけを {GAP}。（のむ，礼貌体）", "のみません", ["のまない", "のみませんでした"], "我不喝酒。"),
+        (f"きのうは テレビを {GAP}。（みる，礼貌体过去）", "みませんでした", ["みません", "みなかった"], "昨天我没看电视。"),
+        (f"あした、がっこうへ {GAP}よ。（いく，随意体）", "いかない", ["いきません", "いかなかった"], "明天我不去学校哦。"),
+        (f"けさ、あさごはんを {GAP}。（たべる，随意体过去）", "たべなかった", ["たべない", "たべませんでした"], "今天早上我没吃早饭。"),
+        (f"しゅうまつは しごとを {GAP}。（する，礼貌体）", "しません", ["しない", "しませんでした"], "周末我不工作。"),
+        (f"せんしゅう、ともだちに {GAP}。（あう，随意体过去）", "あわなかった", ["あわない", "あいませんでした"], "上周我没见朋友。"),
+    ]
+    polite_notes = {
+        "のみません": ("不喝（礼貌体现在）", "don't drink (polite)"), "のまない": ("不喝（随意体）", "don't drink (casual)"),
+        "のみませんでした": ("没喝（礼貌体过去）", "didn't drink (polite)"),
+        "みませんでした": ("没看（礼貌体过去）", "didn't watch (polite)"), "みません": ("不看（礼貌体现在）", "don't watch (polite)"),
+        "みなかった": ("没看（随意体过去）", "didn't watch (casual)"),
+        "いかない": ("不去（随意体）", "won't go (casual)"), "いきません": ("不去（礼貌体）", "won't go (polite)"),
+        "いかなかった": ("没去（随意体过去）", "didn't go (casual)"),
+        "たべなかった": ("没吃（随意体过去）", "didn't eat (casual)"), "たべない": ("不吃（随意体现在）", "don't eat (casual)"),
+        "たべませんでした": ("没吃（礼貌体过去）", "didn't eat (polite)"),
+        "しません": ("不做（礼貌体现在）", "don't do (polite)"), "しない": ("不做（随意体）", "don't do (casual)"),
+        "しませんでした": ("没做（礼貌体过去）", "didn't do (polite)"),
+        "あわなかった": ("没见（随意体过去）", "didn't meet (casual)"), "あわない": ("不见（随意体现在）", "don't meet (casual)"),
+        "あいませんでした": ("没见（礼貌体过去）", "didn't meet (polite)"),
+    }
+    polite_items = [
+        choice(f"{p}-polite-{n:02d}", n, prompt, answer, wrong, zh,
+               "礼貌体：ません／ませんでした；随意体：ない／なかった。", option_notes=polite_notes)
+        for n, (prompt, answer, wrong, zh) in enumerate(polite, start=1)
+    ]
+
+    patterns = [
+        (f"ここで しゃしんを とら{GAP}ください。", "ないで", ["なくても", "なければ"], "请不要在这里拍照。", "～ないでください＝请不要……"),
+        (f"あしたは やすみだから、はやく おき{GAP}いいです。", "なくても", ["ないで", "なければ"], "明天休息，不早起也可以。", "～なくてもいい＝不……也可以"),
+        (f"しけんが あるから、べんきょうし{GAP}なりません。", "なければ", ["ないで", "なくても"], "因为有考试，必须学习。", "～なければならない＝必须……"),
+        (f"おなじ まちがいを くりかえさ{GAP}ように します。", "ない", ["ないで", "なければ"], "我会注意不再犯同样的错误。", "～ないように＝为了不……"),
+        (f"よる おそく コーヒーを のま{GAP}ください。ねられませんよ。", "ないで", ["なくても", "なければ"], "晚上请不要喝咖啡，会睡不着哦。", ""),
+        (f"この しゅくだいは きょう ださ{GAP}いいです。らいしゅうで だいじょうぶです。", "なくても", ["ないで", "なければ"],
+         "这个作业今天不交也可以，下周就行。", ""),
+    ]
+    pattern_notes = {
+        "ないで": ("（～ないで）ください＝请不要……", "please don't"),
+        "なくても": ("（～なくても）いい＝不……也可以", "don't have to"),
+        "なければ": ("（～なければ）ならない＝必须……", "must"),
+        "ない": ("ない形本身＝不……", "not"),
+    }
+    pattern_items = [
+        choice(f"{p}-pattern-{n:02d}", n, prompt, answer, wrong, zh, note, option_notes=pattern_notes)
+        for n, (prompt, answer, wrong, zh, note) in enumerate(patterns, start=1)
+    ]
+
+    picture_items = []
+    for n, row in enumerate(ACTION_VERBS[1::3], start=1):
+        f = _verb_forms(row)
+        wrong = [f["masu"], f["te"], f["ta"]]
+        notes = {
+            f["nai"]: (f"不{row[2]}（ない形）", "does not"),
+            f["masu"]: (f"{row[2]}（ます形）", "does (polite)"),
+            f["te"]: (f"{row[2]}（て形）", "て-form"),
+            f["ta"]: (f"{row[2]}了（た形）", "did"),
+        }
+        picture_items.append(picture_choice(f"{p}-pic-{n:02d}", n, "看图：这个动作的ない形是？", ids[row[0]],
+                                            f["nai"], wrong, notes))
+
+    return {
+        **assignment(
+            "nai", "日语 ⓪-2 ない形：不……（ません · ないで · なければ）",
+            "練習：ない形",
+            [
+                section(f"{p}-form", "① 变成ない形", "按动词类别变成ない形。注意 う 结尾要变 わ。", "single_choice", form_items),
+                section(f"{p}-polite", "② 礼貌体 / 随意体的否定", "看括号里的要求，选出正确的否定形式。",
+                        "single_choice", polite_items),
+                section(f"{p}-pattern", "③ ない形＋固定说法", "ないでください／なくてもいい／なければならない／ないように。",
+                        "single_choice", pattern_items),
+                section(f"{p}-pic", "④ 看图选ない形", "看图想想是什么动作，再选出它的ない形。", "single_choice", picture_items),
+            ],
+            tables=[
+                table(f"{p}-rule", "ない形", "ない形：五段把最后的 う段音 → あ段＋ない", [
+                    ("一段：去 る＋ない", "たべる→たべない · みる→みない"),
+                    ("五段：う段 → あ段＋ない", "よむ→よまない · かく→かかない · はなす→はなさない"),
+                    ("五段 う 结尾：う → わ（坑）", "かう→かわない · あう→あわない"),
+                    ("不规则", "する→しない · くる→こない"),
+                    ("特殊", "ある→ない"),
+                ]),
+                table(f"{p}-row", "あいう", "同一行对照：ない形（あ段）· ます形（い段）· 辞书形（う段）", [
+                    ("かく", "かかない · かきます · かく"),
+                    ("よむ", "よまない · よみます · よむ"),
+                    ("まつ", "またない · まちます · まつ"),
+                    ("かう", "かわない · かいます · かう"),
+                ]),
+            ],
+            heading="先看规则表：ない形怎么变",
+            intro="和ます形同一个思路：五段动词换最后一个音。ます形换成い段，ない形换成あ段；う 结尾的要换成 わ。",
+        ),
+        "images": images,
+        "source": {
+            "title": "Action pictures",
+            "license": "配图按各图库许可使用",
+            "attribution": "插画来自 Icons8，作者、来源和许可随每张配图保留。",
+        },
+    }
+
+
 def build_assignments() -> list[dict]:
-    built = [lesson_te(), lesson_past(), lesson_potential(), lesson_plans(), lesson_keep(),
+    built = [lesson_te(), lesson_nai(), lesson_pictures(), lesson_past(), lesson_potential(), lesson_plans(), lesson_keep(),
              lesson_looks(), lesson_easy(), lesson_warini()]
     for item in built:
         notes = LESSON_NOTES.get(item["id"][len(PREFIX):])
