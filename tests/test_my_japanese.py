@@ -1,3 +1,4 @@
+import importlib.util
 import json
 import subprocess
 from pathlib import Path
@@ -11,6 +12,18 @@ from scripts.build_docs import VOCAB_APPS
 
 REPO = Path(__file__).parent.parent
 MY_JAPANESE = REPO / "examples" / "my-japanese"
+
+
+def _load_builder():
+    spec = importlib.util.spec_from_file_location(
+        "build_my_japanese_homework", REPO / "scripts" / "build_my_japanese_homework.py"
+    )
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+japanese_builder = _load_builder()
 
 
 def _local_assignments():
@@ -43,10 +56,17 @@ def test_my_japanese_is_an_independent_vocab_app(tmp_path):
     assert config["tts"]["voice"] == "ja-JP-NanamiNeural"
     assert VOCAB_APPS["my-japanese"] == "my-japanese.html"
 
-    # The public shell stays useful without copying private classroom homework.
-    assert project.homeworks == []
+    # Public homework is independently written practice; the classroom
+    # worksheets stay in the private homework.local.json.
+    assert [assignment["id"] for assignment in project.homeworks] == [
+        assignment["id"] for assignment in japanese_builder.build_assignments()
+    ]
+    assert all(
+        assignment["contentOrigin"] == "independently_written_public_practice"
+        for assignment in project.homeworks
+    )
     vocab.import_file(project, MY_JAPANESE / "vocab.csv")
-    assert len(project.vocab) == 51
+    assert len(project.vocab) == 83
     assert {
         "企画",
         "興味",
@@ -69,7 +89,7 @@ def test_my_japanese_is_an_independent_vocab_app(tmp_path):
     assert '"lang": "ja"' in html
     assert '"layout": "vocab"' in html
     assert '"homework_id": "my-japanese"' in html
-    assert '"homeworks": []' in html
+    assert '"id": "jp-practice-potential"' in html
 
 
 def test_private_japanese_homework_is_structurally_complete(tmp_path):
@@ -174,8 +194,9 @@ def test_private_japanese_homework_is_structurally_complete(tmp_path):
     project = Project(MY_JAPANESE)
     public_payload = build.payload(project)
     local_payload = build.payload(project, include_local_homework=True)
-    assert public_payload["homeworks"] == []
-    assert len(local_payload["homeworks"]) == 7
+    public_ids = [assignment["id"] for assignment in public_payload["homeworks"]]
+    assert all(assignment_id.startswith("jp-practice-") for assignment_id in public_ids)
+    assert len(local_payload["homeworks"]) == 7 + len(public_ids)
 
     page, _, _, _ = build.build(
         project,
@@ -231,3 +252,23 @@ def test_private_japanese_homework_never_ships_in_public_files():
             continue
         for phrase in private_phrases:
             assert phrase not in text, f"private Japanese homework leaked into {rel}"
+
+
+def test_public_japanese_practice_is_committed_and_well_formed():
+    built = japanese_builder.build_assignments()
+    committed = Project(MY_JAPANESE).homeworks
+    assert committed == built
+    items = [item for assignment in built for item in _items(assignment)]
+    assert len(items) == len({item["id"] for item in items}) == 162
+    for assignment in built:
+        for section in assignment["sections"]:
+            for item in section["items"]:
+                if section["type"] == "single_choice":
+                    assert item["answers"][0] in item["options"]
+                    assert len(set(item["options"])) == len(item["options"]) >= 3
+                elif item.get("wordTiles"):
+                    assert item["tileJoiner"] == ""
+                    assert sorted(item["canonicalAnswer"]) == sorted("".join(item["wordTiles"]))
+                else:
+                    assert section["type"] == "open_response"
+                    assert item["answerMode"] == "self_review" and item["answers"]
