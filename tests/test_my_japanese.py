@@ -265,6 +265,10 @@ def test_public_japanese_practice_is_committed_and_well_formed():
             for item in section["items"]:
                 if section["type"] == "single_choice":
                     assert item["answers"][0] in item["options"]
+                    # Every option is explained in the "选项的意思" panel.
+                    assert set(item["optionNotes"]) == set(item["options"])
+                    assert all(note["gloss"] for note in item["optionNotes"].values())
+                    assert not item["optionNotes"][item["answers"][0]]["gloss"].startswith("✗")
                     assert len(set(item["options"])) == len(item["options"]) >= 3
                 elif item.get("wordTiles"):
                     assert item["tileJoiner"] == ""
