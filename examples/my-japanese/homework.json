@@ -3674,6 +3674,1640 @@
       "lessonNotesHeading": "先读笔记：ない形：不……（ません · ないで · なければ）"
     },
     {
+      "id": "jp-practice-masu",
+      "title": "日语 ⓪-3 ます形：礼貌体（ます · ました · ません）",
+      "badge": "日语练习",
+      "sourceTitle": "練習：ます形",
+      "level": "N5–N4",
+      "answerKeyBasis": "standard_japanese_grammar",
+      "contentOrigin": "independently_written_public_practice",
+      "source": {
+        "title": "Action pictures",
+        "license": "配图按各图库许可使用",
+        "attribution": "插画来自 Icons8，作者、来源和许可随每张配图保留。"
+      },
+      "answerLanguageLabel": "日语",
+      "referenceTables": [
+        {
+          "id": "jp-masu-rule",
+          "verb": "ます形",
+          "title": "ます形：五段把最后的 う段音 → い段＋ます",
+          "rows": [
+            {
+              "person": "一段：去 る＋ます",
+              "form": "たべる→たべます · みる→みます"
+            },
+            {
+              "person": "五段：う段 → い段＋ます",
+              "form": "かく→かきます · よむ→よみます · まつ→まちます"
+            },
+            {
+              "person": "五段 う 结尾",
+              "form": "かう→かいます · あう→あいます"
+            },
+            {
+              "person": "像一段的五段（例外）",
+              "form": "かえる→かえります · はしる→はしります"
+            },
+            {
+              "person": "不规则",
+              "form": "する→します · くる→きます"
+            },
+            {
+              "person": "名词＋する",
+              "form": "りょうりする→りょうりします"
+            }
+          ]
+        },
+        {
+          "id": "jp-masu-tense",
+          "verb": "ます",
+          "title": "礼貌体四个形式",
+          "rows": [
+            {
+              "person": "肯定 · 现在 / 将来",
+              "form": "たべます"
+            },
+            {
+              "person": "肯定 · 过去",
+              "form": "たべました"
+            },
+            {
+              "person": "否定 · 现在 / 将来",
+              "form": "たべません"
+            },
+            {
+              "person": "否定 · 过去",
+              "form": "たべませんでした"
+            }
+          ]
+        }
+      ],
+      "referenceHeading": "先看规则表：ます形怎么变",
+      "referenceIntro": "ます形是礼貌体的基础。五段动词换到 い段，和ない形（あ段）是同一个思路。",
+      "sections": [
+        {
+          "id": "jp-masu-form",
+          "title": "① 变成ます形",
+          "instructions": "五段换成 い段＋ます；一段去 る＋ます；する→します，くる→きます。",
+          "type": "single_choice",
+          "items": [
+            {
+              "id": "jp-masu-form-01",
+              "number": 1,
+              "prompt": "かく → ます形",
+              "options": [
+                "かかます",
+                "かくます",
+                "かきます",
+                "かいます"
+              ],
+              "answers": [
+                "かきます"
+              ],
+              "canonicalAnswer": "かきます",
+              "optionNotes": {
+                "かきます": {
+                  "gloss": "かく 的ます形（礼貌体）",
+                  "english": "masu form"
+                },
+                "かくます": {
+                  "gloss": "✗ 错误形式：辞书形不能直接加 ます，く 要变 き",
+                  "english": "not a real form"
+                },
+                "かかます": {
+                  "gloss": "✗ 错误形式：か 是 あ段（ない形用），ます形要 い段：かき",
+                  "english": "not a real form"
+                },
+                "かいます": {
+                  "gloss": "かう（买）的ます形，不是 かく",
+                  "english": "masu of かう"
+                }
+              },
+              "ambiguityNote": "提示：く → き＋ます"
+            },
+            {
+              "id": "jp-masu-form-02",
+              "number": 2,
+              "prompt": "よむ → ます形",
+              "options": [
+                "よむます",
+                "よみます",
+                "よまます",
+                "よんます"
+              ],
+              "answers": [
+                "よみます"
+              ],
+              "canonicalAnswer": "よみます",
+              "optionNotes": {
+                "よみます": {
+                  "gloss": "よむ 的ます形（礼貌体）",
+                  "english": "masu form"
+                },
+                "よむます": {
+                  "gloss": "✗ 错误形式：辞书形不能直接加 ます，む 要变 み",
+                  "english": "not a real form"
+                },
+                "よまます": {
+                  "gloss": "✗ 错误形式：ま 是 あ段，ます形要 い段：よみ",
+                  "english": "not a real form"
+                },
+                "よんます": {
+                  "gloss": "✗ 错误形式：よん 是て形的音便，ます形是 よみます",
+                  "english": "not a real form"
+                }
+              },
+              "ambiguityNote": "提示：む → み＋ます"
+            },
+            {
+              "id": "jp-masu-form-03",
+              "number": 3,
+              "prompt": "はなす → ます形",
+              "options": [
+                "はなさます",
+                "はなせます",
+                "はなします",
+                "はなすます"
+              ],
+              "answers": [
+                "はなします"
+              ],
+              "canonicalAnswer": "はなします",
+              "optionNotes": {
+                "はなします": {
+                  "gloss": "はなす 的ます形（礼貌体）",
+                  "english": "masu form"
+                },
+                "はなすます": {
+                  "gloss": "✗ 错误形式：辞书形不能直接加 ます，す 要变 し",
+                  "english": "not a real form"
+                },
+                "はなさます": {
+                  "gloss": "✗ 错误形式：さ 是 あ段，ます形要 い段：はなし",
+                  "english": "not a real form"
+                },
+                "はなせます": {
+                  "gloss": "会说（可能形）",
+                  "english": "can speak"
+                }
+              },
+              "ambiguityNote": "提示：す → し＋ます"
+            },
+            {
+              "id": "jp-masu-form-04",
+              "number": 4,
+              "prompt": "まつ → ます形",
+              "options": [
+                "まってます",
+                "またます",
+                "まちます",
+                "まつます"
+              ],
+              "answers": [
+                "まちます"
+              ],
+              "canonicalAnswer": "まちます",
+              "optionNotes": {
+                "まちます": {
+                  "gloss": "まつ 的ます形（礼貌体）",
+                  "english": "masu form"
+                },
+                "まつます": {
+                  "gloss": "✗ 错误形式：辞书形不能直接加 ます，つ 要变 ち",
+                  "english": "not a real form"
+                },
+                "またます": {
+                  "gloss": "✗ 错误形式：た 是 あ段，ます形要 い段：まち",
+                  "english": "not a real form"
+                },
+                "まってます": {
+                  "gloss": "（口语）在等＝まっています",
+                  "english": "is waiting (casual speech)"
+                }
+              },
+              "ambiguityNote": "提示：つ → ち＋ます"
+            },
+            {
+              "id": "jp-masu-form-05",
+              "number": 5,
+              "prompt": "あそぶ → ます形",
+              "options": [
+                "あそんます",
+                "あそぶます",
+                "あそびます",
+                "あそばます"
+              ],
+              "answers": [
+                "あそびます"
+              ],
+              "canonicalAnswer": "あそびます",
+              "optionNotes": {
+                "あそびます": {
+                  "gloss": "あそぶ 的ます形（礼貌体）",
+                  "english": "masu form"
+                },
+                "あそぶます": {
+                  "gloss": "✗ 错误形式：辞书形不能直接加 ます，ぶ 要变 び",
+                  "english": "not a real form"
+                },
+                "あそばます": {
+                  "gloss": "✗ 错误形式：ば 是 あ段，ます形要 い段：あそび",
+                  "english": "not a real form"
+                },
+                "あそんます": {
+                  "gloss": "✗ 错误形式：あそん 是て形的音便，ます形是 あそびます",
+                  "english": "not a real form"
+                }
+              },
+              "ambiguityNote": "提示：ぶ → び＋ます"
+            },
+            {
+              "id": "jp-masu-form-06",
+              "number": 6,
+              "prompt": "およぐ → ます形",
+              "options": [
+                "およがます",
+                "およぐます",
+                "およぎます",
+                "およいます"
+              ],
+              "answers": [
+                "およぎます"
+              ],
+              "canonicalAnswer": "およぎます",
+              "optionNotes": {
+                "およぎます": {
+                  "gloss": "およぐ 的ます形（礼貌体）",
+                  "english": "masu form"
+                },
+                "およぐます": {
+                  "gloss": "✗ 错误形式：辞书形不能直接加 ます，ぐ 要变 ぎ",
+                  "english": "not a real form"
+                },
+                "およがます": {
+                  "gloss": "✗ 错误形式：が 是 あ段，ます形要 い段：およぎ",
+                  "english": "not a real form"
+                },
+                "およいます": {
+                  "gloss": "✗ 错误形式：およい 是て形的音便，ます形是 およぎます",
+                  "english": "not a real form"
+                }
+              },
+              "ambiguityNote": "提示：ぐ → ぎ＋ます"
+            },
+            {
+              "id": "jp-masu-form-07",
+              "number": 7,
+              "prompt": "かう → ます形",
+              "options": [
+                "かうます",
+                "かいます",
+                "かわます",
+                "かっます"
+              ],
+              "answers": [
+                "かいます"
+              ],
+              "canonicalAnswer": "かいます",
+              "optionNotes": {
+                "かいます": {
+                  "gloss": "かう 的ます形（礼貌体）",
+                  "english": "masu form"
+                },
+                "かうます": {
+                  "gloss": "✗ 错误形式：辞书形不能直接加 ます，う 要变 い",
+                  "english": "not a real form"
+                },
+                "かわます": {
+                  "gloss": "✗ 错误形式：わ 是ない形用的（かわない），ます形是 かいます",
+                  "english": "not a real form"
+                },
+                "かっます": {
+                  "gloss": "✗ 错误形式：かっ 是て形的音便，ます形是 かいます",
+                  "english": "not a real form"
+                }
+              },
+              "ambiguityNote": "提示：う → い＋ます"
+            },
+            {
+              "id": "jp-masu-form-08",
+              "number": 8,
+              "prompt": "つくる → ます形",
+              "options": [
+                "つくらます",
+                "つくます",
+                "つくります",
+                "つくるます"
+              ],
+              "answers": [
+                "つくります"
+              ],
+              "canonicalAnswer": "つくります",
+              "optionNotes": {
+                "つくります": {
+                  "gloss": "つくる 的ます形（礼貌体）",
+                  "english": "masu form"
+                },
+                "つくます": {
+                  "gloss": "✗ 错误形式：つくる 是五段，不能像一段那样去 る：つくります",
+                  "english": "not a real form"
+                },
+                "つくるます": {
+                  "gloss": "✗ 错误形式：辞书形不能直接加 ます",
+                  "english": "not a real form"
+                },
+                "つくらます": {
+                  "gloss": "✗ 错误形式：ら 是 あ段，ます形要 い段：つくり",
+                  "english": "not a real form"
+                }
+              },
+              "ambiguityNote": "提示：五段 る → り＋ます"
+            },
+            {
+              "id": "jp-masu-form-09",
+              "number": 9,
+              "prompt": "たべる → ます形",
+              "options": [
+                "たべるます",
+                "たびます",
+                "たべます",
+                "たべります"
+              ],
+              "answers": [
+                "たべます"
+              ],
+              "canonicalAnswer": "たべます",
+              "optionNotes": {
+                "たべます": {
+                  "gloss": "たべる 的ます形（礼貌体）",
+                  "english": "masu form"
+                },
+                "たべります": {
+                  "gloss": "✗ 错误形式：一段动词去 る＋ます，不加 り",
+                  "english": "not a real form"
+                },
+                "たべるます": {
+                  "gloss": "✗ 错误形式：辞书形不能直接加 ます，要去 る",
+                  "english": "not a real form"
+                },
+                "たびます": {
+                  "gloss": "✗ 错误形式：一段动词不变词干，直接 たべ＋ます",
+                  "english": "not a real form"
+                }
+              },
+              "ambiguityNote": "提示：一段：去 る＋ます"
+            },
+            {
+              "id": "jp-masu-form-10",
+              "number": 10,
+              "prompt": "みる → ます形",
+              "options": [
+                "みます",
+                "まます",
+                "みります",
+                "みるます"
+              ],
+              "answers": [
+                "みます"
+              ],
+              "canonicalAnswer": "みます",
+              "optionNotes": {
+                "みます": {
+                  "gloss": "みる 的ます形（礼貌体）",
+                  "english": "masu form"
+                },
+                "みります": {
+                  "gloss": "✗ 错误形式：一段动词去 る＋ます，不加 り",
+                  "english": "not a real form"
+                },
+                "みるます": {
+                  "gloss": "✗ 错误形式：辞书形不能直接加 ます，要去 る",
+                  "english": "not a real form"
+                },
+                "まます": {
+                  "gloss": "✗ 错误形式：一段动词不变词干，直接 み＋ます",
+                  "english": "not a real form"
+                }
+              },
+              "ambiguityNote": "提示：一段：去 る＋ます"
+            },
+            {
+              "id": "jp-masu-form-11",
+              "number": 11,
+              "prompt": "おきる → ます形",
+              "options": [
+                "おきります",
+                "おきるます",
+                "おきます",
+                "おかます"
+              ],
+              "answers": [
+                "おきます"
+              ],
+              "canonicalAnswer": "おきます",
+              "optionNotes": {
+                "おきます": {
+                  "gloss": "おきる 的ます形（礼貌体）",
+                  "english": "masu form"
+                },
+                "おきります": {
+                  "gloss": "✗ 错误形式：一段动词去 る＋ます，不加 り",
+                  "english": "not a real form"
+                },
+                "おきるます": {
+                  "gloss": "✗ 错误形式：辞书形不能直接加 ます，要去 る",
+                  "english": "not a real form"
+                },
+                "おかます": {
+                  "gloss": "✗ 错误形式：一段动词不变词干，直接 おき＋ます",
+                  "english": "not a real form"
+                }
+              },
+              "ambiguityNote": "提示：一段：去 る＋ます"
+            },
+            {
+              "id": "jp-masu-form-12",
+              "number": 12,
+              "prompt": "かえる（回家） → ます形",
+              "options": [
+                "かえます",
+                "かえらます",
+                "かえるます",
+                "かえります"
+              ],
+              "answers": [
+                "かえります"
+              ],
+              "canonicalAnswer": "かえります",
+              "optionNotes": {
+                "かえります": {
+                  "gloss": "かえる（回家） 的ます形（礼貌体）",
+                  "english": "masu form"
+                },
+                "かえます": {
+                  "gloss": "かえる（换，一段）的ます形；回家是 かえります",
+                  "english": "masu of 変える (change)"
+                },
+                "かえるます": {
+                  "gloss": "✗ 错误形式：辞书形不能直接加 ます",
+                  "english": "not a real form"
+                },
+                "かえらます": {
+                  "gloss": "✗ 错误形式：ら 是 あ段，ます形要 い段：かえり",
+                  "english": "not a real form"
+                }
+              },
+              "ambiguityNote": "提示：かえる 是五段：る → り＋ます"
+            },
+            {
+              "id": "jp-masu-form-13",
+              "number": 13,
+              "prompt": "はしる → ます形",
+              "options": [
+                "はしります",
+                "はしるます",
+                "はします",
+                "はしらます"
+              ],
+              "answers": [
+                "はしります"
+              ],
+              "canonicalAnswer": "はしります",
+              "optionNotes": {
+                "はしります": {
+                  "gloss": "はしる 的ます形（礼貌体）",
+                  "english": "masu form"
+                },
+                "はします": {
+                  "gloss": "✗ 错误形式：はしる 是五段，不能去 る：はしります",
+                  "english": "not a real form"
+                },
+                "はしるます": {
+                  "gloss": "✗ 错误形式：辞书形不能直接加 ます",
+                  "english": "not a real form"
+                },
+                "はしらます": {
+                  "gloss": "✗ 错误形式：ら 是 あ段，ます形要 い段：はしり",
+                  "english": "not a real form"
+                }
+              },
+              "ambiguityNote": "提示：はしる 是五段：る → り＋ます"
+            },
+            {
+              "id": "jp-masu-form-14",
+              "number": 14,
+              "prompt": "する → ます形",
+              "options": [
+                "さます",
+                "すます",
+                "しります",
+                "します"
+              ],
+              "answers": [
+                "します"
+              ],
+              "canonicalAnswer": "します",
+              "optionNotes": {
+                "します": {
+                  "gloss": "する 的ます形（礼貌体）",
+                  "english": "masu form"
+                },
+                "すます": {
+                  "gloss": "✗ 错误形式：する 不规则：します（すます 是另一个词“办完”）",
+                  "english": "not a real form"
+                },
+                "さます": {
+                  "gloss": "✗ 错误形式：する 不规则：します",
+                  "english": "not a real form"
+                },
+                "しります": {
+                  "gloss": "✗ 错误形式：する 不规则：します",
+                  "english": "not a real form"
+                }
+              },
+              "ambiguityNote": "提示：不规则：する → します"
+            },
+            {
+              "id": "jp-masu-form-15",
+              "number": 15,
+              "prompt": "くる → ます形",
+              "options": [
+                "こます",
+                "くます",
+                "きます",
+                "きります"
+              ],
+              "answers": [
+                "きます"
+              ],
+              "canonicalAnswer": "きます",
+              "optionNotes": {
+                "きます": {
+                  "gloss": "くる 的ます形（礼貌体）",
+                  "english": "masu form"
+                },
+                "くます": {
+                  "gloss": "✗ 错误形式：くる 不规则：きます",
+                  "english": "not a real form"
+                },
+                "こます": {
+                  "gloss": "✗ 错误形式：こ 是ない形用的（こない），ます形是 きます",
+                  "english": "not a real form"
+                },
+                "きります": {
+                  "gloss": "✗ 错误形式：くる 不规则：きます（きります 是“剪”）",
+                  "english": "not a real form"
+                }
+              },
+              "ambiguityNote": "提示：不规则：くる → きます"
+            },
+            {
+              "id": "jp-masu-form-16",
+              "number": 16,
+              "prompt": "べんきょうする → ます形",
+              "options": [
+                "べんきょうできます",
+                "べんきょうさます",
+                "べんきょうします",
+                "べんきょうすます"
+              ],
+              "answers": [
+                "べんきょうします"
+              ],
+              "canonicalAnswer": "べんきょうします",
+              "optionNotes": {
+                "べんきょうします": {
+                  "gloss": "べんきょうする 的ます形（礼貌体）",
+                  "english": "masu form"
+                },
+                "べんきょうすます": {
+                  "gloss": "✗ 错误形式：名词＋する 只变 する → します",
+                  "english": "not a real form"
+                },
+                "べんきょうさます": {
+                  "gloss": "✗ 错误形式：名词＋する 只变 する → します",
+                  "english": "not a real form"
+                },
+                "べんきょうできます": {
+                  "gloss": "能学习（可能形）",
+                  "english": "can study"
+                }
+              },
+              "ambiguityNote": "提示：名词＋する：只变 する → します"
+            }
+          ]
+        },
+        {
+          "id": "jp-masu-tense",
+          "title": "② ます／ました／ません／ませんでした",
+          "instructions": "看括号和时间，选出正确的礼貌体。",
+          "type": "single_choice",
+          "items": [
+            {
+              "id": "jp-masu-tense-01",
+              "number": 1,
+              "prompt": "まいあさ コーヒーを ＿＿＿。（のむ）",
+              "options": [
+                "のみました",
+                "のみませんでした",
+                "のみません",
+                "のみます"
+              ],
+              "answers": [
+                "のみます"
+              ],
+              "canonicalAnswer": "のみます",
+              "optionNotes": {
+                "のみます": {
+                  "gloss": "のみ＋ます：肯定 · 现在 / 将来",
+                  "english": "ます"
+                },
+                "のみました": {
+                  "gloss": "のみ＋ました：肯定 · 过去",
+                  "english": "ました"
+                },
+                "のみません": {
+                  "gloss": "のみ＋ません：否定 · 现在 / 将来",
+                  "english": "ません"
+                },
+                "のみませんでした": {
+                  "gloss": "のみ＋ませんでした：否定 · 过去",
+                  "english": "ませんでした"
+                }
+              },
+              "answerTranslation": "习惯：每天早上喝咖啡。",
+              "ambiguityNote": "中文：习惯：每天早上喝咖啡。　提示：ます／ました／ません／ませんでした：看时间和肯定否定。"
+            },
+            {
+              "id": "jp-masu-tense-02",
+              "number": 2,
+              "prompt": "きのう えいがを ＿＿＿。（みる）",
+              "options": [
+                "みませんでした",
+                "みました",
+                "みます",
+                "みません"
+              ],
+              "answers": [
+                "みました"
+              ],
+              "canonicalAnswer": "みました",
+              "optionNotes": {
+                "みました": {
+                  "gloss": "み＋ました：肯定 · 过去",
+                  "english": "ました"
+                },
+                "みます": {
+                  "gloss": "み＋ます：肯定 · 现在 / 将来",
+                  "english": "ます"
+                },
+                "みません": {
+                  "gloss": "み＋ません：否定 · 现在 / 将来",
+                  "english": "ません"
+                },
+                "みませんでした": {
+                  "gloss": "み＋ませんでした：否定 · 过去",
+                  "english": "ませんでした"
+                }
+              },
+              "answerTranslation": "过去：昨天看了电影。",
+              "ambiguityNote": "中文：过去：昨天看了电影。　提示：ます／ました／ません／ませんでした：看时间和肯定否定。"
+            },
+            {
+              "id": "jp-masu-tense-03",
+              "number": 3,
+              "prompt": "わたしは おさけを ＿＿＿。（のむ，否定）",
+              "options": [
+                "のみます",
+                "のみません",
+                "のみました",
+                "のみませんでした"
+              ],
+              "answers": [
+                "のみません"
+              ],
+              "canonicalAnswer": "のみません",
+              "optionNotes": {
+                "のみません": {
+                  "gloss": "のみ＋ません：否定 · 现在 / 将来",
+                  "english": "ません"
+                },
+                "のみます": {
+                  "gloss": "のみ＋ます：肯定 · 现在 / 将来",
+                  "english": "ます"
+                },
+                "のみました": {
+                  "gloss": "のみ＋ました：肯定 · 过去",
+                  "english": "ました"
+                },
+                "のみませんでした": {
+                  "gloss": "のみ＋ませんでした：否定 · 过去",
+                  "english": "ませんでした"
+                }
+              },
+              "answerTranslation": "否定：我不喝酒。",
+              "ambiguityNote": "中文：否定：我不喝酒。　提示：ます／ました／ません／ませんでした：看时间和肯定否定。"
+            },
+            {
+              "id": "jp-masu-tense-04",
+              "number": 4,
+              "prompt": "せんしゅうは しごとを ＿＿＿。（する，过去否定）",
+              "options": [
+                "しました",
+                "します",
+                "しませんでした",
+                "しません"
+              ],
+              "answers": [
+                "しませんでした"
+              ],
+              "canonicalAnswer": "しませんでした",
+              "optionNotes": {
+                "しませんでした": {
+                  "gloss": "し＋ませんでした：否定 · 过去",
+                  "english": "ませんでした"
+                },
+                "します": {
+                  "gloss": "し＋ます：肯定 · 现在 / 将来",
+                  "english": "ます"
+                },
+                "しました": {
+                  "gloss": "し＋ました：肯定 · 过去",
+                  "english": "ました"
+                },
+                "しません": {
+                  "gloss": "し＋ません：否定 · 现在 / 将来",
+                  "english": "ません"
+                }
+              },
+              "answerTranslation": "过去否定：上周没工作。",
+              "ambiguityNote": "中文：过去否定：上周没工作。　提示：ます／ました／ません／ませんでした：看时间和肯定否定。"
+            },
+            {
+              "id": "jp-masu-tense-05",
+              "number": 5,
+              "prompt": "あした ともだちに ＿＿＿。（あう）",
+              "options": [
+                "あいます",
+                "あいませんでした",
+                "あいました",
+                "あいません"
+              ],
+              "answers": [
+                "あいます"
+              ],
+              "canonicalAnswer": "あいます",
+              "optionNotes": {
+                "あいます": {
+                  "gloss": "あい＋ます：肯定 · 现在 / 将来",
+                  "english": "ます"
+                },
+                "あいました": {
+                  "gloss": "あい＋ました：肯定 · 过去",
+                  "english": "ました"
+                },
+                "あいません": {
+                  "gloss": "あい＋ません：否定 · 现在 / 将来",
+                  "english": "ません"
+                },
+                "あいませんでした": {
+                  "gloss": "あい＋ませんでした：否定 · 过去",
+                  "english": "ませんでした"
+                }
+              },
+              "answerTranslation": "将来：明天见朋友。",
+              "ambiguityNote": "中文：将来：明天见朋友。　提示：ます／ました／ません／ませんでした：看时间和肯定否定。"
+            },
+            {
+              "id": "jp-masu-tense-06",
+              "number": 6,
+              "prompt": "きのうは どこにも ＿＿＿。（いく，过去否定）",
+              "options": [
+                "いきます",
+                "いきません",
+                "いきました",
+                "いきませんでした"
+              ],
+              "answers": [
+                "いきませんでした"
+              ],
+              "canonicalAnswer": "いきませんでした",
+              "optionNotes": {
+                "いきませんでした": {
+                  "gloss": "いき＋ませんでした：否定 · 过去",
+                  "english": "ませんでした"
+                },
+                "いきます": {
+                  "gloss": "いき＋ます：肯定 · 现在 / 将来",
+                  "english": "ます"
+                },
+                "いきました": {
+                  "gloss": "いき＋ました：肯定 · 过去",
+                  "english": "ました"
+                },
+                "いきません": {
+                  "gloss": "いき＋ません：否定 · 现在 / 将来",
+                  "english": "ません"
+                }
+              },
+              "answerTranslation": "过去否定：昨天哪儿也没去。",
+              "ambiguityNote": "中文：过去否定：昨天哪儿也没去。　提示：ます／ました／ません／ませんでした：看时间和肯定否定。"
+            }
+          ]
+        },
+        {
+          "id": "jp-masu-road",
+          "title": "③ 过去式的两条路",
+          "instructions": "礼貌体过去走ます形；随意体过去走て形。",
+          "type": "single_choice",
+          "items": [
+            {
+              "id": "jp-masu-road-01",
+              "number": 1,
+              "prompt": "かう 的礼貌体过去是？",
+              "options": [
+                "かって",
+                "かいます",
+                "かいました",
+                "かった"
+              ],
+              "answers": [
+                "かいました"
+              ],
+              "canonicalAnswer": "かいました",
+              "optionNotes": {
+                "かいました": {
+                  "gloss": "礼貌体过去：ます形 → ました",
+                  "english": "polite past"
+                },
+                "かった": {
+                  "gloss": "随意体过去：て形 → た",
+                  "english": "casual past"
+                },
+                "かって": {
+                  "gloss": "て形（连接用）",
+                  "english": "て-form"
+                },
+                "かいます": {
+                  "gloss": "礼貌体现在 / 将来：ます形",
+                  "english": "polite"
+                }
+              },
+              "ambiguityNote": "提示：礼貌体过去走ます形（ます→ました）；随意体过去走て形（て→た）。"
+            },
+            {
+              "id": "jp-masu-road-02",
+              "number": 2,
+              "prompt": "かう 的随意体过去是？",
+              "options": [
+                "かった",
+                "かいました",
+                "かって",
+                "かわない"
+              ],
+              "answers": [
+                "かった"
+              ],
+              "canonicalAnswer": "かった",
+              "optionNotes": {
+                "かった": {
+                  "gloss": "随意体过去：て形 → た",
+                  "english": "casual past"
+                },
+                "かいました": {
+                  "gloss": "礼貌体过去：ます形 → ました",
+                  "english": "polite past"
+                },
+                "かって": {
+                  "gloss": "て形（连接用）",
+                  "english": "て-form"
+                },
+                "かわない": {
+                  "gloss": "ない形：否定",
+                  "english": "negative"
+                }
+              },
+              "ambiguityNote": "提示：礼貌体过去走ます形（ます→ました）；随意体过去走て形（て→た）。"
+            },
+            {
+              "id": "jp-masu-road-03",
+              "number": 3,
+              "prompt": "よむ 的礼貌体过去是？",
+              "options": [
+                "よみます",
+                "よんだ",
+                "よみました",
+                "よんで"
+              ],
+              "answers": [
+                "よみました"
+              ],
+              "canonicalAnswer": "よみました",
+              "optionNotes": {
+                "よみました": {
+                  "gloss": "礼貌体过去：ます形 → ました",
+                  "english": "polite past"
+                },
+                "よんだ": {
+                  "gloss": "随意体过去：て形 → だ",
+                  "english": "casual past"
+                },
+                "よんで": {
+                  "gloss": "て形（连接用）",
+                  "english": "て-form"
+                },
+                "よみます": {
+                  "gloss": "礼貌体现在 / 将来：ます形",
+                  "english": "polite"
+                }
+              },
+              "ambiguityNote": "提示：礼貌体过去走ます形（ます→ました）；随意体过去走て形（て→た）。"
+            },
+            {
+              "id": "jp-masu-road-04",
+              "number": 4,
+              "prompt": "よむ 的随意体过去是？",
+              "options": [
+                "よみました",
+                "よんだ",
+                "よんで",
+                "よまない"
+              ],
+              "answers": [
+                "よんだ"
+              ],
+              "canonicalAnswer": "よんだ",
+              "optionNotes": {
+                "よんだ": {
+                  "gloss": "随意体过去：て形 → だ",
+                  "english": "casual past"
+                },
+                "よみました": {
+                  "gloss": "礼貌体过去：ます形 → ました",
+                  "english": "polite past"
+                },
+                "よんで": {
+                  "gloss": "て形（连接用）",
+                  "english": "て-form"
+                },
+                "よまない": {
+                  "gloss": "ない形：否定",
+                  "english": "negative"
+                }
+              },
+              "ambiguityNote": "提示：礼貌体过去走ます形（ます→ました）；随意体过去走て形（て→た）。"
+            },
+            {
+              "id": "jp-masu-road-05",
+              "number": 5,
+              "prompt": "りょうりする 的礼貌体过去是？",
+              "options": [
+                "りょうりした",
+                "りょうりします",
+                "りょうりしました",
+                "りょうりして"
+              ],
+              "answers": [
+                "りょうりしました"
+              ],
+              "canonicalAnswer": "りょうりしました",
+              "optionNotes": {
+                "りょうりしました": {
+                  "gloss": "礼貌体过去：ます形 → ました",
+                  "english": "polite past"
+                },
+                "りょうりした": {
+                  "gloss": "随意体过去：て形 → た",
+                  "english": "casual past"
+                },
+                "りょうりして": {
+                  "gloss": "て形（连接用）",
+                  "english": "て-form"
+                },
+                "りょうりします": {
+                  "gloss": "礼貌体现在 / 将来：ます形",
+                  "english": "polite"
+                }
+              },
+              "ambiguityNote": "提示：礼貌体过去走ます形（ます→ました）；随意体过去走て形（て→た）。"
+            },
+            {
+              "id": "jp-masu-road-06",
+              "number": 6,
+              "prompt": "いく 的随意体过去是？",
+              "options": [
+                "いかない",
+                "いって",
+                "いきました",
+                "いった"
+              ],
+              "answers": [
+                "いった"
+              ],
+              "canonicalAnswer": "いった",
+              "optionNotes": {
+                "いった": {
+                  "gloss": "随意体过去：て形 → た",
+                  "english": "casual past"
+                },
+                "いきました": {
+                  "gloss": "礼貌体过去：ます形 → ました",
+                  "english": "polite past"
+                },
+                "いって": {
+                  "gloss": "て形（连接用）",
+                  "english": "て-form"
+                },
+                "いかない": {
+                  "gloss": "ない形：否定",
+                  "english": "negative"
+                }
+              },
+              "ambiguityNote": "提示：礼貌体过去走ます形（ます→ました）；随意体过去走て形（て→た）。"
+            }
+          ]
+        },
+        {
+          "id": "jp-masu-stem",
+          "title": "④ ます形去掉 ます，再接语法",
+          "instructions": "たい・やすい・すぎる・そう・つづける 都接在这里。",
+          "type": "single_choice",
+          "items": [
+            {
+              "id": "jp-masu-stem-01",
+              "number": 1,
+              "prompt": "にほんへ いき＿＿＿です。（いく＋たい）",
+              "options": [
+                "たい",
+                "ます",
+                "る"
+              ],
+              "answers": [
+                "たい"
+              ],
+              "canonicalAnswer": "たい",
+              "optionNotes": {
+                "たい": {
+                  "gloss": "ます形去ます＋たい＝想……",
+                  "english": "want to"
+                },
+                "る": {
+                  "gloss": "✗ 这里要接在ます形词干后面",
+                  "english": "not here"
+                },
+                "ます": {
+                  "gloss": "✗ 这里不是礼貌体结尾",
+                  "english": "not here"
+                }
+              },
+              "answerTranslation": "いきたいです＝想去",
+              "ambiguityNote": "中文：いきたいです＝想去　提示：很多语法＝ます形去掉 ます，再接尾巴。"
+            },
+            {
+              "id": "jp-masu-stem-02",
+              "number": 2,
+              "prompt": "この ペンは かき＿＿＿です。（かく＋やすい）",
+              "options": [
+                "たい",
+                "やすい",
+                "ない"
+              ],
+              "answers": [
+                "やすい"
+              ],
+              "canonicalAnswer": "やすい",
+              "optionNotes": {
+                "やすい": {
+                  "gloss": "ます形去ます＋やすい＝容易……",
+                  "english": "easy to"
+                },
+                "たい": {
+                  "gloss": "ます形去ます＋たい＝想……",
+                  "english": "want to"
+                },
+                "ない": {
+                  "gloss": "✗ 放 ない 在这里不成句",
+                  "english": "not here"
+                }
+              },
+              "answerTranslation": "かきやすいです＝好写",
+              "ambiguityNote": "中文：かきやすいです＝好写　提示：很多语法＝ます形去掉 ます，再接尾巴。"
+            },
+            {
+              "id": "jp-masu-stem-03",
+              "number": 3,
+              "prompt": "きのう たべ＿＿＿ました。（たべる＋すぎる）",
+              "options": [
+                "て",
+                "ない",
+                "すぎ"
+              ],
+              "answers": [
+                "すぎ"
+              ],
+              "canonicalAnswer": "すぎ",
+              "optionNotes": {
+                "すぎ": {
+                  "gloss": "ます形去ます＋すぎる＝太……",
+                  "english": "too much"
+                },
+                "ない": {
+                  "gloss": "✗ 放 ない 在这里不成句",
+                  "english": "not here"
+                },
+                "て": {
+                  "gloss": "✗ て 不接在ます形词干后",
+                  "english": "not here"
+                }
+              },
+              "answerTranslation": "たべすぎました＝吃太多了",
+              "ambiguityNote": "中文：たべすぎました＝吃太多了　提示：很多语法＝ます形去掉 ます，再接尾巴。"
+            },
+            {
+              "id": "jp-masu-stem-04",
+              "number": 4,
+              "prompt": "あめが ふり＿＿＿です。（ふる＋そう）",
+              "options": [
+                "ない",
+                "たい",
+                "そう"
+              ],
+              "answers": [
+                "そう"
+              ],
+              "canonicalAnswer": "そう",
+              "optionNotes": {
+                "そう": {
+                  "gloss": "ます形去ます＋そう＝看起来要……",
+                  "english": "looks like"
+                },
+                "ない": {
+                  "gloss": "✗ 放 ない 在这里不成句",
+                  "english": "not here"
+                },
+                "たい": {
+                  "gloss": "ます形去ます＋たい＝想……",
+                  "english": "want to"
+                }
+              },
+              "answerTranslation": "ふりそうです＝看起来要下雨",
+              "ambiguityNote": "中文：ふりそうです＝看起来要下雨　提示：很多语法＝ます形去掉 ます，再接尾巴。"
+            },
+            {
+              "id": "jp-masu-stem-05",
+              "number": 5,
+              "prompt": "まいにち べんきょうし＿＿＿います。（する＋つづける）",
+              "options": [
+                "すぎ",
+                "つづけて",
+                "ない"
+              ],
+              "answers": [
+                "つづけて"
+              ],
+              "canonicalAnswer": "つづけて",
+              "optionNotes": {
+                "つづけて": {
+                  "gloss": "ます形去ます＋つづける＝一直……",
+                  "english": "keep doing"
+                },
+                "ない": {
+                  "gloss": "✗ 放 ない 在这里不成句",
+                  "english": "not here"
+                },
+                "すぎ": {
+                  "gloss": "ます形去ます＋すぎる＝太……",
+                  "english": "too much"
+                }
+              },
+              "answerTranslation": "べんきょうしつづけています＝一直在学",
+              "ambiguityNote": "中文：べんきょうしつづけています＝一直在学　提示：很多语法＝ます形去掉 ます，再接尾巴。"
+            }
+          ]
+        },
+        {
+          "id": "jp-masu-pic",
+          "title": "⑤ 看图选ます形",
+          "instructions": "看图想想是什么动作，再选出它的ます形。",
+          "type": "single_choice",
+          "items": [
+            {
+              "id": "jp-masu-pic-01",
+              "number": 1,
+              "prompt": "看图：这个动作的ます形是？",
+              "options": [
+                "おどる",
+                "おどります",
+                "おどって",
+                "おどらない"
+              ],
+              "answers": [
+                "おどります"
+              ],
+              "canonicalAnswer": "おどります",
+              "optionNotes": {
+                "おどります": {
+                  "gloss": "跳舞（ます形：礼貌体）",
+                  "english": "masu form"
+                },
+                "おどる": {
+                  "gloss": "跳舞（辞书形）",
+                  "english": "dictionary form"
+                },
+                "おどらない": {
+                  "gloss": "不跳舞（ない形）",
+                  "english": "negative"
+                },
+                "おどって": {
+                  "gloss": "跳舞（て形）",
+                  "english": "て-form"
+                }
+              },
+              "imageId": "jp-action-bailar"
+            },
+            {
+              "id": "jp-masu-pic-02",
+              "number": 2,
+              "prompt": "看图：这个动作的ます形是？",
+              "options": [
+                "のみます",
+                "のむ",
+                "のんで",
+                "のまない"
+              ],
+              "answers": [
+                "のみます"
+              ],
+              "canonicalAnswer": "のみます",
+              "optionNotes": {
+                "のみます": {
+                  "gloss": "喝（ます形：礼貌体）",
+                  "english": "masu form"
+                },
+                "のむ": {
+                  "gloss": "喝（辞书形）",
+                  "english": "dictionary form"
+                },
+                "のまない": {
+                  "gloss": "不喝（ない形）",
+                  "english": "negative"
+                },
+                "のんで": {
+                  "gloss": "喝（て形）",
+                  "english": "て-form"
+                }
+              },
+              "imageId": "jp-action-beber"
+            },
+            {
+              "id": "jp-masu-pic-03",
+              "number": 3,
+              "prompt": "看图：这个动作的ます形是？",
+              "options": [
+                "りょうりします",
+                "りょうりして",
+                "りょうりする",
+                "りょうりしない"
+              ],
+              "answers": [
+                "りょうりします"
+              ],
+              "canonicalAnswer": "りょうりします",
+              "optionNotes": {
+                "りょうりします": {
+                  "gloss": "做饭（ます形：礼貌体）",
+                  "english": "masu form"
+                },
+                "りょうりする": {
+                  "gloss": "做饭（辞书形）",
+                  "english": "dictionary form"
+                },
+                "りょうりしない": {
+                  "gloss": "不做饭（ない形）",
+                  "english": "negative"
+                },
+                "りょうりして": {
+                  "gloss": "做饭（て形）",
+                  "english": "て-form"
+                }
+              },
+              "imageId": "jp-action-cocinar"
+            },
+            {
+              "id": "jp-masu-pic-04",
+              "number": 4,
+              "prompt": "看图：这个动作的ます形是？",
+              "options": [
+                "べんきょうします",
+                "べんきょうして",
+                "べんきょうする",
+                "べんきょうしない"
+              ],
+              "answers": [
+                "べんきょうします"
+              ],
+              "canonicalAnswer": "べんきょうします",
+              "optionNotes": {
+                "べんきょうします": {
+                  "gloss": "学习（ます形：礼貌体）",
+                  "english": "masu form"
+                },
+                "べんきょうする": {
+                  "gloss": "学习（辞书形）",
+                  "english": "dictionary form"
+                },
+                "べんきょうしない": {
+                  "gloss": "不学习（ない形）",
+                  "english": "negative"
+                },
+                "べんきょうして": {
+                  "gloss": "学习（て形）",
+                  "english": "て-form"
+                }
+              },
+              "imageId": "jp-action-estudiar"
+            },
+            {
+              "id": "jp-masu-pic-05",
+              "number": 5,
+              "prompt": "看图：这个动作的ます形是？",
+              "options": [
+                "ききます",
+                "きく",
+                "きかない",
+                "きいて"
+              ],
+              "answers": [
+                "ききます"
+              ],
+              "canonicalAnswer": "ききます",
+              "optionNotes": {
+                "ききます": {
+                  "gloss": "听（ます形：礼貌体）",
+                  "english": "masu form"
+                },
+                "きく": {
+                  "gloss": "听（辞书形）",
+                  "english": "dictionary form"
+                },
+                "きかない": {
+                  "gloss": "不听（ない形）",
+                  "english": "negative"
+                },
+                "きいて": {
+                  "gloss": "听（て形）",
+                  "english": "て-form"
+                }
+              },
+              "imageId": "jp-action-escuchar"
+            },
+            {
+              "id": "jp-masu-pic-06",
+              "number": 6,
+              "prompt": "看图：这个动作的ます形是？",
+              "options": [
+                "あらう",
+                "あらいます",
+                "あらわない",
+                "あらって"
+              ],
+              "answers": [
+                "あらいます"
+              ],
+              "canonicalAnswer": "あらいます",
+              "optionNotes": {
+                "あらいます": {
+                  "gloss": "洗（ます形：礼貌体）",
+                  "english": "masu form"
+                },
+                "あらう": {
+                  "gloss": "洗（辞书形）",
+                  "english": "dictionary form"
+                },
+                "あらわない": {
+                  "gloss": "不洗（ない形）",
+                  "english": "negative"
+                },
+                "あらって": {
+                  "gloss": "洗（て形）",
+                  "english": "て-form"
+                }
+              },
+              "imageId": "jp-action-lavar"
+            },
+            {
+              "id": "jp-masu-pic-07",
+              "number": 7,
+              "prompt": "看图：这个动作的ます形是？",
+              "options": [
+                "まって",
+                "まつ",
+                "またない",
+                "まちます"
+              ],
+              "answers": [
+                "まちます"
+              ],
+              "canonicalAnswer": "まちます",
+              "optionNotes": {
+                "まちます": {
+                  "gloss": "等（ます形：礼貌体）",
+                  "english": "masu form"
+                },
+                "まつ": {
+                  "gloss": "等（辞书形）",
+                  "english": "dictionary form"
+                },
+                "またない": {
+                  "gloss": "不等（ない形）",
+                  "english": "negative"
+                },
+                "まって": {
+                  "gloss": "等（て形）",
+                  "english": "て-form"
+                }
+              },
+              "imageId": "jp-action-esperar"
+            }
+          ]
+        }
+      ],
+      "images": {
+        "jp-action-bailar": {
+          "file": "assets/vocab-images/actions/a1-acciones-bailar-43f4e458.png",
+          "sha256": "43f4e458ab0d9ed5a359f2b04fa480620ced94dd52137a4fc3a47d8d91a78ce7",
+          "bytes": 2572,
+          "license": "Icons8 free with link attribution",
+          "licenseUrl": "https://icons8.com/license",
+          "creator": "Icons8",
+          "sourceUrl": "https://img.icons8.com/color/100/dancing.png",
+          "landing": "https://icons8.com/icons/set/dancing--style-color",
+          "provider": "Icons8",
+          "creditUrl": "https://icons8.com/",
+          "presentation": "icon",
+          "reviewed": true,
+          "reviewedBy": "assistant",
+          "reviewedAt": "2026-10-03",
+          "deliver": "file"
+        },
+        "jp-action-beber": {
+          "file": "assets/vocab-images/actions/a1-acciones-beber-4e09ef6a.png",
+          "sha256": "4e09ef6af3909e8eb07afefdcbd4831335422ff37fc5e7a6efcac99c10d3da40",
+          "bytes": 1696,
+          "license": "Icons8 free with link attribution",
+          "licenseUrl": "https://icons8.com/license",
+          "creator": "Icons8",
+          "sourceUrl": "https://img.icons8.com/color/100/sip.png",
+          "landing": "https://icons8.com/icons/set/sip--style-color",
+          "provider": "Icons8",
+          "creditUrl": "https://icons8.com/",
+          "presentation": "icon",
+          "reviewed": true,
+          "reviewedBy": "assistant",
+          "reviewedAt": "2026-10-03",
+          "deliver": "file"
+        },
+        "jp-action-cocinar": {
+          "file": "assets/vocab-images/actions/a1-acciones-cocinar-75bc75ff.png",
+          "sha256": "75bc75ffb67f58e2b925e97ff5e4a3ddc507c510c685b49d47c95f25b7ebbcfc",
+          "bytes": 2007,
+          "license": "Icons8 free with link attribution",
+          "licenseUrl": "https://icons8.com/license",
+          "creator": "Icons8",
+          "sourceUrl": "https://img.icons8.com/color/100/cooking.png",
+          "landing": "https://icons8.com/icons/set/cooking--style-color",
+          "provider": "Icons8",
+          "creditUrl": "https://icons8.com/",
+          "presentation": "icon",
+          "reviewed": true,
+          "reviewedBy": "assistant",
+          "reviewedAt": "2026-10-03",
+          "deliver": "file"
+        },
+        "jp-action-escuchar": {
+          "file": "assets/vocab-images/actions/a1-acciones-escuchar-ccd96340.png",
+          "sha256": "ccd96340751ebba4287a7ba4bb2b15e01cf9225c4948c43192d0753833ed12e3",
+          "bytes": 3092,
+          "license": "Icons8 free with link attribution",
+          "licenseUrl": "https://icons8.com/license",
+          "creator": "Icons8",
+          "sourceUrl": "https://img.icons8.com/color/100/listening.png",
+          "landing": "https://icons8.com/icons/set/listening--style-color",
+          "provider": "Icons8",
+          "creditUrl": "https://icons8.com/",
+          "presentation": "icon",
+          "reviewed": true,
+          "reviewedBy": "assistant",
+          "reviewedAt": "2026-10-03",
+          "deliver": "file"
+        },
+        "jp-action-esperar": {
+          "file": "assets/vocab-images/actions/a1-acciones-esperar-05c8faac.png",
+          "sha256": "05c8faacff8a5c523bbcfda278c6e110cd8aa47b496e4b0cbff1c4a978e67eda",
+          "bytes": 3005,
+          "license": "Icons8 free with link attribution",
+          "licenseUrl": "https://icons8.com/license",
+          "creator": "Icons8",
+          "sourceUrl": "https://img.icons8.com/color/100/waiting-room.png",
+          "landing": "https://icons8.com/icons/set/waiting-room--style-color",
+          "provider": "Icons8",
+          "creditUrl": "https://icons8.com/",
+          "presentation": "icon",
+          "reviewed": true,
+          "reviewedBy": "assistant",
+          "reviewedAt": "2026-10-03",
+          "deliver": "file"
+        },
+        "jp-action-estudiar": {
+          "file": "assets/vocab-images/actions/a1-acciones-estudiar-aa7f8025.png",
+          "sha256": "aa7f802549b90b5ddfec253dee849bb815f954ae9bfaa04242963d9e40d5a58b",
+          "bytes": 2693,
+          "license": "Icons8 free with link attribution",
+          "licenseUrl": "https://icons8.com/license",
+          "creator": "Icons8",
+          "sourceUrl": "https://img.icons8.com/color/100/studying.png",
+          "landing": "https://icons8.com/icons/set/studying--style-color",
+          "provider": "Icons8",
+          "creditUrl": "https://icons8.com/",
+          "presentation": "icon",
+          "reviewed": true,
+          "reviewedBy": "assistant",
+          "reviewedAt": "2026-10-03",
+          "deliver": "file"
+        },
+        "jp-action-lavar": {
+          "file": "assets/vocab-images/actions/a1-acciones-lavar-16afffa9.png",
+          "sha256": "16afffa9706d3a55df2ff7de42e438e52256d2a089145dfd530b2aa9dd1b3982",
+          "bytes": 2289,
+          "license": "Icons8 free with link attribution",
+          "licenseUrl": "https://icons8.com/license",
+          "creator": "Icons8",
+          "sourceUrl": "https://img.icons8.com/color/100/wash-your-hands.png",
+          "landing": "https://icons8.com/icons/set/wash-your-hands--style-color",
+          "provider": "Icons8",
+          "creditUrl": "https://icons8.com/",
+          "presentation": "icon",
+          "reviewed": true,
+          "reviewedBy": "assistant",
+          "reviewedAt": "2026-10-03",
+          "deliver": "file"
+        }
+      },
+      "lessonNotes": [
+        {
+          "title": "ます形怎么变",
+          "points": [
+            "五段：最后的 う段音 → い段＋ます（かく→かきます、よむ→よみます、まつ→まちます、かう→かいます）。",
+            "一段：去掉 る＋ます（たべる→たべます、みる→みます）。",
+            "像一段的五段（例外）：かえる→かえります、はいる→はいります、はしる→はしります。",
+            "不规则：する→します、くる→きます；名词＋する 只变 する（りょうりします）。",
+            "对照：ない形换 あ段（かかない），ます形换 い段（かきます）。"
+          ]
+        },
+        {
+          "title": "礼貌体的四个形式",
+          "points": [
+            "ます（肯定 · 现在 / 将来）、ました（肯定 · 过去）、ません（否定）、ませんでした（否定 · 过去）。"
+          ],
+          "examples": [
+            {
+              "text": "まいあさ コーヒーを のみます。",
+              "translation": "我每天早上喝咖啡。"
+            },
+            {
+              "text": "きのうは どこにも いきませんでした。",
+              "translation": "昨天哪儿也没去。"
+            }
+          ]
+        },
+        {
+          "title": "过去式的两条路",
+          "points": [
+            "礼貌体过去：ます形 → ました（かいます → かいました）。",
+            "随意体过去：て形 → た（かって → かった）。"
+          ]
+        },
+        {
+          "title": "ます形去掉 ます ＝ 很多语法的接口",
+          "points": [
+            "～たい（想）、～やすい／～にくい（容易 / 难）、～すぎる（太）、～そう（看起来）、～つづける（一直）、～ながら（一边）。"
+          ],
+          "examples": [
+            {
+              "text": "よみます → よみ＋やすい → よみやすい",
+              "translation": "好读"
+            },
+            {
+              "text": "いきます → いき＋たい → いきたい",
+              "translation": "想去"
+            }
+          ]
+        }
+      ],
+      "lessonNotesHeading": "先读笔记：ます形：礼貌体（ます · ました · ません）"
+    },
+    {
       "id": "jp-practice-pictures",
       "title": "日语 图片动词：看图选词 · 看图选形式",
       "badge": "日语练习",
