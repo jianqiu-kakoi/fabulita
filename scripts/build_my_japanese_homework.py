@@ -95,7 +95,7 @@ def table(table_id: str, verb: str, title: str, rows: list[tuple[str, str]]) -> 
 
 
 def assignment(slug: str, title: str, source_title: str, sections: list[dict],
-               tables: list[dict] | None = None) -> dict:
+               tables: list[dict] | None = None, heading: str = "", intro: str = "") -> dict:
     out = {
         "id": PREFIX + slug,
         "title": title,
@@ -109,6 +109,9 @@ def assignment(slug: str, title: str, source_title: str, sections: list[dict],
     }
     if tables:
         out["referenceTables"] = tables
+        # Japanese conjugates by verb ending, not by person.
+        out["referenceHeading"] = heading or "先看规则表"
+        out["referenceIntro"] = intro or "可以一边看表一边练习；熟悉以后再把表收起来测试自己。"
     out["sections"] = sections
     return out
 
@@ -194,11 +197,31 @@ def lesson_past() -> dict:
             section(f"{p}-tiles", "④ 连词成句", "看中文意思，按顺序点词块拼成句子。点上面已选的词块可以撤回。",
                     "text_input", tile_items),
         ],
-        tables=[table(f"{p}-ref", "ていた", "～ていた（随意）／～ていました（礼貌）", [
-            ("みる", "みていた・みていました"), ("よむ", "よんでいた・よんでいました"),
-            ("かく", "かいていた・かいていました"), ("はなす", "はなしていた・はなしていました"),
-            ("いく", "いっていた・いっていました"), ("する", "していた・していました"),
-        ])],
+        tables=[
+            table(f"{p}-te", "て形", "第 1 步：把动词变成て形（看动词结尾）", [
+                ("～る（一段：たべる・みる）", "去 る＋て：たべて・みて"),
+                ("～う・～つ・～る（五段）", "って：かって・まって・つくって"),
+                ("～む・～ぶ・～ぬ", "んで：よんで・あそんで・しんで"),
+                ("～く", "いて：かいて・きいて"),
+                ("～ぐ", "いで：およいで"),
+                ("～す", "して：はなして"),
+                ("例外", "いく→いって・する→して・くる→きて"),
+            ]),
+            table(f"{p}-teita", "ていた", "第 2 步：て形＋いた（随意）／いました（礼貌）＝当时正在……", [
+                ("よむ → よんで", "よんでいた・よんでいました"),
+                ("かく → かいて", "かいていた・かいていました"),
+                ("いく → いって", "いっていた・いっていました"),
+                ("する → して", "していた・していました"),
+            ]),
+            table(f"{p}-ta", "た", "对比：～た／～ました＝做完了（把て换成た）", [
+                ("よんで → よんだ", "よんだ・よみました"),
+                ("かいて → かいた", "かいた・かきました"),
+                ("いって → いった", "いった・いきました"),
+                ("して → した", "した・しました"),
+            ]),
+        ],
+        heading="先看规则表：动词结尾 → て形 → ～ていた",
+        intro="日语按动词结尾变形，和人称无关。先把动词变成て形，再加 いた／いました；把て换成た就是过去式。",
     )
 
 
@@ -290,6 +313,8 @@ def lesson_potential() -> dict:
             ("はなす・まつ・とる", "はなせる・まてる・とれる"),
             ("する・りょうりする", "できる・りょうりできる"), ("くる", "こられる"),
         ])],
+        heading="先看规则表：动词结尾 → 可能形",
+        intro="日语按动词结尾变形，和人称无关。一段动词加 られる，五段动词把最后的う段音变成え段再加る。",
     )
 
 
