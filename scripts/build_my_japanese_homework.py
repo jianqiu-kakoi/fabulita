@@ -42,7 +42,8 @@ def _shuffled(options: list[str], *seed: object) -> list[str]:
 
 
 def choice(item_id: str, number: int, prompt: str, answer: str, distractors: list[str],
-           translation: str = "", note: str = "") -> dict:
+           translation: str = "", note: str = "",
+           option_notes: dict[str, tuple[str, str]] | None = None) -> dict:
     options = [answer, *distractors]
     assert len(set(options)) == len(options), item_id
     item = {
@@ -53,8 +54,9 @@ def choice(item_id: str, number: int, prompt: str, answer: str, distractors: lis
         "answers": [answer],
         "canonicalAnswer": answer,
         "optionNotes": {
-            option: {"gloss": OPTION_NOTES[option][0], "english": OPTION_NOTES[option][1]}
+            option: {"gloss": text[0], "english": text[1]}
             for option in options
+            for text in [(option_notes or {}).get(option) or OPTION_NOTES[option]]
         },
     }
     if translation:
@@ -788,8 +790,68 @@ def lesson_te() -> dict:
             section(f"{p}-form", "② 变成て形", "按类别和最后一个字变成て形。", "single_choice", form_choices),
             section(f"{p}-ta", "③ て形 → た形", "把 て 换成 た、で 换成 だ。", "single_choice", past_choices),
             section(f"{p}-sent", "④ 句子里用て形", "看括号里的动词，选出正确的て形。", "single_choice", sentence_choices),
+            section(f"{p}-mix", "⑤ 各种形式混合", "同一个动词的不同形式放在一起，选出题目要的那一个。",
+                    "single_choice", verb_form_mix()),
         ],
+        tables=[table(f"{p}-forms", "形式", "动词形式总表（たべる＝一段 · よむ＝五段）", [
+            (f"{name}：{use}", f"{VERB_FORMS['たべる'][key]} · {VERB_FORMS['よむ'][key]}")
+            for key, name, use in FORM_KINDS
+        ])],
+        heading="动词形式总表：同一个动词的各种形式",
+        intro="日语动词靠改词尾来表达时态、否定、请求、可能等。所有形式都按同一套分类来变：一段、五段、不规则。",
     )
+
+
+# (key, name, what it does)
+FORM_KINDS = [
+    ("dict", "辞书形", "原形；随意体现在 / 将来"),
+    ("masu", "ます形", "礼貌体"),
+    ("nai", "ない形", "否定：不……"),
+    ("te", "て形", "连接后面的成分"),
+    ("ta", "た形", "随意体过去：……了"),
+    ("pot", "可能形", "能、会"),
+    ("ba", "ば形", "条件：如果……"),
+    ("vol", "意向形", "……吧 / 我要……"),
+]
+FORM_NAMES = {key: name for key, name, _ in FORM_KINDS}
+FORM_USES = {key: use for key, _, use in FORM_KINDS}
+VERB_FORMS = {
+    "たべる": dict(dict="たべる", masu="たべます", nai="たべない", te="たべて", ta="たべた", pot="たべられる", ba="たべれば", vol="たべよう"),
+    "よむ": dict(dict="よむ", masu="よみます", nai="よまない", te="よんで", ta="よんだ", pot="よめる", ba="よめば", vol="よもう"),
+    "かく": dict(dict="かく", masu="かきます", nai="かかない", te="かいて", ta="かいた", pot="かける", ba="かけば", vol="かこう"),
+    "はなす": dict(dict="はなす", masu="はなします", nai="はなさない", te="はなして", ta="はなした", pot="はなせる", ba="はなせば", vol="はなそう"),
+    "いく": dict(dict="いく", masu="いきます", nai="いかない", te="いって", ta="いった", pot="いける", ba="いけば", vol="いこう"),
+    "かう": dict(dict="かう", masu="かいます", nai="かわない", te="かって", ta="かった", pot="かえる", ba="かえば", vol="かおう"),
+    "まつ": dict(dict="まつ", masu="まちます", nai="またない", te="まって", ta="まった", pot="まてる", ba="まてば", vol="まとう"),
+    "みる": dict(dict="みる", masu="みます", nai="みない", te="みて", ta="みた", pot="みられる", ba="みれば", vol="みよう"),
+    "する": dict(dict="する", masu="します", nai="しない", te="して", ta="した", pot="できる", ba="すれば", vol="しよう"),
+    "くる": dict(dict="くる", masu="きます", nai="こない", te="きて", ta="きた", pot="こられる", ba="くれば", vol="こよう"),
+}
+VERB_MEANINGS = {"たべる": ("吃", "eat"), "よむ": ("读", "read"), "かく": ("写", "write"), "はなす": ("说", "speak"),
+                 "いく": ("去", "go"), "かう": ("买", "buy"), "まつ": ("等", "wait"), "みる": ("看", "see"),
+                 "する": ("做", "do"), "くる": ("来", "come")}
+MIX_QUESTIONS = [
+    ("たべる", "nai", ""), ("よむ", "masu", ""), ("かく", "ta", ""), ("はなす", "pot", ""),
+    ("いく", "te", "いく 是例外：いって。"), ("かう", "nai", "う 结尾的五段：ない形是 わない（かわない）。"),
+    ("まつ", "ba", ""), ("みる", "pot", ""), ("する", "pot", "する 的可能形是 できる。"),
+    ("くる", "nai", "くる 的ない形是 こない。"), ("よむ", "vol", ""), ("たべる", "ba", ""),
+    ("はなす", "nai", ""), ("かく", "pot", ""), ("くる", "masu", "くる 的ます形是 きます。"), ("まつ", "te", ""),
+]
+
+
+def verb_form_mix() -> list[dict]:
+    items = []
+    for number, (verb, key, note) in enumerate(MIX_QUESTIONS, start=1):
+        item_id = f"jp-te-mix-{number:02d}"
+        forms = VERB_FORMS[verb]
+        others = [k for k in forms if k != key and forms[k] != forms[key]]
+        picked = random.Random(int(hashlib.sha256(item_id.encode()).hexdigest(), 16)).sample(others, 3)
+        zh, en = VERB_MEANINGS[verb]
+        notes = {forms[k]: (f"{verb} 的{FORM_NAMES[k]}（{FORM_USES[k]}）", f"{FORM_NAMES[k]} of {verb} ({en})")
+                 for k in [key, *picked]}
+        items.append(choice(item_id, number, f"{verb}（{zh}）的{FORM_NAMES[key]}是？", forms[key],
+                            [forms[k] for k in picked], note=note, option_notes=notes))
+    return items
 
 
 def build_assignments() -> list[dict]:

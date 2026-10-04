@@ -259,7 +259,7 @@ def test_public_japanese_practice_is_committed_and_well_formed():
     committed = Project(MY_JAPANESE).homeworks
     assert committed == built
     items = [item for assignment in built for item in _items(assignment)]
-    assert len(items) == len({item["id"] for item in items}) == 204
+    assert len(items) == len({item["id"] for item in items}) == 220
     assert built[0]["id"] == "jp-practice-te"
     for assignment in built:
         # Every lesson opens with its own notes box.
