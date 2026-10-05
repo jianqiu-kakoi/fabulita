@@ -197,3 +197,39 @@ def test_new_picture_topics_cover_verbs_and_everyday_words():
     verbs = {entry["spanish"] for entry in topics["acciones"]["entries"]}
     assert {"correr", "nadar", "leer", "escribir", "dormir"} <= verbs and len(verbs) == 38
 
+
+
+preposiciones_builder = _load("build_mi_espanol_preposiciones_homework")
+
+
+def test_preposition_assignment_is_committed_and_correct():
+    assignment = preposiciones_builder.build_assignment()
+    assert _homework()["preposiciones-a-en-a1"] == assignment
+    a_al_en, contractions, mix, order, translate = assignment["sections"]
+    assert [section["type"] for section in assignment["sections"]] == [
+        "single_choice", "single_choice", "single_choice", "text_input", "text_input",
+    ]
+    assert [len(section["items"]) for section in assignment["sections"]] == [18, 9, 12, 8, 8]
+    by_id = {item["id"]: item for section in assignment["sections"] for item in section["items"]}
+    assert len(by_id) == 55
+    expected = {"prep-ae-01": "a", "prep-ae-02": "en", "prep-ae-03": "al", "prep-ae-04": "en",
+                "prep-con-02": "a la", "prep-con-06": "del", "prep-mix-02": "al", "prep-mix-10": "el"}
+    for item_id, answer in expected.items():
+        assert by_id[item_id]["answers"] == [answer]
+    for section in (a_al_en, contractions, mix):
+        for item in section["items"]:
+            assert item["prompt"].count("_______") == 1
+            assert item["answers"][0] in item["options"]
+            assert set(item["optionNotes"]) == set(item["options"])
+            for option in item["answers"]:
+                assert not item["optionNotes"][option]["gloss"].startswith("✗")
+    for item in contractions["items"]:
+        wrong = {"a el", "de el"} & set(item["options"])
+        assert len(wrong) == 1 and item["optionNotes"][wrong.pop()]["gloss"].startswith("✗")
+    for item in order["items"]:
+        tiles = list(item["wordTiles"])
+        words = item["canonicalAnswer"].rstrip(".").split()
+        for word in words:
+            tiles.remove(word)
+        assert tiles, "each ordering item keeps at least one decoy tile"
+    assert "Voy a la escuela." in translate["items"][0]["answers"]
