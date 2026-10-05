@@ -57186,6 +57186,1968 @@
           ]
         }
       ]
+    },
+    {
+      "id": "preposiciones-a-en-a1",
+      "title": "介词 a / al / en（和 el）练习 A1",
+      "badge": "新练习",
+      "sourceTitle": "Práctica: a, al, en y el",
+      "level": "A1",
+      "answerKeyBasis": "standard_grammar",
+      "lessonNotes": [
+        {
+          "title": "先分清：el 是冠词，al 是缩合",
+          "points": [
+            "el = 阳性单数定冠词（the），不是介词：el libro, el cine。",
+            "a + el 必须合并成 al；de + el 必须合并成 del。没有 “a el / de el” 这种写法。",
+            "只有 el 会合并：a la, a los, a las, de la 都不合并。",
+            "城市、国家名前没有冠词，所以 voy a Madrid（不是 al）。"
+          ],
+          "examples": [
+            {
+              "text": "Voy al cine.",
+              "translation": "我去电影院。（a + el cine）"
+            },
+            {
+              "text": "Voy a la playa.",
+              "translation": "我去海滩。（a + la 不合并）"
+            }
+          ]
+        },
+        {
+          "title": "a：往哪儿去、给谁、几点",
+          "points": [
+            "去某地（有移动）：ir a, llegar a, volver a。",
+            "给某人 / 对某人：escribo a, llamo a, pregunto a。",
+            "宾语是人要加 a（personal a）：veo a Ana；宾语是东西就不加：veo el partido。",
+            "几点：a las ocho。ir a + 动词原形：voy a comer（我要去吃）。"
+          ],
+          "examples": [
+            {
+              "text": "Vuelvo a casa a las seis.",
+              "translation": "我六点回家。"
+            },
+            {
+              "text": "Veo a mi hermana.",
+              "translation": "我看见我姐姐。"
+            }
+          ]
+        },
+        {
+          "title": "en：在哪儿（静止）、乘什么、什么时候",
+          "points": [
+            "在…里 / 上：estoy en casa, el libro está en la mesa。",
+            "交通工具：en tren, en coche, en avión。",
+            "月份、年份、季节：en marzo, en 2026, en verano。语言：en español。",
+            "判断：ir / llegar / volver 等移动动词 → a；estar / vivir / trabajar 等静止动词 → en。"
+          ],
+          "examples": [
+            {
+              "text": "Voy a la escuela.",
+              "translation": "我去学校。（移动 → a）"
+            },
+            {
+              "text": "Estoy en la escuela.",
+              "translation": "我在学校。（静止 → en）"
+            }
+          ]
+        },
+        {
+          "title": "容易错的几个点",
+          "points": [
+            "星期几用 el，不用 en：el lunes tengo clase。",
+            "jugar a + 运动：juego al fútbol。",
+            "casa 表示“自己家”时不加冠词：a casa, en casa。"
+          ],
+          "examples": [
+            {
+              "text": "Tengo clase el lunes.",
+              "translation": "我星期一有课。"
+            },
+            {
+              "text": "Juego al fútbol.",
+              "translation": "我踢足球。"
+            }
+          ]
+        }
+      ],
+      "lessonNotesHeading": "先读笔记：a / al / en / el 的区别",
+      "sections": [
+        {
+          "id": "prep-a-al-en",
+          "title": "Parte 1 - ¿a, al o en?",
+          "instructions": "有移动（去哪儿、给谁、几点）→ a；后面是 el 时 a + el = al；静止（在哪儿、乘什么、几月）→ en。",
+          "type": "single_choice",
+          "items": [
+            {
+              "id": "prep-ae-01",
+              "number": 1,
+              "prompt": "Voy _______ Madrid mañana.",
+              "options": [
+                "a",
+                "al",
+                "en"
+              ],
+              "answers": [
+                "a"
+              ],
+              "canonicalAnswer": "a",
+              "sentenceTranslations": {
+                "a": "我明天去马德里。"
+              },
+              "answerTranslation": "我明天去马德里。",
+              "optionNotes": {
+                "a": {
+                  "gloss": "介词：去往（有移动）/ 给某人 / 在几点 / 人当宾语",
+                  "english": "to / at (time)"
+                },
+                "al": {
+                  "gloss": "a + el 的缩合，后面是阳性单数名词",
+                  "english": "to the (a + el)"
+                },
+                "en": {
+                  "gloss": "介词：在…里 / 上（静止）；乘（交通）；在（月份、年份）",
+                  "english": "in / on / at / by"
+                }
+              },
+              "ambiguityNote": "完整句：Voy a Madrid mañana.　提示：去某地（有移动）用 a；城市名前没有冠词，所以不是 al。"
+            },
+            {
+              "id": "prep-ae-02",
+              "number": 2,
+              "prompt": "Vivo _______ Madrid.",
+              "options": [
+                "a",
+                "en",
+                "al"
+              ],
+              "answers": [
+                "en"
+              ],
+              "canonicalAnswer": "en",
+              "sentenceTranslations": {
+                "en": "我住在马德里。"
+              },
+              "answerTranslation": "我住在马德里。",
+              "optionNotes": {
+                "a": {
+                  "gloss": "介词：去往（有移动）/ 给某人 / 在几点 / 人当宾语",
+                  "english": "to / at (time)"
+                },
+                "al": {
+                  "gloss": "a + el 的缩合，后面是阳性单数名词",
+                  "english": "to the (a + el)"
+                },
+                "en": {
+                  "gloss": "介词：在…里 / 上（静止）；乘（交通）；在（月份、年份）",
+                  "english": "in / on / at / by"
+                }
+              },
+              "ambiguityNote": "完整句：Vivo en Madrid.　提示：住在哪里是静止的位置，用 en。"
+            },
+            {
+              "id": "prep-ae-03",
+              "number": 3,
+              "prompt": "Voy _______ cine con mis amigos.",
+              "options": [
+                "al",
+                "en",
+                "a"
+              ],
+              "answers": [
+                "al"
+              ],
+              "canonicalAnswer": "al",
+              "sentenceTranslations": {
+                "al": "我和朋友们去电影院。"
+              },
+              "answerTranslation": "我和朋友们去电影院。",
+              "optionNotes": {
+                "a": {
+                  "gloss": "介词：去往（有移动）/ 给某人 / 在几点 / 人当宾语",
+                  "english": "to / at (time)"
+                },
+                "al": {
+                  "gloss": "a + el 的缩合，后面是阳性单数名词",
+                  "english": "to the (a + el)"
+                },
+                "en": {
+                  "gloss": "介词：在…里 / 上（静止）；乘（交通）；在（月份、年份）",
+                  "english": "in / on / at / by"
+                }
+              },
+              "ambiguityNote": "完整句：Voy al cine con mis amigos.　提示：去 + el cine → a + el = al。"
+            },
+            {
+              "id": "prep-ae-04",
+              "number": 4,
+              "prompt": "Estoy _______ el cine.",
+              "options": [
+                "a",
+                "en",
+                "al"
+              ],
+              "answers": [
+                "en"
+              ],
+              "canonicalAnswer": "en",
+              "sentenceTranslations": {
+                "en": "我在电影院。"
+              },
+              "answerTranslation": "我在电影院。",
+              "optionNotes": {
+                "a": {
+                  "gloss": "介词：去往（有移动）/ 给某人 / 在几点 / 人当宾语",
+                  "english": "to / at (time)"
+                },
+                "al": {
+                  "gloss": "a + el 的缩合，后面是阳性单数名词",
+                  "english": "to the (a + el)"
+                },
+                "en": {
+                  "gloss": "介词：在…里 / 上（静止）；乘（交通）；在（月份、年份）",
+                  "english": "in / on / at / by"
+                }
+              },
+              "ambiguityNote": "完整句：Estoy en el cine.　提示：“在”某处用 en；en 不和 el 合并，所以是 en el。"
+            },
+            {
+              "id": "prep-ae-05",
+              "number": 5,
+              "prompt": "Mis padres van _______ la playa.",
+              "options": [
+                "a",
+                "en",
+                "al"
+              ],
+              "answers": [
+                "a"
+              ],
+              "canonicalAnswer": "a",
+              "sentenceTranslations": {
+                "a": "我父母去海滩。"
+              },
+              "answerTranslation": "我父母去海滩。",
+              "optionNotes": {
+                "a": {
+                  "gloss": "介词：去往（有移动）/ 给某人 / 在几点 / 人当宾语",
+                  "english": "to / at (time)"
+                },
+                "al": {
+                  "gloss": "a + el 的缩合，后面是阳性单数名词",
+                  "english": "to the (a + el)"
+                },
+                "en": {
+                  "gloss": "介词：在…里 / 上（静止）；乘（交通）；在（月份、年份）",
+                  "english": "in / on / at / by"
+                }
+              },
+              "ambiguityNote": "完整句：Mis padres van a la playa.　提示：后面已经有 la，a + la 不合并。"
+            },
+            {
+              "id": "prep-ae-06",
+              "number": 6,
+              "prompt": "Comemos _______ casa.",
+              "options": [
+                "a",
+                "en",
+                "al"
+              ],
+              "answers": [
+                "en"
+              ],
+              "canonicalAnswer": "en",
+              "sentenceTranslations": {
+                "en": "我们在家吃饭。"
+              },
+              "answerTranslation": "我们在家吃饭。",
+              "optionNotes": {
+                "a": {
+                  "gloss": "介词：去往（有移动）/ 给某人 / 在几点 / 人当宾语",
+                  "english": "to / at (time)"
+                },
+                "al": {
+                  "gloss": "a + el 的缩合，后面是阳性单数名词",
+                  "english": "to the (a + el)"
+                },
+                "en": {
+                  "gloss": "介词：在…里 / 上（静止）；乘（交通）；在（月份、年份）",
+                  "english": "in / on / at / by"
+                }
+              },
+              "ambiguityNote": "完整句：Comemos en casa.　提示：在家：en casa（casa 前不加冠词）。"
+            },
+            {
+              "id": "prep-ae-07",
+              "number": 7,
+              "prompt": "Vuelvo _______ casa a las seis.",
+              "options": [
+                "a",
+                "en",
+                "al"
+              ],
+              "answers": [
+                "a"
+              ],
+              "canonicalAnswer": "a",
+              "sentenceTranslations": {
+                "a": "我六点回家。"
+              },
+              "answerTranslation": "我六点回家。",
+              "optionNotes": {
+                "a": {
+                  "gloss": "介词：去往（有移动）/ 给某人 / 在几点 / 人当宾语",
+                  "english": "to / at (time)"
+                },
+                "al": {
+                  "gloss": "a + el 的缩合，后面是阳性单数名词",
+                  "english": "to the (a + el)"
+                },
+                "en": {
+                  "gloss": "介词：在…里 / 上（静止）；乘（交通）；在（月份、年份）",
+                  "english": "in / on / at / by"
+                }
+              },
+              "ambiguityNote": "完整句：Vuelvo a casa a las seis.　提示：回家有移动：a casa。"
+            },
+            {
+              "id": "prep-ae-08",
+              "number": 8,
+              "prompt": "La clase empieza _______ las nueve.",
+              "options": [
+                "al",
+                "a",
+                "en"
+              ],
+              "answers": [
+                "a"
+              ],
+              "canonicalAnswer": "a",
+              "sentenceTranslations": {
+                "a": "课九点开始。"
+              },
+              "answerTranslation": "课九点开始。",
+              "optionNotes": {
+                "a": {
+                  "gloss": "介词：去往（有移动）/ 给某人 / 在几点 / 人当宾语",
+                  "english": "to / at (time)"
+                },
+                "al": {
+                  "gloss": "a + el 的缩合，后面是阳性单数名词",
+                  "english": "to the (a + el)"
+                },
+                "en": {
+                  "gloss": "介词：在…里 / 上（静止）；乘（交通）；在（月份、年份）",
+                  "english": "in / on / at / by"
+                }
+              },
+              "ambiguityNote": "完整句：La clase empieza a las nueve.　提示：几点钟用 a：a las nueve。"
+            },
+            {
+              "id": "prep-ae-09",
+              "number": 9,
+              "prompt": "Viajo _______ tren.",
+              "options": [
+                "al",
+                "en",
+                "a"
+              ],
+              "answers": [
+                "en"
+              ],
+              "canonicalAnswer": "en",
+              "sentenceTranslations": {
+                "en": "我坐火车旅行。"
+              },
+              "answerTranslation": "我坐火车旅行。",
+              "optionNotes": {
+                "a": {
+                  "gloss": "介词：去往（有移动）/ 给某人 / 在几点 / 人当宾语",
+                  "english": "to / at (time)"
+                },
+                "al": {
+                  "gloss": "a + el 的缩合，后面是阳性单数名词",
+                  "english": "to the (a + el)"
+                },
+                "en": {
+                  "gloss": "介词：在…里 / 上（静止）；乘（交通）；在（月份、年份）",
+                  "english": "in / on / at / by"
+                }
+              },
+              "ambiguityNote": "完整句：Viajo en tren.　提示：交通工具用 en：en tren, en coche, en avión。"
+            },
+            {
+              "id": "prep-ae-10",
+              "number": 10,
+              "prompt": "Veo _______ mi hermana.",
+              "options": [
+                "en",
+                "a",
+                "al"
+              ],
+              "answers": [
+                "a"
+              ],
+              "canonicalAnswer": "a",
+              "sentenceTranslations": {
+                "a": "我看见我姐姐。"
+              },
+              "answerTranslation": "我看见我姐姐。",
+              "optionNotes": {
+                "a": {
+                  "gloss": "介词：去往（有移动）/ 给某人 / 在几点 / 人当宾语",
+                  "english": "to / at (time)"
+                },
+                "al": {
+                  "gloss": "a + el 的缩合，后面是阳性单数名词",
+                  "english": "to the (a + el)"
+                },
+                "en": {
+                  "gloss": "介词：在…里 / 上（静止）；乘（交通）；在（月份、年份）",
+                  "english": "in / on / at / by"
+                }
+              },
+              "ambiguityNote": "完整句：Veo a mi hermana.　提示：宾语是人时要加 a（personal a）。"
+            },
+            {
+              "id": "prep-ae-11",
+              "number": 11,
+              "prompt": "Llamo _______ médico.",
+              "options": [
+                "en",
+                "al",
+                "a"
+              ],
+              "answers": [
+                "al"
+              ],
+              "canonicalAnswer": "al",
+              "sentenceTranslations": {
+                "al": "我给医生打电话。"
+              },
+              "answerTranslation": "我给医生打电话。",
+              "optionNotes": {
+                "a": {
+                  "gloss": "介词：去往（有移动）/ 给某人 / 在几点 / 人当宾语",
+                  "english": "to / at (time)"
+                },
+                "al": {
+                  "gloss": "a + el 的缩合，后面是阳性单数名词",
+                  "english": "to the (a + el)"
+                },
+                "en": {
+                  "gloss": "介词：在…里 / 上（静止）；乘（交通）；在（月份、年份）",
+                  "english": "in / on / at / by"
+                }
+              },
+              "ambiguityNote": "完整句：Llamo al médico.　提示：宾语是人（el médico）→ a + el = al。"
+            },
+            {
+              "id": "prep-ae-12",
+              "number": 12,
+              "prompt": "Mi cumpleaños es _______ marzo.",
+              "options": [
+                "a",
+                "al",
+                "en"
+              ],
+              "answers": [
+                "en"
+              ],
+              "canonicalAnswer": "en",
+              "sentenceTranslations": {
+                "en": "我的生日在三月。"
+              },
+              "answerTranslation": "我的生日在三月。",
+              "optionNotes": {
+                "a": {
+                  "gloss": "介词：去往（有移动）/ 给某人 / 在几点 / 人当宾语",
+                  "english": "to / at (time)"
+                },
+                "al": {
+                  "gloss": "a + el 的缩合，后面是阳性单数名词",
+                  "english": "to the (a + el)"
+                },
+                "en": {
+                  "gloss": "介词：在…里 / 上（静止）；乘（交通）；在（月份、年份）",
+                  "english": "in / on / at / by"
+                }
+              },
+              "ambiguityNote": "完整句：Mi cumpleaños es en marzo.　提示：月份、年份、季节前用 en。"
+            },
+            {
+              "id": "prep-ae-13",
+              "number": 13,
+              "prompt": "Voy _______ comer ahora.",
+              "options": [
+                "a",
+                "al",
+                "en"
+              ],
+              "answers": [
+                "a"
+              ],
+              "canonicalAnswer": "a",
+              "sentenceTranslations": {
+                "a": "我现在要去吃饭。"
+              },
+              "answerTranslation": "我现在要去吃饭。",
+              "optionNotes": {
+                "a": {
+                  "gloss": "介词：去往（有移动）/ 给某人 / 在几点 / 人当宾语",
+                  "english": "to / at (time)"
+                },
+                "al": {
+                  "gloss": "a + el 的缩合，后面是阳性单数名词",
+                  "english": "to the (a + el)"
+                },
+                "en": {
+                  "gloss": "介词：在…里 / 上（静止）；乘（交通）；在（月份、年份）",
+                  "english": "in / on / at / by"
+                }
+              },
+              "ambiguityNote": "完整句：Voy a comer ahora.　提示：ir a + 动词原形：要去做某事。"
+            },
+            {
+              "id": "prep-ae-14",
+              "number": 14,
+              "prompt": "El libro está _______ la mesa.",
+              "options": [
+                "a",
+                "al",
+                "en"
+              ],
+              "answers": [
+                "en"
+              ],
+              "canonicalAnswer": "en",
+              "sentenceTranslations": {
+                "en": "书在桌子上。"
+              },
+              "answerTranslation": "书在桌子上。",
+              "optionNotes": {
+                "a": {
+                  "gloss": "介词：去往（有移动）/ 给某人 / 在几点 / 人当宾语",
+                  "english": "to / at (time)"
+                },
+                "al": {
+                  "gloss": "a + el 的缩合，后面是阳性单数名词",
+                  "english": "to the (a + el)"
+                },
+                "en": {
+                  "gloss": "介词：在…里 / 上（静止）；乘（交通）；在（月份、年份）",
+                  "english": "in / on / at / by"
+                }
+              },
+              "ambiguityNote": "完整句：El libro está en la mesa.　提示：在…上面也用 en。"
+            },
+            {
+              "id": "prep-ae-15",
+              "number": 15,
+              "prompt": "Llego _______ aeropuerto a las diez.",
+              "options": [
+                "en",
+                "a",
+                "al"
+              ],
+              "answers": [
+                "al"
+              ],
+              "canonicalAnswer": "al",
+              "sentenceTranslations": {
+                "al": "我十点到机场。"
+              },
+              "answerTranslation": "我十点到机场。",
+              "optionNotes": {
+                "a": {
+                  "gloss": "介词：去往（有移动）/ 给某人 / 在几点 / 人当宾语",
+                  "english": "to / at (time)"
+                },
+                "al": {
+                  "gloss": "a + el 的缩合，后面是阳性单数名词",
+                  "english": "to the (a + el)"
+                },
+                "en": {
+                  "gloss": "介词：在…里 / 上（静止）；乘（交通）；在（月份、年份）",
+                  "english": "in / on / at / by"
+                }
+              },
+              "ambiguityNote": "完整句：Llego al aeropuerto a las diez.　提示：llegar a（到达）+ el aeropuerto → al。"
+            },
+            {
+              "id": "prep-ae-16",
+              "number": 16,
+              "prompt": "Hablo _______ español con mi profesora.",
+              "options": [
+                "a",
+                "en",
+                "al"
+              ],
+              "answers": [
+                "en"
+              ],
+              "canonicalAnswer": "en",
+              "sentenceTranslations": {
+                "en": "我和老师说西班牙语。"
+              },
+              "answerTranslation": "我和老师说西班牙语。",
+              "optionNotes": {
+                "a": {
+                  "gloss": "介词：去往（有移动）/ 给某人 / 在几点 / 人当宾语",
+                  "english": "to / at (time)"
+                },
+                "al": {
+                  "gloss": "a + el 的缩合，后面是阳性单数名词",
+                  "english": "to the (a + el)"
+                },
+                "en": {
+                  "gloss": "介词：在…里 / 上（静止）；乘（交通）；在（月份、年份）",
+                  "english": "in / on / at / by"
+                }
+              },
+              "ambiguityNote": "完整句：Hablo en español con mi profesora.　提示：用某种语言说：en español。"
+            },
+            {
+              "id": "prep-ae-17",
+              "number": 17,
+              "prompt": "Escribo un mensaje _______ profesor.",
+              "options": [
+                "en",
+                "a",
+                "al"
+              ],
+              "answers": [
+                "al"
+              ],
+              "canonicalAnswer": "al",
+              "sentenceTranslations": {
+                "al": "我给老师写一条消息。"
+              },
+              "answerTranslation": "我给老师写一条消息。",
+              "optionNotes": {
+                "a": {
+                  "gloss": "介词：去往（有移动）/ 给某人 / 在几点 / 人当宾语",
+                  "english": "to / at (time)"
+                },
+                "al": {
+                  "gloss": "a + el 的缩合，后面是阳性单数名词",
+                  "english": "to the (a + el)"
+                },
+                "en": {
+                  "gloss": "介词：在…里 / 上（静止）；乘（交通）；在（月份、年份）",
+                  "english": "in / on / at / by"
+                }
+              },
+              "ambiguityNote": "完整句：Escribo un mensaje al profesor.　提示：给某人：a + el profesor → al。"
+            },
+            {
+              "id": "prep-ae-18",
+              "number": 18,
+              "prompt": "Trabajo _______ un hospital.",
+              "options": [
+                "en",
+                "al",
+                "a"
+              ],
+              "answers": [
+                "en"
+              ],
+              "canonicalAnswer": "en",
+              "sentenceTranslations": {
+                "en": "我在一家医院工作。"
+              },
+              "answerTranslation": "我在一家医院工作。",
+              "optionNotes": {
+                "a": {
+                  "gloss": "介词：去往（有移动）/ 给某人 / 在几点 / 人当宾语",
+                  "english": "to / at (time)"
+                },
+                "al": {
+                  "gloss": "a + el 的缩合，后面是阳性单数名词",
+                  "english": "to the (a + el)"
+                },
+                "en": {
+                  "gloss": "介词：在…里 / 上（静止）；乘（交通）；在（月份、年份）",
+                  "english": "in / on / at / by"
+                }
+              },
+              "ambiguityNote": "完整句：Trabajo en un hospital.　提示：在某处工作（静止）用 en。"
+            }
+          ]
+        },
+        {
+          "id": "prep-contractions",
+          "title": "Parte 2 - ¿al o a la? ¿del o de la?",
+          "instructions": "只有 el 会和 a / de 合并：a + el = al，de + el = del；la 不合并。",
+          "type": "single_choice",
+          "items": [
+            {
+              "id": "prep-con-01",
+              "number": 1,
+              "prompt": "Vamos _______ parque.",
+              "options": [
+                "a la",
+                "a el",
+                "al"
+              ],
+              "answers": [
+                "al"
+              ],
+              "canonicalAnswer": "al",
+              "sentenceTranslations": {
+                "al": "我们去公园。"
+              },
+              "answerTranslation": "我们去公园。",
+              "optionNotes": {
+                "al": {
+                  "gloss": "a + el 的缩合，后面是阳性单数名词",
+                  "english": "to the (a + el)"
+                },
+                "a la": {
+                  "gloss": "a + la：阴性不合并",
+                  "english": "to the (feminine)"
+                },
+                "a el": {
+                  "gloss": "✗ 错误形式：a + el 必须合并成 al",
+                  "english": "✗ must be al"
+                }
+              },
+              "ambiguityNote": "完整句：Vamos al parque.　提示：parque 是阳性（el parque）→ al。"
+            },
+            {
+              "id": "prep-con-02",
+              "number": 2,
+              "prompt": "Vamos _______ escuela.",
+              "options": [
+                "a la",
+                "al",
+                "a el"
+              ],
+              "answers": [
+                "a la"
+              ],
+              "canonicalAnswer": "a la",
+              "sentenceTranslations": {
+                "a la": "我们去学校。"
+              },
+              "answerTranslation": "我们去学校。",
+              "optionNotes": {
+                "al": {
+                  "gloss": "a + el 的缩合，后面是阳性单数名词",
+                  "english": "to the (a + el)"
+                },
+                "a la": {
+                  "gloss": "a + la：阴性不合并",
+                  "english": "to the (feminine)"
+                },
+                "a el": {
+                  "gloss": "✗ 错误形式：a + el 必须合并成 al",
+                  "english": "✗ must be al"
+                }
+              },
+              "ambiguityNote": "完整句：Vamos a la escuela.　提示：escuela 是阴性（la escuela）→ a la，不合并。"
+            },
+            {
+              "id": "prep-con-03",
+              "number": 3,
+              "prompt": "Voy _______ mercado.",
+              "options": [
+                "a el",
+                "a la",
+                "al"
+              ],
+              "answers": [
+                "al"
+              ],
+              "canonicalAnswer": "al",
+              "sentenceTranslations": {
+                "al": "我去市场。"
+              },
+              "answerTranslation": "我去市场。",
+              "optionNotes": {
+                "al": {
+                  "gloss": "a + el 的缩合，后面是阳性单数名词",
+                  "english": "to the (a + el)"
+                },
+                "a la": {
+                  "gloss": "a + la：阴性不合并",
+                  "english": "to the (feminine)"
+                },
+                "a el": {
+                  "gloss": "✗ 错误形式：a + el 必须合并成 al",
+                  "english": "✗ must be al"
+                }
+              },
+              "ambiguityNote": "完整句：Voy al mercado.　提示：el mercado → al。"
+            },
+            {
+              "id": "prep-con-04",
+              "number": 4,
+              "prompt": "Voy _______ biblioteca.",
+              "options": [
+                "a el",
+                "al",
+                "a la"
+              ],
+              "answers": [
+                "a la"
+              ],
+              "canonicalAnswer": "a la",
+              "sentenceTranslations": {
+                "a la": "我去图书馆。"
+              },
+              "answerTranslation": "我去图书馆。",
+              "optionNotes": {
+                "al": {
+                  "gloss": "a + el 的缩合，后面是阳性单数名词",
+                  "english": "to the (a + el)"
+                },
+                "a la": {
+                  "gloss": "a + la：阴性不合并",
+                  "english": "to the (feminine)"
+                },
+                "a el": {
+                  "gloss": "✗ 错误形式：a + el 必须合并成 al",
+                  "english": "✗ must be al"
+                }
+              },
+              "ambiguityNote": "完整句：Voy a la biblioteca.　提示：la biblioteca → a la。"
+            },
+            {
+              "id": "prep-con-05",
+              "number": 5,
+              "prompt": "Vamos _______ restaurante.",
+              "options": [
+                "a la",
+                "al",
+                "a el"
+              ],
+              "answers": [
+                "al"
+              ],
+              "canonicalAnswer": "al",
+              "sentenceTranslations": {
+                "al": "我们去餐馆。"
+              },
+              "answerTranslation": "我们去餐馆。",
+              "optionNotes": {
+                "al": {
+                  "gloss": "a + el 的缩合，后面是阳性单数名词",
+                  "english": "to the (a + el)"
+                },
+                "a la": {
+                  "gloss": "a + la：阴性不合并",
+                  "english": "to the (feminine)"
+                },
+                "a el": {
+                  "gloss": "✗ 错误形式：a + el 必须合并成 al",
+                  "english": "✗ must be al"
+                }
+              },
+              "ambiguityNote": "完整句：Vamos al restaurante.　提示：el restaurante → al。"
+            },
+            {
+              "id": "prep-con-06",
+              "number": 6,
+              "prompt": "Vengo _______ trabajo.",
+              "options": [
+                "del",
+                "de el",
+                "de la"
+              ],
+              "answers": [
+                "del"
+              ],
+              "canonicalAnswer": "del",
+              "sentenceTranslations": {
+                "del": "我下班回来（从工作的地方来）。"
+              },
+              "answerTranslation": "我下班回来（从工作的地方来）。",
+              "optionNotes": {
+                "del": {
+                  "gloss": "de + el 的缩合：…的 / 从…",
+                  "english": "of / from the (de + el)"
+                },
+                "de la": {
+                  "gloss": "de + la：阴性不合并",
+                  "english": "of / from the (feminine)"
+                },
+                "de el": {
+                  "gloss": "✗ 错误形式：de + el 必须合并成 del",
+                  "english": "✗ must be del"
+                }
+              },
+              "ambiguityNote": "完整句：Vengo del trabajo.　提示：de + el trabajo → del。"
+            },
+            {
+              "id": "prep-con-07",
+              "number": 7,
+              "prompt": "Salgo _______ oficina a las cinco.",
+              "options": [
+                "de la",
+                "del",
+                "de el"
+              ],
+              "answers": [
+                "de la"
+              ],
+              "canonicalAnswer": "de la",
+              "sentenceTranslations": {
+                "de la": "我五点离开办公室。"
+              },
+              "answerTranslation": "我五点离开办公室。",
+              "optionNotes": {
+                "del": {
+                  "gloss": "de + el 的缩合：…的 / 从…",
+                  "english": "of / from the (de + el)"
+                },
+                "de la": {
+                  "gloss": "de + la：阴性不合并",
+                  "english": "of / from the (feminine)"
+                },
+                "de el": {
+                  "gloss": "✗ 错误形式：de + el 必须合并成 del",
+                  "english": "✗ must be del"
+                }
+              },
+              "ambiguityNote": "完整句：Salgo de la oficina a las cinco.　提示：la oficina → de la，不合并。"
+            },
+            {
+              "id": "prep-con-08",
+              "number": 8,
+              "prompt": "Es el coche _______ profesor.",
+              "options": [
+                "de la",
+                "de el",
+                "del"
+              ],
+              "answers": [
+                "del"
+              ],
+              "canonicalAnswer": "del",
+              "sentenceTranslations": {
+                "del": "这是老师的车。"
+              },
+              "answerTranslation": "这是老师的车。",
+              "optionNotes": {
+                "del": {
+                  "gloss": "de + el 的缩合：…的 / 从…",
+                  "english": "of / from the (de + el)"
+                },
+                "de la": {
+                  "gloss": "de + la：阴性不合并",
+                  "english": "of / from the (feminine)"
+                },
+                "de el": {
+                  "gloss": "✗ 错误形式：de + el 必须合并成 del",
+                  "english": "✗ must be del"
+                }
+              },
+              "ambiguityNote": "完整句：Es el coche del profesor.　提示：…的：de + el profesor → del。"
+            },
+            {
+              "id": "prep-con-09",
+              "number": 9,
+              "prompt": "Es la casa _______ abuela.",
+              "options": [
+                "de la",
+                "del",
+                "de el"
+              ],
+              "answers": [
+                "de la"
+              ],
+              "canonicalAnswer": "de la",
+              "sentenceTranslations": {
+                "de la": "这是奶奶的房子。"
+              },
+              "answerTranslation": "这是奶奶的房子。",
+              "optionNotes": {
+                "del": {
+                  "gloss": "de + el 的缩合：…的 / 从…",
+                  "english": "of / from the (de + el)"
+                },
+                "de la": {
+                  "gloss": "de + la：阴性不合并",
+                  "english": "of / from the (feminine)"
+                },
+                "de el": {
+                  "gloss": "✗ 错误形式：de + el 必须合并成 del",
+                  "english": "✗ must be del"
+                }
+              },
+              "ambiguityNote": "完整句：Es la casa de la abuela.　提示：la abuela → de la。"
+            }
+          ]
+        },
+        {
+          "id": "prep-mix",
+          "title": "Parte 3 - ¿el, al, a o en?",
+          "instructions": "混合练习：有时只需要冠词 el，有时需要介词。注意 el lunes、jugar al fútbol。",
+          "type": "single_choice",
+          "items": [
+            {
+              "id": "prep-mix-01",
+              "number": 1,
+              "prompt": "Me gusta _______ fútbol.",
+              "options": [
+                "al",
+                "en",
+                "el",
+                "a"
+              ],
+              "answers": [
+                "el"
+              ],
+              "canonicalAnswer": "el",
+              "sentenceTranslations": {
+                "el": "我喜欢足球。"
+              },
+              "answerTranslation": "我喜欢足球。",
+              "optionNotes": {
+                "el": {
+                  "gloss": "阳性单数定冠词（the）；星期几前也用 el",
+                  "english": "the (masculine)"
+                },
+                "al": {
+                  "gloss": "a + el 的缩合，后面是阳性单数名词",
+                  "english": "to the (a + el)"
+                },
+                "a": {
+                  "gloss": "介词：去往（有移动）/ 给某人 / 在几点 / 人当宾语",
+                  "english": "to / at (time)"
+                },
+                "en": {
+                  "gloss": "介词：在…里 / 上（静止）；乘（交通）；在（月份、年份）",
+                  "english": "in / on / at / by"
+                }
+              },
+              "ambiguityNote": "完整句：Me gusta el fútbol.　提示：这里不需要介词，只要冠词 el（喜欢的东西前加冠词）。"
+            },
+            {
+              "id": "prep-mix-02",
+              "number": 2,
+              "prompt": "Juego _______ fútbol los sábados.",
+              "options": [
+                "el",
+                "en",
+                "a",
+                "al"
+              ],
+              "answers": [
+                "al"
+              ],
+              "canonicalAnswer": "al",
+              "sentenceTranslations": {
+                "al": "我每周六踢足球。"
+              },
+              "answerTranslation": "我每周六踢足球。",
+              "optionNotes": {
+                "el": {
+                  "gloss": "阳性单数定冠词（the）；星期几前也用 el",
+                  "english": "the (masculine)"
+                },
+                "al": {
+                  "gloss": "a + el 的缩合，后面是阳性单数名词",
+                  "english": "to the (a + el)"
+                },
+                "a": {
+                  "gloss": "介词：去往（有移动）/ 给某人 / 在几点 / 人当宾语",
+                  "english": "to / at (time)"
+                },
+                "en": {
+                  "gloss": "介词：在…里 / 上（静止）；乘（交通）；在（月份、年份）",
+                  "english": "in / on / at / by"
+                }
+              },
+              "ambiguityNote": "完整句：Juego al fútbol los sábados.　提示：jugar a + 运动 → a + el fútbol = al。"
+            },
+            {
+              "id": "prep-mix-03",
+              "number": 3,
+              "prompt": "Veo _______ partido en la tele.",
+              "options": [
+                "al",
+                "en",
+                "el",
+                "a"
+              ],
+              "answers": [
+                "el"
+              ],
+              "canonicalAnswer": "el",
+              "sentenceTranslations": {
+                "el": "我在电视上看比赛。"
+              },
+              "answerTranslation": "我在电视上看比赛。",
+              "optionNotes": {
+                "el": {
+                  "gloss": "阳性单数定冠词（the）；星期几前也用 el",
+                  "english": "the (masculine)"
+                },
+                "al": {
+                  "gloss": "a + el 的缩合，后面是阳性单数名词",
+                  "english": "to the (a + el)"
+                },
+                "a": {
+                  "gloss": "介词：去往（有移动）/ 给某人 / 在几点 / 人当宾语",
+                  "english": "to / at (time)"
+                },
+                "en": {
+                  "gloss": "介词：在…里 / 上（静止）；乘（交通）；在（月份、年份）",
+                  "english": "in / on / at / by"
+                }
+              },
+              "ambiguityNote": "完整句：Veo el partido en la tele.　提示：宾语是东西，不加 personal a，只要冠词 el。"
+            },
+            {
+              "id": "prep-mix-04",
+              "number": 4,
+              "prompt": "Veo _______ profesor en la calle.",
+              "options": [
+                "a",
+                "el",
+                "en",
+                "al"
+              ],
+              "answers": [
+                "al"
+              ],
+              "canonicalAnswer": "al",
+              "sentenceTranslations": {
+                "al": "我在街上看到老师。"
+              },
+              "answerTranslation": "我在街上看到老师。",
+              "optionNotes": {
+                "el": {
+                  "gloss": "阳性单数定冠词（the）；星期几前也用 el",
+                  "english": "the (masculine)"
+                },
+                "al": {
+                  "gloss": "a + el 的缩合，后面是阳性单数名词",
+                  "english": "to the (a + el)"
+                },
+                "a": {
+                  "gloss": "介词：去往（有移动）/ 给某人 / 在几点 / 人当宾语",
+                  "english": "to / at (time)"
+                },
+                "en": {
+                  "gloss": "介词：在…里 / 上（静止）；乘（交通）；在（月份、年份）",
+                  "english": "in / on / at / by"
+                }
+              },
+              "ambiguityNote": "完整句：Veo al profesor en la calle.　提示：宾语是人 → a + el profesor = al。"
+            },
+            {
+              "id": "prep-mix-05",
+              "number": 5,
+              "prompt": "Estoy _______ el parque.",
+              "options": [
+                "a",
+                "el",
+                "al",
+                "en"
+              ],
+              "answers": [
+                "en"
+              ],
+              "canonicalAnswer": "en",
+              "sentenceTranslations": {
+                "en": "我在公园。"
+              },
+              "answerTranslation": "我在公园。",
+              "optionNotes": {
+                "el": {
+                  "gloss": "阳性单数定冠词（the）；星期几前也用 el",
+                  "english": "the (masculine)"
+                },
+                "al": {
+                  "gloss": "a + el 的缩合，后面是阳性单数名词",
+                  "english": "to the (a + el)"
+                },
+                "a": {
+                  "gloss": "介词：去往（有移动）/ 给某人 / 在几点 / 人当宾语",
+                  "english": "to / at (time)"
+                },
+                "en": {
+                  "gloss": "介词：在…里 / 上（静止）；乘（交通）；在（月份、年份）",
+                  "english": "in / on / at / by"
+                }
+              },
+              "ambiguityNote": "完整句：Estoy en el parque.　提示：在哪儿用 en（en el，不合并）。"
+            },
+            {
+              "id": "prep-mix-06",
+              "number": 6,
+              "prompt": "Voy _______ parque.",
+              "options": [
+                "en",
+                "el",
+                "al",
+                "a"
+              ],
+              "answers": [
+                "al"
+              ],
+              "canonicalAnswer": "al",
+              "sentenceTranslations": {
+                "al": "我去公园。"
+              },
+              "answerTranslation": "我去公园。",
+              "optionNotes": {
+                "el": {
+                  "gloss": "阳性单数定冠词（the）；星期几前也用 el",
+                  "english": "the (masculine)"
+                },
+                "al": {
+                  "gloss": "a + el 的缩合，后面是阳性单数名词",
+                  "english": "to the (a + el)"
+                },
+                "a": {
+                  "gloss": "介词：去往（有移动）/ 给某人 / 在几点 / 人当宾语",
+                  "english": "to / at (time)"
+                },
+                "en": {
+                  "gloss": "介词：在…里 / 上（静止）；乘（交通）；在（月份、年份）",
+                  "english": "in / on / at / by"
+                }
+              },
+              "ambiguityNote": "完整句：Voy al parque.　提示：去哪儿：a + el parque = al。"
+            },
+            {
+              "id": "prep-mix-07",
+              "number": 7,
+              "prompt": "Abro _______ libro.",
+              "options": [
+                "el",
+                "en",
+                "a",
+                "al"
+              ],
+              "answers": [
+                "el"
+              ],
+              "canonicalAnswer": "el",
+              "sentenceTranslations": {
+                "el": "我打开书。"
+              },
+              "answerTranslation": "我打开书。",
+              "optionNotes": {
+                "el": {
+                  "gloss": "阳性单数定冠词（the）；星期几前也用 el",
+                  "english": "the (masculine)"
+                },
+                "al": {
+                  "gloss": "a + el 的缩合，后面是阳性单数名词",
+                  "english": "to the (a + el)"
+                },
+                "a": {
+                  "gloss": "介词：去往（有移动）/ 给某人 / 在几点 / 人当宾语",
+                  "english": "to / at (time)"
+                },
+                "en": {
+                  "gloss": "介词：在…里 / 上（静止）；乘（交通）；在（月份、年份）",
+                  "english": "in / on / at / by"
+                }
+              },
+              "ambiguityNote": "完整句：Abro el libro.　提示：东西当宾语，只要冠词 el。"
+            },
+            {
+              "id": "prep-mix-08",
+              "number": 8,
+              "prompt": "Vivo _______ España.",
+              "options": [
+                "en",
+                "al",
+                "a",
+                "el"
+              ],
+              "answers": [
+                "en"
+              ],
+              "canonicalAnswer": "en",
+              "sentenceTranslations": {
+                "en": "我住在西班牙。"
+              },
+              "answerTranslation": "我住在西班牙。",
+              "optionNotes": {
+                "el": {
+                  "gloss": "阳性单数定冠词（the）；星期几前也用 el",
+                  "english": "the (masculine)"
+                },
+                "al": {
+                  "gloss": "a + el 的缩合，后面是阳性单数名词",
+                  "english": "to the (a + el)"
+                },
+                "a": {
+                  "gloss": "介词：去往（有移动）/ 给某人 / 在几点 / 人当宾语",
+                  "english": "to / at (time)"
+                },
+                "en": {
+                  "gloss": "介词：在…里 / 上（静止）；乘（交通）；在（月份、年份）",
+                  "english": "in / on / at / by"
+                }
+              },
+              "ambiguityNote": "完整句：Vivo en España.　提示：国家名前没有冠词：en España。"
+            },
+            {
+              "id": "prep-mix-09",
+              "number": 9,
+              "prompt": "Los domingos voy _______ Barcelona.",
+              "options": [
+                "al",
+                "el",
+                "en",
+                "a"
+              ],
+              "answers": [
+                "a"
+              ],
+              "canonicalAnswer": "a",
+              "sentenceTranslations": {
+                "a": "每个星期天我去巴塞罗那。"
+              },
+              "answerTranslation": "每个星期天我去巴塞罗那。",
+              "optionNotes": {
+                "el": {
+                  "gloss": "阳性单数定冠词（the）；星期几前也用 el",
+                  "english": "the (masculine)"
+                },
+                "al": {
+                  "gloss": "a + el 的缩合，后面是阳性单数名词",
+                  "english": "to the (a + el)"
+                },
+                "a": {
+                  "gloss": "介词：去往（有移动）/ 给某人 / 在几点 / 人当宾语",
+                  "english": "to / at (time)"
+                },
+                "en": {
+                  "gloss": "介词：在…里 / 上（静止）；乘（交通）；在（月份、年份）",
+                  "english": "in / on / at / by"
+                }
+              },
+              "ambiguityNote": "完整句：Los domingos voy a Barcelona.　提示：城市名前没有冠词，所以是 a，不是 al。"
+            },
+            {
+              "id": "prep-mix-10",
+              "number": 10,
+              "prompt": "Tengo clase _______ lunes.",
+              "options": [
+                "al",
+                "en",
+                "a",
+                "el"
+              ],
+              "answers": [
+                "el"
+              ],
+              "canonicalAnswer": "el",
+              "sentenceTranslations": {
+                "el": "我星期一有课。"
+              },
+              "answerTranslation": "我星期一有课。",
+              "optionNotes": {
+                "el": {
+                  "gloss": "阳性单数定冠词（the）；星期几前也用 el",
+                  "english": "the (masculine)"
+                },
+                "al": {
+                  "gloss": "a + el 的缩合，后面是阳性单数名词",
+                  "english": "to the (a + el)"
+                },
+                "a": {
+                  "gloss": "介词：去往（有移动）/ 给某人 / 在几点 / 人当宾语",
+                  "english": "to / at (time)"
+                },
+                "en": {
+                  "gloss": "介词：在…里 / 上（静止）；乘（交通）；在（月份、年份）",
+                  "english": "in / on / at / by"
+                }
+              },
+              "ambiguityNote": "完整句：Tengo clase el lunes.　提示：星期几前用 el（el lunes），不用 en。"
+            },
+            {
+              "id": "prep-mix-11",
+              "number": 11,
+              "prompt": "Pregunto _______ camarero.",
+              "options": [
+                "el",
+                "en",
+                "al",
+                "a"
+              ],
+              "answers": [
+                "al"
+              ],
+              "canonicalAnswer": "al",
+              "sentenceTranslations": {
+                "al": "我问服务员。"
+              },
+              "answerTranslation": "我问服务员。",
+              "optionNotes": {
+                "el": {
+                  "gloss": "阳性单数定冠词（the）；星期几前也用 el",
+                  "english": "the (masculine)"
+                },
+                "al": {
+                  "gloss": "a + el 的缩合，后面是阳性单数名词",
+                  "english": "to the (a + el)"
+                },
+                "a": {
+                  "gloss": "介词：去往（有移动）/ 给某人 / 在几点 / 人当宾语",
+                  "english": "to / at (time)"
+                },
+                "en": {
+                  "gloss": "介词：在…里 / 上（静止）；乘（交通）；在（月份、年份）",
+                  "english": "in / on / at / by"
+                }
+              },
+              "ambiguityNote": "完整句：Pregunto al camarero.　提示：问某人：a + el camarero = al。"
+            },
+            {
+              "id": "prep-mix-12",
+              "number": 12,
+              "prompt": "Tomo _______ autobús.",
+              "options": [
+                "en",
+                "el",
+                "al",
+                "a"
+              ],
+              "answers": [
+                "el"
+              ],
+              "canonicalAnswer": "el",
+              "sentenceTranslations": {
+                "el": "我坐公交车。"
+              },
+              "answerTranslation": "我坐公交车。",
+              "optionNotes": {
+                "el": {
+                  "gloss": "阳性单数定冠词（the）；星期几前也用 el",
+                  "english": "the (masculine)"
+                },
+                "al": {
+                  "gloss": "a + el 的缩合，后面是阳性单数名词",
+                  "english": "to the (a + el)"
+                },
+                "a": {
+                  "gloss": "介词：去往（有移动）/ 给某人 / 在几点 / 人当宾语",
+                  "english": "to / at (time)"
+                },
+                "en": {
+                  "gloss": "介词：在…里 / 上（静止）；乘（交通）；在（月份、年份）",
+                  "english": "in / on / at / by"
+                }
+              },
+              "ambiguityNote": "完整句：Tomo el autobús.　提示：tomar（搭乘）后面直接接 el autobús；比较 voy en autobús。"
+            }
+          ]
+        },
+        {
+          "id": "prep-order",
+          "title": "Parte 4 - Ordena la frase",
+          "instructions": "按顺序点词组成句子。里面混了多余的介词，别全部用上。",
+          "type": "text_input",
+          "items": [
+            {
+              "id": "prep-order-01",
+              "number": 1,
+              "prompt": "排成句子：我和 Ana 去电影院。",
+              "wordTiles": [
+                "el",
+                "al",
+                "Voy",
+                "con",
+                "en",
+                "cine",
+                "Ana"
+              ],
+              "answers": [
+                "Voy al cine con Ana."
+              ],
+              "canonicalAnswer": "Voy al cine con Ana.",
+              "answerTranslation": "我和 Ana 去电影院。",
+              "ambiguityNote": "翻译：我和 Ana 去电影院。"
+            },
+            {
+              "id": "prep-order-02",
+              "number": 2,
+              "prompt": "排成句子：我们在海滩。",
+              "wordTiles": [
+                "en",
+                "Estamos",
+                "la",
+                "a",
+                "al",
+                "playa"
+              ],
+              "answers": [
+                "Estamos en la playa."
+              ],
+              "canonicalAnswer": "Estamos en la playa.",
+              "answerTranslation": "我们在海滩。",
+              "ambiguityNote": "翻译：我们在海滩。"
+            },
+            {
+              "id": "prep-order-03",
+              "number": 3,
+              "prompt": "排成句子：我哥哥在医院工作。",
+              "wordTiles": [
+                "un",
+                "a",
+                "en",
+                "trabaja",
+                "hospital",
+                "al",
+                "Mi",
+                "hermano"
+              ],
+              "answers": [
+                "Mi hermano trabaja en un hospital."
+              ],
+              "canonicalAnswer": "Mi hermano trabaja en un hospital.",
+              "answerTranslation": "我哥哥在医院工作。",
+              "ambiguityNote": "翻译：我哥哥在医院工作。"
+            },
+            {
+              "id": "prep-order-04",
+              "number": 4,
+              "prompt": "排成句子：我七点回家。",
+              "wordTiles": [
+                "a",
+                "las",
+                "Vuelvo",
+                "al",
+                "en",
+                "casa",
+                "a",
+                "siete"
+              ],
+              "answers": [
+                "Vuelvo a casa a las siete."
+              ],
+              "canonicalAnswer": "Vuelvo a casa a las siete.",
+              "answerTranslation": "我七点回家。",
+              "ambiguityNote": "翻译：我七点回家。"
+            },
+            {
+              "id": "prep-order-05",
+              "number": 5,
+              "prompt": "排成句子：我给医生打电话。",
+              "wordTiles": [
+                "Llamo",
+                "en",
+                "al",
+                "médico",
+                "el",
+                "a"
+              ],
+              "answers": [
+                "Llamo al médico."
+              ],
+              "canonicalAnswer": "Llamo al médico.",
+              "answerTranslation": "我给医生打电话。",
+              "ambiguityNote": "翻译：我给医生打电话。"
+            },
+            {
+              "id": "prep-order-06",
+              "number": 6,
+              "prompt": "排成句子：我们坐飞机去日本。",
+              "wordTiles": [
+                "Japón",
+                "avión",
+                "al",
+                "a",
+                "Viajamos",
+                "en",
+                "de"
+              ],
+              "answers": [
+                "Viajamos a Japón en avión.",
+                "Viajamos en avión a Japón."
+              ],
+              "canonicalAnswer": "Viajamos a Japón en avión.",
+              "answerTranslation": "我们坐飞机去日本。",
+              "ambiguityNote": "翻译：我们坐飞机去日本。"
+            },
+            {
+              "id": "prep-order-07",
+              "number": 7,
+              "prompt": "排成句子：我星期一有课。",
+              "wordTiles": [
+                "clase",
+                "al",
+                "Tengo",
+                "en",
+                "el",
+                "lunes"
+              ],
+              "answers": [
+                "Tengo clase el lunes.",
+                "El lunes tengo clase."
+              ],
+              "canonicalAnswer": "Tengo clase el lunes.",
+              "answerTranslation": "我星期一有课。",
+              "ambiguityNote": "翻译：我星期一有课。"
+            },
+            {
+              "id": "prep-order-08",
+              "number": 8,
+              "prompt": "排成句子：我在公园踢足球。",
+              "wordTiles": [
+                "fútbol",
+                "del",
+                "Juego",
+                "al",
+                "parque",
+                "el",
+                "en",
+                "a"
+              ],
+              "answers": [
+                "Juego al fútbol en el parque.",
+                "En el parque juego al fútbol."
+              ],
+              "canonicalAnswer": "Juego al fútbol en el parque.",
+              "answerTranslation": "我在公园踢足球。",
+              "ambiguityNote": "翻译：我在公园踢足球。"
+            }
+          ]
+        },
+        {
+          "id": "prep-translate",
+          "title": "Parte 5 - Traduce al español",
+          "instructions": "把中文翻译成西班牙语，注意用 a / al / en。忘了重音会提示“很接近”。",
+          "type": "text_input",
+          "items": [
+            {
+              "id": "prep-tr-01",
+              "number": 1,
+              "prompt": "我去学校。",
+              "answers": [
+                "Voy a la escuela.",
+                "Yo voy a la escuela.",
+                "Voy al colegio.",
+                "Yo voy al colegio."
+              ],
+              "canonicalAnswer": "Voy a la escuela.",
+              "answerTranslation": "我去学校。"
+            },
+            {
+              "id": "prep-tr-02",
+              "number": 2,
+              "prompt": "我在学校。",
+              "answers": [
+                "Estoy en la escuela.",
+                "Yo estoy en la escuela.",
+                "Estoy en el colegio.",
+                "Yo estoy en el colegio."
+              ],
+              "canonicalAnswer": "Estoy en la escuela.",
+              "answerTranslation": "我在学校。"
+            },
+            {
+              "id": "prep-tr-03",
+              "number": 3,
+              "prompt": "我们去公园。",
+              "answers": [
+                "Vamos al parque.",
+                "Nosotros vamos al parque.",
+                "Nosotras vamos al parque."
+              ],
+              "canonicalAnswer": "Vamos al parque.",
+              "answerTranslation": "我们去公园。"
+            },
+            {
+              "id": "prep-tr-04",
+              "number": 4,
+              "prompt": "她住在马德里。",
+              "answers": [
+                "Vive en Madrid.",
+                "Ella vive en Madrid."
+              ],
+              "canonicalAnswer": "Vive en Madrid.",
+              "answerTranslation": "她住在马德里。"
+            },
+            {
+              "id": "prep-tr-05",
+              "number": 5,
+              "prompt": "我坐火车去。",
+              "answers": [
+                "Voy en tren.",
+                "Yo voy en tren."
+              ],
+              "canonicalAnswer": "Voy en tren.",
+              "answerTranslation": "我坐火车去。"
+            },
+            {
+              "id": "prep-tr-06",
+              "number": 6,
+              "prompt": "课八点开始。",
+              "answers": [
+                "La clase empieza a las ocho.",
+                "La clase comienza a las ocho."
+              ],
+              "canonicalAnswer": "La clase empieza a las ocho.",
+              "answerTranslation": "课八点开始。"
+            },
+            {
+              "id": "prep-tr-07",
+              "number": 7,
+              "prompt": "我给医生打电话。",
+              "answers": [
+                "Llamo al médico.",
+                "Yo llamo al médico."
+              ],
+              "canonicalAnswer": "Llamo al médico.",
+              "answerTranslation": "我给医生打电话。"
+            },
+            {
+              "id": "prep-tr-08",
+              "number": 8,
+              "prompt": "我星期一有课。",
+              "answers": [
+                "Tengo clase el lunes.",
+                "El lunes tengo clase.",
+                "Yo tengo clase el lunes."
+              ],
+              "canonicalAnswer": "Tengo clase el lunes.",
+              "answerTranslation": "我星期一有课。"
+            }
+          ]
+        }
+      ],
+      "sentenceLexicon": [
+        {
+          "id": "prep-lx-ir",
+          "word": "ir",
+          "forms": [
+            "voy",
+            "vamos",
+            "van"
+          ],
+          "gloss": "去",
+          "english": "to go"
+        },
+        {
+          "id": "prep-lx-vivir",
+          "word": "vivir",
+          "forms": [
+            "vivo"
+          ],
+          "gloss": "住；生活",
+          "english": "to live"
+        },
+        {
+          "id": "prep-lx-comer",
+          "word": "comer",
+          "forms": [
+            "comemos"
+          ],
+          "gloss": "吃",
+          "english": "to eat"
+        },
+        {
+          "id": "prep-lx-volver",
+          "word": "volver",
+          "forms": [
+            "vuelvo"
+          ],
+          "gloss": "回来；回去",
+          "english": "to return"
+        },
+        {
+          "id": "prep-lx-empezar",
+          "word": "empezar",
+          "forms": [
+            "empieza"
+          ],
+          "gloss": "开始",
+          "english": "to start"
+        },
+        {
+          "id": "prep-lx-viajar",
+          "word": "viajar",
+          "forms": [
+            "viajo"
+          ],
+          "gloss": "旅行",
+          "english": "to travel"
+        },
+        {
+          "id": "prep-lx-ver",
+          "word": "ver",
+          "forms": [
+            "veo"
+          ],
+          "gloss": "看；看见",
+          "english": "to see"
+        },
+        {
+          "id": "prep-lx-llamar",
+          "word": "llamar",
+          "forms": [
+            "llamo"
+          ],
+          "gloss": "打电话；叫",
+          "english": "to call"
+        },
+        {
+          "id": "prep-lx-llegar",
+          "word": "llegar",
+          "forms": [
+            "llego"
+          ],
+          "gloss": "到达",
+          "english": "to arrive"
+        },
+        {
+          "id": "prep-lx-hablar",
+          "word": "hablar",
+          "forms": [
+            "hablo"
+          ],
+          "gloss": "说（语言）",
+          "english": "to speak"
+        },
+        {
+          "id": "prep-lx-escribir",
+          "word": "escribir",
+          "forms": [
+            "escribo"
+          ],
+          "gloss": "写",
+          "english": "to write"
+        },
+        {
+          "id": "prep-lx-venir",
+          "word": "venir",
+          "forms": [
+            "vengo"
+          ],
+          "gloss": "来",
+          "english": "to come"
+        },
+        {
+          "id": "prep-lx-salir",
+          "word": "salir",
+          "forms": [
+            "salgo"
+          ],
+          "gloss": "出去；离开",
+          "english": "to go out / leave"
+        },
+        {
+          "id": "prep-lx-gustar",
+          "word": "gustar",
+          "forms": [
+            "me gusta",
+            "gusta"
+          ],
+          "gloss": "使喜欢（me gusta = 我喜欢）",
+          "english": "to like"
+        },
+        {
+          "id": "prep-lx-jugar",
+          "word": "jugar",
+          "forms": [
+            "juego"
+          ],
+          "gloss": "玩；踢（球）",
+          "english": "to play"
+        },
+        {
+          "id": "prep-lx-preguntar",
+          "word": "preguntar",
+          "forms": [
+            "pregunto"
+          ],
+          "gloss": "问",
+          "english": "to ask"
+        },
+        {
+          "id": "prep-lx-tomar",
+          "word": "tomar",
+          "forms": [
+            "tomo"
+          ],
+          "gloss": "搭乘；拿",
+          "english": "to take"
+        },
+        {
+          "id": "prep-lx-amigo",
+          "word": "amigo",
+          "forms": [
+            "amigos"
+          ],
+          "gloss": "朋友",
+          "english": "friend"
+        },
+        {
+          "id": "prep-lx-elcumpleanos",
+          "word": "el cumpleaños",
+          "forms": [
+            "cumpleaños"
+          ],
+          "gloss": "生日",
+          "english": "birthday"
+        },
+        {
+          "id": "prep-lx-elpartido",
+          "word": "el partido",
+          "forms": [
+            "partido"
+          ],
+          "gloss": "比赛",
+          "english": "match / game"
+        },
+        {
+          "id": "prep-lx-elcamarero",
+          "word": "el camarero",
+          "forms": [
+            "camarero"
+          ],
+          "gloss": "服务员",
+          "english": "waiter"
+        },
+        {
+          "id": "prep-lx-domingo",
+          "word": "domingo",
+          "forms": [
+            "domingos"
+          ],
+          "gloss": "星期天（los domingos = 每个星期天）",
+          "english": "Sunday"
+        },
+        {
+          "id": "prep-lx-sabado",
+          "word": "sábado",
+          "forms": [
+            "sábados"
+          ],
+          "gloss": "星期六（los sábados = 每个星期六）",
+          "english": "Saturday"
+        },
+        {
+          "id": "prep-lx-madrid",
+          "word": "Madrid",
+          "forms": [
+            "Madrid"
+          ],
+          "gloss": "马德里",
+          "english": "Madrid"
+        },
+        {
+          "id": "prep-lx-barcelona",
+          "word": "Barcelona",
+          "forms": [
+            "Barcelona"
+          ],
+          "gloss": "巴塞罗那",
+          "english": "Barcelona"
+        }
+      ]
     }
   ]
 }
